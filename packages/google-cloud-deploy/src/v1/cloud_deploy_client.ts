@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -60,6 +61,8 @@ export class CloudDeployClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('deploy');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -97,7 +100,7 @@ export class CloudDeployClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -351,6 +354,9 @@ export class CloudDeployClient {
             {
               get: '/v1/{resource=projects/*/locations/*/customTargetTypes/*}:getIamPolicy',
             },
+            {
+              get: '/v1/{resource=projects/*/locations/*/deployPolicies/*}:getIamPolicy',
+            },
           ],
         },
         {
@@ -364,6 +370,10 @@ export class CloudDeployClient {
             },
             {
               post: '/v1/{resource=projects/*/locations/*/customTargetTypes/*}:setIamPolicy',
+              body: '*',
+            },
+            {
+              post: '/v1/{resource=projects/*/locations/*/deployPolicies/*}:setIamPolicy',
               body: '*',
             },
           ],
@@ -917,7 +927,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getDeliveryPipeline(request, options, callback);
+    this._log.info('getDeliveryPipeline request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IDeliveryPipeline,
+          | protos.google.cloud.deploy.v1.IGetDeliveryPipelineRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getDeliveryPipeline response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getDeliveryPipeline(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IDeliveryPipeline,
+          protos.google.cloud.deploy.v1.IGetDeliveryPipelineRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getDeliveryPipeline response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates a `Rollout` to roll back the specified target.
@@ -1022,7 +1058,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.rollbackTarget(request, options, callback);
+    this._log.info('rollbackTarget request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IRollbackTargetResponse,
+          | protos.google.cloud.deploy.v1.IRollbackTargetRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('rollbackTarget response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .rollbackTarget(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IRollbackTargetResponse,
+          protos.google.cloud.deploy.v1.IRollbackTargetRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('rollbackTarget response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single Target.
@@ -1105,7 +1167,31 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getTarget(request, options, callback);
+    this._log.info('getTarget request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.ITarget,
+          protos.google.cloud.deploy.v1.IGetTargetRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getTarget response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getTarget(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.ITarget,
+          protos.google.cloud.deploy.v1.IGetTargetRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getTarget response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single CustomTargetType.
@@ -1196,7 +1282,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getCustomTargetType(request, options, callback);
+    this._log.info('getCustomTargetType request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.ICustomTargetType,
+          | protos.google.cloud.deploy.v1.IGetCustomTargetTypeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getCustomTargetType response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getCustomTargetType(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.ICustomTargetType,
+          protos.google.cloud.deploy.v1.IGetCustomTargetTypeRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getCustomTargetType response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single Release.
@@ -1279,7 +1391,31 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getRelease(request, options, callback);
+    this._log.info('getRelease request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IRelease,
+          protos.google.cloud.deploy.v1.IGetReleaseRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getRelease response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getRelease(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IRelease,
+          protos.google.cloud.deploy.v1.IGetReleaseRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getRelease response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Abandons a Release in the Delivery Pipeline.
@@ -1364,7 +1500,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.abandonRelease(request, options, callback);
+    this._log.info('abandonRelease request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IAbandonReleaseResponse,
+          | protos.google.cloud.deploy.v1.IAbandonReleaseRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('abandonRelease response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .abandonRelease(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IAbandonReleaseResponse,
+          protos.google.cloud.deploy.v1.IAbandonReleaseRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('abandonRelease response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single DeployPolicy.
@@ -1449,7 +1611,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getDeployPolicy(request, options, callback);
+    this._log.info('getDeployPolicy request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IDeployPolicy,
+          | protos.google.cloud.deploy.v1.IGetDeployPolicyRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getDeployPolicy response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getDeployPolicy(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IDeployPolicy,
+          protos.google.cloud.deploy.v1.IGetDeployPolicyRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getDeployPolicy response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Approves a Rollout.
@@ -1539,7 +1727,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.approveRollout(request, options, callback);
+    this._log.info('approveRollout request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IApproveRolloutResponse,
+          | protos.google.cloud.deploy.v1.IApproveRolloutRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('approveRollout response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .approveRollout(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IApproveRolloutResponse,
+          protos.google.cloud.deploy.v1.IApproveRolloutRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('approveRollout response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Advances a Rollout in a given project and location.
@@ -1629,7 +1843,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.advanceRollout(request, options, callback);
+    this._log.info('advanceRollout request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IAdvanceRolloutResponse,
+          | protos.google.cloud.deploy.v1.IAdvanceRolloutRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('advanceRollout response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .advanceRollout(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IAdvanceRolloutResponse,
+          protos.google.cloud.deploy.v1.IAdvanceRolloutRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('advanceRollout response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Cancels a Rollout in a given project and location.
@@ -1717,7 +1957,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.cancelRollout(request, options, callback);
+    this._log.info('cancelRollout request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.ICancelRolloutResponse,
+          | protos.google.cloud.deploy.v1.ICancelRolloutRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('cancelRollout response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .cancelRollout(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.ICancelRolloutResponse,
+          protos.google.cloud.deploy.v1.ICancelRolloutRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('cancelRollout response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single Rollout.
@@ -1800,7 +2066,31 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getRollout(request, options, callback);
+    this._log.info('getRollout request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IRollout,
+          protos.google.cloud.deploy.v1.IGetRolloutRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getRollout response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getRollout(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IRollout,
+          protos.google.cloud.deploy.v1.IGetRolloutRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getRollout response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Ignores the specified Job in a Rollout.
@@ -1890,7 +2180,31 @@ export class CloudDeployClient {
         rollout: request.rollout ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.ignoreJob(request, options, callback);
+    this._log.info('ignoreJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IIgnoreJobResponse,
+          protos.google.cloud.deploy.v1.IIgnoreJobRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('ignoreJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .ignoreJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IIgnoreJobResponse,
+          protos.google.cloud.deploy.v1.IIgnoreJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('ignoreJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Retries the specified Job in a Rollout.
@@ -1980,7 +2294,31 @@ export class CloudDeployClient {
         rollout: request.rollout ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.retryJob(request, options, callback);
+    this._log.info('retryJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IRetryJobResponse,
+          protos.google.cloud.deploy.v1.IRetryJobRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('retryJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .retryJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IRetryJobResponse,
+          protos.google.cloud.deploy.v1.IRetryJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('retryJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single JobRun.
@@ -2063,7 +2401,31 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getJobRun(request, options, callback);
+    this._log.info('getJobRun request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IJobRun,
+          protos.google.cloud.deploy.v1.IGetJobRunRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getJobRun response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getJobRun(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IJobRun,
+          protos.google.cloud.deploy.v1.IGetJobRunRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getJobRun response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Terminates a Job Run in a given project and location.
@@ -2151,7 +2513,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.terminateJobRun(request, options, callback);
+    this._log.info('terminateJobRun request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.ITerminateJobRunResponse,
+          | protos.google.cloud.deploy.v1.ITerminateJobRunRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('terminateJobRun response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .terminateJobRun(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.ITerminateJobRunResponse,
+          protos.google.cloud.deploy.v1.ITerminateJobRunRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('terminateJobRun response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets the configuration for a location.
@@ -2233,7 +2621,31 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getConfig(request, options, callback);
+    this._log.info('getConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IConfig,
+          protos.google.cloud.deploy.v1.IGetConfigRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IConfig,
+          protos.google.cloud.deploy.v1.IGetConfigRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single Automation.
@@ -2318,7 +2730,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAutomation(request, options, callback);
+    this._log.info('getAutomation request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IAutomation,
+          | protos.google.cloud.deploy.v1.IGetAutomationRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAutomation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAutomation(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IAutomation,
+          protos.google.cloud.deploy.v1.IGetAutomationRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getAutomation response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets details of a single AutomationRun.
@@ -2403,7 +2841,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAutomationRun(request, options, callback);
+    this._log.info('getAutomationRun request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.IAutomationRun,
+          | protos.google.cloud.deploy.v1.IGetAutomationRunRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAutomationRun response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAutomationRun(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.IAutomationRun,
+          protos.google.cloud.deploy.v1.IGetAutomationRunRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getAutomationRun response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Cancels an AutomationRun. The `state` of the `AutomationRun` after
@@ -2497,7 +2961,33 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.cancelAutomationRun(request, options, callback);
+    this._log.info('cancelAutomationRun request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.deploy.v1.ICancelAutomationRunResponse,
+          | protos.google.cloud.deploy.v1.ICancelAutomationRunRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('cancelAutomationRun response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .cancelAutomationRun(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.deploy.v1.ICancelAutomationRunResponse,
+          protos.google.cloud.deploy.v1.ICancelAutomationRunRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('cancelAutomationRun response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -2622,11 +3112,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createDeliveryPipeline(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeliveryPipeline,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createDeliveryPipeline response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createDeliveryPipeline request %j', request);
+    return this.innerApiCalls
+      .createDeliveryPipeline(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeliveryPipeline,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createDeliveryPipeline response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createDeliveryPipeline()`.
@@ -2647,6 +3163,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createDeliveryPipeline long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2788,11 +3305,37 @@ export class CloudDeployClient {
         'delivery_pipeline.name': request.deliveryPipeline!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateDeliveryPipeline(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeliveryPipeline,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateDeliveryPipeline response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateDeliveryPipeline request %j', request);
+    return this.innerApiCalls
+      .updateDeliveryPipeline(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeliveryPipeline,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateDeliveryPipeline response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateDeliveryPipeline()`.
@@ -2813,6 +3356,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('updateDeliveryPipeline long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2957,11 +3501,37 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteDeliveryPipeline(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteDeliveryPipeline response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteDeliveryPipeline request %j', request);
+    return this.innerApiCalls
+      .deleteDeliveryPipeline(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteDeliveryPipeline response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteDeliveryPipeline()`.
@@ -2982,6 +3552,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('deleteDeliveryPipeline long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3120,7 +3691,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createTarget(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.ITarget,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createTarget response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createTarget request %j', request);
+    return this.innerApiCalls
+      .createTarget(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.ITarget,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createTarget response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createTarget()`.
@@ -3141,6 +3742,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createTarget long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3282,7 +3884,37 @@ export class CloudDeployClient {
         'target.name': request.target!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateTarget(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.ITarget,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateTarget response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateTarget request %j', request);
+    return this.innerApiCalls
+      .updateTarget(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.ITarget,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateTarget response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateTarget()`.
@@ -3303,6 +3935,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('updateTarget long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3443,7 +4076,37 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteTarget(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteTarget response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteTarget request %j', request);
+    return this.innerApiCalls
+      .deleteTarget(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteTarget response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteTarget()`.
@@ -3464,6 +4127,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('deleteTarget long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3601,11 +4265,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createCustomTargetType(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.ICustomTargetType,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createCustomTargetType response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createCustomTargetType request %j', request);
+    return this.innerApiCalls
+      .createCustomTargetType(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.ICustomTargetType,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createCustomTargetType response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createCustomTargetType()`.
@@ -3626,6 +4316,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createCustomTargetType long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3767,11 +4458,37 @@ export class CloudDeployClient {
         'custom_target_type.name': request.customTargetType!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateCustomTargetType(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.ICustomTargetType,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateCustomTargetType response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateCustomTargetType request %j', request);
+    return this.innerApiCalls
+      .updateCustomTargetType(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.ICustomTargetType,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateCustomTargetType response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateCustomTargetType()`.
@@ -3792,6 +4509,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('updateCustomTargetType long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3932,11 +4650,37 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteCustomTargetType(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteCustomTargetType response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteCustomTargetType request %j', request);
+    return this.innerApiCalls
+      .deleteCustomTargetType(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteCustomTargetType response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteCustomTargetType()`.
@@ -3957,6 +4701,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('deleteCustomTargetType long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -4098,7 +4843,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createRelease(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IRelease,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createRelease response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createRelease request %j', request);
+    return this.innerApiCalls
+      .createRelease(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IRelease,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createRelease response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createRelease()`.
@@ -4119,6 +4894,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createRelease long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -4256,7 +5032,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createDeployPolicy(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeployPolicy,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createDeployPolicy response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createDeployPolicy request %j', request);
+    return this.innerApiCalls
+      .createDeployPolicy(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeployPolicy,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createDeployPolicy response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createDeployPolicy()`.
@@ -4277,6 +5083,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createDeployPolicy long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -4418,7 +5225,37 @@ export class CloudDeployClient {
         'deploy_policy.name': request.deployPolicy!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateDeployPolicy(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeployPolicy,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateDeployPolicy response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateDeployPolicy request %j', request);
+    return this.innerApiCalls
+      .updateDeployPolicy(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IDeployPolicy,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateDeployPolicy response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateDeployPolicy()`.
@@ -4439,6 +5276,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('updateDeployPolicy long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -4579,7 +5417,37 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteDeployPolicy(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteDeployPolicy response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteDeployPolicy request %j', request);
+    return this.innerApiCalls
+      .deleteDeployPolicy(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteDeployPolicy response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteDeployPolicy()`.
@@ -4600,6 +5468,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('deleteDeployPolicy long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -4744,7 +5613,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createRollout(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IRollout,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createRollout response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createRollout request %j', request);
+    return this.innerApiCalls
+      .createRollout(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IRollout,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createRollout response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createRollout()`.
@@ -4765,6 +5664,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createRollout long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -4903,7 +5803,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createAutomation(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IAutomation,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createAutomation response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createAutomation request %j', request);
+    return this.innerApiCalls
+      .createAutomation(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IAutomation,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createAutomation response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createAutomation()`.
@@ -4924,6 +5854,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('createAutomation long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -5065,7 +5996,37 @@ export class CloudDeployClient {
         'automation.name': request.automation!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateAutomation(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.deploy.v1.IAutomation,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateAutomation response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateAutomation request %j', request);
+    return this.innerApiCalls
+      .updateAutomation(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.deploy.v1.IAutomation,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateAutomation response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateAutomation()`.
@@ -5086,6 +6047,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('updateAutomation long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -5227,7 +6189,37 @@ export class CloudDeployClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteAutomation(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteAutomation response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteAutomation request %j', request);
+    return this.innerApiCalls
+      .deleteAutomation(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.deploy.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteAutomation response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteAutomation()`.
@@ -5248,6 +6240,7 @@ export class CloudDeployClient {
       protos.google.cloud.deploy.v1.OperationMetadata
     >
   > {
+    this._log.info('deleteAutomation long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -5371,11 +6364,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listDeliveryPipelines(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListDeliveryPipelinesRequest,
+          | protos.google.cloud.deploy.v1.IListDeliveryPipelinesResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.IDeliveryPipeline
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listDeliveryPipelines values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listDeliveryPipelines request %j', request);
+    return this.innerApiCalls
+      .listDeliveryPipelines(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IDeliveryPipeline[],
+          protos.google.cloud.deploy.v1.IListDeliveryPipelinesRequest | null,
+          protos.google.cloud.deploy.v1.IListDeliveryPipelinesResponse,
+        ]) => {
+          this._log.info('listDeliveryPipelines values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listDeliveryPipelines`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -5423,6 +6442,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listDeliveryPipelines'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listDeliveryPipelines stream %j', request);
     return this.descriptors.page.listDeliveryPipelines.createStream(
       this.innerApiCalls.listDeliveryPipelines as GaxCall,
       request,
@@ -5482,6 +6502,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listDeliveryPipelines'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listDeliveryPipelines iterate %j', request);
     return this.descriptors.page.listDeliveryPipelines.asyncIterate(
       this.innerApiCalls['listDeliveryPipelines'] as GaxCall,
       request as {},
@@ -5589,11 +6610,35 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listTargets(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListTargetsRequest,
+          protos.google.cloud.deploy.v1.IListTargetsResponse | null | undefined,
+          protos.google.cloud.deploy.v1.ITarget
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listTargets values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listTargets request %j', request);
+    return this.innerApiCalls
+      .listTargets(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.ITarget[],
+          protos.google.cloud.deploy.v1.IListTargetsRequest | null,
+          protos.google.cloud.deploy.v1.IListTargetsResponse,
+        ]) => {
+          this._log.info('listTargets values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listTargets`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -5642,6 +6687,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listTargets'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTargets stream %j', request);
     return this.descriptors.page.listTargets.createStream(
       this.innerApiCalls.listTargets as GaxCall,
       request,
@@ -5702,6 +6748,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listTargets'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTargets iterate %j', request);
     return this.descriptors.page.listTargets.asyncIterate(
       this.innerApiCalls['listTargets'] as GaxCall,
       request as {},
@@ -5817,11 +6864,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listCustomTargetTypes(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListCustomTargetTypesRequest,
+          | protos.google.cloud.deploy.v1.IListCustomTargetTypesResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.ICustomTargetType
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listCustomTargetTypes values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listCustomTargetTypes request %j', request);
+    return this.innerApiCalls
+      .listCustomTargetTypes(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.ICustomTargetType[],
+          protos.google.cloud.deploy.v1.IListCustomTargetTypesRequest | null,
+          protos.google.cloud.deploy.v1.IListCustomTargetTypesResponse,
+        ]) => {
+          this._log.info('listCustomTargetTypes values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listCustomTargetTypes`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -5870,6 +6943,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listCustomTargetTypes'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listCustomTargetTypes stream %j', request);
     return this.descriptors.page.listCustomTargetTypes.createStream(
       this.innerApiCalls.listCustomTargetTypes as GaxCall,
       request,
@@ -5930,6 +7004,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listCustomTargetTypes'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listCustomTargetTypes iterate %j', request);
     return this.descriptors.page.listCustomTargetTypes.asyncIterate(
       this.innerApiCalls['listCustomTargetTypes'] as GaxCall,
       request as {},
@@ -6039,11 +7114,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listReleases(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListReleasesRequest,
+          | protos.google.cloud.deploy.v1.IListReleasesResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.IRelease
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listReleases values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listReleases request %j', request);
+    return this.innerApiCalls
+      .listReleases(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IRelease[],
+          protos.google.cloud.deploy.v1.IListReleasesRequest | null,
+          protos.google.cloud.deploy.v1.IListReleasesResponse,
+        ]) => {
+          this._log.info('listReleases values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listReleases`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -6092,6 +7193,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listReleases'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listReleases stream %j', request);
     return this.descriptors.page.listReleases.createStream(
       this.innerApiCalls.listReleases as GaxCall,
       request,
@@ -6152,6 +7254,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listReleases'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listReleases iterate %j', request);
     return this.descriptors.page.listReleases.asyncIterate(
       this.innerApiCalls['listReleases'] as GaxCall,
       request as {},
@@ -6266,11 +7369,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listDeployPolicies(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListDeployPoliciesRequest,
+          | protos.google.cloud.deploy.v1.IListDeployPoliciesResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.IDeployPolicy
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listDeployPolicies values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listDeployPolicies request %j', request);
+    return this.innerApiCalls
+      .listDeployPolicies(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IDeployPolicy[],
+          protos.google.cloud.deploy.v1.IListDeployPoliciesRequest | null,
+          protos.google.cloud.deploy.v1.IListDeployPoliciesResponse,
+        ]) => {
+          this._log.info('listDeployPolicies values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listDeployPolicies`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -6318,6 +7447,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listDeployPolicies'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listDeployPolicies stream %j', request);
     return this.descriptors.page.listDeployPolicies.createStream(
       this.innerApiCalls.listDeployPolicies as GaxCall,
       request,
@@ -6377,6 +7507,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listDeployPolicies'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listDeployPolicies iterate %j', request);
     return this.descriptors.page.listDeployPolicies.asyncIterate(
       this.innerApiCalls['listDeployPolicies'] as GaxCall,
       request as {},
@@ -6485,11 +7616,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listRollouts(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListRolloutsRequest,
+          | protos.google.cloud.deploy.v1.IListRolloutsResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.IRollout
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listRollouts values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listRollouts request %j', request);
+    return this.innerApiCalls
+      .listRollouts(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IRollout[],
+          protos.google.cloud.deploy.v1.IListRolloutsRequest | null,
+          protos.google.cloud.deploy.v1.IListRolloutsResponse,
+        ]) => {
+          this._log.info('listRollouts values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listRollouts`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -6537,6 +7694,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listRollouts'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listRollouts stream %j', request);
     return this.descriptors.page.listRollouts.createStream(
       this.innerApiCalls.listRollouts as GaxCall,
       request,
@@ -6596,6 +7754,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listRollouts'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listRollouts iterate %j', request);
     return this.descriptors.page.listRollouts.asyncIterate(
       this.innerApiCalls['listRollouts'] as GaxCall,
       request as {},
@@ -6702,11 +7861,35 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listJobRuns(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListJobRunsRequest,
+          protos.google.cloud.deploy.v1.IListJobRunsResponse | null | undefined,
+          protos.google.cloud.deploy.v1.IJobRun
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listJobRuns values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listJobRuns request %j', request);
+    return this.innerApiCalls
+      .listJobRuns(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IJobRun[],
+          protos.google.cloud.deploy.v1.IListJobRunsRequest | null,
+          protos.google.cloud.deploy.v1.IListJobRunsResponse,
+        ]) => {
+          this._log.info('listJobRuns values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listJobRuns`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -6754,6 +7937,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listJobRuns'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listJobRuns stream %j', request);
     return this.descriptors.page.listJobRuns.createStream(
       this.innerApiCalls.listJobRuns as GaxCall,
       request,
@@ -6813,6 +7997,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listJobRuns'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listJobRuns iterate %j', request);
     return this.descriptors.page.listJobRuns.asyncIterate(
       this.innerApiCalls['listJobRuns'] as GaxCall,
       request as {},
@@ -6922,11 +8107,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listAutomations(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListAutomationsRequest,
+          | protos.google.cloud.deploy.v1.IListAutomationsResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.IAutomation
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listAutomations values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listAutomations request %j', request);
+    return this.innerApiCalls
+      .listAutomations(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IAutomation[],
+          protos.google.cloud.deploy.v1.IListAutomationsRequest | null,
+          protos.google.cloud.deploy.v1.IListAutomationsResponse,
+        ]) => {
+          this._log.info('listAutomations values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listAutomations`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -6975,6 +8186,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listAutomations'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAutomations stream %j', request);
     return this.descriptors.page.listAutomations.createStream(
       this.innerApiCalls.listAutomations as GaxCall,
       request,
@@ -7035,6 +8247,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listAutomations'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAutomations iterate %j', request);
     return this.descriptors.page.listAutomations.asyncIterate(
       this.innerApiCalls['listAutomations'] as GaxCall,
       request as {},
@@ -7150,11 +8363,37 @@ export class CloudDeployClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listAutomationRuns(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.deploy.v1.IListAutomationRunsRequest,
+          | protos.google.cloud.deploy.v1.IListAutomationRunsResponse
+          | null
+          | undefined,
+          protos.google.cloud.deploy.v1.IAutomationRun
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listAutomationRuns values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listAutomationRuns request %j', request);
+    return this.innerApiCalls
+      .listAutomationRuns(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.deploy.v1.IAutomationRun[],
+          protos.google.cloud.deploy.v1.IListAutomationRunsRequest | null,
+          protos.google.cloud.deploy.v1.IListAutomationRunsResponse,
+        ]) => {
+          this._log.info('listAutomationRuns values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listAutomationRuns`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -7203,6 +8442,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listAutomationRuns'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAutomationRuns stream %j', request);
     return this.descriptors.page.listAutomationRuns.createStream(
       this.innerApiCalls.listAutomationRuns as GaxCall,
       request,
@@ -7263,6 +8503,7 @@ export class CloudDeployClient {
     const defaultCallSettings = this._defaults['listAutomationRuns'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAutomationRuns iterate %j', request);
     return this.descriptors.page.listAutomationRuns.asyncIterate(
       this.innerApiCalls['listAutomationRuns'] as GaxCall,
       request as {},
@@ -7517,7 +8758,7 @@ export class CloudDeployClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -7530,6 +8771,20 @@ export class CloudDeployClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -7566,6 +8821,13 @@ export class CloudDeployClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -7601,11 +8863,11 @@ export class CloudDeployClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -7614,6 +8876,20 @@ export class CloudDeployClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -7644,7 +8920,7 @@ export class CloudDeployClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -7657,6 +8933,20 @@ export class CloudDeployClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -8675,6 +9965,7 @@ export class CloudDeployClient {
   close(): Promise<void> {
     if (this.cloudDeployStub && !this._terminated) {
       return this.cloudDeployStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.iamClient.close();

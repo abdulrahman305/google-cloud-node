@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -57,6 +58,8 @@ export class FoldersClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('resource-manager');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -92,7 +95,7 @@ export class FoldersClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -592,7 +595,33 @@ export class FoldersClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getFolder(request, options, callback);
+    this._log.info('getFolder request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.resourcemanager.v3.IFolder,
+          | protos.google.cloud.resourcemanager.v3.IGetFolderRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getFolder response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getFolder(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.resourcemanager.v3.IFolder,
+          protos.google.cloud.resourcemanager.v3.IGetFolderRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getFolder response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets the access control policy for a folder. The returned policy may be
@@ -682,7 +711,31 @@ export class FoldersClient {
         resource: request.resource ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getIamPolicy(request, options, callback);
+    this._log.info('getIamPolicy request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.iam.v1.IPolicy,
+          protos.google.iam.v1.IGetIamPolicyRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getIamPolicy response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getIamPolicy(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.iam.v1.IPolicy,
+          protos.google.iam.v1.IGetIamPolicyRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getIamPolicy response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Sets the access control policy on a folder, replacing any existing policy.
@@ -780,7 +833,31 @@ export class FoldersClient {
         resource: request.resource ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.setIamPolicy(request, options, callback);
+    this._log.info('setIamPolicy request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.iam.v1.IPolicy,
+          protos.google.iam.v1.ISetIamPolicyRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('setIamPolicy response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .setIamPolicy(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.iam.v1.IPolicy,
+          protos.google.iam.v1.ISetIamPolicyRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('setIamPolicy response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns permissions that a caller has on the specified folder.
@@ -872,7 +949,31 @@ export class FoldersClient {
         resource: request.resource ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.testIamPermissions(request, options, callback);
+    this._log.info('testIamPermissions request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.iam.v1.ITestIamPermissionsResponse,
+          protos.google.iam.v1.ITestIamPermissionsRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('testIamPermissions response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .testIamPermissions(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.iam.v1.ITestIamPermissionsResponse,
+          protos.google.iam.v1.ITestIamPermissionsRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('testIamPermissions response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -998,7 +1099,37 @@ export class FoldersClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.createFolder(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.ICreateFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createFolder response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createFolder request %j', request);
+    return this.innerApiCalls
+      .createFolder(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.ICreateFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createFolder response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createFolder()`.
@@ -1019,6 +1150,7 @@ export class FoldersClient {
       protos.google.cloud.resourcemanager.v3.CreateFolderMetadata
     >
   > {
+    this._log.info('createFolder long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1154,7 +1286,37 @@ export class FoldersClient {
         'folder.name': request.folder!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateFolder(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IUpdateFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateFolder response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateFolder request %j', request);
+    return this.innerApiCalls
+      .updateFolder(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IUpdateFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateFolder response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateFolder()`.
@@ -1175,6 +1337,7 @@ export class FoldersClient {
       protos.google.cloud.resourcemanager.v3.UpdateFolderMetadata
     >
   > {
+    this._log.info('updateFolder long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1311,7 +1474,37 @@ export class FoldersClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.moveFolder(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IMoveFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('moveFolder response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('moveFolder request %j', request);
+    return this.innerApiCalls
+      .moveFolder(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IMoveFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('moveFolder response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `moveFolder()`.
@@ -1332,6 +1525,7 @@ export class FoldersClient {
       protos.google.cloud.resourcemanager.v3.MoveFolderMetadata
     >
   > {
+    this._log.info('moveFolder long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1458,7 +1652,37 @@ export class FoldersClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteFolder(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IDeleteFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteFolder response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteFolder request %j', request);
+    return this.innerApiCalls
+      .deleteFolder(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IDeleteFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteFolder response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteFolder()`.
@@ -1479,6 +1703,7 @@ export class FoldersClient {
       protos.google.cloud.resourcemanager.v3.DeleteFolderMetadata
     >
   > {
+    this._log.info('deleteFolder long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1605,7 +1830,37 @@ export class FoldersClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.undeleteFolder(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IUndeleteFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('undeleteFolder response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('undeleteFolder request %j', request);
+    return this.innerApiCalls
+      .undeleteFolder(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.resourcemanager.v3.IFolder,
+            protos.google.cloud.resourcemanager.v3.IUndeleteFolderMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('undeleteFolder response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `undeleteFolder()`.
@@ -1626,6 +1881,7 @@ export class FoldersClient {
       protos.google.cloud.resourcemanager.v3.UndeleteFolderMetadata
     >
   > {
+    this._log.info('undeleteFolder long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1753,11 +2009,37 @@ export class FoldersClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.listFolders(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.resourcemanager.v3.IListFoldersRequest,
+          | protos.google.cloud.resourcemanager.v3.IListFoldersResponse
+          | null
+          | undefined,
+          protos.google.cloud.resourcemanager.v3.IFolder
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listFolders values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listFolders request %j', request);
+    return this.innerApiCalls
+      .listFolders(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.resourcemanager.v3.IFolder[],
+          protos.google.cloud.resourcemanager.v3.IListFoldersRequest | null,
+          protos.google.cloud.resourcemanager.v3.IListFoldersResponse,
+        ]) => {
+          this._log.info('listFolders values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listFolders`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1803,6 +2085,7 @@ export class FoldersClient {
     const defaultCallSettings = this._defaults['listFolders'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listFolders stream %j', request);
     return this.descriptors.page.listFolders.createStream(
       this.innerApiCalls.listFolders as GaxCall,
       request,
@@ -1860,6 +2143,7 @@ export class FoldersClient {
     const defaultCallSettings = this._defaults['listFolders'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listFolders iterate %j', request);
     return this.descriptors.page.listFolders.asyncIterate(
       this.innerApiCalls['listFolders'] as GaxCall,
       request as {},
@@ -1995,11 +2279,37 @@ export class FoldersClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.searchFolders(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.resourcemanager.v3.ISearchFoldersRequest,
+          | protos.google.cloud.resourcemanager.v3.ISearchFoldersResponse
+          | null
+          | undefined,
+          protos.google.cloud.resourcemanager.v3.IFolder
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('searchFolders values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('searchFolders request %j', request);
+    return this.innerApiCalls
+      .searchFolders(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.resourcemanager.v3.IFolder[],
+          protos.google.cloud.resourcemanager.v3.ISearchFoldersRequest | null,
+          protos.google.cloud.resourcemanager.v3.ISearchFoldersResponse,
+        ]) => {
+          this._log.info('searchFolders values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `searchFolders`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {number} [request.pageSize]
@@ -2063,6 +2373,7 @@ export class FoldersClient {
     const defaultCallSettings = this._defaults['searchFolders'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('searchFolders stream %j', request);
     return this.descriptors.page.searchFolders.createStream(
       this.innerApiCalls.searchFolders as GaxCall,
       request,
@@ -2138,6 +2449,7 @@ export class FoldersClient {
     const defaultCallSettings = this._defaults['searchFolders'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('searchFolders iterate %j', request);
     return this.descriptors.page.searchFolders.asyncIterate(
       this.innerApiCalls['searchFolders'] as GaxCall,
       request as {},
@@ -2176,7 +2488,7 @@ export class FoldersClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -2189,6 +2501,20 @@ export class FoldersClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -2225,6 +2551,13 @@ export class FoldersClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -2260,11 +2593,11 @@ export class FoldersClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -2273,6 +2606,20 @@ export class FoldersClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -2303,7 +2650,7 @@ export class FoldersClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -2316,6 +2663,20 @@ export class FoldersClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -2509,6 +2870,7 @@ export class FoldersClient {
   close(): Promise<void> {
     if (this.foldersStub && !this._terminated) {
       return this.foldersStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.operationsClient.close();

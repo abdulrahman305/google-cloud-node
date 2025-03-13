@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.9.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.8.0...contact-center-insights-v3.9.0) (2025-01-23)
+
+
+### Features
+
+* [Many APIs] Reasoning Engine v1 GAPIC release ([#5965](https://github.com/googleapis/google-cloud-node/issues/5965)) ([050db4d](https://github.com/googleapis/google-cloud-node/commit/050db4d28f9a203ce2d41db21eb74b3ecb6b4a16))
+
+## [3.8.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.7.0...contact-center-insights-v3.8.0) (2024-12-18)
+
+
+### Features
+
+* [contactcenterinsights] A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}` added to the resource definition `contactcenter... ([#5890](https://github.com/googleapis/google-cloud-node/issues/5890)) ([5564d05](https://github.com/googleapis/google-cloud-node/commit/5564d0548d8681e7647c46e4e33df4af4da4d6aa))
+
 ## [3.7.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.6.0...contact-center-insights-v3.7.0) (2024-11-21)
 
 

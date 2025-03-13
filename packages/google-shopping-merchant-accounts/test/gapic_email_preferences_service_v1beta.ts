@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -274,7 +274,7 @@ describe('v1beta.EmailPreferencesServiceClient', () => {
         ['name']
       );
       request.name = defaultValue1;
-      const expectedHeaderRequestParams = `name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `name=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.shopping.merchant.accounts.v1beta.EmailPreferences()
       );
@@ -307,7 +307,7 @@ describe('v1beta.EmailPreferencesServiceClient', () => {
         ['name']
       );
       request.name = defaultValue1;
-      const expectedHeaderRequestParams = `name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `name=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.shopping.merchant.accounts.v1beta.EmailPreferences()
       );
@@ -355,7 +355,7 @@ describe('v1beta.EmailPreferencesServiceClient', () => {
         ['name']
       );
       request.name = defaultValue1;
-      const expectedHeaderRequestParams = `name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `name=${defaultValue1 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.getEmailPreferences = stubSimpleCall(
         undefined,
@@ -410,7 +410,7 @@ describe('v1beta.EmailPreferencesServiceClient', () => {
         ['emailPreferences', 'name']
       );
       request.emailPreferences.name = defaultValue1;
-      const expectedHeaderRequestParams = `email_preferences.name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `email_preferences.name=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.shopping.merchant.accounts.v1beta.EmailPreferences()
       );
@@ -444,7 +444,7 @@ describe('v1beta.EmailPreferencesServiceClient', () => {
         ['emailPreferences', 'name']
       );
       request.emailPreferences.name = defaultValue1;
-      const expectedHeaderRequestParams = `email_preferences.name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `email_preferences.name=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.shopping.merchant.accounts.v1beta.EmailPreferences()
       );
@@ -493,7 +493,7 @@ describe('v1beta.EmailPreferencesServiceClient', () => {
         ['emailPreferences', 'name']
       );
       request.emailPreferences.name = defaultValue1;
-      const expectedHeaderRequestParams = `email_preferences.name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `email_preferences.name=${defaultValue1 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.updateEmailPreferences = stubSimpleCall(
         undefined,

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 
 'use strict';
 
-function main(space) {
+function main(space, updateMask) {
   // [START chat_v1_generated_ChatService_UpdateSpace_async]
   /**
    * This snippet has been automatically generated and should be regarded as a code template only.
@@ -91,7 +91,7 @@ function main(space) {
    */
   // const updateMask = {}
   /**
-   *  When `true`, the method runs using the user's Google Workspace
+   *  Optional. When `true`, the method runs using the user's Google Workspace
    *  administrator privileges.
    *  The calling user must be a Google Workspace administrator with the
    *  manage chat and spaces conversations
@@ -113,6 +113,7 @@ function main(space) {
     // Construct request
     const request = {
       space,
+      updateMask,
     };
 
     // Run request

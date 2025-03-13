@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -53,6 +54,8 @@ export class ConferenceRecordsServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('meet');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -87,7 +90,7 @@ export class ConferenceRecordsServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -202,6 +205,9 @@ export class ConferenceRecordsServiceClient {
     this.pathTemplates = {
       conferenceRecordPathTemplate: new this._gaxModule.PathTemplate(
         'conferenceRecords/{conference_record}'
+      ),
+      memberPathTemplate: new this._gaxModule.PathTemplate(
+        'spaces/{space}/members/{member}'
       ),
       participantPathTemplate: new this._gaxModule.PathTemplate(
         'conferenceRecords/{conference_record}/participants/{participant}'
@@ -412,7 +418,10 @@ export class ConferenceRecordsServiceClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return [];
+    return [
+      'https://www.googleapis.com/auth/meetings.space.created',
+      'https://www.googleapis.com/auth/meetings.space.readonly',
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -435,7 +444,6 @@ export class ConferenceRecordsServiceClient {
   // -- Service calls --
   // -------------------
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Gets a conference record by conference ID.
    *
    * @param {Object} request
@@ -523,10 +531,38 @@ export class ConferenceRecordsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getConferenceRecord(request, options, callback);
+    this._log.info('getConferenceRecord request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2beta.IConferenceRecord,
+          | protos.google.apps.meet.v2beta.IGetConferenceRecordRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getConferenceRecord response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getConferenceRecord(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2beta.IConferenceRecord,
+          (
+            | protos.google.apps.meet.v2beta.IGetConferenceRecordRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getConferenceRecord response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Gets a participant by participant ID.
    *
    * @param {Object} request
@@ -608,10 +644,35 @@ export class ConferenceRecordsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getParticipant(request, options, callback);
+    this._log.info('getParticipant request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2beta.IParticipant,
+          | protos.google.apps.meet.v2beta.IGetParticipantRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getParticipant response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getParticipant(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2beta.IParticipant,
+          protos.google.apps.meet.v2beta.IGetParticipantRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getParticipant response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Gets a participant session by participant session ID.
    *
    * @param {Object} request
@@ -699,10 +760,38 @@ export class ConferenceRecordsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getParticipantSession(request, options, callback);
+    this._log.info('getParticipantSession request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2beta.IParticipantSession,
+          | protos.google.apps.meet.v2beta.IGetParticipantSessionRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getParticipantSession response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getParticipantSession(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2beta.IParticipantSession,
+          (
+            | protos.google.apps.meet.v2beta.IGetParticipantSessionRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getParticipantSession response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Gets a recording by recording ID.
    *
    * @param {Object} request
@@ -784,10 +873,35 @@ export class ConferenceRecordsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getRecording(request, options, callback);
+    this._log.info('getRecording request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2beta.IRecording,
+          | protos.google.apps.meet.v2beta.IGetRecordingRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getRecording response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getRecording(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2beta.IRecording,
+          protos.google.apps.meet.v2beta.IGetRecordingRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getRecording response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Gets a transcript by transcript ID.
    *
    * @param {Object} request
@@ -869,10 +983,35 @@ export class ConferenceRecordsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getTranscript(request, options, callback);
+    this._log.info('getTranscript request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2beta.ITranscript,
+          | protos.google.apps.meet.v2beta.IGetTranscriptRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getTranscript response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getTranscript(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2beta.ITranscript,
+          protos.google.apps.meet.v2beta.IGetTranscriptRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getTranscript response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Gets a `TranscriptEntry` resource by entry ID.
    *
    * Note: The transcript entries returned by the Google Meet API might not
@@ -964,12 +1103,38 @@ export class ConferenceRecordsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getTranscriptEntry(request, options, callback);
+    this._log.info('getTranscriptEntry request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2beta.ITranscriptEntry,
+          | protos.google.apps.meet.v2beta.IGetTranscriptEntryRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getTranscriptEntry response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getTranscriptEntry(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2beta.ITranscriptEntry,
+          protos.google.apps.meet.v2beta.IGetTranscriptEntryRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getTranscriptEntry response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
-   * Lists the conference records by start time and in descending order.
+   * Lists the conference records. By default, ordered by start time and in
+   * descending order.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -981,15 +1146,22 @@ export class ConferenceRecordsServiceClient {
    * @param {string} [request.pageToken]
    *   Optional. Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `space.meeting_code`
    *   * `space.name`
    *   * `start_time`
    *   * `end_time`
    *
-   *   For example, `space.meeting_code = "abc-mnop-xyz"`.
+   *   For example, consider the following filters:
+   *
+   *   * `space.name = "spaces/NAME"`
+   *   * `space.meeting_code = "abc-mnop-xyz"`
+   *   * `start_time>="2024-01-01T00:00:00.000Z" AND
+   *   start_time<="2024-01-02T00:00:00.000Z"`
+   *   * `end_time IS NULL`
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -1070,11 +1242,37 @@ export class ConferenceRecordsServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.listConferenceRecords(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.apps.meet.v2beta.IListConferenceRecordsRequest,
+          | protos.google.apps.meet.v2beta.IListConferenceRecordsResponse
+          | null
+          | undefined,
+          protos.google.apps.meet.v2beta.IConferenceRecord
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listConferenceRecords values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listConferenceRecords request %j', request);
+    return this.innerApiCalls
+      .listConferenceRecords(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.apps.meet.v2beta.IConferenceRecord[],
+          protos.google.apps.meet.v2beta.IListConferenceRecordsRequest | null,
+          protos.google.apps.meet.v2beta.IListConferenceRecordsResponse,
+        ]) => {
+          this._log.info('listConferenceRecords values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listConferenceRecords`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {number} [request.pageSize]
@@ -1085,15 +1283,22 @@ export class ConferenceRecordsServiceClient {
    * @param {string} [request.pageToken]
    *   Optional. Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `space.meeting_code`
    *   * `space.name`
    *   * `start_time`
    *   * `end_time`
    *
-   *   For example, `space.meeting_code = "abc-mnop-xyz"`.
+   *   For example, consider the following filters:
+   *
+   *   * `space.name = "spaces/NAME"`
+   *   * `space.meeting_code = "abc-mnop-xyz"`
+   *   * `start_time>="2024-01-01T00:00:00.000Z" AND
+   *   start_time<="2024-01-02T00:00:00.000Z"`
+   *   * `end_time IS NULL`
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Stream}
@@ -1116,6 +1321,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listConferenceRecords'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listConferenceRecords stream %j', request);
     return this.descriptors.page.listConferenceRecords.createStream(
       this.innerApiCalls.listConferenceRecords as GaxCall,
       request,
@@ -1137,15 +1343,22 @@ export class ConferenceRecordsServiceClient {
    * @param {string} [request.pageToken]
    *   Optional. Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `space.meeting_code`
    *   * `space.name`
    *   * `start_time`
    *   * `end_time`
    *
-   *   For example, `space.meeting_code = "abc-mnop-xyz"`.
+   *   For example, consider the following filters:
+   *
+   *   * `space.name = "spaces/NAME"`
+   *   * `space.meeting_code = "abc-mnop-xyz"`
+   *   * `start_time>="2024-01-01T00:00:00.000Z" AND
+   *   start_time<="2024-01-02T00:00:00.000Z"`
+   *   * `end_time IS NULL`
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Object}
@@ -1169,6 +1382,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listConferenceRecords'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listConferenceRecords iterate %j', request);
     return this.descriptors.page.listConferenceRecords.asyncIterate(
       this.innerApiCalls['listConferenceRecords'] as GaxCall,
       request as {},
@@ -1176,8 +1390,7 @@ export class ConferenceRecordsServiceClient {
     ) as AsyncIterable<protos.google.apps.meet.v2beta.IConferenceRecord>;
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
-   * Lists the participants in a conference record, by default ordered by join
+   * Lists the participants in a conference record. By default, ordered by join
    * time and in descending order. This API supports `fields` as standard
    * parameters like every other API. However, when the `fields` request
    * parameter is omitted, this API defaults to `'participants/*,
@@ -1196,8 +1409,9 @@ export class ConferenceRecordsServiceClient {
    * @param {string} request.pageToken
    *   Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `earliest_start_time`
    *   * `latest_end_time`
@@ -1288,11 +1502,37 @@ export class ConferenceRecordsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listParticipants(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.apps.meet.v2beta.IListParticipantsRequest,
+          | protos.google.apps.meet.v2beta.IListParticipantsResponse
+          | null
+          | undefined,
+          protos.google.apps.meet.v2beta.IParticipant
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listParticipants values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listParticipants request %j', request);
+    return this.innerApiCalls
+      .listParticipants(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.apps.meet.v2beta.IParticipant[],
+          protos.google.apps.meet.v2beta.IListParticipantsRequest | null,
+          protos.google.apps.meet.v2beta.IListParticipantsResponse,
+        ]) => {
+          this._log.info('listParticipants values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listParticipants`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1306,8 +1546,9 @@ export class ConferenceRecordsServiceClient {
    * @param {string} request.pageToken
    *   Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `earliest_start_time`
    *   * `latest_end_time`
@@ -1340,6 +1581,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listParticipants'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listParticipants stream %j', request);
     return this.descriptors.page.listParticipants.createStream(
       this.innerApiCalls.listParticipants as GaxCall,
       request,
@@ -1364,8 +1606,9 @@ export class ConferenceRecordsServiceClient {
    * @param {string} request.pageToken
    *   Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `earliest_start_time`
    *   * `latest_end_time`
@@ -1399,6 +1642,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listParticipants'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listParticipants iterate %j', request);
     return this.descriptors.page.listParticipants.asyncIterate(
       this.innerApiCalls['listParticipants'] as GaxCall,
       request as {},
@@ -1406,9 +1650,8 @@ export class ConferenceRecordsServiceClient {
     ) as AsyncIterable<protos.google.apps.meet.v2beta.IParticipant>;
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
-   * Lists the participant sessions of a participant in a conference record, by
-   * default ordered by join time and in descending order. This API supports
+   * Lists the participant sessions of a participant in a conference record. By
+   * default, ordered by join time and in descending order. This API supports
    * `fields` as standard parameters like every other API. However, when the
    * `fields` request parameter is omitted this API defaults to
    * `'participantsessions/*, next_page_token'`.
@@ -1426,8 +1669,9 @@ export class ConferenceRecordsServiceClient {
    * @param {string} [request.pageToken]
    *   Optional. Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `start_time`
    *   * `end_time`
@@ -1518,15 +1762,37 @@ export class ConferenceRecordsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listParticipantSessions(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.apps.meet.v2beta.IListParticipantSessionsRequest,
+          | protos.google.apps.meet.v2beta.IListParticipantSessionsResponse
+          | null
+          | undefined,
+          protos.google.apps.meet.v2beta.IParticipantSession
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listParticipantSessions values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listParticipantSessions request %j', request);
+    return this.innerApiCalls
+      .listParticipantSessions(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.apps.meet.v2beta.IParticipantSession[],
+          protos.google.apps.meet.v2beta.IListParticipantSessionsRequest | null,
+          protos.google.apps.meet.v2beta.IListParticipantSessionsResponse,
+        ]) => {
+          this._log.info('listParticipantSessions values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listParticipantSessions`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1540,8 +1806,9 @@ export class ConferenceRecordsServiceClient {
    * @param {string} [request.pageToken]
    *   Optional. Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `start_time`
    *   * `end_time`
@@ -1574,6 +1841,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listParticipantSessions'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listParticipantSessions stream %j', request);
     return this.descriptors.page.listParticipantSessions.createStream(
       this.innerApiCalls.listParticipantSessions as GaxCall,
       request,
@@ -1598,8 +1866,9 @@ export class ConferenceRecordsServiceClient {
    * @param {string} [request.pageToken]
    *   Optional. Page token returned from previous List Call.
    * @param {string} [request.filter]
-   *   Optional. User specified filtering condition in EBNF format. The following
-   *   are the filterable fields:
+   *   Optional. User specified filtering condition in [EBNF
+   *   format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+   *   The following are the filterable fields:
    *
    *   * `start_time`
    *   * `end_time`
@@ -1633,6 +1902,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listParticipantSessions'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listParticipantSessions iterate %j', request);
     return this.descriptors.page.listParticipantSessions.asyncIterate(
       this.innerApiCalls['listParticipantSessions'] as GaxCall,
       request as {},
@@ -1640,8 +1910,8 @@ export class ConferenceRecordsServiceClient {
     ) as AsyncIterable<protos.google.apps.meet.v2beta.IParticipantSession>;
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
-   * Lists the recording resources from the conference record.
+   * Lists the recording resources from the conference record. By default,
+   * ordered by start time and in ascending order.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -1733,11 +2003,37 @@ export class ConferenceRecordsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listRecordings(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.apps.meet.v2beta.IListRecordingsRequest,
+          | protos.google.apps.meet.v2beta.IListRecordingsResponse
+          | null
+          | undefined,
+          protos.google.apps.meet.v2beta.IRecording
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listRecordings values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listRecordings request %j', request);
+    return this.innerApiCalls
+      .listRecordings(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.apps.meet.v2beta.IRecording[],
+          protos.google.apps.meet.v2beta.IListRecordingsRequest | null,
+          protos.google.apps.meet.v2beta.IListRecordingsResponse,
+        ]) => {
+          this._log.info('listRecordings values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listRecordings`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1776,6 +2072,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listRecordings'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listRecordings stream %j', request);
     return this.descriptors.page.listRecordings.createStream(
       this.innerApiCalls.listRecordings as GaxCall,
       request,
@@ -1826,6 +2123,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listRecordings'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listRecordings iterate %j', request);
     return this.descriptors.page.listRecordings.asyncIterate(
       this.innerApiCalls['listRecordings'] as GaxCall,
       request as {},
@@ -1833,8 +2131,8 @@ export class ConferenceRecordsServiceClient {
     ) as AsyncIterable<protos.google.apps.meet.v2beta.IRecording>;
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
-   * Lists the set of transcripts from the conference record.
+   * Lists the set of transcripts from the conference record. By default,
+   * ordered by start time and in ascending order.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -1932,11 +2230,37 @@ export class ConferenceRecordsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listTranscripts(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.apps.meet.v2beta.IListTranscriptsRequest,
+          | protos.google.apps.meet.v2beta.IListTranscriptsResponse
+          | null
+          | undefined,
+          protos.google.apps.meet.v2beta.ITranscript
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listTranscripts values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listTranscripts request %j', request);
+    return this.innerApiCalls
+      .listTranscripts(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.apps.meet.v2beta.ITranscript[],
+          protos.google.apps.meet.v2beta.IListTranscriptsRequest | null,
+          protos.google.apps.meet.v2beta.IListTranscriptsResponse,
+        ]) => {
+          this._log.info('listTranscripts values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listTranscripts`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1975,6 +2299,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listTranscripts'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTranscripts stream %j', request);
     return this.descriptors.page.listTranscripts.createStream(
       this.innerApiCalls.listTranscripts as GaxCall,
       request,
@@ -2025,6 +2350,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listTranscripts'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTranscripts iterate %j', request);
     return this.descriptors.page.listTranscripts.asyncIterate(
       this.innerApiCalls['listTranscripts'] as GaxCall,
       request as {},
@@ -2032,7 +2358,6 @@ export class ConferenceRecordsServiceClient {
     ) as AsyncIterable<protos.google.apps.meet.v2beta.ITranscript>;
   }
   /**
-   * [Developer Preview](https://developers.google.com/workspace/preview).
    * Lists the structured transcript entries per transcript. By default, ordered
    * by start time and in ascending order.
    *
@@ -2137,11 +2462,37 @@ export class ConferenceRecordsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listTranscriptEntries(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.apps.meet.v2beta.IListTranscriptEntriesRequest,
+          | protos.google.apps.meet.v2beta.IListTranscriptEntriesResponse
+          | null
+          | undefined,
+          protos.google.apps.meet.v2beta.ITranscriptEntry
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listTranscriptEntries values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listTranscriptEntries request %j', request);
+    return this.innerApiCalls
+      .listTranscriptEntries(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.apps.meet.v2beta.ITranscriptEntry[],
+          protos.google.apps.meet.v2beta.IListTranscriptEntriesRequest | null,
+          protos.google.apps.meet.v2beta.IListTranscriptEntriesResponse,
+        ]) => {
+          this._log.info('listTranscriptEntries values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listTranscriptEntries`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -2181,6 +2532,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listTranscriptEntries'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTranscriptEntries stream %j', request);
     return this.descriptors.page.listTranscriptEntries.createStream(
       this.innerApiCalls.listTranscriptEntries as GaxCall,
       request,
@@ -2232,6 +2584,7 @@ export class ConferenceRecordsServiceClient {
     const defaultCallSettings = this._defaults['listTranscriptEntries'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTranscriptEntries iterate %j', request);
     return this.descriptors.page.listTranscriptEntries.asyncIterate(
       this.innerApiCalls['listTranscriptEntries'] as GaxCall,
       request as {},
@@ -2265,6 +2618,42 @@ export class ConferenceRecordsServiceClient {
     return this.pathTemplates.conferenceRecordPathTemplate.match(
       conferenceRecordName
     ).conference_record;
+  }
+
+  /**
+   * Return a fully-qualified member resource name string.
+   *
+   * @param {string} space
+   * @param {string} member
+   * @returns {string} Resource name string.
+   */
+  memberPath(space: string, member: string) {
+    return this.pathTemplates.memberPathTemplate.render({
+      space: space,
+      member: member,
+    });
+  }
+
+  /**
+   * Parse the space from Member resource.
+   *
+   * @param {string} memberName
+   *   A fully-qualified path representing Member resource.
+   * @returns {string} A string representing the space.
+   */
+  matchSpaceFromMemberName(memberName: string) {
+    return this.pathTemplates.memberPathTemplate.match(memberName).space;
+  }
+
+  /**
+   * Parse the member from Member resource.
+   *
+   * @param {string} memberName
+   *   A fully-qualified path representing Member resource.
+   * @returns {string} A string representing the member.
+   */
+  matchMemberFromMemberName(memberName: string) {
+    return this.pathTemplates.memberPathTemplate.match(memberName).member;
   }
 
   /**
@@ -2535,6 +2924,7 @@ export class ConferenceRecordsServiceClient {
   close(): Promise<void> {
     if (this.conferenceRecordsServiceStub && !this._terminated) {
       return this.conferenceRecordsServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

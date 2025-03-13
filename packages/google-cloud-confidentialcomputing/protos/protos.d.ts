@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -356,6 +356,9 @@ export namespace google {
 
                     /** VerifyAttestationRequest tokenOptions */
                     tokenOptions?: (google.cloud.confidentialcomputing.v1.ITokenOptions|null);
+
+                    /** VerifyAttestationRequest attester */
+                    attester?: (string|null);
                 }
 
                 /** Represents a VerifyAttestationRequest. */
@@ -387,6 +390,9 @@ export namespace google {
 
                     /** VerifyAttestationRequest tokenOptions. */
                     public tokenOptions?: (google.cloud.confidentialcomputing.v1.ITokenOptions|null);
+
+                    /** VerifyAttestationRequest attester. */
+                    public attester: string;
 
                     /** VerifyAttestationRequest teeAttestation. */
                     public teeAttestation?: ("tdCcel"|"sevSnpAttestation");

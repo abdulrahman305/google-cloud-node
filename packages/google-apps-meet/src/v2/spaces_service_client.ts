@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import type {
 
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -51,6 +52,8 @@ export class SpacesServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('meet');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -85,7 +88,7 @@ export class SpacesServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -367,6 +370,7 @@ export class SpacesServiceClient {
     return [
       'https://www.googleapis.com/auth/meetings.space.created',
       'https://www.googleapis.com/auth/meetings.space.readonly',
+      'https://www.googleapis.com/auth/meetings.space.settings',
     ];
   }
 
@@ -466,15 +470,60 @@ export class SpacesServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.createSpace(request, options, callback);
+    this._log.info('createSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2.ISpace,
+          protos.google.apps.meet.v2.ICreateSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2.ISpace,
+          protos.google.apps.meet.v2.ICreateSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * Gets a space by `space_id` or `meeting_code`.
+   * Gets details about a meeting space.
+   *
+   * For an example, see [Get a meeting
+   * space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
    *   Required. Resource name of the space.
+   *
+   *   Format: `spaces/{space}` or `spaces/{meetingCode}`.
+   *
+   *   `{space}` is the resource identifier for the space. It's a unique,
+   *   server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+   *
+   *   `{meetingCode}` is an alias for the space. It's a typeable, unique
+   *   character string and is non-case sensitive. For example, `abc-mnop-xyz`.
+   *   The maximum length is 128 characters.
+   *
+   *   A `meetingCode` shouldn't be stored long term as it can become
+   *   dissociated from a meeting space and can be reused for different meeting
+   *   spaces in the future. Generally, a `meetingCode` expires 365 days after
+   *   last use. For more information, see [Learn about meeting codes in Google
+   *   Meet](https://support.google.com/meet/answer/10710509).
+   *
+   *   For more information, see [How Meet identifies a meeting
+   *   space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -548,10 +597,37 @@ export class SpacesServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getSpace(request, options, callback);
+    this._log.info('getSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2.ISpace,
+          protos.google.apps.meet.v2.IGetSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2.ISpace,
+          protos.google.apps.meet.v2.IGetSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * Updates a space.
+   * Updates details about a meeting space.
+   *
+   * For an example, see [Update a meeting
+   * space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -559,9 +635,11 @@ export class SpacesServiceClient {
    *   Required. Space to be updated.
    * @param {google.protobuf.FieldMask} [request.updateMask]
    *   Optional. Field mask used to specify the fields to be updated in the space.
-   *   If update_mask isn't provided, it defaults to '*' and updates all
-   *   fields provided in the request, including deleting fields not set in the
+   *   If update_mask isn't provided(not set, set with empty paths, or only has ""
+   *   as paths), it defaults to update all fields provided with values in the
    *   request.
+   *   Using "*" as update_mask will update all fields, including deleting fields
+   *   not set in the request.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -635,15 +713,50 @@ export class SpacesServiceClient {
         'space.name': request.space!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateSpace(request, options, callback);
+    this._log.info('updateSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.apps.meet.v2.ISpace,
+          protos.google.apps.meet.v2.IUpdateSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.apps.meet.v2.ISpace,
+          protos.google.apps.meet.v2.IUpdateSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Ends an active conference (if there's one).
+   *
+   * For an example, see [End active
+   * conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
    *   Required. Resource name of the space.
+   *
+   *   Format: `spaces/{space}`.
+   *
+   *   `{space}` is the resource identifier for the space. It's a unique,
+   *   server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+   *
+   *   For more information, see [How Meet identifies a meeting
+   *   space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -719,7 +832,33 @@ export class SpacesServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.endActiveConference(request, options, callback);
+    this._log.info('endActiveConference request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.apps.meet.v2.IEndActiveConferenceRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('endActiveConference response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .endActiveConference(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.apps.meet.v2.IEndActiveConferenceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('endActiveConference response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   // --------------------
@@ -1019,6 +1158,7 @@ export class SpacesServiceClient {
   close(): Promise<void> {
     if (this.spacesServiceStub && !this._terminated) {
       return this.spacesServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

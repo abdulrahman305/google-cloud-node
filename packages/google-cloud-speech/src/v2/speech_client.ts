@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import type {
 import {Transform, PassThrough} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -57,6 +58,8 @@ export class SpeechClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('speech');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -93,7 +96,7 @@ export class SpeechClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -161,7 +164,6 @@ export class SpeechClient {
     }
 
     // Choose either gRPC or proto-over-HTTP implementation of google-gax.
-    // @ts-ignore
     this._gaxModule = opts.fallback ? gaxInstance.fallback : gaxInstance;
 
     // Create a `gaxGrpc` object, with any grpc-specific options sent to the client.
@@ -535,7 +537,7 @@ export class SpeechClient {
           (...args: Array<{}>) => {
             if (this._terminated) {
               if (methodName in this.descriptors.stream) {
-                const stream = new PassThrough();
+                const stream = new PassThrough({objectMode: true});
                 setImmediate(() => {
                   stream.emit(
                     'error',
@@ -744,7 +746,33 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getRecognizer(request, options, callback);
+    this._log.info('getRecognizer request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.speech.v2.IRecognizer,
+          | protos.google.cloud.speech.v2.IGetRecognizerRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getRecognizer response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getRecognizer(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.speech.v2.IRecognizer,
+          protos.google.cloud.speech.v2.IGetRecognizerRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getRecognizer response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Performs synchronous Speech recognition: receive results after all audio
@@ -865,7 +893,31 @@ export class SpeechClient {
         recognizer: request.recognizer ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.recognize(request, options, callback);
+    this._log.info('recognize request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.speech.v2.IRecognizeResponse,
+          protos.google.cloud.speech.v2.IRecognizeRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('recognize response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .recognize(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.speech.v2.IRecognizeResponse,
+          protos.google.cloud.speech.v2.IRecognizeRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('recognize response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns the requested {@link protos.google.cloud.speech.v2.Config|Config}.
@@ -949,7 +1001,31 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getConfig(request, options, callback);
+    this._log.info('getConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.speech.v2.IConfig,
+          protos.google.cloud.speech.v2.IGetConfigRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.speech.v2.IConfig,
+          protos.google.cloud.speech.v2.IGetConfigRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates the {@link protos.google.cloud.speech.v2.Config|Config}.
@@ -1036,7 +1112,31 @@ export class SpeechClient {
         'config.name': request.config!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateConfig(request, options, callback);
+    this._log.info('updateConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.speech.v2.IConfig,
+          protos.google.cloud.speech.v2.IUpdateConfigRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.speech.v2.IConfig,
+          protos.google.cloud.speech.v2.IUpdateConfigRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns the requested
@@ -1122,7 +1222,33 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getCustomClass(request, options, callback);
+    this._log.info('getCustomClass request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.speech.v2.ICustomClass,
+          | protos.google.cloud.speech.v2.IGetCustomClassRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getCustomClass response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getCustomClass(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.speech.v2.ICustomClass,
+          protos.google.cloud.speech.v2.IGetCustomClassRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getCustomClass response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns the requested
@@ -1206,7 +1332,31 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getPhraseSet(request, options, callback);
+    this._log.info('getPhraseSet request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.speech.v2.IPhraseSet,
+          protos.google.cloud.speech.v2.IGetPhraseSetRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getPhraseSet response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getPhraseSet(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.speech.v2.IPhraseSet,
+          protos.google.cloud.speech.v2.IGetPhraseSetRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getPhraseSet response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1226,6 +1376,7 @@ export class SpeechClient {
    */
   _streamingRecognize(options?: CallOptions): gax.CancellableStream {
     this.initialize();
+    this._log.info('streamingRecognize stream %j', options);
     return this.innerApiCalls.streamingRecognize(null, options);
   }
 
@@ -1341,7 +1492,37 @@ export class SpeechClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createRecognizer(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createRecognizer response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createRecognizer request %j', request);
+    return this.innerApiCalls
+      .createRecognizer(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createRecognizer response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createRecognizer()`.
@@ -1362,6 +1543,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('createRecognizer long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1486,7 +1668,37 @@ export class SpeechClient {
         'recognizer.name': request.recognizer!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateRecognizer(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateRecognizer response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateRecognizer request %j', request);
+    return this.innerApiCalls
+      .updateRecognizer(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateRecognizer response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateRecognizer()`.
@@ -1507,6 +1719,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('updateRecognizer long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1633,7 +1846,37 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteRecognizer(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteRecognizer response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteRecognizer request %j', request);
+    return this.innerApiCalls
+      .deleteRecognizer(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteRecognizer response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteRecognizer()`.
@@ -1654,6 +1897,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('deleteRecognizer long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1777,7 +2021,37 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.undeleteRecognizer(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('undeleteRecognizer response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('undeleteRecognizer request %j', request);
+    return this.innerApiCalls
+      .undeleteRecognizer(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IRecognizer,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('undeleteRecognizer response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `undeleteRecognizer()`.
@@ -1798,6 +2072,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('undeleteRecognizer long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1946,7 +2221,37 @@ export class SpeechClient {
         recognizer: request.recognizer ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.batchRecognize(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IBatchRecognizeResponse,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('batchRecognize response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('batchRecognize request %j', request);
+    return this.innerApiCalls
+      .batchRecognize(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IBatchRecognizeResponse,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('batchRecognize response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `batchRecognize()`.
@@ -1967,6 +2272,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('batchRecognize long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2094,7 +2400,37 @@ export class SpeechClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createCustomClass(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createCustomClass response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createCustomClass request %j', request);
+    return this.innerApiCalls
+      .createCustomClass(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createCustomClass response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createCustomClass()`.
@@ -2115,6 +2451,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('createCustomClass long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2240,7 +2577,37 @@ export class SpeechClient {
         'custom_class.name': request.customClass!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateCustomClass(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateCustomClass response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateCustomClass request %j', request);
+    return this.innerApiCalls
+      .updateCustomClass(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateCustomClass response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateCustomClass()`.
@@ -2261,6 +2628,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('updateCustomClass long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2388,7 +2756,37 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteCustomClass(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteCustomClass response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteCustomClass request %j', request);
+    return this.innerApiCalls
+      .deleteCustomClass(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteCustomClass response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteCustomClass()`.
@@ -2409,6 +2807,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('deleteCustomClass long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2533,7 +2932,37 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.undeleteCustomClass(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('undeleteCustomClass response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('undeleteCustomClass request %j', request);
+    return this.innerApiCalls
+      .undeleteCustomClass(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.ICustomClass,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('undeleteCustomClass response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `undeleteCustomClass()`.
@@ -2554,6 +2983,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('undeleteCustomClass long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2681,7 +3111,37 @@ export class SpeechClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createPhraseSet(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createPhraseSet response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createPhraseSet request %j', request);
+    return this.innerApiCalls
+      .createPhraseSet(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createPhraseSet response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createPhraseSet()`.
@@ -2702,6 +3162,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('createPhraseSet long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2826,7 +3287,37 @@ export class SpeechClient {
         'phrase_set.name': request.phraseSet!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updatePhraseSet(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updatePhraseSet response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updatePhraseSet request %j', request);
+    return this.innerApiCalls
+      .updatePhraseSet(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updatePhraseSet response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updatePhraseSet()`.
@@ -2847,6 +3338,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('updatePhraseSet long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2973,7 +3465,37 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deletePhraseSet(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deletePhraseSet response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deletePhraseSet request %j', request);
+    return this.innerApiCalls
+      .deletePhraseSet(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deletePhraseSet response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deletePhraseSet()`.
@@ -2994,6 +3516,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('deletePhraseSet long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3117,7 +3640,37 @@ export class SpeechClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.undeletePhraseSet(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('undeletePhraseSet response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('undeletePhraseSet request %j', request);
+    return this.innerApiCalls
+      .undeletePhraseSet(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.speech.v2.IPhraseSet,
+            protos.google.cloud.speech.v2.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('undeletePhraseSet response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `undeletePhraseSet()`.
@@ -3138,6 +3691,7 @@ export class SpeechClient {
       protos.google.cloud.speech.v2.OperationMetadata
     >
   > {
+    this._log.info('undeletePhraseSet long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -3253,11 +3807,37 @@ export class SpeechClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listRecognizers(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.speech.v2.IListRecognizersRequest,
+          | protos.google.cloud.speech.v2.IListRecognizersResponse
+          | null
+          | undefined,
+          protos.google.cloud.speech.v2.IRecognizer
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listRecognizers values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listRecognizers request %j', request);
+    return this.innerApiCalls
+      .listRecognizers(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.speech.v2.IRecognizer[],
+          protos.google.cloud.speech.v2.IListRecognizersRequest | null,
+          protos.google.cloud.speech.v2.IListRecognizersResponse,
+        ]) => {
+          this._log.info('listRecognizers values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listRecognizers`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -3303,6 +3883,7 @@ export class SpeechClient {
     const defaultCallSettings = this._defaults['listRecognizers'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listRecognizers stream %j', request);
     return this.descriptors.page.listRecognizers.createStream(
       this.innerApiCalls.listRecognizers as GaxCall,
       request,
@@ -3360,6 +3941,7 @@ export class SpeechClient {
     const defaultCallSettings = this._defaults['listRecognizers'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listRecognizers iterate %j', request);
     return this.descriptors.page.listRecognizers.asyncIterate(
       this.innerApiCalls['listRecognizers'] as GaxCall,
       request as {},
@@ -3473,11 +4055,37 @@ export class SpeechClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listCustomClasses(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.speech.v2.IListCustomClassesRequest,
+          | protos.google.cloud.speech.v2.IListCustomClassesResponse
+          | null
+          | undefined,
+          protos.google.cloud.speech.v2.ICustomClass
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listCustomClasses values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listCustomClasses request %j', request);
+    return this.innerApiCalls
+      .listCustomClasses(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.speech.v2.ICustomClass[],
+          protos.google.cloud.speech.v2.IListCustomClassesRequest | null,
+          protos.google.cloud.speech.v2.IListCustomClassesResponse,
+        ]) => {
+          this._log.info('listCustomClasses values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listCustomClasses`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -3524,6 +4132,7 @@ export class SpeechClient {
     const defaultCallSettings = this._defaults['listCustomClasses'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listCustomClasses stream %j', request);
     return this.descriptors.page.listCustomClasses.createStream(
       this.innerApiCalls.listCustomClasses as GaxCall,
       request,
@@ -3582,6 +4191,7 @@ export class SpeechClient {
     const defaultCallSettings = this._defaults['listCustomClasses'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listCustomClasses iterate %j', request);
     return this.descriptors.page.listCustomClasses.asyncIterate(
       this.innerApiCalls['listCustomClasses'] as GaxCall,
       request as {},
@@ -3688,11 +4298,37 @@ export class SpeechClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listPhraseSets(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.speech.v2.IListPhraseSetsRequest,
+          | protos.google.cloud.speech.v2.IListPhraseSetsResponse
+          | null
+          | undefined,
+          protos.google.cloud.speech.v2.IPhraseSet
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listPhraseSets values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listPhraseSets request %j', request);
+    return this.innerApiCalls
+      .listPhraseSets(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.speech.v2.IPhraseSet[],
+          protos.google.cloud.speech.v2.IListPhraseSetsRequest | null,
+          protos.google.cloud.speech.v2.IListPhraseSetsResponse,
+        ]) => {
+          this._log.info('listPhraseSets values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listPhraseSets`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -3738,6 +4374,7 @@ export class SpeechClient {
     const defaultCallSettings = this._defaults['listPhraseSets'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listPhraseSets stream %j', request);
     return this.descriptors.page.listPhraseSets.createStream(
       this.innerApiCalls.listPhraseSets as GaxCall,
       request,
@@ -3795,6 +4432,7 @@ export class SpeechClient {
     const defaultCallSettings = this._defaults['listPhraseSets'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listPhraseSets iterate %j', request);
     return this.descriptors.page.listPhraseSets.asyncIterate(
       this.innerApiCalls['listPhraseSets'] as GaxCall,
       request as {},
@@ -3911,7 +4549,7 @@ export class SpeechClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -3924,6 +4562,20 @@ export class SpeechClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -3960,6 +4612,13 @@ export class SpeechClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -3995,11 +4654,11 @@ export class SpeechClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -4008,6 +4667,20 @@ export class SpeechClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -4038,7 +4711,7 @@ export class SpeechClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -4051,6 +4724,20 @@ export class SpeechClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -4480,6 +5167,7 @@ export class SpeechClient {
   close(): Promise<void> {
     if (this.speechStub && !this._terminated) {
       return this.speechStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.locationsClient.close();

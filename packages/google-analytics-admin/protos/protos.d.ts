@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28688,7 +28688,8 @@ export namespace google {
                     ADSENSE_LINK = 27,
                     AUDIENCE = 28,
                     EVENT_CREATE_RULE = 29,
-                    CALCULATED_METRIC = 31
+                    CALCULATED_METRIC = 31,
+                    KEY_EVENT = 32
                 }
 
                 /** GoogleSignalsState enum. */
@@ -31122,6 +31123,9 @@ export namespace google {
 
                         /** ChangeHistoryResource calculatedMetric */
                         calculatedMetric?: (google.analytics.admin.v1alpha.ICalculatedMetric|null);
+
+                        /** ChangeHistoryResource keyEvent */
+                        keyEvent?: (google.analytics.admin.v1alpha.IKeyEvent|null);
                     }
 
                     /** Represents a ChangeHistoryResource. */
@@ -31208,8 +31212,11 @@ export namespace google {
                         /** ChangeHistoryResource calculatedMetric. */
                         public calculatedMetric?: (google.analytics.admin.v1alpha.ICalculatedMetric|null);
 
+                        /** ChangeHistoryResource keyEvent. */
+                        public keyEvent?: (google.analytics.admin.v1alpha.IKeyEvent|null);
+
                         /** ChangeHistoryResource resource. */
-                        public resource?: ("account"|"property"|"firebaseLink"|"googleAdsLink"|"googleSignalsSettings"|"displayVideo_360AdvertiserLink"|"displayVideo_360AdvertiserLinkProposal"|"conversionEvent"|"measurementProtocolSecret"|"customDimension"|"customMetric"|"dataRetentionSettings"|"searchAds_360Link"|"dataStream"|"attributionSettings"|"expandedDataSet"|"channelGroup"|"bigqueryLink"|"enhancedMeasurementSettings"|"dataRedactionSettings"|"skadnetworkConversionValueSchema"|"adsenseLink"|"audience"|"eventCreateRule"|"calculatedMetric");
+                        public resource?: ("account"|"property"|"firebaseLink"|"googleAdsLink"|"googleSignalsSettings"|"displayVideo_360AdvertiserLink"|"displayVideo_360AdvertiserLinkProposal"|"conversionEvent"|"measurementProtocolSecret"|"customDimension"|"customMetric"|"dataRetentionSettings"|"searchAds_360Link"|"dataStream"|"attributionSettings"|"expandedDataSet"|"channelGroup"|"bigqueryLink"|"enhancedMeasurementSettings"|"dataRedactionSettings"|"skadnetworkConversionValueSchema"|"adsenseLink"|"audience"|"eventCreateRule"|"calculatedMetric"|"keyEvent");
 
                         /**
                          * Creates a new ChangeHistoryResource instance using the specified properties.
@@ -32883,6 +32890,9 @@ export namespace google {
                     /** DataRetentionSettings eventDataRetention */
                     eventDataRetention?: (google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration|null);
 
+                    /** DataRetentionSettings userDataRetention */
+                    userDataRetention?: (google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration|null);
+
                     /** DataRetentionSettings resetUserDataOnNewActivity */
                     resetUserDataOnNewActivity?: (boolean|null);
                 }
@@ -32901,6 +32911,9 @@ export namespace google {
 
                     /** DataRetentionSettings eventDataRetention. */
                     public eventDataRetention: (google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration);
+
+                    /** DataRetentionSettings userDataRetention. */
+                    public userDataRetention: (google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration);
 
                     /** DataRetentionSettings resetUserDataOnNewActivity. */
                     public resetUserDataOnNewActivity: boolean;
@@ -45276,6 +45289,8 @@ export namespace google {
                     GOOGLE_SIGNALS_SETTINGS = 8,
                     CONVERSION_EVENT = 9,
                     MEASUREMENT_PROTOCOL_SECRET = 10,
+                    CUSTOM_DIMENSION = 11,
+                    CUSTOM_METRIC = 12,
                     DATA_RETENTION_SETTINGS = 13,
                     DISPLAY_VIDEO_360_ADVERTISER_LINK = 14,
                     DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL = 15,
@@ -47968,6 +47983,9 @@ export namespace google {
                     /** DataRetentionSettings eventDataRetention */
                     eventDataRetention?: (google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration|null);
 
+                    /** DataRetentionSettings userDataRetention */
+                    userDataRetention?: (google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration|null);
+
                     /** DataRetentionSettings resetUserDataOnNewActivity */
                     resetUserDataOnNewActivity?: (boolean|null);
                 }
@@ -47986,6 +48004,9 @@ export namespace google {
 
                     /** DataRetentionSettings eventDataRetention. */
                     public eventDataRetention: (google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration);
+
+                    /** DataRetentionSettings userDataRetention. */
+                    public userDataRetention: (google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration|keyof typeof google.analytics.admin.v1beta.DataRetentionSettings.RetentionDuration);
 
                     /** DataRetentionSettings resetUserDataOnNewActivity. */
                     public resetUserDataOnNewActivity: boolean;

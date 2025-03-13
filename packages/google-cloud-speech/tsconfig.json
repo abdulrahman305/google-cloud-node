@@ -4,7 +4,6 @@
     "rootDir": ".",
     "outDir": "build",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "lib": [
       "es2018",
       "dom"
@@ -15,6 +14,8 @@
     "src/**/*.ts",
     "test/*.ts",
     "test/**/*.ts",
-    "system-test/*.ts"
+    "system-test/*.ts",
+    "src/**/*.json",
+    "protos/protos.json"
   ]
 }

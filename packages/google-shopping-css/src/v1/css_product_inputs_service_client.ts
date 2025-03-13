@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import type {
 
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -52,6 +53,8 @@ export class CssProductInputsServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('css');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -86,7 +89,7 @@ export class CssProductInputsServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -264,6 +267,7 @@ export class CssProductInputsServiceClient {
     // and create an API call method for each.
     const cssProductInputsServiceStubMethods = [
       'insertCssProductInput',
+      'updateCssProductInput',
       'deleteCssProductInput',
     ];
     for (const methodName of cssProductInputsServiceStubMethods) {
@@ -394,12 +398,14 @@ export class CssProductInputsServiceClient {
    *   Format: accounts/{account}
    * @param {google.shopping.css.v1.CssProductInput} request.cssProductInput
    *   Required. The CSS Product Input to insert.
-   * @param {number} request.feedId
-   *   Required. The primary or supplemental feed id. If CSS Product already
-   *   exists and feed id provided is different, then the CSS Product will be
-   *   moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
-   *   we create feeds on the fly. We do not have supplemental feed support for
-   *   CSS Products yet.
+   * @param {number} [request.feedId]
+   *   Optional. DEPRECATED. Feed id is not required for CSS Products.
+   *   The primary or supplemental feed id. If CSS Product already exists and
+   *   feed id provided is different, then the CSS Product will be moved to a
+   *   new feed.
+   *   Note: For now, CSSs do not need to provide feed ids as we create
+   *   feeds on the fly.
+   *   We do not have supplemental feed support for CSS Products yet.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -481,7 +487,176 @@ export class CssProductInputsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.insertCssProductInput(request, options, callback);
+    this._log.info('insertCssProductInput request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.shopping.css.v1.ICssProductInput,
+          | protos.google.shopping.css.v1.IInsertCssProductInputRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('insertCssProductInput response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .insertCssProductInput(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.shopping.css.v1.ICssProductInput,
+          (
+            | protos.google.shopping.css.v1.IInsertCssProductInputRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('insertCssProductInput response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
+  }
+  /**
+   * Updates the existing Css Product input in your CSS Center account.
+   *
+   * After inserting, updating, or deleting a CSS Product input, it may take
+   * several minutes before the processed Css Product can be retrieved.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {google.shopping.css.v1.CssProductInput} request.cssProductInput
+   *   Required. The CSS product input resource to update. Information you submit
+   *   will be applied to the processed CSS product as well.
+   * @param {google.protobuf.FieldMask} request.updateMask
+   *   The list of CSS product attributes to be updated.
+   *
+   *   If the update mask is omitted, then it is treated as implied field mask
+   *   equivalent to all fields that are populated (have a non-empty value).
+   *
+   *   Attributes specified in the update mask without a value specified in the
+   *   body will be deleted from the CSS product.
+   *
+   *   Update mask can only be specified for top level fields in
+   *   attributes and custom attributes.
+   *
+   *   To specify the update mask for custom attributes you need to add the
+   *   `custom_attribute.` prefix.
+   *
+   *   Providing special "*" value for full CSS product replacement is not
+   *   supported.
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing {@link protos.google.shopping.css.v1.CssProductInput|CssProductInput}.
+   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+   *   for more details and examples.
+   * @example <caption>include:samples/generated/v1/css_product_inputs_service.update_css_product_input.js</caption>
+   * region_tag:css_v1_generated_CssProductInputsService_UpdateCssProductInput_async
+   */
+  updateCssProductInput(
+    request?: protos.google.shopping.css.v1.IUpdateCssProductInputRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.shopping.css.v1.ICssProductInput,
+      protos.google.shopping.css.v1.IUpdateCssProductInputRequest | undefined,
+      {} | undefined,
+    ]
+  >;
+  updateCssProductInput(
+    request: protos.google.shopping.css.v1.IUpdateCssProductInputRequest,
+    options: CallOptions,
+    callback: Callback<
+      protos.google.shopping.css.v1.ICssProductInput,
+      | protos.google.shopping.css.v1.IUpdateCssProductInputRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  updateCssProductInput(
+    request: protos.google.shopping.css.v1.IUpdateCssProductInputRequest,
+    callback: Callback<
+      protos.google.shopping.css.v1.ICssProductInput,
+      | protos.google.shopping.css.v1.IUpdateCssProductInputRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  updateCssProductInput(
+    request?: protos.google.shopping.css.v1.IUpdateCssProductInputRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | Callback<
+          protos.google.shopping.css.v1.ICssProductInput,
+          | protos.google.shopping.css.v1.IUpdateCssProductInputRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.shopping.css.v1.ICssProductInput,
+      | protos.google.shopping.css.v1.IUpdateCssProductInputRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.shopping.css.v1.ICssProductInput,
+      protos.google.shopping.css.v1.IUpdateCssProductInputRequest | undefined,
+      {} | undefined,
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        'css_product_input.name': request.cssProductInput!.name ?? '',
+      });
+    this.initialize();
+    this._log.info('updateCssProductInput request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.shopping.css.v1.ICssProductInput,
+          | protos.google.shopping.css.v1.IUpdateCssProductInputRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateCssProductInput response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateCssProductInput(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.shopping.css.v1.ICssProductInput,
+          (
+            | protos.google.shopping.css.v1.IUpdateCssProductInputRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('updateCssProductInput response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes a CSS Product input from your CSS Center account.
@@ -580,7 +755,36 @@ export class CssProductInputsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteCssProductInput(request, options, callback);
+    this._log.info('deleteCssProductInput request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.shopping.css.v1.IDeleteCssProductInputRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteCssProductInput response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteCssProductInput(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.shopping.css.v1.IDeleteCssProductInputRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteCssProductInput response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   // --------------------
@@ -735,6 +939,7 @@ export class CssProductInputsServiceClient {
   close(): Promise<void> {
     if (this.cssProductInputsServiceStub && !this._terminated) {
       return this.cssProductInputsServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -66,6 +67,8 @@ export class ReachabilityServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('network-management');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -103,7 +106,7 @@ export class ReachabilityServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -226,6 +229,9 @@ export class ReachabilityServiceClient {
       ),
       projectPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}'
+      ),
+      vpcFlowLogsConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}'
       ),
     };
 
@@ -626,7 +632,36 @@ export class ReachabilityServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getConnectivityTest(request, options, callback);
+    this._log.info('getConnectivityTest request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+          | protos.google.cloud.networkmanagement.v1.IGetConnectivityTestRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getConnectivityTest response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getConnectivityTest(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+          (
+            | protos.google.cloud.networkmanagement.v1.IGetConnectivityTestRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getConnectivityTest response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -753,11 +788,37 @@ export class ReachabilityServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createConnectivityTest(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createConnectivityTest response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createConnectivityTest request %j', request);
+    return this.innerApiCalls
+      .createConnectivityTest(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createConnectivityTest response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createConnectivityTest()`.
@@ -778,6 +839,7 @@ export class ReachabilityServiceClient {
       protos.google.cloud.networkmanagement.v1.OperationMetadata
     >
   > {
+    this._log.info('createConnectivityTest long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -909,11 +971,37 @@ export class ReachabilityServiceClient {
         'resource.name': request.resource!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateConnectivityTest(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateConnectivityTest response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateConnectivityTest request %j', request);
+    return this.innerApiCalls
+      .updateConnectivityTest(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateConnectivityTest response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateConnectivityTest()`.
@@ -934,6 +1022,7 @@ export class ReachabilityServiceClient {
       protos.google.cloud.networkmanagement.v1.OperationMetadata
     >
   > {
+    this._log.info('updateConnectivityTest long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1061,7 +1150,37 @@ export class ReachabilityServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.rerunConnectivityTest(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('rerunConnectivityTest response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('rerunConnectivityTest request %j', request);
+    return this.innerApiCalls
+      .rerunConnectivityTest(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.networkmanagement.v1.IConnectivityTest,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('rerunConnectivityTest response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `rerunConnectivityTest()`.
@@ -1082,6 +1201,7 @@ export class ReachabilityServiceClient {
       protos.google.cloud.networkmanagement.v1.OperationMetadata
     >
   > {
+    this._log.info('rerunConnectivityTest long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1198,11 +1318,37 @@ export class ReachabilityServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteConnectivityTest(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteConnectivityTest response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteConnectivityTest request %j', request);
+    return this.innerApiCalls
+      .deleteConnectivityTest(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.networkmanagement.v1.IOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteConnectivityTest response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteConnectivityTest()`.
@@ -1223,6 +1369,7 @@ export class ReachabilityServiceClient {
       protos.google.cloud.networkmanagement.v1.OperationMetadata
     >
   > {
+    this._log.info('deleteConnectivityTest long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1355,11 +1502,37 @@ export class ReachabilityServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listConnectivityTests(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.networkmanagement.v1.IListConnectivityTestsRequest,
+          | protos.google.cloud.networkmanagement.v1.IListConnectivityTestsResponse
+          | null
+          | undefined,
+          protos.google.cloud.networkmanagement.v1.IConnectivityTest
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listConnectivityTests values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listConnectivityTests request %j', request);
+    return this.innerApiCalls
+      .listConnectivityTests(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.networkmanagement.v1.IConnectivityTest[],
+          protos.google.cloud.networkmanagement.v1.IListConnectivityTestsRequest | null,
+          protos.google.cloud.networkmanagement.v1.IListConnectivityTestsResponse,
+        ]) => {
+          this._log.info('listConnectivityTests values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listConnectivityTests`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1416,6 +1589,7 @@ export class ReachabilityServiceClient {
     const defaultCallSettings = this._defaults['listConnectivityTests'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listConnectivityTests stream %j', request);
     return this.descriptors.page.listConnectivityTests.createStream(
       this.innerApiCalls.listConnectivityTests as GaxCall,
       request,
@@ -1484,6 +1658,7 @@ export class ReachabilityServiceClient {
     const defaultCallSettings = this._defaults['listConnectivityTests'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listConnectivityTests iterate %j', request);
     return this.descriptors.page.listConnectivityTests.asyncIterate(
       this.innerApiCalls['listConnectivityTests'] as GaxCall,
       request as {},
@@ -1738,7 +1913,7 @@ export class ReachabilityServiceClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -1751,6 +1926,20 @@ export class ReachabilityServiceClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -1787,6 +1976,13 @@ export class ReachabilityServiceClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -1822,11 +2018,11 @@ export class ReachabilityServiceClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -1835,6 +2031,20 @@ export class ReachabilityServiceClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -1865,7 +2075,7 @@ export class ReachabilityServiceClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -1878,6 +2088,20 @@ export class ReachabilityServiceClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -1949,6 +2173,67 @@ export class ReachabilityServiceClient {
   }
 
   /**
+   * Return a fully-qualified vpcFlowLogsConfig resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} vpc_flow_logs_config
+   * @returns {string} Resource name string.
+   */
+  vpcFlowLogsConfigPath(
+    project: string,
+    location: string,
+    vpcFlowLogsConfig: string
+  ) {
+    return this.pathTemplates.vpcFlowLogsConfigPathTemplate.render({
+      project: project,
+      location: location,
+      vpc_flow_logs_config: vpcFlowLogsConfig,
+    });
+  }
+
+  /**
+   * Parse the project from VpcFlowLogsConfig resource.
+   *
+   * @param {string} vpcFlowLogsConfigName
+   *   A fully-qualified path representing VpcFlowLogsConfig resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromVpcFlowLogsConfigName(vpcFlowLogsConfigName: string) {
+    return this.pathTemplates.vpcFlowLogsConfigPathTemplate.match(
+      vpcFlowLogsConfigName
+    ).project;
+  }
+
+  /**
+   * Parse the location from VpcFlowLogsConfig resource.
+   *
+   * @param {string} vpcFlowLogsConfigName
+   *   A fully-qualified path representing VpcFlowLogsConfig resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromVpcFlowLogsConfigName(vpcFlowLogsConfigName: string) {
+    return this.pathTemplates.vpcFlowLogsConfigPathTemplate.match(
+      vpcFlowLogsConfigName
+    ).location;
+  }
+
+  /**
+   * Parse the vpc_flow_logs_config from VpcFlowLogsConfig resource.
+   *
+   * @param {string} vpcFlowLogsConfigName
+   *   A fully-qualified path representing VpcFlowLogsConfig resource.
+   * @returns {string} A string representing the vpc_flow_logs_config.
+   */
+  matchVpcFlowLogsConfigFromVpcFlowLogsConfigName(
+    vpcFlowLogsConfigName: string
+  ) {
+    return this.pathTemplates.vpcFlowLogsConfigPathTemplate.match(
+      vpcFlowLogsConfigName
+    ).vpc_flow_logs_config;
+  }
+
+  /**
    * Terminate the gRPC channel and close the client.
    *
    * The client will no longer be usable and all future behavior is undefined.
@@ -1957,6 +2242,7 @@ export class ReachabilityServiceClient {
   close(): Promise<void> {
     if (this.reachabilityServiceStub && !this._terminated) {
       return this.reachabilityServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.iamClient.close();

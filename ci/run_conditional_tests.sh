@@ -73,6 +73,7 @@ fi
 subdirs=(
     containers
     packages
+    .github/scripts
 )
 
 RETVAL=0

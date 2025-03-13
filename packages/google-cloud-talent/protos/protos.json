@@ -1802,6 +1802,13 @@
                         "keywordMatchMode": {
                           "type": "KeywordMatchMode",
                           "id": 18
+                        },
+                        "relevanceThreshold": {
+                          "type": "RelevanceThreshold",
+                          "id": 19,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       },
                       "nested": {
@@ -1829,6 +1836,15 @@
                             "KEYWORD_MATCH_DISABLED": 1,
                             "KEYWORD_MATCH_ALL": 2,
                             "KEYWORD_MATCH_TITLE_ONLY": 3
+                          }
+                        },
+                        "RelevanceThreshold": {
+                          "values": {
+                            "RELEVANCE_THRESHOLD_UNSPECIFIED": 0,
+                            "LOWEST": 1,
+                            "LOW": 2,
+                            "MEDIUM": 3,
+                            "HIGH": 4
                           }
                         },
                         "CustomRankingInfo": {
@@ -4166,6 +4182,13 @@
                         "keywordMatchMode": {
                           "type": "KeywordMatchMode",
                           "id": 18
+                        },
+                        "relevanceThreshold": {
+                          "type": "RelevanceThreshold",
+                          "id": 19,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       },
                       "nested": {
@@ -4189,6 +4212,15 @@
                             "KEYWORD_MATCH_DISABLED": 1,
                             "KEYWORD_MATCH_ALL": 2,
                             "KEYWORD_MATCH_TITLE_ONLY": 3
+                          }
+                        },
+                        "RelevanceThreshold": {
+                          "values": {
+                            "RELEVANCE_THRESHOLD_UNSPECIFIED": 0,
+                            "LOWEST": 1,
+                            "LOW": 2,
+                            "MEDIUM": 3,
+                            "HIGH": 4
                           }
                         },
                         "CustomRankingInfo": {

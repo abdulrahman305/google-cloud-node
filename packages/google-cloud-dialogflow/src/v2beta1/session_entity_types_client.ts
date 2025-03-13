@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -56,6 +57,8 @@ export class SessionEntityTypesClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('dialogflow');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -91,7 +94,7 @@ export class SessionEntityTypesClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -338,6 +341,12 @@ export class SessionEntityTypesClient {
         new this._gaxModule.PathTemplate(
           'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}'
         ),
+      projectLocationPhoneNumberPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/phoneNumbers/{phone_number}'
+      ),
+      projectPhoneNumberPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/phoneNumbers/{phone_number}'
+      ),
       sipTrunkPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/sipTrunks/{siptrunk}'
       ),
@@ -638,7 +647,36 @@ export class SessionEntityTypesClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getSessionEntityType(request, options, callback);
+    this._log.info('getSessionEntityType request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType,
+          | protos.google.cloud.dialogflow.v2beta1.IGetSessionEntityTypeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getSessionEntityType response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getSessionEntityType(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType,
+          (
+            | protos.google.cloud.dialogflow.v2beta1.IGetSessionEntityTypeRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getSessionEntityType response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates a session entity type.
@@ -756,11 +794,36 @@ export class SessionEntityTypesClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createSessionEntityType(
-      request,
-      options,
-      callback
-    );
+    this._log.info('createSessionEntityType request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType,
+          | protos.google.cloud.dialogflow.v2beta1.ICreateSessionEntityTypeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createSessionEntityType response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createSessionEntityType(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType,
+          (
+            | protos.google.cloud.dialogflow.v2beta1.ICreateSessionEntityTypeRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('createSessionEntityType response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates the specified session entity type.
@@ -862,11 +925,36 @@ export class SessionEntityTypesClient {
         'session_entity_type.name': request.sessionEntityType!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateSessionEntityType(
-      request,
-      options,
-      callback
-    );
+    this._log.info('updateSessionEntityType request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType,
+          | protos.google.cloud.dialogflow.v2beta1.IUpdateSessionEntityTypeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateSessionEntityType response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateSessionEntityType(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType,
+          (
+            | protos.google.cloud.dialogflow.v2beta1.IUpdateSessionEntityTypeRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('updateSessionEntityType response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes the specified session entity type.
@@ -980,11 +1068,36 @@ export class SessionEntityTypesClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteSessionEntityType(
-      request,
-      options,
-      callback
-    );
+    this._log.info('deleteSessionEntityType request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.cloud.dialogflow.v2beta1.IDeleteSessionEntityTypeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteSessionEntityType response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteSessionEntityType(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.cloud.dialogflow.v2beta1.IDeleteSessionEntityTypeRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteSessionEntityType response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1100,15 +1213,37 @@ export class SessionEntityTypesClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listSessionEntityTypes(
-      request,
-      options,
-      callback
-    );
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListSessionEntityTypesRequest,
+          | protos.google.cloud.dialogflow.v2beta1.IListSessionEntityTypesResponse
+          | null
+          | undefined,
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listSessionEntityTypes values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listSessionEntityTypes request %j', request);
+    return this.innerApiCalls
+      .listSessionEntityTypes(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.dialogflow.v2beta1.ISessionEntityType[],
+          protos.google.cloud.dialogflow.v2beta1.IListSessionEntityTypesRequest | null,
+          protos.google.cloud.dialogflow.v2beta1.IListSessionEntityTypesResponse,
+        ]) => {
+          this._log.info('listSessionEntityTypes values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listSessionEntityTypes`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1157,6 +1292,7 @@ export class SessionEntityTypesClient {
     const defaultCallSettings = this._defaults['listSessionEntityTypes'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listSessionEntityTypes stream %j', request);
     return this.descriptors.page.listSessionEntityTypes.createStream(
       this.innerApiCalls.listSessionEntityTypes as GaxCall,
       request,
@@ -1217,6 +1353,7 @@ export class SessionEntityTypesClient {
     const defaultCallSettings = this._defaults['listSessionEntityTypes'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listSessionEntityTypes iterate %j', request);
     return this.descriptors.page.listSessionEntityTypes.asyncIterate(
       this.innerApiCalls['listSessionEntityTypes'] as GaxCall,
       request as {},
@@ -3662,6 +3799,111 @@ export class SessionEntityTypesClient {
   }
 
   /**
+   * Return a fully-qualified projectLocationPhoneNumber resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} phone_number
+   * @returns {string} Resource name string.
+   */
+  projectLocationPhoneNumberPath(
+    project: string,
+    location: string,
+    phoneNumber: string
+  ) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.render({
+      project: project,
+      location: location,
+      phone_number: phoneNumber,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectLocationPhoneNumber resource.
+   *
+   * @param {string} projectLocationPhoneNumberName
+   *   A fully-qualified path representing project_location_phone_number resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectLocationPhoneNumberName(
+    projectLocationPhoneNumberName: string
+  ) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.match(
+      projectLocationPhoneNumberName
+    ).project;
+  }
+
+  /**
+   * Parse the location from ProjectLocationPhoneNumber resource.
+   *
+   * @param {string} projectLocationPhoneNumberName
+   *   A fully-qualified path representing project_location_phone_number resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromProjectLocationPhoneNumberName(
+    projectLocationPhoneNumberName: string
+  ) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.match(
+      projectLocationPhoneNumberName
+    ).location;
+  }
+
+  /**
+   * Parse the phone_number from ProjectLocationPhoneNumber resource.
+   *
+   * @param {string} projectLocationPhoneNumberName
+   *   A fully-qualified path representing project_location_phone_number resource.
+   * @returns {string} A string representing the phone_number.
+   */
+  matchPhoneNumberFromProjectLocationPhoneNumberName(
+    projectLocationPhoneNumberName: string
+  ) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.match(
+      projectLocationPhoneNumberName
+    ).phone_number;
+  }
+
+  /**
+   * Return a fully-qualified projectPhoneNumber resource name string.
+   *
+   * @param {string} project
+   * @param {string} phone_number
+   * @returns {string} Resource name string.
+   */
+  projectPhoneNumberPath(project: string, phoneNumber: string) {
+    return this.pathTemplates.projectPhoneNumberPathTemplate.render({
+      project: project,
+      phone_number: phoneNumber,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectPhoneNumber resource.
+   *
+   * @param {string} projectPhoneNumberName
+   *   A fully-qualified path representing project_phone_number resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectPhoneNumberName(projectPhoneNumberName: string) {
+    return this.pathTemplates.projectPhoneNumberPathTemplate.match(
+      projectPhoneNumberName
+    ).project;
+  }
+
+  /**
+   * Parse the phone_number from ProjectPhoneNumber resource.
+   *
+   * @param {string} projectPhoneNumberName
+   *   A fully-qualified path representing project_phone_number resource.
+   * @returns {string} A string representing the phone_number.
+   */
+  matchPhoneNumberFromProjectPhoneNumberName(projectPhoneNumberName: string) {
+    return this.pathTemplates.projectPhoneNumberPathTemplate.match(
+      projectPhoneNumberName
+    ).phone_number;
+  }
+
+  /**
    * Return a fully-qualified sipTrunk resource name string.
    *
    * @param {string} project
@@ -3719,6 +3961,7 @@ export class SessionEntityTypesClient {
   close(): Promise<void> {
     if (this.sessionEntityTypesStub && !this._terminated) {
       return this.sessionEntityTypesStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.locationsClient.close();

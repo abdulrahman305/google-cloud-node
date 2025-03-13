@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ function main(entry) {
    *  specified path. For example, to attach an aspect to a field that is
    *  specified by the `schema` aspect, the path should have the format
    *  `Schema.<field_name>`.
-   *  * `<aspect_type_reference>*` - matches aspects of the given type for all
+   *  * `<aspect_type_reference>@*` - matches aspects of the given type for all
    *  paths.
    *  * `*@path` - matches aspects of all types on the given path.
    *  The service will not remove existing aspects matching the syntax unless

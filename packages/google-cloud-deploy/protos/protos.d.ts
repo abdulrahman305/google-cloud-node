@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12762,14 +12762,14 @@ export namespace google {
                 /** Properties of a DeploymentJobs. */
                 interface IDeploymentJobs {
 
+                    /** DeploymentJobs predeployJob */
+                    predeployJob?: (google.cloud.deploy.v1.IJob|null);
+
                     /** DeploymentJobs deployJob */
                     deployJob?: (google.cloud.deploy.v1.IJob|null);
 
                     /** DeploymentJobs verifyJob */
                     verifyJob?: (google.cloud.deploy.v1.IJob|null);
-
-                    /** DeploymentJobs predeployJob */
-                    predeployJob?: (google.cloud.deploy.v1.IJob|null);
 
                     /** DeploymentJobs postdeployJob */
                     postdeployJob?: (google.cloud.deploy.v1.IJob|null);
@@ -12784,14 +12784,14 @@ export namespace google {
                      */
                     constructor(properties?: google.cloud.deploy.v1.IDeploymentJobs);
 
+                    /** DeploymentJobs predeployJob. */
+                    public predeployJob?: (google.cloud.deploy.v1.IJob|null);
+
                     /** DeploymentJobs deployJob. */
                     public deployJob?: (google.cloud.deploy.v1.IJob|null);
 
                     /** DeploymentJobs verifyJob. */
                     public verifyJob?: (google.cloud.deploy.v1.IJob|null);
-
-                    /** DeploymentJobs predeployJob. */
-                    public predeployJob?: (google.cloud.deploy.v1.IJob|null);
 
                     /** DeploymentJobs postdeployJob. */
                     public postdeployJob?: (google.cloud.deploy.v1.IJob|null);

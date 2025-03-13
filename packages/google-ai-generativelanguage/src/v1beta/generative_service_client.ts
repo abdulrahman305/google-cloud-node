@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import type {
 import {PassThrough} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -52,6 +53,8 @@ export class GenerativeServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('generativelanguage');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -86,7 +89,7 @@ export class GenerativeServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -295,7 +298,7 @@ export class GenerativeServiceClient {
           (...args: Array<{}>) => {
             if (this._terminated) {
               if (methodName in this.descriptors.stream) {
-                const stream = new PassThrough();
+                const stream = new PassThrough({objectMode: true});
                 setImmediate(() => {
                   stream.emit(
                     'error',
@@ -428,7 +431,7 @@ export class GenerativeServiceClient {
    * @param {string} request.model
    *   Required. The name of the `Model` to use for generating the completion.
    *
-   *   Format: `name=models/{model}`.
+   *   Format: `models/{model}`.
    * @param {google.ai.generativelanguage.v1beta.Content} [request.systemInstruction]
    *   Optional. Developer set [system
    *   instruction(s)](https://ai.google.dev/gemini-api/docs/system-instructions).
@@ -469,8 +472,8 @@ export class GenerativeServiceClient {
    *   `SafetyCategory` provided in the list, the API will use the default safety
    *   setting for that category. Harm categories HARM_CATEGORY_HATE_SPEECH,
    *   HARM_CATEGORY_SEXUALLY_EXPLICIT, HARM_CATEGORY_DANGEROUS_CONTENT,
-   *   HARM_CATEGORY_HARASSMENT are supported. Refer to the
-   *   [guide](https://ai.google.dev/gemini-api/docs/safety-settings)
+   *   HARM_CATEGORY_HARASSMENT, HARM_CATEGORY_CIVIC_INTEGRITY are supported.
+   *   Refer to the [guide](https://ai.google.dev/gemini-api/docs/safety-settings)
    *   for detailed information on available safety settings. Also refer to the
    *   [Safety guidance](https://ai.google.dev/gemini-api/docs/safety-guidance) to
    *   learn how to incorporate safety considerations in your AI applications.
@@ -567,7 +570,36 @@ export class GenerativeServiceClient {
         model: request.model ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.generateContent(request, options, callback);
+    this._log.info('generateContent request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.ai.generativelanguage.v1beta.IGenerateContentResponse,
+          | protos.google.ai.generativelanguage.v1beta.IGenerateContentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('generateContent response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .generateContent(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.ai.generativelanguage.v1beta.IGenerateContentResponse,
+          (
+            | protos.google.ai.generativelanguage.v1beta.IGenerateContentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('generateContent response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Generates a grounded answer from the model given an input
@@ -708,7 +740,36 @@ export class GenerativeServiceClient {
         model: request.model ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.generateAnswer(request, options, callback);
+    this._log.info('generateAnswer request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.ai.generativelanguage.v1beta.IGenerateAnswerResponse,
+          | protos.google.ai.generativelanguage.v1beta.IGenerateAnswerRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('generateAnswer response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .generateAnswer(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.ai.generativelanguage.v1beta.IGenerateAnswerResponse,
+          (
+            | protos.google.ai.generativelanguage.v1beta.IGenerateAnswerRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('generateAnswer response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Generates a text embedding vector from the input `Content` using the
@@ -828,7 +889,36 @@ export class GenerativeServiceClient {
         model: request.model ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.embedContent(request, options, callback);
+    this._log.info('embedContent request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.ai.generativelanguage.v1beta.IEmbedContentResponse,
+          | protos.google.ai.generativelanguage.v1beta.IEmbedContentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('embedContent response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .embedContent(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.ai.generativelanguage.v1beta.IEmbedContentResponse,
+          (
+            | protos.google.ai.generativelanguage.v1beta.IEmbedContentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('embedContent response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Generates multiple embedding vectors from the input `Content` which
@@ -934,7 +1024,36 @@ export class GenerativeServiceClient {
         model: request.model ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.batchEmbedContents(request, options, callback);
+    this._log.info('batchEmbedContents request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.ai.generativelanguage.v1beta.IBatchEmbedContentsResponse,
+          | protos.google.ai.generativelanguage.v1beta.IBatchEmbedContentsRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('batchEmbedContents response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .batchEmbedContents(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.ai.generativelanguage.v1beta.IBatchEmbedContentsResponse,
+          (
+            | protos.google.ai.generativelanguage.v1beta.IBatchEmbedContentsRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('batchEmbedContents response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Runs a model's tokenizer on input `Content` and returns the token count.
@@ -1049,7 +1168,36 @@ export class GenerativeServiceClient {
         model: request.model ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.countTokens(request, options, callback);
+    this._log.info('countTokens request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.ai.generativelanguage.v1beta.ICountTokensResponse,
+          | protos.google.ai.generativelanguage.v1beta.ICountTokensRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('countTokens response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .countTokens(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.ai.generativelanguage.v1beta.ICountTokensResponse,
+          (
+            | protos.google.ai.generativelanguage.v1beta.ICountTokensRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('countTokens response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1062,7 +1210,7 @@ export class GenerativeServiceClient {
    * @param {string} request.model
    *   Required. The name of the `Model` to use for generating the completion.
    *
-   *   Format: `name=models/{model}`.
+   *   Format: `models/{model}`.
    * @param {google.ai.generativelanguage.v1beta.Content} [request.systemInstruction]
    *   Optional. Developer set [system
    *   instruction(s)](https://ai.google.dev/gemini-api/docs/system-instructions).
@@ -1103,8 +1251,8 @@ export class GenerativeServiceClient {
    *   `SafetyCategory` provided in the list, the API will use the default safety
    *   setting for that category. Harm categories HARM_CATEGORY_HATE_SPEECH,
    *   HARM_CATEGORY_SEXUALLY_EXPLICIT, HARM_CATEGORY_DANGEROUS_CONTENT,
-   *   HARM_CATEGORY_HARASSMENT are supported. Refer to the
-   *   [guide](https://ai.google.dev/gemini-api/docs/safety-settings)
+   *   HARM_CATEGORY_HARASSMENT, HARM_CATEGORY_CIVIC_INTEGRITY are supported.
+   *   Refer to the [guide](https://ai.google.dev/gemini-api/docs/safety-settings)
    *   for detailed information on available safety settings. Also refer to the
    *   [Safety guidance](https://ai.google.dev/gemini-api/docs/safety-guidance) to
    *   learn how to incorporate safety considerations in your AI applications.
@@ -1136,6 +1284,7 @@ export class GenerativeServiceClient {
         model: request.model ?? '',
       });
     this.initialize();
+    this._log.info('streamGenerateContent stream %j', options);
     return this.innerApiCalls.streamGenerateContent(request, options);
   }
 
@@ -1438,6 +1587,7 @@ export class GenerativeServiceClient {
   close(): Promise<void> {
     if (this.generativeServiceStub && !this._terminated) {
       return this.generativeServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

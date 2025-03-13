@@ -276,11 +276,6 @@
                                 "googleProductCategory"
                               ]
                             },
-                            "_gtin": {
-                              "oneof": [
-                                "gtin"
-                              ]
-                            },
                             "_itemGroupId": {
                               "oneof": [
                                 "itemGroupId"
@@ -593,11 +588,9 @@
                               }
                             },
                             "gtin": {
+                              "rule": "repeated",
                               "type": "string",
-                              "id": 26,
-                              "options": {
-                                "proto3_optional": true
-                              }
+                              "id": 26
                             },
                             "itemGroupId": {
                               "type": "string",
@@ -1182,6 +1175,16 @@
                               "oneof": [
                                 "loyaltyPoints"
                               ]
+                            },
+                            "_memberPriceEffectiveDate": {
+                              "oneof": [
+                                "memberPriceEffectiveDate"
+                              ]
+                            },
+                            "_shippingLabel": {
+                              "oneof": [
+                                "shippingLabel"
+                              ]
                             }
                           },
                           "fields": {
@@ -1216,6 +1219,20 @@
                             "loyaltyPoints": {
                               "type": "int64",
                               "id": 5,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "memberPriceEffectiveDate": {
+                              "type": "google.type.Interval",
+                              "id": 6,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "shippingLabel": {
+                              "type": "string",
+                              "id": 7,
                               "options": {
                                 "proto3_optional": true
                               }

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17475,6 +17475,9 @@ export namespace google {
 
                             /** AgentInfo dispositionCode */
                             dispositionCode?: (string|null);
+
+                            /** AgentInfo agentType */
+                            agentType?: (google.cloud.contactcenterinsights.v1.ConversationParticipant.Role|keyof typeof google.cloud.contactcenterinsights.v1.ConversationParticipant.Role|null);
                         }
 
                         /** Represents an AgentInfo. */
@@ -17497,6 +17500,9 @@ export namespace google {
 
                             /** AgentInfo dispositionCode. */
                             public dispositionCode: string;
+
+                            /** AgentInfo agentType. */
+                            public agentType: (google.cloud.contactcenterinsights.v1.ConversationParticipant.Role|keyof typeof google.cloud.contactcenterinsights.v1.ConversationParticipant.Role);
 
                             /**
                              * Creates a new AgentInfo instance using the specified properties.

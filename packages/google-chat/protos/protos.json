@@ -1,7 +1,4 @@
 {
-  "options": {
-    "syntax": "proto3"
-  },
   "nested": {
     "google": {
       "nested": {
@@ -2442,7 +2439,8 @@
                       "oneof": [
                         "userMention",
                         "slashCommand",
-                        "richLinkMetadata"
+                        "richLinkMetadata",
+                        "customEmojiMetadata"
                       ]
                     }
                   },
@@ -2473,6 +2471,10 @@
                     "richLinkMetadata": {
                       "type": "RichLinkMetadata",
                       "id": 6
+                    },
+                    "customEmojiMetadata": {
+                      "type": "CustomEmojiMetadata",
+                      "id": 7
                     }
                   }
                 },
@@ -2567,6 +2569,14 @@
                     }
                   }
                 },
+                "CustomEmojiMetadata": {
+                  "fields": {
+                    "customEmoji": {
+                      "type": "CustomEmoji",
+                      "id": 1
+                    }
+                  }
+                },
                 "DriveLinkData": {
                   "fields": {
                     "driveDataRef": {
@@ -2609,7 +2619,8 @@
                     "ANNOTATION_TYPE_UNSPECIFIED": 0,
                     "USER_MENTION": 1,
                     "SLASH_COMMAND": 2,
-                    "RICH_LINK": 3
+                    "RICH_LINK": 3,
+                    "CUSTOM_EMOJI": 4
                   }
                 },
                 "Attachment": {
@@ -2628,7 +2639,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "contentName": {
                       "type": "string",
@@ -2646,7 +2660,10 @@
                     },
                     "attachmentDataRef": {
                       "type": "AttachmentDataRef",
-                      "id": 4
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "driveDataRef": {
                       "type": "DriveDataRef",
@@ -2699,11 +2716,17 @@
                   "fields": {
                     "resourceName": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "attachmentUploadToken": {
                       "type": "string",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -2743,6 +2766,173 @@
                     "attachmentDataRef": {
                       "type": "AttachmentDataRef",
                       "id": 1
+                    }
+                  }
+                },
+                "Reaction": {
+                  "options": {
+                    "(google.api.resource).type": "chat.googleapis.com/Reaction",
+                    "(google.api.resource).pattern": "spaces/{space}/messages/{message}/reactions/{reaction}"
+                  },
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
+                    },
+                    "user": {
+                      "type": "User",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    },
+                    "emoji": {
+                      "type": "Emoji",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    }
+                  }
+                },
+                "Emoji": {
+                  "oneofs": {
+                    "content": {
+                      "oneof": [
+                        "unicode",
+                        "customEmoji"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "unicode": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "customEmoji": {
+                      "type": "CustomEmoji",
+                      "id": 2
+                    }
+                  }
+                },
+                "CustomEmoji": {
+                  "fields": {
+                    "uid": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_info).format": "UUID4",
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    }
+                  }
+                },
+                "EmojiReactionSummary": {
+                  "oneofs": {
+                    "_reactionCount": {
+                      "oneof": [
+                        "reactionCount"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "emoji": {
+                      "type": "Emoji",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    },
+                    "reactionCount": {
+                      "type": "int32",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY",
+                        "proto3_optional": true
+                      }
+                    }
+                  }
+                },
+                "CreateReactionRequest": {
+                  "fields": {
+                    "parent": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
+                      }
+                    },
+                    "reaction": {
+                      "type": "Reaction",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    }
+                  }
+                },
+                "ListReactionsRequest": {
+                  "fields": {
+                    "parent": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
+                      }
+                    },
+                    "pageSize": {
+                      "type": "int32",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "pageToken": {
+                      "type": "string",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "filter": {
+                      "type": "string",
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    }
+                  }
+                },
+                "ListReactionsResponse": {
+                  "fields": {
+                    "reactions": {
+                      "rule": "repeated",
+                      "type": "Reaction",
+                      "id": 1
+                    },
+                    "nextPageToken": {
+                      "type": "string",
+                      "id": 2
+                    }
+                  }
+                },
+                "DeleteReactionRequest": {
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).type": "chat.googleapis.com/Reaction"
+                      }
                     }
                   }
                 },
@@ -2788,7 +2978,7 @@
                 "ChatService": {
                   "options": {
                     "(google.api.default_host)": "chat.googleapis.com",
-                    "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/chat.admin.delete,https://www.googleapis.com/auth/chat.admin.memberships,https://www.googleapis.com/auth/chat.admin.memberships.readonly,https://www.googleapis.com/auth/chat.admin.spaces,https://www.googleapis.com/auth/chat.admin.spaces.readonly,https://www.googleapis.com/auth/chat.bot,https://www.googleapis.com/auth/chat.delete,https://www.googleapis.com/auth/chat.import,https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.app,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.create,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.create,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.create,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.users.readstate,https://www.googleapis.com/auth/chat.users.readstate.readonly"
+                    "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/chat.admin.delete,https://www.googleapis.com/auth/chat.admin.memberships,https://www.googleapis.com/auth/chat.admin.memberships.readonly,https://www.googleapis.com/auth/chat.admin.spaces,https://www.googleapis.com/auth/chat.admin.spaces.readonly,https://www.googleapis.com/auth/chat.bot,https://www.googleapis.com/auth/chat.delete,https://www.googleapis.com/auth/chat.import,https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.app,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.create,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.create,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.create,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.users.readstate,https://www.googleapis.com/auth/chat.users.readstate.readonly,https://www.googleapis.com/auth/chat.users.spacesettings"
                   },
                   "methods": {
                     "CreateMessage": {
@@ -3324,6 +3514,44 @@
                           "(google.api.method_signature)": "parent,filter"
                         }
                       ]
+                    },
+                    "GetSpaceNotificationSetting": {
+                      "requestType": "GetSpaceNotificationSettingRequest",
+                      "responseType": "SpaceNotificationSetting",
+                      "options": {
+                        "(google.api.http).get": "/v1/{name=users/*/spaces/*/spaceNotificationSetting}",
+                        "(google.api.method_signature)": "name"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "get": "/v1/{name=users/*/spaces/*/spaceNotificationSetting}"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "name"
+                        }
+                      ]
+                    },
+                    "UpdateSpaceNotificationSetting": {
+                      "requestType": "UpdateSpaceNotificationSettingRequest",
+                      "responseType": "SpaceNotificationSetting",
+                      "options": {
+                        "(google.api.http).patch": "/v1/{space_notification_setting.name=users/*/spaces/*/spaceNotificationSetting}",
+                        "(google.api.http).body": "space_notification_setting",
+                        "(google.api.method_signature)": "space_notification_setting,update_mask"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "patch": "/v1/{space_notification_setting.name=users/*/spaces/*/spaceNotificationSetting}",
+                            "body": "space_notification_setting"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "space_notification_setting,update_mask"
+                        }
+                      ]
                     }
                   }
                 },
@@ -3345,7 +3573,7 @@
                       "type": "string",
                       "id": 1,
                       "options": {
-                        "(google.api.resource_reference).type": "chat.googleapis.com/Membership"
+                        "(google.api.field_behavior)": "IDENTIFIER"
                       }
                     },
                     "state": {
@@ -3364,11 +3592,17 @@
                     },
                     "member": {
                       "type": "User",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "groupMember": {
                       "type": "Group",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "createTime": {
                       "type": "google.protobuf.Timestamp",
@@ -3422,7 +3656,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3444,7 +3681,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3495,7 +3735,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 8
+                      "id": 8,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3527,7 +3770,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3543,7 +3789,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3563,7 +3812,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
                     },
                     "sender": {
                       "type": "User",
@@ -3595,7 +3847,10 @@
                     },
                     "text": {
                       "type": "string",
-                      "id": 4
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "formattedText": {
                       "type": "string",
@@ -3615,7 +3870,10 @@
                     "cardsV2": {
                       "rule": "repeated",
                       "type": "CardWithId",
-                      "id": 22
+                      "id": 22,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "annotations": {
                       "rule": "repeated",
@@ -3631,11 +3889,17 @@
                     },
                     "space": {
                       "type": "Space",
-                      "id": 12
+                      "id": 12,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
                     },
                     "fallbackText": {
                       "type": "string",
-                      "id": 13
+                      "id": 13,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "actionResponse": {
                       "type": "ActionResponse",
@@ -3661,7 +3925,10 @@
                     "attachment": {
                       "rule": "repeated",
                       "type": "Attachment",
-                      "id": 18
+                      "id": 18,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "matchedUrl": {
                       "type": "MatchedUrl",
@@ -3679,7 +3946,10 @@
                     },
                     "clientAssignedMessageId": {
                       "type": "string",
-                      "id": 32
+                      "id": 32,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "emojiReactionSummaries": {
                       "rule": "repeated",
@@ -3693,7 +3963,7 @@
                       "type": "User",
                       "id": 36,
                       "options": {
-                        "(google.api.field_behavior)": "IMMUTABLE"
+                        "(google.api.field_behavior)": "OPTIONAL"
                       }
                     },
                     "deletionMetadata": {
@@ -3721,7 +3991,10 @@
                     "accessoryWidgets": {
                       "rule": "repeated",
                       "type": "AccessoryWidget",
-                      "id": 44
+                      "id": 44,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3767,7 +4040,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
                     },
                     "threadKey": {
                       "type": "string",
@@ -3890,7 +4166,10 @@
                     },
                     "force": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3905,7 +4184,10 @@
                     },
                     "updateMask": {
                       "type": "google.protobuf.FieldMask",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
                     },
                     "allowMissing": {
                       "type": "bool",
@@ -3985,23 +4267,38 @@
                     },
                     "pageSize": {
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "pageToken": {
                       "type": "string",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "filter": {
                       "type": "string",
-                      "id": 4
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "orderBy": {
                       "type": "string",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "showDeleted": {
                       "type": "bool",
-                      "id": 6
+                      "id": 6,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -4420,7 +4717,8 @@
                         "ADMIN": 3,
                         "APP_MESSAGE_EXPIRY": 4,
                         "CREATOR_VIA_APP": 5,
-                        "SPACE_OWNER_VIA_APP": 6
+                        "SPACE_OWNER_VIA_APP": 6,
+                        "SPACE_MEMBER": 7
                       }
                     }
                   }
@@ -4432,162 +4730,6 @@
                       "id": 2,
                       "options": {
                         "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    }
-                  }
-                },
-                "Reaction": {
-                  "options": {
-                    "(google.api.resource).type": "chat.googleapis.com/Reaction",
-                    "(google.api.resource).pattern": "spaces/{space}/messages/{message}/reactions/{reaction}"
-                  },
-                  "fields": {
-                    "name": {
-                      "type": "string",
-                      "id": 1
-                    },
-                    "user": {
-                      "type": "User",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    },
-                    "emoji": {
-                      "type": "Emoji",
-                      "id": 3
-                    }
-                  }
-                },
-                "Emoji": {
-                  "oneofs": {
-                    "content": {
-                      "oneof": [
-                        "unicode",
-                        "customEmoji"
-                      ]
-                    }
-                  },
-                  "fields": {
-                    "unicode": {
-                      "type": "string",
-                      "id": 1
-                    },
-                    "customEmoji": {
-                      "type": "CustomEmoji",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    }
-                  }
-                },
-                "CustomEmoji": {
-                  "fields": {
-                    "uid": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    }
-                  }
-                },
-                "EmojiReactionSummary": {
-                  "oneofs": {
-                    "_reactionCount": {
-                      "oneof": [
-                        "reactionCount"
-                      ]
-                    }
-                  },
-                  "fields": {
-                    "emoji": {
-                      "type": "Emoji",
-                      "id": 1
-                    },
-                    "reactionCount": {
-                      "type": "int32",
-                      "id": 2,
-                      "options": {
-                        "proto3_optional": true
-                      }
-                    }
-                  }
-                },
-                "CreateReactionRequest": {
-                  "fields": {
-                    "parent": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED",
-                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
-                      }
-                    },
-                    "reaction": {
-                      "type": "Reaction",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED"
-                      }
-                    }
-                  }
-                },
-                "ListReactionsRequest": {
-                  "fields": {
-                    "parent": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED",
-                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
-                      }
-                    },
-                    "pageSize": {
-                      "type": "int32",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "OPTIONAL"
-                      }
-                    },
-                    "pageToken": {
-                      "type": "string",
-                      "id": 3,
-                      "options": {
-                        "(google.api.field_behavior)": "OPTIONAL"
-                      }
-                    },
-                    "filter": {
-                      "type": "string",
-                      "id": 4,
-                      "options": {
-                        "(google.api.field_behavior)": "OPTIONAL"
-                      }
-                    }
-                  }
-                },
-                "ListReactionsResponse": {
-                  "fields": {
-                    "reactions": {
-                      "rule": "repeated",
-                      "type": "Reaction",
-                      "id": 1
-                    },
-                    "nextPageToken": {
-                      "type": "string",
-                      "id": 2
-                    }
-                  }
-                },
-                "DeleteReactionRequest": {
-                  "fields": {
-                    "name": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED",
-                        "(google.api.resource_reference).type": "chat.googleapis.com/Reaction"
                       }
                     }
                   }
@@ -4616,7 +4758,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
                     },
                     "type": {
                       "type": "Type",
@@ -4628,7 +4773,10 @@
                     },
                     "spaceType": {
                       "type": "SpaceType",
-                      "id": 10
+                      "id": 10,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "singleUserBotDm": {
                       "type": "bool",
@@ -4647,13 +4795,16 @@
                     },
                     "displayName": {
                       "type": "string",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "externalUserAllowed": {
                       "type": "bool",
                       "id": 8,
                       "options": {
-                        "(google.api.field_behavior)": "IMMUTABLE"
+                        "(google.api.field_behavior)": "OPTIONAL"
                       }
                     },
                     "spaceThreadingState": {
@@ -4665,11 +4816,17 @@
                     },
                     "spaceDetails": {
                       "type": "SpaceDetails",
-                      "id": 11
+                      "id": 11,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "spaceHistoryState": {
                       "type": "HistoryState",
-                      "id": 13
+                      "id": 13,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "importMode": {
                       "type": "bool",
@@ -4770,11 +4927,17 @@
                       "fields": {
                         "description": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "guidelines": {
                           "type": "string",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -4782,11 +4945,17 @@
                       "fields": {
                         "joinedDirectHumanUserCount": {
                           "type": "int32",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "joinedGroupCount": {
                           "type": "int32",
-                          "id": 5
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -4872,6 +5041,7 @@
                           "type": "PermissionSetting",
                           "id": 1,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4879,6 +5049,7 @@
                           "type": "PermissionSetting",
                           "id": 2,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4886,6 +5057,7 @@
                           "type": "PermissionSetting",
                           "id": 3,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4893,6 +5065,7 @@
                           "type": "PermissionSetting",
                           "id": 4,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4900,6 +5073,7 @@
                           "type": "PermissionSetting",
                           "id": 5,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4907,6 +5081,7 @@
                           "type": "PermissionSetting",
                           "id": 6,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4922,6 +5097,7 @@
                           "type": "PermissionSetting",
                           "id": 8,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         }
@@ -4931,11 +5107,17 @@
                       "fields": {
                         "managersAllowed": {
                           "type": "bool",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "membersAllowed": {
                           "type": "bool",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     }
@@ -5009,7 +5191,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -5035,11 +5220,17 @@
                     },
                     "updateMask": {
                       "type": "google.protobuf.FieldMask",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -5102,7 +5293,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -5273,11 +5467,17 @@
                     },
                     "pageSize": {
                       "type": "int32",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "pageToken": {
                       "type": "string",
-                      "id": 6
+                      "id": 6,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "filter": {
                       "type": "string",
@@ -5451,6 +5651,96 @@
                       "rule": "repeated",
                       "type": "ReactionDeletedEventData",
                       "id": 1
+                    }
+                  }
+                },
+                "SpaceNotificationSetting": {
+                  "options": {
+                    "(google.api.resource).type": "chat.googleapis.com/SpaceNotificationSetting",
+                    "(google.api.resource).pattern": "users/{user}/spaces/{space}/spaceNotificationSetting",
+                    "(google.api.resource).singular": "spaceNotificationSetting"
+                  },
+                  "oneofs": {
+                    "_notificationSetting": {
+                      "oneof": [
+                        "notificationSetting"
+                      ]
+                    },
+                    "_muteSetting": {
+                      "oneof": [
+                        "muteSetting"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
+                    },
+                    "notificationSetting": {
+                      "type": "NotificationSetting",
+                      "id": 2,
+                      "options": {
+                        "proto3_optional": true
+                      }
+                    },
+                    "muteSetting": {
+                      "type": "MuteSetting",
+                      "id": 3,
+                      "options": {
+                        "proto3_optional": true
+                      }
+                    }
+                  },
+                  "nested": {
+                    "NotificationSetting": {
+                      "values": {
+                        "NOTIFICATION_SETTING_UNSPECIFIED": 0,
+                        "ALL": 1,
+                        "MAIN_CONVERSATIONS": 2,
+                        "FOR_YOU": 3,
+                        "OFF": 4
+                      }
+                    },
+                    "MuteSetting": {
+                      "values": {
+                        "MUTE_SETTING_UNSPECIFIED": 0,
+                        "UNMUTED": 1,
+                        "MUTED": 2
+                      }
+                    }
+                  }
+                },
+                "GetSpaceNotificationSettingRequest": {
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).type": "chat.googleapis.com/SpaceNotificationSetting"
+                      }
+                    }
+                  }
+                },
+                "UpdateSpaceNotificationSettingRequest": {
+                  "fields": {
+                    "spaceNotificationSetting": {
+                      "type": "SpaceNotificationSetting",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    },
+                    "updateMask": {
+                      "type": "google.protobuf.FieldMask",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
                     }
                   }
                 },
@@ -5699,6 +5989,30 @@
                 "UNORDERED_LIST": 6,
                 "NON_EMPTY_DEFAULT": 7,
                 "IDENTIFIER": 8
+              }
+            },
+            "fieldInfo": {
+              "type": "google.api.FieldInfo",
+              "id": 291403980,
+              "extend": "google.protobuf.FieldOptions"
+            },
+            "FieldInfo": {
+              "fields": {
+                "format": {
+                  "type": "Format",
+                  "id": 1
+                }
+              },
+              "nested": {
+                "Format": {
+                  "values": {
+                    "FORMAT_UNSPECIFIED": 0,
+                    "UUID4": 1,
+                    "IPV4": 2,
+                    "IPV6": 3,
+                    "IPV4_OR_IPV6": 4
+                  }
+                }
               }
             },
             "http": {

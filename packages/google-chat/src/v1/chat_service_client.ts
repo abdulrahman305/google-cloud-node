@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -54,6 +55,8 @@ export class ChatServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('chat');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -88,7 +91,7 @@ export class ChatServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -219,6 +222,9 @@ export class ChatServiceClient {
       spaceEventPathTemplate: new this._gaxModule.PathTemplate(
         'spaces/{space}/spaceEvents/{space_event}'
       ),
+      spaceNotificationSettingPathTemplate: new this._gaxModule.PathTemplate(
+        'users/{user}/spaces/{space}/spaceNotificationSetting'
+      ),
       spaceReadStatePathTemplate: new this._gaxModule.PathTemplate(
         'users/{user}/spaces/{space}/spaceReadState'
       ),
@@ -345,6 +351,8 @@ export class ChatServiceClient {
       'getThreadReadState',
       'getSpaceEvent',
       'listSpaceEvents',
+      'getSpaceNotificationSetting',
+      'updateSpaceNotificationSetting',
     ];
     for (const methodName of chatServiceStubMethods) {
       const callPromise = this.chatServiceStub.then(
@@ -460,6 +468,7 @@ export class ChatServiceClient {
       'https://www.googleapis.com/auth/chat.spaces.readonly',
       'https://www.googleapis.com/auth/chat.users.readstate',
       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
+      'https://www.googleapis.com/auth/chat.users.spacesettings',
     ];
   }
 
@@ -486,8 +495,11 @@ export class ChatServiceClient {
    * Creates a message in a Google Chat space. For an example, see [Send a
    * message](https://developers.google.com/workspace/chat/create-messages).
    *
-   * The `create()` method requires either user or app authentication. Chat
-   * attributes the message sender differently depending on the type of
+   * The `create()` method requires either [user
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * or [app
+   * authentication](https://developers.google.com/workspace/chat/authorize-import).
+   * Chat attributes the message sender differently depending on the type of
    * authentication that you use in your request.
    *
    * The following image shows how Chat attributes a message when you use app
@@ -507,6 +519,12 @@ export class ChatServiceClient {
    * authentication](https://developers.google.com/workspace/chat/images/message-user-auth.svg)
    *
    * The maximum message size, including the message contents, is 32,000 bytes.
+   *
+   * For
+   * [webhook](https://developers.google.com/workspace/chat/quickstart/webhooks)
+   * requests, the response doesn't contain the full message. The response only
+   * populates the `name` and `thread.name` fields in addition to the
+   * information that was in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -531,6 +549,12 @@ export class ChatServiceClient {
    * @param {google.chat.v1.CreateMessageRequest.MessageReplyOption} [request.messageReplyOption]
    *   Optional. Specifies whether a message starts a thread or replies to one.
    *   Only supported in named spaces.
+   *
+   *   When [responding to user
+   *   interactions](https://developers.google.com/workspace/chat/receive-respond-interactions),
+   *   this field is ignored. For interactions within a thread, the reply is
+   *   created in the same thread. Otherwise, the reply is created as a new
+   *   thread.
    * @param {string} [request.messageId]
    *   Optional. A custom ID for a message. Lets Chat apps get, update, or delete
    *   a message without needing to store the system-assigned ID in the message's
@@ -620,20 +644,47 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createMessage(request, options, callback);
+    this._log.info('createMessage request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMessage,
+          protos.google.chat.v1.ICreateMessageRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createMessage response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createMessage(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMessage,
+          protos.google.chat.v1.ICreateMessageRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createMessage response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns details about a membership. For an example, see
    * [Get details about a user's or Google Chat app's
    * membership](https://developers.google.com/workspace/chat/get-members).
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -646,13 +697,11 @@ export class ChatServiceClient {
    *
    *   Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
    *
-   *   When [authenticated as a
-   *   user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-   *   you can use the user's email as an alias for `{member}`. For example,
+   *   You can use the user's email as an alias for `{member}`. For example,
    *   `spaces/{space}/members/example@gmail.com` where `example@gmail.com` is the
    *   email of the Google Chat user.
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -737,20 +786,45 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getMembership(request, options, callback);
+    this._log.info('getMembership request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.IGetMembershipRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getMembership response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getMembership(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.IGetMembershipRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getMembership response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns details about a message.
    * For an example, see [Get details about a
    * message](https://developers.google.com/workspace/chat/get-messages).
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
    *
    * Note: Might return a message from a blocked member or space.
    *
@@ -838,7 +912,31 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getMessage(request, options, callback);
+    this._log.info('getMessage request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMessage,
+          protos.google.chat.v1.IGetMessageRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getMessage response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getMessage(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMessage,
+          protos.google.chat.v1.IGetMessageRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getMessage response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates a message. There's a difference between the `patch` and `update`
@@ -848,13 +946,15 @@ export class ChatServiceClient {
    * [Update a
    * message](https://developers.google.com/workspace/chat/update-messages).
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   *
    * When using app authentication, requests can only update messages
    * created by the calling Chat app.
    *
@@ -958,20 +1058,46 @@ export class ChatServiceClient {
         'message.name': request.message!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateMessage(request, options, callback);
+    this._log.info('updateMessage request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMessage,
+          protos.google.chat.v1.IUpdateMessageRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateMessage response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateMessage(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMessage,
+          protos.google.chat.v1.IUpdateMessageRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateMessage response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes a message.
    * For an example, see [Delete a
    * message](https://developers.google.com/workspace/chat/delete-messages).
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   *
    * When using app authentication, requests can only delete messages
    * created by the calling Chat app.
    *
@@ -986,9 +1112,9 @@ export class ChatServiceClient {
    *   `clientAssignedMessageId` field for `{message}`. For details, see [Name a
    *   message]
    *   (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
-   * @param {boolean} request.force
-   *   When `true`, deleting a message also deletes its threaded replies. When
-   *   `false`, if a message has threaded replies, deletion fails.
+   * @param {boolean} [request.force]
+   *   Optional. When `true`, deleting a message also deletes its threaded
+   *   replies. When `false`, if a message has threaded replies, deletion fails.
    *
    *   Only applies when [authenticating as a
    *   user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -1067,7 +1193,31 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteMessage(request, options, callback);
+    this._log.info('deleteMessage request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.chat.v1.IDeleteMessageRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteMessage response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteMessage(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.chat.v1.IDeleteMessageRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteMessage response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets the metadata of a message attachment. The attachment data is fetched
@@ -1157,12 +1307,37 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAttachment(request, options, callback);
+    this._log.info('getAttachment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IAttachment,
+          protos.google.chat.v1.IGetAttachmentRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAttachment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAttachment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IAttachment,
+          protos.google.chat.v1.IGetAttachmentRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getAttachment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Uploads an attachment. For an example, see
    * [Upload media as a file
    * attachment](https://developers.google.com/workspace/chat/upload-media-attachments).
+   *
    * Requires user
    * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
    *
@@ -1250,20 +1425,47 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.uploadAttachment(request, options, callback);
+    this._log.info('uploadAttachment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IUploadAttachmentResponse,
+          protos.google.chat.v1.IUploadAttachmentRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('uploadAttachment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .uploadAttachment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IUploadAttachmentResponse,
+          protos.google.chat.v1.IUploadAttachmentRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('uploadAttachment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns details about a space. For an example, see
    * [Get details about a
    * space](https://developers.google.com/workspace/chat/get-spaces).
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -1271,8 +1473,8 @@ export class ChatServiceClient {
    *   Required. Resource name of the space, in the form `spaces/{space}`.
    *
    *   Format: `spaces/{space}`
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -1354,38 +1556,66 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getSpace(request, options, callback);
+    this._log.info('getSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.IGetSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.IGetSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * Creates a space with no members. Can be used to create a named space.
-   * Spaces grouped by topics aren't supported. For an example, see
-   * [Create a
+   * Creates a space with no members. Can be used to create a named space, or a
+   * group chat in `Import mode`. For an example, see [Create a
    * space](https://developers.google.com/workspace/chat/create-spaces).
    *
    *  If you receive the error message `ALREADY_EXISTS` when creating
    *  a space, try a different `displayName`. An existing space within
    *  the Google Workspace organization might already use this display name.
    *
-   * If you're a member of the [Developer Preview
-   * program](https://developers.google.com/workspace/preview), you can create a
-   * group chat in import mode using `spaceType.GROUP_CHAT`.
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
    *
-   * Requires [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+   * in [Developer Preview](https://developers.google.com/workspace/preview)
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   *
+   * When authenticating as an app, the `space.customer` field must be set in
+   * the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {google.chat.v1.Space} request.space
    *   Required. The `displayName` and `spaceType` fields must be populated.  Only
-   *   `SpaceType.SPACE` is supported.
+   *   `SpaceType.SPACE`  and `SpaceType.GROUP_CHAT` are supported.
+   *   `SpaceType.GROUP_CHAT` can only be used if `importMode` is set to true.
    *
    *   If you receive the error message `ALREADY_EXISTS`,
    *   try a different `displayName`. An existing space within the Google
    *   Workspace organization might already use this display name.
    *
-   *   If you're a member of the [Developer Preview
-   *   program](https://developers.google.com/workspace/preview),
-   *   `SpaceType.GROUP_CHAT` can be used if `importMode` is set to true.
    *
    *   The space `name` is assigned on the server so anything specified in this
    *   field will be ignored.
@@ -1465,7 +1695,31 @@ export class ChatServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.createSpace(request, options, callback);
+    this._log.info('createSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.ICreateSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.ICreateSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates a space and adds specified users to it. The calling user is
@@ -1653,7 +1907,31 @@ export class ChatServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.setUpSpace(request, options, callback);
+    this._log.info('setUpSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.ISetUpSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('setUpSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .setUpSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.ISetUpSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('setUpSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates a space. For an example, see
@@ -1664,8 +1942,18 @@ export class ChatServiceClient {
    * `ALREADY_EXISTS`, try a different display name.. An existing space within
    * the Google Workspace organization might already use this display name.
    *
-   * Requires [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+   * in [Developer Preview](https://developers.google.com/workspace/preview)
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -1735,8 +2023,8 @@ export class ChatServiceClient {
    *   - `permission_settings.manageApps`
    *   - `permission_settings.manageWebhooks`
    *   - `permission_settings.replyMessages`
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -1821,7 +2109,31 @@ export class ChatServiceClient {
         'space.name': request.space!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateSpace(request, options, callback);
+    this._log.info('updateSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.IUpdateSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.IUpdateSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes a named space. Always performs a cascading delete, which means
@@ -1829,9 +2141,19 @@ export class ChatServiceClient {
    * memberships in the space—are also deleted. For an example, see
    * [Delete a
    * space](https://developers.google.com/workspace/chat/delete-spaces).
-   * Requires [user
+   *
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+   * in [Developer Preview](https://developers.google.com/workspace/preview)
+   *
+   * - [User
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-   * from a user who has permission to delete the space.
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -1839,8 +2161,8 @@ export class ChatServiceClient {
    *   Required. Resource name of the space to delete.
    *
    *   Format: `spaces/{space}`
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -1922,14 +2244,41 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteSpace(request, options, callback);
+    this._log.info('deleteSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.chat.v1.IDeleteSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.chat.v1.IDeleteSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Completes the
    * [import process](https://developers.google.com/workspace/chat/import-data)
    * for the specified space and makes it visible to users.
-   * Requires app authentication and domain-wide delegation. For more
-   * information, see [Authorize Google Chat apps to import
+   *
+   * Requires [app
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * and domain-wide delegation. For more information, see [Authorize Google
+   * Chat apps to import
    * data](https://developers.google.com/workspace/chat/authorize-import).
    *
    * @param {Object} request
@@ -2011,7 +2360,31 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.completeImportSpace(request, options, callback);
+    this._log.info('completeImportSpace request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ICompleteImportSpaceResponse,
+          protos.google.chat.v1.ICompleteImportSpaceRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('completeImportSpace response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .completeImportSpace(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ICompleteImportSpaceResponse,
+          protos.google.chat.v1.ICompleteImportSpaceRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('completeImportSpace response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns the existing direct message with the specified user. If no direct
@@ -2019,20 +2392,24 @@ export class ChatServiceClient {
    * see
    * [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message).
    *
-   * With [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-   * returns the direct message space between the specified user and the
-   * authenticated user.
-   *
    * With [app
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
    * returns the direct message space between the specified user and the calling
    * Chat app.
    *
-   * Requires [user
+   * With [user
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+   * returns the direct message space between the specified user and the
+   * authenticated user.
+   *
+   * // Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   *
+   * - [User
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-   * or [app
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -2119,7 +2496,31 @@ export class ChatServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.findDirectMessage(request, options, callback);
+    this._log.info('findDirectMessage request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.IFindDirectMessageRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('findDirectMessage response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .findDirectMessage(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpace,
+          protos.google.chat.v1.IFindDirectMessageRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('findDirectMessage response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates a membership for the calling Chat app, a user, or a Google Group.
@@ -2128,8 +2529,19 @@ export class ChatServiceClient {
    * policy turned off, then they're invited, and must accept the space
    * invitation before joining. Otherwise, creating a membership adds the member
    * directly to the specified space.
-   * Requires [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+   * in [Developer Preview](https://developers.google.com/workspace/preview)
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * For example usage, see:
    *
@@ -2151,23 +2563,44 @@ export class ChatServiceClient {
    *   Format: spaces/{space}
    * @param {google.chat.v1.Membership} request.membership
    *   Required. The membership relation to create.
+   *
    *   The `memberType` field must contain a user with the `user.name` and
    *   `user.type` fields populated. The server will assign a resource name
    *   and overwrite anything specified.
+   *
    *   When a Chat app creates a membership relation for a human user, it must use
-   *   the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
-   *   `user.name` with format `users/{user}`, where `{user}` can be the email
-   *   address for the user. For users in the same Workspace organization `{user}`
-   *   can also be the `id` of the
-   *   [person](https://developers.google.com/people/api/rest/v1/people) from the
-   *   People API, or the `id` for the user in the Directory API. For example, if
-   *   the People API Person profile ID for `user@example.com` is `123456789`, you
-   *   can add the user to the space by setting the `membership.member.name` to
-   *   `users/user@example.com` or `users/123456789`. When a Chat app creates a
-   *   membership relation for itself, it must use the `chat.memberships.app`
-   *   scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   *   certain authorization scopes and set specific values for certain fields:
+   *
+   *   - When [authenticating as a
+   *   user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+   *   the `chat.memberships` authorization scope is required.
+   *
+   *   - When [authenticating as an
+   *   app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
+   *   the `chat.app.memberships` authorization scope is required.
+   *   Authenticating as an app is available in [Developer
+   *   Preview](https://developers.google.com/workspace/preview).
+   *
+   *   - Set `user.type` to `HUMAN`, and set `user.name` with format
+   *   `users/{user}`, where `{user}` can be the email address for the user. For
+   *   users in the same Workspace organization `{user}` can also be the `id` of
+   *   the [person](https://developers.google.com/people/api/rest/v1/people) from
+   *   the People API, or the `id` for the user in the Directory API. For example,
+   *   if the People API Person profile ID for `user@example.com` is `123456789`,
+   *   you can add the user to the space by setting the `membership.member.name`
+   *   to `users/user@example.com` or `users/123456789`.
+   *
+   *   Inviting users external to the Workspace organization that owns the space
+   *   requires [user
+   *   authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   *   When a Chat app creates a membership relation for itself, it must
+   *   [authenticate as a
+   *   user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   *   and use the `chat.memberships.app` scope, set `user.type` to `BOT`, and set
+   *   `user.name` to `users/app`.
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -2253,14 +2686,48 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createMembership(request, options, callback);
+    this._log.info('createMembership request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.ICreateMembershipRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createMembership response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createMembership(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.ICreateMembershipRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createMembership response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates a membership. For an example, see [Update a user's membership in
    * a space](https://developers.google.com/workspace/chat/update-members).
    *
-   * Requires [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+   * in [Developer Preview](https://developers.google.com/workspace/preview)
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -2274,8 +2741,8 @@ export class ChatServiceClient {
    *   Currently supported field paths:
    *
    *   - `role`
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -2357,15 +2824,49 @@ export class ChatServiceClient {
         'membership.name': request.membership!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateMembership(request, options, callback);
+    this._log.info('updateMembership request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.IUpdateMembershipRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateMembership response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateMembership(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.IUpdateMembershipRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateMembership response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes a membership. For an example, see
    * [Remove a user or a Google Chat app from a
    * space](https://developers.google.com/workspace/chat/delete-members).
    *
-   * Requires [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+   * in [Developer Preview](https://developers.google.com/workspace/preview)
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -2384,8 +2885,8 @@ export class ChatServiceClient {
    *   and `spaces/{space}/members/app` format.
    *
    *   Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`.
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -2469,13 +2970,37 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteMembership(request, options, callback);
+    this._log.info('deleteMembership request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.IDeleteMembershipRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteMembership response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteMembership(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IMembership,
+          protos.google.chat.v1.IDeleteMembershipRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteMembership response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * Creates a reaction and adds it to a message. Only unicode emojis are
-   * supported. For an example, see
+   * Creates a reaction and adds it to a message. For an example, see
    * [Add a reaction to a
    * message](https://developers.google.com/workspace/chat/create-reactions).
+   *
    * Requires [user
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
    *
@@ -2560,13 +3085,37 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createReaction(request, options, callback);
+    this._log.info('createReaction request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IReaction,
+          protos.google.chat.v1.ICreateReactionRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createReaction response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createReaction(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IReaction,
+          protos.google.chat.v1.ICreateReactionRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createReaction response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
-   * Deletes a reaction to a message. Only unicode emojis are supported.
-   * For an example, see
+   * Deletes a reaction to a message. For an example, see
    * [Delete a
    * reaction](https://developers.google.com/workspace/chat/delete-reactions).
+   *
    * Requires [user
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
    *
@@ -2649,7 +3198,31 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteReaction(request, options, callback);
+    this._log.info('deleteReaction request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.chat.v1.IDeleteReactionRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteReaction response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteReaction(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.chat.v1.IDeleteReactionRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteReaction response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns details about a user's read state within a space, used to identify
@@ -2751,7 +3324,31 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getSpaceReadState(request, options, callback);
+    this._log.info('getSpaceReadState request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpaceReadState,
+          protos.google.chat.v1.IGetSpaceReadStateRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getSpaceReadState response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getSpaceReadState(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpaceReadState,
+          protos.google.chat.v1.IGetSpaceReadStateRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getSpaceReadState response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates a user's read state within a space, used to identify read and
@@ -2866,7 +3463,31 @@ export class ChatServiceClient {
         'space_read_state.name': request.spaceReadState!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateSpaceReadState(request, options, callback);
+    this._log.info('updateSpaceReadState request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpaceReadState,
+          protos.google.chat.v1.IUpdateSpaceReadStateRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateSpaceReadState response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateSpaceReadState(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpaceReadState,
+          protos.google.chat.v1.IUpdateSpaceReadStateRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateSpaceReadState response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns details about a user's read state within a thread, used to identify
@@ -2969,7 +3590,31 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getThreadReadState(request, options, callback);
+    this._log.info('getThreadReadState request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.IThreadReadState,
+          protos.google.chat.v1.IGetThreadReadStateRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getThreadReadState response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getThreadReadState(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.IThreadReadState,
+          protos.google.chat.v1.IGetThreadReadStateRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getThreadReadState response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Returns an event from a Google Chat space. The [event
@@ -3069,7 +3714,297 @@ export class ChatServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getSpaceEvent(request, options, callback);
+    this._log.info('getSpaceEvent request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpaceEvent,
+          protos.google.chat.v1.IGetSpaceEventRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getSpaceEvent response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getSpaceEvent(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpaceEvent,
+          protos.google.chat.v1.IGetSpaceEventRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getSpaceEvent response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
+  }
+  /**
+   * Gets the space notification setting. For an example, see [Get the
+   * caller's space notification
+   * setting](https://developers.google.com/workspace/chat/get-space-notification-setting).
+   *
+   * Requires [user
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.name
+   *   Required. Format: users/{user}/spaces/{space}/spaceNotificationSetting
+   *
+   *   - `users/me/spaces/{space}/spaceNotificationSetting`, OR
+   *   - `users/user@example.com/spaces/{space}/spaceNotificationSetting`, OR
+   *   - `users/123456789/spaces/{space}/spaceNotificationSetting`.
+   *   Note: Only the caller's user id or email is allowed in the path.
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing {@link protos.google.chat.v1.SpaceNotificationSetting|SpaceNotificationSetting}.
+   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+   *   for more details and examples.
+   * @example <caption>include:samples/generated/v1/chat_service.get_space_notification_setting.js</caption>
+   * region_tag:chat_v1_generated_ChatService_GetSpaceNotificationSetting_async
+   */
+  getSpaceNotificationSetting(
+    request?: protos.google.chat.v1.IGetSpaceNotificationSettingRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      protos.google.chat.v1.IGetSpaceNotificationSettingRequest | undefined,
+      {} | undefined,
+    ]
+  >;
+  getSpaceNotificationSetting(
+    request: protos.google.chat.v1.IGetSpaceNotificationSettingRequest,
+    options: CallOptions,
+    callback: Callback<
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      | protos.google.chat.v1.IGetSpaceNotificationSettingRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  getSpaceNotificationSetting(
+    request: protos.google.chat.v1.IGetSpaceNotificationSettingRequest,
+    callback: Callback<
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      | protos.google.chat.v1.IGetSpaceNotificationSettingRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  getSpaceNotificationSetting(
+    request?: protos.google.chat.v1.IGetSpaceNotificationSettingRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | Callback<
+          protos.google.chat.v1.ISpaceNotificationSetting,
+          | protos.google.chat.v1.IGetSpaceNotificationSettingRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      | protos.google.chat.v1.IGetSpaceNotificationSettingRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      protos.google.chat.v1.IGetSpaceNotificationSettingRequest | undefined,
+      {} | undefined,
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
+    this.initialize();
+    this._log.info('getSpaceNotificationSetting request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpaceNotificationSetting,
+          | protos.google.chat.v1.IGetSpaceNotificationSettingRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getSpaceNotificationSetting response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getSpaceNotificationSetting(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpaceNotificationSetting,
+          protos.google.chat.v1.IGetSpaceNotificationSettingRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getSpaceNotificationSetting response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
+  }
+  /**
+   * Updates the space notification setting. For an example, see [Update
+   * the caller's space notification
+   * setting](https://developers.google.com/workspace/chat/update-space-notification-setting).
+   *
+   * Requires [user
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {google.chat.v1.SpaceNotificationSetting} request.spaceNotificationSetting
+   *   Required. The resource name for the space notification settings must be
+   *   populated in the form of
+   *   `users/{user}/spaces/{space}/spaceNotificationSetting`. Only fields
+   *   specified by `update_mask` are updated.
+   * @param {google.protobuf.FieldMask} request.updateMask
+   *   Required. Supported field paths:
+   *
+   *   - `notification_setting`
+   *
+   *   - `mute_setting`
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing {@link protos.google.chat.v1.SpaceNotificationSetting|SpaceNotificationSetting}.
+   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+   *   for more details and examples.
+   * @example <caption>include:samples/generated/v1/chat_service.update_space_notification_setting.js</caption>
+   * region_tag:chat_v1_generated_ChatService_UpdateSpaceNotificationSetting_async
+   */
+  updateSpaceNotificationSetting(
+    request?: protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest | undefined,
+      {} | undefined,
+    ]
+  >;
+  updateSpaceNotificationSetting(
+    request: protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest,
+    options: CallOptions,
+    callback: Callback<
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      | protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  updateSpaceNotificationSetting(
+    request: protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest,
+    callback: Callback<
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      | protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  updateSpaceNotificationSetting(
+    request?: protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | Callback<
+          protos.google.chat.v1.ISpaceNotificationSetting,
+          | protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      | protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.chat.v1.ISpaceNotificationSetting,
+      protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest | undefined,
+      {} | undefined,
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        'space_notification_setting.name':
+          request.spaceNotificationSetting!.name ?? '',
+      });
+    this.initialize();
+    this._log.info('updateSpaceNotificationSetting request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.chat.v1.ISpaceNotificationSetting,
+          | protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info(
+            'updateSpaceNotificationSetting response %j',
+            response
+          );
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateSpaceNotificationSetting(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.chat.v1.ISpaceNotificationSetting,
+          (
+            | protos.google.chat.v1.IUpdateSpaceNotificationSettingRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info(
+            'updateSpaceNotificationSetting response %j',
+            response
+          );
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -3080,6 +4015,7 @@ export class ChatServiceClient {
    * For an example, see
    * [List
    * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list).
+   *
    * Requires [user
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
    *
@@ -3089,9 +4025,9 @@ export class ChatServiceClient {
    *   Required. The resource name of the space to list messages from.
    *
    *   Format: `spaces/{space}`
-   * @param {number} request.pageSize
-   *   The maximum number of messages returned. The service might return fewer
-   *   messages than this value.
+   * @param {number} [request.pageSize]
+   *   Optional. The maximum number of messages returned. The service might return
+   *   fewer messages than this value.
    *
    *   If unspecified, at most 25 are returned.
    *
@@ -3099,17 +4035,15 @@ export class ChatServiceClient {
    *   automatically changed to 1000.
    *
    *   Negative values return an `INVALID_ARGUMENT` error.
-   * @param {string} request.pageToken
-   *   Optional, if resuming from a previous query.
-   *
-   *   A page token received from a previous list messages call. Provide this
-   *   parameter to retrieve the subsequent page.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token received from a previous list messages call. Provide
+   *   this parameter to retrieve the subsequent page.
    *
    *   When paginating, all other parameters provided should match the call that
    *   provided the page token. Passing different values to the other parameters
    *   might lead to unexpected results.
-   * @param {string} request.filter
-   *   A query filter.
+   * @param {string} [request.filter]
+   *   Optional. A query filter.
    *
    *   You can filter messages by date (`create_time`) and thread (`thread.name`).
    *
@@ -3146,20 +4080,19 @@ export class ChatServiceClient {
    *
    *   Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
    *   error.
-   * @param {string} request.orderBy
-   *   Optional, if resuming from a previous query.
-   *
-   *   How the list of messages is ordered. Specify a value to order by an
-   *   ordering operation. Valid ordering operation values are as follows:
+   * @param {string} [request.orderBy]
+   *   Optional. How the list of messages is ordered. Specify a value to order by
+   *   an ordering operation. Valid ordering operation values are as follows:
    *
    *   - `ASC` for ascending.
    *
    *   - `DESC` for descending.
    *
    *   The default ordering is `create_time ASC`.
-   * @param {boolean} request.showDeleted
-   *   Whether to include deleted messages. Deleted messages include deleted time
-   *   and metadata about their deletion, but message content is unavailable.
+   * @param {boolean} [request.showDeleted]
+   *   Optional. Whether to include deleted messages. Deleted messages include
+   *   deleted time and metadata about their deletion, but message content is
+   *   unavailable.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -3236,20 +4169,44 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listMessages(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.chat.v1.IListMessagesRequest,
+          protos.google.chat.v1.IListMessagesResponse | null | undefined,
+          protos.google.chat.v1.IMessage
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listMessages values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listMessages request %j', request);
+    return this.innerApiCalls
+      .listMessages(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.chat.v1.IMessage[],
+          protos.google.chat.v1.IListMessagesRequest | null,
+          protos.google.chat.v1.IListMessagesResponse,
+        ]) => {
+          this._log.info('listMessages values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listMessages`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
    *   Required. The resource name of the space to list messages from.
    *
    *   Format: `spaces/{space}`
-   * @param {number} request.pageSize
-   *   The maximum number of messages returned. The service might return fewer
-   *   messages than this value.
+   * @param {number} [request.pageSize]
+   *   Optional. The maximum number of messages returned. The service might return
+   *   fewer messages than this value.
    *
    *   If unspecified, at most 25 are returned.
    *
@@ -3257,17 +4214,15 @@ export class ChatServiceClient {
    *   automatically changed to 1000.
    *
    *   Negative values return an `INVALID_ARGUMENT` error.
-   * @param {string} request.pageToken
-   *   Optional, if resuming from a previous query.
-   *
-   *   A page token received from a previous list messages call. Provide this
-   *   parameter to retrieve the subsequent page.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token received from a previous list messages call. Provide
+   *   this parameter to retrieve the subsequent page.
    *
    *   When paginating, all other parameters provided should match the call that
    *   provided the page token. Passing different values to the other parameters
    *   might lead to unexpected results.
-   * @param {string} request.filter
-   *   A query filter.
+   * @param {string} [request.filter]
+   *   Optional. A query filter.
    *
    *   You can filter messages by date (`create_time`) and thread (`thread.name`).
    *
@@ -3304,20 +4259,19 @@ export class ChatServiceClient {
    *
    *   Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
    *   error.
-   * @param {string} request.orderBy
-   *   Optional, if resuming from a previous query.
-   *
-   *   How the list of messages is ordered. Specify a value to order by an
-   *   ordering operation. Valid ordering operation values are as follows:
+   * @param {string} [request.orderBy]
+   *   Optional. How the list of messages is ordered. Specify a value to order by
+   *   an ordering operation. Valid ordering operation values are as follows:
    *
    *   - `ASC` for ascending.
    *
    *   - `DESC` for descending.
    *
    *   The default ordering is `create_time ASC`.
-   * @param {boolean} request.showDeleted
-   *   Whether to include deleted messages. Deleted messages include deleted time
-   *   and metadata about their deletion, but message content is unavailable.
+   * @param {boolean} [request.showDeleted]
+   *   Optional. Whether to include deleted messages. Deleted messages include
+   *   deleted time and metadata about their deletion, but message content is
+   *   unavailable.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Stream}
@@ -3344,6 +4298,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listMessages'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listMessages stream %j', request);
     return this.descriptors.page.listMessages.createStream(
       this.innerApiCalls.listMessages as GaxCall,
       request,
@@ -3361,9 +4316,9 @@ export class ChatServiceClient {
    *   Required. The resource name of the space to list messages from.
    *
    *   Format: `spaces/{space}`
-   * @param {number} request.pageSize
-   *   The maximum number of messages returned. The service might return fewer
-   *   messages than this value.
+   * @param {number} [request.pageSize]
+   *   Optional. The maximum number of messages returned. The service might return
+   *   fewer messages than this value.
    *
    *   If unspecified, at most 25 are returned.
    *
@@ -3371,17 +4326,15 @@ export class ChatServiceClient {
    *   automatically changed to 1000.
    *
    *   Negative values return an `INVALID_ARGUMENT` error.
-   * @param {string} request.pageToken
-   *   Optional, if resuming from a previous query.
-   *
-   *   A page token received from a previous list messages call. Provide this
-   *   parameter to retrieve the subsequent page.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token received from a previous list messages call. Provide
+   *   this parameter to retrieve the subsequent page.
    *
    *   When paginating, all other parameters provided should match the call that
    *   provided the page token. Passing different values to the other parameters
    *   might lead to unexpected results.
-   * @param {string} request.filter
-   *   A query filter.
+   * @param {string} [request.filter]
+   *   Optional. A query filter.
    *
    *   You can filter messages by date (`create_time`) and thread (`thread.name`).
    *
@@ -3418,20 +4371,19 @@ export class ChatServiceClient {
    *
    *   Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
    *   error.
-   * @param {string} request.orderBy
-   *   Optional, if resuming from a previous query.
-   *
-   *   How the list of messages is ordered. Specify a value to order by an
-   *   ordering operation. Valid ordering operation values are as follows:
+   * @param {string} [request.orderBy]
+   *   Optional. How the list of messages is ordered. Specify a value to order by
+   *   an ordering operation. Valid ordering operation values are as follows:
    *
    *   - `ASC` for ascending.
    *
    *   - `DESC` for descending.
    *
    *   The default ordering is `create_time ASC`.
-   * @param {boolean} request.showDeleted
-   *   Whether to include deleted messages. Deleted messages include deleted time
-   *   and metadata about their deletion, but message content is unavailable.
+   * @param {boolean} [request.showDeleted]
+   *   Optional. Whether to include deleted messages. Deleted messages include
+   *   deleted time and metadata about their deletion, but message content is
+   *   unavailable.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Object}
@@ -3459,6 +4411,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listMessages'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listMessages iterate %j', request);
     return this.descriptors.page.listMessages.asyncIterate(
       this.innerApiCalls['listMessages'] as GaxCall,
       request as {},
@@ -3478,13 +4431,16 @@ export class ChatServiceClient {
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
    * lists memberships in spaces that the authenticated user has access to.
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+   *
+   * - [App
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   * You can authenticate and authorize this method with administrator
+   * privileges by setting the `use_admin_access` field in the request.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -3565,8 +4521,8 @@ export class ChatServiceClient {
    *
    *   Currently requires [user
    *   authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -3654,11 +4610,35 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listMemberships(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.chat.v1.IListMembershipsRequest,
+          protos.google.chat.v1.IListMembershipsResponse | null | undefined,
+          protos.google.chat.v1.IMembership
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listMemberships values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listMemberships request %j', request);
+    return this.innerApiCalls
+      .listMemberships(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.chat.v1.IMembership[],
+          protos.google.chat.v1.IListMembershipsRequest | null,
+          protos.google.chat.v1.IListMembershipsResponse,
+        ]) => {
+          this._log.info('listMemberships values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listMemberships`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -3738,8 +4718,8 @@ export class ChatServiceClient {
    *
    *   Currently requires [user
    *   authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -3777,6 +4757,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listMemberships'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listMemberships stream %j', request);
     return this.descriptors.page.listMemberships.createStream(
       this.innerApiCalls.listMemberships as GaxCall,
       request,
@@ -3867,8 +4848,8 @@ export class ChatServiceClient {
    *
    *   Currently requires [user
    *   authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
-   * @param {boolean} request.useAdminAccess
-   *   When `true`, the method runs using the user's Google Workspace
+   * @param {boolean} [request.useAdminAccess]
+   *   Optional. When `true`, the method runs using the user's Google Workspace
    *   administrator privileges.
    *
    *   The calling user must be a Google Workspace administrator with the
@@ -3907,6 +4888,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listMemberships'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listMemberships iterate %j', request);
     return this.descriptors.page.listMemberships.asyncIterate(
       this.innerApiCalls['listMemberships'] as GaxCall,
       request as {},
@@ -3919,16 +4901,14 @@ export class ChatServiceClient {
    * [List
    * spaces](https://developers.google.com/workspace/chat/list-spaces).
    *
-   * Requires
-   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-   * Supports
-   * [app
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-   * and [user
-   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+   * Supports the following types of
+   * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
    *
-   * Lists spaces visible to the caller or authenticated user. Group chats
-   * and DMs aren't listed until the first message is sent.
+   * - [App
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   *
+   * - [User
+   * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
    *
    * To list all named spaces by Google Workspace organization, use the
    * [`spaces.search()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/search)
@@ -4044,11 +5024,35 @@ export class ChatServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.listSpaces(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.chat.v1.IListSpacesRequest,
+          protos.google.chat.v1.IListSpacesResponse | null | undefined,
+          protos.google.chat.v1.ISpace
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listSpaces values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listSpaces request %j', request);
+    return this.innerApiCalls
+      .listSpaces(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.chat.v1.ISpace[],
+          protos.google.chat.v1.IListSpacesRequest | null,
+          protos.google.chat.v1.IListSpacesResponse,
+        ]) => {
+          this._log.info('listSpaces values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listSpaces`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {number} [request.pageSize]
@@ -4109,6 +5113,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listSpaces'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listSpaces stream %j', request);
     return this.descriptors.page.listSpaces.createStream(
       this.innerApiCalls.listSpaces as GaxCall,
       request,
@@ -4181,6 +5186,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listSpaces'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listSpaces iterate %j', request);
     return this.descriptors.page.listSpaces.asyncIterate(
       this.innerApiCalls['listSpaces'] as GaxCall,
       request as {},
@@ -4189,7 +5195,9 @@ export class ChatServiceClient {
   }
   /**
    * Returns a list of spaces in a Google Workspace organization based on an
-   * administrator's search. Requires [user
+   * administrator's search.
+   *
+   * Requires [user
    * authentication with administrator
    * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges).
    * In the request, set `use_admin_access` to `true`.
@@ -4391,11 +5399,35 @@ export class ChatServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.searchSpaces(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.chat.v1.ISearchSpacesRequest,
+          protos.google.chat.v1.ISearchSpacesResponse | null | undefined,
+          protos.google.chat.v1.ISpace
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('searchSpaces values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('searchSpaces request %j', request);
+    return this.innerApiCalls
+      .searchSpaces(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.chat.v1.ISpace[],
+          protos.google.chat.v1.ISearchSpacesRequest | null,
+          protos.google.chat.v1.ISearchSpacesResponse,
+        ]) => {
+          this._log.info('searchSpaces values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `searchSpaces`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {boolean} request.useAdminAccess
@@ -4543,6 +5575,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['searchSpaces'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('searchSpaces stream %j', request);
     return this.descriptors.page.searchSpaces.createStream(
       this.innerApiCalls.searchSpaces as GaxCall,
       request,
@@ -4702,6 +5735,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['searchSpaces'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('searchSpaces iterate %j', request);
     return this.descriptors.page.searchSpaces.asyncIterate(
       this.innerApiCalls['searchSpaces'] as GaxCall,
       request as {},
@@ -4712,6 +5746,7 @@ export class ChatServiceClient {
    * Lists reactions to a message. For an example, see
    * [List reactions for a
    * message](https://developers.google.com/workspace/chat/list-reactions).
+   *
    * Requires [user
    * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
    *
@@ -4854,11 +5889,35 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listReactions(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.chat.v1.IListReactionsRequest,
+          protos.google.chat.v1.IListReactionsResponse | null | undefined,
+          protos.google.chat.v1.IReaction
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listReactions values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listReactions request %j', request);
+    return this.innerApiCalls
+      .listReactions(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.chat.v1.IReaction[],
+          protos.google.chat.v1.IListReactionsRequest | null,
+          protos.google.chat.v1.IListReactionsResponse,
+        ]) => {
+          this._log.info('listReactions values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listReactions`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -4948,6 +6007,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listReactions'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listReactions stream %j', request);
     return this.descriptors.page.listReactions.createStream(
       this.innerApiCalls.listReactions as GaxCall,
       request,
@@ -5049,6 +6109,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listReactions'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listReactions iterate %j', request);
     return this.descriptors.page.listReactions.asyncIterate(
       this.innerApiCalls['listReactions'] as GaxCall,
       request as {},
@@ -5079,14 +6140,14 @@ export class ChatServiceClient {
    *   where the events occurred.
    *
    *   Format: `spaces/{space}`.
-   * @param {number} request.pageSize
+   * @param {number} [request.pageSize]
    *   Optional. The maximum number of space events returned. The service might
    *   return fewer than this value.
    *
    *   Negative values return an `INVALID_ARGUMENT` error.
-   * @param {string} request.pageToken
-   *   A page token, received from a previous list space events call. Provide this
-   *   to retrieve the subsequent page.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token, received from a previous list space events call.
+   *   Provide this to retrieve the subsequent page.
    *
    *   When paginating, all other parameters provided to list space events must
    *   match the call that provided the page token. Passing different values to
@@ -5220,11 +6281,35 @@ export class ChatServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listSpaceEvents(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.chat.v1.IListSpaceEventsRequest,
+          protos.google.chat.v1.IListSpaceEventsResponse | null | undefined,
+          protos.google.chat.v1.ISpaceEvent
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listSpaceEvents values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listSpaceEvents request %j', request);
+    return this.innerApiCalls
+      .listSpaceEvents(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.chat.v1.ISpaceEvent[],
+          protos.google.chat.v1.IListSpaceEventsRequest | null,
+          protos.google.chat.v1.IListSpaceEventsResponse,
+        ]) => {
+          this._log.info('listSpaceEvents values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listSpaceEvents`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -5233,14 +6318,14 @@ export class ChatServiceClient {
    *   where the events occurred.
    *
    *   Format: `spaces/{space}`.
-   * @param {number} request.pageSize
+   * @param {number} [request.pageSize]
    *   Optional. The maximum number of space events returned. The service might
    *   return fewer than this value.
    *
    *   Negative values return an `INVALID_ARGUMENT` error.
-   * @param {string} request.pageToken
-   *   A page token, received from a previous list space events call. Provide this
-   *   to retrieve the subsequent page.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token, received from a previous list space events call.
+   *   Provide this to retrieve the subsequent page.
    *
    *   When paginating, all other parameters provided to list space events must
    *   match the call that provided the page token. Passing different values to
@@ -5324,6 +6409,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listSpaceEvents'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listSpaceEvents stream %j', request);
     return this.descriptors.page.listSpaceEvents.createStream(
       this.innerApiCalls.listSpaceEvents as GaxCall,
       request,
@@ -5343,14 +6429,14 @@ export class ChatServiceClient {
    *   where the events occurred.
    *
    *   Format: `spaces/{space}`.
-   * @param {number} request.pageSize
+   * @param {number} [request.pageSize]
    *   Optional. The maximum number of space events returned. The service might
    *   return fewer than this value.
    *
    *   Negative values return an `INVALID_ARGUMENT` error.
-   * @param {string} request.pageToken
-   *   A page token, received from a previous list space events call. Provide this
-   *   to retrieve the subsequent page.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token, received from a previous list space events call.
+   *   Provide this to retrieve the subsequent page.
    *
    *   When paginating, all other parameters provided to list space events must
    *   match the call that provided the page token. Passing different values to
@@ -5435,6 +6521,7 @@ export class ChatServiceClient {
     const defaultCallSettings = this._defaults['listSpaceEvents'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listSpaceEvents iterate %j', request);
     return this.descriptors.page.listSpaceEvents.asyncIterate(
       this.innerApiCalls['listSpaceEvents'] as GaxCall,
       request as {},
@@ -5743,6 +6830,50 @@ export class ChatServiceClient {
   }
 
   /**
+   * Return a fully-qualified spaceNotificationSetting resource name string.
+   *
+   * @param {string} user
+   * @param {string} space
+   * @returns {string} Resource name string.
+   */
+  spaceNotificationSettingPath(user: string, space: string) {
+    return this.pathTemplates.spaceNotificationSettingPathTemplate.render({
+      user: user,
+      space: space,
+    });
+  }
+
+  /**
+   * Parse the user from SpaceNotificationSetting resource.
+   *
+   * @param {string} spaceNotificationSettingName
+   *   A fully-qualified path representing SpaceNotificationSetting resource.
+   * @returns {string} A string representing the user.
+   */
+  matchUserFromSpaceNotificationSettingName(
+    spaceNotificationSettingName: string
+  ) {
+    return this.pathTemplates.spaceNotificationSettingPathTemplate.match(
+      spaceNotificationSettingName
+    ).user;
+  }
+
+  /**
+   * Parse the space from SpaceNotificationSetting resource.
+   *
+   * @param {string} spaceNotificationSettingName
+   *   A fully-qualified path representing SpaceNotificationSetting resource.
+   * @returns {string} A string representing the space.
+   */
+  matchSpaceFromSpaceNotificationSettingName(
+    spaceNotificationSettingName: string
+  ) {
+    return this.pathTemplates.spaceNotificationSettingPathTemplate.match(
+      spaceNotificationSettingName
+    ).space;
+  }
+
+  /**
    * Return a fully-qualified spaceReadState resource name string.
    *
    * @param {string} user
@@ -5882,6 +7013,7 @@ export class ChatServiceClient {
   close(): Promise<void> {
     if (this.chatServiceStub && !this._terminated) {
       return this.chatServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.1](https://github.com/googleapis/google-cloud-node/compare/oracledatabase-v0.2.0...oracledatabase-v0.2.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6013](https://github.com/googleapis/google-cloud-node/issues/6013)) ([cd3a2d4](https://github.com/googleapis/google-cloud-node/commit/cd3a2d44fc7a9b3798346162ba19df1c748fba58))
+
+## [0.2.0](https://github.com/googleapis/google-cloud-node/compare/oracledatabase-v0.1.0...oracledatabase-v0.2.0) (2025-01-11)
+
+
+### Features
+
+* [oracledatabase] A new value `ACCOUNT_SUSPENDED` is added to enum `State` ([#5909](https://github.com/googleapis/google-cloud-node/issues/5909)) ([5e0e4c1](https://github.com/googleapis/google-cloud-node/commit/5e0e4c19f006579e8808e21bcf0154d5e47669f8))
+
 ## 0.1.0 (2024-10-10)
 
 

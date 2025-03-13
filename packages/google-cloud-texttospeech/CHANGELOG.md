@@ -4,6 +4,27 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/text-to-speech?activeTab=versions
 
+## [5.8.1](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.8.0...text-to-speech-v5.8.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6018](https://github.com/googleapis/google-cloud-node/issues/6018)) ([9dc5856](https://github.com/googleapis/google-cloud-node/commit/9dc585661489f51bb7a85b39519fd8b11dfffc5b))
+
+## [5.8.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.7.0...text-to-speech-v5.8.0) (2025-01-11)
+
+
+### Features
+
+* [texttospeech] StreamingSynthesize now supports opus ([#5926](https://github.com/googleapis/google-cloud-node/issues/5926)) ([d8d7c9a](https://github.com/googleapis/google-cloud-node/commit/d8d7c9a602a787c490861d3fe386a2e651dfcae6))
+
+## [5.7.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.6.0...text-to-speech-v5.7.0) (2024-12-18)
+
+
+### Features
+
+* [texttospeech] StreamingSynthesize now supports opus ([#5887](https://github.com/googleapis/google-cloud-node/issues/5887)) ([c335f19](https://github.com/googleapis/google-cloud-node/commit/c335f19bf4312b5552422877804bc5b032571d5a))
+
 ## [5.6.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.5.0...text-to-speech-v5.6.0) (2024-10-30)
 
 

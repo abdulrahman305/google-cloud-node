@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -72,6 +73,8 @@ export class AppConnectionsServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('appconnections');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -109,7 +112,7 @@ export class AppConnectionsServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -669,7 +672,36 @@ export class AppConnectionsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAppConnection(request, options, callback);
+    this._log.info('getAppConnection request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection,
+          | protos.google.cloud.beyondcorp.appconnections.v1.IGetAppConnectionRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAppConnection response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAppConnection(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection,
+          (
+            | protos.google.cloud.beyondcorp.appconnections.v1.IGetAppConnectionRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getAppConnection response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -797,7 +829,37 @@ export class AppConnectionsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createAppConnection(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection,
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnectionOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createAppConnection response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createAppConnection request %j', request);
+    return this.innerApiCalls
+      .createAppConnection(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection,
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnectionOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createAppConnection response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `createAppConnection()`.
@@ -818,6 +880,7 @@ export class AppConnectionsServiceClient {
       protos.google.cloud.beyondcorp.appconnections.v1.AppConnectionOperationMetadata
     >
   > {
+    this._log.info('createAppConnection long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -961,7 +1024,37 @@ export class AppConnectionsServiceClient {
         'app_connection.name': request.appConnection!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateAppConnection(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection,
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnectionOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('updateAppConnection response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('updateAppConnection request %j', request);
+    return this.innerApiCalls
+      .updateAppConnection(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection,
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnectionOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateAppConnection response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `updateAppConnection()`.
@@ -982,6 +1075,7 @@ export class AppConnectionsServiceClient {
       protos.google.cloud.beyondcorp.appconnections.v1.AppConnectionOperationMetadata
     >
   > {
+    this._log.info('updateAppConnection long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1115,7 +1209,37 @@ export class AppConnectionsServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteAppConnection(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnectionOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('deleteAppConnection response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('deleteAppConnection request %j', request);
+    return this.innerApiCalls
+      .deleteAppConnection(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.cloud.beyondcorp.appconnections.v1.IAppConnectionOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteAppConnection response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `deleteAppConnection()`.
@@ -1136,6 +1260,7 @@ export class AppConnectionsServiceClient {
       protos.google.cloud.beyondcorp.appconnections.v1.AppConnectionOperationMetadata
     >
   > {
+    this._log.info('deleteAppConnection long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1260,11 +1385,37 @@ export class AppConnectionsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listAppConnections(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.beyondcorp.appconnections.v1.IListAppConnectionsRequest,
+          | protos.google.cloud.beyondcorp.appconnections.v1.IListAppConnectionsResponse
+          | null
+          | undefined,
+          protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listAppConnections values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listAppConnections request %j', request);
+    return this.innerApiCalls
+      .listAppConnections(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.beyondcorp.appconnections.v1.IAppConnection[],
+          protos.google.cloud.beyondcorp.appconnections.v1.IListAppConnectionsRequest | null,
+          protos.google.cloud.beyondcorp.appconnections.v1.IListAppConnectionsResponse,
+        ]) => {
+          this._log.info('listAppConnections values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listAppConnections`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1313,6 +1464,7 @@ export class AppConnectionsServiceClient {
     const defaultCallSettings = this._defaults['listAppConnections'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAppConnections stream %j', request);
     return this.descriptors.page.listAppConnections.createStream(
       this.innerApiCalls.listAppConnections as GaxCall,
       request,
@@ -1373,6 +1525,7 @@ export class AppConnectionsServiceClient {
     const defaultCallSettings = this._defaults['listAppConnections'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAppConnections iterate %j', request);
     return this.descriptors.page.listAppConnections.asyncIterate(
       this.innerApiCalls['listAppConnections'] as GaxCall,
       request as {},
@@ -1487,11 +1640,37 @@ export class AppConnectionsServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.resolveAppConnections(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.beyondcorp.appconnections.v1.IResolveAppConnectionsRequest,
+          | protos.google.cloud.beyondcorp.appconnections.v1.IResolveAppConnectionsResponse
+          | null
+          | undefined,
+          protos.google.cloud.beyondcorp.appconnections.v1.ResolveAppConnectionsResponse.IAppConnectionDetails
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('resolveAppConnections values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('resolveAppConnections request %j', request);
+    return this.innerApiCalls
+      .resolveAppConnections(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.beyondcorp.appconnections.v1.ResolveAppConnectionsResponse.IAppConnectionDetails[],
+          protos.google.cloud.beyondcorp.appconnections.v1.IResolveAppConnectionsRequest | null,
+          protos.google.cloud.beyondcorp.appconnections.v1.IResolveAppConnectionsResponse,
+        ]) => {
+          this._log.info('resolveAppConnections values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `resolveAppConnections`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1537,6 +1716,7 @@ export class AppConnectionsServiceClient {
     const defaultCallSettings = this._defaults['resolveAppConnections'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('resolveAppConnections stream %j', request);
     return this.descriptors.page.resolveAppConnections.createStream(
       this.innerApiCalls.resolveAppConnections as GaxCall,
       request,
@@ -1594,6 +1774,7 @@ export class AppConnectionsServiceClient {
     const defaultCallSettings = this._defaults['resolveAppConnections'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('resolveAppConnections iterate %j', request);
     return this.descriptors.page.resolveAppConnections.asyncIterate(
       this.innerApiCalls['resolveAppConnections'] as GaxCall,
       request as {},
@@ -1848,7 +2029,7 @@ export class AppConnectionsServiceClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -1861,6 +2042,20 @@ export class AppConnectionsServiceClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -1897,6 +2092,13 @@ export class AppConnectionsServiceClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -1932,11 +2134,11 @@ export class AppConnectionsServiceClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -1945,6 +2147,20 @@ export class AppConnectionsServiceClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -1975,7 +2191,7 @@ export class AppConnectionsServiceClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -1988,6 +2204,20 @@ export class AppConnectionsServiceClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -2167,6 +2397,7 @@ export class AppConnectionsServiceClient {
   close(): Promise<void> {
     if (this.appConnectionsServiceStub && !this._terminated) {
       return this.appConnectionsServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.iamClient.close();

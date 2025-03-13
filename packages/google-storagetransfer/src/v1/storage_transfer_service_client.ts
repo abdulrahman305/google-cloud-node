@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -57,6 +58,8 @@ export class StorageTransferServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('storage-transfer');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -92,7 +95,7 @@ export class StorageTransferServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -554,11 +557,36 @@ export class StorageTransferServiceClient {
         project_id: request.projectId ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getGoogleServiceAccount(
-      request,
-      options,
-      callback
-    );
+    this._log.info('getGoogleServiceAccount request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.IGoogleServiceAccount,
+          | protos.google.storagetransfer.v1.IGetGoogleServiceAccountRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getGoogleServiceAccount response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getGoogleServiceAccount(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.IGoogleServiceAccount,
+          (
+            | protos.google.storagetransfer.v1.IGetGoogleServiceAccountRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getGoogleServiceAccount response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates a transfer job that runs periodically.
@@ -644,7 +672,36 @@ export class StorageTransferServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.createTransferJob(request, options, callback);
+    this._log.info('createTransferJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.ITransferJob,
+          | protos.google.storagetransfer.v1.ICreateTransferJobRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createTransferJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createTransferJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.ITransferJob,
+          (
+            | protos.google.storagetransfer.v1.ICreateTransferJobRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('createTransferJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates a transfer job. Updating a job's transfer spec does not affect
@@ -769,7 +826,36 @@ export class StorageTransferServiceClient {
         job_name: request.jobName ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateTransferJob(request, options, callback);
+    this._log.info('updateTransferJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.ITransferJob,
+          | protos.google.storagetransfer.v1.IUpdateTransferJobRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateTransferJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateTransferJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.ITransferJob,
+          (
+            | protos.google.storagetransfer.v1.IUpdateTransferJobRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('updateTransferJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets a transfer job.
@@ -862,7 +948,33 @@ export class StorageTransferServiceClient {
         job_name: request.jobName ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getTransferJob(request, options, callback);
+    this._log.info('getTransferJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.ITransferJob,
+          | protos.google.storagetransfer.v1.IGetTransferJobRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getTransferJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getTransferJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.ITransferJob,
+          protos.google.storagetransfer.v1.IGetTransferJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getTransferJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Pauses a transfer operation.
@@ -958,11 +1070,36 @@ export class StorageTransferServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.pauseTransferOperation(
-      request,
-      options,
-      callback
-    );
+    this._log.info('pauseTransferOperation request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.storagetransfer.v1.IPauseTransferOperationRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('pauseTransferOperation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .pauseTransferOperation(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.storagetransfer.v1.IPauseTransferOperationRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('pauseTransferOperation response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Resumes a transfer operation that is paused.
@@ -1058,11 +1195,36 @@ export class StorageTransferServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.resumeTransferOperation(
-      request,
-      options,
-      callback
-    );
+    this._log.info('resumeTransferOperation request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.storagetransfer.v1.IResumeTransferOperationRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('resumeTransferOperation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .resumeTransferOperation(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.storagetransfer.v1.IResumeTransferOperationRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('resumeTransferOperation response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes a transfer job. Deleting a transfer job sets its status to
@@ -1156,7 +1318,36 @@ export class StorageTransferServiceClient {
         job_name: request.jobName ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteTransferJob(request, options, callback);
+    this._log.info('deleteTransferJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.storagetransfer.v1.IDeleteTransferJobRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteTransferJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteTransferJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.storagetransfer.v1.IDeleteTransferJobRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteTransferJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates an agent pool resource.
@@ -1263,7 +1454,33 @@ export class StorageTransferServiceClient {
         project_id: request.projectId ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createAgentPool(request, options, callback);
+    this._log.info('createAgentPool request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.IAgentPool,
+          | protos.google.storagetransfer.v1.ICreateAgentPoolRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createAgentPool response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createAgentPool(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.IAgentPool,
+          protos.google.storagetransfer.v1.ICreateAgentPoolRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createAgentPool response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates an existing agent pool resource.
@@ -1371,7 +1588,33 @@ export class StorageTransferServiceClient {
         'agent_pool.name': request.agentPool!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateAgentPool(request, options, callback);
+    this._log.info('updateAgentPool request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.IAgentPool,
+          | protos.google.storagetransfer.v1.IUpdateAgentPoolRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateAgentPool response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateAgentPool(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.IAgentPool,
+          protos.google.storagetransfer.v1.IUpdateAgentPoolRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateAgentPool response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets an agent pool.
@@ -1455,7 +1698,33 @@ export class StorageTransferServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAgentPool(request, options, callback);
+    this._log.info('getAgentPool request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.storagetransfer.v1.IAgentPool,
+          | protos.google.storagetransfer.v1.IGetAgentPoolRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAgentPool response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAgentPool(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.storagetransfer.v1.IAgentPool,
+          protos.google.storagetransfer.v1.IGetAgentPoolRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getAgentPool response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes an agent pool.
@@ -1545,7 +1814,33 @@ export class StorageTransferServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteAgentPool(request, options, callback);
+    this._log.info('deleteAgentPool request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.storagetransfer.v1.IDeleteAgentPoolRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteAgentPool response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteAgentPool(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.storagetransfer.v1.IDeleteAgentPoolRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteAgentPool response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1654,7 +1949,37 @@ export class StorageTransferServiceClient {
         job_name: request.jobName ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.runTransferJob(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.storagetransfer.v1.ITransferOperation
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('runTransferJob response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('runTransferJob request %j', request);
+    return this.innerApiCalls
+      .runTransferJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.protobuf.IEmpty,
+            protos.google.storagetransfer.v1.ITransferOperation
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('runTransferJob response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `runTransferJob()`.
@@ -1675,6 +2000,7 @@ export class StorageTransferServiceClient {
       protos.google.storagetransfer.v1.TransferOperation
     >
   > {
+    this._log.info('runTransferJob long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1697,17 +2023,32 @@ export class StorageTransferServiceClient {
    *   The request object that will be sent.
    * @param {string} request.filter
    *   Required. A list of query parameters specified as JSON text in the form of:
-   *   `{"projectId":"my_project_id",
-   *    "jobNames":["jobid1","jobid2",...],
-   *    "jobStatuses":["status1","status2",...]}`
    *
-   *   Since `jobNames` and `jobStatuses` support multiple values, their values
-   *   must be specified with array notation. `projectId` is required.
-   *   `jobNames` and `jobStatuses` are optional.  The valid values for
-   *   `jobStatuses` are case-insensitive:
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.ENABLED|ENABLED},
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.DISABLED|DISABLED}, and
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.DELETED|DELETED}.
+   *   ```
+   *   {
+   *     "projectId":"my_project_id",
+   *     "jobNames":["jobid1","jobid2",...],
+   *     "jobStatuses":["status1","status2",...],
+   *     "dataBackend":"QUERY_REPLICATION_CONFIGS",
+   *     "sourceBucket":"source-bucket-name",
+   *     "sinkBucket":"sink-bucket-name",
+   *   }
+   *   ```
+   *
+   *   The JSON formatting in the example is for display only; provide the
+   *   query parameters without spaces or line breaks.
+   *
+   *   * `projectId` is required.
+   *   * Since `jobNames` and `jobStatuses` support multiple values, their values
+   *     must be specified with array notation. `jobNames` and `jobStatuses` are
+   *     optional. Valid values are case-insensitive:
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.ENABLED|ENABLED}
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.DISABLED|DISABLED}
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.DELETED|DELETED}
+   *   * Specify `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of
+   *     cross-bucket replication jobs.
+   *   * Limit the results to jobs from a particular bucket with `sourceBucket`
+   *     and/or to a particular bucket with `sinkBucket`.
    * @param {number} request.pageSize
    *   The list page size. The max allowed value is 256.
    * @param {string} request.pageToken
@@ -1792,26 +2133,67 @@ export class StorageTransferServiceClient {
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
     this.initialize();
-    return this.innerApiCalls.listTransferJobs(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.storagetransfer.v1.IListTransferJobsRequest,
+          | protos.google.storagetransfer.v1.IListTransferJobsResponse
+          | null
+          | undefined,
+          protos.google.storagetransfer.v1.ITransferJob
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listTransferJobs values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listTransferJobs request %j', request);
+    return this.innerApiCalls
+      .listTransferJobs(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.storagetransfer.v1.ITransferJob[],
+          protos.google.storagetransfer.v1.IListTransferJobsRequest | null,
+          protos.google.storagetransfer.v1.IListTransferJobsResponse,
+        ]) => {
+          this._log.info('listTransferJobs values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listTransferJobs`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.filter
    *   Required. A list of query parameters specified as JSON text in the form of:
-   *   `{"projectId":"my_project_id",
-   *    "jobNames":["jobid1","jobid2",...],
-   *    "jobStatuses":["status1","status2",...]}`
    *
-   *   Since `jobNames` and `jobStatuses` support multiple values, their values
-   *   must be specified with array notation. `projectId` is required.
-   *   `jobNames` and `jobStatuses` are optional.  The valid values for
-   *   `jobStatuses` are case-insensitive:
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.ENABLED|ENABLED},
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.DISABLED|DISABLED}, and
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.DELETED|DELETED}.
+   *   ```
+   *   {
+   *     "projectId":"my_project_id",
+   *     "jobNames":["jobid1","jobid2",...],
+   *     "jobStatuses":["status1","status2",...],
+   *     "dataBackend":"QUERY_REPLICATION_CONFIGS",
+   *     "sourceBucket":"source-bucket-name",
+   *     "sinkBucket":"sink-bucket-name",
+   *   }
+   *   ```
+   *
+   *   The JSON formatting in the example is for display only; provide the
+   *   query parameters without spaces or line breaks.
+   *
+   *   * `projectId` is required.
+   *   * Since `jobNames` and `jobStatuses` support multiple values, their values
+   *     must be specified with array notation. `jobNames` and `jobStatuses` are
+   *     optional. Valid values are case-insensitive:
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.ENABLED|ENABLED}
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.DISABLED|DISABLED}
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.DELETED|DELETED}
+   *   * Specify `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of
+   *     cross-bucket replication jobs.
+   *   * Limit the results to jobs from a particular bucket with `sourceBucket`
+   *     and/or to a particular bucket with `sinkBucket`.
    * @param {number} request.pageSize
    *   The list page size. The max allowed value is 256.
    * @param {string} request.pageToken
@@ -1838,6 +2220,7 @@ export class StorageTransferServiceClient {
     const defaultCallSettings = this._defaults['listTransferJobs'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTransferJobs stream %j', request);
     return this.descriptors.page.listTransferJobs.createStream(
       this.innerApiCalls.listTransferJobs as GaxCall,
       request,
@@ -1853,17 +2236,32 @@ export class StorageTransferServiceClient {
    *   The request object that will be sent.
    * @param {string} request.filter
    *   Required. A list of query parameters specified as JSON text in the form of:
-   *   `{"projectId":"my_project_id",
-   *    "jobNames":["jobid1","jobid2",...],
-   *    "jobStatuses":["status1","status2",...]}`
    *
-   *   Since `jobNames` and `jobStatuses` support multiple values, their values
-   *   must be specified with array notation. `projectId` is required.
-   *   `jobNames` and `jobStatuses` are optional.  The valid values for
-   *   `jobStatuses` are case-insensitive:
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.ENABLED|ENABLED},
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.DISABLED|DISABLED}, and
-   *   {@link protos.google.storagetransfer.v1.TransferJob.Status.DELETED|DELETED}.
+   *   ```
+   *   {
+   *     "projectId":"my_project_id",
+   *     "jobNames":["jobid1","jobid2",...],
+   *     "jobStatuses":["status1","status2",...],
+   *     "dataBackend":"QUERY_REPLICATION_CONFIGS",
+   *     "sourceBucket":"source-bucket-name",
+   *     "sinkBucket":"sink-bucket-name",
+   *   }
+   *   ```
+   *
+   *   The JSON formatting in the example is for display only; provide the
+   *   query parameters without spaces or line breaks.
+   *
+   *   * `projectId` is required.
+   *   * Since `jobNames` and `jobStatuses` support multiple values, their values
+   *     must be specified with array notation. `jobNames` and `jobStatuses` are
+   *     optional. Valid values are case-insensitive:
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.ENABLED|ENABLED}
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.DISABLED|DISABLED}
+   *       * {@link protos.google.storagetransfer.v1.TransferJob.Status.DELETED|DELETED}
+   *   * Specify `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of
+   *     cross-bucket replication jobs.
+   *   * Limit the results to jobs from a particular bucket with `sourceBucket`
+   *     and/or to a particular bucket with `sinkBucket`.
    * @param {number} request.pageSize
    *   The list page size. The max allowed value is 256.
    * @param {string} request.pageToken
@@ -1891,6 +2289,7 @@ export class StorageTransferServiceClient {
     const defaultCallSettings = this._defaults['listTransferJobs'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listTransferJobs iterate %j', request);
     return this.descriptors.page.listTransferJobs.asyncIterate(
       this.innerApiCalls['listTransferJobs'] as GaxCall,
       request as {},
@@ -2001,11 +2400,37 @@ export class StorageTransferServiceClient {
         project_id: request.projectId ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listAgentPools(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.storagetransfer.v1.IListAgentPoolsRequest,
+          | protos.google.storagetransfer.v1.IListAgentPoolsResponse
+          | null
+          | undefined,
+          protos.google.storagetransfer.v1.IAgentPool
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listAgentPools values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listAgentPools request %j', request);
+    return this.innerApiCalls
+      .listAgentPools(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.storagetransfer.v1.IAgentPool[],
+          protos.google.storagetransfer.v1.IListAgentPoolsRequest | null,
+          protos.google.storagetransfer.v1.IListAgentPoolsResponse,
+        ]) => {
+          this._log.info('listAgentPools values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listAgentPools`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.projectId
@@ -2049,6 +2474,7 @@ export class StorageTransferServiceClient {
     const defaultCallSettings = this._defaults['listAgentPools'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAgentPools stream %j', request);
     return this.descriptors.page.listAgentPools.createStream(
       this.innerApiCalls.listAgentPools as GaxCall,
       request,
@@ -2104,6 +2530,7 @@ export class StorageTransferServiceClient {
     const defaultCallSettings = this._defaults['listAgentPools'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listAgentPools iterate %j', request);
     return this.descriptors.page.listAgentPools.asyncIterate(
       this.innerApiCalls['listAgentPools'] as GaxCall,
       request as {},
@@ -2142,7 +2569,7 @@ export class StorageTransferServiceClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -2155,6 +2582,20 @@ export class StorageTransferServiceClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -2191,6 +2632,13 @@ export class StorageTransferServiceClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -2226,11 +2674,11 @@ export class StorageTransferServiceClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -2239,6 +2687,20 @@ export class StorageTransferServiceClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -2269,7 +2731,7 @@ export class StorageTransferServiceClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -2282,6 +2744,20 @@ export class StorageTransferServiceClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -2336,6 +2812,7 @@ export class StorageTransferServiceClient {
   close(): Promise<void> {
     if (this.storageTransferServiceStub && !this._terminated) {
       return this.storageTransferServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.operationsClient.close();

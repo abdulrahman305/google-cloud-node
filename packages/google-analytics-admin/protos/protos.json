@@ -7215,7 +7215,8 @@
                         "ADSENSE_LINK": 27,
                         "AUDIENCE": 28,
                         "EVENT_CREATE_RULE": 29,
-                        "CALCULATED_METRIC": 31
+                        "CALCULATED_METRIC": 31,
+                        "KEY_EVENT": 32
                       }
                     },
                     "GoogleSignalsState": {
@@ -7987,7 +7988,8 @@
                                 "adsenseLink",
                                 "audience",
                                 "eventCreateRule",
-                                "calculatedMetric"
+                                "calculatedMetric",
+                                "keyEvent"
                               ]
                             }
                           },
@@ -8091,6 +8093,10 @@
                             "calculatedMetric": {
                               "type": "CalculatedMetric",
                               "id": 31
+                            },
+                            "keyEvent": {
+                              "type": "KeyEvent",
+                              "id": 32
                             }
                           }
                         }
@@ -8753,7 +8759,17 @@
                         },
                         "eventDataRetention": {
                           "type": "RetentionDuration",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "userDataRetention": {
+                          "type": "RetentionDuration",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "resetUserDataOnNewActivity": {
                           "type": "bool",
@@ -11849,6 +11865,8 @@
                         "GOOGLE_SIGNALS_SETTINGS": 8,
                         "CONVERSION_EVENT": 9,
                         "MEASUREMENT_PROTOCOL_SECRET": 10,
+                        "CUSTOM_DIMENSION": 11,
+                        "CUSTOM_METRIC": 12,
                         "DATA_RETENTION_SETTINGS": 13,
                         "DISPLAY_VIDEO_360_ADVERTISER_LINK": 14,
                         "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL": 15,
@@ -12794,7 +12812,17 @@
                         },
                         "eventDataRetention": {
                           "type": "RetentionDuration",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "userDataRetention": {
+                          "type": "RetentionDuration",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "resetUserDataOnNewActivity": {
                           "type": "bool",

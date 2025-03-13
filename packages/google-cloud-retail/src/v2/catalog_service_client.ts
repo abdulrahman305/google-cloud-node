@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -56,6 +57,8 @@ export class CatalogServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('retail');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -92,7 +95,7 @@ export class CatalogServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -556,7 +559,33 @@ export class CatalogServiceClient {
         'catalog.name': request.catalog!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateCatalog(request, options, callback);
+    this._log.info('updateCatalog request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.ICatalog,
+          | protos.google.cloud.retail.v2.IUpdateCatalogRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateCatalog response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateCatalog(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.ICatalog,
+          protos.google.cloud.retail.v2.IUpdateCatalogRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateCatalog response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Set a specified branch id as default branch. API methods such as
@@ -693,7 +722,33 @@ export class CatalogServiceClient {
         catalog: request.catalog ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.setDefaultBranch(request, options, callback);
+    this._log.info('setDefaultBranch request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.cloud.retail.v2.ISetDefaultBranchRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('setDefaultBranch response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .setDefaultBranch(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.retail.v2.ISetDefaultBranchRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('setDefaultBranch response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Get which branch is currently default branch set by
@@ -780,7 +835,33 @@ export class CatalogServiceClient {
         catalog: request.catalog ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getDefaultBranch(request, options, callback);
+    this._log.info('getDefaultBranch request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.IGetDefaultBranchResponse,
+          | protos.google.cloud.retail.v2.IGetDefaultBranchRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getDefaultBranch response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getDefaultBranch(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.IGetDefaultBranchResponse,
+          protos.google.cloud.retail.v2.IGetDefaultBranchRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getDefaultBranch response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets a {@link protos.google.cloud.retail.v2.CompletionConfig|CompletionConfig}.
@@ -871,7 +952,33 @@ export class CatalogServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getCompletionConfig(request, options, callback);
+    this._log.info('getCompletionConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.ICompletionConfig,
+          | protos.google.cloud.retail.v2.IGetCompletionConfigRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getCompletionConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getCompletionConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.ICompletionConfig,
+          protos.google.cloud.retail.v2.IGetCompletionConfigRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getCompletionConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates the {@link protos.google.cloud.retail.v2.CompletionConfig|CompletionConfig}s.
@@ -980,11 +1087,36 @@ export class CatalogServiceClient {
         'completion_config.name': request.completionConfig!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateCompletionConfig(
-      request,
-      options,
-      callback
-    );
+    this._log.info('updateCompletionConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.ICompletionConfig,
+          | protos.google.cloud.retail.v2.IUpdateCompletionConfigRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateCompletionConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateCompletionConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.ICompletionConfig,
+          (
+            | protos.google.cloud.retail.v2.IUpdateCompletionConfigRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('updateCompletionConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets an {@link protos.google.cloud.retail.v2.AttributesConfig|AttributesConfig}.
@@ -1075,7 +1207,33 @@ export class CatalogServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAttributesConfig(request, options, callback);
+    this._log.info('getAttributesConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          | protos.google.cloud.retail.v2.IGetAttributesConfigRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAttributesConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAttributesConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          protos.google.cloud.retail.v2.IGetAttributesConfigRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getAttributesConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates the {@link protos.google.cloud.retail.v2.AttributesConfig|AttributesConfig}.
@@ -1181,11 +1339,36 @@ export class CatalogServiceClient {
         'attributes_config.name': request.attributesConfig!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateAttributesConfig(
-      request,
-      options,
-      callback
-    );
+    this._log.info('updateAttributesConfig request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          | protos.google.cloud.retail.v2.IUpdateAttributesConfigRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateAttributesConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateAttributesConfig(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          (
+            | protos.google.cloud.retail.v2.IUpdateAttributesConfigRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('updateAttributesConfig response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Adds the specified
@@ -1284,7 +1467,33 @@ export class CatalogServiceClient {
         attributes_config: request.attributesConfig ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.addCatalogAttribute(request, options, callback);
+    this._log.info('addCatalogAttribute request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          | protos.google.cloud.retail.v2.IAddCatalogAttributeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('addCatalogAttribute response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .addCatalogAttribute(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          protos.google.cloud.retail.v2.IAddCatalogAttributeRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('addCatalogAttribute response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Removes the specified
@@ -1383,11 +1592,36 @@ export class CatalogServiceClient {
         attributes_config: request.attributesConfig ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.removeCatalogAttribute(
-      request,
-      options,
-      callback
-    );
+    this._log.info('removeCatalogAttribute request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          | protos.google.cloud.retail.v2.IRemoveCatalogAttributeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('removeCatalogAttribute response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .removeCatalogAttribute(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          (
+            | protos.google.cloud.retail.v2.IRemoveCatalogAttributeRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('removeCatalogAttribute response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Replaces the specified
@@ -1496,11 +1730,36 @@ export class CatalogServiceClient {
         attributes_config: request.attributesConfig ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.replaceCatalogAttribute(
-      request,
-      options,
-      callback
-    );
+    this._log.info('replaceCatalogAttribute request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          | protos.google.cloud.retail.v2.IReplaceCatalogAttributeRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('replaceCatalogAttribute response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .replaceCatalogAttribute(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.retail.v2.IAttributesConfig,
+          (
+            | protos.google.cloud.retail.v2.IReplaceCatalogAttributeRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('replaceCatalogAttribute response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1611,11 +1870,37 @@ export class CatalogServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listCatalogs(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.retail.v2.IListCatalogsRequest,
+          | protos.google.cloud.retail.v2.IListCatalogsResponse
+          | null
+          | undefined,
+          protos.google.cloud.retail.v2.ICatalog
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listCatalogs values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listCatalogs request %j', request);
+    return this.innerApiCalls
+      .listCatalogs(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.retail.v2.ICatalog[],
+          protos.google.cloud.retail.v2.IListCatalogsRequest | null,
+          protos.google.cloud.retail.v2.IListCatalogsResponse,
+        ]) => {
+          this._log.info('listCatalogs values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listCatalogs`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1668,6 +1953,7 @@ export class CatalogServiceClient {
     const defaultCallSettings = this._defaults['listCatalogs'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listCatalogs stream %j', request);
     return this.descriptors.page.listCatalogs.createStream(
       this.innerApiCalls.listCatalogs as GaxCall,
       request,
@@ -1732,6 +2018,7 @@ export class CatalogServiceClient {
     const defaultCallSettings = this._defaults['listCatalogs'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listCatalogs iterate %j', request);
     return this.descriptors.page.listCatalogs.asyncIterate(
       this.innerApiCalls['listCatalogs'] as GaxCall,
       request as {},
@@ -1848,7 +2135,7 @@ export class CatalogServiceClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -1861,6 +2148,20 @@ export class CatalogServiceClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -1897,6 +2198,13 @@ export class CatalogServiceClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -1932,11 +2240,11 @@ export class CatalogServiceClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -1945,6 +2253,20 @@ export class CatalogServiceClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -1975,7 +2297,7 @@ export class CatalogServiceClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -1988,6 +2310,20 @@ export class CatalogServiceClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -2547,6 +2883,7 @@ export class CatalogServiceClient {
   close(): Promise<void> {
     if (this.catalogServiceStub && !this._terminated) {
       return this.catalogServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.locationsClient.close();

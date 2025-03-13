@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -55,6 +56,8 @@ export class JobServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('talent');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -90,7 +93,7 @@ export class JobServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -552,7 +555,31 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createJob(request, options, callback);
+    this._log.info('createJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.talent.v4.IJob,
+          protos.google.cloud.talent.v4.ICreateJobRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.talent.v4.IJob,
+          protos.google.cloud.talent.v4.ICreateJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('createJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Retrieves the specified job, whose status is OPEN or recently EXPIRED
@@ -639,7 +666,31 @@ export class JobServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getJob(request, options, callback);
+    this._log.info('getJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.talent.v4.IJob,
+          protos.google.cloud.talent.v4.IGetJobRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.talent.v4.IJob,
+          protos.google.cloud.talent.v4.IGetJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Updates specified job.
@@ -734,7 +785,31 @@ export class JobServiceClient {
         'job.name': request.job!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.updateJob(request, options, callback);
+    this._log.info('updateJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.talent.v4.IJob,
+          protos.google.cloud.talent.v4.IUpdateJobRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .updateJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.talent.v4.IJob,
+          protos.google.cloud.talent.v4.IUpdateJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('updateJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes the specified job.
@@ -823,7 +898,31 @@ export class JobServiceClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteJob(request, options, callback);
+    this._log.info('deleteJob request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.talent.v4.IDeleteJobRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteJob response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteJob(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.talent.v4.IDeleteJobRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteJob response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Searches for jobs using the provided
@@ -1108,6 +1207,12 @@ export class JobServiceClient {
    *   Defaults to
    *   {@link protos.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL|KeywordMatchMode.KEYWORD_MATCH_ALL}
    *   if no value is specified.
+   * @param {google.cloud.talent.v4.SearchJobsRequest.RelevanceThreshold} [request.relevanceThreshold]
+   *   Optional. The relevance threshold of the search results.
+   *
+   *   Default to Google defined threshold, leveraging a balance of
+   *   precision and recall to deliver both highly accurate results and
+   *   comprehensive coverage of relevant information.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -1181,7 +1286,31 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.searchJobs(request, options, callback);
+    this._log.info('searchJobs request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.talent.v4.ISearchJobsResponse,
+          protos.google.cloud.talent.v4.ISearchJobsRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('searchJobs response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .searchJobs(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.talent.v4.ISearchJobsResponse,
+          protos.google.cloud.talent.v4.ISearchJobsRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('searchJobs response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Searches for jobs using the provided
@@ -1471,6 +1600,12 @@ export class JobServiceClient {
    *   Defaults to
    *   {@link protos.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL|KeywordMatchMode.KEYWORD_MATCH_ALL}
    *   if no value is specified.
+   * @param {google.cloud.talent.v4.SearchJobsRequest.RelevanceThreshold} [request.relevanceThreshold]
+   *   Optional. The relevance threshold of the search results.
+   *
+   *   Default to Google defined threshold, leveraging a balance of
+   *   precision and recall to deliver both highly accurate results and
+   *   comprehensive coverage of relevant information.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -1544,7 +1679,31 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.searchJobsForAlert(request, options, callback);
+    this._log.info('searchJobsForAlert request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.talent.v4.ISearchJobsResponse,
+          protos.google.cloud.talent.v4.ISearchJobsRequest | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('searchJobsForAlert response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .searchJobsForAlert(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.talent.v4.ISearchJobsResponse,
+          protos.google.cloud.talent.v4.ISearchJobsRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('searchJobsForAlert response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1653,7 +1812,37 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.batchCreateJobs(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.talent.v4.IBatchCreateJobsResponse,
+            protos.google.cloud.talent.v4.IBatchOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('batchCreateJobs response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('batchCreateJobs request %j', request);
+    return this.innerApiCalls
+      .batchCreateJobs(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.talent.v4.IBatchCreateJobsResponse,
+            protos.google.cloud.talent.v4.IBatchOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('batchCreateJobs response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `batchCreateJobs()`.
@@ -1674,6 +1863,7 @@ export class JobServiceClient {
       protos.google.cloud.talent.v4.BatchOperationMetadata
     >
   > {
+    this._log.info('batchCreateJobs long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1715,7 +1905,7 @@ export class JobServiceClient {
    *
    *   If {@link protos.google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask|update_mask}
    *   is provided, The {@link protos.google.cloud.talent.v4.Job|Job} inside
-   *   {@link protos.JobOperationResult.JobResult|JobResult}
+   *   {@link protos.google.cloud.talent.v4.JobResult|JobResult}
    *   will only contains fields that is updated, plus the Id of the Job.
    *   Otherwise,  {@link protos.google.cloud.talent.v4.Job|Job} will include all fields,
    *   which can yield a very large response.
@@ -1812,7 +2002,37 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.batchUpdateJobs(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.talent.v4.IBatchUpdateJobsResponse,
+            protos.google.cloud.talent.v4.IBatchOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('batchUpdateJobs response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('batchUpdateJobs request %j', request);
+    return this.innerApiCalls
+      .batchUpdateJobs(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.talent.v4.IBatchUpdateJobsResponse,
+            protos.google.cloud.talent.v4.IBatchOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('batchUpdateJobs response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `batchUpdateJobs()`.
@@ -1833,6 +2053,7 @@ export class JobServiceClient {
       protos.google.cloud.talent.v4.BatchOperationMetadata
     >
   > {
+    this._log.info('batchUpdateJobs long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -1960,7 +2181,37 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.batchDeleteJobs(request, options, callback);
+    const wrappedCallback:
+      | Callback<
+          LROperation<
+            protos.google.cloud.talent.v4.IBatchDeleteJobsResponse,
+            protos.google.cloud.talent.v4.IBatchOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | null | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('batchDeleteJobs response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('batchDeleteJobs request %j', request);
+    return this.innerApiCalls
+      .batchDeleteJobs(request, options, wrappedCallback)
+      ?.then(
+        ([response, rawResponse, _]: [
+          LROperation<
+            protos.google.cloud.talent.v4.IBatchDeleteJobsResponse,
+            protos.google.cloud.talent.v4.IBatchOperationMetadata
+          >,
+          protos.google.longrunning.IOperation | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('batchDeleteJobs response %j', rawResponse);
+          return [response, rawResponse, _];
+        }
+      );
   }
   /**
    * Check the status of the long running operation returned by `batchDeleteJobs()`.
@@ -1981,6 +2232,7 @@ export class JobServiceClient {
       protos.google.cloud.talent.v4.BatchOperationMetadata
     >
   > {
+    this._log.info('batchDeleteJobs long-running');
     const request =
       new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
         {name}
@@ -2122,11 +2374,35 @@ export class JobServiceClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listJobs(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.talent.v4.IListJobsRequest,
+          protos.google.cloud.talent.v4.IListJobsResponse | null | undefined,
+          protos.google.cloud.talent.v4.IJob
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listJobs values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listJobs request %j', request);
+    return this.innerApiCalls
+      .listJobs(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.talent.v4.IJob[],
+          protos.google.cloud.talent.v4.IListJobsRequest | null,
+          protos.google.cloud.talent.v4.IListJobsResponse,
+        ]) => {
+          this._log.info('listJobs values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listJobs`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -2200,6 +2476,7 @@ export class JobServiceClient {
     const defaultCallSettings = this._defaults['listJobs'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listJobs stream %j', request);
     return this.descriptors.page.listJobs.createStream(
       this.innerApiCalls.listJobs as GaxCall,
       request,
@@ -2285,6 +2562,7 @@ export class JobServiceClient {
     const defaultCallSettings = this._defaults['listJobs'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listJobs iterate %j', request);
     return this.descriptors.page.listJobs.asyncIterate(
       this.innerApiCalls['listJobs'] as GaxCall,
       request as {},
@@ -2323,7 +2601,7 @@ export class JobServiceClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -2336,6 +2614,20 @@ export class JobServiceClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -2372,6 +2664,13 @@ export class JobServiceClient {
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
   ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -2407,11 +2706,11 @@ export class JobServiceClient {
    */
   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -2420,6 +2719,20 @@ export class JobServiceClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -2450,7 +2763,7 @@ export class JobServiceClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -2463,6 +2776,20 @@ export class JobServiceClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      this._gaxModule.routingHeader.fromParams({
+        name: request.name ?? '',
+      });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -2636,6 +2963,7 @@ export class JobServiceClient {
   close(): Promise<void> {
     if (this.jobServiceStub && !this._terminated) {
       return this.jobServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
         this.operationsClient.close();

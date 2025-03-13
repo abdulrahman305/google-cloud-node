@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import type {
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -39,30 +40,30 @@ import * as gapicConfig from './g_suite_add_ons_client_config.json';
 const version = require('../../../package.json').version;
 
 /**
- *  A service for managing Google Workspace Add-ons deployments.
+ *  A service for managing Google Workspace add-ons deployments.
  *
- *  A Google Workspace Add-on is a third-party embedded component that can be
+ *  A Google Workspace add-on is a third-party embedded component that can be
  *  installed in Google Workspace Applications like Gmail, Calendar, Drive, and
- *  the Google Docs, Sheets, and Slides editors. Google Workspace Add-ons can
+ *  the Google Docs, Sheets, and Slides editors. Google Workspace add-ons can
  *  display UI cards, receive contextual information from the host application,
  *  and perform actions in the host application (See:
  *  https://developers.google.com/gsuite/add-ons/overview for more information).
  *
- *  A Google Workspace Add-on deployment resource specifies metadata about the
+ *  A Google Workspace add-on deployment resource specifies metadata about the
  *  add-on, including a specification of the entry points in the host application
  *  that trigger add-on executions (see:
  *  https://developers.google.com/gsuite/add-ons/concepts/gsuite-manifests).
- *  Add-on deployments defined via the Google Workspace Add-ons API define their
+ *  Add-on deployments defined via the Google Workspace add-ons API define their
  *  entrypoints using HTTPS URLs (See:
  *  https://developers.google.com/gsuite/add-ons/guides/alternate-runtimes),
  *
- *  A Google Workspace Add-on deployment can be installed in developer mode,
+ *  A Google Workspace add-on deployment can be installed in developer mode,
  *  which allows an add-on developer to test the experience an end-user would see
  *  when installing and running the add-on in their G Suite applications.  When
  *  running in developer mode, more detailed error messages are exposed in the
  *  add-on UI to aid in debugging.
  *
- *  A Google Workspace Add-on deployment can be published to Google Workspace
+ *  A Google Workspace add-on deployment can be published to Google Workspace
  *  Marketplace, which allows other Google Workspace users to discover and
  *  install the add-on.  See:
  *  https://developers.google.com/gsuite/add-ons/how-tos/publish-add-on-overview
@@ -80,6 +81,8 @@ export class GSuiteAddOnsClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('gsuiteaddons');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -114,7 +117,7 @@ export class GSuiteAddOnsClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -430,7 +433,7 @@ export class GSuiteAddOnsClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Required. Name of the project for which to get the Google Workspace Add-ons
+   *   Required. Name of the project for which to get the Google Workspace add-ons
    *   authorization information.
    *
    *   Example: `projects/my_project/authorization`.
@@ -515,7 +518,36 @@ export class GSuiteAddOnsClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getAuthorization(request, options, callback);
+    this._log.info('getAuthorization request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+          | protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAuthorization response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getAuthorization(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getAuthorization response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates a deployment with the specified name and configuration.
@@ -612,7 +644,36 @@ export class GSuiteAddOnsClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.createDeployment(request, options, callback);
+    this._log.info('createDeployment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          | protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .createDeployment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('createDeployment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Creates or replaces a deployment with the specified name.
@@ -702,7 +763,36 @@ export class GSuiteAddOnsClient {
         'deployment.name': request.deployment!.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.replaceDeployment(request, options, callback);
+    this._log.info('replaceDeployment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          | protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('replaceDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .replaceDeployment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('replaceDeployment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Gets the deployment with the specified name.
@@ -794,7 +884,33 @@ export class GSuiteAddOnsClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getDeployment(request, options, callback);
+    this._log.info('getDeployment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          | protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getDeployment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('getDeployment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Deletes the deployment with the given name.
@@ -889,7 +1005,36 @@ export class GSuiteAddOnsClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.deleteDeployment(request, options, callback);
+    this._log.info('deleteDeployment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .deleteDeployment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('deleteDeployment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Installs a deployment in developer mode.
@@ -983,7 +1128,36 @@ export class GSuiteAddOnsClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.installDeployment(request, options, callback);
+    this._log.info('installDeployment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('installDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .installDeployment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('installDeployment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Uninstalls a developer mode deployment.
@@ -1083,7 +1257,36 @@ export class GSuiteAddOnsClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.uninstallDeployment(request, options, callback);
+    this._log.info('uninstallDeployment request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('uninstallDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .uninstallDeployment(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('uninstallDeployment response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
   /**
    * Fetches the install status of a developer mode deployment.
@@ -1175,7 +1378,36 @@ export class GSuiteAddOnsClient {
         name: request.name ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.getInstallStatus(request, options, callback);
+    this._log.info('getInstallStatus request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+          | protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getInstallStatus response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .getInstallStatus(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+          (
+            | protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest
+            | undefined
+          ),
+          {} | undefined,
+        ]) => {
+          this._log.info('getInstallStatus response %j', response);
+          return [response, options, rawResponse];
+        }
+      );
   }
 
   /**
@@ -1282,11 +1514,37 @@ export class GSuiteAddOnsClient {
         parent: request.parent ?? '',
       });
     this.initialize();
-    return this.innerApiCalls.listDeployments(request, options, callback);
+    const wrappedCallback:
+      | PaginationCallback<
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+          | protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
+          | null
+          | undefined,
+          protos.google.cloud.gsuiteaddons.v1.IDeployment
+        >
+      | undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listDeployments values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listDeployments request %j', request);
+    return this.innerApiCalls
+      .listDeployments(request, options, wrappedCallback)
+      ?.then(
+        ([response, input, output]: [
+          protos.google.cloud.gsuiteaddons.v1.IDeployment[],
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest | null,
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse,
+        ]) => {
+          this._log.info('listDeployments values %j', response);
+          return [response, input, output];
+        }
+      );
   }
 
   /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * Equivalent to `listDeployments`, but returns a NodeJS Stream object.
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
@@ -1330,6 +1588,7 @@ export class GSuiteAddOnsClient {
     const defaultCallSettings = this._defaults['listDeployments'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listDeployments stream %j', request);
     return this.descriptors.page.listDeployments.createStream(
       this.innerApiCalls.listDeployments as GaxCall,
       request,
@@ -1385,6 +1644,7 @@ export class GSuiteAddOnsClient {
     const defaultCallSettings = this._defaults['listDeployments'];
     const callSettings = defaultCallSettings.merge(options);
     this.initialize();
+    this._log.info('listDeployments iterate %j', request);
     return this.descriptors.page.listDeployments.asyncIterate(
       this.innerApiCalls['listDeployments'] as GaxCall,
       request as {},
@@ -1527,6 +1787,7 @@ export class GSuiteAddOnsClient {
   close(): Promise<void> {
     if (this.gSuiteAddOnsStub && !this._terminated) {
       return this.gSuiteAddOnsStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

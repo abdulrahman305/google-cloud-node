@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -297,7 +297,7 @@ describe('v1beta1.RecaptchaEnterpriseServiceV1Beta1Client', () => {
         ['parent']
       );
       request.parent = defaultValue1;
-      const expectedHeaderRequestParams = `parent=${defaultValue1}`;
+      const expectedHeaderRequestParams = `parent=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.cloud.recaptchaenterprise.v1beta1.Assessment()
       );
@@ -331,7 +331,7 @@ describe('v1beta1.RecaptchaEnterpriseServiceV1Beta1Client', () => {
         ['parent']
       );
       request.parent = defaultValue1;
-      const expectedHeaderRequestParams = `parent=${defaultValue1}`;
+      const expectedHeaderRequestParams = `parent=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.cloud.recaptchaenterprise.v1beta1.Assessment()
       );
@@ -381,7 +381,7 @@ describe('v1beta1.RecaptchaEnterpriseServiceV1Beta1Client', () => {
         ['parent']
       );
       request.parent = defaultValue1;
-      const expectedHeaderRequestParams = `parent=${defaultValue1}`;
+      const expectedHeaderRequestParams = `parent=${defaultValue1 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.createAssessment = stubSimpleCall(
         undefined,
@@ -439,7 +439,7 @@ describe('v1beta1.RecaptchaEnterpriseServiceV1Beta1Client', () => {
         ['name']
       );
       request.name = defaultValue1;
-      const expectedHeaderRequestParams = `name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `name=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.cloud.recaptchaenterprise.v1beta1.AnnotateAssessmentResponse()
       );
@@ -474,7 +474,7 @@ describe('v1beta1.RecaptchaEnterpriseServiceV1Beta1Client', () => {
         ['name']
       );
       request.name = defaultValue1;
-      const expectedHeaderRequestParams = `name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `name=${defaultValue1 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.cloud.recaptchaenterprise.v1beta1.AnnotateAssessmentResponse()
       );
@@ -524,7 +524,7 @@ describe('v1beta1.RecaptchaEnterpriseServiceV1Beta1Client', () => {
         ['name']
       );
       request.name = defaultValue1;
-      const expectedHeaderRequestParams = `name=${defaultValue1}`;
+      const expectedHeaderRequestParams = `name=${defaultValue1 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.annotateAssessment = stubSimpleCall(
         undefined,

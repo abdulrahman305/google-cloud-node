@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -272,7 +272,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['snapshotId']
       );
       request.snapshotId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&snapshot_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&snapshot_id=${defaultValue3 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.dataflow.v1beta3.Snapshot()
       );
@@ -313,7 +313,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['snapshotId']
       );
       request.snapshotId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&snapshot_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&snapshot_id=${defaultValue3 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.dataflow.v1beta3.Snapshot()
       );
@@ -370,7 +370,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['snapshotId']
       );
       request.snapshotId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&snapshot_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&snapshot_id=${defaultValue3 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.getSnapshot = stubSimpleCall(
         undefined,
@@ -442,7 +442,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['snapshotId']
       );
       request.snapshotId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&snapshot_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&snapshot_id=${defaultValue3 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.dataflow.v1beta3.DeleteSnapshotResponse()
       );
@@ -483,7 +483,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['snapshotId']
       );
       request.snapshotId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&snapshot_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&snapshot_id=${defaultValue3 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.dataflow.v1beta3.DeleteSnapshotResponse()
       );
@@ -540,7 +540,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['snapshotId']
       );
       request.snapshotId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&snapshot_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&snapshot_id=${defaultValue3 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.deleteSnapshot = stubSimpleCall(
         undefined,
@@ -612,7 +612,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['jobId']
       );
       request.jobId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&job_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&job_id=${defaultValue3 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.dataflow.v1beta3.ListSnapshotsResponse()
       );
@@ -653,7 +653,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['jobId']
       );
       request.jobId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&job_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&job_id=${defaultValue3 ?? ''}`;
       const expectedResponse = generateSampleMessage(
         new protos.google.dataflow.v1beta3.ListSnapshotsResponse()
       );
@@ -710,7 +710,7 @@ describe('v1beta3.SnapshotsV1Beta3Client', () => {
         ['jobId']
       );
       request.jobId = defaultValue3;
-      const expectedHeaderRequestParams = `project_id=${defaultValue1}&location=${defaultValue2}&job_id=${defaultValue3}`;
+      const expectedHeaderRequestParams = `project_id=${defaultValue1 ?? ''}&location=${defaultValue2 ?? ''}&job_id=${defaultValue3 ?? ''}`;
       const expectedError = new Error('expected');
       client.innerApiCalls.listSnapshots = stubSimpleCall(
         undefined,
