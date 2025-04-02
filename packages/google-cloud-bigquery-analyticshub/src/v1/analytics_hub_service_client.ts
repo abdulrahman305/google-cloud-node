@@ -596,7 +596,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('getDataExchange request %j', request);
     const wrappedCallback:
       | Callback<
@@ -638,9 +640,7 @@ export class AnalyticsHubServiceClient {
    *   e.g. `projects/myproject/locations/US`.
    * @param {string} request.dataExchangeId
    *   Required. The ID of the data exchange.
-   *   Must contain only Unicode letters, numbers (0-9), underscores (_).
-   *   Should not use characters that require URL-escaping, or characters
-   *   outside of ASCII, spaces.
+   *   Must contain only ASCII letters, numbers (0-9), underscores (_).
    *   Max length: 100 bytes.
    * @param {google.cloud.bigquery.analyticshub.v1.DataExchange} request.dataExchange
    *   Required. The data exchange to create.
@@ -730,7 +730,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('createDataExchange request %j', request);
     const wrappedCallback:
       | Callback<
@@ -859,7 +861,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         'data_exchange.name': request.dataExchange!.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('updateDataExchange request %j', request);
     const wrappedCallback:
       | Callback<
@@ -985,7 +989,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('deleteDataExchange request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1111,7 +1117,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('getListing request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1153,9 +1161,7 @@ export class AnalyticsHubServiceClient {
    *   e.g. `projects/myproject/locations/US/dataExchanges/123`.
    * @param {string} request.listingId
    *   Required. The ID of the listing to create.
-   *   Must contain only Unicode letters, numbers (0-9), underscores (_).
-   *   Should not use characters that require URL-escaping, or characters
-   *   outside of ASCII, spaces.
+   *   Must contain only ASCII letters, numbers (0-9), underscores (_).
    *   Max length: 100 bytes.
    * @param {google.cloud.bigquery.analyticshub.v1.Listing} request.listing
    *   Required. The listing to create.
@@ -1245,7 +1251,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('createListing request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1374,7 +1382,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         'listing.name': request.listing!.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('updateListing request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1500,7 +1510,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('deleteListing request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1544,6 +1556,9 @@ export class AnalyticsHubServiceClient {
    *   The request object that will be sent.
    * @param {google.cloud.bigquery.analyticshub.v1.DestinationDataset} request.destinationDataset
    *   Input only. BigQuery destination dataset to create for the subscriber.
+   * @param {google.cloud.bigquery.analyticshub.v1.DestinationPubSubSubscription} request.destinationPubsubSubscription
+   *   Input only. Destination Pub/Sub subscription to create for the
+   *   subscriber.
    * @param {string} request.name
    *   Required. Resource name of the listing that you want to subscribe to.
    *   e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
@@ -1633,7 +1648,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('subscribeListing request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1759,7 +1776,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('getSubscription request %j', request);
     const wrappedCallback:
       | Callback<
@@ -1885,7 +1904,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('revokeSubscription request %j', request);
     const wrappedCallback:
       | Callback<
@@ -2000,7 +2021,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         resource: request.resource ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('getIamPolicy request %j', request);
     const wrappedCallback:
       | Callback<
@@ -2118,7 +2141,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         resource: request.resource ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('setIamPolicy request %j', request);
     const wrappedCallback:
       | Callback<
@@ -2230,7 +2255,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         resource: request.resource ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('testIamPermissions request %j', request);
     const wrappedCallback:
       | Callback<
@@ -2259,8 +2286,8 @@ export class AnalyticsHubServiceClient {
   }
 
   /**
-   * Creates a Subscription to a Data Exchange. This is a long-running operation
-   * as it will create one or more linked datasets.
+   * Creates a Subscription to a Data Clean Room. This is a long-running
+   * operation as it will create one or more linked datasets.
    *
    * @param {Object} request
    *   The request object that will be sent.
@@ -2270,6 +2297,8 @@ export class AnalyticsHubServiceClient {
    * @param {string} request.destination
    *   Required. The parent resource path of the Subscription.
    *   e.g. `projects/subscriberproject/locations/US`
+   * @param {google.cloud.bigquery.analyticshub.v1.DestinationDataset} [request.destinationDataset]
+   *   Optional. BigQuery destination dataset to create for the subscriber.
    * @param {string} request.subscription
    *   Required. Name of the subscription to create.
    *   e.g. `subscription1`
@@ -2367,7 +2396,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | Callback<
           LROperation<
@@ -2537,7 +2568,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | Callback<
           LROperation<
@@ -2705,7 +2738,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | Callback<
           LROperation<
@@ -2870,7 +2905,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.cloud.bigquery.analyticshub.v1.IListDataExchangesRequest,
@@ -2938,7 +2975,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listDataExchanges'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listDataExchanges stream %j', request);
     return this.descriptors.page.listDataExchanges.createStream(
       this.innerApiCalls.listDataExchanges as GaxCall,
@@ -2988,7 +3027,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listDataExchanges'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listDataExchanges iterate %j', request);
     return this.descriptors.page.listDataExchanges.asyncIterate(
       this.innerApiCalls['listDataExchanges'] as GaxCall,
@@ -3094,7 +3135,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         organization: request.organization ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.cloud.bigquery.analyticshub.v1.IListOrgDataExchangesRequest,
@@ -3162,7 +3205,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listOrgDataExchanges'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listOrgDataExchanges stream %j', request);
     return this.descriptors.page.listOrgDataExchanges.createStream(
       this.innerApiCalls.listOrgDataExchanges as GaxCall,
@@ -3212,7 +3257,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listOrgDataExchanges'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listOrgDataExchanges iterate %j', request);
     return this.descriptors.page.listOrgDataExchanges.asyncIterate(
       this.innerApiCalls['listOrgDataExchanges'] as GaxCall,
@@ -3317,7 +3364,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.cloud.bigquery.analyticshub.v1.IListListingsRequest,
@@ -3385,7 +3434,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listListings'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listListings stream %j', request);
     return this.descriptors.page.listListings.createStream(
       this.innerApiCalls.listListings as GaxCall,
@@ -3435,7 +3486,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listListings'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listListings iterate %j', request);
     return this.descriptors.page.listListings.asyncIterate(
       this.innerApiCalls['listListings'] as GaxCall,
@@ -3554,7 +3607,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.cloud.bigquery.analyticshub.v1.IListSubscriptionsRequest,
@@ -3636,7 +3691,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listSubscriptions'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listSubscriptions stream %j', request);
     return this.descriptors.page.listSubscriptions.createStream(
       this.innerApiCalls.listSubscriptions as GaxCall,
@@ -3700,7 +3757,9 @@ export class AnalyticsHubServiceClient {
       });
     const defaultCallSettings = this._defaults['listSubscriptions'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listSubscriptions iterate %j', request);
     return this.descriptors.page.listSubscriptions.asyncIterate(
       this.innerApiCalls['listSubscriptions'] as GaxCall,
@@ -3808,7 +3867,9 @@ export class AnalyticsHubServiceClient {
       this._gaxModule.routingHeader.fromParams({
         resource: request.resource ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.cloud.bigquery.analyticshub.v1.IListSharedResourceSubscriptionsRequest,
@@ -3880,7 +3941,9 @@ export class AnalyticsHubServiceClient {
     const defaultCallSettings =
       this._defaults['listSharedResourceSubscriptions'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listSharedResourceSubscriptions stream %j', request);
     return this.descriptors.page.listSharedResourceSubscriptions.createStream(
       this.innerApiCalls.listSharedResourceSubscriptions as GaxCall,
@@ -3934,7 +3997,9 @@ export class AnalyticsHubServiceClient {
     const defaultCallSettings =
       this._defaults['listSharedResourceSubscriptions'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listSharedResourceSubscriptions iterate %j', request);
     return this.descriptors.page.listSharedResourceSubscriptions.asyncIterate(
       this.innerApiCalls['listSharedResourceSubscriptions'] as GaxCall,
@@ -4036,7 +4101,7 @@ export class AnalyticsHubServiceClient {
   listOperationsAsync(
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
-  ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+  ): AsyncIterable<protos.google.longrunning.IOperation> {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};

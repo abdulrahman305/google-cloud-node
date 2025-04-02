@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/aiplatform-v4.0.0...aiplatform-v4.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/aiplatform-v3.35.0...aiplatform-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
 ## [3.35.0](https://github.com/googleapis/google-cloud-node/compare/aiplatform-v3.34.0...aiplatform-v3.35.0) (2025-02-28)
 
 

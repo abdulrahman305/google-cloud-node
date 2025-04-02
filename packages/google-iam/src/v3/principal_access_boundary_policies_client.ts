@@ -593,7 +593,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('getPrincipalAccessBoundaryPolicy request %j', request);
     const wrappedCallback:
       | Callback<
@@ -640,7 +642,7 @@ export class PrincipalAccessBoundaryPoliciesClient {
    *   The request object that will be sent.
    * @param {string} request.parent
    *   Required. The parent resource where this principal access boundary policy
-   *   will be created. Only organization is supported now.
+   *   will be created. Only organizations are supported.
    *
    *   Format:
    *     `organizations/{organization_id}/locations/{location}`
@@ -749,7 +751,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | Callback<
           LROperation<
@@ -931,7 +935,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
         'principal_access_boundary_policy.name':
           request.principalAccessBoundaryPolicy!.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | Callback<
           LROperation<
@@ -1022,8 +1028,8 @@ export class PrincipalAccessBoundaryPoliciesClient {
    *   Optional. If set, validate the request and preview the deletion, but do not
    *   actually post it.
    * @param {boolean} [request.force]
-   *   Optional. If set to true, the request will force the deletion of the Policy
-   *   even if the Policy references PolicyBindings.
+   *   Optional. If set to true, the request will force the deletion of the policy
+   *   even if the policy is referenced in policy bindings.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -1116,7 +1122,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | Callback<
           LROperation<
@@ -1299,7 +1307,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
       this._gaxModule.routingHeader.fromParams({
         parent: request.parent ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.iam.v3.IListPrincipalAccessBoundaryPoliciesRequest,
@@ -1386,7 +1396,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
     const defaultCallSettings =
       this._defaults['listPrincipalAccessBoundaryPolicies'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listPrincipalAccessBoundaryPolicies stream %j', request);
     return this.descriptors.page.listPrincipalAccessBoundaryPolicies.createStream(
       this.innerApiCalls.listPrincipalAccessBoundaryPolicies as GaxCall,
@@ -1449,7 +1461,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
     const defaultCallSettings =
       this._defaults['listPrincipalAccessBoundaryPolicies'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info('listPrincipalAccessBoundaryPolicies iterate %j', request);
     return this.descriptors.page.listPrincipalAccessBoundaryPolicies.asyncIterate(
       this.innerApiCalls['listPrincipalAccessBoundaryPolicies'] as GaxCall,
@@ -1564,7 +1578,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
       this._gaxModule.routingHeader.fromParams({
         name: request.name ?? '',
       });
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     const wrappedCallback:
       | PaginationCallback<
           protos.google.iam.v3.ISearchPrincipalAccessBoundaryPolicyBindingsRequest,
@@ -1655,7 +1671,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
     const defaultCallSettings =
       this._defaults['searchPrincipalAccessBoundaryPolicyBindings'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info(
       'searchPrincipalAccessBoundaryPolicyBindings stream %j',
       request
@@ -1718,7 +1736,9 @@ export class PrincipalAccessBoundaryPoliciesClient {
     const defaultCallSettings =
       this._defaults['searchPrincipalAccessBoundaryPolicyBindings'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {
+      throw err;
+    });
     this._log.info(
       'searchPrincipalAccessBoundaryPolicyBindings iterate %j',
       request
@@ -1903,7 +1923,7 @@ export class PrincipalAccessBoundaryPoliciesClient {
   listOperationsAsync(
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
-  ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+  ): AsyncIterable<protos.google.longrunning.IOperation> {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};

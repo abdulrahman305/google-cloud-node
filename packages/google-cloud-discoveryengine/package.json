@@ -1,6 +1,6 @@
 {
   "name": "@google-cloud/discoveryengine",
-  "version": "1.14.0",
+  "version": "2.0.1",
   "description": "Discovery Engine API client for Node.js",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
     "test": "NODE_OPTIONS=--max-old-space-size=8192 c8 mocha build/test"
   },
   "dependencies": {
-    "google-gax": "^5.0.0-rc.0"
+    "google-gax": "^5.0.1-rc.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",

@@ -306,7 +306,9 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      client.initialize().catch(err => {
+        throw err;
+      });
       assert(client.policyBasedRoutingServiceStub);
       client.close().then(() => {
         done();
@@ -369,7 +371,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.GetPolicyBasedRouteRequest()
       );
@@ -402,7 +404,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.GetPolicyBasedRouteRequest()
       );
@@ -450,7 +452,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.GetPolicyBasedRouteRequest()
       );
@@ -482,7 +484,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.GetPolicyBasedRouteRequest()
       );
@@ -504,7 +506,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest()
       );
@@ -538,7 +540,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest()
       );
@@ -593,7 +595,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest()
       );
@@ -628,7 +630,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest()
       );
@@ -662,7 +664,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const expectedResponse = generateSampleMessage(
         new operationsProtos.google.longrunning.Operation()
       );
@@ -685,7 +687,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const expectedError = new Error('expected');
 
       client.operationsClient.getOperation = stubSimpleCall(
@@ -707,7 +709,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.DeletePolicyBasedRouteRequest()
       );
@@ -741,7 +743,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.DeletePolicyBasedRouteRequest()
       );
@@ -796,7 +798,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.DeletePolicyBasedRouteRequest()
       );
@@ -831,7 +833,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.DeletePolicyBasedRouteRequest()
       );
@@ -865,7 +867,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const expectedResponse = generateSampleMessage(
         new operationsProtos.google.longrunning.Operation()
       );
@@ -888,7 +890,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const expectedError = new Error('expected');
 
       client.operationsClient.getOperation = stubSimpleCall(
@@ -910,7 +912,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -951,7 +953,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -1009,7 +1011,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -1044,7 +1046,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -1114,7 +1116,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -1173,7 +1175,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -1228,7 +1230,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new protos.google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesRequest()
       );
@@ -1275,7 +1277,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.GetIamPolicyRequest()
       );
@@ -1306,7 +1308,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.GetIamPolicyRequest()
       );
@@ -1351,7 +1353,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.GetIamPolicyRequest()
       );
@@ -1384,7 +1386,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.SetIamPolicyRequest()
       );
@@ -1415,7 +1417,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.SetIamPolicyRequest()
       );
@@ -1460,7 +1462,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.SetIamPolicyRequest()
       );
@@ -1493,7 +1495,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.TestIamPermissionsRequest()
       );
@@ -1527,7 +1529,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.TestIamPermissionsRequest()
       );
@@ -1572,7 +1574,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new IamProtos.google.iam.v1.TestIamPermissionsRequest()
       );
@@ -1608,7 +1610,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new LocationProtos.google.cloud.location.GetLocationRequest()
       );
@@ -1639,7 +1641,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new LocationProtos.google.cloud.location.GetLocationRequest()
       );
@@ -1684,7 +1686,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new LocationProtos.google.cloud.location.GetLocationRequest()
       );
@@ -1720,7 +1722,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new LocationProtos.google.cloud.location.ListLocationsRequest()
       );
@@ -1769,7 +1771,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new LocationProtos.google.cloud.location.ListLocationsRequest()
       );
@@ -1811,7 +1813,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new operationsProtos.google.longrunning.GetOperationRequest()
       );
@@ -1893,7 +1895,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new operationsProtos.google.longrunning.CancelOperationRequest()
       );
@@ -1976,7 +1978,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new operationsProtos.google.longrunning.DeleteOperationRequest()
       );
@@ -2075,8 +2077,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       ];
       client.operationsClient.descriptor.listOperations.asyncIterate =
         stubAsyncIterationCall(expectedResponse);
-      const responses: operationsProtos.google.longrunning.ListOperationsResponse[] =
-        [];
+      const responses: operationsProtos.google.longrunning.IOperation[] = [];
       const iterable = client.operationsClient.listOperationsAsync(request);
       for await (const resource of iterable) {
         responses.push(resource!);
@@ -2096,7 +2097,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       const request = generateSampleMessage(
         new operationsProtos.google.longrunning.ListOperationsRequest()
       );
@@ -2105,8 +2106,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
         stubAsyncIterationCall(undefined, expectedError);
       const iterable = client.operationsClient.listOperationsAsync(request);
       await assert.rejects(async () => {
-        const responses: operationsProtos.google.longrunning.ListOperationsResponse[] =
-          [];
+        const responses: operationsProtos.google.longrunning.IOperation[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
         }
@@ -2122,7 +2122,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
   });
 
   describe('Path templates', () => {
-    describe('group', () => {
+    describe('group', async () => {
       const fakePath = '/rendered/path/group';
       const expectedParameters = {
         project: 'projectValue',
@@ -2134,7 +2134,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.groupPathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2187,7 +2187,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('hub', () => {
+    describe('hub', async () => {
       const fakePath = '/rendered/path/hub';
       const expectedParameters = {
         project: 'projectValue',
@@ -2198,7 +2198,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.hubPathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2237,7 +2237,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('hubRoute', () => {
+    describe('hubRoute', async () => {
       const fakePath = '/rendered/path/hubRoute';
       const expectedParameters = {
         project: 'projectValue',
@@ -2250,7 +2250,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.hubRoutePathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2314,7 +2314,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('location', () => {
+    describe('location', async () => {
       const fakePath = '/rendered/path/location';
       const expectedParameters = {
         project: 'projectValue',
@@ -2325,7 +2325,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.locationPathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2364,7 +2364,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('network', () => {
+    describe('network', async () => {
       const fakePath = '/rendered/path/network';
       const expectedParameters = {
         project: 'projectValue',
@@ -2375,7 +2375,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.networkPathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2414,7 +2414,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('policyBasedRoute', () => {
+    describe('policyBasedRoute', async () => {
       const fakePath = '/rendered/path/policyBasedRoute';
       const expectedParameters = {
         project: 'projectValue',
@@ -2425,7 +2425,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.policyBasedRoutePathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2471,7 +2471,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('routeTable', () => {
+    describe('routeTable', async () => {
       const fakePath = '/rendered/path/routeTable';
       const expectedParameters = {
         project: 'projectValue',
@@ -2483,7 +2483,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.routeTablePathTemplate.render = sinon
         .stub()
         .returns(fakePath);
@@ -2536,7 +2536,318 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
       });
     });
 
-    describe('spoke', () => {
+    describe('serviceClass', async () => {
+      const fakePath = '/rendered/path/serviceClass';
+      const expectedParameters = {
+        project: 'projectValue',
+        location: 'locationValue',
+        service_class: 'serviceClassValue',
+      };
+      const client =
+        new policybasedroutingserviceModule.v1.PolicyBasedRoutingServiceClient({
+          credentials: {client_email: 'bogus', private_key: 'bogus'},
+          projectId: 'bogus',
+        });
+      await client.initialize();
+      client.pathTemplates.serviceClassPathTemplate.render = sinon
+        .stub()
+        .returns(fakePath);
+      client.pathTemplates.serviceClassPathTemplate.match = sinon
+        .stub()
+        .returns(expectedParameters);
+
+      it('serviceClassPath', () => {
+        const result = client.serviceClassPath(
+          'projectValue',
+          'locationValue',
+          'serviceClassValue'
+        );
+        assert.strictEqual(result, fakePath);
+        assert(
+          (client.pathTemplates.serviceClassPathTemplate.render as SinonStub)
+            .getCall(-1)
+            .calledWith(expectedParameters)
+        );
+      });
+
+      it('matchProjectFromServiceClassName', () => {
+        const result = client.matchProjectFromServiceClassName(fakePath);
+        assert.strictEqual(result, 'projectValue');
+        assert(
+          (client.pathTemplates.serviceClassPathTemplate.match as SinonStub)
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchLocationFromServiceClassName', () => {
+        const result = client.matchLocationFromServiceClassName(fakePath);
+        assert.strictEqual(result, 'locationValue');
+        assert(
+          (client.pathTemplates.serviceClassPathTemplate.match as SinonStub)
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchServiceClassFromServiceClassName', () => {
+        const result = client.matchServiceClassFromServiceClassName(fakePath);
+        assert.strictEqual(result, 'serviceClassValue');
+        assert(
+          (client.pathTemplates.serviceClassPathTemplate.match as SinonStub)
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+    });
+
+    describe('serviceConnectionMap', async () => {
+      const fakePath = '/rendered/path/serviceConnectionMap';
+      const expectedParameters = {
+        project: 'projectValue',
+        location: 'locationValue',
+        service_connection_map: 'serviceConnectionMapValue',
+      };
+      const client =
+        new policybasedroutingserviceModule.v1.PolicyBasedRoutingServiceClient({
+          credentials: {client_email: 'bogus', private_key: 'bogus'},
+          projectId: 'bogus',
+        });
+      await client.initialize();
+      client.pathTemplates.serviceConnectionMapPathTemplate.render = sinon
+        .stub()
+        .returns(fakePath);
+      client.pathTemplates.serviceConnectionMapPathTemplate.match = sinon
+        .stub()
+        .returns(expectedParameters);
+
+      it('serviceConnectionMapPath', () => {
+        const result = client.serviceConnectionMapPath(
+          'projectValue',
+          'locationValue',
+          'serviceConnectionMapValue'
+        );
+        assert.strictEqual(result, fakePath);
+        assert(
+          (
+            client.pathTemplates.serviceConnectionMapPathTemplate
+              .render as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(expectedParameters)
+        );
+      });
+
+      it('matchProjectFromServiceConnectionMapName', () => {
+        const result =
+          client.matchProjectFromServiceConnectionMapName(fakePath);
+        assert.strictEqual(result, 'projectValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionMapPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchLocationFromServiceConnectionMapName', () => {
+        const result =
+          client.matchLocationFromServiceConnectionMapName(fakePath);
+        assert.strictEqual(result, 'locationValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionMapPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchServiceConnectionMapFromServiceConnectionMapName', () => {
+        const result =
+          client.matchServiceConnectionMapFromServiceConnectionMapName(
+            fakePath
+          );
+        assert.strictEqual(result, 'serviceConnectionMapValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionMapPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+    });
+
+    describe('serviceConnectionPolicy', async () => {
+      const fakePath = '/rendered/path/serviceConnectionPolicy';
+      const expectedParameters = {
+        project: 'projectValue',
+        location: 'locationValue',
+        service_connection_policy: 'serviceConnectionPolicyValue',
+      };
+      const client =
+        new policybasedroutingserviceModule.v1.PolicyBasedRoutingServiceClient({
+          credentials: {client_email: 'bogus', private_key: 'bogus'},
+          projectId: 'bogus',
+        });
+      await client.initialize();
+      client.pathTemplates.serviceConnectionPolicyPathTemplate.render = sinon
+        .stub()
+        .returns(fakePath);
+      client.pathTemplates.serviceConnectionPolicyPathTemplate.match = sinon
+        .stub()
+        .returns(expectedParameters);
+
+      it('serviceConnectionPolicyPath', () => {
+        const result = client.serviceConnectionPolicyPath(
+          'projectValue',
+          'locationValue',
+          'serviceConnectionPolicyValue'
+        );
+        assert.strictEqual(result, fakePath);
+        assert(
+          (
+            client.pathTemplates.serviceConnectionPolicyPathTemplate
+              .render as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(expectedParameters)
+        );
+      });
+
+      it('matchProjectFromServiceConnectionPolicyName', () => {
+        const result =
+          client.matchProjectFromServiceConnectionPolicyName(fakePath);
+        assert.strictEqual(result, 'projectValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionPolicyPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchLocationFromServiceConnectionPolicyName', () => {
+        const result =
+          client.matchLocationFromServiceConnectionPolicyName(fakePath);
+        assert.strictEqual(result, 'locationValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionPolicyPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchServiceConnectionPolicyFromServiceConnectionPolicyName', () => {
+        const result =
+          client.matchServiceConnectionPolicyFromServiceConnectionPolicyName(
+            fakePath
+          );
+        assert.strictEqual(result, 'serviceConnectionPolicyValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionPolicyPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+    });
+
+    describe('serviceConnectionToken', async () => {
+      const fakePath = '/rendered/path/serviceConnectionToken';
+      const expectedParameters = {
+        project: 'projectValue',
+        location: 'locationValue',
+        service_connection_token: 'serviceConnectionTokenValue',
+      };
+      const client =
+        new policybasedroutingserviceModule.v1.PolicyBasedRoutingServiceClient({
+          credentials: {client_email: 'bogus', private_key: 'bogus'},
+          projectId: 'bogus',
+        });
+      await client.initialize();
+      client.pathTemplates.serviceConnectionTokenPathTemplate.render = sinon
+        .stub()
+        .returns(fakePath);
+      client.pathTemplates.serviceConnectionTokenPathTemplate.match = sinon
+        .stub()
+        .returns(expectedParameters);
+
+      it('serviceConnectionTokenPath', () => {
+        const result = client.serviceConnectionTokenPath(
+          'projectValue',
+          'locationValue',
+          'serviceConnectionTokenValue'
+        );
+        assert.strictEqual(result, fakePath);
+        assert(
+          (
+            client.pathTemplates.serviceConnectionTokenPathTemplate
+              .render as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(expectedParameters)
+        );
+      });
+
+      it('matchProjectFromServiceConnectionTokenName', () => {
+        const result =
+          client.matchProjectFromServiceConnectionTokenName(fakePath);
+        assert.strictEqual(result, 'projectValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionTokenPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchLocationFromServiceConnectionTokenName', () => {
+        const result =
+          client.matchLocationFromServiceConnectionTokenName(fakePath);
+        assert.strictEqual(result, 'locationValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionTokenPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+
+      it('matchServiceConnectionTokenFromServiceConnectionTokenName', () => {
+        const result =
+          client.matchServiceConnectionTokenFromServiceConnectionTokenName(
+            fakePath
+          );
+        assert.strictEqual(result, 'serviceConnectionTokenValue');
+        assert(
+          (
+            client.pathTemplates.serviceConnectionTokenPathTemplate
+              .match as SinonStub
+          )
+            .getCall(-1)
+            .calledWith(fakePath)
+        );
+      });
+    });
+
+    describe('spoke', async () => {
       const fakePath = '/rendered/path/spoke';
       const expectedParameters = {
         project: 'projectValue',
@@ -2548,7 +2859,7 @@ describe('v1.PolicyBasedRoutingServiceClient', () => {
           credentials: {client_email: 'bogus', private_key: 'bogus'},
           projectId: 'bogus',
         });
-      client.initialize();
+      await client.initialize();
       client.pathTemplates.spokePathTemplate.render = sinon
         .stub()
         .returns(fakePath);
