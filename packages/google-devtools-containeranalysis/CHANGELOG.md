@@ -4,6 +4,23 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/containeranalysis?activeTab=versions
 
+## [6.3.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v6.2.0...containeranalysis-v6.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6425](https://github.com/googleapis/google-cloud-node/issues/6425)) ([c920e8d](https://github.com/googleapis/google-cloud-node/commit/c920e8d0d43be81fc171bc5f7d59800b66b830b8))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [6.2.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v6.1.0...containeranalysis-v6.2.0) (2025-05-09)
+
+
+### Features
+
+* [containeranalysis] add ExportSBOM API method for v1 ([#6210](https://github.com/googleapis/google-cloud-node/issues/6210)) ([c02b122](https://github.com/googleapis/google-cloud-node/commit/c02b1222a127a8229ae1da81e07fc2ba386dfd11))
+* [containeranalysis] add new location-specific bindings ([#6222](https://github.com/googleapis/google-cloud-node/issues/6222)) ([6c8ef35](https://github.com/googleapis/google-cloud-node/commit/6c8ef3521ba94048741a9c33c4a66506bd057812))
+
 ## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v6.0.0...containeranalysis-v6.1.0) (2025-03-19)
 
 

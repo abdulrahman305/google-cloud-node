@@ -1,6 +1,6 @@
 {
   "name": "@google-cloud/discoveryengine",
-  "version": "2.0.1",
+  "version": "2.4.0",
   "description": "Discovery Engine API client for Node.js",
   "repository": {
     "type": "git",
@@ -43,10 +43,10 @@
     "postpack": "minifyProtoJson",
     "samples-test": "cd samples/ && npm link ../ && npm i && npm test",
     "system-test": "c8 mocha build/system-test",
-    "test": "NODE_OPTIONS=--max-old-space-size=8192 c8 mocha build/test"
+    "test": "NODE_OPTIONS=--max-old-space-size=16384 c8 mocha build/test"
   },
   "dependencies": {
-    "google-gax": "^5.0.1-rc.0"
+    "google-gax": "^5.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -56,13 +56,13 @@
     "gapic-tools": "^1.0.0",
     "gts": "^6.0.2",
     "jsdoc": "^4.0.4",
-    "jsdoc-fresh": "^3.0.0",
+    "jsdoc-fresh": "^4.0.0",
     "jsdoc-region-tag": "^3.0.0",
     "linkinator": "^6.1.2",
     "long": "^5.3.1",
     "mocha": "^11.1.0",
     "pack-n-play": "^3.0.0",
-    "sinon": "^19.0.2",
+    "sinon": "^21.0.0",
     "typescript": "^5.8.2"
   },
   "engines": {

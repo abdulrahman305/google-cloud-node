@@ -551,7 +551,7 @@ export namespace google {
                         listingCount?: (number|null);
 
                         /** DataExchange icon */
-                        icon?: (Uint8Array|string|null);
+                        icon?: (Uint8Array|Buffer|string|null);
 
                         /** DataExchange sharingEnvironmentConfig */
                         sharingEnvironmentConfig?: (google.cloud.bigquery.analyticshub.v1.ISharingEnvironmentConfig|null);
@@ -591,7 +591,7 @@ export namespace google {
                         public listingCount: number;
 
                         /** DataExchange icon. */
-                        public icon: (Uint8Array|string);
+                        public icon: (Uint8Array|Buffer|string);
 
                         /** DataExchange sharingEnvironmentConfig. */
                         public sharingEnvironmentConfig?: (google.cloud.bigquery.analyticshub.v1.ISharingEnvironmentConfig|null);
@@ -601,12 +601,6 @@ export namespace google {
 
                         /** DataExchange logLinkedDatasetQueryUserEmail. */
                         public logLinkedDatasetQueryUserEmail?: (boolean|null);
-
-                        /** DataExchange _discoveryType. */
-                        public _discoveryType?: "discoveryType";
-
-                        /** DataExchange _logLinkedDatasetQueryUserEmail. */
-                        public _logLinkedDatasetQueryUserEmail?: "logLinkedDatasetQueryUserEmail";
 
                         /**
                          * Creates a new DataExchange instance using the specified properties.
@@ -909,12 +903,6 @@ export namespace google {
 
                             /** DcrExchangeConfig singleLinkedDatasetPerCleanroom. */
                             public singleLinkedDatasetPerCleanroom?: (boolean|null);
-
-                            /** DcrExchangeConfig _singleSelectedResourceSharingRestriction. */
-                            public _singleSelectedResourceSharingRestriction?: "singleSelectedResourceSharingRestriction";
-
-                            /** DcrExchangeConfig _singleLinkedDatasetPerCleanroom. */
-                            public _singleLinkedDatasetPerCleanroom?: "singleLinkedDatasetPerCleanroom";
 
                             /**
                              * Creates a new DcrExchangeConfig instance using the specified properties.
@@ -1550,7 +1538,7 @@ export namespace google {
                         state?: (google.cloud.bigquery.analyticshub.v1.Listing.State|keyof typeof google.cloud.bigquery.analyticshub.v1.Listing.State|null);
 
                         /** Listing icon */
-                        icon?: (Uint8Array|string|null);
+                        icon?: (Uint8Array|Buffer|string|null);
 
                         /** Listing dataProvider */
                         dataProvider?: (google.cloud.bigquery.analyticshub.v1.IDataProvider|null);
@@ -1573,8 +1561,14 @@ export namespace google {
                         /** Listing resourceType */
                         resourceType?: (google.cloud.bigquery.analyticshub.v1.SharedResourceType|keyof typeof google.cloud.bigquery.analyticshub.v1.SharedResourceType|null);
 
+                        /** Listing commercialInfo */
+                        commercialInfo?: (google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo|null);
+
                         /** Listing logLinkedDatasetQueryUserEmail */
                         logLinkedDatasetQueryUserEmail?: (boolean|null);
+
+                        /** Listing allowOnlyMetadataSharing */
+                        allowOnlyMetadataSharing?: (boolean|null);
                     }
 
                     /** Represents a Listing. */
@@ -1611,7 +1605,7 @@ export namespace google {
                         public state: (google.cloud.bigquery.analyticshub.v1.Listing.State|keyof typeof google.cloud.bigquery.analyticshub.v1.Listing.State);
 
                         /** Listing icon. */
-                        public icon: (Uint8Array|string);
+                        public icon: (Uint8Array|Buffer|string);
 
                         /** Listing dataProvider. */
                         public dataProvider?: (google.cloud.bigquery.analyticshub.v1.IDataProvider|null);
@@ -1634,17 +1628,17 @@ export namespace google {
                         /** Listing resourceType. */
                         public resourceType: (google.cloud.bigquery.analyticshub.v1.SharedResourceType|keyof typeof google.cloud.bigquery.analyticshub.v1.SharedResourceType);
 
+                        /** Listing commercialInfo. */
+                        public commercialInfo?: (google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo|null);
+
                         /** Listing logLinkedDatasetQueryUserEmail. */
                         public logLinkedDatasetQueryUserEmail?: (boolean|null);
 
+                        /** Listing allowOnlyMetadataSharing. */
+                        public allowOnlyMetadataSharing?: (boolean|null);
+
                         /** Listing source. */
                         public source?: ("bigqueryDataset"|"pubsubTopic");
-
-                        /** Listing _discoveryType. */
-                        public _discoveryType?: "discoveryType";
-
-                        /** Listing _logLinkedDatasetQueryUserEmail. */
-                        public _logLinkedDatasetQueryUserEmail?: "logLinkedDatasetQueryUserEmail";
 
                         /**
                          * Creates a new Listing instance using the specified properties.
@@ -1842,6 +1836,9 @@ export namespace google {
 
                                 /** SelectedResource table */
                                 table?: (string|null);
+
+                                /** SelectedResource routine */
+                                routine?: (string|null);
                             }
 
                             /** Represents a SelectedResource. */
@@ -1856,8 +1853,11 @@ export namespace google {
                                 /** SelectedResource table. */
                                 public table?: (string|null);
 
+                                /** SelectedResource routine. */
+                                public routine?: (string|null);
+
                                 /** SelectedResource resource. */
-                                public resource?: "table";
+                                public resource?: ("table"|"routine");
 
                                 /**
                                  * Creates a new SelectedResource instance using the specified properties.
@@ -2259,6 +2259,219 @@ export namespace google {
                             public static getTypeUrl(typeUrlPrefix?: string): string;
                         }
 
+                        /** Properties of a CommercialInfo. */
+                        interface ICommercialInfo {
+
+                            /** CommercialInfo cloudMarketplace */
+                            cloudMarketplace?: (google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo|null);
+                        }
+
+                        /** Represents a CommercialInfo. */
+                        class CommercialInfo implements ICommercialInfo {
+
+                            /**
+                             * Constructs a new CommercialInfo.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo);
+
+                            /** CommercialInfo cloudMarketplace. */
+                            public cloudMarketplace?: (google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo|null);
+
+                            /**
+                             * Creates a new CommercialInfo instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns CommercialInfo instance
+                             */
+                            public static create(properties?: google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo;
+
+                            /**
+                             * Encodes the specified CommercialInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.verify|verify} messages.
+                             * @param message CommercialInfo message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified CommercialInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.verify|verify} messages.
+                             * @param message CommercialInfo message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a CommercialInfo message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns CommercialInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo;
+
+                            /**
+                             * Decodes a CommercialInfo message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns CommercialInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo;
+
+                            /**
+                             * Verifies a CommercialInfo message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a CommercialInfo message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns CommercialInfo
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo;
+
+                            /**
+                             * Creates a plain object from a CommercialInfo message. Also converts values to other types if specified.
+                             * @param message CommercialInfo
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this CommercialInfo to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for CommercialInfo
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        namespace CommercialInfo {
+
+                            /** Properties of a GoogleCloudMarketplaceInfo. */
+                            interface IGoogleCloudMarketplaceInfo {
+
+                                /** GoogleCloudMarketplaceInfo service */
+                                service?: (string|null);
+
+                                /** GoogleCloudMarketplaceInfo commercialState */
+                                commercialState?: (google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState|keyof typeof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState|null);
+                            }
+
+                            /** Represents a GoogleCloudMarketplaceInfo. */
+                            class GoogleCloudMarketplaceInfo implements IGoogleCloudMarketplaceInfo {
+
+                                /**
+                                 * Constructs a new GoogleCloudMarketplaceInfo.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo);
+
+                                /** GoogleCloudMarketplaceInfo service. */
+                                public service?: (string|null);
+
+                                /** GoogleCloudMarketplaceInfo commercialState. */
+                                public commercialState?: (google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState|keyof typeof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState|null);
+
+                                /**
+                                 * Creates a new GoogleCloudMarketplaceInfo instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns GoogleCloudMarketplaceInfo instance
+                                 */
+                                public static create(properties?: google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Encodes the specified GoogleCloudMarketplaceInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                 * @param message GoogleCloudMarketplaceInfo message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified GoogleCloudMarketplaceInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                 * @param message GoogleCloudMarketplaceInfo message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns GoogleCloudMarketplaceInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns GoogleCloudMarketplaceInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Verifies a GoogleCloudMarketplaceInfo message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates a GoogleCloudMarketplaceInfo message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns GoogleCloudMarketplaceInfo
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Creates a plain object from a GoogleCloudMarketplaceInfo message. Also converts values to other types if specified.
+                                 * @param message GoogleCloudMarketplaceInfo
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this GoogleCloudMarketplaceInfo to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for GoogleCloudMarketplaceInfo
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
+
+                            namespace GoogleCloudMarketplaceInfo {
+
+                                /** CommercialState enum. */
+                                enum CommercialState {
+                                    COMMERCIAL_STATE_UNSPECIFIED = 0,
+                                    ONBOARDING = 1,
+                                    ACTIVE = 2
+                                }
+                            }
+                        }
+
                         /** State enum. */
                         enum State {
                             STATE_UNSPECIFIED = 0,
@@ -2329,8 +2542,14 @@ export namespace google {
                         /** Subscription resourceType */
                         resourceType?: (google.cloud.bigquery.analyticshub.v1.SharedResourceType|keyof typeof google.cloud.bigquery.analyticshub.v1.SharedResourceType|null);
 
+                        /** Subscription commercialInfo */
+                        commercialInfo?: (google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo|null);
+
                         /** Subscription logLinkedDatasetQueryUserEmail */
                         logLinkedDatasetQueryUserEmail?: (boolean|null);
+
+                        /** Subscription destinationDataset */
+                        destinationDataset?: (google.cloud.bigquery.analyticshub.v1.IDestinationDataset|null);
                     }
 
                     /** Represents a Subscription. */
@@ -2378,14 +2597,17 @@ export namespace google {
                         /** Subscription resourceType. */
                         public resourceType: (google.cloud.bigquery.analyticshub.v1.SharedResourceType|keyof typeof google.cloud.bigquery.analyticshub.v1.SharedResourceType);
 
+                        /** Subscription commercialInfo. */
+                        public commercialInfo?: (google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo|null);
+
                         /** Subscription logLinkedDatasetQueryUserEmail. */
                         public logLinkedDatasetQueryUserEmail?: (boolean|null);
 
+                        /** Subscription destinationDataset. */
+                        public destinationDataset?: (google.cloud.bigquery.analyticshub.v1.IDestinationDataset|null);
+
                         /** Subscription resourceName. */
                         public resourceName?: ("listing"|"dataExchange");
-
-                        /** Subscription _logLinkedDatasetQueryUserEmail. */
-                        public _logLinkedDatasetQueryUserEmail?: "logLinkedDatasetQueryUserEmail";
 
                         /**
                          * Creates a new Subscription instance using the specified properties.
@@ -2577,6 +2799,203 @@ export namespace google {
                              * @returns The default type url
                              */
                             public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        /** Properties of a CommercialInfo. */
+                        interface ICommercialInfo {
+
+                            /** CommercialInfo cloudMarketplace */
+                            cloudMarketplace?: (google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo|null);
+                        }
+
+                        /** Represents a CommercialInfo. */
+                        class CommercialInfo implements ICommercialInfo {
+
+                            /**
+                             * Constructs a new CommercialInfo.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo);
+
+                            /** CommercialInfo cloudMarketplace. */
+                            public cloudMarketplace?: (google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo|null);
+
+                            /**
+                             * Creates a new CommercialInfo instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns CommercialInfo instance
+                             */
+                            public static create(properties?: google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo;
+
+                            /**
+                             * Encodes the specified CommercialInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.verify|verify} messages.
+                             * @param message CommercialInfo message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified CommercialInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.verify|verify} messages.
+                             * @param message CommercialInfo message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a CommercialInfo message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns CommercialInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo;
+
+                            /**
+                             * Decodes a CommercialInfo message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns CommercialInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo;
+
+                            /**
+                             * Verifies a CommercialInfo message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a CommercialInfo message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns CommercialInfo
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo;
+
+                            /**
+                             * Creates a plain object from a CommercialInfo message. Also converts values to other types if specified.
+                             * @param message CommercialInfo
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this CommercialInfo to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for CommercialInfo
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        namespace CommercialInfo {
+
+                            /** Properties of a GoogleCloudMarketplaceInfo. */
+                            interface IGoogleCloudMarketplaceInfo {
+
+                                /** GoogleCloudMarketplaceInfo order */
+                                order?: (string|null);
+                            }
+
+                            /** Represents a GoogleCloudMarketplaceInfo. */
+                            class GoogleCloudMarketplaceInfo implements IGoogleCloudMarketplaceInfo {
+
+                                /**
+                                 * Constructs a new GoogleCloudMarketplaceInfo.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo);
+
+                                /** GoogleCloudMarketplaceInfo order. */
+                                public order: string;
+
+                                /**
+                                 * Creates a new GoogleCloudMarketplaceInfo instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns GoogleCloudMarketplaceInfo instance
+                                 */
+                                public static create(properties?: google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Encodes the specified GoogleCloudMarketplaceInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                 * @param message GoogleCloudMarketplaceInfo message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified GoogleCloudMarketplaceInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                 * @param message GoogleCloudMarketplaceInfo message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns GoogleCloudMarketplaceInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns GoogleCloudMarketplaceInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Verifies a GoogleCloudMarketplaceInfo message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates a GoogleCloudMarketplaceInfo message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns GoogleCloudMarketplaceInfo
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo;
+
+                                /**
+                                 * Creates a plain object from a GoogleCloudMarketplaceInfo message. Also converts values to other types if specified.
+                                 * @param message GoogleCloudMarketplaceInfo
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this GoogleCloudMarketplaceInfo to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for GoogleCloudMarketplaceInfo
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
                         }
 
                         /** State enum. */
@@ -3944,6 +4363,9 @@ export namespace google {
 
                         /** DeleteListingRequest name */
                         name?: (string|null);
+
+                        /** DeleteListingRequest deleteCommercial */
+                        deleteCommercial?: (boolean|null);
                     }
 
                     /** Represents a DeleteListingRequest. */
@@ -3957,6 +4379,9 @@ export namespace google {
 
                         /** DeleteListingRequest name. */
                         public name: string;
+
+                        /** DeleteListingRequest deleteCommercial. */
+                        public deleteCommercial: boolean;
 
                         /**
                          * Creates a new DeleteListingRequest instance using the specified properties.
@@ -5195,6 +5620,9 @@ export namespace google {
 
                         /** RevokeSubscriptionRequest name */
                         name?: (string|null);
+
+                        /** RevokeSubscriptionRequest revokeCommercial */
+                        revokeCommercial?: (boolean|null);
                     }
 
                     /** Represents a RevokeSubscriptionRequest. */
@@ -5208,6 +5636,9 @@ export namespace google {
 
                         /** RevokeSubscriptionRequest name. */
                         public name: string;
+
+                        /** RevokeSubscriptionRequest revokeCommercial. */
+                        public revokeCommercial: boolean;
 
                         /**
                          * Creates a new RevokeSubscriptionRequest instance using the specified properties.
@@ -7871,6 +8302,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -7911,6 +8345,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -12129,6 +12566,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -12380,7 +12820,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -12411,7 +12851,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -13647,7 +14087,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -13663,7 +14103,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -14717,7 +15157,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -14730,7 +15170,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.
@@ -15426,7 +15866,7 @@ export namespace google {
                 auditConfigs?: (google.iam.v1.IAuditConfig[]|null);
 
                 /** Policy etag */
-                etag?: (Uint8Array|string|null);
+                etag?: (Uint8Array|Buffer|string|null);
             }
 
             /** Represents a Policy. */
@@ -15448,7 +15888,7 @@ export namespace google {
                 public auditConfigs: google.iam.v1.IAuditConfig[];
 
                 /** Policy etag. */
-                public etag: (Uint8Array|string);
+                public etag: (Uint8Array|Buffer|string);
 
                 /**
                  * Creates a new Policy instance using the specified properties.

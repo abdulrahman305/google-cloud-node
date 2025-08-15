@@ -197,7 +197,20 @@
     "packages/google-cloud-memorystore": {},
     "packages/google-cloud-parametermanager": {},
     "packages/google-cloud-modelarmor": {},
-    "packages/google-maps-areainsights": {}
+    "packages/google-maps-areainsights": {},
+    "packages/google-cloud-financialservices": {},
+    "packages/google-shopping-merchant-issueresolution": {},
+    "packages/google-shopping-merchant-ordertracking": {},
+    "packages/google-cloud-chronicle": {},
+    "packages/google-cloud-devicestreaming": {},
+    "packages/google-cloud-lustre": {},
+    "packages/google-cloud-storagebatchoperations": {},
+    "packages/google-apps-events-subscriptions": {},
+    "packages/google-cloud-maintenance-api": {},
+    "packages/google-cloud-managedkafka-schemaregistry": {},
+    "packages/google-cloud-licensemanager": {},
+    "packages/google-cloud-configdelivery": {},
+    "packages/google-cloud-saasplatform-saasservicemgmt": {}
   },
   "plugins": [
     {

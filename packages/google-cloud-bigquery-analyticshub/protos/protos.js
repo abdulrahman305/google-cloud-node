@@ -984,23 +984,13 @@
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
     
-                            /**
-                             * DataExchange _discoveryType.
-                             * @member {"discoveryType"|undefined} _discoveryType
-                             * @memberof google.cloud.bigquery.analyticshub.v1.DataExchange
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(DataExchange.prototype, "_discoveryType", {
                                 get: $util.oneOfGetter($oneOfFields = ["discoveryType"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * DataExchange _logLinkedDatasetQueryUserEmail.
-                             * @member {"logLinkedDatasetQueryUserEmail"|undefined} _logLinkedDatasetQueryUserEmail
-                             * @memberof google.cloud.bigquery.analyticshub.v1.DataExchange
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(DataExchange.prototype, "_logLinkedDatasetQueryUserEmail", {
                                 get: $util.oneOfGetter($oneOfFields = ["logLinkedDatasetQueryUserEmail"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -1077,12 +1067,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DataExchange.decode = function decode(reader, length) {
+                            DataExchange.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DataExchange();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -1461,12 +1453,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SharingEnvironmentConfig.decode = function decode(reader, length) {
+                            SharingEnvironmentConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.defaultExchangeConfig = $root.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DefaultExchangeConfig.decode(reader, reader.uint32());
@@ -1684,12 +1678,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                DefaultExchangeConfig.decode = function decode(reader, length) {
+                                DefaultExchangeConfig.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DefaultExchangeConfig();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -1829,23 +1825,13 @@
                                 // OneOf field names bound to virtual getters and setters
                                 var $oneOfFields;
     
-                                /**
-                                 * DcrExchangeConfig _singleSelectedResourceSharingRestriction.
-                                 * @member {"singleSelectedResourceSharingRestriction"|undefined} _singleSelectedResourceSharingRestriction
-                                 * @memberof google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig
-                                 * @instance
-                                 */
+                                // Virtual OneOf for proto3 optional field
                                 Object.defineProperty(DcrExchangeConfig.prototype, "_singleSelectedResourceSharingRestriction", {
                                     get: $util.oneOfGetter($oneOfFields = ["singleSelectedResourceSharingRestriction"]),
                                     set: $util.oneOfSetter($oneOfFields)
                                 });
     
-                                /**
-                                 * DcrExchangeConfig _singleLinkedDatasetPerCleanroom.
-                                 * @member {"singleLinkedDatasetPerCleanroom"|undefined} _singleLinkedDatasetPerCleanroom
-                                 * @memberof google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig
-                                 * @instance
-                                 */
+                                // Virtual OneOf for proto3 optional field
                                 Object.defineProperty(DcrExchangeConfig.prototype, "_singleLinkedDatasetPerCleanroom", {
                                     get: $util.oneOfGetter($oneOfFields = ["singleLinkedDatasetPerCleanroom"]),
                                     set: $util.oneOfSetter($oneOfFields)
@@ -1906,12 +1892,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                DcrExchangeConfig.decode = function decode(reader, length) {
+                                DcrExchangeConfig.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.singleSelectedResourceSharingRestriction = reader.bool();
@@ -2143,12 +2131,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DataProvider.decode = function decode(reader, length) {
+                            DataProvider.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DataProvider();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -2370,12 +2360,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Publisher.decode = function decode(reader, length) {
+                            Publisher.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Publisher();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -2597,12 +2589,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DestinationDatasetReference.decode = function decode(reader, length) {
+                            DestinationDatasetReference.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DestinationDatasetReference();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.datasetId = reader.string();
@@ -2859,12 +2853,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DestinationDataset.decode = function decode(reader, length) {
+                            DestinationDataset.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.datasetReference = $root.google.cloud.bigquery.analyticshub.v1.DestinationDatasetReference.decode(reader, reader.uint32());
@@ -3160,12 +3156,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DestinationPubSubSubscription.decode = function decode(reader, length) {
+                            DestinationPubSubSubscription.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DestinationPubSubSubscription();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.pubsubSubscription = $root.google.cloud.bigquery.analyticshub.v1.PubSubSubscription.decode(reader, reader.uint32());
@@ -3305,7 +3303,9 @@
                              * @property {google.cloud.bigquery.analyticshub.v1.Listing.IRestrictedExportConfig|null} [restrictedExportConfig] Listing restrictedExportConfig
                              * @property {google.cloud.bigquery.analyticshub.v1.DiscoveryType|null} [discoveryType] Listing discoveryType
                              * @property {google.cloud.bigquery.analyticshub.v1.SharedResourceType|null} [resourceType] Listing resourceType
+                             * @property {google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo|null} [commercialInfo] Listing commercialInfo
                              * @property {boolean|null} [logLinkedDatasetQueryUserEmail] Listing logLinkedDatasetQueryUserEmail
+                             * @property {boolean|null} [allowOnlyMetadataSharing] Listing allowOnlyMetadataSharing
                              */
     
                             /**
@@ -3453,12 +3453,28 @@
                             Listing.prototype.resourceType = 0;
     
                             /**
+                             * Listing commercialInfo.
+                             * @member {google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo|null|undefined} commercialInfo
+                             * @memberof google.cloud.bigquery.analyticshub.v1.Listing
+                             * @instance
+                             */
+                            Listing.prototype.commercialInfo = null;
+    
+                            /**
                              * Listing logLinkedDatasetQueryUserEmail.
                              * @member {boolean|null|undefined} logLinkedDatasetQueryUserEmail
                              * @memberof google.cloud.bigquery.analyticshub.v1.Listing
                              * @instance
                              */
                             Listing.prototype.logLinkedDatasetQueryUserEmail = null;
+    
+                            /**
+                             * Listing allowOnlyMetadataSharing.
+                             * @member {boolean|null|undefined} allowOnlyMetadataSharing
+                             * @memberof google.cloud.bigquery.analyticshub.v1.Listing
+                             * @instance
+                             */
+                            Listing.prototype.allowOnlyMetadataSharing = null;
     
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
@@ -3474,25 +3490,27 @@
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * Listing _discoveryType.
-                             * @member {"discoveryType"|undefined} _discoveryType
-                             * @memberof google.cloud.bigquery.analyticshub.v1.Listing
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(Listing.prototype, "_discoveryType", {
                                 get: $util.oneOfGetter($oneOfFields = ["discoveryType"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * Listing _logLinkedDatasetQueryUserEmail.
-                             * @member {"logLinkedDatasetQueryUserEmail"|undefined} _logLinkedDatasetQueryUserEmail
-                             * @memberof google.cloud.bigquery.analyticshub.v1.Listing
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
+                            Object.defineProperty(Listing.prototype, "_commercialInfo", {
+                                get: $util.oneOfGetter($oneOfFields = ["commercialInfo"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(Listing.prototype, "_logLinkedDatasetQueryUserEmail", {
                                 get: $util.oneOfGetter($oneOfFields = ["logLinkedDatasetQueryUserEmail"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            // Virtual OneOf for proto3 optional field
+                            Object.defineProperty(Listing.prototype, "_allowOnlyMetadataSharing", {
+                                get: $util.oneOfGetter($oneOfFields = ["allowOnlyMetadataSharing"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
@@ -3556,8 +3574,12 @@
                                     writer.uint32(/* id 15, wireType 0 =*/120).int32(message.resourceType);
                                 if (message.pubsubTopic != null && Object.hasOwnProperty.call(message, "pubsubTopic"))
                                     $root.google.cloud.bigquery.analyticshub.v1.Listing.PubSubTopicSource.encode(message.pubsubTopic, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+                                if (message.commercialInfo != null && Object.hasOwnProperty.call(message, "commercialInfo"))
+                                    $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.encode(message.commercialInfo, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
                                 if (message.logLinkedDatasetQueryUserEmail != null && Object.hasOwnProperty.call(message, "logLinkedDatasetQueryUserEmail"))
                                     writer.uint32(/* id 18, wireType 0 =*/144).bool(message.logLinkedDatasetQueryUserEmail);
+                                if (message.allowOnlyMetadataSharing != null && Object.hasOwnProperty.call(message, "allowOnlyMetadataSharing"))
+                                    writer.uint32(/* id 19, wireType 0 =*/152).bool(message.allowOnlyMetadataSharing);
                                 return writer;
                             };
     
@@ -3585,12 +3607,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Listing.decode = function decode(reader, length) {
+                            Listing.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 6: {
                                             message.bigqueryDataset = $root.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.decode(reader, reader.uint32());
@@ -3663,8 +3687,16 @@
                                             message.resourceType = reader.int32();
                                             break;
                                         }
+                                    case 17: {
+                                            message.commercialInfo = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.decode(reader, reader.uint32());
+                                            break;
+                                        }
                                     case 18: {
                                             message.logLinkedDatasetQueryUserEmail = reader.bool();
+                                            break;
+                                        }
+                                    case 19: {
+                                            message.allowOnlyMetadataSharing = reader.bool();
                                             break;
                                         }
                                     default:
@@ -3815,10 +3847,23 @@
                                     case 2:
                                         break;
                                     }
+                                if (message.commercialInfo != null && message.hasOwnProperty("commercialInfo")) {
+                                    properties._commercialInfo = 1;
+                                    {
+                                        var error = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.verify(message.commercialInfo);
+                                        if (error)
+                                            return "commercialInfo." + error;
+                                    }
+                                }
                                 if (message.logLinkedDatasetQueryUserEmail != null && message.hasOwnProperty("logLinkedDatasetQueryUserEmail")) {
                                     properties._logLinkedDatasetQueryUserEmail = 1;
                                     if (typeof message.logLinkedDatasetQueryUserEmail !== "boolean")
                                         return "logLinkedDatasetQueryUserEmail: boolean expected";
+                                }
+                                if (message.allowOnlyMetadataSharing != null && message.hasOwnProperty("allowOnlyMetadataSharing")) {
+                                    properties._allowOnlyMetadataSharing = 1;
+                                    if (typeof message.allowOnlyMetadataSharing !== "boolean")
+                                        return "allowOnlyMetadataSharing: boolean expected";
                                 }
                                 return null;
                             };
@@ -4026,8 +4071,15 @@
                                     message.resourceType = 2;
                                     break;
                                 }
+                                if (object.commercialInfo != null) {
+                                    if (typeof object.commercialInfo !== "object")
+                                        throw TypeError(".google.cloud.bigquery.analyticshub.v1.Listing.commercialInfo: object expected");
+                                    message.commercialInfo = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.fromObject(object.commercialInfo);
+                                }
                                 if (object.logLinkedDatasetQueryUserEmail != null)
                                     message.logLinkedDatasetQueryUserEmail = Boolean(object.logLinkedDatasetQueryUserEmail);
+                                if (object.allowOnlyMetadataSharing != null)
+                                    message.allowOnlyMetadataSharing = Boolean(object.allowOnlyMetadataSharing);
                                 return message;
                             };
     
@@ -4110,10 +4162,20 @@
                                     if (options.oneofs)
                                         object.source = "pubsubTopic";
                                 }
+                                if (message.commercialInfo != null && message.hasOwnProperty("commercialInfo")) {
+                                    object.commercialInfo = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.toObject(message.commercialInfo, options);
+                                    if (options.oneofs)
+                                        object._commercialInfo = "commercialInfo";
+                                }
                                 if (message.logLinkedDatasetQueryUserEmail != null && message.hasOwnProperty("logLinkedDatasetQueryUserEmail")) {
                                     object.logLinkedDatasetQueryUserEmail = message.logLinkedDatasetQueryUserEmail;
                                     if (options.oneofs)
                                         object._logLinkedDatasetQueryUserEmail = "logLinkedDatasetQueryUserEmail";
+                                }
+                                if (message.allowOnlyMetadataSharing != null && message.hasOwnProperty("allowOnlyMetadataSharing")) {
+                                    object.allowOnlyMetadataSharing = message.allowOnlyMetadataSharing;
+                                    if (options.oneofs)
+                                        object._allowOnlyMetadataSharing = "allowOnlyMetadataSharing";
                                 }
                                 return object;
                             };
@@ -4253,12 +4315,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                BigQueryDatasetSource.decode = function decode(reader, length) {
+                                BigQueryDatasetSource.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.dataset = reader.string();
@@ -4425,6 +4489,7 @@
                                      * @memberof google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource
                                      * @interface ISelectedResource
                                      * @property {string|null} [table] SelectedResource table
+                                     * @property {string|null} [routine] SelectedResource routine
                                      */
     
                                     /**
@@ -4450,17 +4515,25 @@
                                      */
                                     SelectedResource.prototype.table = null;
     
+                                    /**
+                                     * SelectedResource routine.
+                                     * @member {string|null|undefined} routine
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource
+                                     * @instance
+                                     */
+                                    SelectedResource.prototype.routine = null;
+    
                                     // OneOf field names bound to virtual getters and setters
                                     var $oneOfFields;
     
                                     /**
                                      * SelectedResource resource.
-                                     * @member {"table"|undefined} resource
+                                     * @member {"table"|"routine"|undefined} resource
                                      * @memberof google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource
                                      * @instance
                                      */
                                     Object.defineProperty(SelectedResource.prototype, "resource", {
-                                        get: $util.oneOfGetter($oneOfFields = ["table"]),
+                                        get: $util.oneOfGetter($oneOfFields = ["table", "routine"]),
                                         set: $util.oneOfSetter($oneOfFields)
                                     });
     
@@ -4490,6 +4563,8 @@
                                             writer = $Writer.create();
                                         if (message.table != null && Object.hasOwnProperty.call(message, "table"))
                                             writer.uint32(/* id 1, wireType 2 =*/10).string(message.table);
+                                        if (message.routine != null && Object.hasOwnProperty.call(message, "routine"))
+                                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.routine);
                                         return writer;
                                     };
     
@@ -4517,15 +4592,21 @@
                                      * @throws {Error} If the payload is not a reader or valid buffer
                                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                      */
-                                    SelectedResource.decode = function decode(reader, length) {
+                                    SelectedResource.decode = function decode(reader, length, error) {
                                         if (!(reader instanceof $Reader))
                                             reader = $Reader.create(reader);
                                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource();
                                         while (reader.pos < end) {
                                             var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
                                             switch (tag >>> 3) {
                                             case 1: {
                                                     message.table = reader.string();
+                                                    break;
+                                                }
+                                            case 2: {
+                                                    message.routine = reader.string();
                                                     break;
                                                 }
                                             default:
@@ -4569,6 +4650,13 @@
                                             if (!$util.isString(message.table))
                                                 return "table: string expected";
                                         }
+                                        if (message.routine != null && message.hasOwnProperty("routine")) {
+                                            if (properties.resource === 1)
+                                                return "resource: multiple values";
+                                            properties.resource = 1;
+                                            if (!$util.isString(message.routine))
+                                                return "routine: string expected";
+                                        }
                                         return null;
                                     };
     
@@ -4586,6 +4674,8 @@
                                         var message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource();
                                         if (object.table != null)
                                             message.table = String(object.table);
+                                        if (object.routine != null)
+                                            message.routine = String(object.routine);
                                         return message;
                                     };
     
@@ -4606,6 +4696,11 @@
                                             object.table = message.table;
                                             if (options.oneofs)
                                                 object.resource = "table";
+                                        }
+                                        if (message.routine != null && message.hasOwnProperty("routine")) {
+                                            object.routine = message.routine;
+                                            if (options.oneofs)
+                                                object.resource = "routine";
                                         }
                                         return object;
                                     };
@@ -4746,12 +4841,14 @@
                                      * @throws {Error} If the payload is not a reader or valid buffer
                                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                      */
-                                    RestrictedExportPolicy.decode = function decode(reader, length) {
+                                    RestrictedExportPolicy.decode = function decode(reader, length, error) {
                                         if (!(reader instanceof $Reader))
                                             reader = $Reader.create(reader);
                                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy();
                                         while (reader.pos < end) {
                                             var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
                                             switch (tag >>> 3) {
                                             case 1: {
                                                     message.enabled = $root.google.protobuf.BoolValue.decode(reader, reader.uint32());
@@ -5005,12 +5102,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                PubSubTopicSource.decode = function decode(reader, length) {
+                                PubSubTopicSource.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.PubSubTopicSource();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.topic = reader.string();
@@ -5257,12 +5356,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                RestrictedExportConfig.decode = function decode(reader, length) {
+                                RestrictedExportConfig.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.RestrictedExportConfig();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 3: {
                                                 message.enabled = reader.bool();
@@ -5400,6 +5501,521 @@
                                 return RestrictedExportConfig;
                             })();
     
+                            Listing.CommercialInfo = (function() {
+    
+                                /**
+                                 * Properties of a CommercialInfo.
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing
+                                 * @interface ICommercialInfo
+                                 * @property {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo|null} [cloudMarketplace] CommercialInfo cloudMarketplace
+                                 */
+    
+                                /**
+                                 * Constructs a new CommercialInfo.
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing
+                                 * @classdesc Represents a CommercialInfo.
+                                 * @implements ICommercialInfo
+                                 * @constructor
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo=} [properties] Properties to set
+                                 */
+                                function CommercialInfo(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * CommercialInfo cloudMarketplace.
+                                 * @member {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo|null|undefined} cloudMarketplace
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @instance
+                                 */
+                                CommercialInfo.prototype.cloudMarketplace = null;
+    
+                                // OneOf field names bound to virtual getters and setters
+                                var $oneOfFields;
+    
+                                // Virtual OneOf for proto3 optional field
+                                Object.defineProperty(CommercialInfo.prototype, "_cloudMarketplace", {
+                                    get: $util.oneOfGetter($oneOfFields = ["cloudMarketplace"]),
+                                    set: $util.oneOfSetter($oneOfFields)
+                                });
+    
+                                /**
+                                 * Creates a new CommercialInfo instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo=} [properties] Properties to set
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo} CommercialInfo instance
+                                 */
+                                CommercialInfo.create = function create(properties) {
+                                    return new CommercialInfo(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified CommercialInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo} message CommercialInfo message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                CommercialInfo.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.cloudMarketplace != null && Object.hasOwnProperty.call(message, "cloudMarketplace"))
+                                        $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.encode(message.cloudMarketplace, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified CommercialInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Listing.ICommercialInfo} message CommercialInfo message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                CommercialInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes a CommercialInfo message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo} CommercialInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                CommercialInfo.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.cloudMarketplace = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.decode(reader, reader.uint32());
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes a CommercialInfo message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo} CommercialInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                CommercialInfo.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies a CommercialInfo message.
+                                 * @function verify
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                CommercialInfo.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    var properties = {};
+                                    if (message.cloudMarketplace != null && message.hasOwnProperty("cloudMarketplace")) {
+                                        properties._cloudMarketplace = 1;
+                                        {
+                                            var error = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.verify(message.cloudMarketplace);
+                                            if (error)
+                                                return "cloudMarketplace." + error;
+                                        }
+                                    }
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates a CommercialInfo message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo} CommercialInfo
+                                 */
+                                CommercialInfo.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo)
+                                        return object;
+                                    var message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo();
+                                    if (object.cloudMarketplace != null) {
+                                        if (typeof object.cloudMarketplace !== "object")
+                                            throw TypeError(".google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.cloudMarketplace: object expected");
+                                        message.cloudMarketplace = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.fromObject(object.cloudMarketplace);
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from a CommercialInfo message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo} message CommercialInfo
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                CommercialInfo.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (message.cloudMarketplace != null && message.hasOwnProperty("cloudMarketplace")) {
+                                        object.cloudMarketplace = $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.toObject(message.cloudMarketplace, options);
+                                        if (options.oneofs)
+                                            object._cloudMarketplace = "cloudMarketplace";
+                                    }
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this CommercialInfo to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                CommercialInfo.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for CommercialInfo
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                CommercialInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo";
+                                };
+    
+                                CommercialInfo.GoogleCloudMarketplaceInfo = (function() {
+    
+                                    /**
+                                     * Properties of a GoogleCloudMarketplaceInfo.
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                     * @interface IGoogleCloudMarketplaceInfo
+                                     * @property {string|null} [service] GoogleCloudMarketplaceInfo service
+                                     * @property {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState|null} [commercialState] GoogleCloudMarketplaceInfo commercialState
+                                     */
+    
+                                    /**
+                                     * Constructs a new GoogleCloudMarketplaceInfo.
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo
+                                     * @classdesc Represents a GoogleCloudMarketplaceInfo.
+                                     * @implements IGoogleCloudMarketplaceInfo
+                                     * @constructor
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo=} [properties] Properties to set
+                                     */
+                                    function GoogleCloudMarketplaceInfo(properties) {
+                                        if (properties)
+                                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                                if (properties[keys[i]] != null)
+                                                    this[keys[i]] = properties[keys[i]];
+                                    }
+    
+                                    /**
+                                     * GoogleCloudMarketplaceInfo service.
+                                     * @member {string|null|undefined} service
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @instance
+                                     */
+                                    GoogleCloudMarketplaceInfo.prototype.service = null;
+    
+                                    /**
+                                     * GoogleCloudMarketplaceInfo commercialState.
+                                     * @member {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState|null|undefined} commercialState
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @instance
+                                     */
+                                    GoogleCloudMarketplaceInfo.prototype.commercialState = null;
+    
+                                    // OneOf field names bound to virtual getters and setters
+                                    var $oneOfFields;
+    
+                                    // Virtual OneOf for proto3 optional field
+                                    Object.defineProperty(GoogleCloudMarketplaceInfo.prototype, "_service", {
+                                        get: $util.oneOfGetter($oneOfFields = ["service"]),
+                                        set: $util.oneOfSetter($oneOfFields)
+                                    });
+    
+                                    // Virtual OneOf for proto3 optional field
+                                    Object.defineProperty(GoogleCloudMarketplaceInfo.prototype, "_commercialState", {
+                                        get: $util.oneOfGetter($oneOfFields = ["commercialState"]),
+                                        set: $util.oneOfSetter($oneOfFields)
+                                    });
+    
+                                    /**
+                                     * Creates a new GoogleCloudMarketplaceInfo instance using the specified properties.
+                                     * @function create
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo=} [properties] Properties to set
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo instance
+                                     */
+                                    GoogleCloudMarketplaceInfo.create = function create(properties) {
+                                        return new GoogleCloudMarketplaceInfo(properties);
+                                    };
+    
+                                    /**
+                                     * Encodes the specified GoogleCloudMarketplaceInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                     * @function encode
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo} message GoogleCloudMarketplaceInfo message or plain object to encode
+                                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                                     * @returns {$protobuf.Writer} Writer
+                                     */
+                                    GoogleCloudMarketplaceInfo.encode = function encode(message, writer) {
+                                        if (!writer)
+                                            writer = $Writer.create();
+                                        if (message.service != null && Object.hasOwnProperty.call(message, "service"))
+                                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.service);
+                                        if (message.commercialState != null && Object.hasOwnProperty.call(message, "commercialState"))
+                                            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.commercialState);
+                                        return writer;
+                                    };
+    
+                                    /**
+                                     * Encodes the specified GoogleCloudMarketplaceInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                     * @function encodeDelimited
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.IGoogleCloudMarketplaceInfo} message GoogleCloudMarketplaceInfo message or plain object to encode
+                                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                                     * @returns {$protobuf.Writer} Writer
+                                     */
+                                    GoogleCloudMarketplaceInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                                        return this.encode(message, writer).ldelim();
+                                    };
+    
+                                    /**
+                                     * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer.
+                                     * @function decode
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                     * @param {number} [length] Message length if known beforehand
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo
+                                     * @throws {Error} If the payload is not a reader or valid buffer
+                                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                     */
+                                    GoogleCloudMarketplaceInfo.decode = function decode(reader, length, error) {
+                                        if (!(reader instanceof $Reader))
+                                            reader = $Reader.create(reader);
+                                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo();
+                                        while (reader.pos < end) {
+                                            var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
+                                            switch (tag >>> 3) {
+                                            case 1: {
+                                                    message.service = reader.string();
+                                                    break;
+                                                }
+                                            case 3: {
+                                                    message.commercialState = reader.int32();
+                                                    break;
+                                                }
+                                            default:
+                                                reader.skipType(tag & 7);
+                                                break;
+                                            }
+                                        }
+                                        return message;
+                                    };
+    
+                                    /**
+                                     * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer, length delimited.
+                                     * @function decodeDelimited
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo
+                                     * @throws {Error} If the payload is not a reader or valid buffer
+                                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                     */
+                                    GoogleCloudMarketplaceInfo.decodeDelimited = function decodeDelimited(reader) {
+                                        if (!(reader instanceof $Reader))
+                                            reader = new $Reader(reader);
+                                        return this.decode(reader, reader.uint32());
+                                    };
+    
+                                    /**
+                                     * Verifies a GoogleCloudMarketplaceInfo message.
+                                     * @function verify
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {Object.<string,*>} message Plain object to verify
+                                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                     */
+                                    GoogleCloudMarketplaceInfo.verify = function verify(message) {
+                                        if (typeof message !== "object" || message === null)
+                                            return "object expected";
+                                        var properties = {};
+                                        if (message.service != null && message.hasOwnProperty("service")) {
+                                            properties._service = 1;
+                                            if (!$util.isString(message.service))
+                                                return "service: string expected";
+                                        }
+                                        if (message.commercialState != null && message.hasOwnProperty("commercialState")) {
+                                            properties._commercialState = 1;
+                                            switch (message.commercialState) {
+                                            default:
+                                                return "commercialState: enum value expected";
+                                            case 0:
+                                            case 1:
+                                            case 2:
+                                                break;
+                                            }
+                                        }
+                                        return null;
+                                    };
+    
+                                    /**
+                                     * Creates a GoogleCloudMarketplaceInfo message from a plain object. Also converts values to their respective internal types.
+                                     * @function fromObject
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {Object.<string,*>} object Plain object
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo
+                                     */
+                                    GoogleCloudMarketplaceInfo.fromObject = function fromObject(object) {
+                                        if (object instanceof $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo)
+                                            return object;
+                                        var message = new $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo();
+                                        if (object.service != null)
+                                            message.service = String(object.service);
+                                        switch (object.commercialState) {
+                                        default:
+                                            if (typeof object.commercialState === "number") {
+                                                message.commercialState = object.commercialState;
+                                                break;
+                                            }
+                                            break;
+                                        case "COMMERCIAL_STATE_UNSPECIFIED":
+                                        case 0:
+                                            message.commercialState = 0;
+                                            break;
+                                        case "ONBOARDING":
+                                        case 1:
+                                            message.commercialState = 1;
+                                            break;
+                                        case "ACTIVE":
+                                        case 2:
+                                            message.commercialState = 2;
+                                            break;
+                                        }
+                                        return message;
+                                    };
+    
+                                    /**
+                                     * Creates a plain object from a GoogleCloudMarketplaceInfo message. Also converts values to other types if specified.
+                                     * @function toObject
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo} message GoogleCloudMarketplaceInfo
+                                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                     * @returns {Object.<string,*>} Plain object
+                                     */
+                                    GoogleCloudMarketplaceInfo.toObject = function toObject(message, options) {
+                                        if (!options)
+                                            options = {};
+                                        var object = {};
+                                        if (message.service != null && message.hasOwnProperty("service")) {
+                                            object.service = message.service;
+                                            if (options.oneofs)
+                                                object._service = "service";
+                                        }
+                                        if (message.commercialState != null && message.hasOwnProperty("commercialState")) {
+                                            object.commercialState = options.enums === String ? $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState[message.commercialState] === undefined ? message.commercialState : $root.google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState[message.commercialState] : message.commercialState;
+                                            if (options.oneofs)
+                                                object._commercialState = "commercialState";
+                                        }
+                                        return object;
+                                    };
+    
+                                    /**
+                                     * Converts this GoogleCloudMarketplaceInfo to JSON.
+                                     * @function toJSON
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @instance
+                                     * @returns {Object.<string,*>} JSON object
+                                     */
+                                    GoogleCloudMarketplaceInfo.prototype.toJSON = function toJSON() {
+                                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                    };
+    
+                                    /**
+                                     * Gets the default type url for GoogleCloudMarketplaceInfo
+                                     * @function getTypeUrl
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                     * @returns {string} The default type url
+                                     */
+                                    GoogleCloudMarketplaceInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                        if (typeUrlPrefix === undefined) {
+                                            typeUrlPrefix = "type.googleapis.com";
+                                        }
+                                        return typeUrlPrefix + "/google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo";
+                                    };
+    
+                                    /**
+                                     * CommercialState enum.
+                                     * @name google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo.GoogleCloudMarketplaceInfo.CommercialState
+                                     * @enum {number}
+                                     * @property {number} COMMERCIAL_STATE_UNSPECIFIED=0 COMMERCIAL_STATE_UNSPECIFIED value
+                                     * @property {number} ONBOARDING=1 ONBOARDING value
+                                     * @property {number} ACTIVE=2 ACTIVE value
+                                     */
+                                    GoogleCloudMarketplaceInfo.CommercialState = (function() {
+                                        var valuesById = {}, values = Object.create(valuesById);
+                                        values[valuesById[0] = "COMMERCIAL_STATE_UNSPECIFIED"] = 0;
+                                        values[valuesById[1] = "ONBOARDING"] = 1;
+                                        values[valuesById[2] = "ACTIVE"] = 2;
+                                        return values;
+                                    })();
+    
+                                    return GoogleCloudMarketplaceInfo;
+                                })();
+    
+                                return CommercialInfo;
+                            })();
+    
                             /**
                              * State enum.
                              * @name google.cloud.bigquery.analyticshub.v1.Listing.State
@@ -5485,7 +6101,9 @@
                              * @property {string|null} [subscriberContact] Subscription subscriberContact
                              * @property {Array.<google.cloud.bigquery.analyticshub.v1.Subscription.ILinkedResource>|null} [linkedResources] Subscription linkedResources
                              * @property {google.cloud.bigquery.analyticshub.v1.SharedResourceType|null} [resourceType] Subscription resourceType
+                             * @property {google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo|null} [commercialInfo] Subscription commercialInfo
                              * @property {boolean|null} [logLinkedDatasetQueryUserEmail] Subscription logLinkedDatasetQueryUserEmail
+                             * @property {google.cloud.bigquery.analyticshub.v1.IDestinationDataset|null} [destinationDataset] Subscription destinationDataset
                              */
     
                             /**
@@ -5602,12 +6220,28 @@
                             Subscription.prototype.resourceType = 0;
     
                             /**
+                             * Subscription commercialInfo.
+                             * @member {google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo|null|undefined} commercialInfo
+                             * @memberof google.cloud.bigquery.analyticshub.v1.Subscription
+                             * @instance
+                             */
+                            Subscription.prototype.commercialInfo = null;
+    
+                            /**
                              * Subscription logLinkedDatasetQueryUserEmail.
                              * @member {boolean|null|undefined} logLinkedDatasetQueryUserEmail
                              * @memberof google.cloud.bigquery.analyticshub.v1.Subscription
                              * @instance
                              */
                             Subscription.prototype.logLinkedDatasetQueryUserEmail = null;
+    
+                            /**
+                             * Subscription destinationDataset.
+                             * @member {google.cloud.bigquery.analyticshub.v1.IDestinationDataset|null|undefined} destinationDataset
+                             * @memberof google.cloud.bigquery.analyticshub.v1.Subscription
+                             * @instance
+                             */
+                            Subscription.prototype.destinationDataset = null;
     
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
@@ -5623,12 +6257,7 @@
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * Subscription _logLinkedDatasetQueryUserEmail.
-                             * @member {"logLinkedDatasetQueryUserEmail"|undefined} _logLinkedDatasetQueryUserEmail
-                             * @memberof google.cloud.bigquery.analyticshub.v1.Subscription
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(Subscription.prototype, "_logLinkedDatasetQueryUserEmail", {
                                 get: $util.oneOfGetter($oneOfFields = ["logLinkedDatasetQueryUserEmail"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -5686,8 +6315,12 @@
                                         $root.google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource.encode(message.linkedResources[i], writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                                 if (message.resourceType != null && Object.hasOwnProperty.call(message, "resourceType"))
                                     writer.uint32(/* id 12, wireType 0 =*/96).int32(message.resourceType);
+                                if (message.commercialInfo != null && Object.hasOwnProperty.call(message, "commercialInfo"))
+                                    $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.encode(message.commercialInfo, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
                                 if (message.logLinkedDatasetQueryUserEmail != null && Object.hasOwnProperty.call(message, "logLinkedDatasetQueryUserEmail"))
                                     writer.uint32(/* id 14, wireType 0 =*/112).bool(message.logLinkedDatasetQueryUserEmail);
+                                if (message.destinationDataset != null && Object.hasOwnProperty.call(message, "destinationDataset"))
+                                    $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset.encode(message.destinationDataset, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                                 return writer;
                             };
     
@@ -5715,12 +6348,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Subscription.decode = function decode(reader, length) {
+                            Subscription.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Subscription(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 5: {
                                             message.listing = reader.string();
@@ -5791,8 +6426,16 @@
                                             message.resourceType = reader.int32();
                                             break;
                                         }
+                                    case 13: {
+                                            message.commercialInfo = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.decode(reader, reader.uint32());
+                                            break;
+                                        }
                                     case 14: {
                                             message.logLinkedDatasetQueryUserEmail = reader.bool();
+                                            break;
+                                        }
+                                    case 15: {
+                                            message.destinationDataset = $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset.decode(reader, reader.uint32());
                                             break;
                                         }
                                     default:
@@ -5903,10 +6546,20 @@
                                     case 2:
                                         break;
                                     }
+                                if (message.commercialInfo != null && message.hasOwnProperty("commercialInfo")) {
+                                    var error = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.verify(message.commercialInfo);
+                                    if (error)
+                                        return "commercialInfo." + error;
+                                }
                                 if (message.logLinkedDatasetQueryUserEmail != null && message.hasOwnProperty("logLinkedDatasetQueryUserEmail")) {
                                     properties._logLinkedDatasetQueryUserEmail = 1;
                                     if (typeof message.logLinkedDatasetQueryUserEmail !== "boolean")
                                         return "logLinkedDatasetQueryUserEmail: boolean expected";
+                                }
+                                if (message.destinationDataset != null && message.hasOwnProperty("destinationDataset")) {
+                                    var error = $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset.verify(message.destinationDataset);
+                                    if (error)
+                                        return "destinationDataset." + error;
                                 }
                                 return null;
                             };
@@ -6009,8 +6662,18 @@
                                     message.resourceType = 2;
                                     break;
                                 }
+                                if (object.commercialInfo != null) {
+                                    if (typeof object.commercialInfo !== "object")
+                                        throw TypeError(".google.cloud.bigquery.analyticshub.v1.Subscription.commercialInfo: object expected");
+                                    message.commercialInfo = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.fromObject(object.commercialInfo);
+                                }
                                 if (object.logLinkedDatasetQueryUserEmail != null)
                                     message.logLinkedDatasetQueryUserEmail = Boolean(object.logLinkedDatasetQueryUserEmail);
+                                if (object.destinationDataset != null) {
+                                    if (typeof object.destinationDataset !== "object")
+                                        throw TypeError(".google.cloud.bigquery.analyticshub.v1.Subscription.destinationDataset: object expected");
+                                    message.destinationDataset = $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset.fromObject(object.destinationDataset);
+                                }
                                 return message;
                             };
     
@@ -6040,6 +6703,8 @@
                                     object.subscriberContact = "";
                                     object.organizationDisplayName = "";
                                     object.resourceType = options.enums === String ? "SHARED_RESOURCE_TYPE_UNSPECIFIED" : 0;
+                                    object.commercialInfo = null;
+                                    object.destinationDataset = null;
                                 }
                                 if (message.name != null && message.hasOwnProperty("name"))
                                     object.name = message.name;
@@ -6078,11 +6743,15 @@
                                 }
                                 if (message.resourceType != null && message.hasOwnProperty("resourceType"))
                                     object.resourceType = options.enums === String ? $root.google.cloud.bigquery.analyticshub.v1.SharedResourceType[message.resourceType] === undefined ? message.resourceType : $root.google.cloud.bigquery.analyticshub.v1.SharedResourceType[message.resourceType] : message.resourceType;
+                                if (message.commercialInfo != null && message.hasOwnProperty("commercialInfo"))
+                                    object.commercialInfo = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.toObject(message.commercialInfo, options);
                                 if (message.logLinkedDatasetQueryUserEmail != null && message.hasOwnProperty("logLinkedDatasetQueryUserEmail")) {
                                     object.logLinkedDatasetQueryUserEmail = message.logLinkedDatasetQueryUserEmail;
                                     if (options.oneofs)
                                         object._logLinkedDatasetQueryUserEmail = "logLinkedDatasetQueryUserEmail";
                                 }
+                                if (message.destinationDataset != null && message.hasOwnProperty("destinationDataset"))
+                                    object.destinationDataset = $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset.toObject(message.destinationDataset, options);
                                 return object;
                             };
     
@@ -6233,12 +6902,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                LinkedResource.decode = function decode(reader, length) {
+                                LinkedResource.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.linkedDataset = reader.string();
@@ -6386,6 +7057,421 @@
                                 return LinkedResource;
                             })();
     
+                            Subscription.CommercialInfo = (function() {
+    
+                                /**
+                                 * Properties of a CommercialInfo.
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription
+                                 * @interface ICommercialInfo
+                                 * @property {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo|null} [cloudMarketplace] CommercialInfo cloudMarketplace
+                                 */
+    
+                                /**
+                                 * Constructs a new CommercialInfo.
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription
+                                 * @classdesc Represents a CommercialInfo.
+                                 * @implements ICommercialInfo
+                                 * @constructor
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo=} [properties] Properties to set
+                                 */
+                                function CommercialInfo(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * CommercialInfo cloudMarketplace.
+                                 * @member {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo|null|undefined} cloudMarketplace
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @instance
+                                 */
+                                CommercialInfo.prototype.cloudMarketplace = null;
+    
+                                /**
+                                 * Creates a new CommercialInfo instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo=} [properties] Properties to set
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo} CommercialInfo instance
+                                 */
+                                CommercialInfo.create = function create(properties) {
+                                    return new CommercialInfo(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified CommercialInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo} message CommercialInfo message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                CommercialInfo.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.cloudMarketplace != null && Object.hasOwnProperty.call(message, "cloudMarketplace"))
+                                        $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.encode(message.cloudMarketplace, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified CommercialInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Subscription.ICommercialInfo} message CommercialInfo message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                CommercialInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes a CommercialInfo message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo} CommercialInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                CommercialInfo.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.cloudMarketplace = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.decode(reader, reader.uint32());
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes a CommercialInfo message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo} CommercialInfo
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                CommercialInfo.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies a CommercialInfo message.
+                                 * @function verify
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                CommercialInfo.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    if (message.cloudMarketplace != null && message.hasOwnProperty("cloudMarketplace")) {
+                                        var error = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.verify(message.cloudMarketplace);
+                                        if (error)
+                                            return "cloudMarketplace." + error;
+                                    }
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates a CommercialInfo message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo} CommercialInfo
+                                 */
+                                CommercialInfo.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo)
+                                        return object;
+                                    var message = new $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo();
+                                    if (object.cloudMarketplace != null) {
+                                        if (typeof object.cloudMarketplace !== "object")
+                                            throw TypeError(".google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.cloudMarketplace: object expected");
+                                        message.cloudMarketplace = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.fromObject(object.cloudMarketplace);
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from a CommercialInfo message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo} message CommercialInfo
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                CommercialInfo.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (options.defaults)
+                                        object.cloudMarketplace = null;
+                                    if (message.cloudMarketplace != null && message.hasOwnProperty("cloudMarketplace"))
+                                        object.cloudMarketplace = $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.toObject(message.cloudMarketplace, options);
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this CommercialInfo to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                CommercialInfo.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for CommercialInfo
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                CommercialInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo";
+                                };
+    
+                                CommercialInfo.GoogleCloudMarketplaceInfo = (function() {
+    
+                                    /**
+                                     * Properties of a GoogleCloudMarketplaceInfo.
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                     * @interface IGoogleCloudMarketplaceInfo
+                                     * @property {string|null} [order] GoogleCloudMarketplaceInfo order
+                                     */
+    
+                                    /**
+                                     * Constructs a new GoogleCloudMarketplaceInfo.
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo
+                                     * @classdesc Represents a GoogleCloudMarketplaceInfo.
+                                     * @implements IGoogleCloudMarketplaceInfo
+                                     * @constructor
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo=} [properties] Properties to set
+                                     */
+                                    function GoogleCloudMarketplaceInfo(properties) {
+                                        if (properties)
+                                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                                if (properties[keys[i]] != null)
+                                                    this[keys[i]] = properties[keys[i]];
+                                    }
+    
+                                    /**
+                                     * GoogleCloudMarketplaceInfo order.
+                                     * @member {string} order
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @instance
+                                     */
+                                    GoogleCloudMarketplaceInfo.prototype.order = "";
+    
+                                    /**
+                                     * Creates a new GoogleCloudMarketplaceInfo instance using the specified properties.
+                                     * @function create
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo=} [properties] Properties to set
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo instance
+                                     */
+                                    GoogleCloudMarketplaceInfo.create = function create(properties) {
+                                        return new GoogleCloudMarketplaceInfo(properties);
+                                    };
+    
+                                    /**
+                                     * Encodes the specified GoogleCloudMarketplaceInfo message. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                     * @function encode
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo} message GoogleCloudMarketplaceInfo message or plain object to encode
+                                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                                     * @returns {$protobuf.Writer} Writer
+                                     */
+                                    GoogleCloudMarketplaceInfo.encode = function encode(message, writer) {
+                                        if (!writer)
+                                            writer = $Writer.create();
+                                        if (message.order != null && Object.hasOwnProperty.call(message, "order"))
+                                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.order);
+                                        return writer;
+                                    };
+    
+                                    /**
+                                     * Encodes the specified GoogleCloudMarketplaceInfo message, length delimited. Does not implicitly {@link google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.verify|verify} messages.
+                                     * @function encodeDelimited
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.IGoogleCloudMarketplaceInfo} message GoogleCloudMarketplaceInfo message or plain object to encode
+                                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                                     * @returns {$protobuf.Writer} Writer
+                                     */
+                                    GoogleCloudMarketplaceInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                                        return this.encode(message, writer).ldelim();
+                                    };
+    
+                                    /**
+                                     * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer.
+                                     * @function decode
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                     * @param {number} [length] Message length if known beforehand
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo
+                                     * @throws {Error} If the payload is not a reader or valid buffer
+                                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                     */
+                                    GoogleCloudMarketplaceInfo.decode = function decode(reader, length, error) {
+                                        if (!(reader instanceof $Reader))
+                                            reader = $Reader.create(reader);
+                                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo();
+                                        while (reader.pos < end) {
+                                            var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
+                                            switch (tag >>> 3) {
+                                            case 1: {
+                                                    message.order = reader.string();
+                                                    break;
+                                                }
+                                            default:
+                                                reader.skipType(tag & 7);
+                                                break;
+                                            }
+                                        }
+                                        return message;
+                                    };
+    
+                                    /**
+                                     * Decodes a GoogleCloudMarketplaceInfo message from the specified reader or buffer, length delimited.
+                                     * @function decodeDelimited
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo
+                                     * @throws {Error} If the payload is not a reader or valid buffer
+                                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                     */
+                                    GoogleCloudMarketplaceInfo.decodeDelimited = function decodeDelimited(reader) {
+                                        if (!(reader instanceof $Reader))
+                                            reader = new $Reader(reader);
+                                        return this.decode(reader, reader.uint32());
+                                    };
+    
+                                    /**
+                                     * Verifies a GoogleCloudMarketplaceInfo message.
+                                     * @function verify
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {Object.<string,*>} message Plain object to verify
+                                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                     */
+                                    GoogleCloudMarketplaceInfo.verify = function verify(message) {
+                                        if (typeof message !== "object" || message === null)
+                                            return "object expected";
+                                        if (message.order != null && message.hasOwnProperty("order"))
+                                            if (!$util.isString(message.order))
+                                                return "order: string expected";
+                                        return null;
+                                    };
+    
+                                    /**
+                                     * Creates a GoogleCloudMarketplaceInfo message from a plain object. Also converts values to their respective internal types.
+                                     * @function fromObject
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {Object.<string,*>} object Plain object
+                                     * @returns {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo} GoogleCloudMarketplaceInfo
+                                     */
+                                    GoogleCloudMarketplaceInfo.fromObject = function fromObject(object) {
+                                        if (object instanceof $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo)
+                                            return object;
+                                        var message = new $root.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo();
+                                        if (object.order != null)
+                                            message.order = String(object.order);
+                                        return message;
+                                    };
+    
+                                    /**
+                                     * Creates a plain object from a GoogleCloudMarketplaceInfo message. Also converts values to other types if specified.
+                                     * @function toObject
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo} message GoogleCloudMarketplaceInfo
+                                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                     * @returns {Object.<string,*>} Plain object
+                                     */
+                                    GoogleCloudMarketplaceInfo.toObject = function toObject(message, options) {
+                                        if (!options)
+                                            options = {};
+                                        var object = {};
+                                        if (options.defaults)
+                                            object.order = "";
+                                        if (message.order != null && message.hasOwnProperty("order"))
+                                            object.order = message.order;
+                                        return object;
+                                    };
+    
+                                    /**
+                                     * Converts this GoogleCloudMarketplaceInfo to JSON.
+                                     * @function toJSON
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @instance
+                                     * @returns {Object.<string,*>} JSON object
+                                     */
+                                    GoogleCloudMarketplaceInfo.prototype.toJSON = function toJSON() {
+                                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                    };
+    
+                                    /**
+                                     * Gets the default type url for GoogleCloudMarketplaceInfo
+                                     * @function getTypeUrl
+                                     * @memberof google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo
+                                     * @static
+                                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                     * @returns {string} The default type url
+                                     */
+                                    GoogleCloudMarketplaceInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                        if (typeUrlPrefix === undefined) {
+                                            typeUrlPrefix = "type.googleapis.com";
+                                        }
+                                        return typeUrlPrefix + "/google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo.GoogleCloudMarketplaceInfo";
+                                    };
+    
+                                    return GoogleCloudMarketplaceInfo;
+                                })();
+    
+                                return CommercialInfo;
+                            })();
+    
                             /**
                              * State enum.
                              * @name google.cloud.bigquery.analyticshub.v1.Subscription.State
@@ -6514,12 +7600,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListDataExchangesRequest.decode = function decode(reader, length) {
+                            ListDataExchangesRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListDataExchangesRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -6755,12 +7843,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListDataExchangesResponse.decode = function decode(reader, length) {
+                            ListDataExchangesResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListDataExchangesResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.dataExchanges && message.dataExchanges.length))
@@ -7012,12 +8102,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListOrgDataExchangesRequest.decode = function decode(reader, length) {
+                            ListOrgDataExchangesRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListOrgDataExchangesRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.organization = reader.string();
@@ -7253,12 +8345,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListOrgDataExchangesResponse.decode = function decode(reader, length) {
+                            ListOrgDataExchangesResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListOrgDataExchangesResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.dataExchanges && message.dataExchanges.length))
@@ -7488,12 +8582,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetDataExchangeRequest.decode = function decode(reader, length) {
+                            GetDataExchangeRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.GetDataExchangeRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -7713,12 +8809,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateDataExchangeRequest.decode = function decode(reader, length) {
+                            CreateDataExchangeRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.CreateDataExchangeRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -7957,12 +9055,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            UpdateDataExchangeRequest.decode = function decode(reader, length) {
+                            UpdateDataExchangeRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.UpdateDataExchangeRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -8183,12 +9283,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteDataExchangeRequest.decode = function decode(reader, length) {
+                            DeleteDataExchangeRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DeleteDataExchangeRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -8408,12 +9510,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListListingsRequest.decode = function decode(reader, length) {
+                            ListListingsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListListingsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -8649,12 +9753,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListListingsResponse.decode = function decode(reader, length) {
+                            ListListingsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListListingsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.listings && message.listings.length))
@@ -8884,12 +9990,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetListingRequest.decode = function decode(reader, length) {
+                            GetListingRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.GetListingRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -9109,12 +10217,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateListingRequest.decode = function decode(reader, length) {
+                            CreateListingRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.CreateListingRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -9353,12 +10463,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            UpdateListingRequest.decode = function decode(reader, length) {
+                            UpdateListingRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.UpdateListingRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -9501,6 +10613,7 @@
                              * @memberof google.cloud.bigquery.analyticshub.v1
                              * @interface IDeleteListingRequest
                              * @property {string|null} [name] DeleteListingRequest name
+                             * @property {boolean|null} [deleteCommercial] DeleteListingRequest deleteCommercial
                              */
     
                             /**
@@ -9525,6 +10638,14 @@
                              * @instance
                              */
                             DeleteListingRequest.prototype.name = "";
+    
+                            /**
+                             * DeleteListingRequest deleteCommercial.
+                             * @member {boolean} deleteCommercial
+                             * @memberof google.cloud.bigquery.analyticshub.v1.DeleteListingRequest
+                             * @instance
+                             */
+                            DeleteListingRequest.prototype.deleteCommercial = false;
     
                             /**
                              * Creates a new DeleteListingRequest instance using the specified properties.
@@ -9552,6 +10673,8 @@
                                     writer = $Writer.create();
                                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                if (message.deleteCommercial != null && Object.hasOwnProperty.call(message, "deleteCommercial"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.deleteCommercial);
                                 return writer;
                             };
     
@@ -9579,15 +10702,21 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteListingRequest.decode = function decode(reader, length) {
+                            DeleteListingRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DeleteListingRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.deleteCommercial = reader.bool();
                                             break;
                                         }
                                     default:
@@ -9628,6 +10757,9 @@
                                 if (message.name != null && message.hasOwnProperty("name"))
                                     if (!$util.isString(message.name))
                                         return "name: string expected";
+                                if (message.deleteCommercial != null && message.hasOwnProperty("deleteCommercial"))
+                                    if (typeof message.deleteCommercial !== "boolean")
+                                        return "deleteCommercial: boolean expected";
                                 return null;
                             };
     
@@ -9645,6 +10777,8 @@
                                 var message = new $root.google.cloud.bigquery.analyticshub.v1.DeleteListingRequest();
                                 if (object.name != null)
                                     message.name = String(object.name);
+                                if (object.deleteCommercial != null)
+                                    message.deleteCommercial = Boolean(object.deleteCommercial);
                                 return message;
                             };
     
@@ -9661,10 +10795,14 @@
                                 if (!options)
                                     options = {};
                                 var object = {};
-                                if (options.defaults)
+                                if (options.defaults) {
                                     object.name = "";
+                                    object.deleteCommercial = false;
+                                }
                                 if (message.name != null && message.hasOwnProperty("name"))
                                     object.name = message.name;
+                                if (message.deleteCommercial != null && message.hasOwnProperty("deleteCommercial"))
+                                    object.deleteCommercial = message.deleteCommercial;
                                 return object;
                             };
     
@@ -9818,12 +10956,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SubscribeListingRequest.decode = function decode(reader, length) {
+                            SubscribeListingRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SubscribeListingRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 3: {
                                             message.destinationDataset = $root.google.cloud.bigquery.analyticshub.v1.DestinationDataset.decode(reader, reader.uint32());
@@ -10068,12 +11208,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SubscribeListingResponse.decode = function decode(reader, length) {
+                            SubscribeListingResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SubscribeListingResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.subscription = $root.google.cloud.bigquery.analyticshub.v1.Subscription.decode(reader, reader.uint32());
@@ -10320,12 +11462,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SubscribeDataExchangeRequest.decode = function decode(reader, length) {
+                            SubscribeDataExchangeRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SubscribeDataExchangeRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -10577,12 +11721,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SubscribeDataExchangeResponse.decode = function decode(reader, length) {
+                            SubscribeDataExchangeResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.SubscribeDataExchangeResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.subscription = $root.google.cloud.bigquery.analyticshub.v1.Subscription.decode(reader, reader.uint32());
@@ -10785,12 +11931,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RefreshSubscriptionRequest.decode = function decode(reader, length) {
+                            RefreshSubscriptionRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.RefreshSubscriptionRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -10988,12 +12136,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RefreshSubscriptionResponse.decode = function decode(reader, length) {
+                            RefreshSubscriptionResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.RefreshSubscriptionResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.subscription = $root.google.cloud.bigquery.analyticshub.v1.Subscription.decode(reader, reader.uint32());
@@ -11196,12 +12346,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetSubscriptionRequest.decode = function decode(reader, length) {
+                            GetSubscriptionRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.GetSubscriptionRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -11432,12 +12584,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListSubscriptionsRequest.decode = function decode(reader, length) {
+                            ListSubscriptionsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListSubscriptionsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -11685,12 +12839,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListSubscriptionsResponse.decode = function decode(reader, length) {
+                            ListSubscriptionsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListSubscriptionsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.subscriptions && message.subscriptions.length))
@@ -11953,12 +13109,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListSharedResourceSubscriptionsRequest.decode = function decode(reader, length) {
+                            ListSharedResourceSubscriptionsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListSharedResourceSubscriptionsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.resource = reader.string();
@@ -12206,12 +13364,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListSharedResourceSubscriptionsResponse.decode = function decode(reader, length) {
+                            ListSharedResourceSubscriptionsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ListSharedResourceSubscriptionsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.sharedResourceSubscriptions && message.sharedResourceSubscriptions.length))
@@ -12363,6 +13523,7 @@
                              * @memberof google.cloud.bigquery.analyticshub.v1
                              * @interface IRevokeSubscriptionRequest
                              * @property {string|null} [name] RevokeSubscriptionRequest name
+                             * @property {boolean|null} [revokeCommercial] RevokeSubscriptionRequest revokeCommercial
                              */
     
                             /**
@@ -12387,6 +13548,14 @@
                              * @instance
                              */
                             RevokeSubscriptionRequest.prototype.name = "";
+    
+                            /**
+                             * RevokeSubscriptionRequest revokeCommercial.
+                             * @member {boolean} revokeCommercial
+                             * @memberof google.cloud.bigquery.analyticshub.v1.RevokeSubscriptionRequest
+                             * @instance
+                             */
+                            RevokeSubscriptionRequest.prototype.revokeCommercial = false;
     
                             /**
                              * Creates a new RevokeSubscriptionRequest instance using the specified properties.
@@ -12414,6 +13583,8 @@
                                     writer = $Writer.create();
                                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                if (message.revokeCommercial != null && Object.hasOwnProperty.call(message, "revokeCommercial"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.revokeCommercial);
                                 return writer;
                             };
     
@@ -12441,15 +13612,21 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RevokeSubscriptionRequest.decode = function decode(reader, length) {
+                            RevokeSubscriptionRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.RevokeSubscriptionRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.revokeCommercial = reader.bool();
                                             break;
                                         }
                                     default:
@@ -12490,6 +13667,9 @@
                                 if (message.name != null && message.hasOwnProperty("name"))
                                     if (!$util.isString(message.name))
                                         return "name: string expected";
+                                if (message.revokeCommercial != null && message.hasOwnProperty("revokeCommercial"))
+                                    if (typeof message.revokeCommercial !== "boolean")
+                                        return "revokeCommercial: boolean expected";
                                 return null;
                             };
     
@@ -12507,6 +13687,8 @@
                                 var message = new $root.google.cloud.bigquery.analyticshub.v1.RevokeSubscriptionRequest();
                                 if (object.name != null)
                                     message.name = String(object.name);
+                                if (object.revokeCommercial != null)
+                                    message.revokeCommercial = Boolean(object.revokeCommercial);
                                 return message;
                             };
     
@@ -12523,10 +13705,14 @@
                                 if (!options)
                                     options = {};
                                 var object = {};
-                                if (options.defaults)
+                                if (options.defaults) {
                                     object.name = "";
+                                    object.revokeCommercial = false;
+                                }
                                 if (message.name != null && message.hasOwnProperty("name"))
                                     object.name = message.name;
+                                if (message.revokeCommercial != null && message.hasOwnProperty("revokeCommercial"))
+                                    object.revokeCommercial = message.revokeCommercial;
                                 return object;
                             };
     
@@ -12633,12 +13819,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RevokeSubscriptionResponse.decode = function decode(reader, length) {
+                            RevokeSubscriptionResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.RevokeSubscriptionResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -12819,12 +14007,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteSubscriptionRequest.decode = function decode(reader, length) {
+                            DeleteSubscriptionRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DeleteSubscriptionRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -13088,12 +14278,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            OperationMetadata.decode = function decode(reader, length) {
+                            OperationMetadata.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.OperationMetadata();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -13543,12 +14735,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PubSubSubscription.decode = function decode(reader, length) {
+                            PubSubSubscription.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.PubSubSubscription(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -14027,12 +15221,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RetryPolicy.decode = function decode(reader, length) {
+                            RetryPolicy.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.RetryPolicy();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.minimumBackoff = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -14264,12 +15460,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeadLetterPolicy.decode = function decode(reader, length) {
+                            DeadLetterPolicy.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.DeadLetterPolicy();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.deadLetterTopic = reader.string();
@@ -14480,12 +15678,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ExpirationPolicy.decode = function decode(reader, length) {
+                            ExpirationPolicy.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.ExpirationPolicy();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.ttl = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -14759,12 +15959,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PushConfig.decode = function decode(reader, length) {
+                            PushConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.PushConfig(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 3: {
                                             message.oidcToken = $root.google.cloud.bigquery.analyticshub.v1.PushConfig.OidcToken.decode(reader, reader.uint32());
@@ -15085,12 +16287,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                OidcToken.decode = function decode(reader, length) {
+                                OidcToken.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.PushConfig.OidcToken();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.serviceAccountEmail = reader.string();
@@ -15290,12 +16494,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                PubsubWrapper.decode = function decode(reader, length) {
+                                PubsubWrapper.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.PushConfig.PubsubWrapper();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -15476,12 +16682,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                NoWrapper.decode = function decode(reader, length) {
+                                NoWrapper.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.PushConfig.NoWrapper();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.writeMetadata = reader.bool();
@@ -15737,12 +16945,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            BigQueryConfig.decode = function decode(reader, length) {
+                            BigQueryConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.BigQueryConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.table = reader.string();
@@ -16114,12 +17324,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CloudStorageConfig.decode = function decode(reader, length) {
+                            CloudStorageConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.CloudStorageConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 4: {
                                             message.textConfig = $root.google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.TextConfig.decode(reader, reader.uint32());
@@ -16468,12 +17680,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                TextConfig.decode = function decode(reader, length) {
+                                TextConfig.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.TextConfig();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -16665,12 +17879,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                AvroConfig.decode = function decode(reader, length) {
+                                AvroConfig.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.AvroConfig();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.writeMetadata = reader.bool();
@@ -16920,12 +18136,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            MessageTransform.decode = function decode(reader, length) {
+                            MessageTransform.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.MessageTransform();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 2: {
                                             message.javascriptUdf = $root.google.cloud.bigquery.analyticshub.v1.JavaScriptUDF.decode(reader, reader.uint32());
@@ -17170,12 +18388,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            JavaScriptUDF.decode = function decode(reader, length) {
+                            JavaScriptUDF.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.bigquery.analyticshub.v1.JavaScriptUDF();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.functionName = reader.string();
@@ -17420,12 +18640,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -17770,12 +18992,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -18154,12 +19378,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -18386,12 +19612,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -18755,12 +19983,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -19099,6 +20329,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -19200,6 +20431,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -19246,6 +20485,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -19273,12 +20514,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -19324,6 +20567,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -19418,6 +20665,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -19512,6 +20762,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -19541,6 +20793,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -19571,6 +20824,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -19712,12 +20967,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -19979,12 +21236,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -20187,12 +21446,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -20395,12 +21656,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -20603,12 +21866,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -20876,12 +22141,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21255,12 +22522,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21463,12 +22732,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21695,12 +22966,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -21973,12 +23246,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -22400,12 +23675,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -22795,12 +24072,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -23025,12 +24304,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -23425,12 +24706,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24092,12 +25375,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24577,12 +25862,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -24821,12 +26108,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -25077,12 +26366,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -25422,12 +26713,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -25801,12 +27094,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26326,12 +27621,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26597,12 +27894,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26916,12 +28215,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -27157,12 +28458,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -27414,12 +28717,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -27722,12 +29027,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -28226,12 +29533,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -28846,12 +30155,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -29294,12 +30605,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -29329,12 +30637,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -30060,12 +31370,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -30356,12 +31668,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -30642,12 +31956,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -30954,12 +32270,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -31145,6 +32463,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -31204,6 +32523,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -31238,6 +32565,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -31265,12 +32594,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -31292,6 +32623,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -31352,6 +32687,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -31388,6 +32726,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -31411,6 +32751,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -31425,6 +32766,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -31612,12 +32955,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -32046,12 +33391,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -32385,12 +33732,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -32661,12 +34010,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -33196,12 +34547,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -33580,12 +34933,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -33870,12 +35225,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -34145,12 +35502,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -34456,12 +35815,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -34724,12 +36085,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -35050,12 +36413,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -35282,12 +36647,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -35510,12 +36877,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -35724,12 +37093,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -35921,12 +37292,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -36151,12 +37524,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DoubleValue.decode = function decode(reader, length) {
+                DoubleValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DoubleValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.double();
@@ -36354,12 +37729,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FloatValue.decode = function decode(reader, length) {
+                FloatValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FloatValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.float();
@@ -36557,12 +37934,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int64Value.decode = function decode(reader, length) {
+                Int64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int64();
@@ -36774,12 +38153,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt64Value.decode = function decode(reader, length) {
+                UInt64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint64();
@@ -36991,12 +38372,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int32Value.decode = function decode(reader, length) {
+                Int32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int32();
@@ -37194,12 +38577,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt32Value.decode = function decode(reader, length) {
+                UInt32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint32();
@@ -37397,12 +38782,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BoolValue.decode = function decode(reader, length) {
+                BoolValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BoolValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bool();
@@ -37600,12 +38987,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                StringValue.decode = function decode(reader, length) {
+                StringValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.StringValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.string();
@@ -37803,12 +39192,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BytesValue.decode = function decode(reader, length) {
+                BytesValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BytesValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bytes();
@@ -38192,12 +39583,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SetIamPolicyRequest.decode = function decode(reader, length) {
+                    SetIamPolicyRequest.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.SetIamPolicyRequest();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.resource = reader.string();
@@ -38441,12 +39834,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    GetIamPolicyRequest.decode = function decode(reader, length) {
+                    GetIamPolicyRequest.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.GetIamPolicyRequest();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.resource = reader.string();
@@ -38675,12 +40070,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    TestIamPermissionsRequest.decode = function decode(reader, length) {
+                    TestIamPermissionsRequest.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.TestIamPermissionsRequest();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.resource = reader.string();
@@ -38907,12 +40304,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    TestIamPermissionsResponse.decode = function decode(reader, length) {
+                    TestIamPermissionsResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.TestIamPermissionsResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.permissions && message.permissions.length))
@@ -39124,12 +40523,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    GetPolicyOptions.decode = function decode(reader, length) {
+                    GetPolicyOptions.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.GetPolicyOptions();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.requestedPolicyVersion = reader.int32();
@@ -39364,12 +40765,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Policy.decode = function decode(reader, length) {
+                    Policy.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.Policy();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.version = reader.int32();
@@ -39677,12 +41080,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Binding.decode = function decode(reader, length) {
+                    Binding.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.Binding();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.role = reader.string();
@@ -39938,12 +41343,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AuditConfig.decode = function decode(reader, length) {
+                    AuditConfig.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.AuditConfig();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.service = reader.string();
@@ -40186,12 +41593,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AuditLogConfig.decode = function decode(reader, length) {
+                    AuditLogConfig.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.AuditLogConfig();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.logType = reader.int32();
@@ -40478,12 +41887,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    PolicyDelta.decode = function decode(reader, length) {
+                    PolicyDelta.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.PolicyDelta();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.bindingDeltas && message.bindingDeltas.length))
@@ -40765,12 +42176,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    BindingDelta.decode = function decode(reader, length) {
+                    BindingDelta.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.BindingDelta();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.action = reader.int32();
@@ -41083,12 +42496,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AuditConfigDelta.decode = function decode(reader, length) {
+                    AuditConfigDelta.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.AuditConfigDelta();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.action = reader.int32();
@@ -41411,12 +42826,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Expr.decode = function decode(reader, length) {
+                Expr.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.Expr();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.expression = reader.string();
@@ -41921,12 +43338,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -42201,12 +43620,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -42437,12 +43858,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -42690,12 +44113,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -42925,12 +44350,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43128,12 +44555,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43342,12 +44771,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43574,12 +45005,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();
@@ -43826,12 +45259,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

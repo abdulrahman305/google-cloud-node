@@ -44,7 +44,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 1.  [Select or create a Cloud Platform project][projects].
 1.  [Enable billing for your project][billing].
 1.  [Enable the Merchant API API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
+1.  [Set up authentication][auth] so you can access the
     API from your local workstation.
 
 ### Installing the client library
@@ -117,6 +117,9 @@ Samples are in the [`samples/`](https://github.com/googleapis/google-cloud-node/
 
 | Sample                      | Source Code                       | Try it |
 | --------------------------- | --------------------------------- | ------ |
+| Promotions_service.get_promotion | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-merchant-promotions/samples/generated/v1/promotions_service.get_promotion.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-merchant-promotions/samples/generated/v1/promotions_service.get_promotion.js,packages/google-shopping-merchant-promotions/samples/README.md) |
+| Promotions_service.insert_promotion | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-merchant-promotions/samples/generated/v1/promotions_service.insert_promotion.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-merchant-promotions/samples/generated/v1/promotions_service.insert_promotion.js,packages/google-shopping-merchant-promotions/samples/README.md) |
+| Promotions_service.list_promotions | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-merchant-promotions/samples/generated/v1/promotions_service.list_promotions.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-merchant-promotions/samples/generated/v1/promotions_service.list_promotions.js,packages/google-shopping-merchant-promotions/samples/README.md) |
 | Promotions_service.get_promotion | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-merchant-promotions/samples/generated/v1beta/promotions_service.get_promotion.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-merchant-promotions/samples/generated/v1beta/promotions_service.get_promotion.js,packages/google-shopping-merchant-promotions/samples/README.md) |
 | Promotions_service.insert_promotion | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-merchant-promotions/samples/generated/v1beta/promotions_service.insert_promotion.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-merchant-promotions/samples/generated/v1beta/promotions_service.insert_promotion.js,packages/google-shopping-merchant-promotions/samples/README.md) |
 | Promotions_service.list_promotions | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-merchant-promotions/samples/generated/v1beta/promotions_service.list_promotions.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-merchant-promotions/samples/generated/v1beta/promotions_service.list_promotions.js,packages/google-shopping-merchant-promotions/samples/README.md) |
@@ -189,4 +192,4 @@ See [LICENSE](https://github.com/googleapis/google-cloud-node/blob/main/LICENSE)
 [projects]: https://console.cloud.google.com/project
 [billing]: https://support.google.com/cloud/answer/6293499#enable-billing
 [enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=merchantapi.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+[auth]: https://cloud.google.com/docs/authentication/external/set-up-adc-local

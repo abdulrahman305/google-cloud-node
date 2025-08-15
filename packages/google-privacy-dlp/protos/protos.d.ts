@@ -2211,7 +2211,7 @@ export namespace google {
                     type?: (google.privacy.dlp.v2.ByteContentItem.BytesType|keyof typeof google.privacy.dlp.v2.ByteContentItem.BytesType|null);
 
                     /** ByteContentItem data */
-                    data?: (Uint8Array|string|null);
+                    data?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a ByteContentItem. */
@@ -2227,7 +2227,7 @@ export namespace google {
                     public type: (google.privacy.dlp.v2.ByteContentItem.BytesType|keyof typeof google.privacy.dlp.v2.ByteContentItem.BytesType);
 
                     /** ByteContentItem data. */
-                    public data: (Uint8Array|string);
+                    public data: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new ByteContentItem instance using the specified properties.
@@ -4479,7 +4479,7 @@ export namespace google {
                 interface IRedactImageResponse {
 
                     /** RedactImageResponse redactedImage */
-                    redactedImage?: (Uint8Array|string|null);
+                    redactedImage?: (Uint8Array|Buffer|string|null);
 
                     /** RedactImageResponse extractedText */
                     extractedText?: (string|null);
@@ -4498,7 +4498,7 @@ export namespace google {
                     constructor(properties?: google.privacy.dlp.v2.IRedactImageResponse);
 
                     /** RedactImageResponse redactedImage. */
-                    public redactedImage: (Uint8Array|string);
+                    public redactedImage: (Uint8Array|Buffer|string);
 
                     /** RedactImageResponse extractedText. */
                     public extractedText: string;
@@ -13776,7 +13776,7 @@ export namespace google {
                 interface IUnwrappedCryptoKey {
 
                     /** UnwrappedCryptoKey key */
-                    key?: (Uint8Array|string|null);
+                    key?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents an UnwrappedCryptoKey. */
@@ -13789,7 +13789,7 @@ export namespace google {
                     constructor(properties?: google.privacy.dlp.v2.IUnwrappedCryptoKey);
 
                     /** UnwrappedCryptoKey key. */
-                    public key: (Uint8Array|string);
+                    public key: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new UnwrappedCryptoKey instance using the specified properties.
@@ -13873,7 +13873,7 @@ export namespace google {
                 interface IKmsWrappedCryptoKey {
 
                     /** KmsWrappedCryptoKey wrappedKey */
-                    wrappedKey?: (Uint8Array|string|null);
+                    wrappedKey?: (Uint8Array|Buffer|string|null);
 
                     /** KmsWrappedCryptoKey cryptoKeyName */
                     cryptoKeyName?: (string|null);
@@ -13889,7 +13889,7 @@ export namespace google {
                     constructor(properties?: google.privacy.dlp.v2.IKmsWrappedCryptoKey);
 
                     /** KmsWrappedCryptoKey wrappedKey. */
-                    public wrappedKey: (Uint8Array|string);
+                    public wrappedKey: (Uint8Array|Buffer|string);
 
                     /** KmsWrappedCryptoKey cryptoKeyName. */
                     public cryptoKeyName: string;
@@ -20134,6 +20134,9 @@ export namespace google {
 
                     /** DataProfileAction tagResources */
                     tagResources?: (google.privacy.dlp.v2.DataProfileAction.ITagResources|null);
+
+                    /** DataProfileAction publishToDataplexCatalog */
+                    publishToDataplexCatalog?: (google.privacy.dlp.v2.DataProfileAction.IPublishToDataplexCatalog|null);
                 }
 
                 /** Represents a DataProfileAction. */
@@ -20160,8 +20163,11 @@ export namespace google {
                     /** DataProfileAction tagResources. */
                     public tagResources?: (google.privacy.dlp.v2.DataProfileAction.ITagResources|null);
 
+                    /** DataProfileAction publishToDataplexCatalog. */
+                    public publishToDataplexCatalog?: (google.privacy.dlp.v2.DataProfileAction.IPublishToDataplexCatalog|null);
+
                     /** DataProfileAction action. */
-                    public action?: ("exportData"|"pubSubNotification"|"publishToChronicle"|"publishToScc"|"tagResources");
+                    public action?: ("exportData"|"pubSubNotification"|"publishToChronicle"|"publishToScc"|"tagResources"|"publishToDataplexCatalog");
 
                     /**
                      * Creates a new DataProfileAction instance using the specified properties.
@@ -20663,6 +20669,103 @@ export namespace google {
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
 
+                    /** Properties of a PublishToDataplexCatalog. */
+                    interface IPublishToDataplexCatalog {
+
+                        /** PublishToDataplexCatalog lowerDataRiskToLow */
+                        lowerDataRiskToLow?: (boolean|null);
+                    }
+
+                    /** Represents a PublishToDataplexCatalog. */
+                    class PublishToDataplexCatalog implements IPublishToDataplexCatalog {
+
+                        /**
+                         * Constructs a new PublishToDataplexCatalog.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.privacy.dlp.v2.DataProfileAction.IPublishToDataplexCatalog);
+
+                        /** PublishToDataplexCatalog lowerDataRiskToLow. */
+                        public lowerDataRiskToLow: boolean;
+
+                        /**
+                         * Creates a new PublishToDataplexCatalog instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns PublishToDataplexCatalog instance
+                         */
+                        public static create(properties?: google.privacy.dlp.v2.DataProfileAction.IPublishToDataplexCatalog): google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog;
+
+                        /**
+                         * Encodes the specified PublishToDataplexCatalog message. Does not implicitly {@link google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog.verify|verify} messages.
+                         * @param message PublishToDataplexCatalog message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.privacy.dlp.v2.DataProfileAction.IPublishToDataplexCatalog, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified PublishToDataplexCatalog message, length delimited. Does not implicitly {@link google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog.verify|verify} messages.
+                         * @param message PublishToDataplexCatalog message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.privacy.dlp.v2.DataProfileAction.IPublishToDataplexCatalog, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a PublishToDataplexCatalog message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns PublishToDataplexCatalog
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog;
+
+                        /**
+                         * Decodes a PublishToDataplexCatalog message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns PublishToDataplexCatalog
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog;
+
+                        /**
+                         * Verifies a PublishToDataplexCatalog message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a PublishToDataplexCatalog message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns PublishToDataplexCatalog
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog;
+
+                        /**
+                         * Creates a plain object from a PublishToDataplexCatalog message. Also converts values to other types if specified.
+                         * @param message PublishToDataplexCatalog
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this PublishToDataplexCatalog to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for PublishToDataplexCatalog
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
                     /** Properties of a TagResources. */
                     interface ITagResources {
 
@@ -21008,6 +21111,12 @@ export namespace google {
 
                     /** DataProfileFinding resourceVisibility */
                     resourceVisibility?: (google.privacy.dlp.v2.ResourceVisibility|keyof typeof google.privacy.dlp.v2.ResourceVisibility|null);
+
+                    /** DataProfileFinding fullResourceName */
+                    fullResourceName?: (string|null);
+
+                    /** DataProfileFinding dataSourceType */
+                    dataSourceType?: (google.privacy.dlp.v2.IDataSourceType|null);
                 }
 
                 /** Represents a DataProfileFinding. */
@@ -21042,6 +21151,12 @@ export namespace google {
 
                     /** DataProfileFinding resourceVisibility. */
                     public resourceVisibility: (google.privacy.dlp.v2.ResourceVisibility|keyof typeof google.privacy.dlp.v2.ResourceVisibility);
+
+                    /** DataProfileFinding fullResourceName. */
+                    public fullResourceName: string;
+
+                    /** DataProfileFinding dataSourceType. */
+                    public dataSourceType?: (google.privacy.dlp.v2.IDataSourceType|null);
 
                     /**
                      * Creates a new DataProfileFinding instance using the specified properties.
@@ -37491,6 +37606,103 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a SaveToGcsFindingsOutput. */
+                interface ISaveToGcsFindingsOutput {
+
+                    /** SaveToGcsFindingsOutput findings */
+                    findings?: (google.privacy.dlp.v2.IFinding[]|null);
+                }
+
+                /** Represents a SaveToGcsFindingsOutput. */
+                class SaveToGcsFindingsOutput implements ISaveToGcsFindingsOutput {
+
+                    /**
+                     * Constructs a new SaveToGcsFindingsOutput.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.privacy.dlp.v2.ISaveToGcsFindingsOutput);
+
+                    /** SaveToGcsFindingsOutput findings. */
+                    public findings: google.privacy.dlp.v2.IFinding[];
+
+                    /**
+                     * Creates a new SaveToGcsFindingsOutput instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SaveToGcsFindingsOutput instance
+                     */
+                    public static create(properties?: google.privacy.dlp.v2.ISaveToGcsFindingsOutput): google.privacy.dlp.v2.SaveToGcsFindingsOutput;
+
+                    /**
+                     * Encodes the specified SaveToGcsFindingsOutput message. Does not implicitly {@link google.privacy.dlp.v2.SaveToGcsFindingsOutput.verify|verify} messages.
+                     * @param message SaveToGcsFindingsOutput message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.privacy.dlp.v2.ISaveToGcsFindingsOutput, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SaveToGcsFindingsOutput message, length delimited. Does not implicitly {@link google.privacy.dlp.v2.SaveToGcsFindingsOutput.verify|verify} messages.
+                     * @param message SaveToGcsFindingsOutput message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.privacy.dlp.v2.ISaveToGcsFindingsOutput, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SaveToGcsFindingsOutput message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SaveToGcsFindingsOutput
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.privacy.dlp.v2.SaveToGcsFindingsOutput;
+
+                    /**
+                     * Decodes a SaveToGcsFindingsOutput message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SaveToGcsFindingsOutput
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.privacy.dlp.v2.SaveToGcsFindingsOutput;
+
+                    /**
+                     * Verifies a SaveToGcsFindingsOutput message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SaveToGcsFindingsOutput message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SaveToGcsFindingsOutput
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.privacy.dlp.v2.SaveToGcsFindingsOutput;
+
+                    /**
+                     * Creates a plain object from a SaveToGcsFindingsOutput message. Also converts values to other types if specified.
+                     * @param message SaveToGcsFindingsOutput
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.privacy.dlp.v2.SaveToGcsFindingsOutput, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SaveToGcsFindingsOutput to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SaveToGcsFindingsOutput
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of an InfoType. */
                 interface IInfoType {
 
@@ -40905,6 +41117,9 @@ export namespace google {
 
                     /** TableReference tableId */
                     tableId?: (string|null);
+
+                    /** TableReference projectId */
+                    projectId?: (string|null);
                 }
 
                 /** Represents a TableReference. */
@@ -40921,6 +41136,9 @@ export namespace google {
 
                     /** TableReference tableId. */
                     public tableId: string;
+
+                    /** TableReference projectId. */
+                    public projectId: string;
 
                     /**
                      * Creates a new TableReference instance using the specified properties.
@@ -41955,6 +42173,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -41995,6 +42216,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -46213,6 +46437,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -46461,7 +46688,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -46492,7 +46719,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -47922,7 +48149,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -47938,7 +48165,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

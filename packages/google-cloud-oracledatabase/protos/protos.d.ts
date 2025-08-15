@@ -585,9 +585,6 @@ export namespace google {
                     /** AutonomousDatabaseProperties maintenanceEndTime. */
                     public maintenanceEndTime?: (google.protobuf.ITimestamp|null);
 
-                    /** AutonomousDatabaseProperties _arePrimaryAllowlistedIpsUsed. */
-                    public _arePrimaryAllowlistedIpsUsed?: "arePrimaryAllowlistedIpsUsed";
-
                     /**
                      * Creates a new AutonomousDatabaseProperties instance using the specified properties.
                      * @param [properties] Properties to set
@@ -3203,12 +3200,6 @@ export namespace google {
                     /** CloudAccountDetails accountCreationUri. */
                     public accountCreationUri?: (string|null);
 
-                    /** CloudAccountDetails _linkExistingAccountUri. */
-                    public _linkExistingAccountUri?: "linkExistingAccountUri";
-
-                    /** CloudAccountDetails _accountCreationUri. */
-                    public _accountCreationUri?: "accountCreationUri";
-
                     /**
                      * Creates a new CloudAccountDetails instance using the specified properties.
                      * @param [properties] Properties to set
@@ -4377,6 +4368,48 @@ export namespace google {
                      * @returns Promise
                      */
                     public listAutonomousDatabaseBackups(request: google.cloud.oracledatabase.v1.IListAutonomousDatabaseBackupsRequest): Promise<google.cloud.oracledatabase.v1.ListAutonomousDatabaseBackupsResponse>;
+
+                    /**
+                     * Calls StopAutonomousDatabase.
+                     * @param request StopAutonomousDatabaseRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Operation
+                     */
+                    public stopAutonomousDatabase(request: google.cloud.oracledatabase.v1.IStopAutonomousDatabaseRequest, callback: google.cloud.oracledatabase.v1.OracleDatabase.StopAutonomousDatabaseCallback): void;
+
+                    /**
+                     * Calls StopAutonomousDatabase.
+                     * @param request StopAutonomousDatabaseRequest message or plain object
+                     * @returns Promise
+                     */
+                    public stopAutonomousDatabase(request: google.cloud.oracledatabase.v1.IStopAutonomousDatabaseRequest): Promise<google.longrunning.Operation>;
+
+                    /**
+                     * Calls StartAutonomousDatabase.
+                     * @param request StartAutonomousDatabaseRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Operation
+                     */
+                    public startAutonomousDatabase(request: google.cloud.oracledatabase.v1.IStartAutonomousDatabaseRequest, callback: google.cloud.oracledatabase.v1.OracleDatabase.StartAutonomousDatabaseCallback): void;
+
+                    /**
+                     * Calls StartAutonomousDatabase.
+                     * @param request StartAutonomousDatabaseRequest message or plain object
+                     * @returns Promise
+                     */
+                    public startAutonomousDatabase(request: google.cloud.oracledatabase.v1.IStartAutonomousDatabaseRequest): Promise<google.longrunning.Operation>;
+
+                    /**
+                     * Calls RestartAutonomousDatabase.
+                     * @param request RestartAutonomousDatabaseRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Operation
+                     */
+                    public restartAutonomousDatabase(request: google.cloud.oracledatabase.v1.IRestartAutonomousDatabaseRequest, callback: google.cloud.oracledatabase.v1.OracleDatabase.RestartAutonomousDatabaseCallback): void;
+
+                    /**
+                     * Calls RestartAutonomousDatabase.
+                     * @param request RestartAutonomousDatabaseRequest message or plain object
+                     * @returns Promise
+                     */
+                    public restartAutonomousDatabase(request: google.cloud.oracledatabase.v1.IRestartAutonomousDatabaseRequest): Promise<google.longrunning.Operation>;
                 }
 
                 namespace OracleDatabase {
@@ -4534,6 +4567,27 @@ export namespace google {
                      * @param [response] ListAutonomousDatabaseBackupsResponse
                      */
                     type ListAutonomousDatabaseBackupsCallback = (error: (Error|null), response?: google.cloud.oracledatabase.v1.ListAutonomousDatabaseBackupsResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.oracledatabase.v1.OracleDatabase|stopAutonomousDatabase}.
+                     * @param error Error, if any
+                     * @param [response] Operation
+                     */
+                    type StopAutonomousDatabaseCallback = (error: (Error|null), response?: google.longrunning.Operation) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.oracledatabase.v1.OracleDatabase|startAutonomousDatabase}.
+                     * @param error Error, if any
+                     * @param [response] Operation
+                     */
+                    type StartAutonomousDatabaseCallback = (error: (Error|null), response?: google.longrunning.Operation) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.oracledatabase.v1.OracleDatabase|restartAutonomousDatabase}.
+                     * @param error Error, if any
+                     * @param [response] Operation
+                     */
+                    type RestartAutonomousDatabaseCallback = (error: (Error|null), response?: google.longrunning.Operation) => void;
                 }
 
                 /** Properties of a ListCloudExadataInfrastructuresRequest. */
@@ -7449,6 +7503,297 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a StopAutonomousDatabaseRequest. */
+                interface IStopAutonomousDatabaseRequest {
+
+                    /** StopAutonomousDatabaseRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a StopAutonomousDatabaseRequest. */
+                class StopAutonomousDatabaseRequest implements IStopAutonomousDatabaseRequest {
+
+                    /**
+                     * Constructs a new StopAutonomousDatabaseRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.oracledatabase.v1.IStopAutonomousDatabaseRequest);
+
+                    /** StopAutonomousDatabaseRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new StopAutonomousDatabaseRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns StopAutonomousDatabaseRequest instance
+                     */
+                    public static create(properties?: google.cloud.oracledatabase.v1.IStopAutonomousDatabaseRequest): google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest;
+
+                    /**
+                     * Encodes the specified StopAutonomousDatabaseRequest message. Does not implicitly {@link google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest.verify|verify} messages.
+                     * @param message StopAutonomousDatabaseRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.oracledatabase.v1.IStopAutonomousDatabaseRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified StopAutonomousDatabaseRequest message, length delimited. Does not implicitly {@link google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest.verify|verify} messages.
+                     * @param message StopAutonomousDatabaseRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.oracledatabase.v1.IStopAutonomousDatabaseRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a StopAutonomousDatabaseRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns StopAutonomousDatabaseRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest;
+
+                    /**
+                     * Decodes a StopAutonomousDatabaseRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns StopAutonomousDatabaseRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest;
+
+                    /**
+                     * Verifies a StopAutonomousDatabaseRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a StopAutonomousDatabaseRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns StopAutonomousDatabaseRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest;
+
+                    /**
+                     * Creates a plain object from a StopAutonomousDatabaseRequest message. Also converts values to other types if specified.
+                     * @param message StopAutonomousDatabaseRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this StopAutonomousDatabaseRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for StopAutonomousDatabaseRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a StartAutonomousDatabaseRequest. */
+                interface IStartAutonomousDatabaseRequest {
+
+                    /** StartAutonomousDatabaseRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a StartAutonomousDatabaseRequest. */
+                class StartAutonomousDatabaseRequest implements IStartAutonomousDatabaseRequest {
+
+                    /**
+                     * Constructs a new StartAutonomousDatabaseRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.oracledatabase.v1.IStartAutonomousDatabaseRequest);
+
+                    /** StartAutonomousDatabaseRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new StartAutonomousDatabaseRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns StartAutonomousDatabaseRequest instance
+                     */
+                    public static create(properties?: google.cloud.oracledatabase.v1.IStartAutonomousDatabaseRequest): google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest;
+
+                    /**
+                     * Encodes the specified StartAutonomousDatabaseRequest message. Does not implicitly {@link google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest.verify|verify} messages.
+                     * @param message StartAutonomousDatabaseRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.oracledatabase.v1.IStartAutonomousDatabaseRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified StartAutonomousDatabaseRequest message, length delimited. Does not implicitly {@link google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest.verify|verify} messages.
+                     * @param message StartAutonomousDatabaseRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.oracledatabase.v1.IStartAutonomousDatabaseRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a StartAutonomousDatabaseRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns StartAutonomousDatabaseRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest;
+
+                    /**
+                     * Decodes a StartAutonomousDatabaseRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns StartAutonomousDatabaseRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest;
+
+                    /**
+                     * Verifies a StartAutonomousDatabaseRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a StartAutonomousDatabaseRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns StartAutonomousDatabaseRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest;
+
+                    /**
+                     * Creates a plain object from a StartAutonomousDatabaseRequest message. Also converts values to other types if specified.
+                     * @param message StartAutonomousDatabaseRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this StartAutonomousDatabaseRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for StartAutonomousDatabaseRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RestartAutonomousDatabaseRequest. */
+                interface IRestartAutonomousDatabaseRequest {
+
+                    /** RestartAutonomousDatabaseRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a RestartAutonomousDatabaseRequest. */
+                class RestartAutonomousDatabaseRequest implements IRestartAutonomousDatabaseRequest {
+
+                    /**
+                     * Constructs a new RestartAutonomousDatabaseRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.oracledatabase.v1.IRestartAutonomousDatabaseRequest);
+
+                    /** RestartAutonomousDatabaseRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new RestartAutonomousDatabaseRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RestartAutonomousDatabaseRequest instance
+                     */
+                    public static create(properties?: google.cloud.oracledatabase.v1.IRestartAutonomousDatabaseRequest): google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest;
+
+                    /**
+                     * Encodes the specified RestartAutonomousDatabaseRequest message. Does not implicitly {@link google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest.verify|verify} messages.
+                     * @param message RestartAutonomousDatabaseRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.oracledatabase.v1.IRestartAutonomousDatabaseRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RestartAutonomousDatabaseRequest message, length delimited. Does not implicitly {@link google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest.verify|verify} messages.
+                     * @param message RestartAutonomousDatabaseRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.oracledatabase.v1.IRestartAutonomousDatabaseRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RestartAutonomousDatabaseRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RestartAutonomousDatabaseRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest;
+
+                    /**
+                     * Decodes a RestartAutonomousDatabaseRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RestartAutonomousDatabaseRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest;
+
+                    /**
+                     * Verifies a RestartAutonomousDatabaseRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RestartAutonomousDatabaseRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RestartAutonomousDatabaseRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest;
+
+                    /**
+                     * Creates a plain object from a RestartAutonomousDatabaseRequest message. Also converts values to other types if specified.
+                     * @param message RestartAutonomousDatabaseRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RestartAutonomousDatabaseRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RestartAutonomousDatabaseRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a GenerateAutonomousDatabaseWalletRequest. */
                 interface IGenerateAutonomousDatabaseWalletRequest {
 
@@ -7568,7 +7913,7 @@ export namespace google {
                 interface IGenerateAutonomousDatabaseWalletResponse {
 
                     /** GenerateAutonomousDatabaseWalletResponse archiveContent */
-                    archiveContent?: (Uint8Array|string|null);
+                    archiveContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a GenerateAutonomousDatabaseWalletResponse. */
@@ -7581,7 +7926,7 @@ export namespace google {
                     constructor(properties?: google.cloud.oracledatabase.v1.IGenerateAutonomousDatabaseWalletResponse);
 
                     /** GenerateAutonomousDatabaseWalletResponse archiveContent. */
-                    public archiveContent: (Uint8Array|string);
+                    public archiveContent: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new GenerateAutonomousDatabaseWalletResponse instance using the specified properties.
@@ -9804,6 +10149,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -9844,6 +10192,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -13909,6 +14260,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -14160,7 +14514,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -14191,7 +14545,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -15433,7 +15787,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -15449,7 +15803,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

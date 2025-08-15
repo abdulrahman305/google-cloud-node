@@ -4,6 +4,27 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/dns?activeTab=versions
 
+## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/dns-v5.2.0...dns-v5.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/dns-v5.1.0...dns-v5.2.0) (2025-05-09)
+
+
+### Features
+
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+
+### Bug Fixes
+
+* Update outdated types for DNS ([#6238](https://github.com/googleapis/google-cloud-node/issues/6238)) ([96aa3d8](https://github.com/googleapis/google-cloud-node/commit/96aa3d809b7cfff6410ce89b177ba3fbc6a607da))
+* Update Record typings ([7aa1c72](https://github.com/googleapis/google-cloud-node/commit/7aa1c72d37b636a6fde876758701a9b37c7a609c))
+
 ## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/dns-v5.0.0...dns-v5.1.0) (2025-03-19)
 
 

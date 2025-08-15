@@ -256,6 +256,13 @@
                             "uri": {
                               "type": "string",
                               "id": 1
+                            },
+                            "serviceUri": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             }
                           }
                         }
@@ -410,6 +417,8 @@
                             "vpnGateway",
                             "vpnTunnel",
                             "vpcConnector",
+                            "directVpcEgressConnection",
+                            "serverlessExternalConnection",
                             "deliver",
                             "forward",
                             "abort",
@@ -483,6 +492,14 @@
                         "vpcConnector": {
                           "type": "VpcConnectorInfo",
                           "id": 21
+                        },
+                        "directVpcEgressConnection": {
+                          "type": "DirectVpcEgressConnectionInfo",
+                          "id": 33
+                        },
+                        "serverlessExternalConnection": {
+                          "type": "ServerlessExternalConnectionInfo",
+                          "id": 34
                         },
                         "deliver": {
                           "type": "DeliverInfo",
@@ -598,6 +615,8 @@
                             "ARRIVE_AT_VPN_GATEWAY": 12,
                             "ARRIVE_AT_VPN_TUNNEL": 13,
                             "ARRIVE_AT_VPC_CONNECTOR": 24,
+                            "DIRECT_VPC_EGRESS_CONNECTION": 35,
+                            "SERVERLESS_EXTERNAL_CONNECTION": 36,
                             "NAT": 14,
                             "PROXY_CONNECTION": 15,
                             "DELIVER": 16,
@@ -737,7 +756,8 @@
                             "NETWORK_FIREWALL_POLICY_RULE": 5,
                             "NETWORK_REGIONAL_FIREWALL_POLICY_RULE": 6,
                             "UNSUPPORTED_FIREWALL_POLICY_RULE": 100,
-                            "TRACKING_STATE": 101
+                            "TRACKING_STATE": 101,
+                            "ANALYSIS_SKIPPED": 102
                           }
                         }
                       }
@@ -776,7 +796,10 @@
                         },
                         "routeScope": {
                           "type": "RouteScope",
-                          "id": 14
+                          "id": 14,
+                          "options": {
+                            "deprecated": true
+                          }
                         },
                         "displayName": {
                           "type": "string",
@@ -796,7 +819,10 @@
                         },
                         "nextHop": {
                           "type": "string",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "deprecated": true
+                          }
                         },
                         "networkUri": {
                           "type": "string",
@@ -855,8 +881,29 @@
                           "type": "string",
                           "id": 18,
                           "options": {
+                            "deprecated": true,
                             "proto3_optional": true
                           }
+                        },
+                        "nextHopUri": {
+                          "type": "string",
+                          "id": 20
+                        },
+                        "nextHopNetworkUri": {
+                          "type": "string",
+                          "id": 21
+                        },
+                        "originatingRouteUri": {
+                          "type": "string",
+                          "id": 22
+                        },
+                        "originatingRouteDisplayName": {
+                          "type": "string",
+                          "id": 23
+                        },
+                        "nccHubRouteUri": {
+                          "type": "string",
+                          "id": 24
                         }
                       },
                       "nested": {
@@ -919,7 +966,8 @@
                             "CLOUD_DNS": 3,
                             "GOOGLE_API": 4,
                             "GOOGLE_API_PSC": 5,
-                            "GOOGLE_API_VPC_SC": 6
+                            "GOOGLE_API_VPC_SC": 6,
+                            "SERVERLESS_VPC_ACCESS": 7
                           }
                         }
                       }
@@ -1350,7 +1398,8 @@
                             "SOURCE_FORWARDING_RULE_UNSUPPORTED": 21,
                             "NON_ROUTABLE_IP_ADDRESS": 22,
                             "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT": 30,
-                            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG": 31
+                            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG": 31,
+                            "NO_SERVERLESS_IP_RANGES": 37
                           }
                         }
                       }
@@ -1406,6 +1455,7 @@
                             "FORWARDING_RULE_MISMATCH": 11,
                             "FORWARDING_RULE_NO_INSTANCES": 12,
                             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK": 13,
+                            "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS": 85,
                             "INSTANCE_NOT_RUNNING": 14,
                             "GKE_CLUSTER_NOT_RUNNING": 27,
                             "CLOUD_SQL_INSTANCE_NOT_RUNNING": 28,
@@ -1464,7 +1514,10 @@
                             "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION": 80,
                             "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION": 81,
                             "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION": 82,
-                            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED": 83
+                            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED": 83,
+                            "PSC_PORT_MAPPING_PORT_MISMATCH": 86,
+                            "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED": 87,
+                            "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION": 88
                           }
                         }
                       }
@@ -1656,6 +1709,47 @@
                         "location": {
                           "type": "string",
                           "id": 3
+                        }
+                      }
+                    },
+                    "DirectVpcEgressConnectionInfo": {
+                      "fields": {
+                        "networkUri": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "subnetworkUri": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "selectedIpRange": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6"
+                          }
+                        },
+                        "selectedIpAddress": {
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6"
+                          }
+                        },
+                        "region": {
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "ServerlessExternalConnectionInfo": {
+                      "fields": {
+                        "selectedIpAddress": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6"
+                          }
                         }
                       }
                     },
@@ -2623,7 +2717,9 @@
                     "java_outer_classname": "VpcFlowLogsConfigProto",
                     "java_package": "com.google.cloud.networkmanagement.v1beta1",
                     "php_namespace": "Google\\Cloud\\NetworkManagement\\V1beta1",
-                    "ruby_package": "Google::Cloud::NetworkManagement::V1beta1"
+                    "ruby_package": "Google::Cloud::NetworkManagement::V1beta1",
+                    "(google.api.resource_definition).type": "networkmanagement.googleapis.com/OrganizationLocation",
+                    "(google.api.resource_definition).pattern": "organizations/{organization}/locations/{location}"
                   },
                   "nested": {
                     "ConnectivityTest": {
@@ -2865,6 +2961,13 @@
                             "uri": {
                               "type": "string",
                               "id": 1
+                            },
+                            "serviceUri": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             }
                           }
                         }
@@ -2960,6 +3063,15 @@
                         "destinationEgressLocation": {
                           "type": "EdgeLocation",
                           "id": 9
+                        },
+                        "edgeResponses": {
+                          "rule": "repeated",
+                          "type": "SingleEdgeResponse",
+                          "id": 10
+                        },
+                        "probedAllDevices": {
+                          "type": "bool",
+                          "id": 11
                         }
                       },
                       "nested": {
@@ -2984,6 +3096,34 @@
                             "metropolitanArea": {
                               "type": "string",
                               "id": 1
+                            }
+                          }
+                        },
+                        "SingleEdgeResponse": {
+                          "fields": {
+                            "result": {
+                              "type": "ProbingResult",
+                              "id": 1
+                            },
+                            "sentProbeCount": {
+                              "type": "int32",
+                              "id": 2
+                            },
+                            "successfulProbeCount": {
+                              "type": "int32",
+                              "id": 3
+                            },
+                            "probingLatency": {
+                              "type": "LatencyDistribution",
+                              "id": 4
+                            },
+                            "destinationEgressLocation": {
+                              "type": "EdgeLocation",
+                              "id": 5
+                            },
+                            "destinationRouter": {
+                              "type": "string",
+                              "id": 6
                             }
                           }
                         }
@@ -3019,6 +3159,8 @@
                             "vpnGateway",
                             "vpnTunnel",
                             "vpcConnector",
+                            "directVpcEgressConnection",
+                            "serverlessExternalConnection",
                             "deliver",
                             "forward",
                             "abort",
@@ -3092,6 +3234,14 @@
                         "vpcConnector": {
                           "type": "VpcConnectorInfo",
                           "id": 21
+                        },
+                        "directVpcEgressConnection": {
+                          "type": "DirectVpcEgressConnectionInfo",
+                          "id": 33
+                        },
+                        "serverlessExternalConnection": {
+                          "type": "ServerlessExternalConnectionInfo",
+                          "id": 34
                         },
                         "deliver": {
                           "type": "DeliverInfo",
@@ -3207,6 +3357,8 @@
                             "ARRIVE_AT_VPN_GATEWAY": 12,
                             "ARRIVE_AT_VPN_TUNNEL": 13,
                             "ARRIVE_AT_VPC_CONNECTOR": 24,
+                            "DIRECT_VPC_EGRESS_CONNECTION": 35,
+                            "SERVERLESS_EXTERNAL_CONNECTION": 36,
                             "NAT": 14,
                             "PROXY_CONNECTION": 15,
                             "DELIVER": 16,
@@ -3259,6 +3411,26 @@
                         "pscNetworkAttachmentUri": {
                           "type": "string",
                           "id": 9
+                        },
+                        "running": {
+                          "type": "bool",
+                          "id": 10,
+                          "options": {
+                            "deprecated": true
+                          }
+                        },
+                        "status": {
+                          "type": "Status",
+                          "id": 11
+                        }
+                      },
+                      "nested": {
+                        "Status": {
+                          "values": {
+                            "STATUS_UNSPECIFIED": 0,
+                            "RUNNING": 1,
+                            "NOT_RUNNING": 2
+                          }
                         }
                       }
                     },
@@ -3333,6 +3505,10 @@
                         "firewallRuleType": {
                           "type": "FirewallRuleType",
                           "id": 10
+                        },
+                        "policyPriority": {
+                          "type": "int32",
+                          "id": 12
                         }
                       },
                       "nested": {
@@ -3346,7 +3522,8 @@
                             "NETWORK_FIREWALL_POLICY_RULE": 5,
                             "NETWORK_REGIONAL_FIREWALL_POLICY_RULE": 6,
                             "UNSUPPORTED_FIREWALL_POLICY_RULE": 100,
-                            "TRACKING_STATE": 101
+                            "TRACKING_STATE": 101,
+                            "ANALYSIS_SKIPPED": 102
                           }
                         }
                       }
@@ -3385,7 +3562,10 @@
                         },
                         "routeScope": {
                           "type": "RouteScope",
-                          "id": 14
+                          "id": 14,
+                          "options": {
+                            "deprecated": true
+                          }
                         },
                         "displayName": {
                           "type": "string",
@@ -3405,7 +3585,10 @@
                         },
                         "nextHop": {
                           "type": "string",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "deprecated": true
+                          }
                         },
                         "networkUri": {
                           "type": "string",
@@ -3464,8 +3647,29 @@
                           "type": "string",
                           "id": 18,
                           "options": {
+                            "deprecated": true,
                             "proto3_optional": true
                           }
+                        },
+                        "nextHopUri": {
+                          "type": "string",
+                          "id": 20
+                        },
+                        "nextHopNetworkUri": {
+                          "type": "string",
+                          "id": 21
+                        },
+                        "originatingRouteUri": {
+                          "type": "string",
+                          "id": 22
+                        },
+                        "originatingRouteDisplayName": {
+                          "type": "string",
+                          "id": 23
+                        },
+                        "nccHubRouteUri": {
+                          "type": "string",
+                          "id": 24
                         }
                       },
                       "nested": {
@@ -3496,7 +3700,8 @@
                             "NEXT_HOP_BLACKHOLE": 9,
                             "NEXT_HOP_ILB": 10,
                             "NEXT_HOP_ROUTER_APPLIANCE": 11,
-                            "NEXT_HOP_NCC_HUB": 12
+                            "NEXT_HOP_NCC_HUB": 12,
+                            "SECURE_WEB_PROXY_GATEWAY": 13
                           }
                         },
                         "RouteScope": {
@@ -3528,7 +3733,8 @@
                             "CLOUD_DNS": 3,
                             "GOOGLE_API": 4,
                             "GOOGLE_API_PSC": 5,
-                            "GOOGLE_API_VPC_SC": 6
+                            "GOOGLE_API_VPC_SC": 6,
+                            "SERVERLESS_VPC_ACCESS": 7
                           }
                         }
                       }
@@ -3802,6 +4008,10 @@
                         "pscGoogleApiTarget": {
                           "type": "string",
                           "id": 5
+                        },
+                        "googleServiceType": {
+                          "type": "GoogleServiceType",
+                          "id": 6
                         }
                       },
                       "nested": {
@@ -3825,6 +4035,16 @@
                             "GOOGLE_MANAGED_SERVICE": 15,
                             "REDIS_INSTANCE": 16,
                             "REDIS_CLUSTER": 17
+                          }
+                        },
+                        "GoogleServiceType": {
+                          "values": {
+                            "GOOGLE_SERVICE_TYPE_UNSPECIFIED": 0,
+                            "IAP": 1,
+                            "GFE_PROXY_OR_HEALTH_CHECK_PROBER": 2,
+                            "CLOUD_DNS": 3,
+                            "PRIVATE_GOOGLE_ACCESS": 4,
+                            "SERVERLESS_VPC_ACCESS": 5
                           }
                         }
                       }
@@ -3867,7 +4087,8 @@
                             "CLOUD_SQL_INSTANCE": 6,
                             "ANOTHER_PROJECT": 7,
                             "NCC_HUB": 8,
-                            "ROUTER_APPLIANCE": 9
+                            "ROUTER_APPLIANCE": 9,
+                            "SECURE_WEB_PROXY_GATEWAY": 10
                           }
                         }
                       }
@@ -3953,13 +4174,15 @@
                             "FIREWALL_CONFIG_NOT_FOUND": 26,
                             "ROUTE_CONFIG_NOT_FOUND": 27,
                             "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT": 19,
+                            "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT": 39,
                             "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED": 20,
                             "SOURCE_REDIS_CLUSTER_UNSUPPORTED": 34,
                             "SOURCE_REDIS_INSTANCE_UNSUPPORTED": 35,
                             "SOURCE_FORWARDING_RULE_UNSUPPORTED": 21,
                             "NON_ROUTABLE_IP_ADDRESS": 22,
                             "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT": 30,
-                            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG": 31
+                            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG": 31,
+                            "NO_SERVERLESS_IP_RANGES": 37
                           }
                         }
                       }
@@ -4005,6 +4228,7 @@
                             "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED": 52,
                             "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID": 53,
                             "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS": 44,
+                            "NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS": 98,
                             "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH": 45,
                             "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH": 46,
                             "PRIVATE_TRAFFIC_TO_INTERNET": 7,
@@ -4015,6 +4239,7 @@
                             "FORWARDING_RULE_MISMATCH": 11,
                             "FORWARDING_RULE_NO_INSTANCES": 12,
                             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK": 13,
+                            "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS": 85,
                             "INSTANCE_NOT_RUNNING": 14,
                             "GKE_CLUSTER_NOT_RUNNING": 27,
                             "CLOUD_SQL_INSTANCE_NOT_RUNNING": 28,
@@ -4073,7 +4298,14 @@
                             "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION": 80,
                             "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION": 81,
                             "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION": 82,
-                            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED": 83
+                            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED": 83,
+                            "PSC_PORT_MAPPING_PORT_MISMATCH": 86,
+                            "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED": 87,
+                            "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION": 88,
+                            "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED": 89,
+                            "NO_MATCHING_NAT64_GATEWAY": 90,
+                            "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH": 96,
+                            "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION": 97
                           }
                         }
                       }
@@ -4265,6 +4497,47 @@
                         "location": {
                           "type": "string",
                           "id": 3
+                        }
+                      }
+                    },
+                    "DirectVpcEgressConnectionInfo": {
+                      "fields": {
+                        "networkUri": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "subnetworkUri": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "selectedIpRange": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6"
+                          }
+                        },
+                        "selectedIpAddress": {
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6"
+                          }
+                        },
+                        "region": {
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "ServerlessExternalConnectionInfo": {
+                      "fields": {
+                        "selectedIpAddress": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6"
+                          }
                         }
                       }
                     },
@@ -4883,6 +5156,146 @@
                               }
                             }
                           ]
+                        },
+                        "QueryOrgVpcFlowLogsConfigs": {
+                          "requestType": "QueryOrgVpcFlowLogsConfigsRequest",
+                          "responseType": "QueryOrgVpcFlowLogsConfigsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1beta1/{parent=projects/*/locations/*}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigs"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1beta1/{parent=projects/*/locations/*}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigs"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "OrganizationVpcFlowLogsService": {
+                      "options": {
+                        "(google.api.default_host)": "networkmanagement.googleapis.com",
+                        "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
+                      },
+                      "methods": {
+                        "ListVpcFlowLogsConfigs": {
+                          "requestType": "ListVpcFlowLogsConfigsRequest",
+                          "responseType": "ListVpcFlowLogsConfigsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1beta1/{parent=organizations/*/locations/*}/vpcFlowLogsConfigs",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1beta1/{parent=organizations/*/locations/*}/vpcFlowLogsConfigs"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "GetVpcFlowLogsConfig": {
+                          "requestType": "GetVpcFlowLogsConfigRequest",
+                          "responseType": "VpcFlowLogsConfig",
+                          "options": {
+                            "(google.api.http).get": "/v1beta1/{name=organizations/*/locations/*/vpcFlowLogsConfigs/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1beta1/{name=organizations/*/locations/*/vpcFlowLogsConfigs/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "CreateVpcFlowLogsConfig": {
+                          "requestType": "CreateVpcFlowLogsConfigRequest",
+                          "responseType": "google.longrunning.Operation",
+                          "options": {
+                            "(google.api.http).post": "/v1beta1/{parent=organizations/*/locations/*}/vpcFlowLogsConfigs",
+                            "(google.api.http).body": "vpc_flow_logs_config",
+                            "(google.api.method_signature)": "parent,vpc_flow_logs_config,vpc_flow_logs_config_id",
+                            "(google.longrunning.operation_info).response_type": "VpcFlowLogsConfig",
+                            "(google.longrunning.operation_info).metadata_type": "google.cloud.networkmanagement.v1beta1.OperationMetadata"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1beta1/{parent=organizations/*/locations/*}/vpcFlowLogsConfigs",
+                                "body": "vpc_flow_logs_config"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,vpc_flow_logs_config,vpc_flow_logs_config_id"
+                            },
+                            {
+                              "(google.longrunning.operation_info)": {
+                                "response_type": "VpcFlowLogsConfig",
+                                "metadata_type": "google.cloud.networkmanagement.v1beta1.OperationMetadata"
+                              }
+                            }
+                          ]
+                        },
+                        "UpdateVpcFlowLogsConfig": {
+                          "requestType": "UpdateVpcFlowLogsConfigRequest",
+                          "responseType": "google.longrunning.Operation",
+                          "options": {
+                            "(google.api.http).patch": "/v1beta1/{vpc_flow_logs_config.name=organizations/*/locations/*/vpcFlowLogsConfigs/*}",
+                            "(google.api.http).body": "vpc_flow_logs_config",
+                            "(google.api.method_signature)": "vpc_flow_logs_config,update_mask",
+                            "(google.longrunning.operation_info).response_type": "VpcFlowLogsConfig",
+                            "(google.longrunning.operation_info).metadata_type": "google.cloud.networkmanagement.v1beta1.OperationMetadata"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1beta1/{vpc_flow_logs_config.name=organizations/*/locations/*/vpcFlowLogsConfigs/*}",
+                                "body": "vpc_flow_logs_config"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "vpc_flow_logs_config,update_mask"
+                            },
+                            {
+                              "(google.longrunning.operation_info)": {
+                                "response_type": "VpcFlowLogsConfig",
+                                "metadata_type": "google.cloud.networkmanagement.v1beta1.OperationMetadata"
+                              }
+                            }
+                          ]
+                        },
+                        "DeleteVpcFlowLogsConfig": {
+                          "requestType": "DeleteVpcFlowLogsConfigRequest",
+                          "responseType": "google.longrunning.Operation",
+                          "options": {
+                            "(google.api.http).delete": "/v1beta1/{name=organizations/*/locations/*/vpcFlowLogsConfigs/*}",
+                            "(google.api.method_signature)": "name",
+                            "(google.longrunning.operation_info).response_type": "google.protobuf.Empty",
+                            "(google.longrunning.operation_info).metadata_type": "google.cloud.networkmanagement.v1beta1.OperationMetadata"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1beta1/{name=organizations/*/locations/*/vpcFlowLogsConfigs/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            },
+                            {
+                              "(google.longrunning.operation_info)": {
+                                "response_type": "google.protobuf.Empty",
+                                "metadata_type": "google.cloud.networkmanagement.v1beta1.OperationMetadata"
+                              }
+                            }
+                          ]
                         }
                       }
                     },
@@ -5013,10 +5426,61 @@
                         }
                       }
                     },
+                    "QueryOrgVpcFlowLogsConfigsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "networkmanagement.googleapis.com/VpcFlowLogsConfig"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "filter": {
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "QueryOrgVpcFlowLogsConfigsResponse": {
+                      "fields": {
+                        "vpcFlowLogsConfigs": {
+                          "rule": "repeated",
+                          "type": "VpcFlowLogsConfig",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "unreachable": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
                     "VpcFlowLogsConfig": {
                       "options": {
                         "(google.api.resource).type": "networkmanagement.googleapis.com/VpcFlowLogsConfig",
-                        "(google.api.resource).pattern": "projects/{project}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}",
+                        "(google.api.resource).pattern": "organizations/{organization}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}",
                         "(google.api.resource).plural": "vpcFlowLogsConfigs",
                         "(google.api.resource).singular": "vpcFlowLogsConfig"
                       },
@@ -5051,8 +5515,20 @@
                             "filterExpr"
                           ]
                         },
+                        "_crossProjectMetadata": {
+                          "oneof": [
+                            "crossProjectMetadata"
+                          ]
+                        },
+                        "_targetResourceState": {
+                          "oneof": [
+                            "targetResourceState"
+                          ]
+                        },
                         "targetResource": {
                           "oneof": [
+                            "network",
+                            "subnet",
                             "interconnectAttachment",
                             "vpnTunnel"
                           ]
@@ -5122,6 +5598,30 @@
                             "proto3_optional": true
                           }
                         },
+                        "crossProjectMetadata": {
+                          "type": "CrossProjectMetadata",
+                          "id": 13,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
+                            "proto3_optional": true
+                          }
+                        },
+                        "targetResourceState": {
+                          "type": "TargetResourceState",
+                          "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "proto3_optional": true
+                          }
+                        },
+                        "network": {
+                          "type": "string",
+                          "id": 100
+                        },
+                        "subnet": {
+                          "type": "string",
+                          "id": 101
+                        },
                         "interconnectAttachment": {
                           "type": "string",
                           "id": 102
@@ -5179,6 +5679,20 @@
                             "EXCLUDE_ALL_METADATA": 2,
                             "CUSTOM_METADATA": 3
                           }
+                        },
+                        "CrossProjectMetadata": {
+                          "values": {
+                            "CROSS_PROJECT_METADATA_UNSPECIFIED": 0,
+                            "CROSS_PROJECT_METADATA_ENABLED": 1,
+                            "CROSS_PROJECT_METADATA_DISABLED": 2
+                          }
+                        },
+                        "TargetResourceState": {
+                          "values": {
+                            "TARGET_RESOURCE_STATE_UNSPECIFIED": 0,
+                            "TARGET_RESOURCE_EXISTS": 1,
+                            "TARGET_RESOURCE_DOES_NOT_EXIST": 2
+                          }
                         }
                       }
                     }
@@ -5194,15 +5708,17 @@
             "java_multiple_files": true,
             "java_outer_classname": "LaunchStageProto",
             "java_package": "com.google.api",
-            "objc_class_prefix": "GAPI",
-            "cc_enable_arenas": true
+            "objc_class_prefix": "GAPI"
           },
           "nested": {
             "fieldBehavior": {
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -5304,6 +5820,11 @@
                 "format": {
                   "type": "Format",
                   "id": 1
+                },
+                "referencedTypes": {
+                  "rule": "repeated",
+                  "type": "TypeReference",
+                  "id": 2
                 }
               },
               "nested": {
@@ -5315,6 +5836,14 @@
                     "IPV6": 3,
                     "IPV4_OR_IPV6": 4
                   }
+                }
+              }
+            },
+            "TypeReference": {
+              "fields": {
+                "typeName": {
+                  "type": "string",
+                  "id": 1
                 }
               }
             },
@@ -5421,6 +5950,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -5434,6 +5968,10 @@
                   "rule": "repeated",
                   "type": "ClientLibraryDestination",
                   "id": 2
+                },
+                "selectiveGapicGeneration": {
+                  "type": "SelectiveGapicGeneration",
+                  "id": 3
                 }
               }
             },
@@ -5529,6 +6067,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -5570,6 +6112,28 @@
                 "common": {
                   "type": "CommonLanguageSettings",
                   "id": 1
+                },
+                "experimentalFeatures": {
+                  "type": "ExperimentalFeatures",
+                  "id": 2
+                }
+              },
+              "nested": {
+                "ExperimentalFeatures": {
+                  "fields": {
+                    "restAsyncIoEnabled": {
+                      "type": "bool",
+                      "id": 1
+                    },
+                    "protobufPythonicTypesEnabled": {
+                      "type": "bool",
+                      "id": 2
+                    },
+                    "unversionedPackageDisabled": {
+                      "type": "bool",
+                      "id": 3
+                    }
+                  }
                 }
               }
             },
@@ -5627,6 +6191,11 @@
                 "common": {
                   "type": "CommonLanguageSettings",
                   "id": 1
+                },
+                "renamedServices": {
+                  "keyType": "string",
+                  "type": "string",
+                  "id": 2
                 }
               }
             },
@@ -5688,6 +6257,19 @@
                 "PACKAGE_MANAGER": 20
               }
             },
+            "SelectiveGapicGeneration": {
+              "fields": {
+                "methods": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 1
+                },
+                "generateOmittedAsInternal": {
+                  "type": "bool",
+                  "id": 2
+                }
+              }
+            },
             "LaunchStage": {
               "values": {
                 "LAUNCH_STAGE_UNSPECIFIED": 0,
@@ -5714,17 +6296,26 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
                   "type": "FileDescriptorProto",
                   "id": 1
                 }
-              }
+              },
+              "extensions": [
+                [
+                  536000000,
+                  536000000
+                ]
+              ]
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
+                "EDITION_LEGACY": 900,
                 "EDITION_PROTO2": 998,
                 "EDITION_PROTO3": 999,
                 "EDITION_2023": 1000,
@@ -5738,6 +6329,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5755,18 +6347,17 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
+                },
+                "optionDependency": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 15
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -5807,6 +6398,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5855,6 +6447,10 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 10
+                },
+                "visibility": {
+                  "type": "SymbolVisibility",
+                  "id": 11
                 }
               },
               "nested": {
@@ -5889,6 +6485,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -5962,6 +6559,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -6041,6 +6639,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -6053,6 +6652,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -6076,6 +6676,10 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 5
+                },
+                "visibility": {
+                  "type": "SymbolVisibility",
+                  "id": 6
                 }
               },
               "nested": {
@@ -6094,6 +6698,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -6110,6 +6715,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -6127,6 +6733,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -6161,6 +6768,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -6286,6 +6894,7 @@
                   42,
                   42
                 ],
+                "php_generic_services",
                 [
                   38,
                   38
@@ -6302,6 +6911,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -6375,6 +6985,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -6419,7 +7030,8 @@
                   "type": "bool",
                   "id": 10,
                   "options": {
-                    "default": false
+                    "default": false,
+                    "deprecated": true
                   }
                 },
                 "debugRedact": {
@@ -6436,10 +7048,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -6449,6 +7058,10 @@
                 "features": {
                   "type": "FeatureSet",
                   "id": 21
+                },
+                "featureSupport": {
+                  "type": "FeatureSupport",
+                  "id": 22
                 },
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -6519,10 +7132,31 @@
                       "id": 2
                     }
                   }
+                },
+                "FeatureSupport": {
+                  "fields": {
+                    "editionIntroduced": {
+                      "type": "Edition",
+                      "id": 1
+                    },
+                    "editionDeprecated": {
+                      "type": "Edition",
+                      "id": 2
+                    },
+                    "deprecationWarning": {
+                      "type": "string",
+                      "id": 3
+                    },
+                    "editionRemoved": {
+                      "type": "Edition",
+                      "id": 4
+                    }
+                  }
                 }
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -6542,6 +7176,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -6585,6 +7220,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -6604,6 +7240,10 @@
                     "default": false
                   }
                 },
+                "featureSupport": {
+                  "type": "FieldOptions.FeatureSupport",
+                  "id": 4
+                },
                 "uninterpretedOption": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
@@ -6618,6 +7258,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -6644,6 +7285,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -6686,6 +7328,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -6735,6 +7378,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -6742,6 +7386,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_2023",
                     "edition_defaults.value": "EXPLICIT"
                   }
@@ -6752,6 +7397,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "OPEN"
                   }
@@ -6762,6 +7408,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "PACKED"
                   }
@@ -6772,6 +7419,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "VERIFY"
                   }
@@ -6782,7 +7430,8 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
-                    "edition_defaults.edition": "EDITION_PROTO2",
+                    "feature_support.edition_introduced": "EDITION_2023",
+                    "edition_defaults.edition": "EDITION_LEGACY",
                     "edition_defaults.value": "LENGTH_PREFIXED"
                   }
                 },
@@ -6792,23 +7441,46 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "ALLOW"
+                  }
+                },
+                "enforceNamingStyle": {
+                  "type": "EnforceNamingStyle",
+                  "id": 7,
+                  "options": {
+                    "retention": "RETENTION_SOURCE",
+                    "targets": "TARGET_TYPE_METHOD",
+                    "feature_support.edition_introduced": "EDITION_2024",
+                    "edition_defaults.edition": "EDITION_2024",
+                    "edition_defaults.value": "STYLE2024"
+                  }
+                },
+                "defaultSymbolVisibility": {
+                  "type": "VisibilityFeature.DefaultSymbolVisibility",
+                  "id": 8,
+                  "options": {
+                    "retention": "RETENTION_SOURCE",
+                    "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2024",
+                    "edition_defaults.edition": "EDITION_2024",
+                    "edition_defaults.value": "EXPORT_TOP_LEVEL"
                   }
                 }
               },
               "extensions": [
                 [
                   1000,
-                  1000
-                ],
-                [
-                  1001,
-                  1001
+                  9994
                 ],
                 [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -6845,7 +7517,13 @@
                     "UTF8_VALIDATION_UNKNOWN": 0,
                     "VERIFY": 2,
                     "NONE": 3
-                  }
+                  },
+                  "reserved": [
+                    [
+                      1,
+                      1
+                    ]
+                  ]
                 },
                 "MessageEncoding": {
                   "values": {
@@ -6860,10 +7538,38 @@
                     "ALLOW": 1,
                     "LEGACY_BEST_EFFORT": 2
                   }
+                },
+                "EnforceNamingStyle": {
+                  "values": {
+                    "ENFORCE_NAMING_STYLE_UNKNOWN": 0,
+                    "STYLE2024": 1,
+                    "STYLE_LEGACY": 2
+                  }
+                },
+                "VisibilityFeature": {
+                  "fields": {},
+                  "reserved": [
+                    [
+                      1,
+                      536870911
+                    ]
+                  ],
+                  "nested": {
+                    "DefaultSymbolVisibility": {
+                      "values": {
+                        "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN": 0,
+                        "EXPORT_ALL": 1,
+                        "EXPORT_TOP_LEVEL": 2,
+                        "LOCAL_ALL": 3,
+                        "STRICT": 4
+                      }
+                    }
+                  }
                 }
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -6886,15 +7592,31 @@
                       "type": "Edition",
                       "id": 3
                     },
-                    "features": {
+                    "overridableFeatures": {
                       "type": "FeatureSet",
-                      "id": 2
+                      "id": 4
+                    },
+                    "fixedFeatures": {
+                      "type": "FeatureSet",
+                      "id": 5
                     }
-                  }
+                  },
+                  "reserved": [
+                    [
+                      1,
+                      1
+                    ],
+                    [
+                      2,
+                      2
+                    ],
+                    "features"
+                  ]
                 }
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -6902,18 +7624,30 @@
                   "id": 1
                 }
               },
+              "extensions": [
+                [
+                  536000000,
+                  536000000
+                ]
+              ],
               "nested": {
                 "Location": {
                   "fields": {
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -6933,6 +7667,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -6946,7 +7681,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -6975,6 +7713,14 @@
                     }
                   }
                 }
+              }
+            },
+            "SymbolVisibility": {
+              "edition": "proto2",
+              "values": {
+                "VISIBILITY_UNSET": 0,
+                "VISIBILITY_LOCAL": 1,
+                "VISIBILITY_EXPORT": 2
               }
             },
             "Timestamp": {
@@ -7064,6 +7810,7 @@
             "java_multiple_files": true,
             "java_outer_classname": "OperationsProto",
             "java_package": "com.google.longrunning",
+            "objc_class_prefix": "GLRUN",
             "php_namespace": "Google\\LongRunning"
           },
           "nested": {

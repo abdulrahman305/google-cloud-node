@@ -16,17 +16,13 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  CatalogServiceClient,
-  ContentServiceClient,
-  DataplexServiceClient,
-  DataScanServiceClient,
-  DataTaxonomyServiceClient,
-  MetadataServiceClient,
-} from '@google-cloud/dataplex';
+import {CatalogServiceClient, CmekServiceClient, ContentServiceClient, DataplexServiceClient, DataScanServiceClient, DataTaxonomyServiceClient, MetadataServiceClient} from '@google-cloud/dataplex';
 
 // check that the client class type name can be used
 function doStuffWithCatalogServiceClient(client: CatalogServiceClient) {
+  client.close();
+}
+function doStuffWithCmekServiceClient(client: CmekServiceClient) {
   client.close();
 }
 function doStuffWithContentServiceClient(client: ContentServiceClient) {
@@ -38,9 +34,7 @@ function doStuffWithDataplexServiceClient(client: DataplexServiceClient) {
 function doStuffWithDataScanServiceClient(client: DataScanServiceClient) {
   client.close();
 }
-function doStuffWithDataTaxonomyServiceClient(
-  client: DataTaxonomyServiceClient
-) {
+function doStuffWithDataTaxonomyServiceClient(client: DataTaxonomyServiceClient) {
   client.close();
 }
 function doStuffWithMetadataServiceClient(client: MetadataServiceClient) {
@@ -51,6 +45,9 @@ function main() {
   // check that the client instance can be created
   const catalogServiceClient = new CatalogServiceClient();
   doStuffWithCatalogServiceClient(catalogServiceClient);
+  // check that the client instance can be created
+  const cmekServiceClient = new CmekServiceClient();
+  doStuffWithCmekServiceClient(cmekServiceClient);
   // check that the client instance can be created
   const contentServiceClient = new ContentServiceClient();
   doStuffWithContentServiceClient(contentServiceClient);

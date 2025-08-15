@@ -16,6 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const run = require('@google-cloud/run');
 
@@ -26,6 +27,7 @@ function main() {
   const revisionsClient = new run.RevisionsClient();
   const servicesClient = new run.ServicesClient();
   const tasksClient = new run.TasksClient();
+  const workerPoolsClient = new run.WorkerPoolsClient();
 }
 
 main();

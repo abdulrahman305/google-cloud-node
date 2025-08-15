@@ -26,20 +26,10 @@ const CssProductInputsServiceClient = v1.CssProductInputsServiceClient;
 type CssProductInputsServiceClient = v1.CssProductInputsServiceClient;
 const CssProductsServiceClient = v1.CssProductsServiceClient;
 type CssProductsServiceClient = v1.CssProductsServiceClient;
+const QuotaServiceClient = v1.QuotaServiceClient;
+type QuotaServiceClient = v1.QuotaServiceClient;
 
-export {
-  v1,
-  AccountLabelsServiceClient,
-  AccountsServiceClient,
-  CssProductInputsServiceClient,
-  CssProductsServiceClient,
-};
-export default {
-  v1,
-  AccountLabelsServiceClient,
-  AccountsServiceClient,
-  CssProductInputsServiceClient,
-  CssProductsServiceClient,
-};
+export {v1, AccountLabelsServiceClient, AccountsServiceClient, CssProductInputsServiceClient, CssProductsServiceClient, QuotaServiceClient};
+export default {v1, AccountLabelsServiceClient, AccountsServiceClient, CssProductInputsServiceClient, CssProductsServiceClient, QuotaServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

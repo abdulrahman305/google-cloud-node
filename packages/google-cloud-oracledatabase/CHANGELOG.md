@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.6.0](https://github.com/googleapis/google-cloud-node/compare/oracledatabase-v0.5.0...oracledatabase-v0.6.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6422](https://github.com/googleapis/google-cloud-node/issues/6422)) ([1e17ea2](https://github.com/googleapis/google-cloud-node/commit/1e17ea2496a502905259010a6702e7cc68f9d1ba))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [0.5.0](https://github.com/googleapis/google-cloud-node/compare/oracledatabase-v0.4.0...oracledatabase-v0.5.0) (2025-05-09)
+
+
+### Features
+
+* [oracledatabase] add new AutonomousDatabase RPCs ([#6252](https://github.com/googleapis/google-cloud-node/issues/6252)) ([f830d44](https://github.com/googleapis/google-cloud-node/commit/f830d44de5a6e3f93a54955f01bb8e34934c5e5c))
+* [oracledatabase] re-enable gRPC support ([#6312](https://github.com/googleapis/google-cloud-node/issues/6312)) ([930bbcf](https://github.com/googleapis/google-cloud-node/commit/930bbcf6317c43ac647d1525d926820c31999c84))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
 ## [0.4.0](https://github.com/googleapis/google-cloud-node/compare/oracledatabase-v0.3.0...oracledatabase-v0.4.0) (2025-03-19)
 
 

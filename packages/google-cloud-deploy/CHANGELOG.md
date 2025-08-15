@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v5.1.0...deploy-v5.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6420](https://github.com/googleapis/google-cloud-node/issues/6420)) ([fe8d6cc](https://github.com/googleapis/google-cloud-node/commit/fe8d6cc157bea696790f2844fa7d410a481c79ed))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v5.0.1...deploy-v5.1.0) (2025-05-09)
+
+
+### Features
+
+* [deploy] Add resource definition for Revision ([#6233](https://github.com/googleapis/google-cloud-node/issues/6233)) ([14b4580](https://github.com/googleapis/google-cloud-node/commit/14b458002aab5692c5cdaff37059ed5b657014ab))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
 ## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/deploy-v5.0.0...deploy-v5.0.1) (2025-03-21)
 
 

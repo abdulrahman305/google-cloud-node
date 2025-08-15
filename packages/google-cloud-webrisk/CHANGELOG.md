@@ -4,6 +4,30 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/web-risk?activeTab=versions
 
+## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.2.0...web-risk-v5.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6424](https://github.com/googleapis/google-cloud-node/issues/6424)) ([9a595a6](https://github.com/googleapis/google-cloud-node/commit/9a595a658b5fc2a02a18ffbca618190eb64d8013))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.1.0...web-risk-v5.2.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6304](https://github.com/googleapis/google-cloud-node/issues/6304)) ([132240f](https://github.com/googleapis/google-cloud-node/commit/132240fbf6cb29b309b76c1d60f0611720590847))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.0.1...web-risk-v5.1.0) (2025-05-09)
+
+
+### Features
+
+* [webrisk] A new method_signature `parent,submission` is added to method `SubmitUri` in service `WebRiskService` ([#6236](https://github.com/googleapis/google-cloud-node/issues/6236)) ([03dbe6c](https://github.com/googleapis/google-cloud-node/commit/03dbe6ca245435b0ed60ae33bac202e09706df91))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
 ## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.0.0...web-risk-v5.0.1) (2025-03-19)
 
 

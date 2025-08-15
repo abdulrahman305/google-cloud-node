@@ -207,12 +207,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ElementaryStream.decode = function decode(reader, length) {
+                            ElementaryStream.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ElementaryStream();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 4: {
                                             message.key = reader.string();
@@ -527,12 +529,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            MuxStream.decode = function decode(reader, length) {
+                            MuxStream.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.MuxStream();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.key = reader.string();
@@ -867,12 +871,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Manifest.decode = function decode(reader, length) {
+                            Manifest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Manifest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.fileName = reader.string();
@@ -1280,12 +1286,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SpriteSheet.decode = function decode(reader, length) {
+                            SpriteSheet.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.SpriteSheet();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.format = reader.string();
@@ -1595,12 +1603,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PreprocessingConfig.decode = function decode(reader, length) {
+                            PreprocessingConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.PreprocessingConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.audio = $root.google.cloud.video.livestream.v1.PreprocessingConfig.Audio.decode(reader, reader.uint32());
@@ -1835,12 +1845,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Audio.decode = function decode(reader, length) {
+                                Audio.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.PreprocessingConfig.Audio();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.lufs = reader.double();
@@ -2071,12 +2083,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Crop.decode = function decode(reader, length) {
+                                Crop.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.PreprocessingConfig.Crop();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.topPixels = reader.int32();
@@ -2344,12 +2358,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Pad.decode = function decode(reader, length) {
+                                Pad.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.PreprocessingConfig.Pad();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.topPixels = reader.int32();
@@ -2601,12 +2617,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            VideoStream.decode = function decode(reader, length) {
+                            VideoStream.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.VideoStream();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 20: {
                                             message.h264 = $root.google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.decode(reader, reader.uint32());
@@ -2979,12 +2997,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                H264CodecSettings.decode = function decode(reader, length) {
+                                H264CodecSettings.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.VideoStream.H264CodecSettings();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.widthPixels = reader.int32();
@@ -3441,12 +3461,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            AudioStream.decode = function decode(reader, length) {
+                            AudioStream.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.AudioStream();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 8: {
                                             message.transmux = reader.bool();
@@ -3793,12 +3815,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                AudioMapping.decode = function decode(reader, length) {
+                                AudioMapping.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.AudioStream.AudioMapping();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 6: {
                                                 message.inputKey = reader.string();
@@ -4048,12 +4072,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            TextStream.decode = function decode(reader, length) {
+                            TextStream.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.TextStream();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.codec = reader.string();
@@ -4251,12 +4277,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SegmentSettings.decode = function decode(reader, length) {
+                            SegmentSettings.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.SegmentSettings();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.segmentDuration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -4495,12 +4523,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            TimecodeConfig.decode = function decode(reader, length) {
+                            TimecodeConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.TimecodeConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.source = reader.int32();
@@ -4886,12 +4916,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Input.decode = function decode(reader, length) {
+                            Input.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Input(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -5343,12 +5375,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                SecurityRule.decode = function decode(reader, length) {
+                                SecurityRule.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Input.SecurityRule();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 if (!(message.ipRanges && message.ipRanges.length))
@@ -5777,12 +5811,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Channel.decode = function decode(reader, length) {
+                            Channel.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Channel(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -6452,12 +6488,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Output.decode = function decode(reader, length) {
+                                Output.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Channel.Output();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.uri = reader.string();
@@ -6695,12 +6733,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            NormalizedCoordinate.decode = function decode(reader, length) {
+                            NormalizedCoordinate.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.NormalizedCoordinate();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.x = reader.double();
@@ -6922,12 +6962,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            NormalizedResolution.decode = function decode(reader, length) {
+                            NormalizedResolution.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.NormalizedResolution();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.w = reader.double();
@@ -7171,12 +7213,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            StaticOverlay.decode = function decode(reader, length) {
+                            StaticOverlay.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.StaticOverlay();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.asset = reader.string();
@@ -7421,12 +7465,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            InputConfig.decode = function decode(reader, length) {
+                            InputConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.InputConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.inputSwitchMode = reader.int32();
@@ -7664,12 +7710,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LogConfig.decode = function decode(reader, length) {
+                            LogConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.LogConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.logSeverity = reader.int32();
@@ -7928,12 +7976,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RetentionConfig.decode = function decode(reader, length) {
+                            RetentionConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.RetentionConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.retentionWindowDuration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -8162,12 +8212,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            InputStreamProperty.decode = function decode(reader, length) {
+                            InputStreamProperty.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.InputStreamProperty();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.lastEstablishTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -8445,12 +8497,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            VideoStreamProperty.decode = function decode(reader, length) {
+                            VideoStreamProperty.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.VideoStreamProperty();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.index = reader.int32();
@@ -8699,12 +8753,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            VideoFormat.decode = function decode(reader, length) {
+                            VideoFormat.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.VideoFormat();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.codec = reader.string();
@@ -8950,12 +9006,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            AudioStreamProperty.decode = function decode(reader, length) {
+                            AudioStreamProperty.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.AudioStreamProperty();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.index = reader.int32();
@@ -9195,12 +9253,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            AudioFormat.decode = function decode(reader, length) {
+                            AudioFormat.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.AudioFormat();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.codec = reader.string();
@@ -9460,12 +9520,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            InputAttachment.decode = function decode(reader, length) {
+                            InputAttachment.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.InputAttachment();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.key = reader.string();
@@ -9692,12 +9754,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                AutomaticFailover.decode = function decode(reader, length) {
+                                AutomaticFailover.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 if (!(message.inputKeys && message.inputKeys.length))
@@ -10071,12 +10135,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Event.decode = function decode(reader, length) {
+                            Event.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -10597,12 +10663,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                InputSwitchTask.decode = function decode(reader, length) {
+                                InputSwitchTask.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event.InputSwitchTask();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.inputKey = reader.string();
@@ -10800,12 +10868,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                AdBreakTask.decode = function decode(reader, length) {
+                                AdBreakTask.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event.AdBreakTask();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.duration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -11019,12 +11089,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                SlateTask.decode = function decode(reader, length) {
+                                SlateTask.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event.SlateTask();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.duration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -11229,12 +11301,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                ReturnToProgramTask.decode = function decode(reader, length) {
+                                ReturnToProgramTask.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event.ReturnToProgramTask();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -11415,12 +11489,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                MuteTask.decode = function decode(reader, length) {
+                                MuteTask.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event.MuteTask();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.duration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -11612,12 +11688,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                UnmuteTask.decode = function decode(reader, length) {
+                                UnmuteTask.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Event.UnmuteTask();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -11756,6 +11834,7 @@
                              * @property {google.rpc.IStatus|null} [error] Clip error
                              * @property {Array.<google.cloud.video.livestream.v1.Clip.ISlice>|null} [slices] Clip slices
                              * @property {Array.<google.cloud.video.livestream.v1.Clip.IClipManifest>|null} [clipManifests] Clip clipManifests
+                             * @property {google.cloud.video.livestream.v1.Clip.OutputType|null} [outputType] Clip outputType
                              */
     
                             /**
@@ -11857,6 +11936,14 @@
                             Clip.prototype.clipManifests = $util.emptyArray;
     
                             /**
+                             * Clip outputType.
+                             * @member {google.cloud.video.livestream.v1.Clip.OutputType} outputType
+                             * @memberof google.cloud.video.livestream.v1.Clip
+                             * @instance
+                             */
+                            Clip.prototype.outputType = 0;
+    
+                            /**
                              * Creates a new Clip instance using the specified properties.
                              * @function create
                              * @memberof google.cloud.video.livestream.v1.Clip
@@ -11903,6 +11990,8 @@
                                 if (message.clipManifests != null && message.clipManifests.length)
                                     for (var i = 0; i < message.clipManifests.length; ++i)
                                         $root.google.cloud.video.livestream.v1.Clip.ClipManifest.encode(message.clipManifests[i], writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+                                if (message.outputType != null && Object.hasOwnProperty.call(message, "outputType"))
+                                    writer.uint32(/* id 13, wireType 0 =*/104).int32(message.outputType);
                                 return writer;
                             };
     
@@ -11930,12 +12019,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Clip.decode = function decode(reader, length) {
+                            Clip.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Clip(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -11998,6 +12089,10 @@
                                             if (!(message.clipManifests && message.clipManifests.length))
                                                 message.clipManifests = [];
                                             message.clipManifests.push($root.google.cloud.video.livestream.v1.Clip.ClipManifest.decode(reader, reader.uint32()));
+                                            break;
+                                        }
+                                    case 13: {
+                                            message.outputType = reader.int32();
                                             break;
                                         }
                                     default:
@@ -12098,6 +12193,15 @@
                                             return "clipManifests." + error;
                                     }
                                 }
+                                if (message.outputType != null && message.hasOwnProperty("outputType"))
+                                    switch (message.outputType) {
+                                    default:
+                                        return "outputType: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
                                 return null;
                             };
     
@@ -12192,6 +12296,26 @@
                                         message.clipManifests[i] = $root.google.cloud.video.livestream.v1.Clip.ClipManifest.fromObject(object.clipManifests[i]);
                                     }
                                 }
+                                switch (object.outputType) {
+                                default:
+                                    if (typeof object.outputType === "number") {
+                                        message.outputType = object.outputType;
+                                        break;
+                                    }
+                                    break;
+                                case "OUTPUT_TYPE_UNSPECIFIED":
+                                case 0:
+                                    message.outputType = 0;
+                                    break;
+                                case "MANIFEST":
+                                case 1:
+                                    message.outputType = 1;
+                                    break;
+                                case "MP4":
+                                case 2:
+                                    message.outputType = 2;
+                                    break;
+                                }
                                 return message;
                             };
     
@@ -12222,6 +12346,7 @@
                                     object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
                                     object.outputUri = "";
                                     object.error = null;
+                                    object.outputType = options.enums === String ? "OUTPUT_TYPE_UNSPECIFIED" : 0;
                                 }
                                 if (message.name != null && message.hasOwnProperty("name"))
                                     object.name = message.name;
@@ -12253,6 +12378,8 @@
                                     for (var j = 0; j < message.clipManifests.length; ++j)
                                         object.clipManifests[j] = $root.google.cloud.video.livestream.v1.Clip.ClipManifest.toObject(message.clipManifests[j], options);
                                 }
+                                if (message.outputType != null && message.hasOwnProperty("outputType"))
+                                    object.outputType = options.enums === String ? $root.google.cloud.video.livestream.v1.Clip.OutputType[message.outputType] === undefined ? message.outputType : $root.google.cloud.video.livestream.v1.Clip.OutputType[message.outputType] : message.outputType;
                                 return object;
                             };
     
@@ -12398,12 +12525,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                TimeSlice.decode = function decode(reader, length) {
+                                TimeSlice.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Clip.TimeSlice();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.markinTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -12638,12 +12767,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Slice.decode = function decode(reader, length) {
+                                Slice.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Clip.Slice();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.timeSlice = $root.google.cloud.video.livestream.v1.Clip.TimeSlice.decode(reader, reader.uint32());
@@ -12862,12 +12993,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                ClipManifest.decode = function decode(reader, length) {
+                                ClipManifest.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Clip.ClipManifest();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.manifestKey = reader.string();
@@ -12993,7 +13126,1278 @@
                                 return ClipManifest;
                             })();
     
+                            /**
+                             * OutputType enum.
+                             * @name google.cloud.video.livestream.v1.Clip.OutputType
+                             * @enum {number}
+                             * @property {number} OUTPUT_TYPE_UNSPECIFIED=0 OUTPUT_TYPE_UNSPECIFIED value
+                             * @property {number} MANIFEST=1 MANIFEST value
+                             * @property {number} MP4=2 MP4 value
+                             */
+                            Clip.OutputType = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "OUTPUT_TYPE_UNSPECIFIED"] = 0;
+                                values[valuesById[1] = "MANIFEST"] = 1;
+                                values[valuesById[2] = "MP4"] = 2;
+                                return values;
+                            })();
+    
                             return Clip;
+                        })();
+    
+                        v1.TimeInterval = (function() {
+    
+                            /**
+                             * Properties of a TimeInterval.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface ITimeInterval
+                             * @property {google.protobuf.ITimestamp|null} [startTime] TimeInterval startTime
+                             * @property {google.protobuf.ITimestamp|null} [endTime] TimeInterval endTime
+                             */
+    
+                            /**
+                             * Constructs a new TimeInterval.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a TimeInterval.
+                             * @implements ITimeInterval
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.ITimeInterval=} [properties] Properties to set
+                             */
+                            function TimeInterval(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * TimeInterval startTime.
+                             * @member {google.protobuf.ITimestamp|null|undefined} startTime
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @instance
+                             */
+                            TimeInterval.prototype.startTime = null;
+    
+                            /**
+                             * TimeInterval endTime.
+                             * @member {google.protobuf.ITimestamp|null|undefined} endTime
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @instance
+                             */
+                            TimeInterval.prototype.endTime = null;
+    
+                            /**
+                             * Creates a new TimeInterval instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ITimeInterval=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.TimeInterval} TimeInterval instance
+                             */
+                            TimeInterval.create = function create(properties) {
+                                return new TimeInterval(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified TimeInterval message. Does not implicitly {@link google.cloud.video.livestream.v1.TimeInterval.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ITimeInterval} message TimeInterval message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            TimeInterval.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.startTime != null && Object.hasOwnProperty.call(message, "startTime"))
+                                    $root.google.protobuf.Timestamp.encode(message.startTime, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.endTime != null && Object.hasOwnProperty.call(message, "endTime"))
+                                    $root.google.protobuf.Timestamp.encode(message.endTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified TimeInterval message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.TimeInterval.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ITimeInterval} message TimeInterval message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            TimeInterval.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a TimeInterval message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.TimeInterval} TimeInterval
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            TimeInterval.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.TimeInterval();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.endTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a TimeInterval message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.TimeInterval} TimeInterval
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            TimeInterval.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a TimeInterval message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            TimeInterval.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.startTime != null && message.hasOwnProperty("startTime")) {
+                                    var error = $root.google.protobuf.Timestamp.verify(message.startTime);
+                                    if (error)
+                                        return "startTime." + error;
+                                }
+                                if (message.endTime != null && message.hasOwnProperty("endTime")) {
+                                    var error = $root.google.protobuf.Timestamp.verify(message.endTime);
+                                    if (error)
+                                        return "endTime." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a TimeInterval message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.TimeInterval} TimeInterval
+                             */
+                            TimeInterval.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.TimeInterval)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.TimeInterval();
+                                if (object.startTime != null) {
+                                    if (typeof object.startTime !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.TimeInterval.startTime: object expected");
+                                    message.startTime = $root.google.protobuf.Timestamp.fromObject(object.startTime);
+                                }
+                                if (object.endTime != null) {
+                                    if (typeof object.endTime !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.TimeInterval.endTime: object expected");
+                                    message.endTime = $root.google.protobuf.Timestamp.fromObject(object.endTime);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a TimeInterval message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.TimeInterval} message TimeInterval
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            TimeInterval.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.startTime = null;
+                                    object.endTime = null;
+                                }
+                                if (message.startTime != null && message.hasOwnProperty("startTime"))
+                                    object.startTime = $root.google.protobuf.Timestamp.toObject(message.startTime, options);
+                                if (message.endTime != null && message.hasOwnProperty("endTime"))
+                                    object.endTime = $root.google.protobuf.Timestamp.toObject(message.endTime, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this TimeInterval to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            TimeInterval.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for TimeInterval
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.TimeInterval
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            TimeInterval.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.TimeInterval";
+                            };
+    
+                            return TimeInterval;
+                        })();
+    
+                        v1.DvrSession = (function() {
+    
+                            /**
+                             * Properties of a DvrSession.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface IDvrSession
+                             * @property {string|null} [name] DvrSession name
+                             * @property {google.protobuf.ITimestamp|null} [createTime] DvrSession createTime
+                             * @property {google.protobuf.ITimestamp|null} [updateTime] DvrSession updateTime
+                             * @property {Object.<string,string>|null} [labels] DvrSession labels
+                             * @property {google.cloud.video.livestream.v1.DvrSession.State|null} [state] DvrSession state
+                             * @property {google.rpc.IStatus|null} [error] DvrSession error
+                             * @property {Array.<google.cloud.video.livestream.v1.DvrSession.IDvrManifest>|null} [dvrManifests] DvrSession dvrManifests
+                             * @property {Array.<google.cloud.video.livestream.v1.DvrSession.IDvrWindow>|null} [dvrWindows] DvrSession dvrWindows
+                             */
+    
+                            /**
+                             * Constructs a new DvrSession.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a DvrSession.
+                             * @implements IDvrSession
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.IDvrSession=} [properties] Properties to set
+                             */
+                            function DvrSession(properties) {
+                                this.labels = {};
+                                this.dvrManifests = [];
+                                this.dvrWindows = [];
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * DvrSession name.
+                             * @member {string} name
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.name = "";
+    
+                            /**
+                             * DvrSession createTime.
+                             * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.createTime = null;
+    
+                            /**
+                             * DvrSession updateTime.
+                             * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.updateTime = null;
+    
+                            /**
+                             * DvrSession labels.
+                             * @member {Object.<string,string>} labels
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.labels = $util.emptyObject;
+    
+                            /**
+                             * DvrSession state.
+                             * @member {google.cloud.video.livestream.v1.DvrSession.State} state
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.state = 0;
+    
+                            /**
+                             * DvrSession error.
+                             * @member {google.rpc.IStatus|null|undefined} error
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.error = null;
+    
+                            /**
+                             * DvrSession dvrManifests.
+                             * @member {Array.<google.cloud.video.livestream.v1.DvrSession.IDvrManifest>} dvrManifests
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.dvrManifests = $util.emptyArray;
+    
+                            /**
+                             * DvrSession dvrWindows.
+                             * @member {Array.<google.cloud.video.livestream.v1.DvrSession.IDvrWindow>} dvrWindows
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             */
+                            DvrSession.prototype.dvrWindows = $util.emptyArray;
+    
+                            /**
+                             * Creates a new DvrSession instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IDvrSession=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.DvrSession} DvrSession instance
+                             */
+                            DvrSession.create = function create(properties) {
+                                return new DvrSession(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified DvrSession message. Does not implicitly {@link google.cloud.video.livestream.v1.DvrSession.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IDvrSession} message DvrSession message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            DvrSession.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                if (message.createTime != null && Object.hasOwnProperty.call(message, "createTime"))
+                                    $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.updateTime != null && Object.hasOwnProperty.call(message, "updateTime"))
+                                    $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                if (message.labels != null && Object.hasOwnProperty.call(message, "labels"))
+                                    for (var keys = Object.keys(message.labels), i = 0; i < keys.length; ++i)
+                                        writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
+                                if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.state);
+                                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
+                                    $root.google.rpc.Status.encode(message.error, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                                if (message.dvrManifests != null && message.dvrManifests.length)
+                                    for (var i = 0; i < message.dvrManifests.length; ++i)
+                                        $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest.encode(message.dvrManifests[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                                if (message.dvrWindows != null && message.dvrWindows.length)
+                                    for (var i = 0; i < message.dvrWindows.length; ++i)
+                                        $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow.encode(message.dvrWindows[i], writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified DvrSession message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.DvrSession.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IDvrSession} message DvrSession message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            DvrSession.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a DvrSession message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.DvrSession} DvrSession
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            DvrSession.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DvrSession(), key, value;
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.name = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 4: {
+                                            if (message.labels === $util.emptyObject)
+                                                message.labels = {};
+                                            var end2 = reader.uint32() + reader.pos;
+                                            key = "";
+                                            value = "";
+                                            while (reader.pos < end2) {
+                                                var tag2 = reader.uint32();
+                                                switch (tag2 >>> 3) {
+                                                case 1:
+                                                    key = reader.string();
+                                                    break;
+                                                case 2:
+                                                    value = reader.string();
+                                                    break;
+                                                default:
+                                                    reader.skipType(tag2 & 7);
+                                                    break;
+                                                }
+                                            }
+                                            message.labels[key] = value;
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.state = reader.int32();
+                                            break;
+                                        }
+                                    case 6: {
+                                            message.error = $root.google.rpc.Status.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 7: {
+                                            if (!(message.dvrManifests && message.dvrManifests.length))
+                                                message.dvrManifests = [];
+                                            message.dvrManifests.push($root.google.cloud.video.livestream.v1.DvrSession.DvrManifest.decode(reader, reader.uint32()));
+                                            break;
+                                        }
+                                    case 8: {
+                                            if (!(message.dvrWindows && message.dvrWindows.length))
+                                                message.dvrWindows = [];
+                                            message.dvrWindows.push($root.google.cloud.video.livestream.v1.DvrSession.DvrWindow.decode(reader, reader.uint32()));
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a DvrSession message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.DvrSession} DvrSession
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            DvrSession.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a DvrSession message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            DvrSession.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    if (!$util.isString(message.name))
+                                        return "name: string expected";
+                                if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                    var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                    if (error)
+                                        return "createTime." + error;
+                                }
+                                if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                                    var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                                    if (error)
+                                        return "updateTime." + error;
+                                }
+                                if (message.labels != null && message.hasOwnProperty("labels")) {
+                                    if (!$util.isObject(message.labels))
+                                        return "labels: object expected";
+                                    var key = Object.keys(message.labels);
+                                    for (var i = 0; i < key.length; ++i)
+                                        if (!$util.isString(message.labels[key[i]]))
+                                            return "labels: string{k:string} expected";
+                                }
+                                if (message.state != null && message.hasOwnProperty("state"))
+                                    switch (message.state) {
+                                    default:
+                                        return "state: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                    case 4:
+                                    case 5:
+                                    case 6:
+                                    case 7:
+                                    case 8:
+                                    case 9:
+                                    case 10:
+                                        break;
+                                    }
+                                if (message.error != null && message.hasOwnProperty("error")) {
+                                    var error = $root.google.rpc.Status.verify(message.error);
+                                    if (error)
+                                        return "error." + error;
+                                }
+                                if (message.dvrManifests != null && message.hasOwnProperty("dvrManifests")) {
+                                    if (!Array.isArray(message.dvrManifests))
+                                        return "dvrManifests: array expected";
+                                    for (var i = 0; i < message.dvrManifests.length; ++i) {
+                                        var error = $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest.verify(message.dvrManifests[i]);
+                                        if (error)
+                                            return "dvrManifests." + error;
+                                    }
+                                }
+                                if (message.dvrWindows != null && message.hasOwnProperty("dvrWindows")) {
+                                    if (!Array.isArray(message.dvrWindows))
+                                        return "dvrWindows: array expected";
+                                    for (var i = 0; i < message.dvrWindows.length; ++i) {
+                                        var error = $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow.verify(message.dvrWindows[i]);
+                                        if (error)
+                                            return "dvrWindows." + error;
+                                    }
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a DvrSession message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.DvrSession} DvrSession
+                             */
+                            DvrSession.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.DvrSession)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.DvrSession();
+                                if (object.name != null)
+                                    message.name = String(object.name);
+                                if (object.createTime != null) {
+                                    if (typeof object.createTime !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.DvrSession.createTime: object expected");
+                                    message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                                }
+                                if (object.updateTime != null) {
+                                    if (typeof object.updateTime !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.DvrSession.updateTime: object expected");
+                                    message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
+                                }
+                                if (object.labels) {
+                                    if (typeof object.labels !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.DvrSession.labels: object expected");
+                                    message.labels = {};
+                                    for (var keys = Object.keys(object.labels), i = 0; i < keys.length; ++i)
+                                        message.labels[keys[i]] = String(object.labels[keys[i]]);
+                                }
+                                switch (object.state) {
+                                default:
+                                    if (typeof object.state === "number") {
+                                        message.state = object.state;
+                                        break;
+                                    }
+                                    break;
+                                case "STATE_UNSPECIFIED":
+                                case 0:
+                                    message.state = 0;
+                                    break;
+                                case "PENDING":
+                                case 1:
+                                    message.state = 1;
+                                    break;
+                                case "UPDATING":
+                                case 2:
+                                    message.state = 2;
+                                    break;
+                                case "SCHEDULED":
+                                case 3:
+                                    message.state = 3;
+                                    break;
+                                case "LIVE":
+                                case 4:
+                                    message.state = 4;
+                                    break;
+                                case "FINISHED":
+                                case 5:
+                                    message.state = 5;
+                                    break;
+                                case "FAILED":
+                                case 6:
+                                    message.state = 6;
+                                    break;
+                                case "DELETING":
+                                case 7:
+                                    message.state = 7;
+                                    break;
+                                case "POST_PROCESSING":
+                                case 8:
+                                    message.state = 8;
+                                    break;
+                                case "COOLDOWN":
+                                case 9:
+                                    message.state = 9;
+                                    break;
+                                case "STOPPING":
+                                case 10:
+                                    message.state = 10;
+                                    break;
+                                }
+                                if (object.error != null) {
+                                    if (typeof object.error !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.DvrSession.error: object expected");
+                                    message.error = $root.google.rpc.Status.fromObject(object.error);
+                                }
+                                if (object.dvrManifests) {
+                                    if (!Array.isArray(object.dvrManifests))
+                                        throw TypeError(".google.cloud.video.livestream.v1.DvrSession.dvrManifests: array expected");
+                                    message.dvrManifests = [];
+                                    for (var i = 0; i < object.dvrManifests.length; ++i) {
+                                        if (typeof object.dvrManifests[i] !== "object")
+                                            throw TypeError(".google.cloud.video.livestream.v1.DvrSession.dvrManifests: object expected");
+                                        message.dvrManifests[i] = $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest.fromObject(object.dvrManifests[i]);
+                                    }
+                                }
+                                if (object.dvrWindows) {
+                                    if (!Array.isArray(object.dvrWindows))
+                                        throw TypeError(".google.cloud.video.livestream.v1.DvrSession.dvrWindows: array expected");
+                                    message.dvrWindows = [];
+                                    for (var i = 0; i < object.dvrWindows.length; ++i) {
+                                        if (typeof object.dvrWindows[i] !== "object")
+                                            throw TypeError(".google.cloud.video.livestream.v1.DvrSession.dvrWindows: object expected");
+                                        message.dvrWindows[i] = $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow.fromObject(object.dvrWindows[i]);
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a DvrSession message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.DvrSession} message DvrSession
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            DvrSession.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.arrays || options.defaults) {
+                                    object.dvrManifests = [];
+                                    object.dvrWindows = [];
+                                }
+                                if (options.objects || options.defaults)
+                                    object.labels = {};
+                                if (options.defaults) {
+                                    object.name = "";
+                                    object.createTime = null;
+                                    object.updateTime = null;
+                                    object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                    object.error = null;
+                                }
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    object.name = message.name;
+                                if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                    object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                                if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                    object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
+                                var keys2;
+                                if (message.labels && (keys2 = Object.keys(message.labels)).length) {
+                                    object.labels = {};
+                                    for (var j = 0; j < keys2.length; ++j)
+                                        object.labels[keys2[j]] = message.labels[keys2[j]];
+                                }
+                                if (message.state != null && message.hasOwnProperty("state"))
+                                    object.state = options.enums === String ? $root.google.cloud.video.livestream.v1.DvrSession.State[message.state] === undefined ? message.state : $root.google.cloud.video.livestream.v1.DvrSession.State[message.state] : message.state;
+                                if (message.error != null && message.hasOwnProperty("error"))
+                                    object.error = $root.google.rpc.Status.toObject(message.error, options);
+                                if (message.dvrManifests && message.dvrManifests.length) {
+                                    object.dvrManifests = [];
+                                    for (var j = 0; j < message.dvrManifests.length; ++j)
+                                        object.dvrManifests[j] = $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest.toObject(message.dvrManifests[j], options);
+                                }
+                                if (message.dvrWindows && message.dvrWindows.length) {
+                                    object.dvrWindows = [];
+                                    for (var j = 0; j < message.dvrWindows.length; ++j)
+                                        object.dvrWindows[j] = $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow.toObject(message.dvrWindows[j], options);
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this DvrSession to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            DvrSession.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for DvrSession
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.DvrSession
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            DvrSession.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.DvrSession";
+                            };
+    
+                            /**
+                             * State enum.
+                             * @name google.cloud.video.livestream.v1.DvrSession.State
+                             * @enum {number}
+                             * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                             * @property {number} PENDING=1 PENDING value
+                             * @property {number} UPDATING=2 UPDATING value
+                             * @property {number} SCHEDULED=3 SCHEDULED value
+                             * @property {number} LIVE=4 LIVE value
+                             * @property {number} FINISHED=5 FINISHED value
+                             * @property {number} FAILED=6 FAILED value
+                             * @property {number} DELETING=7 DELETING value
+                             * @property {number} POST_PROCESSING=8 POST_PROCESSING value
+                             * @property {number} COOLDOWN=9 COOLDOWN value
+                             * @property {number} STOPPING=10 STOPPING value
+                             */
+                            DvrSession.State = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                                values[valuesById[1] = "PENDING"] = 1;
+                                values[valuesById[2] = "UPDATING"] = 2;
+                                values[valuesById[3] = "SCHEDULED"] = 3;
+                                values[valuesById[4] = "LIVE"] = 4;
+                                values[valuesById[5] = "FINISHED"] = 5;
+                                values[valuesById[6] = "FAILED"] = 6;
+                                values[valuesById[7] = "DELETING"] = 7;
+                                values[valuesById[8] = "POST_PROCESSING"] = 8;
+                                values[valuesById[9] = "COOLDOWN"] = 9;
+                                values[valuesById[10] = "STOPPING"] = 10;
+                                return values;
+                            })();
+    
+                            DvrSession.DvrManifest = (function() {
+    
+                                /**
+                                 * Properties of a DvrManifest.
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession
+                                 * @interface IDvrManifest
+                                 * @property {string|null} [manifestKey] DvrManifest manifestKey
+                                 * @property {string|null} [outputUri] DvrManifest outputUri
+                                 */
+    
+                                /**
+                                 * Constructs a new DvrManifest.
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession
+                                 * @classdesc Represents a DvrManifest.
+                                 * @implements IDvrManifest
+                                 * @constructor
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrManifest=} [properties] Properties to set
+                                 */
+                                function DvrManifest(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * DvrManifest manifestKey.
+                                 * @member {string} manifestKey
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @instance
+                                 */
+                                DvrManifest.prototype.manifestKey = "";
+    
+                                /**
+                                 * DvrManifest outputUri.
+                                 * @member {string} outputUri
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @instance
+                                 */
+                                DvrManifest.prototype.outputUri = "";
+    
+                                /**
+                                 * Creates a new DvrManifest instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrManifest=} [properties] Properties to set
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrManifest} DvrManifest instance
+                                 */
+                                DvrManifest.create = function create(properties) {
+                                    return new DvrManifest(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified DvrManifest message. Does not implicitly {@link google.cloud.video.livestream.v1.DvrSession.DvrManifest.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrManifest} message DvrManifest message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                DvrManifest.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.manifestKey != null && Object.hasOwnProperty.call(message, "manifestKey"))
+                                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.manifestKey);
+                                    if (message.outputUri != null && Object.hasOwnProperty.call(message, "outputUri"))
+                                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.outputUri);
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified DvrManifest message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.DvrSession.DvrManifest.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrManifest} message DvrManifest message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                DvrManifest.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes a DvrManifest message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrManifest} DvrManifest
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                DvrManifest.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.manifestKey = reader.string();
+                                                break;
+                                            }
+                                        case 2: {
+                                                message.outputUri = reader.string();
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes a DvrManifest message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrManifest} DvrManifest
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                DvrManifest.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies a DvrManifest message.
+                                 * @function verify
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                DvrManifest.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    if (message.manifestKey != null && message.hasOwnProperty("manifestKey"))
+                                        if (!$util.isString(message.manifestKey))
+                                            return "manifestKey: string expected";
+                                    if (message.outputUri != null && message.hasOwnProperty("outputUri"))
+                                        if (!$util.isString(message.outputUri))
+                                            return "outputUri: string expected";
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates a DvrManifest message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrManifest} DvrManifest
+                                 */
+                                DvrManifest.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest)
+                                        return object;
+                                    var message = new $root.google.cloud.video.livestream.v1.DvrSession.DvrManifest();
+                                    if (object.manifestKey != null)
+                                        message.manifestKey = String(object.manifestKey);
+                                    if (object.outputUri != null)
+                                        message.outputUri = String(object.outputUri);
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from a DvrManifest message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.DvrManifest} message DvrManifest
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                DvrManifest.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (options.defaults) {
+                                        object.manifestKey = "";
+                                        object.outputUri = "";
+                                    }
+                                    if (message.manifestKey != null && message.hasOwnProperty("manifestKey"))
+                                        object.manifestKey = message.manifestKey;
+                                    if (message.outputUri != null && message.hasOwnProperty("outputUri"))
+                                        object.outputUri = message.outputUri;
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this DvrManifest to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                DvrManifest.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for DvrManifest
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrManifest
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                DvrManifest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.video.livestream.v1.DvrSession.DvrManifest";
+                                };
+    
+                                return DvrManifest;
+                            })();
+    
+                            DvrSession.DvrWindow = (function() {
+    
+                                /**
+                                 * Properties of a DvrWindow.
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession
+                                 * @interface IDvrWindow
+                                 * @property {google.cloud.video.livestream.v1.ITimeInterval|null} [timeInterval] DvrWindow timeInterval
+                                 */
+    
+                                /**
+                                 * Constructs a new DvrWindow.
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession
+                                 * @classdesc Represents a DvrWindow.
+                                 * @implements IDvrWindow
+                                 * @constructor
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrWindow=} [properties] Properties to set
+                                 */
+                                function DvrWindow(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * DvrWindow timeInterval.
+                                 * @member {google.cloud.video.livestream.v1.ITimeInterval|null|undefined} timeInterval
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @instance
+                                 */
+                                DvrWindow.prototype.timeInterval = null;
+    
+                                // OneOf field names bound to virtual getters and setters
+                                var $oneOfFields;
+    
+                                /**
+                                 * DvrWindow kind.
+                                 * @member {"timeInterval"|undefined} kind
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @instance
+                                 */
+                                Object.defineProperty(DvrWindow.prototype, "kind", {
+                                    get: $util.oneOfGetter($oneOfFields = ["timeInterval"]),
+                                    set: $util.oneOfSetter($oneOfFields)
+                                });
+    
+                                /**
+                                 * Creates a new DvrWindow instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrWindow=} [properties] Properties to set
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrWindow} DvrWindow instance
+                                 */
+                                DvrWindow.create = function create(properties) {
+                                    return new DvrWindow(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified DvrWindow message. Does not implicitly {@link google.cloud.video.livestream.v1.DvrSession.DvrWindow.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrWindow} message DvrWindow message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                DvrWindow.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.timeInterval != null && Object.hasOwnProperty.call(message, "timeInterval"))
+                                        $root.google.cloud.video.livestream.v1.TimeInterval.encode(message.timeInterval, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified DvrWindow message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.DvrSession.DvrWindow.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.IDvrWindow} message DvrWindow message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                DvrWindow.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes a DvrWindow message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrWindow} DvrWindow
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                DvrWindow.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.timeInterval = $root.google.cloud.video.livestream.v1.TimeInterval.decode(reader, reader.uint32());
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes a DvrWindow message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrWindow} DvrWindow
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                DvrWindow.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies a DvrWindow message.
+                                 * @function verify
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                DvrWindow.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    var properties = {};
+                                    if (message.timeInterval != null && message.hasOwnProperty("timeInterval")) {
+                                        properties.kind = 1;
+                                        {
+                                            var error = $root.google.cloud.video.livestream.v1.TimeInterval.verify(message.timeInterval);
+                                            if (error)
+                                                return "timeInterval." + error;
+                                        }
+                                    }
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates a DvrWindow message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.video.livestream.v1.DvrSession.DvrWindow} DvrWindow
+                                 */
+                                DvrWindow.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow)
+                                        return object;
+                                    var message = new $root.google.cloud.video.livestream.v1.DvrSession.DvrWindow();
+                                    if (object.timeInterval != null) {
+                                        if (typeof object.timeInterval !== "object")
+                                            throw TypeError(".google.cloud.video.livestream.v1.DvrSession.DvrWindow.timeInterval: object expected");
+                                        message.timeInterval = $root.google.cloud.video.livestream.v1.TimeInterval.fromObject(object.timeInterval);
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from a DvrWindow message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {google.cloud.video.livestream.v1.DvrSession.DvrWindow} message DvrWindow
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                DvrWindow.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (message.timeInterval != null && message.hasOwnProperty("timeInterval")) {
+                                        object.timeInterval = $root.google.cloud.video.livestream.v1.TimeInterval.toObject(message.timeInterval, options);
+                                        if (options.oneofs)
+                                            object.kind = "timeInterval";
+                                    }
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this DvrWindow to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                DvrWindow.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for DvrWindow
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.video.livestream.v1.DvrSession.DvrWindow
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                DvrWindow.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.video.livestream.v1.DvrSession.DvrWindow";
+                                };
+    
+                                return DvrWindow;
+                            })();
+    
+                            return DvrSession;
                         })();
     
                         v1.Asset = (function() {
@@ -13185,12 +14589,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Asset.decode = function decode(reader, length) {
+                            Asset.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Asset(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -13588,12 +14994,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                VideoAsset.decode = function decode(reader, length) {
+                                VideoAsset.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Asset.VideoAsset();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.uri = reader.string();
@@ -13791,12 +15199,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                ImageAsset.decode = function decode(reader, length) {
+                                ImageAsset.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Asset.ImageAsset();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.uri = reader.string();
@@ -14097,12 +15507,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Encryption.decode = function decode(reader, length) {
+                            Encryption.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.id = reader.string();
@@ -14408,12 +15820,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                SecretManagerSource.decode = function decode(reader, length) {
+                                SecretManagerSource.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.SecretManagerSource();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.secretVersion = reader.string();
@@ -14600,12 +16014,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Widevine.decode = function decode(reader, length) {
+                                Widevine.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.Widevine();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -14775,12 +16191,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Fairplay.decode = function decode(reader, length) {
+                                Fairplay.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.Fairplay();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -14950,12 +16368,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Playready.decode = function decode(reader, length) {
+                                Playready.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.Playready();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -15125,12 +16545,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Clearkey.decode = function decode(reader, length) {
+                                Clearkey.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.Clearkey();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -15344,12 +16766,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                DrmSystems.decode = function decode(reader, length) {
+                                DrmSystems.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.DrmSystems();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.widevine = $root.google.cloud.video.livestream.v1.Encryption.Widevine.decode(reader, reader.uint32());
@@ -15593,12 +17017,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Aes128Encryption.decode = function decode(reader, length) {
+                                Aes128Encryption.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.Aes128Encryption();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -15768,12 +17194,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                SampleAesEncryption.decode = function decode(reader, length) {
+                                SampleAesEncryption.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.SampleAesEncryption();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -15954,12 +17382,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                MpegCommonEncryption.decode = function decode(reader, length) {
+                                MpegCommonEncryption.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Encryption.MpegCommonEncryption();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.scheme = reader.string();
@@ -16206,12 +17636,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Pool.decode = function decode(reader, length) {
+                            Pool.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Pool(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -16504,12 +17936,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                NetworkConfig.decode = function decode(reader, length) {
+                                NetworkConfig.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.Pool.NetworkConfig();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.peeredNetwork = reader.string();
@@ -17318,6 +18752,171 @@
                              */
     
                             /**
+                             * Callback as used by {@link google.cloud.video.livestream.v1.LivestreamService|createDvrSession}.
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @typedef CreateDvrSessionCallback
+                             * @type {function}
+                             * @param {Error|null} error Error, if any
+                             * @param {google.longrunning.Operation} [response] Operation
+                             */
+    
+                            /**
+                             * Calls CreateDvrSession.
+                             * @function createDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.ICreateDvrSessionRequest} request CreateDvrSessionRequest message or plain object
+                             * @param {google.cloud.video.livestream.v1.LivestreamService.CreateDvrSessionCallback} callback Node-style callback called with the error, if any, and Operation
+                             * @returns {undefined}
+                             * @variation 1
+                             */
+                            Object.defineProperty(LivestreamService.prototype.createDvrSession = function createDvrSession(request, callback) {
+                                return this.rpcCall(createDvrSession, $root.google.cloud.video.livestream.v1.CreateDvrSessionRequest, $root.google.longrunning.Operation, request, callback);
+                            }, "name", { value: "CreateDvrSession" });
+    
+                            /**
+                             * Calls CreateDvrSession.
+                             * @function createDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.ICreateDvrSessionRequest} request CreateDvrSessionRequest message or plain object
+                             * @returns {Promise<google.longrunning.Operation>} Promise
+                             * @variation 2
+                             */
+    
+                            /**
+                             * Callback as used by {@link google.cloud.video.livestream.v1.LivestreamService|listDvrSessions}.
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @typedef ListDvrSessionsCallback
+                             * @type {function}
+                             * @param {Error|null} error Error, if any
+                             * @param {google.cloud.video.livestream.v1.ListDvrSessionsResponse} [response] ListDvrSessionsResponse
+                             */
+    
+                            /**
+                             * Calls ListDvrSessions.
+                             * @function listDvrSessions
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsRequest} request ListDvrSessionsRequest message or plain object
+                             * @param {google.cloud.video.livestream.v1.LivestreamService.ListDvrSessionsCallback} callback Node-style callback called with the error, if any, and ListDvrSessionsResponse
+                             * @returns {undefined}
+                             * @variation 1
+                             */
+                            Object.defineProperty(LivestreamService.prototype.listDvrSessions = function listDvrSessions(request, callback) {
+                                return this.rpcCall(listDvrSessions, $root.google.cloud.video.livestream.v1.ListDvrSessionsRequest, $root.google.cloud.video.livestream.v1.ListDvrSessionsResponse, request, callback);
+                            }, "name", { value: "ListDvrSessions" });
+    
+                            /**
+                             * Calls ListDvrSessions.
+                             * @function listDvrSessions
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsRequest} request ListDvrSessionsRequest message or plain object
+                             * @returns {Promise<google.cloud.video.livestream.v1.ListDvrSessionsResponse>} Promise
+                             * @variation 2
+                             */
+    
+                            /**
+                             * Callback as used by {@link google.cloud.video.livestream.v1.LivestreamService|getDvrSession}.
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @typedef GetDvrSessionCallback
+                             * @type {function}
+                             * @param {Error|null} error Error, if any
+                             * @param {google.cloud.video.livestream.v1.DvrSession} [response] DvrSession
+                             */
+    
+                            /**
+                             * Calls GetDvrSession.
+                             * @function getDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IGetDvrSessionRequest} request GetDvrSessionRequest message or plain object
+                             * @param {google.cloud.video.livestream.v1.LivestreamService.GetDvrSessionCallback} callback Node-style callback called with the error, if any, and DvrSession
+                             * @returns {undefined}
+                             * @variation 1
+                             */
+                            Object.defineProperty(LivestreamService.prototype.getDvrSession = function getDvrSession(request, callback) {
+                                return this.rpcCall(getDvrSession, $root.google.cloud.video.livestream.v1.GetDvrSessionRequest, $root.google.cloud.video.livestream.v1.DvrSession, request, callback);
+                            }, "name", { value: "GetDvrSession" });
+    
+                            /**
+                             * Calls GetDvrSession.
+                             * @function getDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IGetDvrSessionRequest} request GetDvrSessionRequest message or plain object
+                             * @returns {Promise<google.cloud.video.livestream.v1.DvrSession>} Promise
+                             * @variation 2
+                             */
+    
+                            /**
+                             * Callback as used by {@link google.cloud.video.livestream.v1.LivestreamService|deleteDvrSession}.
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @typedef DeleteDvrSessionCallback
+                             * @type {function}
+                             * @param {Error|null} error Error, if any
+                             * @param {google.longrunning.Operation} [response] Operation
+                             */
+    
+                            /**
+                             * Calls DeleteDvrSession.
+                             * @function deleteDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IDeleteDvrSessionRequest} request DeleteDvrSessionRequest message or plain object
+                             * @param {google.cloud.video.livestream.v1.LivestreamService.DeleteDvrSessionCallback} callback Node-style callback called with the error, if any, and Operation
+                             * @returns {undefined}
+                             * @variation 1
+                             */
+                            Object.defineProperty(LivestreamService.prototype.deleteDvrSession = function deleteDvrSession(request, callback) {
+                                return this.rpcCall(deleteDvrSession, $root.google.cloud.video.livestream.v1.DeleteDvrSessionRequest, $root.google.longrunning.Operation, request, callback);
+                            }, "name", { value: "DeleteDvrSession" });
+    
+                            /**
+                             * Calls DeleteDvrSession.
+                             * @function deleteDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IDeleteDvrSessionRequest} request DeleteDvrSessionRequest message or plain object
+                             * @returns {Promise<google.longrunning.Operation>} Promise
+                             * @variation 2
+                             */
+    
+                            /**
+                             * Callback as used by {@link google.cloud.video.livestream.v1.LivestreamService|updateDvrSession}.
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @typedef UpdateDvrSessionCallback
+                             * @type {function}
+                             * @param {Error|null} error Error, if any
+                             * @param {google.longrunning.Operation} [response] Operation
+                             */
+    
+                            /**
+                             * Calls UpdateDvrSession.
+                             * @function updateDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IUpdateDvrSessionRequest} request UpdateDvrSessionRequest message or plain object
+                             * @param {google.cloud.video.livestream.v1.LivestreamService.UpdateDvrSessionCallback} callback Node-style callback called with the error, if any, and Operation
+                             * @returns {undefined}
+                             * @variation 1
+                             */
+                            Object.defineProperty(LivestreamService.prototype.updateDvrSession = function updateDvrSession(request, callback) {
+                                return this.rpcCall(updateDvrSession, $root.google.cloud.video.livestream.v1.UpdateDvrSessionRequest, $root.google.longrunning.Operation, request, callback);
+                            }, "name", { value: "UpdateDvrSession" });
+    
+                            /**
+                             * Calls UpdateDvrSession.
+                             * @function updateDvrSession
+                             * @memberof google.cloud.video.livestream.v1.LivestreamService
+                             * @instance
+                             * @param {google.cloud.video.livestream.v1.IUpdateDvrSessionRequest} request UpdateDvrSessionRequest message or plain object
+                             * @returns {Promise<google.longrunning.Operation>} Promise
+                             * @variation 2
+                             */
+    
+                            /**
                              * Callback as used by {@link google.cloud.video.livestream.v1.LivestreamService|createAsset}.
                              * @memberof google.cloud.video.livestream.v1.LivestreamService
                              * @typedef CreateAssetCallback
@@ -17636,12 +19235,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateAssetRequest.decode = function decode(reader, length) {
+                            CreateAssetRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.CreateAssetRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -17892,12 +19493,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteAssetRequest.decode = function decode(reader, length) {
+                            DeleteAssetRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DeleteAssetRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -18152,12 +19755,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListAssetsRequest.decode = function decode(reader, length) {
+                            ListAssetsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListAssetsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -18430,12 +20035,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListAssetsResponse.decode = function decode(reader, length) {
+                            ListAssetsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListAssetsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.assets && message.assets.length))
@@ -18692,12 +20299,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetAssetRequest.decode = function decode(reader, length) {
+                            GetAssetRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetAssetRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -18928,12 +20537,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateChannelRequest.decode = function decode(reader, length) {
+                            CreateChannelRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.CreateChannelRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -19217,12 +20828,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListChannelsRequest.decode = function decode(reader, length) {
+                            ListChannelsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListChannelsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -19495,12 +21108,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListChannelsResponse.decode = function decode(reader, length) {
+                            ListChannelsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListChannelsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.channels && message.channels.length))
@@ -19757,12 +21372,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetChannelRequest.decode = function decode(reader, length) {
+                            GetChannelRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetChannelRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -19982,12 +21599,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteChannelRequest.decode = function decode(reader, length) {
+                            DeleteChannelRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DeleteChannelRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -20232,12 +21851,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            UpdateChannelRequest.decode = function decode(reader, length) {
+                            UpdateChannelRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.UpdateChannelRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -20481,12 +22102,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            StartChannelRequest.decode = function decode(reader, length) {
+                            StartChannelRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.StartChannelRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -20708,12 +22331,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            StopChannelRequest.decode = function decode(reader, length) {
+                            StopChannelRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.StopChannelRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -20957,12 +22582,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateInputRequest.decode = function decode(reader, length) {
+                            CreateInputRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.CreateInputRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -21246,12 +22873,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListInputsRequest.decode = function decode(reader, length) {
+                            ListInputsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListInputsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -21524,12 +23153,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListInputsResponse.decode = function decode(reader, length) {
+                            ListInputsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListInputsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.inputs && message.inputs.length))
@@ -21786,12 +23417,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetInputRequest.decode = function decode(reader, length) {
+                            GetInputRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetInputRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -22000,12 +23633,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteInputRequest.decode = function decode(reader, length) {
+                            DeleteInputRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DeleteInputRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -22238,12 +23873,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            UpdateInputRequest.decode = function decode(reader, length) {
+                            UpdateInputRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.UpdateInputRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -22509,12 +24146,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateEventRequest.decode = function decode(reader, length) {
+                            CreateEventRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.CreateEventRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -22798,12 +24437,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListEventsRequest.decode = function decode(reader, length) {
+                            ListEventsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListEventsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -23076,12 +24717,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListEventsResponse.decode = function decode(reader, length) {
+                            ListEventsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListEventsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.events && message.events.length))
@@ -23338,12 +24981,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetEventRequest.decode = function decode(reader, length) {
+                            GetEventRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetEventRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -23552,12 +25197,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteEventRequest.decode = function decode(reader, length) {
+                            DeleteEventRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DeleteEventRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -23757,12 +25404,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ChannelOperationResponse.decode = function decode(reader, length) {
+                            ChannelOperationResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ChannelOperationResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -23987,12 +25636,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListClipsRequest.decode = function decode(reader, length) {
+                            ListClipsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListClipsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -24265,12 +25916,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ListClipsResponse.decode = function decode(reader, length) {
+                            ListClipsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListClipsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.clips && message.clips.length))
@@ -24527,12 +26180,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetClipRequest.decode = function decode(reader, length) {
+                            GetClipRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetClipRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -24763,12 +26418,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CreateClipRequest.decode = function decode(reader, length) {
+                            CreateClipRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.CreateClipRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.parent = reader.string();
@@ -25019,12 +26676,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DeleteClipRequest.decode = function decode(reader, length) {
+                            DeleteClipRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DeleteClipRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -25148,6 +26807,1570 @@
                             };
     
                             return DeleteClipRequest;
+                        })();
+    
+                        v1.ListDvrSessionsRequest = (function() {
+    
+                            /**
+                             * Properties of a ListDvrSessionsRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface IListDvrSessionsRequest
+                             * @property {string|null} [parent] ListDvrSessionsRequest parent
+                             * @property {number|null} [pageSize] ListDvrSessionsRequest pageSize
+                             * @property {string|null} [pageToken] ListDvrSessionsRequest pageToken
+                             * @property {string|null} [filter] ListDvrSessionsRequest filter
+                             * @property {string|null} [orderBy] ListDvrSessionsRequest orderBy
+                             */
+    
+                            /**
+                             * Constructs a new ListDvrSessionsRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a ListDvrSessionsRequest.
+                             * @implements IListDvrSessionsRequest
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsRequest=} [properties] Properties to set
+                             */
+                            function ListDvrSessionsRequest(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * ListDvrSessionsRequest parent.
+                             * @member {string} parent
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @instance
+                             */
+                            ListDvrSessionsRequest.prototype.parent = "";
+    
+                            /**
+                             * ListDvrSessionsRequest pageSize.
+                             * @member {number} pageSize
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @instance
+                             */
+                            ListDvrSessionsRequest.prototype.pageSize = 0;
+    
+                            /**
+                             * ListDvrSessionsRequest pageToken.
+                             * @member {string} pageToken
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @instance
+                             */
+                            ListDvrSessionsRequest.prototype.pageToken = "";
+    
+                            /**
+                             * ListDvrSessionsRequest filter.
+                             * @member {string} filter
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @instance
+                             */
+                            ListDvrSessionsRequest.prototype.filter = "";
+    
+                            /**
+                             * ListDvrSessionsRequest orderBy.
+                             * @member {string} orderBy
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @instance
+                             */
+                            ListDvrSessionsRequest.prototype.orderBy = "";
+    
+                            /**
+                             * Creates a new ListDvrSessionsRequest instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsRequest=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsRequest} ListDvrSessionsRequest instance
+                             */
+                            ListDvrSessionsRequest.create = function create(properties) {
+                                return new ListDvrSessionsRequest(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified ListDvrSessionsRequest message. Does not implicitly {@link google.cloud.video.livestream.v1.ListDvrSessionsRequest.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsRequest} message ListDvrSessionsRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ListDvrSessionsRequest.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                                if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                                if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                                if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
+                                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.filter);
+                                if (message.orderBy != null && Object.hasOwnProperty.call(message, "orderBy"))
+                                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.orderBy);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified ListDvrSessionsRequest message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.ListDvrSessionsRequest.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsRequest} message ListDvrSessionsRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ListDvrSessionsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a ListDvrSessionsRequest message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsRequest} ListDvrSessionsRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ListDvrSessionsRequest.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListDvrSessionsRequest();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.parent = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.pageSize = reader.int32();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.pageToken = reader.string();
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.filter = reader.string();
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.orderBy = reader.string();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a ListDvrSessionsRequest message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsRequest} ListDvrSessionsRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ListDvrSessionsRequest.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a ListDvrSessionsRequest message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            ListDvrSessionsRequest.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.parent != null && message.hasOwnProperty("parent"))
+                                    if (!$util.isString(message.parent))
+                                        return "parent: string expected";
+                                if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                    if (!$util.isInteger(message.pageSize))
+                                        return "pageSize: integer expected";
+                                if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                    if (!$util.isString(message.pageToken))
+                                        return "pageToken: string expected";
+                                if (message.filter != null && message.hasOwnProperty("filter"))
+                                    if (!$util.isString(message.filter))
+                                        return "filter: string expected";
+                                if (message.orderBy != null && message.hasOwnProperty("orderBy"))
+                                    if (!$util.isString(message.orderBy))
+                                        return "orderBy: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a ListDvrSessionsRequest message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsRequest} ListDvrSessionsRequest
+                             */
+                            ListDvrSessionsRequest.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.ListDvrSessionsRequest)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.ListDvrSessionsRequest();
+                                if (object.parent != null)
+                                    message.parent = String(object.parent);
+                                if (object.pageSize != null)
+                                    message.pageSize = object.pageSize | 0;
+                                if (object.pageToken != null)
+                                    message.pageToken = String(object.pageToken);
+                                if (object.filter != null)
+                                    message.filter = String(object.filter);
+                                if (object.orderBy != null)
+                                    message.orderBy = String(object.orderBy);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a ListDvrSessionsRequest message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ListDvrSessionsRequest} message ListDvrSessionsRequest
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            ListDvrSessionsRequest.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.parent = "";
+                                    object.pageSize = 0;
+                                    object.pageToken = "";
+                                    object.filter = "";
+                                    object.orderBy = "";
+                                }
+                                if (message.parent != null && message.hasOwnProperty("parent"))
+                                    object.parent = message.parent;
+                                if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                    object.pageSize = message.pageSize;
+                                if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                    object.pageToken = message.pageToken;
+                                if (message.filter != null && message.hasOwnProperty("filter"))
+                                    object.filter = message.filter;
+                                if (message.orderBy != null && message.hasOwnProperty("orderBy"))
+                                    object.orderBy = message.orderBy;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this ListDvrSessionsRequest to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            ListDvrSessionsRequest.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for ListDvrSessionsRequest
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsRequest
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            ListDvrSessionsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.ListDvrSessionsRequest";
+                            };
+    
+                            return ListDvrSessionsRequest;
+                        })();
+    
+                        v1.ListDvrSessionsResponse = (function() {
+    
+                            /**
+                             * Properties of a ListDvrSessionsResponse.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface IListDvrSessionsResponse
+                             * @property {Array.<google.cloud.video.livestream.v1.IDvrSession>|null} [dvrSessions] ListDvrSessionsResponse dvrSessions
+                             * @property {string|null} [nextPageToken] ListDvrSessionsResponse nextPageToken
+                             * @property {Array.<string>|null} [unreachable] ListDvrSessionsResponse unreachable
+                             */
+    
+                            /**
+                             * Constructs a new ListDvrSessionsResponse.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a ListDvrSessionsResponse.
+                             * @implements IListDvrSessionsResponse
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsResponse=} [properties] Properties to set
+                             */
+                            function ListDvrSessionsResponse(properties) {
+                                this.dvrSessions = [];
+                                this.unreachable = [];
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * ListDvrSessionsResponse dvrSessions.
+                             * @member {Array.<google.cloud.video.livestream.v1.IDvrSession>} dvrSessions
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @instance
+                             */
+                            ListDvrSessionsResponse.prototype.dvrSessions = $util.emptyArray;
+    
+                            /**
+                             * ListDvrSessionsResponse nextPageToken.
+                             * @member {string} nextPageToken
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @instance
+                             */
+                            ListDvrSessionsResponse.prototype.nextPageToken = "";
+    
+                            /**
+                             * ListDvrSessionsResponse unreachable.
+                             * @member {Array.<string>} unreachable
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @instance
+                             */
+                            ListDvrSessionsResponse.prototype.unreachable = $util.emptyArray;
+    
+                            /**
+                             * Creates a new ListDvrSessionsResponse instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsResponse=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsResponse} ListDvrSessionsResponse instance
+                             */
+                            ListDvrSessionsResponse.create = function create(properties) {
+                                return new ListDvrSessionsResponse(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified ListDvrSessionsResponse message. Does not implicitly {@link google.cloud.video.livestream.v1.ListDvrSessionsResponse.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsResponse} message ListDvrSessionsResponse message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ListDvrSessionsResponse.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.dvrSessions != null && message.dvrSessions.length)
+                                    for (var i = 0; i < message.dvrSessions.length; ++i)
+                                        $root.google.cloud.video.livestream.v1.DvrSession.encode(message.dvrSessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                                if (message.unreachable != null && message.unreachable.length)
+                                    for (var i = 0; i < message.unreachable.length; ++i)
+                                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.unreachable[i]);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified ListDvrSessionsResponse message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.ListDvrSessionsResponse.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IListDvrSessionsResponse} message ListDvrSessionsResponse message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ListDvrSessionsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a ListDvrSessionsResponse message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsResponse} ListDvrSessionsResponse
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ListDvrSessionsResponse.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.ListDvrSessionsResponse();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            if (!(message.dvrSessions && message.dvrSessions.length))
+                                                message.dvrSessions = [];
+                                            message.dvrSessions.push($root.google.cloud.video.livestream.v1.DvrSession.decode(reader, reader.uint32()));
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.nextPageToken = reader.string();
+                                            break;
+                                        }
+                                    case 3: {
+                                            if (!(message.unreachable && message.unreachable.length))
+                                                message.unreachable = [];
+                                            message.unreachable.push(reader.string());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a ListDvrSessionsResponse message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsResponse} ListDvrSessionsResponse
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ListDvrSessionsResponse.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a ListDvrSessionsResponse message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            ListDvrSessionsResponse.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.dvrSessions != null && message.hasOwnProperty("dvrSessions")) {
+                                    if (!Array.isArray(message.dvrSessions))
+                                        return "dvrSessions: array expected";
+                                    for (var i = 0; i < message.dvrSessions.length; ++i) {
+                                        var error = $root.google.cloud.video.livestream.v1.DvrSession.verify(message.dvrSessions[i]);
+                                        if (error)
+                                            return "dvrSessions." + error;
+                                    }
+                                }
+                                if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                    if (!$util.isString(message.nextPageToken))
+                                        return "nextPageToken: string expected";
+                                if (message.unreachable != null && message.hasOwnProperty("unreachable")) {
+                                    if (!Array.isArray(message.unreachable))
+                                        return "unreachable: array expected";
+                                    for (var i = 0; i < message.unreachable.length; ++i)
+                                        if (!$util.isString(message.unreachable[i]))
+                                            return "unreachable: string[] expected";
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a ListDvrSessionsResponse message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.ListDvrSessionsResponse} ListDvrSessionsResponse
+                             */
+                            ListDvrSessionsResponse.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.ListDvrSessionsResponse)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.ListDvrSessionsResponse();
+                                if (object.dvrSessions) {
+                                    if (!Array.isArray(object.dvrSessions))
+                                        throw TypeError(".google.cloud.video.livestream.v1.ListDvrSessionsResponse.dvrSessions: array expected");
+                                    message.dvrSessions = [];
+                                    for (var i = 0; i < object.dvrSessions.length; ++i) {
+                                        if (typeof object.dvrSessions[i] !== "object")
+                                            throw TypeError(".google.cloud.video.livestream.v1.ListDvrSessionsResponse.dvrSessions: object expected");
+                                        message.dvrSessions[i] = $root.google.cloud.video.livestream.v1.DvrSession.fromObject(object.dvrSessions[i]);
+                                    }
+                                }
+                                if (object.nextPageToken != null)
+                                    message.nextPageToken = String(object.nextPageToken);
+                                if (object.unreachable) {
+                                    if (!Array.isArray(object.unreachable))
+                                        throw TypeError(".google.cloud.video.livestream.v1.ListDvrSessionsResponse.unreachable: array expected");
+                                    message.unreachable = [];
+                                    for (var i = 0; i < object.unreachable.length; ++i)
+                                        message.unreachable[i] = String(object.unreachable[i]);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a ListDvrSessionsResponse message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ListDvrSessionsResponse} message ListDvrSessionsResponse
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            ListDvrSessionsResponse.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.arrays || options.defaults) {
+                                    object.dvrSessions = [];
+                                    object.unreachable = [];
+                                }
+                                if (options.defaults)
+                                    object.nextPageToken = "";
+                                if (message.dvrSessions && message.dvrSessions.length) {
+                                    object.dvrSessions = [];
+                                    for (var j = 0; j < message.dvrSessions.length; ++j)
+                                        object.dvrSessions[j] = $root.google.cloud.video.livestream.v1.DvrSession.toObject(message.dvrSessions[j], options);
+                                }
+                                if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                    object.nextPageToken = message.nextPageToken;
+                                if (message.unreachable && message.unreachable.length) {
+                                    object.unreachable = [];
+                                    for (var j = 0; j < message.unreachable.length; ++j)
+                                        object.unreachable[j] = message.unreachable[j];
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this ListDvrSessionsResponse to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            ListDvrSessionsResponse.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for ListDvrSessionsResponse
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.ListDvrSessionsResponse
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            ListDvrSessionsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.ListDvrSessionsResponse";
+                            };
+    
+                            return ListDvrSessionsResponse;
+                        })();
+    
+                        v1.GetDvrSessionRequest = (function() {
+    
+                            /**
+                             * Properties of a GetDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface IGetDvrSessionRequest
+                             * @property {string|null} [name] GetDvrSessionRequest name
+                             */
+    
+                            /**
+                             * Constructs a new GetDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a GetDvrSessionRequest.
+                             * @implements IGetDvrSessionRequest
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.IGetDvrSessionRequest=} [properties] Properties to set
+                             */
+                            function GetDvrSessionRequest(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * GetDvrSessionRequest name.
+                             * @member {string} name
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @instance
+                             */
+                            GetDvrSessionRequest.prototype.name = "";
+    
+                            /**
+                             * Creates a new GetDvrSessionRequest instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IGetDvrSessionRequest=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.GetDvrSessionRequest} GetDvrSessionRequest instance
+                             */
+                            GetDvrSessionRequest.create = function create(properties) {
+                                return new GetDvrSessionRequest(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified GetDvrSessionRequest message. Does not implicitly {@link google.cloud.video.livestream.v1.GetDvrSessionRequest.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IGetDvrSessionRequest} message GetDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            GetDvrSessionRequest.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified GetDvrSessionRequest message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.GetDvrSessionRequest.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IGetDvrSessionRequest} message GetDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            GetDvrSessionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a GetDvrSessionRequest message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.GetDvrSessionRequest} GetDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            GetDvrSessionRequest.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetDvrSessionRequest();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.name = reader.string();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a GetDvrSessionRequest message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.GetDvrSessionRequest} GetDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            GetDvrSessionRequest.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a GetDvrSessionRequest message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            GetDvrSessionRequest.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    if (!$util.isString(message.name))
+                                        return "name: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a GetDvrSessionRequest message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.GetDvrSessionRequest} GetDvrSessionRequest
+                             */
+                            GetDvrSessionRequest.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.GetDvrSessionRequest)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.GetDvrSessionRequest();
+                                if (object.name != null)
+                                    message.name = String(object.name);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a GetDvrSessionRequest message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.GetDvrSessionRequest} message GetDvrSessionRequest
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            GetDvrSessionRequest.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    object.name = "";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    object.name = message.name;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this GetDvrSessionRequest to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            GetDvrSessionRequest.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for GetDvrSessionRequest
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.GetDvrSessionRequest
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            GetDvrSessionRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.GetDvrSessionRequest";
+                            };
+    
+                            return GetDvrSessionRequest;
+                        })();
+    
+                        v1.CreateDvrSessionRequest = (function() {
+    
+                            /**
+                             * Properties of a CreateDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface ICreateDvrSessionRequest
+                             * @property {string|null} [parent] CreateDvrSessionRequest parent
+                             * @property {string|null} [dvrSessionId] CreateDvrSessionRequest dvrSessionId
+                             * @property {google.cloud.video.livestream.v1.IDvrSession|null} [dvrSession] CreateDvrSessionRequest dvrSession
+                             * @property {string|null} [requestId] CreateDvrSessionRequest requestId
+                             */
+    
+                            /**
+                             * Constructs a new CreateDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a CreateDvrSessionRequest.
+                             * @implements ICreateDvrSessionRequest
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.ICreateDvrSessionRequest=} [properties] Properties to set
+                             */
+                            function CreateDvrSessionRequest(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * CreateDvrSessionRequest parent.
+                             * @member {string} parent
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @instance
+                             */
+                            CreateDvrSessionRequest.prototype.parent = "";
+    
+                            /**
+                             * CreateDvrSessionRequest dvrSessionId.
+                             * @member {string} dvrSessionId
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @instance
+                             */
+                            CreateDvrSessionRequest.prototype.dvrSessionId = "";
+    
+                            /**
+                             * CreateDvrSessionRequest dvrSession.
+                             * @member {google.cloud.video.livestream.v1.IDvrSession|null|undefined} dvrSession
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @instance
+                             */
+                            CreateDvrSessionRequest.prototype.dvrSession = null;
+    
+                            /**
+                             * CreateDvrSessionRequest requestId.
+                             * @member {string} requestId
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @instance
+                             */
+                            CreateDvrSessionRequest.prototype.requestId = "";
+    
+                            /**
+                             * Creates a new CreateDvrSessionRequest instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ICreateDvrSessionRequest=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.CreateDvrSessionRequest} CreateDvrSessionRequest instance
+                             */
+                            CreateDvrSessionRequest.create = function create(properties) {
+                                return new CreateDvrSessionRequest(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified CreateDvrSessionRequest message. Does not implicitly {@link google.cloud.video.livestream.v1.CreateDvrSessionRequest.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ICreateDvrSessionRequest} message CreateDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            CreateDvrSessionRequest.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                                if (message.dvrSessionId != null && Object.hasOwnProperty.call(message, "dvrSessionId"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.dvrSessionId);
+                                if (message.dvrSession != null && Object.hasOwnProperty.call(message, "dvrSession"))
+                                    $root.google.cloud.video.livestream.v1.DvrSession.encode(message.dvrSession, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
+                                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.requestId);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified CreateDvrSessionRequest message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.CreateDvrSessionRequest.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.ICreateDvrSessionRequest} message CreateDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            CreateDvrSessionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a CreateDvrSessionRequest message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.CreateDvrSessionRequest} CreateDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            CreateDvrSessionRequest.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.CreateDvrSessionRequest();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.parent = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.dvrSessionId = reader.string();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.dvrSession = $root.google.cloud.video.livestream.v1.DvrSession.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.requestId = reader.string();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a CreateDvrSessionRequest message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.CreateDvrSessionRequest} CreateDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            CreateDvrSessionRequest.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a CreateDvrSessionRequest message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            CreateDvrSessionRequest.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.parent != null && message.hasOwnProperty("parent"))
+                                    if (!$util.isString(message.parent))
+                                        return "parent: string expected";
+                                if (message.dvrSessionId != null && message.hasOwnProperty("dvrSessionId"))
+                                    if (!$util.isString(message.dvrSessionId))
+                                        return "dvrSessionId: string expected";
+                                if (message.dvrSession != null && message.hasOwnProperty("dvrSession")) {
+                                    var error = $root.google.cloud.video.livestream.v1.DvrSession.verify(message.dvrSession);
+                                    if (error)
+                                        return "dvrSession." + error;
+                                }
+                                if (message.requestId != null && message.hasOwnProperty("requestId"))
+                                    if (!$util.isString(message.requestId))
+                                        return "requestId: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a CreateDvrSessionRequest message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.CreateDvrSessionRequest} CreateDvrSessionRequest
+                             */
+                            CreateDvrSessionRequest.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.CreateDvrSessionRequest)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.CreateDvrSessionRequest();
+                                if (object.parent != null)
+                                    message.parent = String(object.parent);
+                                if (object.dvrSessionId != null)
+                                    message.dvrSessionId = String(object.dvrSessionId);
+                                if (object.dvrSession != null) {
+                                    if (typeof object.dvrSession !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.CreateDvrSessionRequest.dvrSession: object expected");
+                                    message.dvrSession = $root.google.cloud.video.livestream.v1.DvrSession.fromObject(object.dvrSession);
+                                }
+                                if (object.requestId != null)
+                                    message.requestId = String(object.requestId);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a CreateDvrSessionRequest message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.CreateDvrSessionRequest} message CreateDvrSessionRequest
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            CreateDvrSessionRequest.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.parent = "";
+                                    object.dvrSessionId = "";
+                                    object.dvrSession = null;
+                                    object.requestId = "";
+                                }
+                                if (message.parent != null && message.hasOwnProperty("parent"))
+                                    object.parent = message.parent;
+                                if (message.dvrSessionId != null && message.hasOwnProperty("dvrSessionId"))
+                                    object.dvrSessionId = message.dvrSessionId;
+                                if (message.dvrSession != null && message.hasOwnProperty("dvrSession"))
+                                    object.dvrSession = $root.google.cloud.video.livestream.v1.DvrSession.toObject(message.dvrSession, options);
+                                if (message.requestId != null && message.hasOwnProperty("requestId"))
+                                    object.requestId = message.requestId;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this CreateDvrSessionRequest to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            CreateDvrSessionRequest.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for CreateDvrSessionRequest
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.CreateDvrSessionRequest
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            CreateDvrSessionRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.CreateDvrSessionRequest";
+                            };
+    
+                            return CreateDvrSessionRequest;
+                        })();
+    
+                        v1.DeleteDvrSessionRequest = (function() {
+    
+                            /**
+                             * Properties of a DeleteDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface IDeleteDvrSessionRequest
+                             * @property {string|null} [name] DeleteDvrSessionRequest name
+                             * @property {string|null} [requestId] DeleteDvrSessionRequest requestId
+                             */
+    
+                            /**
+                             * Constructs a new DeleteDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents a DeleteDvrSessionRequest.
+                             * @implements IDeleteDvrSessionRequest
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.IDeleteDvrSessionRequest=} [properties] Properties to set
+                             */
+                            function DeleteDvrSessionRequest(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * DeleteDvrSessionRequest name.
+                             * @member {string} name
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @instance
+                             */
+                            DeleteDvrSessionRequest.prototype.name = "";
+    
+                            /**
+                             * DeleteDvrSessionRequest requestId.
+                             * @member {string} requestId
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @instance
+                             */
+                            DeleteDvrSessionRequest.prototype.requestId = "";
+    
+                            /**
+                             * Creates a new DeleteDvrSessionRequest instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IDeleteDvrSessionRequest=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.DeleteDvrSessionRequest} DeleteDvrSessionRequest instance
+                             */
+                            DeleteDvrSessionRequest.create = function create(properties) {
+                                return new DeleteDvrSessionRequest(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified DeleteDvrSessionRequest message. Does not implicitly {@link google.cloud.video.livestream.v1.DeleteDvrSessionRequest.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IDeleteDvrSessionRequest} message DeleteDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            DeleteDvrSessionRequest.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.requestId);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified DeleteDvrSessionRequest message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.DeleteDvrSessionRequest.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IDeleteDvrSessionRequest} message DeleteDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            DeleteDvrSessionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a DeleteDvrSessionRequest message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.DeleteDvrSessionRequest} DeleteDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            DeleteDvrSessionRequest.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.DeleteDvrSessionRequest();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.name = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.requestId = reader.string();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a DeleteDvrSessionRequest message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.DeleteDvrSessionRequest} DeleteDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            DeleteDvrSessionRequest.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a DeleteDvrSessionRequest message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            DeleteDvrSessionRequest.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    if (!$util.isString(message.name))
+                                        return "name: string expected";
+                                if (message.requestId != null && message.hasOwnProperty("requestId"))
+                                    if (!$util.isString(message.requestId))
+                                        return "requestId: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a DeleteDvrSessionRequest message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.DeleteDvrSessionRequest} DeleteDvrSessionRequest
+                             */
+                            DeleteDvrSessionRequest.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.DeleteDvrSessionRequest)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.DeleteDvrSessionRequest();
+                                if (object.name != null)
+                                    message.name = String(object.name);
+                                if (object.requestId != null)
+                                    message.requestId = String(object.requestId);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a DeleteDvrSessionRequest message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.DeleteDvrSessionRequest} message DeleteDvrSessionRequest
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            DeleteDvrSessionRequest.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.name = "";
+                                    object.requestId = "";
+                                }
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    object.name = message.name;
+                                if (message.requestId != null && message.hasOwnProperty("requestId"))
+                                    object.requestId = message.requestId;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this DeleteDvrSessionRequest to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            DeleteDvrSessionRequest.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for DeleteDvrSessionRequest
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.DeleteDvrSessionRequest
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            DeleteDvrSessionRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.DeleteDvrSessionRequest";
+                            };
+    
+                            return DeleteDvrSessionRequest;
+                        })();
+    
+                        v1.UpdateDvrSessionRequest = (function() {
+    
+                            /**
+                             * Properties of an UpdateDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @interface IUpdateDvrSessionRequest
+                             * @property {google.protobuf.IFieldMask|null} [updateMask] UpdateDvrSessionRequest updateMask
+                             * @property {google.cloud.video.livestream.v1.IDvrSession|null} [dvrSession] UpdateDvrSessionRequest dvrSession
+                             * @property {string|null} [requestId] UpdateDvrSessionRequest requestId
+                             */
+    
+                            /**
+                             * Constructs a new UpdateDvrSessionRequest.
+                             * @memberof google.cloud.video.livestream.v1
+                             * @classdesc Represents an UpdateDvrSessionRequest.
+                             * @implements IUpdateDvrSessionRequest
+                             * @constructor
+                             * @param {google.cloud.video.livestream.v1.IUpdateDvrSessionRequest=} [properties] Properties to set
+                             */
+                            function UpdateDvrSessionRequest(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * UpdateDvrSessionRequest updateMask.
+                             * @member {google.protobuf.IFieldMask|null|undefined} updateMask
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @instance
+                             */
+                            UpdateDvrSessionRequest.prototype.updateMask = null;
+    
+                            /**
+                             * UpdateDvrSessionRequest dvrSession.
+                             * @member {google.cloud.video.livestream.v1.IDvrSession|null|undefined} dvrSession
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @instance
+                             */
+                            UpdateDvrSessionRequest.prototype.dvrSession = null;
+    
+                            /**
+                             * UpdateDvrSessionRequest requestId.
+                             * @member {string} requestId
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @instance
+                             */
+                            UpdateDvrSessionRequest.prototype.requestId = "";
+    
+                            /**
+                             * Creates a new UpdateDvrSessionRequest instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IUpdateDvrSessionRequest=} [properties] Properties to set
+                             * @returns {google.cloud.video.livestream.v1.UpdateDvrSessionRequest} UpdateDvrSessionRequest instance
+                             */
+                            UpdateDvrSessionRequest.create = function create(properties) {
+                                return new UpdateDvrSessionRequest(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified UpdateDvrSessionRequest message. Does not implicitly {@link google.cloud.video.livestream.v1.UpdateDvrSessionRequest.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IUpdateDvrSessionRequest} message UpdateDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            UpdateDvrSessionRequest.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.updateMask != null && Object.hasOwnProperty.call(message, "updateMask"))
+                                    $root.google.protobuf.FieldMask.encode(message.updateMask, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.dvrSession != null && Object.hasOwnProperty.call(message, "dvrSession"))
+                                    $root.google.cloud.video.livestream.v1.DvrSession.encode(message.dvrSession, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.requestId);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified UpdateDvrSessionRequest message, length delimited. Does not implicitly {@link google.cloud.video.livestream.v1.UpdateDvrSessionRequest.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.IUpdateDvrSessionRequest} message UpdateDvrSessionRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            UpdateDvrSessionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes an UpdateDvrSessionRequest message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.video.livestream.v1.UpdateDvrSessionRequest} UpdateDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            UpdateDvrSessionRequest.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.UpdateDvrSessionRequest();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.dvrSession = $root.google.cloud.video.livestream.v1.DvrSession.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.requestId = reader.string();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes an UpdateDvrSessionRequest message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.video.livestream.v1.UpdateDvrSessionRequest} UpdateDvrSessionRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            UpdateDvrSessionRequest.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies an UpdateDvrSessionRequest message.
+                             * @function verify
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            UpdateDvrSessionRequest.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.updateMask != null && message.hasOwnProperty("updateMask")) {
+                                    var error = $root.google.protobuf.FieldMask.verify(message.updateMask);
+                                    if (error)
+                                        return "updateMask." + error;
+                                }
+                                if (message.dvrSession != null && message.hasOwnProperty("dvrSession")) {
+                                    var error = $root.google.cloud.video.livestream.v1.DvrSession.verify(message.dvrSession);
+                                    if (error)
+                                        return "dvrSession." + error;
+                                }
+                                if (message.requestId != null && message.hasOwnProperty("requestId"))
+                                    if (!$util.isString(message.requestId))
+                                        return "requestId: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates an UpdateDvrSessionRequest message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.video.livestream.v1.UpdateDvrSessionRequest} UpdateDvrSessionRequest
+                             */
+                            UpdateDvrSessionRequest.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.video.livestream.v1.UpdateDvrSessionRequest)
+                                    return object;
+                                var message = new $root.google.cloud.video.livestream.v1.UpdateDvrSessionRequest();
+                                if (object.updateMask != null) {
+                                    if (typeof object.updateMask !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.UpdateDvrSessionRequest.updateMask: object expected");
+                                    message.updateMask = $root.google.protobuf.FieldMask.fromObject(object.updateMask);
+                                }
+                                if (object.dvrSession != null) {
+                                    if (typeof object.dvrSession !== "object")
+                                        throw TypeError(".google.cloud.video.livestream.v1.UpdateDvrSessionRequest.dvrSession: object expected");
+                                    message.dvrSession = $root.google.cloud.video.livestream.v1.DvrSession.fromObject(object.dvrSession);
+                                }
+                                if (object.requestId != null)
+                                    message.requestId = String(object.requestId);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from an UpdateDvrSessionRequest message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {google.cloud.video.livestream.v1.UpdateDvrSessionRequest} message UpdateDvrSessionRequest
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            UpdateDvrSessionRequest.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.updateMask = null;
+                                    object.dvrSession = null;
+                                    object.requestId = "";
+                                }
+                                if (message.updateMask != null && message.hasOwnProperty("updateMask"))
+                                    object.updateMask = $root.google.protobuf.FieldMask.toObject(message.updateMask, options);
+                                if (message.dvrSession != null && message.hasOwnProperty("dvrSession"))
+                                    object.dvrSession = $root.google.cloud.video.livestream.v1.DvrSession.toObject(message.dvrSession, options);
+                                if (message.requestId != null && message.hasOwnProperty("requestId"))
+                                    object.requestId = message.requestId;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this UpdateDvrSessionRequest to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            UpdateDvrSessionRequest.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for UpdateDvrSessionRequest
+                             * @function getTypeUrl
+                             * @memberof google.cloud.video.livestream.v1.UpdateDvrSessionRequest
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            UpdateDvrSessionRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.video.livestream.v1.UpdateDvrSessionRequest";
+                            };
+    
+                            return UpdateDvrSessionRequest;
                         })();
     
                         v1.OperationMetadata = (function() {
@@ -25290,12 +28513,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            OperationMetadata.decode = function decode(reader, length) {
+                            OperationMetadata.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.OperationMetadata();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -25564,12 +28789,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GetPoolRequest.decode = function decode(reader, length) {
+                            GetPoolRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.GetPoolRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -25789,12 +29016,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            UpdatePoolRequest.decode = function decode(reader, length) {
+                            UpdatePoolRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.video.livestream.v1.UpdatePoolRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -26149,12 +29378,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -26544,12 +29775,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -26773,12 +30006,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -27123,12 +30358,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -27507,12 +30744,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -27739,12 +30978,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -28108,12 +31349,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -28452,6 +31695,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -28553,6 +31797,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -28599,6 +31851,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -28626,12 +31880,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -28677,6 +31933,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -28771,6 +32031,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -28865,6 +32128,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -28894,6 +32159,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -28924,6 +32190,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -29065,12 +32333,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -29332,12 +32602,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -29540,12 +32812,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -29748,12 +33022,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -29956,12 +33232,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30229,12 +33507,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30608,12 +33888,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30816,12 +34098,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -31048,12 +34332,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -31326,12 +34612,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -31652,12 +34940,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldInfo.decode = function decode(reader, length) {
+                FieldInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.FieldInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.format = reader.int32();
@@ -31923,12 +35213,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -32323,12 +35615,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -32990,12 +36284,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -33475,12 +36771,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -33719,12 +37017,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -33975,12 +37275,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -34320,12 +37622,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -34699,12 +38003,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -35224,12 +38530,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -35495,12 +38803,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -35814,12 +39124,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -36055,12 +39367,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -36312,12 +39626,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -36620,12 +39936,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37124,12 +40442,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -37744,12 +41064,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -38201,12 +41523,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     if (message[".google.api.fieldInfo"] != null && Object.hasOwnProperty.call(message, ".google.api.fieldInfo"))
@@ -38238,12 +41557,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -38986,12 +42307,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -39282,12 +42605,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -39568,12 +42893,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -39880,12 +43207,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -40071,6 +43400,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -40130,6 +43460,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -40164,6 +43502,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -40191,12 +43531,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -40218,6 +43560,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -40278,6 +43624,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -40314,6 +43663,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -40337,6 +43688,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -40351,6 +43703,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -40538,12 +43892,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -40972,12 +44328,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -41311,12 +44669,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -41587,12 +44947,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -42122,12 +45484,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -42506,12 +45870,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -42796,12 +46162,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -43071,12 +46439,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -43382,12 +46752,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -43650,12 +47022,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -43976,12 +47350,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -44217,12 +47593,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -44458,12 +47836,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -44672,12 +48052,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -44860,12 +48242,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -45191,12 +48575,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DateTime.decode = function decode(reader, length) {
+                DateTime.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.DateTime();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.year = reader.int32();
@@ -45525,12 +48911,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                TimeZone.decode = function decode(reader, length) {
+                TimeZone.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.TimeZone();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
@@ -45777,12 +49165,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();
@@ -46295,12 +49685,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -46575,12 +49967,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -46811,12 +50205,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -47064,12 +50460,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -47299,12 +50697,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47502,12 +50902,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47716,12 +51118,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47948,12 +51352,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();

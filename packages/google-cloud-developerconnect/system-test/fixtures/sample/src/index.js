@@ -16,11 +16,13 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const developerconnect = require('@google-cloud/developerconnect');
 
 function main() {
   const developerConnectClient = new developerconnect.DeveloperConnectClient();
+  const insightsConfigServiceClient = new developerconnect.InsightsConfigServiceClient();
 }
 
 main();

@@ -16,11 +16,13 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const dataplex = require('@google-cloud/dataplex');
 
 function main() {
   const catalogServiceClient = new dataplex.CatalogServiceClient();
+  const cmekServiceClient = new dataplex.CmekServiceClient();
   const contentServiceClient = new dataplex.ContentServiceClient();
   const dataplexServiceClient = new dataplex.DataplexServiceClient();
   const dataScanServiceClient = new dataplex.DataScanServiceClient();

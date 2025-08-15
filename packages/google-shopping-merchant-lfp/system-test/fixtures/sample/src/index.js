@@ -16,11 +16,13 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const lfp = require('@google-shopping/lfp');
 
 function main() {
   const lfpInventoryServiceClient = new lfp.LfpInventoryServiceClient();
+  const lfpMerchantStateServiceClient = new lfp.LfpMerchantStateServiceClient();
   const lfpSaleServiceClient = new lfp.LfpSaleServiceClient();
   const lfpStoreServiceClient = new lfp.LfpStoreServiceClient();
 }

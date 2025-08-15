@@ -625,6 +625,41 @@
                 "deleteSubpropertyEventFilter"
               ]
             },
+            "CreateReportingDataAnnotation": {
+              "methods": [
+                "createReportingDataAnnotation"
+              ]
+            },
+            "GetReportingDataAnnotation": {
+              "methods": [
+                "getReportingDataAnnotation"
+              ]
+            },
+            "UpdateReportingDataAnnotation": {
+              "methods": [
+                "updateReportingDataAnnotation"
+              ]
+            },
+            "DeleteReportingDataAnnotation": {
+              "methods": [
+                "deleteReportingDataAnnotation"
+              ]
+            },
+            "SubmitUserDeletion": {
+              "methods": [
+                "submitUserDeletion"
+              ]
+            },
+            "UpdateSubpropertySyncConfig": {
+              "methods": [
+                "updateSubpropertySyncConfig"
+              ]
+            },
+            "GetSubpropertySyncConfig": {
+              "methods": [
+                "getSubpropertySyncConfig"
+              ]
+            },
             "ListAccounts": {
               "methods": [
                 "listAccounts",
@@ -812,6 +847,20 @@
                 "listSubpropertyEventFilters",
                 "listSubpropertyEventFiltersStream",
                 "listSubpropertyEventFiltersAsync"
+              ]
+            },
+            "ListReportingDataAnnotations": {
+              "methods": [
+                "listReportingDataAnnotations",
+                "listReportingDataAnnotationsStream",
+                "listReportingDataAnnotationsAsync"
+              ]
+            },
+            "ListSubpropertySyncConfigs": {
+              "methods": [
+                "listSubpropertySyncConfigs",
+                "listSubpropertySyncConfigsStream",
+                "listSubpropertySyncConfigsAsync"
               ]
             }
           }
@@ -1434,6 +1483,41 @@
                 "deleteSubpropertyEventFilter"
               ]
             },
+            "CreateReportingDataAnnotation": {
+              "methods": [
+                "createReportingDataAnnotation"
+              ]
+            },
+            "GetReportingDataAnnotation": {
+              "methods": [
+                "getReportingDataAnnotation"
+              ]
+            },
+            "UpdateReportingDataAnnotation": {
+              "methods": [
+                "updateReportingDataAnnotation"
+              ]
+            },
+            "DeleteReportingDataAnnotation": {
+              "methods": [
+                "deleteReportingDataAnnotation"
+              ]
+            },
+            "SubmitUserDeletion": {
+              "methods": [
+                "submitUserDeletion"
+              ]
+            },
+            "UpdateSubpropertySyncConfig": {
+              "methods": [
+                "updateSubpropertySyncConfig"
+              ]
+            },
+            "GetSubpropertySyncConfig": {
+              "methods": [
+                "getSubpropertySyncConfig"
+              ]
+            },
             "ListAccounts": {
               "methods": [
                 "listAccounts",
@@ -1621,6 +1705,20 @@
                 "listSubpropertyEventFilters",
                 "listSubpropertyEventFiltersStream",
                 "listSubpropertyEventFiltersAsync"
+              ]
+            },
+            "ListReportingDataAnnotations": {
+              "methods": [
+                "listReportingDataAnnotations",
+                "listReportingDataAnnotationsStream",
+                "listReportingDataAnnotationsAsync"
+              ]
+            },
+            "ListSubpropertySyncConfigs": {
+              "methods": [
+                "listSubpropertySyncConfigs",
+                "listSubpropertySyncConfigsStream",
+                "listSubpropertySyncConfigsAsync"
               ]
             }
           }

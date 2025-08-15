@@ -16,107 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  AcceleratorTypesClient,
-  AddressesClient,
-  AutoscalersClient,
-  BackendBucketsClient,
-  BackendServicesClient,
-  DisksClient,
-  DiskTypesClient,
-  ExternalVpnGatewaysClient,
-  FirewallPoliciesClient,
-  FirewallsClient,
-  ForwardingRulesClient,
-  GlobalAddressesClient,
-  GlobalForwardingRulesClient,
-  GlobalNetworkEndpointGroupsClient,
-  GlobalOperationsClient,
-  GlobalOrganizationOperationsClient,
-  GlobalPublicDelegatedPrefixesClient,
-  HealthChecksClient,
-  ImageFamilyViewsClient,
-  ImagesClient,
-  InstanceGroupManagerResizeRequestsClient,
-  InstanceGroupManagersClient,
-  InstanceGroupsClient,
-  InstancesClient,
-  InstanceSettingsServiceClient,
-  InstanceTemplatesClient,
-  InstantSnapshotsClient,
-  InterconnectAttachmentsClient,
-  InterconnectLocationsClient,
-  InterconnectRemoteLocationsClient,
-  InterconnectsClient,
-  LicenseCodesClient,
-  LicensesClient,
-  MachineImagesClient,
-  MachineTypesClient,
-  NetworkAttachmentsClient,
-  NetworkEdgeSecurityServicesClient,
-  NetworkEndpointGroupsClient,
-  NetworkFirewallPoliciesClient,
-  NetworkProfilesClient,
-  NetworksClient,
-  NodeGroupsClient,
-  NodeTemplatesClient,
-  NodeTypesClient,
-  PacketMirroringsClient,
-  ProjectsClient,
-  PublicAdvertisedPrefixesClient,
-  PublicDelegatedPrefixesClient,
-  RegionAutoscalersClient,
-  RegionBackendServicesClient,
-  RegionCommitmentsClient,
-  RegionDisksClient,
-  RegionDiskTypesClient,
-  RegionHealthChecksClient,
-  RegionHealthCheckServicesClient,
-  RegionInstanceGroupManagersClient,
-  RegionInstanceGroupsClient,
-  RegionInstancesClient,
-  RegionInstanceTemplatesClient,
-  RegionInstantSnapshotsClient,
-  RegionNetworkEndpointGroupsClient,
-  RegionNetworkFirewallPoliciesClient,
-  RegionNotificationEndpointsClient,
-  RegionOperationsClient,
-  RegionsClient,
-  RegionSecurityPoliciesClient,
-  RegionSslCertificatesClient,
-  RegionSslPoliciesClient,
-  RegionTargetHttpProxiesClient,
-  RegionTargetHttpsProxiesClient,
-  RegionTargetTcpProxiesClient,
-  RegionUrlMapsClient,
-  RegionZonesClient,
-  ReservationsClient,
-  ResourcePoliciesClient,
-  RoutersClient,
-  RoutesClient,
-  SecurityPoliciesClient,
-  ServiceAttachmentsClient,
-  SnapshotsClient,
-  SnapshotSettingsServiceClient,
-  SslCertificatesClient,
-  SslPoliciesClient,
-  StoragePoolsClient,
-  StoragePoolTypesClient,
-  SubnetworksClient,
-  TargetGrpcProxiesClient,
-  TargetHttpProxiesClient,
-  TargetHttpsProxiesClient,
-  TargetInstancesClient,
-  TargetPoolsClient,
-  TargetSslProxiesClient,
-  TargetTcpProxiesClient,
-  TargetVpnGatewaysClient,
-  UrlMapsClient,
-  VpnGatewaysClient,
-  VpnTunnelsClient,
-  ZoneOperationsClient,
-  ZonesClient,
-} from '@google-cloud/compute';
+import {AcceleratorTypesClient, AddressesClient, AutoscalersClient, BackendBucketsClient, BackendServicesClient, DisksClient, DiskTypesClient, ExternalVpnGatewaysClient, FirewallPoliciesClient, FirewallsClient, ForwardingRulesClient, GlobalAddressesClient, GlobalForwardingRulesClient, GlobalNetworkEndpointGroupsClient, GlobalOperationsClient, GlobalOrganizationOperationsClient, GlobalPublicDelegatedPrefixesClient, HealthChecksClient, ImageFamilyViewsClient, ImagesClient, InstanceGroupManagerResizeRequestsClient, InstanceGroupManagersClient, InstanceGroupsClient, InstancesClient, InstanceSettingsServiceClient, InstanceTemplatesClient, InstantSnapshotsClient, InterconnectAttachmentGroupsClient, InterconnectAttachmentsClient, InterconnectGroupsClient, InterconnectLocationsClient, InterconnectRemoteLocationsClient, InterconnectsClient, LicenseCodesClient, LicensesClient, MachineImagesClient, MachineTypesClient, NetworkAttachmentsClient, NetworkEdgeSecurityServicesClient, NetworkEndpointGroupsClient, NetworkFirewallPoliciesClient, NetworkProfilesClient, NetworksClient, NodeGroupsClient, NodeTemplatesClient, NodeTypesClient, PacketMirroringsClient, ProjectsClient, PublicAdvertisedPrefixesClient, PublicDelegatedPrefixesClient, RegionAutoscalersClient, RegionBackendServicesClient, RegionCommitmentsClient, RegionDisksClient, RegionDiskTypesClient, RegionHealthChecksClient, RegionHealthCheckServicesClient, RegionInstanceGroupManagersClient, RegionInstanceGroupsClient, RegionInstancesClient, RegionInstanceTemplatesClient, RegionInstantSnapshotsClient, RegionNetworkEndpointGroupsClient, RegionNetworkFirewallPoliciesClient, RegionNotificationEndpointsClient, RegionOperationsClient, RegionsClient, RegionSecurityPoliciesClient, RegionSslCertificatesClient, RegionSslPoliciesClient, RegionTargetHttpProxiesClient, RegionTargetHttpsProxiesClient, RegionTargetTcpProxiesClient, RegionUrlMapsClient, RegionZonesClient, ReservationBlocksClient, ReservationsClient, ReservationSubBlocksClient, ResourcePoliciesClient, RoutersClient, RoutesClient, SecurityPoliciesClient, ServiceAttachmentsClient, SnapshotsClient, SnapshotSettingsServiceClient, SslCertificatesClient, SslPoliciesClient, StoragePoolsClient, StoragePoolTypesClient, SubnetworksClient, TargetGrpcProxiesClient, TargetHttpProxiesClient, TargetHttpsProxiesClient, TargetInstancesClient, TargetPoolsClient, TargetSslProxiesClient, TargetTcpProxiesClient, TargetVpnGatewaysClient, UrlMapsClient, VpnGatewaysClient, VpnTunnelsClient, ZoneOperationsClient, ZonesClient} from '@google-cloud/compute';
 
 // check that the client class type name can be used
 function doStuffWithAcceleratorTypesClient(client: AcceleratorTypesClient) {
@@ -140,9 +40,7 @@ function doStuffWithDisksClient(client: DisksClient) {
 function doStuffWithDiskTypesClient(client: DiskTypesClient) {
   client.close();
 }
-function doStuffWithExternalVpnGatewaysClient(
-  client: ExternalVpnGatewaysClient
-) {
+function doStuffWithExternalVpnGatewaysClient(client: ExternalVpnGatewaysClient) {
   client.close();
 }
 function doStuffWithFirewallPoliciesClient(client: FirewallPoliciesClient) {
@@ -157,27 +55,19 @@ function doStuffWithForwardingRulesClient(client: ForwardingRulesClient) {
 function doStuffWithGlobalAddressesClient(client: GlobalAddressesClient) {
   client.close();
 }
-function doStuffWithGlobalForwardingRulesClient(
-  client: GlobalForwardingRulesClient
-) {
+function doStuffWithGlobalForwardingRulesClient(client: GlobalForwardingRulesClient) {
   client.close();
 }
-function doStuffWithGlobalNetworkEndpointGroupsClient(
-  client: GlobalNetworkEndpointGroupsClient
-) {
+function doStuffWithGlobalNetworkEndpointGroupsClient(client: GlobalNetworkEndpointGroupsClient) {
   client.close();
 }
 function doStuffWithGlobalOperationsClient(client: GlobalOperationsClient) {
   client.close();
 }
-function doStuffWithGlobalOrganizationOperationsClient(
-  client: GlobalOrganizationOperationsClient
-) {
+function doStuffWithGlobalOrganizationOperationsClient(client: GlobalOrganizationOperationsClient) {
   client.close();
 }
-function doStuffWithGlobalPublicDelegatedPrefixesClient(
-  client: GlobalPublicDelegatedPrefixesClient
-) {
+function doStuffWithGlobalPublicDelegatedPrefixesClient(client: GlobalPublicDelegatedPrefixesClient) {
   client.close();
 }
 function doStuffWithHealthChecksClient(client: HealthChecksClient) {
@@ -189,14 +79,10 @@ function doStuffWithImageFamilyViewsClient(client: ImageFamilyViewsClient) {
 function doStuffWithImagesClient(client: ImagesClient) {
   client.close();
 }
-function doStuffWithInstanceGroupManagerResizeRequestsClient(
-  client: InstanceGroupManagerResizeRequestsClient
-) {
+function doStuffWithInstanceGroupManagerResizeRequestsClient(client: InstanceGroupManagerResizeRequestsClient) {
   client.close();
 }
-function doStuffWithInstanceGroupManagersClient(
-  client: InstanceGroupManagersClient
-) {
+function doStuffWithInstanceGroupManagersClient(client: InstanceGroupManagersClient) {
   client.close();
 }
 function doStuffWithInstanceGroupsClient(client: InstanceGroupsClient) {
@@ -205,9 +91,7 @@ function doStuffWithInstanceGroupsClient(client: InstanceGroupsClient) {
 function doStuffWithInstancesClient(client: InstancesClient) {
   client.close();
 }
-function doStuffWithInstanceSettingsServiceClient(
-  client: InstanceSettingsServiceClient
-) {
+function doStuffWithInstanceSettingsServiceClient(client: InstanceSettingsServiceClient) {
   client.close();
 }
 function doStuffWithInstanceTemplatesClient(client: InstanceTemplatesClient) {
@@ -216,19 +100,19 @@ function doStuffWithInstanceTemplatesClient(client: InstanceTemplatesClient) {
 function doStuffWithInstantSnapshotsClient(client: InstantSnapshotsClient) {
   client.close();
 }
-function doStuffWithInterconnectAttachmentsClient(
-  client: InterconnectAttachmentsClient
-) {
+function doStuffWithInterconnectAttachmentGroupsClient(client: InterconnectAttachmentGroupsClient) {
   client.close();
 }
-function doStuffWithInterconnectLocationsClient(
-  client: InterconnectLocationsClient
-) {
+function doStuffWithInterconnectAttachmentsClient(client: InterconnectAttachmentsClient) {
   client.close();
 }
-function doStuffWithInterconnectRemoteLocationsClient(
-  client: InterconnectRemoteLocationsClient
-) {
+function doStuffWithInterconnectGroupsClient(client: InterconnectGroupsClient) {
+  client.close();
+}
+function doStuffWithInterconnectLocationsClient(client: InterconnectLocationsClient) {
+  client.close();
+}
+function doStuffWithInterconnectRemoteLocationsClient(client: InterconnectRemoteLocationsClient) {
   client.close();
 }
 function doStuffWithInterconnectsClient(client: InterconnectsClient) {
@@ -249,19 +133,13 @@ function doStuffWithMachineTypesClient(client: MachineTypesClient) {
 function doStuffWithNetworkAttachmentsClient(client: NetworkAttachmentsClient) {
   client.close();
 }
-function doStuffWithNetworkEdgeSecurityServicesClient(
-  client: NetworkEdgeSecurityServicesClient
-) {
+function doStuffWithNetworkEdgeSecurityServicesClient(client: NetworkEdgeSecurityServicesClient) {
   client.close();
 }
-function doStuffWithNetworkEndpointGroupsClient(
-  client: NetworkEndpointGroupsClient
-) {
+function doStuffWithNetworkEndpointGroupsClient(client: NetworkEndpointGroupsClient) {
   client.close();
 }
-function doStuffWithNetworkFirewallPoliciesClient(
-  client: NetworkFirewallPoliciesClient
-) {
+function doStuffWithNetworkFirewallPoliciesClient(client: NetworkFirewallPoliciesClient) {
   client.close();
 }
 function doStuffWithNetworkProfilesClient(client: NetworkProfilesClient) {
@@ -285,22 +163,16 @@ function doStuffWithPacketMirroringsClient(client: PacketMirroringsClient) {
 function doStuffWithProjectsClient(client: ProjectsClient) {
   client.close();
 }
-function doStuffWithPublicAdvertisedPrefixesClient(
-  client: PublicAdvertisedPrefixesClient
-) {
+function doStuffWithPublicAdvertisedPrefixesClient(client: PublicAdvertisedPrefixesClient) {
   client.close();
 }
-function doStuffWithPublicDelegatedPrefixesClient(
-  client: PublicDelegatedPrefixesClient
-) {
+function doStuffWithPublicDelegatedPrefixesClient(client: PublicDelegatedPrefixesClient) {
   client.close();
 }
 function doStuffWithRegionAutoscalersClient(client: RegionAutoscalersClient) {
   client.close();
 }
-function doStuffWithRegionBackendServicesClient(
-  client: RegionBackendServicesClient
-) {
+function doStuffWithRegionBackendServicesClient(client: RegionBackendServicesClient) {
   client.close();
 }
 function doStuffWithRegionCommitmentsClient(client: RegionCommitmentsClient) {
@@ -315,47 +187,31 @@ function doStuffWithRegionDiskTypesClient(client: RegionDiskTypesClient) {
 function doStuffWithRegionHealthChecksClient(client: RegionHealthChecksClient) {
   client.close();
 }
-function doStuffWithRegionHealthCheckServicesClient(
-  client: RegionHealthCheckServicesClient
-) {
+function doStuffWithRegionHealthCheckServicesClient(client: RegionHealthCheckServicesClient) {
   client.close();
 }
-function doStuffWithRegionInstanceGroupManagersClient(
-  client: RegionInstanceGroupManagersClient
-) {
+function doStuffWithRegionInstanceGroupManagersClient(client: RegionInstanceGroupManagersClient) {
   client.close();
 }
-function doStuffWithRegionInstanceGroupsClient(
-  client: RegionInstanceGroupsClient
-) {
+function doStuffWithRegionInstanceGroupsClient(client: RegionInstanceGroupsClient) {
   client.close();
 }
 function doStuffWithRegionInstancesClient(client: RegionInstancesClient) {
   client.close();
 }
-function doStuffWithRegionInstanceTemplatesClient(
-  client: RegionInstanceTemplatesClient
-) {
+function doStuffWithRegionInstanceTemplatesClient(client: RegionInstanceTemplatesClient) {
   client.close();
 }
-function doStuffWithRegionInstantSnapshotsClient(
-  client: RegionInstantSnapshotsClient
-) {
+function doStuffWithRegionInstantSnapshotsClient(client: RegionInstantSnapshotsClient) {
   client.close();
 }
-function doStuffWithRegionNetworkEndpointGroupsClient(
-  client: RegionNetworkEndpointGroupsClient
-) {
+function doStuffWithRegionNetworkEndpointGroupsClient(client: RegionNetworkEndpointGroupsClient) {
   client.close();
 }
-function doStuffWithRegionNetworkFirewallPoliciesClient(
-  client: RegionNetworkFirewallPoliciesClient
-) {
+function doStuffWithRegionNetworkFirewallPoliciesClient(client: RegionNetworkFirewallPoliciesClient) {
   client.close();
 }
-function doStuffWithRegionNotificationEndpointsClient(
-  client: RegionNotificationEndpointsClient
-) {
+function doStuffWithRegionNotificationEndpointsClient(client: RegionNotificationEndpointsClient) {
   client.close();
 }
 function doStuffWithRegionOperationsClient(client: RegionOperationsClient) {
@@ -364,32 +220,22 @@ function doStuffWithRegionOperationsClient(client: RegionOperationsClient) {
 function doStuffWithRegionsClient(client: RegionsClient) {
   client.close();
 }
-function doStuffWithRegionSecurityPoliciesClient(
-  client: RegionSecurityPoliciesClient
-) {
+function doStuffWithRegionSecurityPoliciesClient(client: RegionSecurityPoliciesClient) {
   client.close();
 }
-function doStuffWithRegionSslCertificatesClient(
-  client: RegionSslCertificatesClient
-) {
+function doStuffWithRegionSslCertificatesClient(client: RegionSslCertificatesClient) {
   client.close();
 }
 function doStuffWithRegionSslPoliciesClient(client: RegionSslPoliciesClient) {
   client.close();
 }
-function doStuffWithRegionTargetHttpProxiesClient(
-  client: RegionTargetHttpProxiesClient
-) {
+function doStuffWithRegionTargetHttpProxiesClient(client: RegionTargetHttpProxiesClient) {
   client.close();
 }
-function doStuffWithRegionTargetHttpsProxiesClient(
-  client: RegionTargetHttpsProxiesClient
-) {
+function doStuffWithRegionTargetHttpsProxiesClient(client: RegionTargetHttpsProxiesClient) {
   client.close();
 }
-function doStuffWithRegionTargetTcpProxiesClient(
-  client: RegionTargetTcpProxiesClient
-) {
+function doStuffWithRegionTargetTcpProxiesClient(client: RegionTargetTcpProxiesClient) {
   client.close();
 }
 function doStuffWithRegionUrlMapsClient(client: RegionUrlMapsClient) {
@@ -398,7 +244,13 @@ function doStuffWithRegionUrlMapsClient(client: RegionUrlMapsClient) {
 function doStuffWithRegionZonesClient(client: RegionZonesClient) {
   client.close();
 }
+function doStuffWithReservationBlocksClient(client: ReservationBlocksClient) {
+  client.close();
+}
 function doStuffWithReservationsClient(client: ReservationsClient) {
+  client.close();
+}
+function doStuffWithReservationSubBlocksClient(client: ReservationSubBlocksClient) {
   client.close();
 }
 function doStuffWithResourcePoliciesClient(client: ResourcePoliciesClient) {
@@ -419,9 +271,7 @@ function doStuffWithServiceAttachmentsClient(client: ServiceAttachmentsClient) {
 function doStuffWithSnapshotsClient(client: SnapshotsClient) {
   client.close();
 }
-function doStuffWithSnapshotSettingsServiceClient(
-  client: SnapshotSettingsServiceClient
-) {
+function doStuffWithSnapshotSettingsServiceClient(client: SnapshotSettingsServiceClient) {
   client.close();
 }
 function doStuffWithSslCertificatesClient(client: SslCertificatesClient) {
@@ -520,26 +370,17 @@ function main() {
   const globalForwardingRulesClient = new GlobalForwardingRulesClient();
   doStuffWithGlobalForwardingRulesClient(globalForwardingRulesClient);
   // check that the client instance can be created
-  const globalNetworkEndpointGroupsClient =
-    new GlobalNetworkEndpointGroupsClient();
-  doStuffWithGlobalNetworkEndpointGroupsClient(
-    globalNetworkEndpointGroupsClient
-  );
+  const globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
+  doStuffWithGlobalNetworkEndpointGroupsClient(globalNetworkEndpointGroupsClient);
   // check that the client instance can be created
   const globalOperationsClient = new GlobalOperationsClient();
   doStuffWithGlobalOperationsClient(globalOperationsClient);
   // check that the client instance can be created
-  const globalOrganizationOperationsClient =
-    new GlobalOrganizationOperationsClient();
-  doStuffWithGlobalOrganizationOperationsClient(
-    globalOrganizationOperationsClient
-  );
+  const globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
+  doStuffWithGlobalOrganizationOperationsClient(globalOrganizationOperationsClient);
   // check that the client instance can be created
-  const globalPublicDelegatedPrefixesClient =
-    new GlobalPublicDelegatedPrefixesClient();
-  doStuffWithGlobalPublicDelegatedPrefixesClient(
-    globalPublicDelegatedPrefixesClient
-  );
+  const globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
+  doStuffWithGlobalPublicDelegatedPrefixesClient(globalPublicDelegatedPrefixesClient);
   // check that the client instance can be created
   const healthChecksClient = new HealthChecksClient();
   doStuffWithHealthChecksClient(healthChecksClient);
@@ -550,11 +391,8 @@ function main() {
   const imagesClient = new ImagesClient();
   doStuffWithImagesClient(imagesClient);
   // check that the client instance can be created
-  const instanceGroupManagerResizeRequestsClient =
-    new InstanceGroupManagerResizeRequestsClient();
-  doStuffWithInstanceGroupManagerResizeRequestsClient(
-    instanceGroupManagerResizeRequestsClient
-  );
+  const instanceGroupManagerResizeRequestsClient = new InstanceGroupManagerResizeRequestsClient();
+  doStuffWithInstanceGroupManagerResizeRequestsClient(instanceGroupManagerResizeRequestsClient);
   // check that the client instance can be created
   const instanceGroupManagersClient = new InstanceGroupManagersClient();
   doStuffWithInstanceGroupManagersClient(instanceGroupManagersClient);
@@ -574,17 +412,20 @@ function main() {
   const instantSnapshotsClient = new InstantSnapshotsClient();
   doStuffWithInstantSnapshotsClient(instantSnapshotsClient);
   // check that the client instance can be created
+  const interconnectAttachmentGroupsClient = new InterconnectAttachmentGroupsClient();
+  doStuffWithInterconnectAttachmentGroupsClient(interconnectAttachmentGroupsClient);
+  // check that the client instance can be created
   const interconnectAttachmentsClient = new InterconnectAttachmentsClient();
   doStuffWithInterconnectAttachmentsClient(interconnectAttachmentsClient);
+  // check that the client instance can be created
+  const interconnectGroupsClient = new InterconnectGroupsClient();
+  doStuffWithInterconnectGroupsClient(interconnectGroupsClient);
   // check that the client instance can be created
   const interconnectLocationsClient = new InterconnectLocationsClient();
   doStuffWithInterconnectLocationsClient(interconnectLocationsClient);
   // check that the client instance can be created
-  const interconnectRemoteLocationsClient =
-    new InterconnectRemoteLocationsClient();
-  doStuffWithInterconnectRemoteLocationsClient(
-    interconnectRemoteLocationsClient
-  );
+  const interconnectRemoteLocationsClient = new InterconnectRemoteLocationsClient();
+  doStuffWithInterconnectRemoteLocationsClient(interconnectRemoteLocationsClient);
   // check that the client instance can be created
   const interconnectsClient = new InterconnectsClient();
   doStuffWithInterconnectsClient(interconnectsClient);
@@ -604,11 +445,8 @@ function main() {
   const networkAttachmentsClient = new NetworkAttachmentsClient();
   doStuffWithNetworkAttachmentsClient(networkAttachmentsClient);
   // check that the client instance can be created
-  const networkEdgeSecurityServicesClient =
-    new NetworkEdgeSecurityServicesClient();
-  doStuffWithNetworkEdgeSecurityServicesClient(
-    networkEdgeSecurityServicesClient
-  );
+  const networkEdgeSecurityServicesClient = new NetworkEdgeSecurityServicesClient();
+  doStuffWithNetworkEdgeSecurityServicesClient(networkEdgeSecurityServicesClient);
   // check that the client instance can be created
   const networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
   doStuffWithNetworkEndpointGroupsClient(networkEndpointGroupsClient);
@@ -664,11 +502,8 @@ function main() {
   const regionHealthCheckServicesClient = new RegionHealthCheckServicesClient();
   doStuffWithRegionHealthCheckServicesClient(regionHealthCheckServicesClient);
   // check that the client instance can be created
-  const regionInstanceGroupManagersClient =
-    new RegionInstanceGroupManagersClient();
-  doStuffWithRegionInstanceGroupManagersClient(
-    regionInstanceGroupManagersClient
-  );
+  const regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
+  doStuffWithRegionInstanceGroupManagersClient(regionInstanceGroupManagersClient);
   // check that the client instance can be created
   const regionInstanceGroupsClient = new RegionInstanceGroupsClient();
   doStuffWithRegionInstanceGroupsClient(regionInstanceGroupsClient);
@@ -682,23 +517,14 @@ function main() {
   const regionInstantSnapshotsClient = new RegionInstantSnapshotsClient();
   doStuffWithRegionInstantSnapshotsClient(regionInstantSnapshotsClient);
   // check that the client instance can be created
-  const regionNetworkEndpointGroupsClient =
-    new RegionNetworkEndpointGroupsClient();
-  doStuffWithRegionNetworkEndpointGroupsClient(
-    regionNetworkEndpointGroupsClient
-  );
+  const regionNetworkEndpointGroupsClient = new RegionNetworkEndpointGroupsClient();
+  doStuffWithRegionNetworkEndpointGroupsClient(regionNetworkEndpointGroupsClient);
   // check that the client instance can be created
-  const regionNetworkFirewallPoliciesClient =
-    new RegionNetworkFirewallPoliciesClient();
-  doStuffWithRegionNetworkFirewallPoliciesClient(
-    regionNetworkFirewallPoliciesClient
-  );
+  const regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
+  doStuffWithRegionNetworkFirewallPoliciesClient(regionNetworkFirewallPoliciesClient);
   // check that the client instance can be created
-  const regionNotificationEndpointsClient =
-    new RegionNotificationEndpointsClient();
-  doStuffWithRegionNotificationEndpointsClient(
-    regionNotificationEndpointsClient
-  );
+  const regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
+  doStuffWithRegionNotificationEndpointsClient(regionNotificationEndpointsClient);
   // check that the client instance can be created
   const regionOperationsClient = new RegionOperationsClient();
   doStuffWithRegionOperationsClient(regionOperationsClient);
@@ -730,8 +556,14 @@ function main() {
   const regionZonesClient = new RegionZonesClient();
   doStuffWithRegionZonesClient(regionZonesClient);
   // check that the client instance can be created
+  const reservationBlocksClient = new ReservationBlocksClient();
+  doStuffWithReservationBlocksClient(reservationBlocksClient);
+  // check that the client instance can be created
   const reservationsClient = new ReservationsClient();
   doStuffWithReservationsClient(reservationsClient);
+  // check that the client instance can be created
+  const reservationSubBlocksClient = new ReservationSubBlocksClient();
+  doStuffWithReservationSubBlocksClient(reservationSubBlocksClient);
   // check that the client instance can be created
   const resourcePoliciesClient = new ResourcePoliciesClient();
   doStuffWithResourcePoliciesClient(resourcePoliciesClient);

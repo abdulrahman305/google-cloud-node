@@ -264,6 +264,39 @@
                          */
     
                         /**
+                         * Callback as used by {@link google.cloud.iap.v1.IdentityAwareProxyAdminService|validateIapAttributeExpression}.
+                         * @memberof google.cloud.iap.v1.IdentityAwareProxyAdminService
+                         * @typedef ValidateIapAttributeExpressionCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.iap.v1.ValidateIapAttributeExpressionResponse} [response] ValidateIapAttributeExpressionResponse
+                         */
+    
+                        /**
+                         * Calls ValidateIapAttributeExpression.
+                         * @function validateIapAttributeExpression
+                         * @memberof google.cloud.iap.v1.IdentityAwareProxyAdminService
+                         * @instance
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionRequest} request ValidateIapAttributeExpressionRequest message or plain object
+                         * @param {google.cloud.iap.v1.IdentityAwareProxyAdminService.ValidateIapAttributeExpressionCallback} callback Node-style callback called with the error, if any, and ValidateIapAttributeExpressionResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(IdentityAwareProxyAdminService.prototype.validateIapAttributeExpression = function validateIapAttributeExpression(request, callback) {
+                            return this.rpcCall(validateIapAttributeExpression, $root.google.cloud.iap.v1.ValidateIapAttributeExpressionRequest, $root.google.cloud.iap.v1.ValidateIapAttributeExpressionResponse, request, callback);
+                        }, "name", { value: "ValidateIapAttributeExpression" });
+    
+                        /**
+                         * Calls ValidateIapAttributeExpression.
+                         * @function validateIapAttributeExpression
+                         * @memberof google.cloud.iap.v1.IdentityAwareProxyAdminService
+                         * @instance
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionRequest} request ValidateIapAttributeExpressionRequest message or plain object
+                         * @returns {Promise<google.cloud.iap.v1.ValidateIapAttributeExpressionResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
                          * Callback as used by {@link google.cloud.iap.v1.IdentityAwareProxyAdminService|listTunnelDestGroups}.
                          * @memberof google.cloud.iap.v1.IdentityAwareProxyAdminService
                          * @typedef ListTunnelDestGroupsCallback
@@ -837,12 +870,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListTunnelDestGroupsRequest.decode = function decode(reader, length) {
+                        ListTunnelDestGroupsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ListTunnelDestGroupsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -1078,12 +1113,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListTunnelDestGroupsResponse.decode = function decode(reader, length) {
+                        ListTunnelDestGroupsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ListTunnelDestGroupsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.tunnelDestGroups && message.tunnelDestGroups.length))
@@ -1335,12 +1372,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateTunnelDestGroupRequest.decode = function decode(reader, length) {
+                        CreateTunnelDestGroupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.CreateTunnelDestGroupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -1568,12 +1607,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetTunnelDestGroupRequest.decode = function decode(reader, length) {
+                        GetTunnelDestGroupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.GetTunnelDestGroupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -1771,12 +1812,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteTunnelDestGroupRequest.decode = function decode(reader, length) {
+                        DeleteTunnelDestGroupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.DeleteTunnelDestGroupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -1985,12 +2028,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateTunnelDestGroupRequest.decode = function decode(reader, length) {
+                        UpdateTunnelDestGroupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.UpdateTunnelDestGroupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.tunnelDestGroup = $root.google.cloud.iap.v1.TunnelDestGroup.decode(reader, reader.uint32());
@@ -2237,12 +2282,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TunnelDestGroup.decode = function decode(reader, length) {
+                        TunnelDestGroup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.TunnelDestGroup();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2494,12 +2541,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetIapSettingsRequest.decode = function decode(reader, length) {
+                        GetIapSettingsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.GetIapSettingsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2708,12 +2757,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateIapSettingsRequest.decode = function decode(reader, length) {
+                        UpdateIapSettingsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.UpdateIapSettingsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.iapSettings = $root.google.cloud.iap.v1.IapSettings.decode(reader, reader.uint32());
@@ -2956,12 +3007,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        IapSettings.decode = function decode(reader, length) {
+                        IapSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.IapSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3120,6 +3173,8 @@
                          * @property {google.cloud.iap.v1.IOAuthSettings|null} [oauthSettings] AccessSettings oauthSettings
                          * @property {google.cloud.iap.v1.IReauthSettings|null} [reauthSettings] AccessSettings reauthSettings
                          * @property {google.cloud.iap.v1.IAllowedDomainsSettings|null} [allowedDomainsSettings] AccessSettings allowedDomainsSettings
+                         * @property {google.cloud.iap.v1.IWorkforceIdentitySettings|null} [workforceIdentitySettings] AccessSettings workforceIdentitySettings
+                         * @property {Array.<google.cloud.iap.v1.AccessSettings.IdentitySource>|null} [identitySources] AccessSettings identitySources
                          */
     
                         /**
@@ -3131,6 +3186,7 @@
                          * @param {google.cloud.iap.v1.IAccessSettings=} [properties] Properties to set
                          */
                         function AccessSettings(properties) {
+                            this.identitySources = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -3178,6 +3234,22 @@
                         AccessSettings.prototype.allowedDomainsSettings = null;
     
                         /**
+                         * AccessSettings workforceIdentitySettings.
+                         * @member {google.cloud.iap.v1.IWorkforceIdentitySettings|null|undefined} workforceIdentitySettings
+                         * @memberof google.cloud.iap.v1.AccessSettings
+                         * @instance
+                         */
+                        AccessSettings.prototype.workforceIdentitySettings = null;
+    
+                        /**
+                         * AccessSettings identitySources.
+                         * @member {Array.<google.cloud.iap.v1.AccessSettings.IdentitySource>} identitySources
+                         * @memberof google.cloud.iap.v1.AccessSettings
+                         * @instance
+                         */
+                        AccessSettings.prototype.identitySources = $util.emptyArray;
+    
+                        /**
                          * Creates a new AccessSettings instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.iap.v1.AccessSettings
@@ -3211,6 +3283,14 @@
                                 $root.google.cloud.iap.v1.ReauthSettings.encode(message.reauthSettings, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                             if (message.allowedDomainsSettings != null && Object.hasOwnProperty.call(message, "allowedDomainsSettings"))
                                 $root.google.cloud.iap.v1.AllowedDomainsSettings.encode(message.allowedDomainsSettings, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                            if (message.workforceIdentitySettings != null && Object.hasOwnProperty.call(message, "workforceIdentitySettings"))
+                                $root.google.cloud.iap.v1.WorkforceIdentitySettings.encode(message.workforceIdentitySettings, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                            if (message.identitySources != null && message.identitySources.length) {
+                                writer.uint32(/* id 10, wireType 2 =*/82).fork();
+                                for (var i = 0; i < message.identitySources.length; ++i)
+                                    writer.int32(message.identitySources[i]);
+                                writer.ldelim();
+                            }
                             return writer;
                         };
     
@@ -3238,12 +3318,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AccessSettings.decode = function decode(reader, length) {
+                        AccessSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.AccessSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.gcipSettings = $root.google.cloud.iap.v1.GcipSettings.decode(reader, reader.uint32());
@@ -3263,6 +3345,21 @@
                                     }
                                 case 7: {
                                         message.allowedDomainsSettings = $root.google.cloud.iap.v1.AllowedDomainsSettings.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 9: {
+                                        message.workforceIdentitySettings = $root.google.cloud.iap.v1.WorkforceIdentitySettings.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 10: {
+                                        if (!(message.identitySources && message.identitySources.length))
+                                            message.identitySources = [];
+                                        if ((tag & 7) === 2) {
+                                            var end2 = reader.uint32() + reader.pos;
+                                            while (reader.pos < end2)
+                                                message.identitySources.push(reader.int32());
+                                        } else
+                                            message.identitySources.push(reader.int32());
                                         break;
                                     }
                                 default:
@@ -3325,6 +3422,23 @@
                                 if (error)
                                     return "allowedDomainsSettings." + error;
                             }
+                            if (message.workforceIdentitySettings != null && message.hasOwnProperty("workforceIdentitySettings")) {
+                                var error = $root.google.cloud.iap.v1.WorkforceIdentitySettings.verify(message.workforceIdentitySettings);
+                                if (error)
+                                    return "workforceIdentitySettings." + error;
+                            }
+                            if (message.identitySources != null && message.hasOwnProperty("identitySources")) {
+                                if (!Array.isArray(message.identitySources))
+                                    return "identitySources: array expected";
+                                for (var i = 0; i < message.identitySources.length; ++i)
+                                    switch (message.identitySources[i]) {
+                                    default:
+                                        return "identitySources: enum value[] expected";
+                                    case 0:
+                                    case 3:
+                                        break;
+                                    }
+                            }
                             return null;
                         };
     
@@ -3365,6 +3479,32 @@
                                     throw TypeError(".google.cloud.iap.v1.AccessSettings.allowedDomainsSettings: object expected");
                                 message.allowedDomainsSettings = $root.google.cloud.iap.v1.AllowedDomainsSettings.fromObject(object.allowedDomainsSettings);
                             }
+                            if (object.workforceIdentitySettings != null) {
+                                if (typeof object.workforceIdentitySettings !== "object")
+                                    throw TypeError(".google.cloud.iap.v1.AccessSettings.workforceIdentitySettings: object expected");
+                                message.workforceIdentitySettings = $root.google.cloud.iap.v1.WorkforceIdentitySettings.fromObject(object.workforceIdentitySettings);
+                            }
+                            if (object.identitySources) {
+                                if (!Array.isArray(object.identitySources))
+                                    throw TypeError(".google.cloud.iap.v1.AccessSettings.identitySources: array expected");
+                                message.identitySources = [];
+                                for (var i = 0; i < object.identitySources.length; ++i)
+                                    switch (object.identitySources[i]) {
+                                    default:
+                                        if (typeof object.identitySources[i] === "number") {
+                                            message.identitySources[i] = object.identitySources[i];
+                                            break;
+                                        }
+                                    case "IDENTITY_SOURCE_UNSPECIFIED":
+                                    case 0:
+                                        message.identitySources[i] = 0;
+                                        break;
+                                    case "WORKFORCE_IDENTITY_FEDERATION":
+                                    case 3:
+                                        message.identitySources[i] = 3;
+                                        break;
+                                    }
+                            }
                             return message;
                         };
     
@@ -3381,12 +3521,15 @@
                             if (!options)
                                 options = {};
                             var object = {};
+                            if (options.arrays || options.defaults)
+                                object.identitySources = [];
                             if (options.defaults) {
                                 object.gcipSettings = null;
                                 object.corsSettings = null;
                                 object.oauthSettings = null;
                                 object.reauthSettings = null;
                                 object.allowedDomainsSettings = null;
+                                object.workforceIdentitySettings = null;
                             }
                             if (message.gcipSettings != null && message.hasOwnProperty("gcipSettings"))
                                 object.gcipSettings = $root.google.cloud.iap.v1.GcipSettings.toObject(message.gcipSettings, options);
@@ -3398,6 +3541,13 @@
                                 object.reauthSettings = $root.google.cloud.iap.v1.ReauthSettings.toObject(message.reauthSettings, options);
                             if (message.allowedDomainsSettings != null && message.hasOwnProperty("allowedDomainsSettings"))
                                 object.allowedDomainsSettings = $root.google.cloud.iap.v1.AllowedDomainsSettings.toObject(message.allowedDomainsSettings, options);
+                            if (message.workforceIdentitySettings != null && message.hasOwnProperty("workforceIdentitySettings"))
+                                object.workforceIdentitySettings = $root.google.cloud.iap.v1.WorkforceIdentitySettings.toObject(message.workforceIdentitySettings, options);
+                            if (message.identitySources && message.identitySources.length) {
+                                object.identitySources = [];
+                                for (var j = 0; j < message.identitySources.length; ++j)
+                                    object.identitySources[j] = options.enums === String ? $root.google.cloud.iap.v1.AccessSettings.IdentitySource[message.identitySources[j]] === undefined ? message.identitySources[j] : $root.google.cloud.iap.v1.AccessSettings.IdentitySource[message.identitySources[j]] : message.identitySources[j];
+                            }
                             return object;
                         };
     
@@ -3426,6 +3576,20 @@
                             }
                             return typeUrlPrefix + "/google.cloud.iap.v1.AccessSettings";
                         };
+    
+                        /**
+                         * IdentitySource enum.
+                         * @name google.cloud.iap.v1.AccessSettings.IdentitySource
+                         * @enum {number}
+                         * @property {number} IDENTITY_SOURCE_UNSPECIFIED=0 IDENTITY_SOURCE_UNSPECIFIED value
+                         * @property {number} WORKFORCE_IDENTITY_FEDERATION=3 WORKFORCE_IDENTITY_FEDERATION value
+                         */
+                        AccessSettings.IdentitySource = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "IDENTITY_SOURCE_UNSPECIFIED"] = 0;
+                            values[valuesById[3] = "WORKFORCE_IDENTITY_FEDERATION"] = 3;
+                            return values;
+                        })();
     
                         return AccessSettings;
                     })();
@@ -3528,12 +3692,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GcipSettings.decode = function decode(reader, length) {
+                        GcipSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.GcipSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.tenantIds && message.tenantIds.length))
@@ -3763,12 +3929,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CorsSettings.decode = function decode(reader, length) {
+                        CorsSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.CorsSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.allowHttpOptions = $root.google.protobuf.BoolValue.decode(reader, reader.uint32());
@@ -3984,12 +4152,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OAuthSettings.decode = function decode(reader, length) {
+                        OAuthSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.OAuthSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.loginHint = $root.google.protobuf.StringValue.decode(reader, reader.uint32());
@@ -4134,6 +4304,508 @@
                         return OAuthSettings;
                     })();
     
+                    v1.WorkforceIdentitySettings = (function() {
+    
+                        /**
+                         * Properties of a WorkforceIdentitySettings.
+                         * @memberof google.cloud.iap.v1
+                         * @interface IWorkforceIdentitySettings
+                         * @property {Array.<string>|null} [workforcePools] WorkforceIdentitySettings workforcePools
+                         * @property {google.cloud.iap.v1.IOAuth2|null} [oauth2] WorkforceIdentitySettings oauth2
+                         */
+    
+                        /**
+                         * Constructs a new WorkforceIdentitySettings.
+                         * @memberof google.cloud.iap.v1
+                         * @classdesc Represents a WorkforceIdentitySettings.
+                         * @implements IWorkforceIdentitySettings
+                         * @constructor
+                         * @param {google.cloud.iap.v1.IWorkforceIdentitySettings=} [properties] Properties to set
+                         */
+                        function WorkforceIdentitySettings(properties) {
+                            this.workforcePools = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * WorkforceIdentitySettings workforcePools.
+                         * @member {Array.<string>} workforcePools
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @instance
+                         */
+                        WorkforceIdentitySettings.prototype.workforcePools = $util.emptyArray;
+    
+                        /**
+                         * WorkforceIdentitySettings oauth2.
+                         * @member {google.cloud.iap.v1.IOAuth2|null|undefined} oauth2
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @instance
+                         */
+                        WorkforceIdentitySettings.prototype.oauth2 = null;
+    
+                        /**
+                         * Creates a new WorkforceIdentitySettings instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {google.cloud.iap.v1.IWorkforceIdentitySettings=} [properties] Properties to set
+                         * @returns {google.cloud.iap.v1.WorkforceIdentitySettings} WorkforceIdentitySettings instance
+                         */
+                        WorkforceIdentitySettings.create = function create(properties) {
+                            return new WorkforceIdentitySettings(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified WorkforceIdentitySettings message. Does not implicitly {@link google.cloud.iap.v1.WorkforceIdentitySettings.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {google.cloud.iap.v1.IWorkforceIdentitySettings} message WorkforceIdentitySettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        WorkforceIdentitySettings.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.workforcePools != null && message.workforcePools.length)
+                                for (var i = 0; i < message.workforcePools.length; ++i)
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.workforcePools[i]);
+                            if (message.oauth2 != null && Object.hasOwnProperty.call(message, "oauth2"))
+                                $root.google.cloud.iap.v1.OAuth2.encode(message.oauth2, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified WorkforceIdentitySettings message, length delimited. Does not implicitly {@link google.cloud.iap.v1.WorkforceIdentitySettings.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {google.cloud.iap.v1.IWorkforceIdentitySettings} message WorkforceIdentitySettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        WorkforceIdentitySettings.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a WorkforceIdentitySettings message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.iap.v1.WorkforceIdentitySettings} WorkforceIdentitySettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        WorkforceIdentitySettings.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.WorkforceIdentitySettings();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.workforcePools && message.workforcePools.length))
+                                            message.workforcePools = [];
+                                        message.workforcePools.push(reader.string());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.oauth2 = $root.google.cloud.iap.v1.OAuth2.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a WorkforceIdentitySettings message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.iap.v1.WorkforceIdentitySettings} WorkforceIdentitySettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        WorkforceIdentitySettings.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a WorkforceIdentitySettings message.
+                         * @function verify
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        WorkforceIdentitySettings.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.workforcePools != null && message.hasOwnProperty("workforcePools")) {
+                                if (!Array.isArray(message.workforcePools))
+                                    return "workforcePools: array expected";
+                                for (var i = 0; i < message.workforcePools.length; ++i)
+                                    if (!$util.isString(message.workforcePools[i]))
+                                        return "workforcePools: string[] expected";
+                            }
+                            if (message.oauth2 != null && message.hasOwnProperty("oauth2")) {
+                                var error = $root.google.cloud.iap.v1.OAuth2.verify(message.oauth2);
+                                if (error)
+                                    return "oauth2." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a WorkforceIdentitySettings message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.iap.v1.WorkforceIdentitySettings} WorkforceIdentitySettings
+                         */
+                        WorkforceIdentitySettings.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.iap.v1.WorkforceIdentitySettings)
+                                return object;
+                            var message = new $root.google.cloud.iap.v1.WorkforceIdentitySettings();
+                            if (object.workforcePools) {
+                                if (!Array.isArray(object.workforcePools))
+                                    throw TypeError(".google.cloud.iap.v1.WorkforceIdentitySettings.workforcePools: array expected");
+                                message.workforcePools = [];
+                                for (var i = 0; i < object.workforcePools.length; ++i)
+                                    message.workforcePools[i] = String(object.workforcePools[i]);
+                            }
+                            if (object.oauth2 != null) {
+                                if (typeof object.oauth2 !== "object")
+                                    throw TypeError(".google.cloud.iap.v1.WorkforceIdentitySettings.oauth2: object expected");
+                                message.oauth2 = $root.google.cloud.iap.v1.OAuth2.fromObject(object.oauth2);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a WorkforceIdentitySettings message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {google.cloud.iap.v1.WorkforceIdentitySettings} message WorkforceIdentitySettings
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        WorkforceIdentitySettings.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.workforcePools = [];
+                            if (options.defaults)
+                                object.oauth2 = null;
+                            if (message.workforcePools && message.workforcePools.length) {
+                                object.workforcePools = [];
+                                for (var j = 0; j < message.workforcePools.length; ++j)
+                                    object.workforcePools[j] = message.workforcePools[j];
+                            }
+                            if (message.oauth2 != null && message.hasOwnProperty("oauth2"))
+                                object.oauth2 = $root.google.cloud.iap.v1.OAuth2.toObject(message.oauth2, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this WorkforceIdentitySettings to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        WorkforceIdentitySettings.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for WorkforceIdentitySettings
+                         * @function getTypeUrl
+                         * @memberof google.cloud.iap.v1.WorkforceIdentitySettings
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        WorkforceIdentitySettings.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.iap.v1.WorkforceIdentitySettings";
+                        };
+    
+                        return WorkforceIdentitySettings;
+                    })();
+    
+                    v1.OAuth2 = (function() {
+    
+                        /**
+                         * Properties of a OAuth2.
+                         * @memberof google.cloud.iap.v1
+                         * @interface IOAuth2
+                         * @property {string|null} [clientId] OAuth2 clientId
+                         * @property {string|null} [clientSecret] OAuth2 clientSecret
+                         * @property {string|null} [clientSecretSha256] OAuth2 clientSecretSha256
+                         */
+    
+                        /**
+                         * Constructs a new OAuth2.
+                         * @memberof google.cloud.iap.v1
+                         * @classdesc Represents a OAuth2.
+                         * @implements IOAuth2
+                         * @constructor
+                         * @param {google.cloud.iap.v1.IOAuth2=} [properties] Properties to set
+                         */
+                        function OAuth2(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * OAuth2 clientId.
+                         * @member {string} clientId
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @instance
+                         */
+                        OAuth2.prototype.clientId = "";
+    
+                        /**
+                         * OAuth2 clientSecret.
+                         * @member {string} clientSecret
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @instance
+                         */
+                        OAuth2.prototype.clientSecret = "";
+    
+                        /**
+                         * OAuth2 clientSecretSha256.
+                         * @member {string} clientSecretSha256
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @instance
+                         */
+                        OAuth2.prototype.clientSecretSha256 = "";
+    
+                        /**
+                         * Creates a new OAuth2 instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {google.cloud.iap.v1.IOAuth2=} [properties] Properties to set
+                         * @returns {google.cloud.iap.v1.OAuth2} OAuth2 instance
+                         */
+                        OAuth2.create = function create(properties) {
+                            return new OAuth2(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified OAuth2 message. Does not implicitly {@link google.cloud.iap.v1.OAuth2.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {google.cloud.iap.v1.IOAuth2} message OAuth2 message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        OAuth2.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.clientId != null && Object.hasOwnProperty.call(message, "clientId"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.clientId);
+                            if (message.clientSecret != null && Object.hasOwnProperty.call(message, "clientSecret"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.clientSecret);
+                            if (message.clientSecretSha256 != null && Object.hasOwnProperty.call(message, "clientSecretSha256"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.clientSecretSha256);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified OAuth2 message, length delimited. Does not implicitly {@link google.cloud.iap.v1.OAuth2.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {google.cloud.iap.v1.IOAuth2} message OAuth2 message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        OAuth2.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a OAuth2 message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.iap.v1.OAuth2} OAuth2
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        OAuth2.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.OAuth2();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.clientId = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.clientSecret = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.clientSecretSha256 = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a OAuth2 message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.iap.v1.OAuth2} OAuth2
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        OAuth2.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a OAuth2 message.
+                         * @function verify
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        OAuth2.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.clientId != null && message.hasOwnProperty("clientId"))
+                                if (!$util.isString(message.clientId))
+                                    return "clientId: string expected";
+                            if (message.clientSecret != null && message.hasOwnProperty("clientSecret"))
+                                if (!$util.isString(message.clientSecret))
+                                    return "clientSecret: string expected";
+                            if (message.clientSecretSha256 != null && message.hasOwnProperty("clientSecretSha256"))
+                                if (!$util.isString(message.clientSecretSha256))
+                                    return "clientSecretSha256: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a OAuth2 message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.iap.v1.OAuth2} OAuth2
+                         */
+                        OAuth2.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.iap.v1.OAuth2)
+                                return object;
+                            var message = new $root.google.cloud.iap.v1.OAuth2();
+                            if (object.clientId != null)
+                                message.clientId = String(object.clientId);
+                            if (object.clientSecret != null)
+                                message.clientSecret = String(object.clientSecret);
+                            if (object.clientSecretSha256 != null)
+                                message.clientSecretSha256 = String(object.clientSecretSha256);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a OAuth2 message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {google.cloud.iap.v1.OAuth2} message OAuth2
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        OAuth2.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.clientId = "";
+                                object.clientSecret = "";
+                                object.clientSecretSha256 = "";
+                            }
+                            if (message.clientId != null && message.hasOwnProperty("clientId"))
+                                object.clientId = message.clientId;
+                            if (message.clientSecret != null && message.hasOwnProperty("clientSecret"))
+                                object.clientSecret = message.clientSecret;
+                            if (message.clientSecretSha256 != null && message.hasOwnProperty("clientSecretSha256"))
+                                object.clientSecretSha256 = message.clientSecretSha256;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this OAuth2 to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        OAuth2.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for OAuth2
+                         * @function getTypeUrl
+                         * @memberof google.cloud.iap.v1.OAuth2
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        OAuth2.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.iap.v1.OAuth2";
+                        };
+    
+                        return OAuth2;
+                    })();
+    
                     v1.ReauthSettings = (function() {
     
                         /**
@@ -4241,12 +4913,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ReauthSettings.decode = function decode(reader, length) {
+                        ReauthSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ReauthSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.method = reader.int32();
@@ -4528,12 +5202,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * AllowedDomainsSettings _enable.
-                         * @member {"enable"|undefined} _enable
-                         * @memberof google.cloud.iap.v1.AllowedDomainsSettings
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AllowedDomainsSettings.prototype, "_enable", {
                             get: $util.oneOfGetter($oneOfFields = ["enable"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -4595,12 +5264,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AllowedDomainsSettings.decode = function decode(reader, length) {
+                        AllowedDomainsSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.AllowedDomainsSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.enable = reader.bool();
@@ -4862,12 +5533,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ApplicationSettings.decode = function decode(reader, length) {
+                        ApplicationSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ApplicationSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.csmSettings = $root.google.cloud.iap.v1.CsmSettings.decode(reader, reader.uint32());
@@ -5122,12 +5795,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CsmSettings.decode = function decode(reader, length) {
+                        CsmSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.CsmSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.rctokenAud = $root.google.protobuf.StringValue.decode(reader, reader.uint32());
@@ -5298,12 +5973,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * AccessDeniedPageSettings _remediationTokenGenerationEnabled.
-                         * @member {"remediationTokenGenerationEnabled"|undefined} _remediationTokenGenerationEnabled
-                         * @memberof google.cloud.iap.v1.AccessDeniedPageSettings
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AccessDeniedPageSettings.prototype, "_remediationTokenGenerationEnabled", {
                             get: $util.oneOfGetter($oneOfFields = ["remediationTokenGenerationEnabled"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -5366,12 +6036,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AccessDeniedPageSettings.decode = function decode(reader, length) {
+                        AccessDeniedPageSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.AccessDeniedPageSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.accessDeniedPageUri = $root.google.protobuf.StringValue.decode(reader, reader.uint32());
@@ -5584,23 +6256,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * AttributePropagationSettings _expression.
-                         * @member {"expression"|undefined} _expression
-                         * @memberof google.cloud.iap.v1.AttributePropagationSettings
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AttributePropagationSettings.prototype, "_expression", {
                             get: $util.oneOfGetter($oneOfFields = ["expression"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * AttributePropagationSettings _enable.
-                         * @member {"enable"|undefined} _enable
-                         * @memberof google.cloud.iap.v1.AttributePropagationSettings
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AttributePropagationSettings.prototype, "_enable", {
                             get: $util.oneOfGetter($oneOfFields = ["enable"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -5667,12 +6329,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AttributePropagationSettings.decode = function decode(reader, length) {
+                        AttributePropagationSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.AttributePropagationSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.expression = reader.string();
@@ -5884,6 +6548,412 @@
                         return AttributePropagationSettings;
                     })();
     
+                    v1.ValidateIapAttributeExpressionRequest = (function() {
+    
+                        /**
+                         * Properties of a ValidateIapAttributeExpressionRequest.
+                         * @memberof google.cloud.iap.v1
+                         * @interface IValidateIapAttributeExpressionRequest
+                         * @property {string|null} [name] ValidateIapAttributeExpressionRequest name
+                         * @property {string|null} [expression] ValidateIapAttributeExpressionRequest expression
+                         */
+    
+                        /**
+                         * Constructs a new ValidateIapAttributeExpressionRequest.
+                         * @memberof google.cloud.iap.v1
+                         * @classdesc Represents a ValidateIapAttributeExpressionRequest.
+                         * @implements IValidateIapAttributeExpressionRequest
+                         * @constructor
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionRequest=} [properties] Properties to set
+                         */
+                        function ValidateIapAttributeExpressionRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ValidateIapAttributeExpressionRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @instance
+                         */
+                        ValidateIapAttributeExpressionRequest.prototype.name = "";
+    
+                        /**
+                         * ValidateIapAttributeExpressionRequest expression.
+                         * @member {string} expression
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @instance
+                         */
+                        ValidateIapAttributeExpressionRequest.prototype.expression = "";
+    
+                        /**
+                         * Creates a new ValidateIapAttributeExpressionRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionRequest=} [properties] Properties to set
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionRequest} ValidateIapAttributeExpressionRequest instance
+                         */
+                        ValidateIapAttributeExpressionRequest.create = function create(properties) {
+                            return new ValidateIapAttributeExpressionRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ValidateIapAttributeExpressionRequest message. Does not implicitly {@link google.cloud.iap.v1.ValidateIapAttributeExpressionRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionRequest} message ValidateIapAttributeExpressionRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ValidateIapAttributeExpressionRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.expression != null && Object.hasOwnProperty.call(message, "expression"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.expression);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ValidateIapAttributeExpressionRequest message, length delimited. Does not implicitly {@link google.cloud.iap.v1.ValidateIapAttributeExpressionRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionRequest} message ValidateIapAttributeExpressionRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ValidateIapAttributeExpressionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ValidateIapAttributeExpressionRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionRequest} ValidateIapAttributeExpressionRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ValidateIapAttributeExpressionRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ValidateIapAttributeExpressionRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.expression = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ValidateIapAttributeExpressionRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionRequest} ValidateIapAttributeExpressionRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ValidateIapAttributeExpressionRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ValidateIapAttributeExpressionRequest message.
+                         * @function verify
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ValidateIapAttributeExpressionRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.expression != null && message.hasOwnProperty("expression"))
+                                if (!$util.isString(message.expression))
+                                    return "expression: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ValidateIapAttributeExpressionRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionRequest} ValidateIapAttributeExpressionRequest
+                         */
+                        ValidateIapAttributeExpressionRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.iap.v1.ValidateIapAttributeExpressionRequest)
+                                return object;
+                            var message = new $root.google.cloud.iap.v1.ValidateIapAttributeExpressionRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.expression != null)
+                                message.expression = String(object.expression);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ValidateIapAttributeExpressionRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {google.cloud.iap.v1.ValidateIapAttributeExpressionRequest} message ValidateIapAttributeExpressionRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ValidateIapAttributeExpressionRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.expression = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.expression != null && message.hasOwnProperty("expression"))
+                                object.expression = message.expression;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ValidateIapAttributeExpressionRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ValidateIapAttributeExpressionRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ValidateIapAttributeExpressionRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ValidateIapAttributeExpressionRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.iap.v1.ValidateIapAttributeExpressionRequest";
+                        };
+    
+                        return ValidateIapAttributeExpressionRequest;
+                    })();
+    
+                    v1.ValidateIapAttributeExpressionResponse = (function() {
+    
+                        /**
+                         * Properties of a ValidateIapAttributeExpressionResponse.
+                         * @memberof google.cloud.iap.v1
+                         * @interface IValidateIapAttributeExpressionResponse
+                         */
+    
+                        /**
+                         * Constructs a new ValidateIapAttributeExpressionResponse.
+                         * @memberof google.cloud.iap.v1
+                         * @classdesc Represents a ValidateIapAttributeExpressionResponse.
+                         * @implements IValidateIapAttributeExpressionResponse
+                         * @constructor
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionResponse=} [properties] Properties to set
+                         */
+                        function ValidateIapAttributeExpressionResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Creates a new ValidateIapAttributeExpressionResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionResponse=} [properties] Properties to set
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionResponse} ValidateIapAttributeExpressionResponse instance
+                         */
+                        ValidateIapAttributeExpressionResponse.create = function create(properties) {
+                            return new ValidateIapAttributeExpressionResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ValidateIapAttributeExpressionResponse message. Does not implicitly {@link google.cloud.iap.v1.ValidateIapAttributeExpressionResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionResponse} message ValidateIapAttributeExpressionResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ValidateIapAttributeExpressionResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ValidateIapAttributeExpressionResponse message, length delimited. Does not implicitly {@link google.cloud.iap.v1.ValidateIapAttributeExpressionResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {google.cloud.iap.v1.IValidateIapAttributeExpressionResponse} message ValidateIapAttributeExpressionResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ValidateIapAttributeExpressionResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ValidateIapAttributeExpressionResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionResponse} ValidateIapAttributeExpressionResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ValidateIapAttributeExpressionResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ValidateIapAttributeExpressionResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ValidateIapAttributeExpressionResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionResponse} ValidateIapAttributeExpressionResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ValidateIapAttributeExpressionResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ValidateIapAttributeExpressionResponse message.
+                         * @function verify
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ValidateIapAttributeExpressionResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ValidateIapAttributeExpressionResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.iap.v1.ValidateIapAttributeExpressionResponse} ValidateIapAttributeExpressionResponse
+                         */
+                        ValidateIapAttributeExpressionResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.iap.v1.ValidateIapAttributeExpressionResponse)
+                                return object;
+                            return new $root.google.cloud.iap.v1.ValidateIapAttributeExpressionResponse();
+                        };
+    
+                        /**
+                         * Creates a plain object from a ValidateIapAttributeExpressionResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {google.cloud.iap.v1.ValidateIapAttributeExpressionResponse} message ValidateIapAttributeExpressionResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ValidateIapAttributeExpressionResponse.toObject = function toObject() {
+                            return {};
+                        };
+    
+                        /**
+                         * Converts this ValidateIapAttributeExpressionResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ValidateIapAttributeExpressionResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ValidateIapAttributeExpressionResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.iap.v1.ValidateIapAttributeExpressionResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ValidateIapAttributeExpressionResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.iap.v1.ValidateIapAttributeExpressionResponse";
+                        };
+    
+                        return ValidateIapAttributeExpressionResponse;
+                    })();
+    
                     v1.ListBrandsRequest = (function() {
     
                         /**
@@ -5969,12 +7039,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBrandsRequest.decode = function decode(reader, length) {
+                        ListBrandsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ListBrandsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -6174,12 +7246,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBrandsResponse.decode = function decode(reader, length) {
+                        ListBrandsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ListBrandsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.brands && message.brands.length))
@@ -6407,12 +7481,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateBrandRequest.decode = function decode(reader, length) {
+                        CreateBrandRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.CreateBrandRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -6628,12 +7704,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetBrandRequest.decode = function decode(reader, length) {
+                        GetBrandRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.GetBrandRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6853,12 +7931,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListIdentityAwareProxyClientsRequest.decode = function decode(reader, length) {
+                        ListIdentityAwareProxyClientsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ListIdentityAwareProxyClientsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -7094,12 +8174,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListIdentityAwareProxyClientsResponse.decode = function decode(reader, length) {
+                        ListIdentityAwareProxyClientsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ListIdentityAwareProxyClientsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.identityAwareProxyClients && message.identityAwareProxyClients.length))
@@ -7340,12 +8422,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateIdentityAwareProxyClientRequest.decode = function decode(reader, length) {
+                        CreateIdentityAwareProxyClientRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.CreateIdentityAwareProxyClientRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -7561,12 +8645,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetIdentityAwareProxyClientRequest.decode = function decode(reader, length) {
+                        GetIdentityAwareProxyClientRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.GetIdentityAwareProxyClientRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -7764,12 +8850,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ResetIdentityAwareProxyClientSecretRequest.decode = function decode(reader, length) {
+                        ResetIdentityAwareProxyClientSecretRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.ResetIdentityAwareProxyClientSecretRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -7967,12 +9055,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteIdentityAwareProxyClientRequest.decode = function decode(reader, length) {
+                        DeleteIdentityAwareProxyClientRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.DeleteIdentityAwareProxyClientRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8203,12 +9293,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Brand.decode = function decode(reader, length) {
+                        Brand.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.Brand();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8465,12 +9557,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        IdentityAwareProxyClient.decode = function decode(reader, length) {
+                        IdentityAwareProxyClient.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.iap.v1.IdentityAwareProxyClient();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8870,12 +9964,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -9220,12 +10316,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -9604,12 +10702,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -9836,12 +10936,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -10205,12 +11307,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -10549,6 +11653,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -10650,6 +11755,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -10696,6 +11809,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -10723,12 +11838,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -10774,6 +11891,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -10868,6 +11989,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -10962,6 +12086,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -10991,6 +12117,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -11021,6 +12148,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -11162,12 +12291,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -11429,12 +12560,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -11637,12 +12770,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -11845,12 +12980,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -12053,12 +13190,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -12326,12 +13465,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -12705,12 +13846,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -12913,12 +14056,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -13145,12 +14290,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -13423,12 +14570,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -13850,12 +14999,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -14245,12 +15396,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -14475,12 +15628,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -14875,12 +16030,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -15542,12 +16699,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -16027,12 +17186,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -16271,12 +17432,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -16527,12 +17690,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -16872,12 +18037,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -17251,12 +18418,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -17776,12 +18945,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -18047,12 +19218,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -18366,12 +19539,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -18607,12 +19782,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -18864,12 +20041,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -19172,12 +20351,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -19676,12 +20857,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -20296,12 +21479,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -20744,12 +21929,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -20779,12 +21961,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -21510,12 +22694,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -21806,12 +22992,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -22092,12 +23280,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -22404,12 +23594,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -22595,6 +23787,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -22654,6 +23847,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -22688,6 +23889,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -22715,12 +23918,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -22742,6 +23947,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -22802,6 +24011,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -22838,6 +24050,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -22861,6 +24075,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -22875,6 +24090,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -23051,12 +24268,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -23468,12 +24687,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -23807,12 +25028,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -24083,12 +25306,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -24618,12 +25843,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -25002,12 +26229,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -25292,12 +26521,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -25567,12 +26798,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -25878,12 +27111,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -26146,12 +27381,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -26472,12 +27709,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -26704,12 +27943,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -26910,12 +28151,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -27096,12 +28339,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DoubleValue.decode = function decode(reader, length) {
+                DoubleValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DoubleValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.double();
@@ -27299,12 +28544,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FloatValue.decode = function decode(reader, length) {
+                FloatValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FloatValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.float();
@@ -27502,12 +28749,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int64Value.decode = function decode(reader, length) {
+                Int64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int64();
@@ -27719,12 +28968,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt64Value.decode = function decode(reader, length) {
+                UInt64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint64();
@@ -27936,12 +29187,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int32Value.decode = function decode(reader, length) {
+                Int32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int32();
@@ -28139,12 +29392,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt32Value.decode = function decode(reader, length) {
+                UInt32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint32();
@@ -28342,12 +29597,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BoolValue.decode = function decode(reader, length) {
+                BoolValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BoolValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bool();
@@ -28545,12 +29802,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                StringValue.decode = function decode(reader, length) {
+                StringValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.StringValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.string();
@@ -28748,12 +30007,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BytesValue.decode = function decode(reader, length) {
+                BytesValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BytesValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bytes();
@@ -29137,12 +30398,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SetIamPolicyRequest.decode = function decode(reader, length) {
+                    SetIamPolicyRequest.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.SetIamPolicyRequest();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.resource = reader.string();
@@ -29386,12 +30649,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    GetIamPolicyRequest.decode = function decode(reader, length) {
+                    GetIamPolicyRequest.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.GetIamPolicyRequest();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.resource = reader.string();
@@ -29620,12 +30885,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    TestIamPermissionsRequest.decode = function decode(reader, length) {
+                    TestIamPermissionsRequest.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.TestIamPermissionsRequest();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.resource = reader.string();
@@ -29852,12 +31119,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    TestIamPermissionsResponse.decode = function decode(reader, length) {
+                    TestIamPermissionsResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.TestIamPermissionsResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.permissions && message.permissions.length))
@@ -30069,12 +31338,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    GetPolicyOptions.decode = function decode(reader, length) {
+                    GetPolicyOptions.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.GetPolicyOptions();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.requestedPolicyVersion = reader.int32();
@@ -30309,12 +31580,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Policy.decode = function decode(reader, length) {
+                    Policy.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.Policy();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.version = reader.int32();
@@ -30622,12 +31895,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Binding.decode = function decode(reader, length) {
+                    Binding.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.Binding();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.role = reader.string();
@@ -30883,12 +32158,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AuditConfig.decode = function decode(reader, length) {
+                    AuditConfig.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.AuditConfig();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.service = reader.string();
@@ -31131,12 +32408,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AuditLogConfig.decode = function decode(reader, length) {
+                    AuditLogConfig.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.AuditLogConfig();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.logType = reader.int32();
@@ -31423,12 +32702,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    PolicyDelta.decode = function decode(reader, length) {
+                    PolicyDelta.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.PolicyDelta();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.bindingDeltas && message.bindingDeltas.length))
@@ -31710,12 +32991,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    BindingDelta.decode = function decode(reader, length) {
+                    BindingDelta.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.BindingDelta();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.action = reader.int32();
@@ -32028,12 +33311,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AuditConfigDelta.decode = function decode(reader, length) {
+                    AuditConfigDelta.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.iam.v1.AuditConfigDelta();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.action = reader.int32();
@@ -32356,12 +33641,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Expr.decode = function decode(reader, length) {
+                Expr.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.Expr();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.expression = reader.string();

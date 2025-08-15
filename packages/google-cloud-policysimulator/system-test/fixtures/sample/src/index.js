@@ -16,10 +16,12 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const policysimulator = require('@google-cloud/policysimulator');
 
 function main() {
+  const orgPolicyViolationsPreviewServiceClient = new policysimulator.OrgPolicyViolationsPreviewServiceClient();
   const simulatorClient = new policysimulator.SimulatorClient();
 }
 

@@ -75,6 +75,7 @@
                          * @property {string|null} [displayName] Actor displayName
                          * @property {string|null} [email] Actor email
                          * @property {boolean|null} [googleSupport] Actor googleSupport
+                         * @property {string|null} [username] Actor username
                          */
     
                         /**
@@ -117,6 +118,14 @@
                         Actor.prototype.googleSupport = false;
     
                         /**
+                         * Actor username.
+                         * @member {string} username
+                         * @memberof google.cloud.support.v2.Actor
+                         * @instance
+                         */
+                        Actor.prototype.username = "";
+    
+                        /**
                          * Creates a new Actor instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.support.v2.Actor
@@ -146,6 +155,8 @@
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.email);
                             if (message.googleSupport != null && Object.hasOwnProperty.call(message, "googleSupport"))
                                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.googleSupport);
+                            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.username);
                             return writer;
                         };
     
@@ -173,12 +184,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Actor.decode = function decode(reader, length) {
+                        Actor.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.Actor();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.displayName = reader.string();
@@ -190,6 +203,10 @@
                                     }
                                 case 4: {
                                         message.googleSupport = reader.bool();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.username = reader.string();
                                         break;
                                     }
                                 default:
@@ -236,6 +253,9 @@
                             if (message.googleSupport != null && message.hasOwnProperty("googleSupport"))
                                 if (typeof message.googleSupport !== "boolean")
                                     return "googleSupport: boolean expected";
+                            if (message.username != null && message.hasOwnProperty("username"))
+                                if (!$util.isString(message.username))
+                                    return "username: string expected";
                             return null;
                         };
     
@@ -257,6 +277,8 @@
                                 message.email = String(object.email);
                             if (object.googleSupport != null)
                                 message.googleSupport = Boolean(object.googleSupport);
+                            if (object.username != null)
+                                message.username = String(object.username);
                             return message;
                         };
     
@@ -277,6 +299,7 @@
                                 object.displayName = "";
                                 object.email = "";
                                 object.googleSupport = false;
+                                object.username = "";
                             }
                             if (message.displayName != null && message.hasOwnProperty("displayName"))
                                 object.displayName = message.displayName;
@@ -284,6 +307,8 @@
                                 object.email = message.email;
                             if (message.googleSupport != null && message.hasOwnProperty("googleSupport"))
                                 object.googleSupport = message.googleSupport;
+                            if (message.username != null && message.hasOwnProperty("username"))
+                                object.username = message.username;
                             return object;
                         };
     
@@ -456,12 +481,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Attachment.decode = function decode(reader, length) {
+                        Attachment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.Attachment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -834,12 +861,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListAttachmentsRequest.decode = function decode(reader, length) {
+                        ListAttachmentsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.ListAttachmentsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -1075,12 +1104,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListAttachmentsResponse.decode = function decode(reader, length) {
+                        ListAttachmentsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.ListAttachmentsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.attachments && message.attachments.length))
@@ -1466,12 +1497,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Case.decode = function decode(reader, length) {
+                        Case.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.Case();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2006,12 +2039,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CaseClassification.decode = function decode(reader, length) {
+                        CaseClassification.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.CaseClassification();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 3: {
                                         message.id = reader.string();
@@ -2521,12 +2556,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetCaseRequest.decode = function decode(reader, length) {
+                        GetCaseRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.GetCaseRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2735,12 +2772,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateCaseRequest.decode = function decode(reader, length) {
+                        CreateCaseRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.CreateCaseRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -2989,12 +3028,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCasesRequest.decode = function decode(reader, length) {
+                        ListCasesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.ListCasesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -3242,12 +3283,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCasesResponse.decode = function decode(reader, length) {
+                        ListCasesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.ListCasesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.cases && message.cases.length))
@@ -3510,12 +3553,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchCasesRequest.decode = function decode(reader, length) {
+                        SearchCasesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.SearchCasesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 4: {
                                         message.parent = reader.string();
@@ -3763,12 +3808,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchCasesResponse.decode = function decode(reader, length) {
+                        SearchCasesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.SearchCasesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.cases && message.cases.length))
@@ -4009,12 +4056,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EscalateCaseRequest.decode = function decode(reader, length) {
+                        EscalateCaseRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.EscalateCaseRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4241,12 +4290,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateCaseRequest.decode = function decode(reader, length) {
+                        UpdateCaseRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.UpdateCaseRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message["case"] = $root.google.cloud.support.v2.Case.decode(reader, reader.uint32());
@@ -4467,12 +4518,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CloseCaseRequest.decode = function decode(reader, length) {
+                        CloseCaseRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.CloseCaseRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4692,12 +4745,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchCaseClassificationsRequest.decode = function decode(reader, length) {
+                        SearchCaseClassificationsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.SearchCaseClassificationsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.query = reader.string();
@@ -4933,12 +4988,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchCaseClassificationsResponse.decode = function decode(reader, length) {
+                        SearchCaseClassificationsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.SearchCaseClassificationsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.caseClassifications && message.caseClassifications.length))
@@ -5179,12 +5236,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Escalation.decode = function decode(reader, length) {
+                        Escalation.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.Escalation();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 4: {
                                         message.reason = reader.int32();
@@ -5486,12 +5545,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Comment.decode = function decode(reader, length) {
+                        Comment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.Comment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5871,12 +5932,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCommentsRequest.decode = function decode(reader, length) {
+                        ListCommentsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.ListCommentsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -6112,12 +6175,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCommentsResponse.decode = function decode(reader, length) {
+                        ListCommentsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.ListCommentsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.comments && message.comments.length))
@@ -6358,12 +6423,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateCommentRequest.decode = function decode(reader, length) {
+                        CreateCommentRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2.CreateCommentRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -6495,6 +6562,8905 @@
                     })();
     
                     return v2;
+                })();
+    
+                support.v2beta = (function() {
+    
+                    /**
+                     * Namespace v2beta.
+                     * @memberof google.cloud.support
+                     * @namespace
+                     */
+                    var v2beta = {};
+    
+                    v2beta.Actor = (function() {
+    
+                        /**
+                         * Properties of an Actor.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IActor
+                         * @property {string|null} [displayName] Actor displayName
+                         * @property {string|null} [email] Actor email
+                         * @property {boolean|null} [googleSupport] Actor googleSupport
+                         * @property {string|null} [username] Actor username
+                         */
+    
+                        /**
+                         * Constructs a new Actor.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents an Actor.
+                         * @implements IActor
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IActor=} [properties] Properties to set
+                         */
+                        function Actor(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Actor displayName.
+                         * @member {string} displayName
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @instance
+                         */
+                        Actor.prototype.displayName = "";
+    
+                        /**
+                         * Actor email.
+                         * @member {string} email
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @instance
+                         */
+                        Actor.prototype.email = "";
+    
+                        /**
+                         * Actor googleSupport.
+                         * @member {boolean} googleSupport
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @instance
+                         */
+                        Actor.prototype.googleSupport = false;
+    
+                        /**
+                         * Actor username.
+                         * @member {string} username
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @instance
+                         */
+                        Actor.prototype.username = "";
+    
+                        /**
+                         * Creates a new Actor instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {google.cloud.support.v2beta.IActor=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.Actor} Actor instance
+                         */
+                        Actor.create = function create(properties) {
+                            return new Actor(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Actor message. Does not implicitly {@link google.cloud.support.v2beta.Actor.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {google.cloud.support.v2beta.IActor} message Actor message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Actor.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.displayName != null && Object.hasOwnProperty.call(message, "displayName"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.displayName);
+                            if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.email);
+                            if (message.googleSupport != null && Object.hasOwnProperty.call(message, "googleSupport"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.googleSupport);
+                            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.username);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Actor message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.Actor.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {google.cloud.support.v2beta.IActor} message Actor message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Actor.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an Actor message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.Actor} Actor
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Actor.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.Actor();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.displayName = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.email = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.googleSupport = reader.bool();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.username = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an Actor message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.Actor} Actor
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Actor.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an Actor message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Actor.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                if (!$util.isString(message.displayName))
+                                    return "displayName: string expected";
+                            if (message.email != null && message.hasOwnProperty("email"))
+                                if (!$util.isString(message.email))
+                                    return "email: string expected";
+                            if (message.googleSupport != null && message.hasOwnProperty("googleSupport"))
+                                if (typeof message.googleSupport !== "boolean")
+                                    return "googleSupport: boolean expected";
+                            if (message.username != null && message.hasOwnProperty("username"))
+                                if (!$util.isString(message.username))
+                                    return "username: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an Actor message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.Actor} Actor
+                         */
+                        Actor.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.Actor)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.Actor();
+                            if (object.displayName != null)
+                                message.displayName = String(object.displayName);
+                            if (object.email != null)
+                                message.email = String(object.email);
+                            if (object.googleSupport != null)
+                                message.googleSupport = Boolean(object.googleSupport);
+                            if (object.username != null)
+                                message.username = String(object.username);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an Actor message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {google.cloud.support.v2beta.Actor} message Actor
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Actor.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.displayName = "";
+                                object.email = "";
+                                object.googleSupport = false;
+                                object.username = "";
+                            }
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                object.displayName = message.displayName;
+                            if (message.email != null && message.hasOwnProperty("email"))
+                                object.email = message.email;
+                            if (message.googleSupport != null && message.hasOwnProperty("googleSupport"))
+                                object.googleSupport = message.googleSupport;
+                            if (message.username != null && message.hasOwnProperty("username"))
+                                object.username = message.username;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Actor to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Actor.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Actor
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.Actor
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Actor.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.Actor";
+                        };
+    
+                        return Actor;
+                    })();
+    
+                    v2beta.Attachment = (function() {
+    
+                        /**
+                         * Properties of an Attachment.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IAttachment
+                         * @property {string|null} [name] Attachment name
+                         * @property {google.protobuf.ITimestamp|null} [createTime] Attachment createTime
+                         * @property {google.cloud.support.v2beta.IActor|null} [creator] Attachment creator
+                         * @property {string|null} [filename] Attachment filename
+                         * @property {string|null} [mimeType] Attachment mimeType
+                         * @property {number|Long|null} [sizeBytes] Attachment sizeBytes
+                         */
+    
+                        /**
+                         * Constructs a new Attachment.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents an Attachment.
+                         * @implements IAttachment
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IAttachment=} [properties] Properties to set
+                         */
+                        function Attachment(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Attachment name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         */
+                        Attachment.prototype.name = "";
+    
+                        /**
+                         * Attachment createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         */
+                        Attachment.prototype.createTime = null;
+    
+                        /**
+                         * Attachment creator.
+                         * @member {google.cloud.support.v2beta.IActor|null|undefined} creator
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         */
+                        Attachment.prototype.creator = null;
+    
+                        /**
+                         * Attachment filename.
+                         * @member {string} filename
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         */
+                        Attachment.prototype.filename = "";
+    
+                        /**
+                         * Attachment mimeType.
+                         * @member {string} mimeType
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         */
+                        Attachment.prototype.mimeType = "";
+    
+                        /**
+                         * Attachment sizeBytes.
+                         * @member {number|Long} sizeBytes
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         */
+                        Attachment.prototype.sizeBytes = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                        /**
+                         * Creates a new Attachment instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {google.cloud.support.v2beta.IAttachment=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.Attachment} Attachment instance
+                         */
+                        Attachment.create = function create(properties) {
+                            return new Attachment(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Attachment message. Does not implicitly {@link google.cloud.support.v2beta.Attachment.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {google.cloud.support.v2beta.IAttachment} message Attachment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Attachment.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.createTime != null && Object.hasOwnProperty.call(message, "createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.creator != null && Object.hasOwnProperty.call(message, "creator"))
+                                $root.google.cloud.support.v2beta.Actor.encode(message.creator, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.filename != null && Object.hasOwnProperty.call(message, "filename"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.filename);
+                            if (message.mimeType != null && Object.hasOwnProperty.call(message, "mimeType"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.mimeType);
+                            if (message.sizeBytes != null && Object.hasOwnProperty.call(message, "sizeBytes"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.sizeBytes);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Attachment message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.Attachment.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {google.cloud.support.v2beta.IAttachment} message Attachment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Attachment.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an Attachment message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.Attachment} Attachment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Attachment.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.Attachment();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 3: {
+                                        message.creator = $root.google.cloud.support.v2beta.Actor.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 4: {
+                                        message.filename = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.mimeType = reader.string();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.sizeBytes = reader.int64();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an Attachment message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.Attachment} Attachment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Attachment.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an Attachment message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Attachment.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.creator != null && message.hasOwnProperty("creator")) {
+                                var error = $root.google.cloud.support.v2beta.Actor.verify(message.creator);
+                                if (error)
+                                    return "creator." + error;
+                            }
+                            if (message.filename != null && message.hasOwnProperty("filename"))
+                                if (!$util.isString(message.filename))
+                                    return "filename: string expected";
+                            if (message.mimeType != null && message.hasOwnProperty("mimeType"))
+                                if (!$util.isString(message.mimeType))
+                                    return "mimeType: string expected";
+                            if (message.sizeBytes != null && message.hasOwnProperty("sizeBytes"))
+                                if (!$util.isInteger(message.sizeBytes) && !(message.sizeBytes && $util.isInteger(message.sizeBytes.low) && $util.isInteger(message.sizeBytes.high)))
+                                    return "sizeBytes: integer|Long expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an Attachment message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.Attachment} Attachment
+                         */
+                        Attachment.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.Attachment)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.Attachment();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Attachment.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.creator != null) {
+                                if (typeof object.creator !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Attachment.creator: object expected");
+                                message.creator = $root.google.cloud.support.v2beta.Actor.fromObject(object.creator);
+                            }
+                            if (object.filename != null)
+                                message.filename = String(object.filename);
+                            if (object.mimeType != null)
+                                message.mimeType = String(object.mimeType);
+                            if (object.sizeBytes != null)
+                                if ($util.Long)
+                                    (message.sizeBytes = $util.Long.fromValue(object.sizeBytes)).unsigned = false;
+                                else if (typeof object.sizeBytes === "string")
+                                    message.sizeBytes = parseInt(object.sizeBytes, 10);
+                                else if (typeof object.sizeBytes === "number")
+                                    message.sizeBytes = object.sizeBytes;
+                                else if (typeof object.sizeBytes === "object")
+                                    message.sizeBytes = new $util.LongBits(object.sizeBytes.low >>> 0, object.sizeBytes.high >>> 0).toNumber();
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an Attachment message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {google.cloud.support.v2beta.Attachment} message Attachment
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Attachment.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.createTime = null;
+                                object.creator = null;
+                                object.filename = "";
+                                object.mimeType = "";
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, false);
+                                    object.sizeBytes = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.sizeBytes = options.longs === String ? "0" : 0;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                object.creator = $root.google.cloud.support.v2beta.Actor.toObject(message.creator, options);
+                            if (message.filename != null && message.hasOwnProperty("filename"))
+                                object.filename = message.filename;
+                            if (message.mimeType != null && message.hasOwnProperty("mimeType"))
+                                object.mimeType = message.mimeType;
+                            if (message.sizeBytes != null && message.hasOwnProperty("sizeBytes"))
+                                if (typeof message.sizeBytes === "number")
+                                    object.sizeBytes = options.longs === String ? String(message.sizeBytes) : message.sizeBytes;
+                                else
+                                    object.sizeBytes = options.longs === String ? $util.Long.prototype.toString.call(message.sizeBytes) : options.longs === Number ? new $util.LongBits(message.sizeBytes.low >>> 0, message.sizeBytes.high >>> 0).toNumber() : message.sizeBytes;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Attachment to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Attachment.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Attachment
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.Attachment
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Attachment.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.Attachment";
+                        };
+    
+                        return Attachment;
+                    })();
+    
+                    v2beta.CaseAttachmentService = (function() {
+    
+                        /**
+                         * Constructs a new CaseAttachmentService service.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CaseAttachmentService
+                         * @extends $protobuf.rpc.Service
+                         * @constructor
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         */
+                        function CaseAttachmentService(rpcImpl, requestDelimited, responseDelimited) {
+                            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                        }
+    
+                        (CaseAttachmentService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = CaseAttachmentService;
+    
+                        /**
+                         * Creates new CaseAttachmentService service using the specified rpc implementation.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @static
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         * @returns {CaseAttachmentService} RPC service. Useful where requests and/or responses are streamed.
+                         */
+                        CaseAttachmentService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                            return new this(rpcImpl, requestDelimited, responseDelimited);
+                        };
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseAttachmentService|listAttachments}.
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @typedef ListAttachmentsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.ListAttachmentsResponse} [response] ListAttachmentsResponse
+                         */
+    
+                        /**
+                         * Calls ListAttachments.
+                         * @function listAttachments
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IListAttachmentsRequest} request ListAttachmentsRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseAttachmentService.ListAttachmentsCallback} callback Node-style callback called with the error, if any, and ListAttachmentsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseAttachmentService.prototype.listAttachments = function listAttachments(request, callback) {
+                            return this.rpcCall(listAttachments, $root.google.cloud.support.v2beta.ListAttachmentsRequest, $root.google.cloud.support.v2beta.ListAttachmentsResponse, request, callback);
+                        }, "name", { value: "ListAttachments" });
+    
+                        /**
+                         * Calls ListAttachments.
+                         * @function listAttachments
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IListAttachmentsRequest} request ListAttachmentsRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.ListAttachmentsResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseAttachmentService|getAttachment}.
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @typedef GetAttachmentCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Attachment} [response] Attachment
+                         */
+    
+                        /**
+                         * Calls GetAttachment.
+                         * @function getAttachment
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IGetAttachmentRequest} request GetAttachmentRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseAttachmentService.GetAttachmentCallback} callback Node-style callback called with the error, if any, and Attachment
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseAttachmentService.prototype.getAttachment = function getAttachment(request, callback) {
+                            return this.rpcCall(getAttachment, $root.google.cloud.support.v2beta.GetAttachmentRequest, $root.google.cloud.support.v2beta.Attachment, request, callback);
+                        }, "name", { value: "GetAttachment" });
+    
+                        /**
+                         * Calls GetAttachment.
+                         * @function getAttachment
+                         * @memberof google.cloud.support.v2beta.CaseAttachmentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IGetAttachmentRequest} request GetAttachmentRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Attachment>} Promise
+                         * @variation 2
+                         */
+    
+                        return CaseAttachmentService;
+                    })();
+    
+                    v2beta.ListAttachmentsRequest = (function() {
+    
+                        /**
+                         * Properties of a ListAttachmentsRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IListAttachmentsRequest
+                         * @property {string|null} [parent] ListAttachmentsRequest parent
+                         * @property {number|null} [pageSize] ListAttachmentsRequest pageSize
+                         * @property {string|null} [pageToken] ListAttachmentsRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListAttachmentsRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ListAttachmentsRequest.
+                         * @implements IListAttachmentsRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IListAttachmentsRequest=} [properties] Properties to set
+                         */
+                        function ListAttachmentsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListAttachmentsRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @instance
+                         */
+                        ListAttachmentsRequest.prototype.parent = "";
+    
+                        /**
+                         * ListAttachmentsRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @instance
+                         */
+                        ListAttachmentsRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListAttachmentsRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @instance
+                         */
+                        ListAttachmentsRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ListAttachmentsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListAttachmentsRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsRequest} ListAttachmentsRequest instance
+                         */
+                        ListAttachmentsRequest.create = function create(properties) {
+                            return new ListAttachmentsRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListAttachmentsRequest message. Does not implicitly {@link google.cloud.support.v2beta.ListAttachmentsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListAttachmentsRequest} message ListAttachmentsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListAttachmentsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListAttachmentsRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ListAttachmentsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListAttachmentsRequest} message ListAttachmentsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListAttachmentsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListAttachmentsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsRequest} ListAttachmentsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListAttachmentsRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ListAttachmentsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListAttachmentsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsRequest} ListAttachmentsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListAttachmentsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListAttachmentsRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListAttachmentsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListAttachmentsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsRequest} ListAttachmentsRequest
+                         */
+                        ListAttachmentsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ListAttachmentsRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ListAttachmentsRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListAttachmentsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ListAttachmentsRequest} message ListAttachmentsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListAttachmentsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListAttachmentsRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListAttachmentsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListAttachmentsRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListAttachmentsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ListAttachmentsRequest";
+                        };
+    
+                        return ListAttachmentsRequest;
+                    })();
+    
+                    v2beta.GetAttachmentRequest = (function() {
+    
+                        /**
+                         * Properties of a GetAttachmentRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IGetAttachmentRequest
+                         * @property {string|null} [name] GetAttachmentRequest name
+                         */
+    
+                        /**
+                         * Constructs a new GetAttachmentRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a GetAttachmentRequest.
+                         * @implements IGetAttachmentRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IGetAttachmentRequest=} [properties] Properties to set
+                         */
+                        function GetAttachmentRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * GetAttachmentRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @instance
+                         */
+                        GetAttachmentRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new GetAttachmentRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetAttachmentRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.GetAttachmentRequest} GetAttachmentRequest instance
+                         */
+                        GetAttachmentRequest.create = function create(properties) {
+                            return new GetAttachmentRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified GetAttachmentRequest message. Does not implicitly {@link google.cloud.support.v2beta.GetAttachmentRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetAttachmentRequest} message GetAttachmentRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAttachmentRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified GetAttachmentRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.GetAttachmentRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetAttachmentRequest} message GetAttachmentRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAttachmentRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a GetAttachmentRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.GetAttachmentRequest} GetAttachmentRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAttachmentRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.GetAttachmentRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a GetAttachmentRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.GetAttachmentRequest} GetAttachmentRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAttachmentRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a GetAttachmentRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetAttachmentRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a GetAttachmentRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.GetAttachmentRequest} GetAttachmentRequest
+                         */
+                        GetAttachmentRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.GetAttachmentRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.GetAttachmentRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a GetAttachmentRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.GetAttachmentRequest} message GetAttachmentRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetAttachmentRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.name = "";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this GetAttachmentRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetAttachmentRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for GetAttachmentRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.GetAttachmentRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        GetAttachmentRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.GetAttachmentRequest";
+                        };
+    
+                        return GetAttachmentRequest;
+                    })();
+    
+                    v2beta.ListAttachmentsResponse = (function() {
+    
+                        /**
+                         * Properties of a ListAttachmentsResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IListAttachmentsResponse
+                         * @property {Array.<google.cloud.support.v2beta.IAttachment>|null} [attachments] ListAttachmentsResponse attachments
+                         * @property {string|null} [nextPageToken] ListAttachmentsResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListAttachmentsResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ListAttachmentsResponse.
+                         * @implements IListAttachmentsResponse
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IListAttachmentsResponse=} [properties] Properties to set
+                         */
+                        function ListAttachmentsResponse(properties) {
+                            this.attachments = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListAttachmentsResponse attachments.
+                         * @member {Array.<google.cloud.support.v2beta.IAttachment>} attachments
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @instance
+                         */
+                        ListAttachmentsResponse.prototype.attachments = $util.emptyArray;
+    
+                        /**
+                         * ListAttachmentsResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @instance
+                         */
+                        ListAttachmentsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListAttachmentsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListAttachmentsResponse=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsResponse} ListAttachmentsResponse instance
+                         */
+                        ListAttachmentsResponse.create = function create(properties) {
+                            return new ListAttachmentsResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListAttachmentsResponse message. Does not implicitly {@link google.cloud.support.v2beta.ListAttachmentsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListAttachmentsResponse} message ListAttachmentsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListAttachmentsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.attachments != null && message.attachments.length)
+                                for (var i = 0; i < message.attachments.length; ++i)
+                                    $root.google.cloud.support.v2beta.Attachment.encode(message.attachments[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListAttachmentsResponse message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ListAttachmentsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListAttachmentsResponse} message ListAttachmentsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListAttachmentsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListAttachmentsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsResponse} ListAttachmentsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListAttachmentsResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ListAttachmentsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.attachments && message.attachments.length))
+                                            message.attachments = [];
+                                        message.attachments.push($root.google.cloud.support.v2beta.Attachment.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListAttachmentsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsResponse} ListAttachmentsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListAttachmentsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListAttachmentsResponse message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListAttachmentsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.attachments != null && message.hasOwnProperty("attachments")) {
+                                if (!Array.isArray(message.attachments))
+                                    return "attachments: array expected";
+                                for (var i = 0; i < message.attachments.length; ++i) {
+                                    var error = $root.google.cloud.support.v2beta.Attachment.verify(message.attachments[i]);
+                                    if (error)
+                                        return "attachments." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListAttachmentsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ListAttachmentsResponse} ListAttachmentsResponse
+                         */
+                        ListAttachmentsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ListAttachmentsResponse)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ListAttachmentsResponse();
+                            if (object.attachments) {
+                                if (!Array.isArray(object.attachments))
+                                    throw TypeError(".google.cloud.support.v2beta.ListAttachmentsResponse.attachments: array expected");
+                                message.attachments = [];
+                                for (var i = 0; i < object.attachments.length; ++i) {
+                                    if (typeof object.attachments[i] !== "object")
+                                        throw TypeError(".google.cloud.support.v2beta.ListAttachmentsResponse.attachments: object expected");
+                                    message.attachments[i] = $root.google.cloud.support.v2beta.Attachment.fromObject(object.attachments[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListAttachmentsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ListAttachmentsResponse} message ListAttachmentsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListAttachmentsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.attachments = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.attachments && message.attachments.length) {
+                                object.attachments = [];
+                                for (var j = 0; j < message.attachments.length; ++j)
+                                    object.attachments[j] = $root.google.cloud.support.v2beta.Attachment.toObject(message.attachments[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListAttachmentsResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListAttachmentsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListAttachmentsResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ListAttachmentsResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListAttachmentsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ListAttachmentsResponse";
+                        };
+    
+                        return ListAttachmentsResponse;
+                    })();
+    
+                    /**
+                     * ProductLine enum.
+                     * @name google.cloud.support.v2beta.ProductLine
+                     * @enum {number}
+                     * @property {number} PRODUCT_LINE_UNSPECIFIED=0 PRODUCT_LINE_UNSPECIFIED value
+                     * @property {number} GOOGLE_CLOUD=1 GOOGLE_CLOUD value
+                     * @property {number} GOOGLE_MAPS=2 GOOGLE_MAPS value
+                     */
+                    v2beta.ProductLine = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "PRODUCT_LINE_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "GOOGLE_CLOUD"] = 1;
+                        values[valuesById[2] = "GOOGLE_MAPS"] = 2;
+                        return values;
+                    })();
+    
+                    v2beta.Case = (function() {
+    
+                        /**
+                         * Properties of a Case.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ICase
+                         * @property {string|null} [name] Case name
+                         * @property {string|null} [displayName] Case displayName
+                         * @property {string|null} [description] Case description
+                         * @property {google.cloud.support.v2beta.ICaseClassification|null} [classification] Case classification
+                         * @property {string|null} [timeZone] Case timeZone
+                         * @property {Array.<string>|null} [subscriberEmailAddresses] Case subscriberEmailAddresses
+                         * @property {google.cloud.support.v2beta.Case.State|null} [state] Case state
+                         * @property {google.protobuf.ITimestamp|null} [createTime] Case createTime
+                         * @property {google.protobuf.ITimestamp|null} [updateTime] Case updateTime
+                         * @property {google.cloud.support.v2beta.IActor|null} [creator] Case creator
+                         * @property {string|null} [contactEmail] Case contactEmail
+                         * @property {boolean|null} [escalated] Case escalated
+                         * @property {boolean|null} [testCase] Case testCase
+                         * @property {string|null} [languageCode] Case languageCode
+                         * @property {google.cloud.support.v2beta.Case.Priority|null} [priority] Case priority
+                         */
+    
+                        /**
+                         * Constructs a new Case.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a Case.
+                         * @implements ICase
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ICase=} [properties] Properties to set
+                         */
+                        function Case(properties) {
+                            this.subscriberEmailAddresses = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Case name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.name = "";
+    
+                        /**
+                         * Case displayName.
+                         * @member {string} displayName
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.displayName = "";
+    
+                        /**
+                         * Case description.
+                         * @member {string} description
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.description = "";
+    
+                        /**
+                         * Case classification.
+                         * @member {google.cloud.support.v2beta.ICaseClassification|null|undefined} classification
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.classification = null;
+    
+                        /**
+                         * Case timeZone.
+                         * @member {string} timeZone
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.timeZone = "";
+    
+                        /**
+                         * Case subscriberEmailAddresses.
+                         * @member {Array.<string>} subscriberEmailAddresses
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.subscriberEmailAddresses = $util.emptyArray;
+    
+                        /**
+                         * Case state.
+                         * @member {google.cloud.support.v2beta.Case.State} state
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.state = 0;
+    
+                        /**
+                         * Case createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.createTime = null;
+    
+                        /**
+                         * Case updateTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.updateTime = null;
+    
+                        /**
+                         * Case creator.
+                         * @member {google.cloud.support.v2beta.IActor|null|undefined} creator
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.creator = null;
+    
+                        /**
+                         * Case contactEmail.
+                         * @member {string} contactEmail
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.contactEmail = "";
+    
+                        /**
+                         * Case escalated.
+                         * @member {boolean} escalated
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.escalated = false;
+    
+                        /**
+                         * Case testCase.
+                         * @member {boolean} testCase
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.testCase = false;
+    
+                        /**
+                         * Case languageCode.
+                         * @member {string} languageCode
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.languageCode = "";
+    
+                        /**
+                         * Case priority.
+                         * @member {google.cloud.support.v2beta.Case.Priority} priority
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         */
+                        Case.prototype.priority = 0;
+    
+                        /**
+                         * Creates a new Case instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICase=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.Case} Case instance
+                         */
+                        Case.create = function create(properties) {
+                            return new Case(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Case message. Does not implicitly {@link google.cloud.support.v2beta.Case.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICase} message Case message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Case.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.displayName != null && Object.hasOwnProperty.call(message, "displayName"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
+                            if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.description);
+                            if (message.classification != null && Object.hasOwnProperty.call(message, "classification"))
+                                $root.google.cloud.support.v2beta.CaseClassification.encode(message.classification, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.timeZone != null && Object.hasOwnProperty.call(message, "timeZone"))
+                                writer.uint32(/* id 8, wireType 2 =*/66).string(message.timeZone);
+                            if (message.subscriberEmailAddresses != null && message.subscriberEmailAddresses.length)
+                                for (var i = 0; i < message.subscriberEmailAddresses.length; ++i)
+                                    writer.uint32(/* id 9, wireType 2 =*/74).string(message.subscriberEmailAddresses[i]);
+                            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.state);
+                            if (message.createTime != null && Object.hasOwnProperty.call(message, "createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                            if (message.updateTime != null && Object.hasOwnProperty.call(message, "updateTime"))
+                                $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                            if (message.creator != null && Object.hasOwnProperty.call(message, "creator"))
+                                $root.google.cloud.support.v2beta.Actor.encode(message.creator, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                            if (message.escalated != null && Object.hasOwnProperty.call(message, "escalated"))
+                                writer.uint32(/* id 17, wireType 0 =*/136).bool(message.escalated);
+                            if (message.testCase != null && Object.hasOwnProperty.call(message, "testCase"))
+                                writer.uint32(/* id 19, wireType 0 =*/152).bool(message.testCase);
+                            if (message.languageCode != null && Object.hasOwnProperty.call(message, "languageCode"))
+                                writer.uint32(/* id 23, wireType 2 =*/186).string(message.languageCode);
+                            if (message.priority != null && Object.hasOwnProperty.call(message, "priority"))
+                                writer.uint32(/* id 32, wireType 0 =*/256).int32(message.priority);
+                            if (message.contactEmail != null && Object.hasOwnProperty.call(message, "contactEmail"))
+                                writer.uint32(/* id 35, wireType 2 =*/282).string(message.contactEmail);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Case message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.Case.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICase} message Case message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Case.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Case message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.Case} Case
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Case.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.Case();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.displayName = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.description = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.classification = $root.google.cloud.support.v2beta.CaseClassification.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 8: {
+                                        message.timeZone = reader.string();
+                                        break;
+                                    }
+                                case 9: {
+                                        if (!(message.subscriberEmailAddresses && message.subscriberEmailAddresses.length))
+                                            message.subscriberEmailAddresses = [];
+                                        message.subscriberEmailAddresses.push(reader.string());
+                                        break;
+                                    }
+                                case 12: {
+                                        message.state = reader.int32();
+                                        break;
+                                    }
+                                case 13: {
+                                        message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 14: {
+                                        message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 15: {
+                                        message.creator = $root.google.cloud.support.v2beta.Actor.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 35: {
+                                        message.contactEmail = reader.string();
+                                        break;
+                                    }
+                                case 17: {
+                                        message.escalated = reader.bool();
+                                        break;
+                                    }
+                                case 19: {
+                                        message.testCase = reader.bool();
+                                        break;
+                                    }
+                                case 23: {
+                                        message.languageCode = reader.string();
+                                        break;
+                                    }
+                                case 32: {
+                                        message.priority = reader.int32();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Case message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.Case} Case
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Case.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Case message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Case.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                if (!$util.isString(message.displayName))
+                                    return "displayName: string expected";
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                if (!$util.isString(message.description))
+                                    return "description: string expected";
+                            if (message.classification != null && message.hasOwnProperty("classification")) {
+                                var error = $root.google.cloud.support.v2beta.CaseClassification.verify(message.classification);
+                                if (error)
+                                    return "classification." + error;
+                            }
+                            if (message.timeZone != null && message.hasOwnProperty("timeZone"))
+                                if (!$util.isString(message.timeZone))
+                                    return "timeZone: string expected";
+                            if (message.subscriberEmailAddresses != null && message.hasOwnProperty("subscriberEmailAddresses")) {
+                                if (!Array.isArray(message.subscriberEmailAddresses))
+                                    return "subscriberEmailAddresses: array expected";
+                                for (var i = 0; i < message.subscriberEmailAddresses.length; ++i)
+                                    if (!$util.isString(message.subscriberEmailAddresses[i]))
+                                        return "subscriberEmailAddresses: string[] expected";
+                            }
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                switch (message.state) {
+                                default:
+                                    return "state: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    break;
+                                }
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                                if (error)
+                                    return "updateTime." + error;
+                            }
+                            if (message.creator != null && message.hasOwnProperty("creator")) {
+                                var error = $root.google.cloud.support.v2beta.Actor.verify(message.creator);
+                                if (error)
+                                    return "creator." + error;
+                            }
+                            if (message.contactEmail != null && message.hasOwnProperty("contactEmail"))
+                                if (!$util.isString(message.contactEmail))
+                                    return "contactEmail: string expected";
+                            if (message.escalated != null && message.hasOwnProperty("escalated"))
+                                if (typeof message.escalated !== "boolean")
+                                    return "escalated: boolean expected";
+                            if (message.testCase != null && message.hasOwnProperty("testCase"))
+                                if (typeof message.testCase !== "boolean")
+                                    return "testCase: boolean expected";
+                            if (message.languageCode != null && message.hasOwnProperty("languageCode"))
+                                if (!$util.isString(message.languageCode))
+                                    return "languageCode: string expected";
+                            if (message.priority != null && message.hasOwnProperty("priority"))
+                                switch (message.priority) {
+                                default:
+                                    return "priority: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    break;
+                                }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Case message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.Case} Case
+                         */
+                        Case.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.Case)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.Case();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.displayName != null)
+                                message.displayName = String(object.displayName);
+                            if (object.description != null)
+                                message.description = String(object.description);
+                            if (object.classification != null) {
+                                if (typeof object.classification !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Case.classification: object expected");
+                                message.classification = $root.google.cloud.support.v2beta.CaseClassification.fromObject(object.classification);
+                            }
+                            if (object.timeZone != null)
+                                message.timeZone = String(object.timeZone);
+                            if (object.subscriberEmailAddresses) {
+                                if (!Array.isArray(object.subscriberEmailAddresses))
+                                    throw TypeError(".google.cloud.support.v2beta.Case.subscriberEmailAddresses: array expected");
+                                message.subscriberEmailAddresses = [];
+                                for (var i = 0; i < object.subscriberEmailAddresses.length; ++i)
+                                    message.subscriberEmailAddresses[i] = String(object.subscriberEmailAddresses[i]);
+                            }
+                            switch (object.state) {
+                            default:
+                                if (typeof object.state === "number") {
+                                    message.state = object.state;
+                                    break;
+                                }
+                                break;
+                            case "STATE_UNSPECIFIED":
+                            case 0:
+                                message.state = 0;
+                                break;
+                            case "NEW":
+                            case 1:
+                                message.state = 1;
+                                break;
+                            case "IN_PROGRESS_GOOGLE_SUPPORT":
+                            case 2:
+                                message.state = 2;
+                                break;
+                            case "ACTION_REQUIRED":
+                            case 3:
+                                message.state = 3;
+                                break;
+                            case "SOLUTION_PROVIDED":
+                            case 4:
+                                message.state = 4;
+                                break;
+                            case "CLOSED":
+                            case 5:
+                                message.state = 5;
+                                break;
+                            }
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Case.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.updateTime != null) {
+                                if (typeof object.updateTime !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Case.updateTime: object expected");
+                                message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
+                            }
+                            if (object.creator != null) {
+                                if (typeof object.creator !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Case.creator: object expected");
+                                message.creator = $root.google.cloud.support.v2beta.Actor.fromObject(object.creator);
+                            }
+                            if (object.contactEmail != null)
+                                message.contactEmail = String(object.contactEmail);
+                            if (object.escalated != null)
+                                message.escalated = Boolean(object.escalated);
+                            if (object.testCase != null)
+                                message.testCase = Boolean(object.testCase);
+                            if (object.languageCode != null)
+                                message.languageCode = String(object.languageCode);
+                            switch (object.priority) {
+                            default:
+                                if (typeof object.priority === "number") {
+                                    message.priority = object.priority;
+                                    break;
+                                }
+                                break;
+                            case "PRIORITY_UNSPECIFIED":
+                            case 0:
+                                message.priority = 0;
+                                break;
+                            case "P0":
+                            case 1:
+                                message.priority = 1;
+                                break;
+                            case "P1":
+                            case 2:
+                                message.priority = 2;
+                                break;
+                            case "P2":
+                            case 3:
+                                message.priority = 3;
+                                break;
+                            case "P3":
+                            case 4:
+                                message.priority = 4;
+                                break;
+                            case "P4":
+                            case 5:
+                                message.priority = 5;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Case message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {google.cloud.support.v2beta.Case} message Case
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Case.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.subscriberEmailAddresses = [];
+                            if (options.defaults) {
+                                object.name = "";
+                                object.displayName = "";
+                                object.description = "";
+                                object.classification = null;
+                                object.timeZone = "";
+                                object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                object.createTime = null;
+                                object.updateTime = null;
+                                object.creator = null;
+                                object.escalated = false;
+                                object.testCase = false;
+                                object.languageCode = "";
+                                object.priority = options.enums === String ? "PRIORITY_UNSPECIFIED" : 0;
+                                object.contactEmail = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                object.displayName = message.displayName;
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                object.description = message.description;
+                            if (message.classification != null && message.hasOwnProperty("classification"))
+                                object.classification = $root.google.cloud.support.v2beta.CaseClassification.toObject(message.classification, options);
+                            if (message.timeZone != null && message.hasOwnProperty("timeZone"))
+                                object.timeZone = message.timeZone;
+                            if (message.subscriberEmailAddresses && message.subscriberEmailAddresses.length) {
+                                object.subscriberEmailAddresses = [];
+                                for (var j = 0; j < message.subscriberEmailAddresses.length; ++j)
+                                    object.subscriberEmailAddresses[j] = message.subscriberEmailAddresses[j];
+                            }
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                object.state = options.enums === String ? $root.google.cloud.support.v2beta.Case.State[message.state] === undefined ? message.state : $root.google.cloud.support.v2beta.Case.State[message.state] : message.state;
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                object.creator = $root.google.cloud.support.v2beta.Actor.toObject(message.creator, options);
+                            if (message.escalated != null && message.hasOwnProperty("escalated"))
+                                object.escalated = message.escalated;
+                            if (message.testCase != null && message.hasOwnProperty("testCase"))
+                                object.testCase = message.testCase;
+                            if (message.languageCode != null && message.hasOwnProperty("languageCode"))
+                                object.languageCode = message.languageCode;
+                            if (message.priority != null && message.hasOwnProperty("priority"))
+                                object.priority = options.enums === String ? $root.google.cloud.support.v2beta.Case.Priority[message.priority] === undefined ? message.priority : $root.google.cloud.support.v2beta.Case.Priority[message.priority] : message.priority;
+                            if (message.contactEmail != null && message.hasOwnProperty("contactEmail"))
+                                object.contactEmail = message.contactEmail;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Case to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Case.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Case
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.Case
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Case.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.Case";
+                        };
+    
+                        /**
+                         * State enum.
+                         * @name google.cloud.support.v2beta.Case.State
+                         * @enum {number}
+                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                         * @property {number} NEW=1 NEW value
+                         * @property {number} IN_PROGRESS_GOOGLE_SUPPORT=2 IN_PROGRESS_GOOGLE_SUPPORT value
+                         * @property {number} ACTION_REQUIRED=3 ACTION_REQUIRED value
+                         * @property {number} SOLUTION_PROVIDED=4 SOLUTION_PROVIDED value
+                         * @property {number} CLOSED=5 CLOSED value
+                         */
+                        Case.State = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "NEW"] = 1;
+                            values[valuesById[2] = "IN_PROGRESS_GOOGLE_SUPPORT"] = 2;
+                            values[valuesById[3] = "ACTION_REQUIRED"] = 3;
+                            values[valuesById[4] = "SOLUTION_PROVIDED"] = 4;
+                            values[valuesById[5] = "CLOSED"] = 5;
+                            return values;
+                        })();
+    
+                        /**
+                         * Priority enum.
+                         * @name google.cloud.support.v2beta.Case.Priority
+                         * @enum {number}
+                         * @property {number} PRIORITY_UNSPECIFIED=0 PRIORITY_UNSPECIFIED value
+                         * @property {number} P0=1 P0 value
+                         * @property {number} P1=2 P1 value
+                         * @property {number} P2=3 P2 value
+                         * @property {number} P3=4 P3 value
+                         * @property {number} P4=5 P4 value
+                         */
+                        Case.Priority = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "PRIORITY_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "P0"] = 1;
+                            values[valuesById[2] = "P1"] = 2;
+                            values[valuesById[3] = "P2"] = 3;
+                            values[valuesById[4] = "P3"] = 4;
+                            values[valuesById[5] = "P4"] = 5;
+                            return values;
+                        })();
+    
+                        return Case;
+                    })();
+    
+                    v2beta.CaseClassification = (function() {
+    
+                        /**
+                         * Properties of a CaseClassification.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ICaseClassification
+                         * @property {string|null} [id] CaseClassification id
+                         * @property {string|null} [displayName] CaseClassification displayName
+                         * @property {google.cloud.support.v2beta.IProduct|null} [product] CaseClassification product
+                         */
+    
+                        /**
+                         * Constructs a new CaseClassification.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CaseClassification.
+                         * @implements ICaseClassification
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ICaseClassification=} [properties] Properties to set
+                         */
+                        function CaseClassification(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CaseClassification id.
+                         * @member {string} id
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @instance
+                         */
+                        CaseClassification.prototype.id = "";
+    
+                        /**
+                         * CaseClassification displayName.
+                         * @member {string} displayName
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @instance
+                         */
+                        CaseClassification.prototype.displayName = "";
+    
+                        /**
+                         * CaseClassification product.
+                         * @member {google.cloud.support.v2beta.IProduct|null|undefined} product
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @instance
+                         */
+                        CaseClassification.prototype.product = null;
+    
+                        /**
+                         * Creates a new CaseClassification instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICaseClassification=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.CaseClassification} CaseClassification instance
+                         */
+                        CaseClassification.create = function create(properties) {
+                            return new CaseClassification(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CaseClassification message. Does not implicitly {@link google.cloud.support.v2beta.CaseClassification.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICaseClassification} message CaseClassification message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CaseClassification.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
+                            if (message.displayName != null && Object.hasOwnProperty.call(message, "displayName"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.displayName);
+                            if (message.product != null && Object.hasOwnProperty.call(message, "product"))
+                                $root.google.cloud.support.v2beta.Product.encode(message.product, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CaseClassification message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.CaseClassification.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICaseClassification} message CaseClassification message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CaseClassification.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CaseClassification message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.CaseClassification} CaseClassification
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CaseClassification.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.CaseClassification();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 3: {
+                                        message.id = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.displayName = reader.string();
+                                        break;
+                                    }
+                                case 10: {
+                                        message.product = $root.google.cloud.support.v2beta.Product.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CaseClassification message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.CaseClassification} CaseClassification
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CaseClassification.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CaseClassification message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CaseClassification.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.id != null && message.hasOwnProperty("id"))
+                                if (!$util.isString(message.id))
+                                    return "id: string expected";
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                if (!$util.isString(message.displayName))
+                                    return "displayName: string expected";
+                            if (message.product != null && message.hasOwnProperty("product")) {
+                                var error = $root.google.cloud.support.v2beta.Product.verify(message.product);
+                                if (error)
+                                    return "product." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CaseClassification message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.CaseClassification} CaseClassification
+                         */
+                        CaseClassification.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.CaseClassification)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.CaseClassification();
+                            if (object.id != null)
+                                message.id = String(object.id);
+                            if (object.displayName != null)
+                                message.displayName = String(object.displayName);
+                            if (object.product != null) {
+                                if (typeof object.product !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.CaseClassification.product: object expected");
+                                message.product = $root.google.cloud.support.v2beta.Product.fromObject(object.product);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CaseClassification message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {google.cloud.support.v2beta.CaseClassification} message CaseClassification
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CaseClassification.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.id = "";
+                                object.displayName = "";
+                                object.product = null;
+                            }
+                            if (message.id != null && message.hasOwnProperty("id"))
+                                object.id = message.id;
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                object.displayName = message.displayName;
+                            if (message.product != null && message.hasOwnProperty("product"))
+                                object.product = $root.google.cloud.support.v2beta.Product.toObject(message.product, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CaseClassification to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CaseClassification.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for CaseClassification
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.CaseClassification
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        CaseClassification.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.CaseClassification";
+                        };
+    
+                        return CaseClassification;
+                    })();
+    
+                    v2beta.Product = (function() {
+    
+                        /**
+                         * Properties of a Product.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IProduct
+                         * @property {google.cloud.support.v2beta.ProductLine|null} [productLine] Product productLine
+                         */
+    
+                        /**
+                         * Constructs a new Product.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a Product.
+                         * @implements IProduct
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IProduct=} [properties] Properties to set
+                         */
+                        function Product(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Product productLine.
+                         * @member {google.cloud.support.v2beta.ProductLine} productLine
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @instance
+                         */
+                        Product.prototype.productLine = 0;
+    
+                        /**
+                         * Creates a new Product instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {google.cloud.support.v2beta.IProduct=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.Product} Product instance
+                         */
+                        Product.create = function create(properties) {
+                            return new Product(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Product message. Does not implicitly {@link google.cloud.support.v2beta.Product.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {google.cloud.support.v2beta.IProduct} message Product message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Product.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.productLine != null && Object.hasOwnProperty.call(message, "productLine"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.productLine);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Product message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.Product.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {google.cloud.support.v2beta.IProduct} message Product message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Product.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Product message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.Product} Product
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Product.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.Product();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.productLine = reader.int32();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Product message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.Product} Product
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Product.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Product message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Product.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.productLine != null && message.hasOwnProperty("productLine"))
+                                switch (message.productLine) {
+                                default:
+                                    return "productLine: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Product message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.Product} Product
+                         */
+                        Product.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.Product)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.Product();
+                            switch (object.productLine) {
+                            default:
+                                if (typeof object.productLine === "number") {
+                                    message.productLine = object.productLine;
+                                    break;
+                                }
+                                break;
+                            case "PRODUCT_LINE_UNSPECIFIED":
+                            case 0:
+                                message.productLine = 0;
+                                break;
+                            case "GOOGLE_CLOUD":
+                            case 1:
+                                message.productLine = 1;
+                                break;
+                            case "GOOGLE_MAPS":
+                            case 2:
+                                message.productLine = 2;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Product message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {google.cloud.support.v2beta.Product} message Product
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Product.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.productLine = options.enums === String ? "PRODUCT_LINE_UNSPECIFIED" : 0;
+                            if (message.productLine != null && message.hasOwnProperty("productLine"))
+                                object.productLine = options.enums === String ? $root.google.cloud.support.v2beta.ProductLine[message.productLine] === undefined ? message.productLine : $root.google.cloud.support.v2beta.ProductLine[message.productLine] : message.productLine;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Product to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Product.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Product
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.Product
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Product.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.Product";
+                        };
+    
+                        return Product;
+                    })();
+    
+                    v2beta.CaseService = (function() {
+    
+                        /**
+                         * Constructs a new CaseService service.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CaseService
+                         * @extends $protobuf.rpc.Service
+                         * @constructor
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         */
+                        function CaseService(rpcImpl, requestDelimited, responseDelimited) {
+                            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                        }
+    
+                        (CaseService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = CaseService;
+    
+                        /**
+                         * Creates new CaseService service using the specified rpc implementation.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @static
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         * @returns {CaseService} RPC service. Useful where requests and/or responses are streamed.
+                         */
+                        CaseService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                            return new this(rpcImpl, requestDelimited, responseDelimited);
+                        };
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|getCase}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef GetCaseCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Case} [response] Case
+                         */
+    
+                        /**
+                         * Calls GetCase.
+                         * @function getCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IGetCaseRequest} request GetCaseRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.GetCaseCallback} callback Node-style callback called with the error, if any, and Case
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.getCase = function getCase(request, callback) {
+                            return this.rpcCall(getCase, $root.google.cloud.support.v2beta.GetCaseRequest, $root.google.cloud.support.v2beta.Case, request, callback);
+                        }, "name", { value: "GetCase" });
+    
+                        /**
+                         * Calls GetCase.
+                         * @function getCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IGetCaseRequest} request GetCaseRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Case>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|listCases}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef ListCasesCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.ListCasesResponse} [response] ListCasesResponse
+                         */
+    
+                        /**
+                         * Calls ListCases.
+                         * @function listCases
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IListCasesRequest} request ListCasesRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.ListCasesCallback} callback Node-style callback called with the error, if any, and ListCasesResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.listCases = function listCases(request, callback) {
+                            return this.rpcCall(listCases, $root.google.cloud.support.v2beta.ListCasesRequest, $root.google.cloud.support.v2beta.ListCasesResponse, request, callback);
+                        }, "name", { value: "ListCases" });
+    
+                        /**
+                         * Calls ListCases.
+                         * @function listCases
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IListCasesRequest} request ListCasesRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.ListCasesResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|searchCases}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef SearchCasesCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.SearchCasesResponse} [response] SearchCasesResponse
+                         */
+    
+                        /**
+                         * Calls SearchCases.
+                         * @function searchCases
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ISearchCasesRequest} request SearchCasesRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.SearchCasesCallback} callback Node-style callback called with the error, if any, and SearchCasesResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.searchCases = function searchCases(request, callback) {
+                            return this.rpcCall(searchCases, $root.google.cloud.support.v2beta.SearchCasesRequest, $root.google.cloud.support.v2beta.SearchCasesResponse, request, callback);
+                        }, "name", { value: "SearchCases" });
+    
+                        /**
+                         * Calls SearchCases.
+                         * @function searchCases
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ISearchCasesRequest} request SearchCasesRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.SearchCasesResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|createCase}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef CreateCaseCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Case} [response] Case
+                         */
+    
+                        /**
+                         * Calls CreateCase.
+                         * @function createCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ICreateCaseRequest} request CreateCaseRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.CreateCaseCallback} callback Node-style callback called with the error, if any, and Case
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.createCase = function createCase(request, callback) {
+                            return this.rpcCall(createCase, $root.google.cloud.support.v2beta.CreateCaseRequest, $root.google.cloud.support.v2beta.Case, request, callback);
+                        }, "name", { value: "CreateCase" });
+    
+                        /**
+                         * Calls CreateCase.
+                         * @function createCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ICreateCaseRequest} request CreateCaseRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Case>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|updateCase}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef UpdateCaseCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Case} [response] Case
+                         */
+    
+                        /**
+                         * Calls UpdateCase.
+                         * @function updateCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IUpdateCaseRequest} request UpdateCaseRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.UpdateCaseCallback} callback Node-style callback called with the error, if any, and Case
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.updateCase = function updateCase(request, callback) {
+                            return this.rpcCall(updateCase, $root.google.cloud.support.v2beta.UpdateCaseRequest, $root.google.cloud.support.v2beta.Case, request, callback);
+                        }, "name", { value: "UpdateCase" });
+    
+                        /**
+                         * Calls UpdateCase.
+                         * @function updateCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IUpdateCaseRequest} request UpdateCaseRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Case>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|escalateCase}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef EscalateCaseCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Case} [response] Case
+                         */
+    
+                        /**
+                         * Calls EscalateCase.
+                         * @function escalateCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IEscalateCaseRequest} request EscalateCaseRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.EscalateCaseCallback} callback Node-style callback called with the error, if any, and Case
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.escalateCase = function escalateCase(request, callback) {
+                            return this.rpcCall(escalateCase, $root.google.cloud.support.v2beta.EscalateCaseRequest, $root.google.cloud.support.v2beta.Case, request, callback);
+                        }, "name", { value: "EscalateCase" });
+    
+                        /**
+                         * Calls EscalateCase.
+                         * @function escalateCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IEscalateCaseRequest} request EscalateCaseRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Case>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|closeCase}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef CloseCaseCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Case} [response] Case
+                         */
+    
+                        /**
+                         * Calls CloseCase.
+                         * @function closeCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ICloseCaseRequest} request CloseCaseRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.CloseCaseCallback} callback Node-style callback called with the error, if any, and Case
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.closeCase = function closeCase(request, callback) {
+                            return this.rpcCall(closeCase, $root.google.cloud.support.v2beta.CloseCaseRequest, $root.google.cloud.support.v2beta.Case, request, callback);
+                        }, "name", { value: "CloseCase" });
+    
+                        /**
+                         * Calls CloseCase.
+                         * @function closeCase
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ICloseCaseRequest} request CloseCaseRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Case>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CaseService|searchCaseClassifications}.
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @typedef SearchCaseClassificationsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.SearchCaseClassificationsResponse} [response] SearchCaseClassificationsResponse
+                         */
+    
+                        /**
+                         * Calls SearchCaseClassifications.
+                         * @function searchCaseClassifications
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsRequest} request SearchCaseClassificationsRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CaseService.SearchCaseClassificationsCallback} callback Node-style callback called with the error, if any, and SearchCaseClassificationsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CaseService.prototype.searchCaseClassifications = function searchCaseClassifications(request, callback) {
+                            return this.rpcCall(searchCaseClassifications, $root.google.cloud.support.v2beta.SearchCaseClassificationsRequest, $root.google.cloud.support.v2beta.SearchCaseClassificationsResponse, request, callback);
+                        }, "name", { value: "SearchCaseClassifications" });
+    
+                        /**
+                         * Calls SearchCaseClassifications.
+                         * @function searchCaseClassifications
+                         * @memberof google.cloud.support.v2beta.CaseService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsRequest} request SearchCaseClassificationsRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.SearchCaseClassificationsResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        return CaseService;
+                    })();
+    
+                    v2beta.GetCaseRequest = (function() {
+    
+                        /**
+                         * Properties of a GetCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IGetCaseRequest
+                         * @property {string|null} [name] GetCaseRequest name
+                         */
+    
+                        /**
+                         * Constructs a new GetCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a GetCaseRequest.
+                         * @implements IGetCaseRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IGetCaseRequest=} [properties] Properties to set
+                         */
+                        function GetCaseRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * GetCaseRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @instance
+                         */
+                        GetCaseRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new GetCaseRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetCaseRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.GetCaseRequest} GetCaseRequest instance
+                         */
+                        GetCaseRequest.create = function create(properties) {
+                            return new GetCaseRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified GetCaseRequest message. Does not implicitly {@link google.cloud.support.v2beta.GetCaseRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetCaseRequest} message GetCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetCaseRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified GetCaseRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.GetCaseRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetCaseRequest} message GetCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetCaseRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a GetCaseRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.GetCaseRequest} GetCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetCaseRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.GetCaseRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a GetCaseRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.GetCaseRequest} GetCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetCaseRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a GetCaseRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetCaseRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a GetCaseRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.GetCaseRequest} GetCaseRequest
+                         */
+                        GetCaseRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.GetCaseRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.GetCaseRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a GetCaseRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.GetCaseRequest} message GetCaseRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetCaseRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.name = "";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this GetCaseRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetCaseRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for GetCaseRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.GetCaseRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        GetCaseRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.GetCaseRequest";
+                        };
+    
+                        return GetCaseRequest;
+                    })();
+    
+                    v2beta.CreateCaseRequest = (function() {
+    
+                        /**
+                         * Properties of a CreateCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ICreateCaseRequest
+                         * @property {string|null} [parent] CreateCaseRequest parent
+                         * @property {google.cloud.support.v2beta.ICase|null} ["case"] CreateCaseRequest case
+                         */
+    
+                        /**
+                         * Constructs a new CreateCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CreateCaseRequest.
+                         * @implements ICreateCaseRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ICreateCaseRequest=} [properties] Properties to set
+                         */
+                        function CreateCaseRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CreateCaseRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @instance
+                         */
+                        CreateCaseRequest.prototype.parent = "";
+    
+                        /**
+                         * CreateCaseRequest case.
+                         * @member {google.cloud.support.v2beta.ICase|null|undefined} case
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @instance
+                         */
+                        CreateCaseRequest.prototype["case"] = null;
+    
+                        /**
+                         * Creates a new CreateCaseRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICreateCaseRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.CreateCaseRequest} CreateCaseRequest instance
+                         */
+                        CreateCaseRequest.create = function create(properties) {
+                            return new CreateCaseRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CreateCaseRequest message. Does not implicitly {@link google.cloud.support.v2beta.CreateCaseRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICreateCaseRequest} message CreateCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateCaseRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message["case"] != null && Object.hasOwnProperty.call(message, "case"))
+                                $root.google.cloud.support.v2beta.Case.encode(message["case"], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CreateCaseRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.CreateCaseRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICreateCaseRequest} message CreateCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateCaseRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CreateCaseRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.CreateCaseRequest} CreateCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateCaseRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.CreateCaseRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message["case"] = $root.google.cloud.support.v2beta.Case.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CreateCaseRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.CreateCaseRequest} CreateCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateCaseRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CreateCaseRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CreateCaseRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message["case"] != null && message.hasOwnProperty("case")) {
+                                var error = $root.google.cloud.support.v2beta.Case.verify(message["case"]);
+                                if (error)
+                                    return "case." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CreateCaseRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.CreateCaseRequest} CreateCaseRequest
+                         */
+                        CreateCaseRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.CreateCaseRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.CreateCaseRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object["case"] != null) {
+                                if (typeof object["case"] !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.CreateCaseRequest.case: object expected");
+                                message["case"] = $root.google.cloud.support.v2beta.Case.fromObject(object["case"]);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CreateCaseRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.CreateCaseRequest} message CreateCaseRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CreateCaseRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object["case"] = null;
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message["case"] != null && message.hasOwnProperty("case"))
+                                object["case"] = $root.google.cloud.support.v2beta.Case.toObject(message["case"], options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CreateCaseRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CreateCaseRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for CreateCaseRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.CreateCaseRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        CreateCaseRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.CreateCaseRequest";
+                        };
+    
+                        return CreateCaseRequest;
+                    })();
+    
+                    v2beta.ListCasesRequest = (function() {
+    
+                        /**
+                         * Properties of a ListCasesRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IListCasesRequest
+                         * @property {string|null} [parent] ListCasesRequest parent
+                         * @property {string|null} [filter] ListCasesRequest filter
+                         * @property {number|null} [pageSize] ListCasesRequest pageSize
+                         * @property {string|null} [pageToken] ListCasesRequest pageToken
+                         * @property {google.cloud.support.v2beta.ProductLine|null} [productLine] ListCasesRequest productLine
+                         */
+    
+                        /**
+                         * Constructs a new ListCasesRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ListCasesRequest.
+                         * @implements IListCasesRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IListCasesRequest=} [properties] Properties to set
+                         */
+                        function ListCasesRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListCasesRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @instance
+                         */
+                        ListCasesRequest.prototype.parent = "";
+    
+                        /**
+                         * ListCasesRequest filter.
+                         * @member {string} filter
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @instance
+                         */
+                        ListCasesRequest.prototype.filter = "";
+    
+                        /**
+                         * ListCasesRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @instance
+                         */
+                        ListCasesRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListCasesRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @instance
+                         */
+                        ListCasesRequest.prototype.pageToken = "";
+    
+                        /**
+                         * ListCasesRequest productLine.
+                         * @member {google.cloud.support.v2beta.ProductLine|null|undefined} productLine
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @instance
+                         */
+                        ListCasesRequest.prototype.productLine = null;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        // Virtual OneOf for proto3 optional field
+                        Object.defineProperty(ListCasesRequest.prototype, "_productLine", {
+                            get: $util.oneOfGetter($oneOfFields = ["productLine"]),
+                            set: $util.oneOfSetter($oneOfFields)
+                        });
+    
+                        /**
+                         * Creates a new ListCasesRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCasesRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ListCasesRequest} ListCasesRequest instance
+                         */
+                        ListCasesRequest.create = function create(properties) {
+                            return new ListCasesRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListCasesRequest message. Does not implicitly {@link google.cloud.support.v2beta.ListCasesRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCasesRequest} message ListCasesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCasesRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.filter);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.pageToken);
+                            if (message.productLine != null && Object.hasOwnProperty.call(message, "productLine"))
+                                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.productLine);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListCasesRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ListCasesRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCasesRequest} message ListCasesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCasesRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListCasesRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ListCasesRequest} ListCasesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCasesRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ListCasesRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.filter = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                case 8: {
+                                        message.productLine = reader.int32();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListCasesRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ListCasesRequest} ListCasesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCasesRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListCasesRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListCasesRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            var properties = {};
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.filter != null && message.hasOwnProperty("filter"))
+                                if (!$util.isString(message.filter))
+                                    return "filter: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            if (message.productLine != null && message.hasOwnProperty("productLine")) {
+                                properties._productLine = 1;
+                                switch (message.productLine) {
+                                default:
+                                    return "productLine: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListCasesRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ListCasesRequest} ListCasesRequest
+                         */
+                        ListCasesRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ListCasesRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ListCasesRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.filter != null)
+                                message.filter = String(object.filter);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            switch (object.productLine) {
+                            default:
+                                if (typeof object.productLine === "number") {
+                                    message.productLine = object.productLine;
+                                    break;
+                                }
+                                break;
+                            case "PRODUCT_LINE_UNSPECIFIED":
+                            case 0:
+                                message.productLine = 0;
+                                break;
+                            case "GOOGLE_CLOUD":
+                            case 1:
+                                message.productLine = 1;
+                                break;
+                            case "GOOGLE_MAPS":
+                            case 2:
+                                message.productLine = 2;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListCasesRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ListCasesRequest} message ListCasesRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListCasesRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.filter = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.filter != null && message.hasOwnProperty("filter"))
+                                object.filter = message.filter;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            if (message.productLine != null && message.hasOwnProperty("productLine")) {
+                                object.productLine = options.enums === String ? $root.google.cloud.support.v2beta.ProductLine[message.productLine] === undefined ? message.productLine : $root.google.cloud.support.v2beta.ProductLine[message.productLine] : message.productLine;
+                                if (options.oneofs)
+                                    object._productLine = "productLine";
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListCasesRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListCasesRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListCasesRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ListCasesRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListCasesRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ListCasesRequest";
+                        };
+    
+                        return ListCasesRequest;
+                    })();
+    
+                    v2beta.ListCasesResponse = (function() {
+    
+                        /**
+                         * Properties of a ListCasesResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IListCasesResponse
+                         * @property {Array.<google.cloud.support.v2beta.ICase>|null} [cases] ListCasesResponse cases
+                         * @property {string|null} [nextPageToken] ListCasesResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListCasesResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ListCasesResponse.
+                         * @implements IListCasesResponse
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IListCasesResponse=} [properties] Properties to set
+                         */
+                        function ListCasesResponse(properties) {
+                            this.cases = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListCasesResponse cases.
+                         * @member {Array.<google.cloud.support.v2beta.ICase>} cases
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @instance
+                         */
+                        ListCasesResponse.prototype.cases = $util.emptyArray;
+    
+                        /**
+                         * ListCasesResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @instance
+                         */
+                        ListCasesResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListCasesResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCasesResponse=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ListCasesResponse} ListCasesResponse instance
+                         */
+                        ListCasesResponse.create = function create(properties) {
+                            return new ListCasesResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListCasesResponse message. Does not implicitly {@link google.cloud.support.v2beta.ListCasesResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCasesResponse} message ListCasesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCasesResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.cases != null && message.cases.length)
+                                for (var i = 0; i < message.cases.length; ++i)
+                                    $root.google.cloud.support.v2beta.Case.encode(message.cases[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListCasesResponse message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ListCasesResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCasesResponse} message ListCasesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCasesResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListCasesResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ListCasesResponse} ListCasesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCasesResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ListCasesResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.cases && message.cases.length))
+                                            message.cases = [];
+                                        message.cases.push($root.google.cloud.support.v2beta.Case.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListCasesResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ListCasesResponse} ListCasesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCasesResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListCasesResponse message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListCasesResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.cases != null && message.hasOwnProperty("cases")) {
+                                if (!Array.isArray(message.cases))
+                                    return "cases: array expected";
+                                for (var i = 0; i < message.cases.length; ++i) {
+                                    var error = $root.google.cloud.support.v2beta.Case.verify(message.cases[i]);
+                                    if (error)
+                                        return "cases." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListCasesResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ListCasesResponse} ListCasesResponse
+                         */
+                        ListCasesResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ListCasesResponse)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ListCasesResponse();
+                            if (object.cases) {
+                                if (!Array.isArray(object.cases))
+                                    throw TypeError(".google.cloud.support.v2beta.ListCasesResponse.cases: array expected");
+                                message.cases = [];
+                                for (var i = 0; i < object.cases.length; ++i) {
+                                    if (typeof object.cases[i] !== "object")
+                                        throw TypeError(".google.cloud.support.v2beta.ListCasesResponse.cases: object expected");
+                                    message.cases[i] = $root.google.cloud.support.v2beta.Case.fromObject(object.cases[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListCasesResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ListCasesResponse} message ListCasesResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListCasesResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.cases = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.cases && message.cases.length) {
+                                object.cases = [];
+                                for (var j = 0; j < message.cases.length; ++j)
+                                    object.cases[j] = $root.google.cloud.support.v2beta.Case.toObject(message.cases[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListCasesResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListCasesResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListCasesResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ListCasesResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListCasesResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ListCasesResponse";
+                        };
+    
+                        return ListCasesResponse;
+                    })();
+    
+                    v2beta.SearchCasesRequest = (function() {
+    
+                        /**
+                         * Properties of a SearchCasesRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ISearchCasesRequest
+                         * @property {string|null} [parent] SearchCasesRequest parent
+                         * @property {string|null} [query] SearchCasesRequest query
+                         * @property {number|null} [pageSize] SearchCasesRequest pageSize
+                         * @property {string|null} [pageToken] SearchCasesRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new SearchCasesRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a SearchCasesRequest.
+                         * @implements ISearchCasesRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ISearchCasesRequest=} [properties] Properties to set
+                         */
+                        function SearchCasesRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * SearchCasesRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @instance
+                         */
+                        SearchCasesRequest.prototype.parent = "";
+    
+                        /**
+                         * SearchCasesRequest query.
+                         * @member {string} query
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @instance
+                         */
+                        SearchCasesRequest.prototype.query = "";
+    
+                        /**
+                         * SearchCasesRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @instance
+                         */
+                        SearchCasesRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * SearchCasesRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @instance
+                         */
+                        SearchCasesRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new SearchCasesRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCasesRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.SearchCasesRequest} SearchCasesRequest instance
+                         */
+                        SearchCasesRequest.create = function create(properties) {
+                            return new SearchCasesRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCasesRequest message. Does not implicitly {@link google.cloud.support.v2beta.SearchCasesRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCasesRequest} message SearchCasesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCasesRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.query);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.parent);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCasesRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.SearchCasesRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCasesRequest} message SearchCasesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCasesRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a SearchCasesRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.SearchCasesRequest} SearchCasesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCasesRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.SearchCasesRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 4: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 1: {
+                                        message.query = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a SearchCasesRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.SearchCasesRequest} SearchCasesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCasesRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a SearchCasesRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        SearchCasesRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.query != null && message.hasOwnProperty("query"))
+                                if (!$util.isString(message.query))
+                                    return "query: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a SearchCasesRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.SearchCasesRequest} SearchCasesRequest
+                         */
+                        SearchCasesRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.SearchCasesRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.SearchCasesRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.query != null)
+                                message.query = String(object.query);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a SearchCasesRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.SearchCasesRequest} message SearchCasesRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        SearchCasesRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.query = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                                object.parent = "";
+                            }
+                            if (message.query != null && message.hasOwnProperty("query"))
+                                object.query = message.query;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this SearchCasesRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        SearchCasesRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for SearchCasesRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.SearchCasesRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        SearchCasesRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.SearchCasesRequest";
+                        };
+    
+                        return SearchCasesRequest;
+                    })();
+    
+                    v2beta.SearchCasesResponse = (function() {
+    
+                        /**
+                         * Properties of a SearchCasesResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ISearchCasesResponse
+                         * @property {Array.<google.cloud.support.v2beta.ICase>|null} [cases] SearchCasesResponse cases
+                         * @property {string|null} [nextPageToken] SearchCasesResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new SearchCasesResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a SearchCasesResponse.
+                         * @implements ISearchCasesResponse
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ISearchCasesResponse=} [properties] Properties to set
+                         */
+                        function SearchCasesResponse(properties) {
+                            this.cases = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * SearchCasesResponse cases.
+                         * @member {Array.<google.cloud.support.v2beta.ICase>} cases
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @instance
+                         */
+                        SearchCasesResponse.prototype.cases = $util.emptyArray;
+    
+                        /**
+                         * SearchCasesResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @instance
+                         */
+                        SearchCasesResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new SearchCasesResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCasesResponse=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.SearchCasesResponse} SearchCasesResponse instance
+                         */
+                        SearchCasesResponse.create = function create(properties) {
+                            return new SearchCasesResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCasesResponse message. Does not implicitly {@link google.cloud.support.v2beta.SearchCasesResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCasesResponse} message SearchCasesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCasesResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.cases != null && message.cases.length)
+                                for (var i = 0; i < message.cases.length; ++i)
+                                    $root.google.cloud.support.v2beta.Case.encode(message.cases[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCasesResponse message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.SearchCasesResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCasesResponse} message SearchCasesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCasesResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a SearchCasesResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.SearchCasesResponse} SearchCasesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCasesResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.SearchCasesResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.cases && message.cases.length))
+                                            message.cases = [];
+                                        message.cases.push($root.google.cloud.support.v2beta.Case.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a SearchCasesResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.SearchCasesResponse} SearchCasesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCasesResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a SearchCasesResponse message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        SearchCasesResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.cases != null && message.hasOwnProperty("cases")) {
+                                if (!Array.isArray(message.cases))
+                                    return "cases: array expected";
+                                for (var i = 0; i < message.cases.length; ++i) {
+                                    var error = $root.google.cloud.support.v2beta.Case.verify(message.cases[i]);
+                                    if (error)
+                                        return "cases." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a SearchCasesResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.SearchCasesResponse} SearchCasesResponse
+                         */
+                        SearchCasesResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.SearchCasesResponse)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.SearchCasesResponse();
+                            if (object.cases) {
+                                if (!Array.isArray(object.cases))
+                                    throw TypeError(".google.cloud.support.v2beta.SearchCasesResponse.cases: array expected");
+                                message.cases = [];
+                                for (var i = 0; i < object.cases.length; ++i) {
+                                    if (typeof object.cases[i] !== "object")
+                                        throw TypeError(".google.cloud.support.v2beta.SearchCasesResponse.cases: object expected");
+                                    message.cases[i] = $root.google.cloud.support.v2beta.Case.fromObject(object.cases[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a SearchCasesResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.SearchCasesResponse} message SearchCasesResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        SearchCasesResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.cases = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.cases && message.cases.length) {
+                                object.cases = [];
+                                for (var j = 0; j < message.cases.length; ++j)
+                                    object.cases[j] = $root.google.cloud.support.v2beta.Case.toObject(message.cases[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this SearchCasesResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        SearchCasesResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for SearchCasesResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.SearchCasesResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        SearchCasesResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.SearchCasesResponse";
+                        };
+    
+                        return SearchCasesResponse;
+                    })();
+    
+                    v2beta.EscalateCaseRequest = (function() {
+    
+                        /**
+                         * Properties of an EscalateCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IEscalateCaseRequest
+                         * @property {string|null} [name] EscalateCaseRequest name
+                         * @property {google.cloud.support.v2beta.IEscalation|null} [escalation] EscalateCaseRequest escalation
+                         */
+    
+                        /**
+                         * Constructs a new EscalateCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents an EscalateCaseRequest.
+                         * @implements IEscalateCaseRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IEscalateCaseRequest=} [properties] Properties to set
+                         */
+                        function EscalateCaseRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * EscalateCaseRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @instance
+                         */
+                        EscalateCaseRequest.prototype.name = "";
+    
+                        /**
+                         * EscalateCaseRequest escalation.
+                         * @member {google.cloud.support.v2beta.IEscalation|null|undefined} escalation
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @instance
+                         */
+                        EscalateCaseRequest.prototype.escalation = null;
+    
+                        /**
+                         * Creates a new EscalateCaseRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEscalateCaseRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.EscalateCaseRequest} EscalateCaseRequest instance
+                         */
+                        EscalateCaseRequest.create = function create(properties) {
+                            return new EscalateCaseRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified EscalateCaseRequest message. Does not implicitly {@link google.cloud.support.v2beta.EscalateCaseRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEscalateCaseRequest} message EscalateCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EscalateCaseRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.escalation != null && Object.hasOwnProperty.call(message, "escalation"))
+                                $root.google.cloud.support.v2beta.Escalation.encode(message.escalation, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified EscalateCaseRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.EscalateCaseRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEscalateCaseRequest} message EscalateCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EscalateCaseRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an EscalateCaseRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.EscalateCaseRequest} EscalateCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EscalateCaseRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.EscalateCaseRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.escalation = $root.google.cloud.support.v2beta.Escalation.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an EscalateCaseRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.EscalateCaseRequest} EscalateCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EscalateCaseRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an EscalateCaseRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        EscalateCaseRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.escalation != null && message.hasOwnProperty("escalation")) {
+                                var error = $root.google.cloud.support.v2beta.Escalation.verify(message.escalation);
+                                if (error)
+                                    return "escalation." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an EscalateCaseRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.EscalateCaseRequest} EscalateCaseRequest
+                         */
+                        EscalateCaseRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.EscalateCaseRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.EscalateCaseRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.escalation != null) {
+                                if (typeof object.escalation !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.EscalateCaseRequest.escalation: object expected");
+                                message.escalation = $root.google.cloud.support.v2beta.Escalation.fromObject(object.escalation);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an EscalateCaseRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.EscalateCaseRequest} message EscalateCaseRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        EscalateCaseRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.escalation = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.escalation != null && message.hasOwnProperty("escalation"))
+                                object.escalation = $root.google.cloud.support.v2beta.Escalation.toObject(message.escalation, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this EscalateCaseRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        EscalateCaseRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for EscalateCaseRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.EscalateCaseRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        EscalateCaseRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.EscalateCaseRequest";
+                        };
+    
+                        return EscalateCaseRequest;
+                    })();
+    
+                    v2beta.UpdateCaseRequest = (function() {
+    
+                        /**
+                         * Properties of an UpdateCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IUpdateCaseRequest
+                         * @property {google.cloud.support.v2beta.ICase|null} ["case"] UpdateCaseRequest case
+                         * @property {google.protobuf.IFieldMask|null} [updateMask] UpdateCaseRequest updateMask
+                         */
+    
+                        /**
+                         * Constructs a new UpdateCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents an UpdateCaseRequest.
+                         * @implements IUpdateCaseRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IUpdateCaseRequest=} [properties] Properties to set
+                         */
+                        function UpdateCaseRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * UpdateCaseRequest case.
+                         * @member {google.cloud.support.v2beta.ICase|null|undefined} case
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @instance
+                         */
+                        UpdateCaseRequest.prototype["case"] = null;
+    
+                        /**
+                         * UpdateCaseRequest updateMask.
+                         * @member {google.protobuf.IFieldMask|null|undefined} updateMask
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @instance
+                         */
+                        UpdateCaseRequest.prototype.updateMask = null;
+    
+                        /**
+                         * Creates a new UpdateCaseRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IUpdateCaseRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.UpdateCaseRequest} UpdateCaseRequest instance
+                         */
+                        UpdateCaseRequest.create = function create(properties) {
+                            return new UpdateCaseRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified UpdateCaseRequest message. Does not implicitly {@link google.cloud.support.v2beta.UpdateCaseRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IUpdateCaseRequest} message UpdateCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UpdateCaseRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message["case"] != null && Object.hasOwnProperty.call(message, "case"))
+                                $root.google.cloud.support.v2beta.Case.encode(message["case"], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.updateMask != null && Object.hasOwnProperty.call(message, "updateMask"))
+                                $root.google.protobuf.FieldMask.encode(message.updateMask, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified UpdateCaseRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.UpdateCaseRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IUpdateCaseRequest} message UpdateCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UpdateCaseRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an UpdateCaseRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.UpdateCaseRequest} UpdateCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UpdateCaseRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.UpdateCaseRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message["case"] = $root.google.cloud.support.v2beta.Case.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an UpdateCaseRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.UpdateCaseRequest} UpdateCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UpdateCaseRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an UpdateCaseRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        UpdateCaseRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message["case"] != null && message.hasOwnProperty("case")) {
+                                var error = $root.google.cloud.support.v2beta.Case.verify(message["case"]);
+                                if (error)
+                                    return "case." + error;
+                            }
+                            if (message.updateMask != null && message.hasOwnProperty("updateMask")) {
+                                var error = $root.google.protobuf.FieldMask.verify(message.updateMask);
+                                if (error)
+                                    return "updateMask." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an UpdateCaseRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.UpdateCaseRequest} UpdateCaseRequest
+                         */
+                        UpdateCaseRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.UpdateCaseRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.UpdateCaseRequest();
+                            if (object["case"] != null) {
+                                if (typeof object["case"] !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.UpdateCaseRequest.case: object expected");
+                                message["case"] = $root.google.cloud.support.v2beta.Case.fromObject(object["case"]);
+                            }
+                            if (object.updateMask != null) {
+                                if (typeof object.updateMask !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.UpdateCaseRequest.updateMask: object expected");
+                                message.updateMask = $root.google.protobuf.FieldMask.fromObject(object.updateMask);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an UpdateCaseRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.UpdateCaseRequest} message UpdateCaseRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        UpdateCaseRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object["case"] = null;
+                                object.updateMask = null;
+                            }
+                            if (message["case"] != null && message.hasOwnProperty("case"))
+                                object["case"] = $root.google.cloud.support.v2beta.Case.toObject(message["case"], options);
+                            if (message.updateMask != null && message.hasOwnProperty("updateMask"))
+                                object.updateMask = $root.google.protobuf.FieldMask.toObject(message.updateMask, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this UpdateCaseRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        UpdateCaseRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for UpdateCaseRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.UpdateCaseRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        UpdateCaseRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.UpdateCaseRequest";
+                        };
+    
+                        return UpdateCaseRequest;
+                    })();
+    
+                    v2beta.CloseCaseRequest = (function() {
+    
+                        /**
+                         * Properties of a CloseCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ICloseCaseRequest
+                         * @property {string|null} [name] CloseCaseRequest name
+                         */
+    
+                        /**
+                         * Constructs a new CloseCaseRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CloseCaseRequest.
+                         * @implements ICloseCaseRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ICloseCaseRequest=} [properties] Properties to set
+                         */
+                        function CloseCaseRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CloseCaseRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @instance
+                         */
+                        CloseCaseRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new CloseCaseRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICloseCaseRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.CloseCaseRequest} CloseCaseRequest instance
+                         */
+                        CloseCaseRequest.create = function create(properties) {
+                            return new CloseCaseRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CloseCaseRequest message. Does not implicitly {@link google.cloud.support.v2beta.CloseCaseRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICloseCaseRequest} message CloseCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CloseCaseRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CloseCaseRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.CloseCaseRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICloseCaseRequest} message CloseCaseRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CloseCaseRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CloseCaseRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.CloseCaseRequest} CloseCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CloseCaseRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.CloseCaseRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CloseCaseRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.CloseCaseRequest} CloseCaseRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CloseCaseRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CloseCaseRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CloseCaseRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CloseCaseRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.CloseCaseRequest} CloseCaseRequest
+                         */
+                        CloseCaseRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.CloseCaseRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.CloseCaseRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CloseCaseRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.CloseCaseRequest} message CloseCaseRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CloseCaseRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.name = "";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CloseCaseRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CloseCaseRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for CloseCaseRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.CloseCaseRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        CloseCaseRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.CloseCaseRequest";
+                        };
+    
+                        return CloseCaseRequest;
+                    })();
+    
+                    v2beta.SearchCaseClassificationsRequest = (function() {
+    
+                        /**
+                         * Properties of a SearchCaseClassificationsRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ISearchCaseClassificationsRequest
+                         * @property {string|null} [query] SearchCaseClassificationsRequest query
+                         * @property {number|null} [pageSize] SearchCaseClassificationsRequest pageSize
+                         * @property {string|null} [pageToken] SearchCaseClassificationsRequest pageToken
+                         * @property {google.cloud.support.v2beta.IProduct|null} [product] SearchCaseClassificationsRequest product
+                         */
+    
+                        /**
+                         * Constructs a new SearchCaseClassificationsRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a SearchCaseClassificationsRequest.
+                         * @implements ISearchCaseClassificationsRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsRequest=} [properties] Properties to set
+                         */
+                        function SearchCaseClassificationsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * SearchCaseClassificationsRequest query.
+                         * @member {string} query
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @instance
+                         */
+                        SearchCaseClassificationsRequest.prototype.query = "";
+    
+                        /**
+                         * SearchCaseClassificationsRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @instance
+                         */
+                        SearchCaseClassificationsRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * SearchCaseClassificationsRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @instance
+                         */
+                        SearchCaseClassificationsRequest.prototype.pageToken = "";
+    
+                        /**
+                         * SearchCaseClassificationsRequest product.
+                         * @member {google.cloud.support.v2beta.IProduct|null|undefined} product
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @instance
+                         */
+                        SearchCaseClassificationsRequest.prototype.product = null;
+    
+                        /**
+                         * Creates a new SearchCaseClassificationsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsRequest} SearchCaseClassificationsRequest instance
+                         */
+                        SearchCaseClassificationsRequest.create = function create(properties) {
+                            return new SearchCaseClassificationsRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCaseClassificationsRequest message. Does not implicitly {@link google.cloud.support.v2beta.SearchCaseClassificationsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsRequest} message SearchCaseClassificationsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCaseClassificationsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.query != null && Object.hasOwnProperty.call(message, "query"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.query);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            if (message.product != null && Object.hasOwnProperty.call(message, "product"))
+                                $root.google.cloud.support.v2beta.Product.encode(message.product, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCaseClassificationsRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.SearchCaseClassificationsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsRequest} message SearchCaseClassificationsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCaseClassificationsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a SearchCaseClassificationsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsRequest} SearchCaseClassificationsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCaseClassificationsRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.SearchCaseClassificationsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.query = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                case 7: {
+                                        message.product = $root.google.cloud.support.v2beta.Product.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a SearchCaseClassificationsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsRequest} SearchCaseClassificationsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCaseClassificationsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a SearchCaseClassificationsRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        SearchCaseClassificationsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.query != null && message.hasOwnProperty("query"))
+                                if (!$util.isString(message.query))
+                                    return "query: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            if (message.product != null && message.hasOwnProperty("product")) {
+                                var error = $root.google.cloud.support.v2beta.Product.verify(message.product);
+                                if (error)
+                                    return "product." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a SearchCaseClassificationsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsRequest} SearchCaseClassificationsRequest
+                         */
+                        SearchCaseClassificationsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.SearchCaseClassificationsRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.SearchCaseClassificationsRequest();
+                            if (object.query != null)
+                                message.query = String(object.query);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            if (object.product != null) {
+                                if (typeof object.product !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.SearchCaseClassificationsRequest.product: object expected");
+                                message.product = $root.google.cloud.support.v2beta.Product.fromObject(object.product);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a SearchCaseClassificationsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.SearchCaseClassificationsRequest} message SearchCaseClassificationsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        SearchCaseClassificationsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.query = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                                object.product = null;
+                            }
+                            if (message.query != null && message.hasOwnProperty("query"))
+                                object.query = message.query;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            if (message.product != null && message.hasOwnProperty("product"))
+                                object.product = $root.google.cloud.support.v2beta.Product.toObject(message.product, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this SearchCaseClassificationsRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        SearchCaseClassificationsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for SearchCaseClassificationsRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        SearchCaseClassificationsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.SearchCaseClassificationsRequest";
+                        };
+    
+                        return SearchCaseClassificationsRequest;
+                    })();
+    
+                    v2beta.SearchCaseClassificationsResponse = (function() {
+    
+                        /**
+                         * Properties of a SearchCaseClassificationsResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ISearchCaseClassificationsResponse
+                         * @property {Array.<google.cloud.support.v2beta.ICaseClassification>|null} [caseClassifications] SearchCaseClassificationsResponse caseClassifications
+                         * @property {string|null} [nextPageToken] SearchCaseClassificationsResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new SearchCaseClassificationsResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a SearchCaseClassificationsResponse.
+                         * @implements ISearchCaseClassificationsResponse
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsResponse=} [properties] Properties to set
+                         */
+                        function SearchCaseClassificationsResponse(properties) {
+                            this.caseClassifications = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * SearchCaseClassificationsResponse caseClassifications.
+                         * @member {Array.<google.cloud.support.v2beta.ICaseClassification>} caseClassifications
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @instance
+                         */
+                        SearchCaseClassificationsResponse.prototype.caseClassifications = $util.emptyArray;
+    
+                        /**
+                         * SearchCaseClassificationsResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @instance
+                         */
+                        SearchCaseClassificationsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new SearchCaseClassificationsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsResponse=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsResponse} SearchCaseClassificationsResponse instance
+                         */
+                        SearchCaseClassificationsResponse.create = function create(properties) {
+                            return new SearchCaseClassificationsResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCaseClassificationsResponse message. Does not implicitly {@link google.cloud.support.v2beta.SearchCaseClassificationsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsResponse} message SearchCaseClassificationsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCaseClassificationsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.caseClassifications != null && message.caseClassifications.length)
+                                for (var i = 0; i < message.caseClassifications.length; ++i)
+                                    $root.google.cloud.support.v2beta.CaseClassification.encode(message.caseClassifications[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified SearchCaseClassificationsResponse message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.SearchCaseClassificationsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ISearchCaseClassificationsResponse} message SearchCaseClassificationsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SearchCaseClassificationsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a SearchCaseClassificationsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsResponse} SearchCaseClassificationsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCaseClassificationsResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.SearchCaseClassificationsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.caseClassifications && message.caseClassifications.length))
+                                            message.caseClassifications = [];
+                                        message.caseClassifications.push($root.google.cloud.support.v2beta.CaseClassification.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a SearchCaseClassificationsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsResponse} SearchCaseClassificationsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SearchCaseClassificationsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a SearchCaseClassificationsResponse message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        SearchCaseClassificationsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.caseClassifications != null && message.hasOwnProperty("caseClassifications")) {
+                                if (!Array.isArray(message.caseClassifications))
+                                    return "caseClassifications: array expected";
+                                for (var i = 0; i < message.caseClassifications.length; ++i) {
+                                    var error = $root.google.cloud.support.v2beta.CaseClassification.verify(message.caseClassifications[i]);
+                                    if (error)
+                                        return "caseClassifications." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a SearchCaseClassificationsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.SearchCaseClassificationsResponse} SearchCaseClassificationsResponse
+                         */
+                        SearchCaseClassificationsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.SearchCaseClassificationsResponse)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.SearchCaseClassificationsResponse();
+                            if (object.caseClassifications) {
+                                if (!Array.isArray(object.caseClassifications))
+                                    throw TypeError(".google.cloud.support.v2beta.SearchCaseClassificationsResponse.caseClassifications: array expected");
+                                message.caseClassifications = [];
+                                for (var i = 0; i < object.caseClassifications.length; ++i) {
+                                    if (typeof object.caseClassifications[i] !== "object")
+                                        throw TypeError(".google.cloud.support.v2beta.SearchCaseClassificationsResponse.caseClassifications: object expected");
+                                    message.caseClassifications[i] = $root.google.cloud.support.v2beta.CaseClassification.fromObject(object.caseClassifications[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a SearchCaseClassificationsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.SearchCaseClassificationsResponse} message SearchCaseClassificationsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        SearchCaseClassificationsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.caseClassifications = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.caseClassifications && message.caseClassifications.length) {
+                                object.caseClassifications = [];
+                                for (var j = 0; j < message.caseClassifications.length; ++j)
+                                    object.caseClassifications[j] = $root.google.cloud.support.v2beta.CaseClassification.toObject(message.caseClassifications[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this SearchCaseClassificationsResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        SearchCaseClassificationsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for SearchCaseClassificationsResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.SearchCaseClassificationsResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        SearchCaseClassificationsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.SearchCaseClassificationsResponse";
+                        };
+    
+                        return SearchCaseClassificationsResponse;
+                    })();
+    
+                    v2beta.Escalation = (function() {
+    
+                        /**
+                         * Properties of an Escalation.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IEscalation
+                         * @property {google.cloud.support.v2beta.Escalation.Reason|null} [reason] Escalation reason
+                         * @property {string|null} [justification] Escalation justification
+                         */
+    
+                        /**
+                         * Constructs a new Escalation.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents an Escalation.
+                         * @implements IEscalation
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IEscalation=} [properties] Properties to set
+                         */
+                        function Escalation(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Escalation reason.
+                         * @member {google.cloud.support.v2beta.Escalation.Reason} reason
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @instance
+                         */
+                        Escalation.prototype.reason = 0;
+    
+                        /**
+                         * Escalation justification.
+                         * @member {string} justification
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @instance
+                         */
+                        Escalation.prototype.justification = "";
+    
+                        /**
+                         * Creates a new Escalation instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEscalation=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.Escalation} Escalation instance
+                         */
+                        Escalation.create = function create(properties) {
+                            return new Escalation(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Escalation message. Does not implicitly {@link google.cloud.support.v2beta.Escalation.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEscalation} message Escalation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Escalation.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.reason != null && Object.hasOwnProperty.call(message, "reason"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.reason);
+                            if (message.justification != null && Object.hasOwnProperty.call(message, "justification"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.justification);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Escalation message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.Escalation.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEscalation} message Escalation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Escalation.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an Escalation message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.Escalation} Escalation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Escalation.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.Escalation();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 4: {
+                                        message.reason = reader.int32();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.justification = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an Escalation message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.Escalation} Escalation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Escalation.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an Escalation message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Escalation.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.reason != null && message.hasOwnProperty("reason"))
+                                switch (message.reason) {
+                                default:
+                                    return "reason: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                    break;
+                                }
+                            if (message.justification != null && message.hasOwnProperty("justification"))
+                                if (!$util.isString(message.justification))
+                                    return "justification: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an Escalation message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.Escalation} Escalation
+                         */
+                        Escalation.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.Escalation)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.Escalation();
+                            switch (object.reason) {
+                            default:
+                                if (typeof object.reason === "number") {
+                                    message.reason = object.reason;
+                                    break;
+                                }
+                                break;
+                            case "REASON_UNSPECIFIED":
+                            case 0:
+                                message.reason = 0;
+                                break;
+                            case "RESOLUTION_TIME":
+                            case 1:
+                                message.reason = 1;
+                                break;
+                            case "TECHNICAL_EXPERTISE":
+                            case 2:
+                                message.reason = 2;
+                                break;
+                            case "BUSINESS_IMPACT":
+                            case 3:
+                                message.reason = 3;
+                                break;
+                            }
+                            if (object.justification != null)
+                                message.justification = String(object.justification);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an Escalation message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {google.cloud.support.v2beta.Escalation} message Escalation
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Escalation.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.reason = options.enums === String ? "REASON_UNSPECIFIED" : 0;
+                                object.justification = "";
+                            }
+                            if (message.reason != null && message.hasOwnProperty("reason"))
+                                object.reason = options.enums === String ? $root.google.cloud.support.v2beta.Escalation.Reason[message.reason] === undefined ? message.reason : $root.google.cloud.support.v2beta.Escalation.Reason[message.reason] : message.reason;
+                            if (message.justification != null && message.hasOwnProperty("justification"))
+                                object.justification = message.justification;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Escalation to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Escalation.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Escalation
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.Escalation
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Escalation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.Escalation";
+                        };
+    
+                        /**
+                         * Reason enum.
+                         * @name google.cloud.support.v2beta.Escalation.Reason
+                         * @enum {number}
+                         * @property {number} REASON_UNSPECIFIED=0 REASON_UNSPECIFIED value
+                         * @property {number} RESOLUTION_TIME=1 RESOLUTION_TIME value
+                         * @property {number} TECHNICAL_EXPERTISE=2 TECHNICAL_EXPERTISE value
+                         * @property {number} BUSINESS_IMPACT=3 BUSINESS_IMPACT value
+                         */
+                        Escalation.Reason = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "REASON_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "RESOLUTION_TIME"] = 1;
+                            values[valuesById[2] = "TECHNICAL_EXPERTISE"] = 2;
+                            values[valuesById[3] = "BUSINESS_IMPACT"] = 3;
+                            return values;
+                        })();
+    
+                        return Escalation;
+                    })();
+    
+                    v2beta.Comment = (function() {
+    
+                        /**
+                         * Properties of a Comment.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IComment
+                         * @property {string|null} [name] Comment name
+                         * @property {google.protobuf.ITimestamp|null} [createTime] Comment createTime
+                         * @property {google.cloud.support.v2beta.IActor|null} [creator] Comment creator
+                         * @property {string|null} [body] Comment body
+                         * @property {string|null} [plainTextBody] Comment plainTextBody
+                         */
+    
+                        /**
+                         * Constructs a new Comment.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a Comment.
+                         * @implements IComment
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IComment=} [properties] Properties to set
+                         */
+                        function Comment(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Comment name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @instance
+                         */
+                        Comment.prototype.name = "";
+    
+                        /**
+                         * Comment createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @instance
+                         */
+                        Comment.prototype.createTime = null;
+    
+                        /**
+                         * Comment creator.
+                         * @member {google.cloud.support.v2beta.IActor|null|undefined} creator
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @instance
+                         */
+                        Comment.prototype.creator = null;
+    
+                        /**
+                         * Comment body.
+                         * @member {string} body
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @instance
+                         */
+                        Comment.prototype.body = "";
+    
+                        /**
+                         * Comment plainTextBody.
+                         * @member {string} plainTextBody
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @instance
+                         */
+                        Comment.prototype.plainTextBody = "";
+    
+                        /**
+                         * Creates a new Comment instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {google.cloud.support.v2beta.IComment=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.Comment} Comment instance
+                         */
+                        Comment.create = function create(properties) {
+                            return new Comment(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Comment message. Does not implicitly {@link google.cloud.support.v2beta.Comment.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {google.cloud.support.v2beta.IComment} message Comment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Comment.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.createTime != null && Object.hasOwnProperty.call(message, "createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.creator != null && Object.hasOwnProperty.call(message, "creator"))
+                                $root.google.cloud.support.v2beta.Actor.encode(message.creator, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.body != null && Object.hasOwnProperty.call(message, "body"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.body);
+                            if (message.plainTextBody != null && Object.hasOwnProperty.call(message, "plainTextBody"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.plainTextBody);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Comment message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.Comment.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {google.cloud.support.v2beta.IComment} message Comment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Comment.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Comment message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.Comment} Comment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Comment.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.Comment();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 3: {
+                                        message.creator = $root.google.cloud.support.v2beta.Actor.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 4: {
+                                        message.body = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.plainTextBody = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Comment message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.Comment} Comment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Comment.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Comment message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Comment.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.creator != null && message.hasOwnProperty("creator")) {
+                                var error = $root.google.cloud.support.v2beta.Actor.verify(message.creator);
+                                if (error)
+                                    return "creator." + error;
+                            }
+                            if (message.body != null && message.hasOwnProperty("body"))
+                                if (!$util.isString(message.body))
+                                    return "body: string expected";
+                            if (message.plainTextBody != null && message.hasOwnProperty("plainTextBody"))
+                                if (!$util.isString(message.plainTextBody))
+                                    return "plainTextBody: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Comment message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.Comment} Comment
+                         */
+                        Comment.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.Comment)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.Comment();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Comment.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.creator != null) {
+                                if (typeof object.creator !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.Comment.creator: object expected");
+                                message.creator = $root.google.cloud.support.v2beta.Actor.fromObject(object.creator);
+                            }
+                            if (object.body != null)
+                                message.body = String(object.body);
+                            if (object.plainTextBody != null)
+                                message.plainTextBody = String(object.plainTextBody);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Comment message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {google.cloud.support.v2beta.Comment} message Comment
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Comment.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.createTime = null;
+                                object.creator = null;
+                                object.body = "";
+                                object.plainTextBody = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                object.creator = $root.google.cloud.support.v2beta.Actor.toObject(message.creator, options);
+                            if (message.body != null && message.hasOwnProperty("body"))
+                                object.body = message.body;
+                            if (message.plainTextBody != null && message.hasOwnProperty("plainTextBody"))
+                                object.plainTextBody = message.plainTextBody;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Comment to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Comment.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Comment
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.Comment
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Comment.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.Comment";
+                        };
+    
+                        return Comment;
+                    })();
+    
+                    v2beta.CommentService = (function() {
+    
+                        /**
+                         * Constructs a new CommentService service.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CommentService
+                         * @extends $protobuf.rpc.Service
+                         * @constructor
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         */
+                        function CommentService(rpcImpl, requestDelimited, responseDelimited) {
+                            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                        }
+    
+                        (CommentService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = CommentService;
+    
+                        /**
+                         * Creates new CommentService service using the specified rpc implementation.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @static
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         * @returns {CommentService} RPC service. Useful where requests and/or responses are streamed.
+                         */
+                        CommentService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                            return new this(rpcImpl, requestDelimited, responseDelimited);
+                        };
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CommentService|listComments}.
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @typedef ListCommentsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.ListCommentsResponse} [response] ListCommentsResponse
+                         */
+    
+                        /**
+                         * Calls ListComments.
+                         * @function listComments
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IListCommentsRequest} request ListCommentsRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CommentService.ListCommentsCallback} callback Node-style callback called with the error, if any, and ListCommentsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CommentService.prototype.listComments = function listComments(request, callback) {
+                            return this.rpcCall(listComments, $root.google.cloud.support.v2beta.ListCommentsRequest, $root.google.cloud.support.v2beta.ListCommentsResponse, request, callback);
+                        }, "name", { value: "ListComments" });
+    
+                        /**
+                         * Calls ListComments.
+                         * @function listComments
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IListCommentsRequest} request ListCommentsRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.ListCommentsResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CommentService|createComment}.
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @typedef CreateCommentCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Comment} [response] Comment
+                         */
+    
+                        /**
+                         * Calls CreateComment.
+                         * @function createComment
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ICreateCommentRequest} request CreateCommentRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CommentService.CreateCommentCallback} callback Node-style callback called with the error, if any, and Comment
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CommentService.prototype.createComment = function createComment(request, callback) {
+                            return this.rpcCall(createComment, $root.google.cloud.support.v2beta.CreateCommentRequest, $root.google.cloud.support.v2beta.Comment, request, callback);
+                        }, "name", { value: "CreateComment" });
+    
+                        /**
+                         * Calls CreateComment.
+                         * @function createComment
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.ICreateCommentRequest} request CreateCommentRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Comment>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.CommentService|getComment}.
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @typedef GetCommentCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.Comment} [response] Comment
+                         */
+    
+                        /**
+                         * Calls GetComment.
+                         * @function getComment
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IGetCommentRequest} request GetCommentRequest message or plain object
+                         * @param {google.cloud.support.v2beta.CommentService.GetCommentCallback} callback Node-style callback called with the error, if any, and Comment
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CommentService.prototype.getComment = function getComment(request, callback) {
+                            return this.rpcCall(getComment, $root.google.cloud.support.v2beta.GetCommentRequest, $root.google.cloud.support.v2beta.Comment, request, callback);
+                        }, "name", { value: "GetComment" });
+    
+                        /**
+                         * Calls GetComment.
+                         * @function getComment
+                         * @memberof google.cloud.support.v2beta.CommentService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IGetCommentRequest} request GetCommentRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.Comment>} Promise
+                         * @variation 2
+                         */
+    
+                        return CommentService;
+                    })();
+    
+                    v2beta.ListCommentsRequest = (function() {
+    
+                        /**
+                         * Properties of a ListCommentsRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IListCommentsRequest
+                         * @property {string|null} [parent] ListCommentsRequest parent
+                         * @property {number|null} [pageSize] ListCommentsRequest pageSize
+                         * @property {string|null} [pageToken] ListCommentsRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListCommentsRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ListCommentsRequest.
+                         * @implements IListCommentsRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IListCommentsRequest=} [properties] Properties to set
+                         */
+                        function ListCommentsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListCommentsRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @instance
+                         */
+                        ListCommentsRequest.prototype.parent = "";
+    
+                        /**
+                         * ListCommentsRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @instance
+                         */
+                        ListCommentsRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListCommentsRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @instance
+                         */
+                        ListCommentsRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ListCommentsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCommentsRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ListCommentsRequest} ListCommentsRequest instance
+                         */
+                        ListCommentsRequest.create = function create(properties) {
+                            return new ListCommentsRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListCommentsRequest message. Does not implicitly {@link google.cloud.support.v2beta.ListCommentsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCommentsRequest} message ListCommentsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCommentsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListCommentsRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ListCommentsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCommentsRequest} message ListCommentsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCommentsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListCommentsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ListCommentsRequest} ListCommentsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCommentsRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ListCommentsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListCommentsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ListCommentsRequest} ListCommentsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCommentsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListCommentsRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListCommentsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListCommentsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ListCommentsRequest} ListCommentsRequest
+                         */
+                        ListCommentsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ListCommentsRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ListCommentsRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListCommentsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ListCommentsRequest} message ListCommentsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListCommentsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListCommentsRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListCommentsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListCommentsRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ListCommentsRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListCommentsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ListCommentsRequest";
+                        };
+    
+                        return ListCommentsRequest;
+                    })();
+    
+                    v2beta.ListCommentsResponse = (function() {
+    
+                        /**
+                         * Properties of a ListCommentsResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IListCommentsResponse
+                         * @property {Array.<google.cloud.support.v2beta.IComment>|null} [comments] ListCommentsResponse comments
+                         * @property {string|null} [nextPageToken] ListCommentsResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListCommentsResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ListCommentsResponse.
+                         * @implements IListCommentsResponse
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IListCommentsResponse=} [properties] Properties to set
+                         */
+                        function ListCommentsResponse(properties) {
+                            this.comments = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListCommentsResponse comments.
+                         * @member {Array.<google.cloud.support.v2beta.IComment>} comments
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @instance
+                         */
+                        ListCommentsResponse.prototype.comments = $util.emptyArray;
+    
+                        /**
+                         * ListCommentsResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @instance
+                         */
+                        ListCommentsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListCommentsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCommentsResponse=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ListCommentsResponse} ListCommentsResponse instance
+                         */
+                        ListCommentsResponse.create = function create(properties) {
+                            return new ListCommentsResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListCommentsResponse message. Does not implicitly {@link google.cloud.support.v2beta.ListCommentsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCommentsResponse} message ListCommentsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCommentsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.comments != null && message.comments.length)
+                                for (var i = 0; i < message.comments.length; ++i)
+                                    $root.google.cloud.support.v2beta.Comment.encode(message.comments[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListCommentsResponse message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ListCommentsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IListCommentsResponse} message ListCommentsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListCommentsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListCommentsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ListCommentsResponse} ListCommentsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCommentsResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ListCommentsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.comments && message.comments.length))
+                                            message.comments = [];
+                                        message.comments.push($root.google.cloud.support.v2beta.Comment.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListCommentsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ListCommentsResponse} ListCommentsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListCommentsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListCommentsResponse message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListCommentsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.comments != null && message.hasOwnProperty("comments")) {
+                                if (!Array.isArray(message.comments))
+                                    return "comments: array expected";
+                                for (var i = 0; i < message.comments.length; ++i) {
+                                    var error = $root.google.cloud.support.v2beta.Comment.verify(message.comments[i]);
+                                    if (error)
+                                        return "comments." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListCommentsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ListCommentsResponse} ListCommentsResponse
+                         */
+                        ListCommentsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ListCommentsResponse)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ListCommentsResponse();
+                            if (object.comments) {
+                                if (!Array.isArray(object.comments))
+                                    throw TypeError(".google.cloud.support.v2beta.ListCommentsResponse.comments: array expected");
+                                message.comments = [];
+                                for (var i = 0; i < object.comments.length; ++i) {
+                                    if (typeof object.comments[i] !== "object")
+                                        throw TypeError(".google.cloud.support.v2beta.ListCommentsResponse.comments: object expected");
+                                    message.comments[i] = $root.google.cloud.support.v2beta.Comment.fromObject(object.comments[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListCommentsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ListCommentsResponse} message ListCommentsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListCommentsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.comments = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.comments && message.comments.length) {
+                                object.comments = [];
+                                for (var j = 0; j < message.comments.length; ++j)
+                                    object.comments[j] = $root.google.cloud.support.v2beta.Comment.toObject(message.comments[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListCommentsResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListCommentsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListCommentsResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ListCommentsResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListCommentsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ListCommentsResponse";
+                        };
+    
+                        return ListCommentsResponse;
+                    })();
+    
+                    v2beta.CreateCommentRequest = (function() {
+    
+                        /**
+                         * Properties of a CreateCommentRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ICreateCommentRequest
+                         * @property {string|null} [parent] CreateCommentRequest parent
+                         * @property {google.cloud.support.v2beta.IComment|null} [comment] CreateCommentRequest comment
+                         */
+    
+                        /**
+                         * Constructs a new CreateCommentRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a CreateCommentRequest.
+                         * @implements ICreateCommentRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ICreateCommentRequest=} [properties] Properties to set
+                         */
+                        function CreateCommentRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CreateCommentRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @instance
+                         */
+                        CreateCommentRequest.prototype.parent = "";
+    
+                        /**
+                         * CreateCommentRequest comment.
+                         * @member {google.cloud.support.v2beta.IComment|null|undefined} comment
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @instance
+                         */
+                        CreateCommentRequest.prototype.comment = null;
+    
+                        /**
+                         * Creates a new CreateCommentRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICreateCommentRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.CreateCommentRequest} CreateCommentRequest instance
+                         */
+                        CreateCommentRequest.create = function create(properties) {
+                            return new CreateCommentRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CreateCommentRequest message. Does not implicitly {@link google.cloud.support.v2beta.CreateCommentRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICreateCommentRequest} message CreateCommentRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateCommentRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.comment != null && Object.hasOwnProperty.call(message, "comment"))
+                                $root.google.cloud.support.v2beta.Comment.encode(message.comment, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CreateCommentRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.CreateCommentRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ICreateCommentRequest} message CreateCommentRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateCommentRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CreateCommentRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.CreateCommentRequest} CreateCommentRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateCommentRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.CreateCommentRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.comment = $root.google.cloud.support.v2beta.Comment.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CreateCommentRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.CreateCommentRequest} CreateCommentRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateCommentRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CreateCommentRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CreateCommentRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.comment != null && message.hasOwnProperty("comment")) {
+                                var error = $root.google.cloud.support.v2beta.Comment.verify(message.comment);
+                                if (error)
+                                    return "comment." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CreateCommentRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.CreateCommentRequest} CreateCommentRequest
+                         */
+                        CreateCommentRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.CreateCommentRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.CreateCommentRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.comment != null) {
+                                if (typeof object.comment !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.CreateCommentRequest.comment: object expected");
+                                message.comment = $root.google.cloud.support.v2beta.Comment.fromObject(object.comment);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CreateCommentRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.CreateCommentRequest} message CreateCommentRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CreateCommentRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.comment = null;
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.comment != null && message.hasOwnProperty("comment"))
+                                object.comment = $root.google.cloud.support.v2beta.Comment.toObject(message.comment, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CreateCommentRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CreateCommentRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for CreateCommentRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.CreateCommentRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        CreateCommentRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.CreateCommentRequest";
+                        };
+    
+                        return CreateCommentRequest;
+                    })();
+    
+                    v2beta.GetCommentRequest = (function() {
+    
+                        /**
+                         * Properties of a GetCommentRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IGetCommentRequest
+                         * @property {string|null} [name] GetCommentRequest name
+                         */
+    
+                        /**
+                         * Constructs a new GetCommentRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a GetCommentRequest.
+                         * @implements IGetCommentRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IGetCommentRequest=} [properties] Properties to set
+                         */
+                        function GetCommentRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * GetCommentRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @instance
+                         */
+                        GetCommentRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new GetCommentRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetCommentRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.GetCommentRequest} GetCommentRequest instance
+                         */
+                        GetCommentRequest.create = function create(properties) {
+                            return new GetCommentRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified GetCommentRequest message. Does not implicitly {@link google.cloud.support.v2beta.GetCommentRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetCommentRequest} message GetCommentRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetCommentRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified GetCommentRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.GetCommentRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IGetCommentRequest} message GetCommentRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetCommentRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a GetCommentRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.GetCommentRequest} GetCommentRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetCommentRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.GetCommentRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a GetCommentRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.GetCommentRequest} GetCommentRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetCommentRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a GetCommentRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetCommentRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a GetCommentRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.GetCommentRequest} GetCommentRequest
+                         */
+                        GetCommentRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.GetCommentRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.GetCommentRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a GetCommentRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.GetCommentRequest} message GetCommentRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetCommentRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.name = "";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this GetCommentRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetCommentRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for GetCommentRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.GetCommentRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        GetCommentRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.GetCommentRequest";
+                        };
+    
+                        return GetCommentRequest;
+                    })();
+    
+                    v2beta.TextContent = (function() {
+    
+                        /**
+                         * Properties of a TextContent.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface ITextContent
+                         * @property {string|null} [plainText] TextContent plainText
+                         */
+    
+                        /**
+                         * Constructs a new TextContent.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a TextContent.
+                         * @implements ITextContent
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.ITextContent=} [properties] Properties to set
+                         */
+                        function TextContent(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * TextContent plainText.
+                         * @member {string} plainText
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @instance
+                         */
+                        TextContent.prototype.plainText = "";
+    
+                        /**
+                         * Creates a new TextContent instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {google.cloud.support.v2beta.ITextContent=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.TextContent} TextContent instance
+                         */
+                        TextContent.create = function create(properties) {
+                            return new TextContent(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified TextContent message. Does not implicitly {@link google.cloud.support.v2beta.TextContent.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {google.cloud.support.v2beta.ITextContent} message TextContent message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        TextContent.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.plainText != null && Object.hasOwnProperty.call(message, "plainText"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.plainText);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified TextContent message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.TextContent.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {google.cloud.support.v2beta.ITextContent} message TextContent message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        TextContent.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a TextContent message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.TextContent} TextContent
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        TextContent.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.TextContent();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.plainText = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a TextContent message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.TextContent} TextContent
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        TextContent.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a TextContent message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        TextContent.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.plainText != null && message.hasOwnProperty("plainText"))
+                                if (!$util.isString(message.plainText))
+                                    return "plainText: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a TextContent message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.TextContent} TextContent
+                         */
+                        TextContent.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.TextContent)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.TextContent();
+                            if (object.plainText != null)
+                                message.plainText = String(object.plainText);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a TextContent message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {google.cloud.support.v2beta.TextContent} message TextContent
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        TextContent.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.plainText = "";
+                            if (message.plainText != null && message.hasOwnProperty("plainText"))
+                                object.plainText = message.plainText;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this TextContent to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        TextContent.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for TextContent
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.TextContent
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        TextContent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.TextContent";
+                        };
+    
+                        return TextContent;
+                    })();
+    
+                    v2beta.EmailMessage = (function() {
+    
+                        /**
+                         * Properties of an EmailMessage.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IEmailMessage
+                         * @property {string|null} [name] EmailMessage name
+                         * @property {google.protobuf.ITimestamp|null} [createTime] EmailMessage createTime
+                         * @property {google.cloud.support.v2beta.IActor|null} [actor] EmailMessage actor
+                         * @property {string|null} [subject] EmailMessage subject
+                         * @property {Array.<string>|null} [recipientEmailAddresses] EmailMessage recipientEmailAddresses
+                         * @property {Array.<string>|null} [ccEmailAddresses] EmailMessage ccEmailAddresses
+                         * @property {google.cloud.support.v2beta.ITextContent|null} [bodyContent] EmailMessage bodyContent
+                         */
+    
+                        /**
+                         * Constructs a new EmailMessage.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents an EmailMessage.
+                         * @implements IEmailMessage
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IEmailMessage=} [properties] Properties to set
+                         */
+                        function EmailMessage(properties) {
+                            this.recipientEmailAddresses = [];
+                            this.ccEmailAddresses = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * EmailMessage name.
+                         * @member {string} name
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.name = "";
+    
+                        /**
+                         * EmailMessage createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.createTime = null;
+    
+                        /**
+                         * EmailMessage actor.
+                         * @member {google.cloud.support.v2beta.IActor|null|undefined} actor
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.actor = null;
+    
+                        /**
+                         * EmailMessage subject.
+                         * @member {string} subject
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.subject = "";
+    
+                        /**
+                         * EmailMessage recipientEmailAddresses.
+                         * @member {Array.<string>} recipientEmailAddresses
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.recipientEmailAddresses = $util.emptyArray;
+    
+                        /**
+                         * EmailMessage ccEmailAddresses.
+                         * @member {Array.<string>} ccEmailAddresses
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.ccEmailAddresses = $util.emptyArray;
+    
+                        /**
+                         * EmailMessage bodyContent.
+                         * @member {google.cloud.support.v2beta.ITextContent|null|undefined} bodyContent
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         */
+                        EmailMessage.prototype.bodyContent = null;
+    
+                        /**
+                         * Creates a new EmailMessage instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEmailMessage=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.EmailMessage} EmailMessage instance
+                         */
+                        EmailMessage.create = function create(properties) {
+                            return new EmailMessage(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified EmailMessage message. Does not implicitly {@link google.cloud.support.v2beta.EmailMessage.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEmailMessage} message EmailMessage message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EmailMessage.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.createTime != null && Object.hasOwnProperty.call(message, "createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.actor != null && Object.hasOwnProperty.call(message, "actor"))
+                                $root.google.cloud.support.v2beta.Actor.encode(message.actor, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.subject != null && Object.hasOwnProperty.call(message, "subject"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.subject);
+                            if (message.recipientEmailAddresses != null && message.recipientEmailAddresses.length)
+                                for (var i = 0; i < message.recipientEmailAddresses.length; ++i)
+                                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.recipientEmailAddresses[i]);
+                            if (message.ccEmailAddresses != null && message.ccEmailAddresses.length)
+                                for (var i = 0; i < message.ccEmailAddresses.length; ++i)
+                                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.ccEmailAddresses[i]);
+                            if (message.bodyContent != null && Object.hasOwnProperty.call(message, "bodyContent"))
+                                $root.google.cloud.support.v2beta.TextContent.encode(message.bodyContent, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified EmailMessage message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.EmailMessage.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {google.cloud.support.v2beta.IEmailMessage} message EmailMessage message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EmailMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an EmailMessage message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.EmailMessage} EmailMessage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EmailMessage.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.EmailMessage();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 3: {
+                                        message.actor = $root.google.cloud.support.v2beta.Actor.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 4: {
+                                        message.subject = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        if (!(message.recipientEmailAddresses && message.recipientEmailAddresses.length))
+                                            message.recipientEmailAddresses = [];
+                                        message.recipientEmailAddresses.push(reader.string());
+                                        break;
+                                    }
+                                case 6: {
+                                        if (!(message.ccEmailAddresses && message.ccEmailAddresses.length))
+                                            message.ccEmailAddresses = [];
+                                        message.ccEmailAddresses.push(reader.string());
+                                        break;
+                                    }
+                                case 8: {
+                                        message.bodyContent = $root.google.cloud.support.v2beta.TextContent.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an EmailMessage message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.EmailMessage} EmailMessage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EmailMessage.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an EmailMessage message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        EmailMessage.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.actor != null && message.hasOwnProperty("actor")) {
+                                var error = $root.google.cloud.support.v2beta.Actor.verify(message.actor);
+                                if (error)
+                                    return "actor." + error;
+                            }
+                            if (message.subject != null && message.hasOwnProperty("subject"))
+                                if (!$util.isString(message.subject))
+                                    return "subject: string expected";
+                            if (message.recipientEmailAddresses != null && message.hasOwnProperty("recipientEmailAddresses")) {
+                                if (!Array.isArray(message.recipientEmailAddresses))
+                                    return "recipientEmailAddresses: array expected";
+                                for (var i = 0; i < message.recipientEmailAddresses.length; ++i)
+                                    if (!$util.isString(message.recipientEmailAddresses[i]))
+                                        return "recipientEmailAddresses: string[] expected";
+                            }
+                            if (message.ccEmailAddresses != null && message.hasOwnProperty("ccEmailAddresses")) {
+                                if (!Array.isArray(message.ccEmailAddresses))
+                                    return "ccEmailAddresses: array expected";
+                                for (var i = 0; i < message.ccEmailAddresses.length; ++i)
+                                    if (!$util.isString(message.ccEmailAddresses[i]))
+                                        return "ccEmailAddresses: string[] expected";
+                            }
+                            if (message.bodyContent != null && message.hasOwnProperty("bodyContent")) {
+                                var error = $root.google.cloud.support.v2beta.TextContent.verify(message.bodyContent);
+                                if (error)
+                                    return "bodyContent." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an EmailMessage message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.EmailMessage} EmailMessage
+                         */
+                        EmailMessage.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.EmailMessage)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.EmailMessage();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.EmailMessage.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.actor != null) {
+                                if (typeof object.actor !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.EmailMessage.actor: object expected");
+                                message.actor = $root.google.cloud.support.v2beta.Actor.fromObject(object.actor);
+                            }
+                            if (object.subject != null)
+                                message.subject = String(object.subject);
+                            if (object.recipientEmailAddresses) {
+                                if (!Array.isArray(object.recipientEmailAddresses))
+                                    throw TypeError(".google.cloud.support.v2beta.EmailMessage.recipientEmailAddresses: array expected");
+                                message.recipientEmailAddresses = [];
+                                for (var i = 0; i < object.recipientEmailAddresses.length; ++i)
+                                    message.recipientEmailAddresses[i] = String(object.recipientEmailAddresses[i]);
+                            }
+                            if (object.ccEmailAddresses) {
+                                if (!Array.isArray(object.ccEmailAddresses))
+                                    throw TypeError(".google.cloud.support.v2beta.EmailMessage.ccEmailAddresses: array expected");
+                                message.ccEmailAddresses = [];
+                                for (var i = 0; i < object.ccEmailAddresses.length; ++i)
+                                    message.ccEmailAddresses[i] = String(object.ccEmailAddresses[i]);
+                            }
+                            if (object.bodyContent != null) {
+                                if (typeof object.bodyContent !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.EmailMessage.bodyContent: object expected");
+                                message.bodyContent = $root.google.cloud.support.v2beta.TextContent.fromObject(object.bodyContent);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an EmailMessage message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {google.cloud.support.v2beta.EmailMessage} message EmailMessage
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        EmailMessage.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults) {
+                                object.recipientEmailAddresses = [];
+                                object.ccEmailAddresses = [];
+                            }
+                            if (options.defaults) {
+                                object.name = "";
+                                object.createTime = null;
+                                object.actor = null;
+                                object.subject = "";
+                                object.bodyContent = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.actor != null && message.hasOwnProperty("actor"))
+                                object.actor = $root.google.cloud.support.v2beta.Actor.toObject(message.actor, options);
+                            if (message.subject != null && message.hasOwnProperty("subject"))
+                                object.subject = message.subject;
+                            if (message.recipientEmailAddresses && message.recipientEmailAddresses.length) {
+                                object.recipientEmailAddresses = [];
+                                for (var j = 0; j < message.recipientEmailAddresses.length; ++j)
+                                    object.recipientEmailAddresses[j] = message.recipientEmailAddresses[j];
+                            }
+                            if (message.ccEmailAddresses && message.ccEmailAddresses.length) {
+                                object.ccEmailAddresses = [];
+                                for (var j = 0; j < message.ccEmailAddresses.length; ++j)
+                                    object.ccEmailAddresses[j] = message.ccEmailAddresses[j];
+                            }
+                            if (message.bodyContent != null && message.hasOwnProperty("bodyContent"))
+                                object.bodyContent = $root.google.cloud.support.v2beta.TextContent.toObject(message.bodyContent, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this EmailMessage to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        EmailMessage.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for EmailMessage
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.EmailMessage
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        EmailMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.EmailMessage";
+                        };
+    
+                        return EmailMessage;
+                    })();
+    
+                    v2beta.FeedItem = (function() {
+    
+                        /**
+                         * Properties of a FeedItem.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IFeedItem
+                         * @property {google.cloud.support.v2beta.IComment|null} [comment] FeedItem comment
+                         * @property {google.cloud.support.v2beta.IAttachment|null} [attachment] FeedItem attachment
+                         * @property {google.cloud.support.v2beta.IEmailMessage|null} [emailMessage] FeedItem emailMessage
+                         * @property {google.cloud.support.v2beta.IAttachment|null} [deletedAttachment] FeedItem deletedAttachment
+                         * @property {google.protobuf.ITimestamp|null} [eventTime] FeedItem eventTime
+                         */
+    
+                        /**
+                         * Constructs a new FeedItem.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a FeedItem.
+                         * @implements IFeedItem
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IFeedItem=} [properties] Properties to set
+                         */
+                        function FeedItem(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * FeedItem comment.
+                         * @member {google.cloud.support.v2beta.IComment|null|undefined} comment
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         */
+                        FeedItem.prototype.comment = null;
+    
+                        /**
+                         * FeedItem attachment.
+                         * @member {google.cloud.support.v2beta.IAttachment|null|undefined} attachment
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         */
+                        FeedItem.prototype.attachment = null;
+    
+                        /**
+                         * FeedItem emailMessage.
+                         * @member {google.cloud.support.v2beta.IEmailMessage|null|undefined} emailMessage
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         */
+                        FeedItem.prototype.emailMessage = null;
+    
+                        /**
+                         * FeedItem deletedAttachment.
+                         * @member {google.cloud.support.v2beta.IAttachment|null|undefined} deletedAttachment
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         */
+                        FeedItem.prototype.deletedAttachment = null;
+    
+                        /**
+                         * FeedItem eventTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} eventTime
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         */
+                        FeedItem.prototype.eventTime = null;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        /**
+                         * FeedItem eventObject.
+                         * @member {"comment"|"attachment"|"emailMessage"|"deletedAttachment"|undefined} eventObject
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         */
+                        Object.defineProperty(FeedItem.prototype, "eventObject", {
+                            get: $util.oneOfGetter($oneOfFields = ["comment", "attachment", "emailMessage", "deletedAttachment"]),
+                            set: $util.oneOfSetter($oneOfFields)
+                        });
+    
+                        /**
+                         * Creates a new FeedItem instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {google.cloud.support.v2beta.IFeedItem=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.FeedItem} FeedItem instance
+                         */
+                        FeedItem.create = function create(properties) {
+                            return new FeedItem(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified FeedItem message. Does not implicitly {@link google.cloud.support.v2beta.FeedItem.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {google.cloud.support.v2beta.IFeedItem} message FeedItem message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        FeedItem.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.eventTime != null && Object.hasOwnProperty.call(message, "eventTime"))
+                                $root.google.protobuf.Timestamp.encode(message.eventTime, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.comment != null && Object.hasOwnProperty.call(message, "comment"))
+                                $root.google.cloud.support.v2beta.Comment.encode(message.comment, writer.uint32(/* id 100, wireType 2 =*/802).fork()).ldelim();
+                            if (message.attachment != null && Object.hasOwnProperty.call(message, "attachment"))
+                                $root.google.cloud.support.v2beta.Attachment.encode(message.attachment, writer.uint32(/* id 101, wireType 2 =*/810).fork()).ldelim();
+                            if (message.emailMessage != null && Object.hasOwnProperty.call(message, "emailMessage"))
+                                $root.google.cloud.support.v2beta.EmailMessage.encode(message.emailMessage, writer.uint32(/* id 102, wireType 2 =*/818).fork()).ldelim();
+                            if (message.deletedAttachment != null && Object.hasOwnProperty.call(message, "deletedAttachment"))
+                                $root.google.cloud.support.v2beta.Attachment.encode(message.deletedAttachment, writer.uint32(/* id 103, wireType 2 =*/826).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified FeedItem message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.FeedItem.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {google.cloud.support.v2beta.IFeedItem} message FeedItem message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        FeedItem.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a FeedItem message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.FeedItem} FeedItem
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        FeedItem.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.FeedItem();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 100: {
+                                        message.comment = $root.google.cloud.support.v2beta.Comment.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 101: {
+                                        message.attachment = $root.google.cloud.support.v2beta.Attachment.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 102: {
+                                        message.emailMessage = $root.google.cloud.support.v2beta.EmailMessage.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 103: {
+                                        message.deletedAttachment = $root.google.cloud.support.v2beta.Attachment.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 1: {
+                                        message.eventTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a FeedItem message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.FeedItem} FeedItem
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        FeedItem.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a FeedItem message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        FeedItem.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            var properties = {};
+                            if (message.comment != null && message.hasOwnProperty("comment")) {
+                                properties.eventObject = 1;
+                                {
+                                    var error = $root.google.cloud.support.v2beta.Comment.verify(message.comment);
+                                    if (error)
+                                        return "comment." + error;
+                                }
+                            }
+                            if (message.attachment != null && message.hasOwnProperty("attachment")) {
+                                if (properties.eventObject === 1)
+                                    return "eventObject: multiple values";
+                                properties.eventObject = 1;
+                                {
+                                    var error = $root.google.cloud.support.v2beta.Attachment.verify(message.attachment);
+                                    if (error)
+                                        return "attachment." + error;
+                                }
+                            }
+                            if (message.emailMessage != null && message.hasOwnProperty("emailMessage")) {
+                                if (properties.eventObject === 1)
+                                    return "eventObject: multiple values";
+                                properties.eventObject = 1;
+                                {
+                                    var error = $root.google.cloud.support.v2beta.EmailMessage.verify(message.emailMessage);
+                                    if (error)
+                                        return "emailMessage." + error;
+                                }
+                            }
+                            if (message.deletedAttachment != null && message.hasOwnProperty("deletedAttachment")) {
+                                if (properties.eventObject === 1)
+                                    return "eventObject: multiple values";
+                                properties.eventObject = 1;
+                                {
+                                    var error = $root.google.cloud.support.v2beta.Attachment.verify(message.deletedAttachment);
+                                    if (error)
+                                        return "deletedAttachment." + error;
+                                }
+                            }
+                            if (message.eventTime != null && message.hasOwnProperty("eventTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.eventTime);
+                                if (error)
+                                    return "eventTime." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a FeedItem message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.FeedItem} FeedItem
+                         */
+                        FeedItem.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.FeedItem)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.FeedItem();
+                            if (object.comment != null) {
+                                if (typeof object.comment !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.FeedItem.comment: object expected");
+                                message.comment = $root.google.cloud.support.v2beta.Comment.fromObject(object.comment);
+                            }
+                            if (object.attachment != null) {
+                                if (typeof object.attachment !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.FeedItem.attachment: object expected");
+                                message.attachment = $root.google.cloud.support.v2beta.Attachment.fromObject(object.attachment);
+                            }
+                            if (object.emailMessage != null) {
+                                if (typeof object.emailMessage !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.FeedItem.emailMessage: object expected");
+                                message.emailMessage = $root.google.cloud.support.v2beta.EmailMessage.fromObject(object.emailMessage);
+                            }
+                            if (object.deletedAttachment != null) {
+                                if (typeof object.deletedAttachment !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.FeedItem.deletedAttachment: object expected");
+                                message.deletedAttachment = $root.google.cloud.support.v2beta.Attachment.fromObject(object.deletedAttachment);
+                            }
+                            if (object.eventTime != null) {
+                                if (typeof object.eventTime !== "object")
+                                    throw TypeError(".google.cloud.support.v2beta.FeedItem.eventTime: object expected");
+                                message.eventTime = $root.google.protobuf.Timestamp.fromObject(object.eventTime);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a FeedItem message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {google.cloud.support.v2beta.FeedItem} message FeedItem
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        FeedItem.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.eventTime = null;
+                            if (message.eventTime != null && message.hasOwnProperty("eventTime"))
+                                object.eventTime = $root.google.protobuf.Timestamp.toObject(message.eventTime, options);
+                            if (message.comment != null && message.hasOwnProperty("comment")) {
+                                object.comment = $root.google.cloud.support.v2beta.Comment.toObject(message.comment, options);
+                                if (options.oneofs)
+                                    object.eventObject = "comment";
+                            }
+                            if (message.attachment != null && message.hasOwnProperty("attachment")) {
+                                object.attachment = $root.google.cloud.support.v2beta.Attachment.toObject(message.attachment, options);
+                                if (options.oneofs)
+                                    object.eventObject = "attachment";
+                            }
+                            if (message.emailMessage != null && message.hasOwnProperty("emailMessage")) {
+                                object.emailMessage = $root.google.cloud.support.v2beta.EmailMessage.toObject(message.emailMessage, options);
+                                if (options.oneofs)
+                                    object.eventObject = "emailMessage";
+                            }
+                            if (message.deletedAttachment != null && message.hasOwnProperty("deletedAttachment")) {
+                                object.deletedAttachment = $root.google.cloud.support.v2beta.Attachment.toObject(message.deletedAttachment, options);
+                                if (options.oneofs)
+                                    object.eventObject = "deletedAttachment";
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this FeedItem to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        FeedItem.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for FeedItem
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.FeedItem
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        FeedItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.FeedItem";
+                        };
+    
+                        return FeedItem;
+                    })();
+    
+                    v2beta.FeedService = (function() {
+    
+                        /**
+                         * Constructs a new FeedService service.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a FeedService
+                         * @extends $protobuf.rpc.Service
+                         * @constructor
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         */
+                        function FeedService(rpcImpl, requestDelimited, responseDelimited) {
+                            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                        }
+    
+                        (FeedService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = FeedService;
+    
+                        /**
+                         * Creates new FeedService service using the specified rpc implementation.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.FeedService
+                         * @static
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         * @returns {FeedService} RPC service. Useful where requests and/or responses are streamed.
+                         */
+                        FeedService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                            return new this(rpcImpl, requestDelimited, responseDelimited);
+                        };
+    
+                        /**
+                         * Callback as used by {@link google.cloud.support.v2beta.FeedService|showFeed}.
+                         * @memberof google.cloud.support.v2beta.FeedService
+                         * @typedef ShowFeedCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.support.v2beta.ShowFeedResponse} [response] ShowFeedResponse
+                         */
+    
+                        /**
+                         * Calls ShowFeed.
+                         * @function showFeed
+                         * @memberof google.cloud.support.v2beta.FeedService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IShowFeedRequest} request ShowFeedRequest message or plain object
+                         * @param {google.cloud.support.v2beta.FeedService.ShowFeedCallback} callback Node-style callback called with the error, if any, and ShowFeedResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(FeedService.prototype.showFeed = function showFeed(request, callback) {
+                            return this.rpcCall(showFeed, $root.google.cloud.support.v2beta.ShowFeedRequest, $root.google.cloud.support.v2beta.ShowFeedResponse, request, callback);
+                        }, "name", { value: "ShowFeed" });
+    
+                        /**
+                         * Calls ShowFeed.
+                         * @function showFeed
+                         * @memberof google.cloud.support.v2beta.FeedService
+                         * @instance
+                         * @param {google.cloud.support.v2beta.IShowFeedRequest} request ShowFeedRequest message or plain object
+                         * @returns {Promise<google.cloud.support.v2beta.ShowFeedResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        return FeedService;
+                    })();
+    
+                    v2beta.ShowFeedRequest = (function() {
+    
+                        /**
+                         * Properties of a ShowFeedRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IShowFeedRequest
+                         * @property {string|null} [parent] ShowFeedRequest parent
+                         * @property {string|null} [orderBy] ShowFeedRequest orderBy
+                         * @property {number|null} [pageSize] ShowFeedRequest pageSize
+                         * @property {string|null} [pageToken] ShowFeedRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ShowFeedRequest.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ShowFeedRequest.
+                         * @implements IShowFeedRequest
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IShowFeedRequest=} [properties] Properties to set
+                         */
+                        function ShowFeedRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ShowFeedRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @instance
+                         */
+                        ShowFeedRequest.prototype.parent = "";
+    
+                        /**
+                         * ShowFeedRequest orderBy.
+                         * @member {string} orderBy
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @instance
+                         */
+                        ShowFeedRequest.prototype.orderBy = "";
+    
+                        /**
+                         * ShowFeedRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @instance
+                         */
+                        ShowFeedRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ShowFeedRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @instance
+                         */
+                        ShowFeedRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ShowFeedRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IShowFeedRequest=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ShowFeedRequest} ShowFeedRequest instance
+                         */
+                        ShowFeedRequest.create = function create(properties) {
+                            return new ShowFeedRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ShowFeedRequest message. Does not implicitly {@link google.cloud.support.v2beta.ShowFeedRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IShowFeedRequest} message ShowFeedRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ShowFeedRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.orderBy != null && Object.hasOwnProperty.call(message, "orderBy"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.orderBy);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ShowFeedRequest message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ShowFeedRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.IShowFeedRequest} message ShowFeedRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ShowFeedRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ShowFeedRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ShowFeedRequest} ShowFeedRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ShowFeedRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ShowFeedRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.orderBy = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ShowFeedRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ShowFeedRequest} ShowFeedRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ShowFeedRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ShowFeedRequest message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ShowFeedRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.orderBy != null && message.hasOwnProperty("orderBy"))
+                                if (!$util.isString(message.orderBy))
+                                    return "orderBy: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ShowFeedRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ShowFeedRequest} ShowFeedRequest
+                         */
+                        ShowFeedRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ShowFeedRequest)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ShowFeedRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.orderBy != null)
+                                message.orderBy = String(object.orderBy);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ShowFeedRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {google.cloud.support.v2beta.ShowFeedRequest} message ShowFeedRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ShowFeedRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.orderBy = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.orderBy != null && message.hasOwnProperty("orderBy"))
+                                object.orderBy = message.orderBy;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ShowFeedRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ShowFeedRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ShowFeedRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ShowFeedRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ShowFeedRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ShowFeedRequest";
+                        };
+    
+                        return ShowFeedRequest;
+                    })();
+    
+                    v2beta.ShowFeedResponse = (function() {
+    
+                        /**
+                         * Properties of a ShowFeedResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @interface IShowFeedResponse
+                         * @property {Array.<google.cloud.support.v2beta.IFeedItem>|null} [feedItems] ShowFeedResponse feedItems
+                         * @property {string|null} [nextPageToken] ShowFeedResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ShowFeedResponse.
+                         * @memberof google.cloud.support.v2beta
+                         * @classdesc Represents a ShowFeedResponse.
+                         * @implements IShowFeedResponse
+                         * @constructor
+                         * @param {google.cloud.support.v2beta.IShowFeedResponse=} [properties] Properties to set
+                         */
+                        function ShowFeedResponse(properties) {
+                            this.feedItems = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ShowFeedResponse feedItems.
+                         * @member {Array.<google.cloud.support.v2beta.IFeedItem>} feedItems
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @instance
+                         */
+                        ShowFeedResponse.prototype.feedItems = $util.emptyArray;
+    
+                        /**
+                         * ShowFeedResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @instance
+                         */
+                        ShowFeedResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ShowFeedResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IShowFeedResponse=} [properties] Properties to set
+                         * @returns {google.cloud.support.v2beta.ShowFeedResponse} ShowFeedResponse instance
+                         */
+                        ShowFeedResponse.create = function create(properties) {
+                            return new ShowFeedResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ShowFeedResponse message. Does not implicitly {@link google.cloud.support.v2beta.ShowFeedResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IShowFeedResponse} message ShowFeedResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ShowFeedResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.feedItems != null && message.feedItems.length)
+                                for (var i = 0; i < message.feedItems.length; ++i)
+                                    $root.google.cloud.support.v2beta.FeedItem.encode(message.feedItems[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ShowFeedResponse message, length delimited. Does not implicitly {@link google.cloud.support.v2beta.ShowFeedResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.IShowFeedResponse} message ShowFeedResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ShowFeedResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ShowFeedResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.support.v2beta.ShowFeedResponse} ShowFeedResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ShowFeedResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.support.v2beta.ShowFeedResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.feedItems && message.feedItems.length))
+                                            message.feedItems = [];
+                                        message.feedItems.push($root.google.cloud.support.v2beta.FeedItem.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ShowFeedResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.support.v2beta.ShowFeedResponse} ShowFeedResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ShowFeedResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ShowFeedResponse message.
+                         * @function verify
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ShowFeedResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.feedItems != null && message.hasOwnProperty("feedItems")) {
+                                if (!Array.isArray(message.feedItems))
+                                    return "feedItems: array expected";
+                                for (var i = 0; i < message.feedItems.length; ++i) {
+                                    var error = $root.google.cloud.support.v2beta.FeedItem.verify(message.feedItems[i]);
+                                    if (error)
+                                        return "feedItems." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ShowFeedResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.support.v2beta.ShowFeedResponse} ShowFeedResponse
+                         */
+                        ShowFeedResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.support.v2beta.ShowFeedResponse)
+                                return object;
+                            var message = new $root.google.cloud.support.v2beta.ShowFeedResponse();
+                            if (object.feedItems) {
+                                if (!Array.isArray(object.feedItems))
+                                    throw TypeError(".google.cloud.support.v2beta.ShowFeedResponse.feedItems: array expected");
+                                message.feedItems = [];
+                                for (var i = 0; i < object.feedItems.length; ++i) {
+                                    if (typeof object.feedItems[i] !== "object")
+                                        throw TypeError(".google.cloud.support.v2beta.ShowFeedResponse.feedItems: object expected");
+                                    message.feedItems[i] = $root.google.cloud.support.v2beta.FeedItem.fromObject(object.feedItems[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ShowFeedResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {google.cloud.support.v2beta.ShowFeedResponse} message ShowFeedResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ShowFeedResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.feedItems = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.feedItems && message.feedItems.length) {
+                                object.feedItems = [];
+                                for (var j = 0; j < message.feedItems.length; ++j)
+                                    object.feedItems[j] = $root.google.cloud.support.v2beta.FeedItem.toObject(message.feedItems[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ShowFeedResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ShowFeedResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ShowFeedResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.support.v2beta.ShowFeedResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ShowFeedResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.support.v2beta.ShowFeedResponse";
+                        };
+    
+                        return ShowFeedResponse;
+                    })();
+    
+                    return v2beta;
                 })();
     
                 return support;
@@ -6698,12 +15664,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -7093,12 +16061,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -7322,12 +16292,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -7672,12 +16644,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -8056,12 +17030,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -8195,6 +17171,7 @@
                  * @interface ICommonLanguageSettings
                  * @property {string|null} [referenceDocsUri] CommonLanguageSettings referenceDocsUri
                  * @property {Array.<google.api.ClientLibraryDestination>|null} [destinations] CommonLanguageSettings destinations
+                 * @property {google.api.ISelectiveGapicGeneration|null} [selectiveGapicGeneration] CommonLanguageSettings selectiveGapicGeneration
                  */
     
                 /**
@@ -8230,6 +17207,14 @@
                 CommonLanguageSettings.prototype.destinations = $util.emptyArray;
     
                 /**
+                 * CommonLanguageSettings selectiveGapicGeneration.
+                 * @member {google.api.ISelectiveGapicGeneration|null|undefined} selectiveGapicGeneration
+                 * @memberof google.api.CommonLanguageSettings
+                 * @instance
+                 */
+                CommonLanguageSettings.prototype.selectiveGapicGeneration = null;
+    
+                /**
                  * Creates a new CommonLanguageSettings instance using the specified properties.
                  * @function create
                  * @memberof google.api.CommonLanguageSettings
@@ -8261,6 +17246,8 @@
                             writer.int32(message.destinations[i]);
                         writer.ldelim();
                     }
+                    if (message.selectiveGapicGeneration != null && Object.hasOwnProperty.call(message, "selectiveGapicGeneration"))
+                        $root.google.api.SelectiveGapicGeneration.encode(message.selectiveGapicGeneration, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     return writer;
                 };
     
@@ -8288,12 +17275,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -8308,6 +17297,10 @@
                                         message.destinations.push(reader.int32());
                                 } else
                                     message.destinations.push(reader.int32());
+                                break;
+                            }
+                        case 3: {
+                                message.selectiveGapicGeneration = $root.google.api.SelectiveGapicGeneration.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -8361,6 +17354,11 @@
                                 break;
                             }
                     }
+                    if (message.selectiveGapicGeneration != null && message.hasOwnProperty("selectiveGapicGeneration")) {
+                        var error = $root.google.api.SelectiveGapicGeneration.verify(message.selectiveGapicGeneration);
+                        if (error)
+                            return "selectiveGapicGeneration." + error;
+                    }
                     return null;
                 };
     
@@ -8403,6 +17401,11 @@
                                 break;
                             }
                     }
+                    if (object.selectiveGapicGeneration != null) {
+                        if (typeof object.selectiveGapicGeneration !== "object")
+                            throw TypeError(".google.api.CommonLanguageSettings.selectiveGapicGeneration: object expected");
+                        message.selectiveGapicGeneration = $root.google.api.SelectiveGapicGeneration.fromObject(object.selectiveGapicGeneration);
+                    }
                     return message;
                 };
     
@@ -8421,8 +17424,10 @@
                     var object = {};
                     if (options.arrays || options.defaults)
                         object.destinations = [];
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.referenceDocsUri = "";
+                        object.selectiveGapicGeneration = null;
+                    }
                     if (message.referenceDocsUri != null && message.hasOwnProperty("referenceDocsUri"))
                         object.referenceDocsUri = message.referenceDocsUri;
                     if (message.destinations && message.destinations.length) {
@@ -8430,6 +17435,8 @@
                         for (var j = 0; j < message.destinations.length; ++j)
                             object.destinations[j] = options.enums === String ? $root.google.api.ClientLibraryDestination[message.destinations[j]] === undefined ? message.destinations[j] : $root.google.api.ClientLibraryDestination[message.destinations[j]] : message.destinations[j];
                     }
+                    if (message.selectiveGapicGeneration != null && message.hasOwnProperty("selectiveGapicGeneration"))
+                        object.selectiveGapicGeneration = $root.google.api.SelectiveGapicGeneration.toObject(message.selectiveGapicGeneration, options);
                     return object;
                 };
     
@@ -8657,12 +17664,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -9001,6 +18010,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -9102,6 +18112,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -9148,6 +18166,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -9175,12 +18195,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -9226,6 +18248,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -9320,6 +18346,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -9414,6 +18443,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -9443,6 +18474,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -9473,6 +18505,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -9614,12 +18648,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -9881,12 +18917,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -10089,12 +19127,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -10219,6 +19259,7 @@
                  * @memberof google.api
                  * @interface IPythonSettings
                  * @property {google.api.ICommonLanguageSettings|null} [common] PythonSettings common
+                 * @property {google.api.PythonSettings.IExperimentalFeatures|null} [experimentalFeatures] PythonSettings experimentalFeatures
                  */
     
                 /**
@@ -10243,6 +19284,14 @@
                  * @instance
                  */
                 PythonSettings.prototype.common = null;
+    
+                /**
+                 * PythonSettings experimentalFeatures.
+                 * @member {google.api.PythonSettings.IExperimentalFeatures|null|undefined} experimentalFeatures
+                 * @memberof google.api.PythonSettings
+                 * @instance
+                 */
+                PythonSettings.prototype.experimentalFeatures = null;
     
                 /**
                  * Creates a new PythonSettings instance using the specified properties.
@@ -10270,6 +19319,8 @@
                         writer = $Writer.create();
                     if (message.common != null && Object.hasOwnProperty.call(message, "common"))
                         $root.google.api.CommonLanguageSettings.encode(message.common, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    if (message.experimentalFeatures != null && Object.hasOwnProperty.call(message, "experimentalFeatures"))
+                        $root.google.api.PythonSettings.ExperimentalFeatures.encode(message.experimentalFeatures, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
     
@@ -10297,15 +19348,21 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 2: {
+                                message.experimentalFeatures = $root.google.api.PythonSettings.ExperimentalFeatures.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -10348,6 +19405,11 @@
                         if (error)
                             return "common." + error;
                     }
+                    if (message.experimentalFeatures != null && message.hasOwnProperty("experimentalFeatures")) {
+                        var error = $root.google.api.PythonSettings.ExperimentalFeatures.verify(message.experimentalFeatures);
+                        if (error)
+                            return "experimentalFeatures." + error;
+                    }
                     return null;
                 };
     
@@ -10368,6 +19430,11 @@
                             throw TypeError(".google.api.PythonSettings.common: object expected");
                         message.common = $root.google.api.CommonLanguageSettings.fromObject(object.common);
                     }
+                    if (object.experimentalFeatures != null) {
+                        if (typeof object.experimentalFeatures !== "object")
+                            throw TypeError(".google.api.PythonSettings.experimentalFeatures: object expected");
+                        message.experimentalFeatures = $root.google.api.PythonSettings.ExperimentalFeatures.fromObject(object.experimentalFeatures);
+                    }
                     return message;
                 };
     
@@ -10384,10 +19451,14 @@
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.common = null;
+                        object.experimentalFeatures = null;
+                    }
                     if (message.common != null && message.hasOwnProperty("common"))
                         object.common = $root.google.api.CommonLanguageSettings.toObject(message.common, options);
+                    if (message.experimentalFeatures != null && message.hasOwnProperty("experimentalFeatures"))
+                        object.experimentalFeatures = $root.google.api.PythonSettings.ExperimentalFeatures.toObject(message.experimentalFeatures, options);
                     return object;
                 };
     
@@ -10416,6 +19487,258 @@
                     }
                     return typeUrlPrefix + "/google.api.PythonSettings";
                 };
+    
+                PythonSettings.ExperimentalFeatures = (function() {
+    
+                    /**
+                     * Properties of an ExperimentalFeatures.
+                     * @memberof google.api.PythonSettings
+                     * @interface IExperimentalFeatures
+                     * @property {boolean|null} [restAsyncIoEnabled] ExperimentalFeatures restAsyncIoEnabled
+                     * @property {boolean|null} [protobufPythonicTypesEnabled] ExperimentalFeatures protobufPythonicTypesEnabled
+                     * @property {boolean|null} [unversionedPackageDisabled] ExperimentalFeatures unversionedPackageDisabled
+                     */
+    
+                    /**
+                     * Constructs a new ExperimentalFeatures.
+                     * @memberof google.api.PythonSettings
+                     * @classdesc Represents an ExperimentalFeatures.
+                     * @implements IExperimentalFeatures
+                     * @constructor
+                     * @param {google.api.PythonSettings.IExperimentalFeatures=} [properties] Properties to set
+                     */
+                    function ExperimentalFeatures(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+    
+                    /**
+                     * ExperimentalFeatures restAsyncIoEnabled.
+                     * @member {boolean} restAsyncIoEnabled
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @instance
+                     */
+                    ExperimentalFeatures.prototype.restAsyncIoEnabled = false;
+    
+                    /**
+                     * ExperimentalFeatures protobufPythonicTypesEnabled.
+                     * @member {boolean} protobufPythonicTypesEnabled
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @instance
+                     */
+                    ExperimentalFeatures.prototype.protobufPythonicTypesEnabled = false;
+    
+                    /**
+                     * ExperimentalFeatures unversionedPackageDisabled.
+                     * @member {boolean} unversionedPackageDisabled
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @instance
+                     */
+                    ExperimentalFeatures.prototype.unversionedPackageDisabled = false;
+    
+                    /**
+                     * Creates a new ExperimentalFeatures instance using the specified properties.
+                     * @function create
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {google.api.PythonSettings.IExperimentalFeatures=} [properties] Properties to set
+                     * @returns {google.api.PythonSettings.ExperimentalFeatures} ExperimentalFeatures instance
+                     */
+                    ExperimentalFeatures.create = function create(properties) {
+                        return new ExperimentalFeatures(properties);
+                    };
+    
+                    /**
+                     * Encodes the specified ExperimentalFeatures message. Does not implicitly {@link google.api.PythonSettings.ExperimentalFeatures.verify|verify} messages.
+                     * @function encode
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {google.api.PythonSettings.IExperimentalFeatures} message ExperimentalFeatures message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    ExperimentalFeatures.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.restAsyncIoEnabled != null && Object.hasOwnProperty.call(message, "restAsyncIoEnabled"))
+                            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.restAsyncIoEnabled);
+                        if (message.protobufPythonicTypesEnabled != null && Object.hasOwnProperty.call(message, "protobufPythonicTypesEnabled"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).bool(message.protobufPythonicTypesEnabled);
+                        if (message.unversionedPackageDisabled != null && Object.hasOwnProperty.call(message, "unversionedPackageDisabled"))
+                            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.unversionedPackageDisabled);
+                        return writer;
+                    };
+    
+                    /**
+                     * Encodes the specified ExperimentalFeatures message, length delimited. Does not implicitly {@link google.api.PythonSettings.ExperimentalFeatures.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {google.api.PythonSettings.IExperimentalFeatures} message ExperimentalFeatures message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    ExperimentalFeatures.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+    
+                    /**
+                     * Decodes an ExperimentalFeatures message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {google.api.PythonSettings.ExperimentalFeatures} ExperimentalFeatures
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    ExperimentalFeatures.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings.ExperimentalFeatures();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.restAsyncIoEnabled = reader.bool();
+                                    break;
+                                }
+                            case 2: {
+                                    message.protobufPythonicTypesEnabled = reader.bool();
+                                    break;
+                                }
+                            case 3: {
+                                    message.unversionedPackageDisabled = reader.bool();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+    
+                    /**
+                     * Decodes an ExperimentalFeatures message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {google.api.PythonSettings.ExperimentalFeatures} ExperimentalFeatures
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    ExperimentalFeatures.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+    
+                    /**
+                     * Verifies an ExperimentalFeatures message.
+                     * @function verify
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    ExperimentalFeatures.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.restAsyncIoEnabled != null && message.hasOwnProperty("restAsyncIoEnabled"))
+                            if (typeof message.restAsyncIoEnabled !== "boolean")
+                                return "restAsyncIoEnabled: boolean expected";
+                        if (message.protobufPythonicTypesEnabled != null && message.hasOwnProperty("protobufPythonicTypesEnabled"))
+                            if (typeof message.protobufPythonicTypesEnabled !== "boolean")
+                                return "protobufPythonicTypesEnabled: boolean expected";
+                        if (message.unversionedPackageDisabled != null && message.hasOwnProperty("unversionedPackageDisabled"))
+                            if (typeof message.unversionedPackageDisabled !== "boolean")
+                                return "unversionedPackageDisabled: boolean expected";
+                        return null;
+                    };
+    
+                    /**
+                     * Creates an ExperimentalFeatures message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {google.api.PythonSettings.ExperimentalFeatures} ExperimentalFeatures
+                     */
+                    ExperimentalFeatures.fromObject = function fromObject(object) {
+                        if (object instanceof $root.google.api.PythonSettings.ExperimentalFeatures)
+                            return object;
+                        var message = new $root.google.api.PythonSettings.ExperimentalFeatures();
+                        if (object.restAsyncIoEnabled != null)
+                            message.restAsyncIoEnabled = Boolean(object.restAsyncIoEnabled);
+                        if (object.protobufPythonicTypesEnabled != null)
+                            message.protobufPythonicTypesEnabled = Boolean(object.protobufPythonicTypesEnabled);
+                        if (object.unversionedPackageDisabled != null)
+                            message.unversionedPackageDisabled = Boolean(object.unversionedPackageDisabled);
+                        return message;
+                    };
+    
+                    /**
+                     * Creates a plain object from an ExperimentalFeatures message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {google.api.PythonSettings.ExperimentalFeatures} message ExperimentalFeatures
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    ExperimentalFeatures.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.restAsyncIoEnabled = false;
+                            object.protobufPythonicTypesEnabled = false;
+                            object.unversionedPackageDisabled = false;
+                        }
+                        if (message.restAsyncIoEnabled != null && message.hasOwnProperty("restAsyncIoEnabled"))
+                            object.restAsyncIoEnabled = message.restAsyncIoEnabled;
+                        if (message.protobufPythonicTypesEnabled != null && message.hasOwnProperty("protobufPythonicTypesEnabled"))
+                            object.protobufPythonicTypesEnabled = message.protobufPythonicTypesEnabled;
+                        if (message.unversionedPackageDisabled != null && message.hasOwnProperty("unversionedPackageDisabled"))
+                            object.unversionedPackageDisabled = message.unversionedPackageDisabled;
+                        return object;
+                    };
+    
+                    /**
+                     * Converts this ExperimentalFeatures to JSON.
+                     * @function toJSON
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    ExperimentalFeatures.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+    
+                    /**
+                     * Gets the default type url for ExperimentalFeatures
+                     * @function getTypeUrl
+                     * @memberof google.api.PythonSettings.ExperimentalFeatures
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    ExperimentalFeatures.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/google.api.PythonSettings.ExperimentalFeatures";
+                    };
+    
+                    return ExperimentalFeatures;
+                })();
     
                 return PythonSettings;
             })();
@@ -10505,12 +19828,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -10778,12 +20103,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -11157,12 +20484,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -11287,6 +20616,7 @@
                  * @memberof google.api
                  * @interface IGoSettings
                  * @property {google.api.ICommonLanguageSettings|null} [common] GoSettings common
+                 * @property {Object.<string,string>|null} [renamedServices] GoSettings renamedServices
                  */
     
                 /**
@@ -11298,6 +20628,7 @@
                  * @param {google.api.IGoSettings=} [properties] Properties to set
                  */
                 function GoSettings(properties) {
+                    this.renamedServices = {};
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -11311,6 +20642,14 @@
                  * @instance
                  */
                 GoSettings.prototype.common = null;
+    
+                /**
+                 * GoSettings renamedServices.
+                 * @member {Object.<string,string>} renamedServices
+                 * @memberof google.api.GoSettings
+                 * @instance
+                 */
+                GoSettings.prototype.renamedServices = $util.emptyObject;
     
                 /**
                  * Creates a new GoSettings instance using the specified properties.
@@ -11338,6 +20677,9 @@
                         writer = $Writer.create();
                     if (message.common != null && Object.hasOwnProperty.call(message, "common"))
                         $root.google.api.CommonLanguageSettings.encode(message.common, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    if (message.renamedServices != null && Object.hasOwnProperty.call(message, "renamedServices"))
+                        for (var keys = Object.keys(message.renamedServices), i = 0; i < keys.length; ++i)
+                            writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.renamedServices[keys[i]]).ldelim();
                     return writer;
                 };
     
@@ -11365,15 +20707,40 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 2: {
+                                if (message.renamedServices === $util.emptyObject)
+                                    message.renamedServices = {};
+                                var end2 = reader.uint32() + reader.pos;
+                                key = "";
+                                value = "";
+                                while (reader.pos < end2) {
+                                    var tag2 = reader.uint32();
+                                    switch (tag2 >>> 3) {
+                                    case 1:
+                                        key = reader.string();
+                                        break;
+                                    case 2:
+                                        value = reader.string();
+                                        break;
+                                    default:
+                                        reader.skipType(tag2 & 7);
+                                        break;
+                                    }
+                                }
+                                message.renamedServices[key] = value;
                                 break;
                             }
                         default:
@@ -11416,6 +20783,14 @@
                         if (error)
                             return "common." + error;
                     }
+                    if (message.renamedServices != null && message.hasOwnProperty("renamedServices")) {
+                        if (!$util.isObject(message.renamedServices))
+                            return "renamedServices: object expected";
+                        var key = Object.keys(message.renamedServices);
+                        for (var i = 0; i < key.length; ++i)
+                            if (!$util.isString(message.renamedServices[key[i]]))
+                                return "renamedServices: string{k:string} expected";
+                    }
                     return null;
                 };
     
@@ -11436,6 +20811,13 @@
                             throw TypeError(".google.api.GoSettings.common: object expected");
                         message.common = $root.google.api.CommonLanguageSettings.fromObject(object.common);
                     }
+                    if (object.renamedServices) {
+                        if (typeof object.renamedServices !== "object")
+                            throw TypeError(".google.api.GoSettings.renamedServices: object expected");
+                        message.renamedServices = {};
+                        for (var keys = Object.keys(object.renamedServices), i = 0; i < keys.length; ++i)
+                            message.renamedServices[keys[i]] = String(object.renamedServices[keys[i]]);
+                    }
                     return message;
                 };
     
@@ -11452,10 +20834,18 @@
                     if (!options)
                         options = {};
                     var object = {};
+                    if (options.objects || options.defaults)
+                        object.renamedServices = {};
                     if (options.defaults)
                         object.common = null;
                     if (message.common != null && message.hasOwnProperty("common"))
                         object.common = $root.google.api.CommonLanguageSettings.toObject(message.common, options);
+                    var keys2;
+                    if (message.renamedServices && (keys2 = Object.keys(message.renamedServices)).length) {
+                        object.renamedServices = {};
+                        for (var j = 0; j < keys2.length; ++j)
+                            object.renamedServices[keys2[j]] = message.renamedServices[keys2[j]];
+                    }
                     return object;
                 };
     
@@ -11597,12 +20987,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -11875,12 +21267,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -12090,6 +21484,251 @@
                 return values;
             })();
     
+            api.SelectiveGapicGeneration = (function() {
+    
+                /**
+                 * Properties of a SelectiveGapicGeneration.
+                 * @memberof google.api
+                 * @interface ISelectiveGapicGeneration
+                 * @property {Array.<string>|null} [methods] SelectiveGapicGeneration methods
+                 * @property {boolean|null} [generateOmittedAsInternal] SelectiveGapicGeneration generateOmittedAsInternal
+                 */
+    
+                /**
+                 * Constructs a new SelectiveGapicGeneration.
+                 * @memberof google.api
+                 * @classdesc Represents a SelectiveGapicGeneration.
+                 * @implements ISelectiveGapicGeneration
+                 * @constructor
+                 * @param {google.api.ISelectiveGapicGeneration=} [properties] Properties to set
+                 */
+                function SelectiveGapicGeneration(properties) {
+                    this.methods = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * SelectiveGapicGeneration methods.
+                 * @member {Array.<string>} methods
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @instance
+                 */
+                SelectiveGapicGeneration.prototype.methods = $util.emptyArray;
+    
+                /**
+                 * SelectiveGapicGeneration generateOmittedAsInternal.
+                 * @member {boolean} generateOmittedAsInternal
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @instance
+                 */
+                SelectiveGapicGeneration.prototype.generateOmittedAsInternal = false;
+    
+                /**
+                 * Creates a new SelectiveGapicGeneration instance using the specified properties.
+                 * @function create
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {google.api.ISelectiveGapicGeneration=} [properties] Properties to set
+                 * @returns {google.api.SelectiveGapicGeneration} SelectiveGapicGeneration instance
+                 */
+                SelectiveGapicGeneration.create = function create(properties) {
+                    return new SelectiveGapicGeneration(properties);
+                };
+    
+                /**
+                 * Encodes the specified SelectiveGapicGeneration message. Does not implicitly {@link google.api.SelectiveGapicGeneration.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {google.api.ISelectiveGapicGeneration} message SelectiveGapicGeneration message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SelectiveGapicGeneration.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.methods != null && message.methods.length)
+                        for (var i = 0; i < message.methods.length; ++i)
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.methods[i]);
+                    if (message.generateOmittedAsInternal != null && Object.hasOwnProperty.call(message, "generateOmittedAsInternal"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).bool(message.generateOmittedAsInternal);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified SelectiveGapicGeneration message, length delimited. Does not implicitly {@link google.api.SelectiveGapicGeneration.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {google.api.ISelectiveGapicGeneration} message SelectiveGapicGeneration message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SelectiveGapicGeneration.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a SelectiveGapicGeneration message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.api.SelectiveGapicGeneration} SelectiveGapicGeneration
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SelectiveGapicGeneration.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.SelectiveGapicGeneration();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                if (!(message.methods && message.methods.length))
+                                    message.methods = [];
+                                message.methods.push(reader.string());
+                                break;
+                            }
+                        case 2: {
+                                message.generateOmittedAsInternal = reader.bool();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a SelectiveGapicGeneration message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.api.SelectiveGapicGeneration} SelectiveGapicGeneration
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SelectiveGapicGeneration.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a SelectiveGapicGeneration message.
+                 * @function verify
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SelectiveGapicGeneration.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.methods != null && message.hasOwnProperty("methods")) {
+                        if (!Array.isArray(message.methods))
+                            return "methods: array expected";
+                        for (var i = 0; i < message.methods.length; ++i)
+                            if (!$util.isString(message.methods[i]))
+                                return "methods: string[] expected";
+                    }
+                    if (message.generateOmittedAsInternal != null && message.hasOwnProperty("generateOmittedAsInternal"))
+                        if (typeof message.generateOmittedAsInternal !== "boolean")
+                            return "generateOmittedAsInternal: boolean expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a SelectiveGapicGeneration message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.api.SelectiveGapicGeneration} SelectiveGapicGeneration
+                 */
+                SelectiveGapicGeneration.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.api.SelectiveGapicGeneration)
+                        return object;
+                    var message = new $root.google.api.SelectiveGapicGeneration();
+                    if (object.methods) {
+                        if (!Array.isArray(object.methods))
+                            throw TypeError(".google.api.SelectiveGapicGeneration.methods: array expected");
+                        message.methods = [];
+                        for (var i = 0; i < object.methods.length; ++i)
+                            message.methods[i] = String(object.methods[i]);
+                    }
+                    if (object.generateOmittedAsInternal != null)
+                        message.generateOmittedAsInternal = Boolean(object.generateOmittedAsInternal);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a SelectiveGapicGeneration message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {google.api.SelectiveGapicGeneration} message SelectiveGapicGeneration
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SelectiveGapicGeneration.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.methods = [];
+                    if (options.defaults)
+                        object.generateOmittedAsInternal = false;
+                    if (message.methods && message.methods.length) {
+                        object.methods = [];
+                        for (var j = 0; j < message.methods.length; ++j)
+                            object.methods[j] = message.methods[j];
+                    }
+                    if (message.generateOmittedAsInternal != null && message.hasOwnProperty("generateOmittedAsInternal"))
+                        object.generateOmittedAsInternal = message.generateOmittedAsInternal;
+                    return object;
+                };
+    
+                /**
+                 * Converts this SelectiveGapicGeneration to JSON.
+                 * @function toJSON
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SelectiveGapicGeneration.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for SelectiveGapicGeneration
+                 * @function getTypeUrl
+                 * @memberof google.api.SelectiveGapicGeneration
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SelectiveGapicGeneration.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.api.SelectiveGapicGeneration";
+                };
+    
+                return SelectiveGapicGeneration;
+            })();
+    
             /**
              * LaunchStage enum.
              * @name google.api.LaunchStage
@@ -12215,12 +21854,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -12357,6 +21998,7 @@
              * @name google.protobuf.Edition
              * @enum {number}
              * @property {number} EDITION_UNKNOWN=0 EDITION_UNKNOWN value
+             * @property {number} EDITION_LEGACY=900 EDITION_LEGACY value
              * @property {number} EDITION_PROTO2=998 EDITION_PROTO2 value
              * @property {number} EDITION_PROTO3=999 EDITION_PROTO3 value
              * @property {number} EDITION_2023=1000 EDITION_2023 value
@@ -12371,6 +22013,7 @@
             protobuf.Edition = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "EDITION_UNKNOWN"] = 0;
+                values[valuesById[900] = "EDITION_LEGACY"] = 900;
                 values[valuesById[998] = "EDITION_PROTO2"] = 998;
                 values[valuesById[999] = "EDITION_PROTO3"] = 999;
                 values[valuesById[1000] = "EDITION_2023"] = 1000;
@@ -12395,6 +22038,7 @@
                  * @property {Array.<string>|null} [dependency] FileDescriptorProto dependency
                  * @property {Array.<number>|null} [publicDependency] FileDescriptorProto publicDependency
                  * @property {Array.<number>|null} [weakDependency] FileDescriptorProto weakDependency
+                 * @property {Array.<string>|null} [optionDependency] FileDescriptorProto optionDependency
                  * @property {Array.<google.protobuf.IDescriptorProto>|null} [messageType] FileDescriptorProto messageType
                  * @property {Array.<google.protobuf.IEnumDescriptorProto>|null} [enumType] FileDescriptorProto enumType
                  * @property {Array.<google.protobuf.IServiceDescriptorProto>|null} [service] FileDescriptorProto service
@@ -12417,6 +22061,7 @@
                     this.dependency = [];
                     this.publicDependency = [];
                     this.weakDependency = [];
+                    this.optionDependency = [];
                     this.messageType = [];
                     this.enumType = [];
                     this.service = [];
@@ -12466,6 +22111,14 @@
                  * @instance
                  */
                 FileDescriptorProto.prototype.weakDependency = $util.emptyArray;
+    
+                /**
+                 * FileDescriptorProto optionDependency.
+                 * @member {Array.<string>} optionDependency
+                 * @memberof google.protobuf.FileDescriptorProto
+                 * @instance
+                 */
+                FileDescriptorProto.prototype.optionDependency = $util.emptyArray;
     
                 /**
                  * FileDescriptorProto messageType.
@@ -12588,6 +22241,9 @@
                         writer.uint32(/* id 12, wireType 2 =*/98).string(message.syntax);
                     if (message.edition != null && Object.hasOwnProperty.call(message, "edition"))
                         writer.uint32(/* id 14, wireType 0 =*/112).int32(message.edition);
+                    if (message.optionDependency != null && message.optionDependency.length)
+                        for (var i = 0; i < message.optionDependency.length; ++i)
+                            writer.uint32(/* id 15, wireType 2 =*/122).string(message.optionDependency[i]);
                     return writer;
                 };
     
@@ -12615,12 +22271,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -12656,6 +22314,12 @@
                                         message.weakDependency.push(reader.int32());
                                 } else
                                     message.weakDependency.push(reader.int32());
+                                break;
+                            }
+                        case 15: {
+                                if (!(message.optionDependency && message.optionDependency.length))
+                                    message.optionDependency = [];
+                                message.optionDependency.push(reader.string());
                                 break;
                             }
                         case 4: {
@@ -12760,6 +22424,13 @@
                             if (!$util.isInteger(message.weakDependency[i]))
                                 return "weakDependency: integer[] expected";
                     }
+                    if (message.optionDependency != null && message.hasOwnProperty("optionDependency")) {
+                        if (!Array.isArray(message.optionDependency))
+                            return "optionDependency: array expected";
+                        for (var i = 0; i < message.optionDependency.length; ++i)
+                            if (!$util.isString(message.optionDependency[i]))
+                                return "optionDependency: string[] expected";
+                    }
                     if (message.messageType != null && message.hasOwnProperty("messageType")) {
                         if (!Array.isArray(message.messageType))
                             return "messageType: array expected";
@@ -12814,6 +22485,7 @@
                         default:
                             return "edition: enum value expected";
                         case 0:
+                        case 900:
                         case 998:
                         case 999:
                         case 1000:
@@ -12865,6 +22537,13 @@
                         message.weakDependency = [];
                         for (var i = 0; i < object.weakDependency.length; ++i)
                             message.weakDependency[i] = object.weakDependency[i] | 0;
+                    }
+                    if (object.optionDependency) {
+                        if (!Array.isArray(object.optionDependency))
+                            throw TypeError(".google.protobuf.FileDescriptorProto.optionDependency: array expected");
+                        message.optionDependency = [];
+                        for (var i = 0; i < object.optionDependency.length; ++i)
+                            message.optionDependency[i] = String(object.optionDependency[i]);
                     }
                     if (object.messageType) {
                         if (!Array.isArray(object.messageType))
@@ -12928,6 +22607,10 @@
                     case "EDITION_UNKNOWN":
                     case 0:
                         message.edition = 0;
+                        break;
+                    case "EDITION_LEGACY":
+                    case 900:
+                        message.edition = 900;
                         break;
                     case "EDITION_PROTO2":
                     case 998:
@@ -12994,6 +22677,7 @@
                         object.extension = [];
                         object.publicDependency = [];
                         object.weakDependency = [];
+                        object.optionDependency = [];
                     }
                     if (options.defaults) {
                         object.name = "";
@@ -13050,6 +22734,11 @@
                         object.syntax = message.syntax;
                     if (message.edition != null && message.hasOwnProperty("edition"))
                         object.edition = options.enums === String ? $root.google.protobuf.Edition[message.edition] === undefined ? message.edition : $root.google.protobuf.Edition[message.edition] : message.edition;
+                    if (message.optionDependency && message.optionDependency.length) {
+                        object.optionDependency = [];
+                        for (var j = 0; j < message.optionDependency.length; ++j)
+                            object.optionDependency[j] = message.optionDependency[j];
+                    }
                     return object;
                 };
     
@@ -13098,6 +22787,7 @@
                  * @property {google.protobuf.IMessageOptions|null} [options] DescriptorProto options
                  * @property {Array.<google.protobuf.DescriptorProto.IReservedRange>|null} [reservedRange] DescriptorProto reservedRange
                  * @property {Array.<string>|null} [reservedName] DescriptorProto reservedName
+                 * @property {google.protobuf.SymbolVisibility|null} [visibility] DescriptorProto visibility
                  */
     
                 /**
@@ -13204,6 +22894,14 @@
                 DescriptorProto.prototype.reservedName = $util.emptyArray;
     
                 /**
+                 * DescriptorProto visibility.
+                 * @member {google.protobuf.SymbolVisibility} visibility
+                 * @memberof google.protobuf.DescriptorProto
+                 * @instance
+                 */
+                DescriptorProto.prototype.visibility = 0;
+    
+                /**
                  * Creates a new DescriptorProto instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.DescriptorProto
@@ -13255,6 +22953,8 @@
                     if (message.reservedName != null && message.reservedName.length)
                         for (var i = 0; i < message.reservedName.length; ++i)
                             writer.uint32(/* id 10, wireType 2 =*/82).string(message.reservedName[i]);
+                    if (message.visibility != null && Object.hasOwnProperty.call(message, "visibility"))
+                        writer.uint32(/* id 11, wireType 0 =*/88).int32(message.visibility);
                     return writer;
                 };
     
@@ -13282,12 +22982,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -13343,6 +23045,10 @@
                                 if (!(message.reservedName && message.reservedName.length))
                                     message.reservedName = [];
                                 message.reservedName.push(reader.string());
+                                break;
+                            }
+                        case 11: {
+                                message.visibility = reader.int32();
                                 break;
                             }
                         default:
@@ -13458,6 +23164,15 @@
                             if (!$util.isString(message.reservedName[i]))
                                 return "reservedName: string[] expected";
                     }
+                    if (message.visibility != null && message.hasOwnProperty("visibility"))
+                        switch (message.visibility) {
+                        default:
+                            return "visibility: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                            break;
+                        }
                     return null;
                 };
     
@@ -13557,6 +23272,26 @@
                         for (var i = 0; i < object.reservedName.length; ++i)
                             message.reservedName[i] = String(object.reservedName[i]);
                     }
+                    switch (object.visibility) {
+                    default:
+                        if (typeof object.visibility === "number") {
+                            message.visibility = object.visibility;
+                            break;
+                        }
+                        break;
+                    case "VISIBILITY_UNSET":
+                    case 0:
+                        message.visibility = 0;
+                        break;
+                    case "VISIBILITY_LOCAL":
+                    case 1:
+                        message.visibility = 1;
+                        break;
+                    case "VISIBILITY_EXPORT":
+                    case 2:
+                        message.visibility = 2;
+                        break;
+                    }
                     return message;
                 };
     
@@ -13586,6 +23321,7 @@
                     if (options.defaults) {
                         object.name = "";
                         object.options = null;
+                        object.visibility = options.enums === String ? "VISIBILITY_UNSET" : 0;
                     }
                     if (message.name != null && message.hasOwnProperty("name"))
                         object.name = message.name;
@@ -13631,6 +23367,8 @@
                         for (var j = 0; j < message.reservedName.length; ++j)
                             object.reservedName[j] = message.reservedName[j];
                     }
+                    if (message.visibility != null && message.hasOwnProperty("visibility"))
+                        object.visibility = options.enums === String ? $root.google.protobuf.SymbolVisibility[message.visibility] === undefined ? message.visibility : $root.google.protobuf.SymbolVisibility[message.visibility] : message.visibility;
                     return object;
                 };
     
@@ -13767,12 +23505,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -14011,12 +23751,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -14267,12 +24009,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -14612,12 +24356,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -14991,12 +24737,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -15516,12 +25264,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -15663,6 +25413,7 @@
                  * @property {google.protobuf.IEnumOptions|null} [options] EnumDescriptorProto options
                  * @property {Array.<google.protobuf.EnumDescriptorProto.IEnumReservedRange>|null} [reservedRange] EnumDescriptorProto reservedRange
                  * @property {Array.<string>|null} [reservedName] EnumDescriptorProto reservedName
+                 * @property {google.protobuf.SymbolVisibility|null} [visibility] EnumDescriptorProto visibility
                  */
     
                 /**
@@ -15724,6 +25475,14 @@
                 EnumDescriptorProto.prototype.reservedName = $util.emptyArray;
     
                 /**
+                 * EnumDescriptorProto visibility.
+                 * @member {google.protobuf.SymbolVisibility} visibility
+                 * @memberof google.protobuf.EnumDescriptorProto
+                 * @instance
+                 */
+                EnumDescriptorProto.prototype.visibility = 0;
+    
+                /**
                  * Creates a new EnumDescriptorProto instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.EnumDescriptorProto
@@ -15760,6 +25519,8 @@
                     if (message.reservedName != null && message.reservedName.length)
                         for (var i = 0; i < message.reservedName.length; ++i)
                             writer.uint32(/* id 5, wireType 2 =*/42).string(message.reservedName[i]);
+                    if (message.visibility != null && Object.hasOwnProperty.call(message, "visibility"))
+                        writer.uint32(/* id 6, wireType 0 =*/48).int32(message.visibility);
                     return writer;
                 };
     
@@ -15787,12 +25548,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -15818,6 +25581,10 @@
                                 if (!(message.reservedName && message.reservedName.length))
                                     message.reservedName = [];
                                 message.reservedName.push(reader.string());
+                                break;
+                            }
+                        case 6: {
+                                message.visibility = reader.int32();
                                 break;
                             }
                         default:
@@ -15888,6 +25655,15 @@
                             if (!$util.isString(message.reservedName[i]))
                                 return "reservedName: string[] expected";
                     }
+                    if (message.visibility != null && message.hasOwnProperty("visibility"))
+                        switch (message.visibility) {
+                        default:
+                            return "visibility: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                            break;
+                        }
                     return null;
                 };
     
@@ -15937,6 +25713,26 @@
                         for (var i = 0; i < object.reservedName.length; ++i)
                             message.reservedName[i] = String(object.reservedName[i]);
                     }
+                    switch (object.visibility) {
+                    default:
+                        if (typeof object.visibility === "number") {
+                            message.visibility = object.visibility;
+                            break;
+                        }
+                        break;
+                    case "VISIBILITY_UNSET":
+                    case 0:
+                        message.visibility = 0;
+                        break;
+                    case "VISIBILITY_LOCAL":
+                    case 1:
+                        message.visibility = 1;
+                        break;
+                    case "VISIBILITY_EXPORT":
+                    case 2:
+                        message.visibility = 2;
+                        break;
+                    }
                     return message;
                 };
     
@@ -15961,6 +25757,7 @@
                     if (options.defaults) {
                         object.name = "";
                         object.options = null;
+                        object.visibility = options.enums === String ? "VISIBILITY_UNSET" : 0;
                     }
                     if (message.name != null && message.hasOwnProperty("name"))
                         object.name = message.name;
@@ -15981,6 +25778,8 @@
                         for (var j = 0; j < message.reservedName.length; ++j)
                             object.reservedName[j] = message.reservedName[j];
                     }
+                    if (message.visibility != null && message.hasOwnProperty("visibility"))
+                        object.visibility = options.enums === String ? $root.google.protobuf.SymbolVisibility[message.visibility] === undefined ? message.visibility : $root.google.protobuf.SymbolVisibility[message.visibility] : message.visibility;
                     return object;
                 };
     
@@ -16106,12 +25905,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -16347,12 +26148,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -16604,12 +26407,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -16912,12 +26717,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -17416,12 +27223,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -18036,12 +27845,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -18287,6 +28098,7 @@
                  * @property {Array.<google.protobuf.FieldOptions.OptionTargetType>|null} [targets] FieldOptions targets
                  * @property {Array.<google.protobuf.FieldOptions.IEditionDefault>|null} [editionDefaults] FieldOptions editionDefaults
                  * @property {google.protobuf.IFeatureSet|null} [features] FieldOptions features
+                 * @property {google.protobuf.FieldOptions.IFeatureSupport|null} [featureSupport] FieldOptions featureSupport
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] FieldOptions uninterpretedOption
                  * @property {Array.<google.api.FieldBehavior>|null} [".google.api.fieldBehavior"] FieldOptions .google.api.fieldBehavior
                  * @property {google.api.IResourceReference|null} [".google.api.resourceReference"] FieldOptions .google.api.resourceReference
@@ -18408,6 +28220,14 @@
                 FieldOptions.prototype.features = null;
     
                 /**
+                 * FieldOptions featureSupport.
+                 * @member {google.protobuf.FieldOptions.IFeatureSupport|null|undefined} featureSupport
+                 * @memberof google.protobuf.FieldOptions
+                 * @instance
+                 */
+                FieldOptions.prototype.featureSupport = null;
+    
+                /**
                  * FieldOptions uninterpretedOption.
                  * @member {Array.<google.protobuf.IUninterpretedOption>} uninterpretedOption
                  * @memberof google.protobuf.FieldOptions
@@ -18481,15 +28301,14 @@
                             $root.google.protobuf.FieldOptions.EditionDefault.encode(message.editionDefaults[i], writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
                     if (message.features != null && Object.hasOwnProperty.call(message, "features"))
                         $root.google.protobuf.FeatureSet.encode(message.features, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+                    if (message.featureSupport != null && Object.hasOwnProperty.call(message, "featureSupport"))
+                        $root.google.protobuf.FieldOptions.FeatureSupport.encode(message.featureSupport, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -18519,12 +28338,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -18581,6 +28402,10 @@
                             }
                         case 21: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 22: {
+                                message.featureSupport = $root.google.protobuf.FieldOptions.FeatureSupport.decode(reader, reader.uint32());
                                 break;
                             }
                         case 999: {
@@ -18717,6 +28542,11 @@
                         var error = $root.google.protobuf.FeatureSet.verify(message.features);
                         if (error)
                             return "features." + error;
+                    }
+                    if (message.featureSupport != null && message.hasOwnProperty("featureSupport")) {
+                        var error = $root.google.protobuf.FieldOptions.FeatureSupport.verify(message.featureSupport);
+                        if (error)
+                            return "featureSupport." + error;
                     }
                     if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                         if (!Array.isArray(message.uninterpretedOption))
@@ -18906,6 +28736,11 @@
                             throw TypeError(".google.protobuf.FieldOptions.features: object expected");
                         message.features = $root.google.protobuf.FeatureSet.fromObject(object.features);
                     }
+                    if (object.featureSupport != null) {
+                        if (typeof object.featureSupport !== "object")
+                            throw TypeError(".google.protobuf.FieldOptions.featureSupport: object expected");
+                        message.featureSupport = $root.google.protobuf.FieldOptions.FeatureSupport.fromObject(object.featureSupport);
+                    }
                     if (object.uninterpretedOption) {
                         if (!Array.isArray(object.uninterpretedOption))
                             throw TypeError(".google.protobuf.FieldOptions.uninterpretedOption: array expected");
@@ -19003,6 +28838,7 @@
                         object.debugRedact = false;
                         object.retention = options.enums === String ? "RETENTION_UNKNOWN" : 0;
                         object.features = null;
+                        object.featureSupport = null;
                         object[".google.api.resourceReference"] = null;
                     }
                     if (message.ctype != null && message.hasOwnProperty("ctype"))
@@ -19035,6 +28871,8 @@
                     }
                     if (message.features != null && message.hasOwnProperty("features"))
                         object.features = $root.google.protobuf.FeatureSet.toObject(message.features, options);
+                    if (message.featureSupport != null && message.hasOwnProperty("featureSupport"))
+                        object.featureSupport = $root.google.protobuf.FieldOptions.FeatureSupport.toObject(message.featureSupport, options);
                     if (message.uninterpretedOption && message.uninterpretedOption.length) {
                         object.uninterpretedOption = [];
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
@@ -19250,12 +29088,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -19305,6 +29145,7 @@
                             default:
                                 return "edition: enum value expected";
                             case 0:
+                            case 900:
                             case 998:
                             case 999:
                             case 1000:
@@ -19345,6 +29186,10 @@
                         case "EDITION_UNKNOWN":
                         case 0:
                             message.edition = 0;
+                            break;
+                        case "EDITION_LEGACY":
+                        case 900:
+                            message.edition = 900;
                             break;
                         case "EDITION_PROTO2":
                         case 998:
@@ -19443,6 +29288,488 @@
                     };
     
                     return EditionDefault;
+                })();
+    
+                FieldOptions.FeatureSupport = (function() {
+    
+                    /**
+                     * Properties of a FeatureSupport.
+                     * @memberof google.protobuf.FieldOptions
+                     * @interface IFeatureSupport
+                     * @property {google.protobuf.Edition|null} [editionIntroduced] FeatureSupport editionIntroduced
+                     * @property {google.protobuf.Edition|null} [editionDeprecated] FeatureSupport editionDeprecated
+                     * @property {string|null} [deprecationWarning] FeatureSupport deprecationWarning
+                     * @property {google.protobuf.Edition|null} [editionRemoved] FeatureSupport editionRemoved
+                     */
+    
+                    /**
+                     * Constructs a new FeatureSupport.
+                     * @memberof google.protobuf.FieldOptions
+                     * @classdesc Represents a FeatureSupport.
+                     * @implements IFeatureSupport
+                     * @constructor
+                     * @param {google.protobuf.FieldOptions.IFeatureSupport=} [properties] Properties to set
+                     */
+                    function FeatureSupport(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+    
+                    /**
+                     * FeatureSupport editionIntroduced.
+                     * @member {google.protobuf.Edition} editionIntroduced
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @instance
+                     */
+                    FeatureSupport.prototype.editionIntroduced = 0;
+    
+                    /**
+                     * FeatureSupport editionDeprecated.
+                     * @member {google.protobuf.Edition} editionDeprecated
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @instance
+                     */
+                    FeatureSupport.prototype.editionDeprecated = 0;
+    
+                    /**
+                     * FeatureSupport deprecationWarning.
+                     * @member {string} deprecationWarning
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @instance
+                     */
+                    FeatureSupport.prototype.deprecationWarning = "";
+    
+                    /**
+                     * FeatureSupport editionRemoved.
+                     * @member {google.protobuf.Edition} editionRemoved
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @instance
+                     */
+                    FeatureSupport.prototype.editionRemoved = 0;
+    
+                    /**
+                     * Creates a new FeatureSupport instance using the specified properties.
+                     * @function create
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {google.protobuf.FieldOptions.IFeatureSupport=} [properties] Properties to set
+                     * @returns {google.protobuf.FieldOptions.FeatureSupport} FeatureSupport instance
+                     */
+                    FeatureSupport.create = function create(properties) {
+                        return new FeatureSupport(properties);
+                    };
+    
+                    /**
+                     * Encodes the specified FeatureSupport message. Does not implicitly {@link google.protobuf.FieldOptions.FeatureSupport.verify|verify} messages.
+                     * @function encode
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {google.protobuf.FieldOptions.IFeatureSupport} message FeatureSupport message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    FeatureSupport.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.editionIntroduced != null && Object.hasOwnProperty.call(message, "editionIntroduced"))
+                            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.editionIntroduced);
+                        if (message.editionDeprecated != null && Object.hasOwnProperty.call(message, "editionDeprecated"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.editionDeprecated);
+                        if (message.deprecationWarning != null && Object.hasOwnProperty.call(message, "deprecationWarning"))
+                            writer.uint32(/* id 3, wireType 2 =*/26).string(message.deprecationWarning);
+                        if (message.editionRemoved != null && Object.hasOwnProperty.call(message, "editionRemoved"))
+                            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.editionRemoved);
+                        return writer;
+                    };
+    
+                    /**
+                     * Encodes the specified FeatureSupport message, length delimited. Does not implicitly {@link google.protobuf.FieldOptions.FeatureSupport.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {google.protobuf.FieldOptions.IFeatureSupport} message FeatureSupport message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    FeatureSupport.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+    
+                    /**
+                     * Decodes a FeatureSupport message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {google.protobuf.FieldOptions.FeatureSupport} FeatureSupport
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    FeatureSupport.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.FeatureSupport();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.editionIntroduced = reader.int32();
+                                    break;
+                                }
+                            case 2: {
+                                    message.editionDeprecated = reader.int32();
+                                    break;
+                                }
+                            case 3: {
+                                    message.deprecationWarning = reader.string();
+                                    break;
+                                }
+                            case 4: {
+                                    message.editionRemoved = reader.int32();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+    
+                    /**
+                     * Decodes a FeatureSupport message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {google.protobuf.FieldOptions.FeatureSupport} FeatureSupport
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    FeatureSupport.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+    
+                    /**
+                     * Verifies a FeatureSupport message.
+                     * @function verify
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    FeatureSupport.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.editionIntroduced != null && message.hasOwnProperty("editionIntroduced"))
+                            switch (message.editionIntroduced) {
+                            default:
+                                return "editionIntroduced: enum value expected";
+                            case 0:
+                            case 900:
+                            case 998:
+                            case 999:
+                            case 1000:
+                            case 1001:
+                            case 1:
+                            case 2:
+                            case 99997:
+                            case 99998:
+                            case 99999:
+                            case 2147483647:
+                                break;
+                            }
+                        if (message.editionDeprecated != null && message.hasOwnProperty("editionDeprecated"))
+                            switch (message.editionDeprecated) {
+                            default:
+                                return "editionDeprecated: enum value expected";
+                            case 0:
+                            case 900:
+                            case 998:
+                            case 999:
+                            case 1000:
+                            case 1001:
+                            case 1:
+                            case 2:
+                            case 99997:
+                            case 99998:
+                            case 99999:
+                            case 2147483647:
+                                break;
+                            }
+                        if (message.deprecationWarning != null && message.hasOwnProperty("deprecationWarning"))
+                            if (!$util.isString(message.deprecationWarning))
+                                return "deprecationWarning: string expected";
+                        if (message.editionRemoved != null && message.hasOwnProperty("editionRemoved"))
+                            switch (message.editionRemoved) {
+                            default:
+                                return "editionRemoved: enum value expected";
+                            case 0:
+                            case 900:
+                            case 998:
+                            case 999:
+                            case 1000:
+                            case 1001:
+                            case 1:
+                            case 2:
+                            case 99997:
+                            case 99998:
+                            case 99999:
+                            case 2147483647:
+                                break;
+                            }
+                        return null;
+                    };
+    
+                    /**
+                     * Creates a FeatureSupport message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {google.protobuf.FieldOptions.FeatureSupport} FeatureSupport
+                     */
+                    FeatureSupport.fromObject = function fromObject(object) {
+                        if (object instanceof $root.google.protobuf.FieldOptions.FeatureSupport)
+                            return object;
+                        var message = new $root.google.protobuf.FieldOptions.FeatureSupport();
+                        switch (object.editionIntroduced) {
+                        default:
+                            if (typeof object.editionIntroduced === "number") {
+                                message.editionIntroduced = object.editionIntroduced;
+                                break;
+                            }
+                            break;
+                        case "EDITION_UNKNOWN":
+                        case 0:
+                            message.editionIntroduced = 0;
+                            break;
+                        case "EDITION_LEGACY":
+                        case 900:
+                            message.editionIntroduced = 900;
+                            break;
+                        case "EDITION_PROTO2":
+                        case 998:
+                            message.editionIntroduced = 998;
+                            break;
+                        case "EDITION_PROTO3":
+                        case 999:
+                            message.editionIntroduced = 999;
+                            break;
+                        case "EDITION_2023":
+                        case 1000:
+                            message.editionIntroduced = 1000;
+                            break;
+                        case "EDITION_2024":
+                        case 1001:
+                            message.editionIntroduced = 1001;
+                            break;
+                        case "EDITION_1_TEST_ONLY":
+                        case 1:
+                            message.editionIntroduced = 1;
+                            break;
+                        case "EDITION_2_TEST_ONLY":
+                        case 2:
+                            message.editionIntroduced = 2;
+                            break;
+                        case "EDITION_99997_TEST_ONLY":
+                        case 99997:
+                            message.editionIntroduced = 99997;
+                            break;
+                        case "EDITION_99998_TEST_ONLY":
+                        case 99998:
+                            message.editionIntroduced = 99998;
+                            break;
+                        case "EDITION_99999_TEST_ONLY":
+                        case 99999:
+                            message.editionIntroduced = 99999;
+                            break;
+                        case "EDITION_MAX":
+                        case 2147483647:
+                            message.editionIntroduced = 2147483647;
+                            break;
+                        }
+                        switch (object.editionDeprecated) {
+                        default:
+                            if (typeof object.editionDeprecated === "number") {
+                                message.editionDeprecated = object.editionDeprecated;
+                                break;
+                            }
+                            break;
+                        case "EDITION_UNKNOWN":
+                        case 0:
+                            message.editionDeprecated = 0;
+                            break;
+                        case "EDITION_LEGACY":
+                        case 900:
+                            message.editionDeprecated = 900;
+                            break;
+                        case "EDITION_PROTO2":
+                        case 998:
+                            message.editionDeprecated = 998;
+                            break;
+                        case "EDITION_PROTO3":
+                        case 999:
+                            message.editionDeprecated = 999;
+                            break;
+                        case "EDITION_2023":
+                        case 1000:
+                            message.editionDeprecated = 1000;
+                            break;
+                        case "EDITION_2024":
+                        case 1001:
+                            message.editionDeprecated = 1001;
+                            break;
+                        case "EDITION_1_TEST_ONLY":
+                        case 1:
+                            message.editionDeprecated = 1;
+                            break;
+                        case "EDITION_2_TEST_ONLY":
+                        case 2:
+                            message.editionDeprecated = 2;
+                            break;
+                        case "EDITION_99997_TEST_ONLY":
+                        case 99997:
+                            message.editionDeprecated = 99997;
+                            break;
+                        case "EDITION_99998_TEST_ONLY":
+                        case 99998:
+                            message.editionDeprecated = 99998;
+                            break;
+                        case "EDITION_99999_TEST_ONLY":
+                        case 99999:
+                            message.editionDeprecated = 99999;
+                            break;
+                        case "EDITION_MAX":
+                        case 2147483647:
+                            message.editionDeprecated = 2147483647;
+                            break;
+                        }
+                        if (object.deprecationWarning != null)
+                            message.deprecationWarning = String(object.deprecationWarning);
+                        switch (object.editionRemoved) {
+                        default:
+                            if (typeof object.editionRemoved === "number") {
+                                message.editionRemoved = object.editionRemoved;
+                                break;
+                            }
+                            break;
+                        case "EDITION_UNKNOWN":
+                        case 0:
+                            message.editionRemoved = 0;
+                            break;
+                        case "EDITION_LEGACY":
+                        case 900:
+                            message.editionRemoved = 900;
+                            break;
+                        case "EDITION_PROTO2":
+                        case 998:
+                            message.editionRemoved = 998;
+                            break;
+                        case "EDITION_PROTO3":
+                        case 999:
+                            message.editionRemoved = 999;
+                            break;
+                        case "EDITION_2023":
+                        case 1000:
+                            message.editionRemoved = 1000;
+                            break;
+                        case "EDITION_2024":
+                        case 1001:
+                            message.editionRemoved = 1001;
+                            break;
+                        case "EDITION_1_TEST_ONLY":
+                        case 1:
+                            message.editionRemoved = 1;
+                            break;
+                        case "EDITION_2_TEST_ONLY":
+                        case 2:
+                            message.editionRemoved = 2;
+                            break;
+                        case "EDITION_99997_TEST_ONLY":
+                        case 99997:
+                            message.editionRemoved = 99997;
+                            break;
+                        case "EDITION_99998_TEST_ONLY":
+                        case 99998:
+                            message.editionRemoved = 99998;
+                            break;
+                        case "EDITION_99999_TEST_ONLY":
+                        case 99999:
+                            message.editionRemoved = 99999;
+                            break;
+                        case "EDITION_MAX":
+                        case 2147483647:
+                            message.editionRemoved = 2147483647;
+                            break;
+                        }
+                        return message;
+                    };
+    
+                    /**
+                     * Creates a plain object from a FeatureSupport message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {google.protobuf.FieldOptions.FeatureSupport} message FeatureSupport
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    FeatureSupport.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.editionIntroduced = options.enums === String ? "EDITION_UNKNOWN" : 0;
+                            object.editionDeprecated = options.enums === String ? "EDITION_UNKNOWN" : 0;
+                            object.deprecationWarning = "";
+                            object.editionRemoved = options.enums === String ? "EDITION_UNKNOWN" : 0;
+                        }
+                        if (message.editionIntroduced != null && message.hasOwnProperty("editionIntroduced"))
+                            object.editionIntroduced = options.enums === String ? $root.google.protobuf.Edition[message.editionIntroduced] === undefined ? message.editionIntroduced : $root.google.protobuf.Edition[message.editionIntroduced] : message.editionIntroduced;
+                        if (message.editionDeprecated != null && message.hasOwnProperty("editionDeprecated"))
+                            object.editionDeprecated = options.enums === String ? $root.google.protobuf.Edition[message.editionDeprecated] === undefined ? message.editionDeprecated : $root.google.protobuf.Edition[message.editionDeprecated] : message.editionDeprecated;
+                        if (message.deprecationWarning != null && message.hasOwnProperty("deprecationWarning"))
+                            object.deprecationWarning = message.deprecationWarning;
+                        if (message.editionRemoved != null && message.hasOwnProperty("editionRemoved"))
+                            object.editionRemoved = options.enums === String ? $root.google.protobuf.Edition[message.editionRemoved] === undefined ? message.editionRemoved : $root.google.protobuf.Edition[message.editionRemoved] : message.editionRemoved;
+                        return object;
+                    };
+    
+                    /**
+                     * Converts this FeatureSupport to JSON.
+                     * @function toJSON
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    FeatureSupport.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+    
+                    /**
+                     * Gets the default type url for FeatureSupport
+                     * @function getTypeUrl
+                     * @memberof google.protobuf.FieldOptions.FeatureSupport
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    FeatureSupport.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/google.protobuf.FieldOptions.FeatureSupport";
+                    };
+    
+                    return FeatureSupport;
                 })();
     
                 return FieldOptions;
@@ -19546,12 +29873,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -19832,12 +30161,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -20033,6 +30364,7 @@
                  * @property {boolean|null} [deprecated] EnumValueOptions deprecated
                  * @property {google.protobuf.IFeatureSet|null} [features] EnumValueOptions features
                  * @property {boolean|null} [debugRedact] EnumValueOptions debugRedact
+                 * @property {google.protobuf.FieldOptions.IFeatureSupport|null} [featureSupport] EnumValueOptions featureSupport
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] EnumValueOptions uninterpretedOption
                  */
     
@@ -20077,6 +30409,14 @@
                 EnumValueOptions.prototype.debugRedact = false;
     
                 /**
+                 * EnumValueOptions featureSupport.
+                 * @member {google.protobuf.FieldOptions.IFeatureSupport|null|undefined} featureSupport
+                 * @memberof google.protobuf.EnumValueOptions
+                 * @instance
+                 */
+                EnumValueOptions.prototype.featureSupport = null;
+    
+                /**
                  * EnumValueOptions uninterpretedOption.
                  * @member {Array.<google.protobuf.IUninterpretedOption>} uninterpretedOption
                  * @memberof google.protobuf.EnumValueOptions
@@ -20114,6 +30454,8 @@
                         $root.google.protobuf.FeatureSet.encode(message.features, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.debugRedact != null && Object.hasOwnProperty.call(message, "debugRedact"))
                         writer.uint32(/* id 3, wireType 0 =*/24).bool(message.debugRedact);
+                    if (message.featureSupport != null && Object.hasOwnProperty.call(message, "featureSupport"))
+                        $root.google.protobuf.FieldOptions.FeatureSupport.encode(message.featureSupport, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
@@ -20144,12 +30486,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -20161,6 +30505,10 @@
                             }
                         case 3: {
                                 message.debugRedact = reader.bool();
+                                break;
+                            }
+                        case 4: {
+                                message.featureSupport = $root.google.protobuf.FieldOptions.FeatureSupport.decode(reader, reader.uint32());
                                 break;
                             }
                         case 999: {
@@ -20215,6 +30563,11 @@
                     if (message.debugRedact != null && message.hasOwnProperty("debugRedact"))
                         if (typeof message.debugRedact !== "boolean")
                             return "debugRedact: boolean expected";
+                    if (message.featureSupport != null && message.hasOwnProperty("featureSupport")) {
+                        var error = $root.google.protobuf.FieldOptions.FeatureSupport.verify(message.featureSupport);
+                        if (error)
+                            return "featureSupport." + error;
+                    }
                     if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                         if (!Array.isArray(message.uninterpretedOption))
                             return "uninterpretedOption: array expected";
@@ -20248,6 +30601,11 @@
                     }
                     if (object.debugRedact != null)
                         message.debugRedact = Boolean(object.debugRedact);
+                    if (object.featureSupport != null) {
+                        if (typeof object.featureSupport !== "object")
+                            throw TypeError(".google.protobuf.EnumValueOptions.featureSupport: object expected");
+                        message.featureSupport = $root.google.protobuf.FieldOptions.FeatureSupport.fromObject(object.featureSupport);
+                    }
                     if (object.uninterpretedOption) {
                         if (!Array.isArray(object.uninterpretedOption))
                             throw TypeError(".google.protobuf.EnumValueOptions.uninterpretedOption: array expected");
@@ -20280,6 +30638,7 @@
                         object.deprecated = false;
                         object.features = null;
                         object.debugRedact = false;
+                        object.featureSupport = null;
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -20287,6 +30646,8 @@
                         object.features = $root.google.protobuf.FeatureSet.toObject(message.features, options);
                     if (message.debugRedact != null && message.hasOwnProperty("debugRedact"))
                         object.debugRedact = message.debugRedact;
+                    if (message.featureSupport != null && message.hasOwnProperty("featureSupport"))
+                        object.featureSupport = $root.google.protobuf.FieldOptions.FeatureSupport.toObject(message.featureSupport, options);
                     if (message.uninterpretedOption && message.uninterpretedOption.length) {
                         object.uninterpretedOption = [];
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
@@ -20335,6 +30696,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -20394,6 +30756,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -20428,6 +30798,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -20455,12 +30827,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -20482,6 +30856,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -20542,6 +30920,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -20578,6 +30959,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -20601,6 +30984,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -20615,6 +30999,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -20791,12 +31177,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -21208,12 +31596,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -21547,12 +31937,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -21695,6 +32087,8 @@
                  * @property {google.protobuf.FeatureSet.Utf8Validation|null} [utf8Validation] FeatureSet utf8Validation
                  * @property {google.protobuf.FeatureSet.MessageEncoding|null} [messageEncoding] FeatureSet messageEncoding
                  * @property {google.protobuf.FeatureSet.JsonFormat|null} [jsonFormat] FeatureSet jsonFormat
+                 * @property {google.protobuf.FeatureSet.EnforceNamingStyle|null} [enforceNamingStyle] FeatureSet enforceNamingStyle
+                 * @property {google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility|null} [defaultSymbolVisibility] FeatureSet defaultSymbolVisibility
                  */
     
                 /**
@@ -21761,6 +32155,22 @@
                 FeatureSet.prototype.jsonFormat = 0;
     
                 /**
+                 * FeatureSet enforceNamingStyle.
+                 * @member {google.protobuf.FeatureSet.EnforceNamingStyle} enforceNamingStyle
+                 * @memberof google.protobuf.FeatureSet
+                 * @instance
+                 */
+                FeatureSet.prototype.enforceNamingStyle = 0;
+    
+                /**
+                 * FeatureSet defaultSymbolVisibility.
+                 * @member {google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility} defaultSymbolVisibility
+                 * @memberof google.protobuf.FeatureSet
+                 * @instance
+                 */
+                FeatureSet.prototype.defaultSymbolVisibility = 0;
+    
+                /**
                  * Creates a new FeatureSet instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.FeatureSet
@@ -21796,6 +32206,10 @@
                         writer.uint32(/* id 5, wireType 0 =*/40).int32(message.messageEncoding);
                     if (message.jsonFormat != null && Object.hasOwnProperty.call(message, "jsonFormat"))
                         writer.uint32(/* id 6, wireType 0 =*/48).int32(message.jsonFormat);
+                    if (message.enforceNamingStyle != null && Object.hasOwnProperty.call(message, "enforceNamingStyle"))
+                        writer.uint32(/* id 7, wireType 0 =*/56).int32(message.enforceNamingStyle);
+                    if (message.defaultSymbolVisibility != null && Object.hasOwnProperty.call(message, "defaultSymbolVisibility"))
+                        writer.uint32(/* id 8, wireType 0 =*/64).int32(message.defaultSymbolVisibility);
                     return writer;
                 };
     
@@ -21823,12 +32237,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -21852,6 +32268,14 @@
                             }
                         case 6: {
                                 message.jsonFormat = reader.int32();
+                                break;
+                            }
+                        case 7: {
+                                message.enforceNamingStyle = reader.int32();
+                                break;
+                            }
+                        case 8: {
+                                message.defaultSymbolVisibility = reader.int32();
                                 break;
                             }
                         default:
@@ -21942,6 +32366,26 @@
                         case 0:
                         case 1:
                         case 2:
+                            break;
+                        }
+                    if (message.enforceNamingStyle != null && message.hasOwnProperty("enforceNamingStyle"))
+                        switch (message.enforceNamingStyle) {
+                        default:
+                            return "enforceNamingStyle: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                            break;
+                        }
+                    if (message.defaultSymbolVisibility != null && message.hasOwnProperty("defaultSymbolVisibility"))
+                        switch (message.defaultSymbolVisibility) {
+                        default:
+                            return "defaultSymbolVisibility: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
                             break;
                         }
                     return null;
@@ -22083,6 +32527,54 @@
                         message.jsonFormat = 2;
                         break;
                     }
+                    switch (object.enforceNamingStyle) {
+                    default:
+                        if (typeof object.enforceNamingStyle === "number") {
+                            message.enforceNamingStyle = object.enforceNamingStyle;
+                            break;
+                        }
+                        break;
+                    case "ENFORCE_NAMING_STYLE_UNKNOWN":
+                    case 0:
+                        message.enforceNamingStyle = 0;
+                        break;
+                    case "STYLE2024":
+                    case 1:
+                        message.enforceNamingStyle = 1;
+                        break;
+                    case "STYLE_LEGACY":
+                    case 2:
+                        message.enforceNamingStyle = 2;
+                        break;
+                    }
+                    switch (object.defaultSymbolVisibility) {
+                    default:
+                        if (typeof object.defaultSymbolVisibility === "number") {
+                            message.defaultSymbolVisibility = object.defaultSymbolVisibility;
+                            break;
+                        }
+                        break;
+                    case "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN":
+                    case 0:
+                        message.defaultSymbolVisibility = 0;
+                        break;
+                    case "EXPORT_ALL":
+                    case 1:
+                        message.defaultSymbolVisibility = 1;
+                        break;
+                    case "EXPORT_TOP_LEVEL":
+                    case 2:
+                        message.defaultSymbolVisibility = 2;
+                        break;
+                    case "LOCAL_ALL":
+                    case 3:
+                        message.defaultSymbolVisibility = 3;
+                        break;
+                    case "STRICT":
+                    case 4:
+                        message.defaultSymbolVisibility = 4;
+                        break;
+                    }
                     return message;
                 };
     
@@ -22106,6 +32598,8 @@
                         object.utf8Validation = options.enums === String ? "UTF8_VALIDATION_UNKNOWN" : 0;
                         object.messageEncoding = options.enums === String ? "MESSAGE_ENCODING_UNKNOWN" : 0;
                         object.jsonFormat = options.enums === String ? "JSON_FORMAT_UNKNOWN" : 0;
+                        object.enforceNamingStyle = options.enums === String ? "ENFORCE_NAMING_STYLE_UNKNOWN" : 0;
+                        object.defaultSymbolVisibility = options.enums === String ? "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN" : 0;
                     }
                     if (message.fieldPresence != null && message.hasOwnProperty("fieldPresence"))
                         object.fieldPresence = options.enums === String ? $root.google.protobuf.FeatureSet.FieldPresence[message.fieldPresence] === undefined ? message.fieldPresence : $root.google.protobuf.FeatureSet.FieldPresence[message.fieldPresence] : message.fieldPresence;
@@ -22119,6 +32613,10 @@
                         object.messageEncoding = options.enums === String ? $root.google.protobuf.FeatureSet.MessageEncoding[message.messageEncoding] === undefined ? message.messageEncoding : $root.google.protobuf.FeatureSet.MessageEncoding[message.messageEncoding] : message.messageEncoding;
                     if (message.jsonFormat != null && message.hasOwnProperty("jsonFormat"))
                         object.jsonFormat = options.enums === String ? $root.google.protobuf.FeatureSet.JsonFormat[message.jsonFormat] === undefined ? message.jsonFormat : $root.google.protobuf.FeatureSet.JsonFormat[message.jsonFormat] : message.jsonFormat;
+                    if (message.enforceNamingStyle != null && message.hasOwnProperty("enforceNamingStyle"))
+                        object.enforceNamingStyle = options.enums === String ? $root.google.protobuf.FeatureSet.EnforceNamingStyle[message.enforceNamingStyle] === undefined ? message.enforceNamingStyle : $root.google.protobuf.FeatureSet.EnforceNamingStyle[message.enforceNamingStyle] : message.enforceNamingStyle;
+                    if (message.defaultSymbolVisibility != null && message.hasOwnProperty("defaultSymbolVisibility"))
+                        object.defaultSymbolVisibility = options.enums === String ? $root.google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility[message.defaultSymbolVisibility] === undefined ? message.defaultSymbolVisibility : $root.google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility[message.defaultSymbolVisibility] : message.defaultSymbolVisibility;
                     return object;
                 };
     
@@ -22246,6 +32744,219 @@
                     return values;
                 })();
     
+                /**
+                 * EnforceNamingStyle enum.
+                 * @name google.protobuf.FeatureSet.EnforceNamingStyle
+                 * @enum {number}
+                 * @property {number} ENFORCE_NAMING_STYLE_UNKNOWN=0 ENFORCE_NAMING_STYLE_UNKNOWN value
+                 * @property {number} STYLE2024=1 STYLE2024 value
+                 * @property {number} STYLE_LEGACY=2 STYLE_LEGACY value
+                 */
+                FeatureSet.EnforceNamingStyle = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "ENFORCE_NAMING_STYLE_UNKNOWN"] = 0;
+                    values[valuesById[1] = "STYLE2024"] = 1;
+                    values[valuesById[2] = "STYLE_LEGACY"] = 2;
+                    return values;
+                })();
+    
+                FeatureSet.VisibilityFeature = (function() {
+    
+                    /**
+                     * Properties of a VisibilityFeature.
+                     * @memberof google.protobuf.FeatureSet
+                     * @interface IVisibilityFeature
+                     */
+    
+                    /**
+                     * Constructs a new VisibilityFeature.
+                     * @memberof google.protobuf.FeatureSet
+                     * @classdesc Represents a VisibilityFeature.
+                     * @implements IVisibilityFeature
+                     * @constructor
+                     * @param {google.protobuf.FeatureSet.IVisibilityFeature=} [properties] Properties to set
+                     */
+                    function VisibilityFeature(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+    
+                    /**
+                     * Creates a new VisibilityFeature instance using the specified properties.
+                     * @function create
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {google.protobuf.FeatureSet.IVisibilityFeature=} [properties] Properties to set
+                     * @returns {google.protobuf.FeatureSet.VisibilityFeature} VisibilityFeature instance
+                     */
+                    VisibilityFeature.create = function create(properties) {
+                        return new VisibilityFeature(properties);
+                    };
+    
+                    /**
+                     * Encodes the specified VisibilityFeature message. Does not implicitly {@link google.protobuf.FeatureSet.VisibilityFeature.verify|verify} messages.
+                     * @function encode
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {google.protobuf.FeatureSet.IVisibilityFeature} message VisibilityFeature message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    VisibilityFeature.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        return writer;
+                    };
+    
+                    /**
+                     * Encodes the specified VisibilityFeature message, length delimited. Does not implicitly {@link google.protobuf.FeatureSet.VisibilityFeature.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {google.protobuf.FeatureSet.IVisibilityFeature} message VisibilityFeature message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    VisibilityFeature.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+    
+                    /**
+                     * Decodes a VisibilityFeature message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {google.protobuf.FeatureSet.VisibilityFeature} VisibilityFeature
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    VisibilityFeature.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet.VisibilityFeature();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+    
+                    /**
+                     * Decodes a VisibilityFeature message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {google.protobuf.FeatureSet.VisibilityFeature} VisibilityFeature
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    VisibilityFeature.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+    
+                    /**
+                     * Verifies a VisibilityFeature message.
+                     * @function verify
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    VisibilityFeature.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        return null;
+                    };
+    
+                    /**
+                     * Creates a VisibilityFeature message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {google.protobuf.FeatureSet.VisibilityFeature} VisibilityFeature
+                     */
+                    VisibilityFeature.fromObject = function fromObject(object) {
+                        if (object instanceof $root.google.protobuf.FeatureSet.VisibilityFeature)
+                            return object;
+                        return new $root.google.protobuf.FeatureSet.VisibilityFeature();
+                    };
+    
+                    /**
+                     * Creates a plain object from a VisibilityFeature message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {google.protobuf.FeatureSet.VisibilityFeature} message VisibilityFeature
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    VisibilityFeature.toObject = function toObject() {
+                        return {};
+                    };
+    
+                    /**
+                     * Converts this VisibilityFeature to JSON.
+                     * @function toJSON
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    VisibilityFeature.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+    
+                    /**
+                     * Gets the default type url for VisibilityFeature
+                     * @function getTypeUrl
+                     * @memberof google.protobuf.FeatureSet.VisibilityFeature
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    VisibilityFeature.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/google.protobuf.FeatureSet.VisibilityFeature";
+                    };
+    
+                    /**
+                     * DefaultSymbolVisibility enum.
+                     * @name google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility
+                     * @enum {number}
+                     * @property {number} DEFAULT_SYMBOL_VISIBILITY_UNKNOWN=0 DEFAULT_SYMBOL_VISIBILITY_UNKNOWN value
+                     * @property {number} EXPORT_ALL=1 EXPORT_ALL value
+                     * @property {number} EXPORT_TOP_LEVEL=2 EXPORT_TOP_LEVEL value
+                     * @property {number} LOCAL_ALL=3 LOCAL_ALL value
+                     * @property {number} STRICT=4 STRICT value
+                     */
+                    VisibilityFeature.DefaultSymbolVisibility = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN"] = 0;
+                        values[valuesById[1] = "EXPORT_ALL"] = 1;
+                        values[valuesById[2] = "EXPORT_TOP_LEVEL"] = 2;
+                        values[valuesById[3] = "LOCAL_ALL"] = 3;
+                        values[valuesById[4] = "STRICT"] = 4;
+                        return values;
+                    })();
+    
+                    return VisibilityFeature;
+                })();
+    
                 return FeatureSet;
             })();
     
@@ -22358,12 +33069,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -22428,6 +33141,7 @@
                         default:
                             return "minimumEdition: enum value expected";
                         case 0:
+                        case 900:
                         case 998:
                         case 999:
                         case 1000:
@@ -22445,6 +33159,7 @@
                         default:
                             return "maximumEdition: enum value expected";
                         case 0:
+                        case 900:
                         case 998:
                         case 999:
                         case 1000:
@@ -22492,6 +33207,10 @@
                     case "EDITION_UNKNOWN":
                     case 0:
                         message.minimumEdition = 0;
+                        break;
+                    case "EDITION_LEGACY":
+                    case 900:
+                        message.minimumEdition = 900;
                         break;
                     case "EDITION_PROTO2":
                     case 998:
@@ -22544,6 +33263,10 @@
                     case "EDITION_UNKNOWN":
                     case 0:
                         message.maximumEdition = 0;
+                        break;
+                    case "EDITION_LEGACY":
+                    case 900:
+                        message.maximumEdition = 900;
                         break;
                     case "EDITION_PROTO2":
                     case 998:
@@ -22653,7 +33376,8 @@
                      * @memberof google.protobuf.FeatureSetDefaults
                      * @interface IFeatureSetEditionDefault
                      * @property {google.protobuf.Edition|null} [edition] FeatureSetEditionDefault edition
-                     * @property {google.protobuf.IFeatureSet|null} [features] FeatureSetEditionDefault features
+                     * @property {google.protobuf.IFeatureSet|null} [overridableFeatures] FeatureSetEditionDefault overridableFeatures
+                     * @property {google.protobuf.IFeatureSet|null} [fixedFeatures] FeatureSetEditionDefault fixedFeatures
                      */
     
                     /**
@@ -22680,12 +33404,20 @@
                     FeatureSetEditionDefault.prototype.edition = 0;
     
                     /**
-                     * FeatureSetEditionDefault features.
-                     * @member {google.protobuf.IFeatureSet|null|undefined} features
+                     * FeatureSetEditionDefault overridableFeatures.
+                     * @member {google.protobuf.IFeatureSet|null|undefined} overridableFeatures
                      * @memberof google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
                      * @instance
                      */
-                    FeatureSetEditionDefault.prototype.features = null;
+                    FeatureSetEditionDefault.prototype.overridableFeatures = null;
+    
+                    /**
+                     * FeatureSetEditionDefault fixedFeatures.
+                     * @member {google.protobuf.IFeatureSet|null|undefined} fixedFeatures
+                     * @memberof google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
+                     * @instance
+                     */
+                    FeatureSetEditionDefault.prototype.fixedFeatures = null;
     
                     /**
                      * Creates a new FeatureSetEditionDefault instance using the specified properties.
@@ -22711,10 +33443,12 @@
                     FeatureSetEditionDefault.encode = function encode(message, writer) {
                         if (!writer)
                             writer = $Writer.create();
-                        if (message.features != null && Object.hasOwnProperty.call(message, "features"))
-                            $root.google.protobuf.FeatureSet.encode(message.features, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.edition != null && Object.hasOwnProperty.call(message, "edition"))
                             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.edition);
+                        if (message.overridableFeatures != null && Object.hasOwnProperty.call(message, "overridableFeatures"))
+                            $root.google.protobuf.FeatureSet.encode(message.overridableFeatures, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                        if (message.fixedFeatures != null && Object.hasOwnProperty.call(message, "fixedFeatures"))
+                            $root.google.protobuf.FeatureSet.encode(message.fixedFeatures, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                         return writer;
                     };
     
@@ -22742,19 +33476,25 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
                                     break;
                                 }
-                            case 2: {
-                                    message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
+                            case 4: {
+                                    message.overridableFeatures = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
+                                    break;
+                                }
+                            case 5: {
+                                    message.fixedFeatures = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -22797,6 +33537,7 @@
                             default:
                                 return "edition: enum value expected";
                             case 0:
+                            case 900:
                             case 998:
                             case 999:
                             case 1000:
@@ -22809,10 +33550,15 @@
                             case 2147483647:
                                 break;
                             }
-                        if (message.features != null && message.hasOwnProperty("features")) {
-                            var error = $root.google.protobuf.FeatureSet.verify(message.features);
+                        if (message.overridableFeatures != null && message.hasOwnProperty("overridableFeatures")) {
+                            var error = $root.google.protobuf.FeatureSet.verify(message.overridableFeatures);
                             if (error)
-                                return "features." + error;
+                                return "overridableFeatures." + error;
+                        }
+                        if (message.fixedFeatures != null && message.hasOwnProperty("fixedFeatures")) {
+                            var error = $root.google.protobuf.FeatureSet.verify(message.fixedFeatures);
+                            if (error)
+                                return "fixedFeatures." + error;
                         }
                         return null;
                     };
@@ -22839,6 +33585,10 @@
                         case "EDITION_UNKNOWN":
                         case 0:
                             message.edition = 0;
+                            break;
+                        case "EDITION_LEGACY":
+                        case 900:
+                            message.edition = 900;
                             break;
                         case "EDITION_PROTO2":
                         case 998:
@@ -22881,10 +33631,15 @@
                             message.edition = 2147483647;
                             break;
                         }
-                        if (object.features != null) {
-                            if (typeof object.features !== "object")
-                                throw TypeError(".google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.features: object expected");
-                            message.features = $root.google.protobuf.FeatureSet.fromObject(object.features);
+                        if (object.overridableFeatures != null) {
+                            if (typeof object.overridableFeatures !== "object")
+                                throw TypeError(".google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.overridableFeatures: object expected");
+                            message.overridableFeatures = $root.google.protobuf.FeatureSet.fromObject(object.overridableFeatures);
+                        }
+                        if (object.fixedFeatures != null) {
+                            if (typeof object.fixedFeatures !== "object")
+                                throw TypeError(".google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.fixedFeatures: object expected");
+                            message.fixedFeatures = $root.google.protobuf.FeatureSet.fromObject(object.fixedFeatures);
                         }
                         return message;
                     };
@@ -22903,13 +33658,16 @@
                             options = {};
                         var object = {};
                         if (options.defaults) {
-                            object.features = null;
                             object.edition = options.enums === String ? "EDITION_UNKNOWN" : 0;
+                            object.overridableFeatures = null;
+                            object.fixedFeatures = null;
                         }
-                        if (message.features != null && message.hasOwnProperty("features"))
-                            object.features = $root.google.protobuf.FeatureSet.toObject(message.features, options);
                         if (message.edition != null && message.hasOwnProperty("edition"))
                             object.edition = options.enums === String ? $root.google.protobuf.Edition[message.edition] === undefined ? message.edition : $root.google.protobuf.Edition[message.edition] : message.edition;
+                        if (message.overridableFeatures != null && message.hasOwnProperty("overridableFeatures"))
+                            object.overridableFeatures = $root.google.protobuf.FeatureSet.toObject(message.overridableFeatures, options);
+                        if (message.fixedFeatures != null && message.hasOwnProperty("fixedFeatures"))
+                            object.fixedFeatures = $root.google.protobuf.FeatureSet.toObject(message.fixedFeatures, options);
                         return object;
                     };
     
@@ -23032,12 +33790,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -23307,12 +34067,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -23618,12 +34380,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -23886,12 +34650,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -24116,6 +34882,22 @@
                 return GeneratedCodeInfo;
             })();
     
+            /**
+             * SymbolVisibility enum.
+             * @name google.protobuf.SymbolVisibility
+             * @enum {number}
+             * @property {number} VISIBILITY_UNSET=0 VISIBILITY_UNSET value
+             * @property {number} VISIBILITY_LOCAL=1 VISIBILITY_LOCAL value
+             * @property {number} VISIBILITY_EXPORT=2 VISIBILITY_EXPORT value
+             */
+            protobuf.SymbolVisibility = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "VISIBILITY_UNSET"] = 0;
+                values[valuesById[1] = "VISIBILITY_LOCAL"] = 1;
+                values[valuesById[2] = "VISIBILITY_EXPORT"] = 2;
+                return values;
+            })();
+    
             protobuf.Timestamp = (function() {
     
                 /**
@@ -24212,12 +34994,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -24453,12 +35237,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -24685,12 +35471,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))

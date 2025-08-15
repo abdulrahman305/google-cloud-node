@@ -432,7 +432,7 @@ export namespace google {
                     streamingConfig?: (google.cloud.speech.v1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent */
-                    audioContent?: (Uint8Array|string|null);
+                    audioContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a StreamingRecognizeRequest. */
@@ -448,7 +448,7 @@ export namespace google {
                     public streamingConfig?: (google.cloud.speech.v1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent. */
-                    public audioContent?: (Uint8Array|string|null);
+                    public audioContent?: (Uint8Array|Buffer|string|null);
 
                     /** StreamingRecognizeRequest streamingRequest. */
                     public streamingRequest?: ("streamingConfig"|"audioContent");
@@ -1389,7 +1389,7 @@ export namespace google {
                 interface IRecognitionAudio {
 
                     /** RecognitionAudio content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri */
                     uri?: (string|null);
@@ -1405,7 +1405,7 @@ export namespace google {
                     constructor(properties?: google.cloud.speech.v1.IRecognitionAudio);
 
                     /** RecognitionAudio content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri. */
                     public uri?: (string|null);
@@ -5302,7 +5302,7 @@ export namespace google {
                     streamingConfig?: (google.cloud.speech.v1p1beta1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent */
-                    audioContent?: (Uint8Array|string|null);
+                    audioContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a StreamingRecognizeRequest. */
@@ -5318,7 +5318,7 @@ export namespace google {
                     public streamingConfig?: (google.cloud.speech.v1p1beta1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent. */
-                    public audioContent?: (Uint8Array|string|null);
+                    public audioContent?: (Uint8Array|Buffer|string|null);
 
                     /** StreamingRecognizeRequest streamingRequest. */
                     public streamingRequest?: ("streamingConfig"|"audioContent");
@@ -5864,7 +5864,8 @@ export namespace google {
                         OGG_OPUS = 6,
                         SPEEX_WITH_HEADER_BYTE = 7,
                         MP3 = 8,
-                        WEBM_OPUS = 9
+                        WEBM_OPUS = 9,
+                        ALAW = 10
                     }
                 }
 
@@ -6277,7 +6278,7 @@ export namespace google {
                 interface IRecognitionAudio {
 
                     /** RecognitionAudio content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri */
                     uri?: (string|null);
@@ -6293,7 +6294,7 @@ export namespace google {
                     constructor(properties?: google.cloud.speech.v1p1beta1.IRecognitionAudio);
 
                     /** RecognitionAudio content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri. */
                     public uri?: (string|null);
@@ -6393,6 +6394,9 @@ export namespace google {
 
                     /** RecognizeResponse requestId */
                     requestId?: (number|Long|string|null);
+
+                    /** RecognizeResponse usingLegacyModels */
+                    usingLegacyModels?: (boolean|null);
                 }
 
                 /** Represents a RecognizeResponse. */
@@ -6415,6 +6419,9 @@ export namespace google {
 
                     /** RecognizeResponse requestId. */
                     public requestId: (number|Long|string);
+
+                    /** RecognizeResponse usingLegacyModels. */
+                    public usingLegacyModels: boolean;
 
                     /**
                      * Creates a new RecognizeResponse instance using the specified properties.
@@ -7255,6 +7262,9 @@ export namespace google {
 
                     /** WordInfo speakerTag */
                     speakerTag?: (number|null);
+
+                    /** WordInfo speakerLabel */
+                    speakerLabel?: (string|null);
                 }
 
                 /** Represents a WordInfo. */
@@ -7280,6 +7290,9 @@ export namespace google {
 
                     /** WordInfo speakerTag. */
                     public speakerTag: number;
+
+                    /** WordInfo speakerLabel. */
+                    public speakerLabel: string;
 
                     /**
                      * Creates a new WordInfo instance using the specified properties.
@@ -7473,6 +7486,36 @@ export namespace google {
 
                     /** CustomClass items */
                     items?: (google.cloud.speech.v1p1beta1.CustomClass.IClassItem[]|null);
+
+                    /** CustomClass kmsKeyName */
+                    kmsKeyName?: (string|null);
+
+                    /** CustomClass kmsKeyVersionName */
+                    kmsKeyVersionName?: (string|null);
+
+                    /** CustomClass uid */
+                    uid?: (string|null);
+
+                    /** CustomClass displayName */
+                    displayName?: (string|null);
+
+                    /** CustomClass state */
+                    state?: (google.cloud.speech.v1p1beta1.CustomClass.State|keyof typeof google.cloud.speech.v1p1beta1.CustomClass.State|null);
+
+                    /** CustomClass deleteTime */
+                    deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass expireTime */
+                    expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass annotations */
+                    annotations?: ({ [k: string]: string }|null);
+
+                    /** CustomClass etag */
+                    etag?: (string|null);
+
+                    /** CustomClass reconciling */
+                    reconciling?: (boolean|null);
                 }
 
                 /** Represents a CustomClass. */
@@ -7492,6 +7535,36 @@ export namespace google {
 
                     /** CustomClass items. */
                     public items: google.cloud.speech.v1p1beta1.CustomClass.IClassItem[];
+
+                    /** CustomClass kmsKeyName. */
+                    public kmsKeyName: string;
+
+                    /** CustomClass kmsKeyVersionName. */
+                    public kmsKeyVersionName: string;
+
+                    /** CustomClass uid. */
+                    public uid: string;
+
+                    /** CustomClass displayName. */
+                    public displayName: string;
+
+                    /** CustomClass state. */
+                    public state: (google.cloud.speech.v1p1beta1.CustomClass.State|keyof typeof google.cloud.speech.v1p1beta1.CustomClass.State);
+
+                    /** CustomClass deleteTime. */
+                    public deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass expireTime. */
+                    public expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass annotations. */
+                    public annotations: { [k: string]: string };
+
+                    /** CustomClass etag. */
+                    public etag: string;
+
+                    /** CustomClass reconciling. */
+                    public reconciling: boolean;
 
                     /**
                      * Creates a new CustomClass instance using the specified properties.
@@ -7669,6 +7742,13 @@ export namespace google {
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
+
+                    /** State enum. */
+                    enum State {
+                        STATE_UNSPECIFIED = 0,
+                        ACTIVE = 2,
+                        DELETED = 4
+                    }
                 }
 
                 /** Properties of a PhraseSet. */
@@ -7682,6 +7762,36 @@ export namespace google {
 
                     /** PhraseSet boost */
                     boost?: (number|null);
+
+                    /** PhraseSet kmsKeyName */
+                    kmsKeyName?: (string|null);
+
+                    /** PhraseSet kmsKeyVersionName */
+                    kmsKeyVersionName?: (string|null);
+
+                    /** PhraseSet uid */
+                    uid?: (string|null);
+
+                    /** PhraseSet displayName */
+                    displayName?: (string|null);
+
+                    /** PhraseSet state */
+                    state?: (google.cloud.speech.v1p1beta1.PhraseSet.State|keyof typeof google.cloud.speech.v1p1beta1.PhraseSet.State|null);
+
+                    /** PhraseSet deleteTime */
+                    deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet expireTime */
+                    expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet annotations */
+                    annotations?: ({ [k: string]: string }|null);
+
+                    /** PhraseSet etag */
+                    etag?: (string|null);
+
+                    /** PhraseSet reconciling */
+                    reconciling?: (boolean|null);
                 }
 
                 /** Represents a PhraseSet. */
@@ -7701,6 +7811,36 @@ export namespace google {
 
                     /** PhraseSet boost. */
                     public boost: number;
+
+                    /** PhraseSet kmsKeyName. */
+                    public kmsKeyName: string;
+
+                    /** PhraseSet kmsKeyVersionName. */
+                    public kmsKeyVersionName: string;
+
+                    /** PhraseSet uid. */
+                    public uid: string;
+
+                    /** PhraseSet displayName. */
+                    public displayName: string;
+
+                    /** PhraseSet state. */
+                    public state: (google.cloud.speech.v1p1beta1.PhraseSet.State|keyof typeof google.cloud.speech.v1p1beta1.PhraseSet.State);
+
+                    /** PhraseSet deleteTime. */
+                    public deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet expireTime. */
+                    public expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet annotations. */
+                    public annotations: { [k: string]: string };
+
+                    /** PhraseSet etag. */
+                    public etag: string;
+
+                    /** PhraseSet reconciling. */
+                    public reconciling: boolean;
 
                     /**
                      * Creates a new PhraseSet instance using the specified properties.
@@ -7883,6 +8023,13 @@ export namespace google {
                          * @returns The default type url
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** State enum. */
+                    enum State {
+                        STATE_UNSPECIFIED = 0,
+                        ACTIVE = 2,
+                        DELETED = 4
                     }
                 }
 
@@ -12475,6 +12622,109 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a DenoiserConfig. */
+                interface IDenoiserConfig {
+
+                    /** DenoiserConfig denoiseAudio */
+                    denoiseAudio?: (boolean|null);
+
+                    /** DenoiserConfig snrThreshold */
+                    snrThreshold?: (number|null);
+                }
+
+                /** Represents a DenoiserConfig. */
+                class DenoiserConfig implements IDenoiserConfig {
+
+                    /**
+                     * Constructs a new DenoiserConfig.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.IDenoiserConfig);
+
+                    /** DenoiserConfig denoiseAudio. */
+                    public denoiseAudio: boolean;
+
+                    /** DenoiserConfig snrThreshold. */
+                    public snrThreshold: number;
+
+                    /**
+                     * Creates a new DenoiserConfig instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DenoiserConfig instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.IDenoiserConfig): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Encodes the specified DenoiserConfig message. Does not implicitly {@link google.cloud.speech.v2.DenoiserConfig.verify|verify} messages.
+                     * @param message DenoiserConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.IDenoiserConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DenoiserConfig message, length delimited. Does not implicitly {@link google.cloud.speech.v2.DenoiserConfig.verify|verify} messages.
+                     * @param message DenoiserConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.IDenoiserConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DenoiserConfig message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DenoiserConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Decodes a DenoiserConfig message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DenoiserConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Verifies a DenoiserConfig message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DenoiserConfig message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DenoiserConfig
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Creates a plain object from a DenoiserConfig message. Also converts values to other types if specified.
+                     * @param message DenoiserConfig
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.DenoiserConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DenoiserConfig to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DenoiserConfig
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a RecognitionConfig. */
                 interface IRecognitionConfig {
 
@@ -12501,6 +12751,9 @@ export namespace google {
 
                     /** RecognitionConfig translationConfig */
                     translationConfig?: (google.cloud.speech.v2.ITranslationConfig|null);
+
+                    /** RecognitionConfig denoiserConfig */
+                    denoiserConfig?: (google.cloud.speech.v2.IDenoiserConfig|null);
                 }
 
                 /** Represents a RecognitionConfig. */
@@ -12535,6 +12788,9 @@ export namespace google {
 
                     /** RecognitionConfig translationConfig. */
                     public translationConfig?: (google.cloud.speech.v2.ITranslationConfig|null);
+
+                    /** RecognitionConfig denoiserConfig. */
+                    public denoiserConfig?: (google.cloud.speech.v2.IDenoiserConfig|null);
 
                     /** RecognitionConfig decodingConfig. */
                     public decodingConfig?: ("autoDecodingConfig"|"explicitDecodingConfig");
@@ -12630,7 +12886,7 @@ export namespace google {
                     configMask?: (google.protobuf.IFieldMask|null);
 
                     /** RecognizeRequest content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognizeRequest uri */
                     uri?: (string|null);
@@ -12655,7 +12911,7 @@ export namespace google {
                     public configMask?: (google.protobuf.IFieldMask|null);
 
                     /** RecognizeRequest content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognizeRequest uri. */
                     public uri?: (string|null);
@@ -13626,7 +13882,7 @@ export namespace google {
                     streamingConfig?: (google.cloud.speech.v2.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audio */
-                    audio?: (Uint8Array|string|null);
+                    audio?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a StreamingRecognizeRequest. */
@@ -13645,7 +13901,7 @@ export namespace google {
                     public streamingConfig?: (google.cloud.speech.v2.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audio. */
-                    public audio?: (Uint8Array|string|null);
+                    public audio?: (Uint8Array|Buffer|string|null);
 
                     /** StreamingRecognizeRequest streamingRequest. */
                     public streamingRequest?: ("streamingConfig"|"audio");
@@ -19343,6 +19599,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -19383,6 +19642,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -23713,6 +23975,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -23964,7 +24229,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -23995,7 +24260,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -25134,7 +25399,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -25150,7 +25415,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -26204,7 +26469,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -26217,7 +26482,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.

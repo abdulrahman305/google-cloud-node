@@ -16,11 +16,13 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const alloydb = require('@google-cloud/alloydb');
 
 function main() {
   const alloyDBAdminClient = new alloydb.AlloyDBAdminClient();
+  const alloyDBCSQLAdminClient = new alloydb.AlloyDBCSQLAdminClient();
 }
 
 main();
