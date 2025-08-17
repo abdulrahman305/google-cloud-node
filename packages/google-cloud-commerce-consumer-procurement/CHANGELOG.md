@@ -1,5 +1,43 @@
 # Changelog
 
+## [0.7.0](https://github.com/googleapis/google-cloud-node/compare/procurement-v0.6.2...procurement-v0.7.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [0.6.2](https://github.com/googleapis/google-cloud-node/compare/procurement-v0.6.1...procurement-v0.6.2) (2025-06-03)
+
+
+### Bug Fixes
+
+* [cloudcommerceconsumerprocurement] An existing google.api.http annotation `http_uri` is changed for method `UpdateLicensePool` in service `LicenseManagementService` ([#6373](https://github.com/googleapis/google-cloud-node/issues/6373)) ([2215522](https://github.com/googleapis/google-cloud-node/commit/22155222919286135360dd822df1d4f8b5a3f656))
+
+## [0.6.1](https://github.com/googleapis/google-cloud-node/compare/procurement-v0.6.0...procurement-v0.6.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6184](https://github.com/googleapis/google-cloud-node/issues/6184)) ([2fcd202](https://github.com/googleapis/google-cloud-node/commit/2fcd2029c35e8fb2199d03ac6e61e2d821ddf72e))
+
+## [0.6.0](https://github.com/googleapis/google-cloud-node/compare/procurement-v0.5.0...procurement-v0.6.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([e7409c8](https://github.com/googleapis/google-cloud-node/commit/e7409c87febcf33359a2d36ae4551f502b8a2f93))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
 ## [0.5.0](https://github.com/googleapis/google-cloud-node/compare/procurement-v0.4.0...procurement-v0.5.0) (2024-10-10)
 
 

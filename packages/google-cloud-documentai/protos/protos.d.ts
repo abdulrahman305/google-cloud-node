@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -142,7 +142,10 @@ export namespace google {
                     uri?: (string|null);
 
                     /** Document content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
+
+                    /** Document docid */
+                    docid?: (string|null);
 
                     /** Document mimeType */
                     mimeType?: (string|null);
@@ -194,7 +197,10 @@ export namespace google {
                     public uri?: (string|null);
 
                     /** Document content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
+
+                    /** Document docid. */
+                    public docid: string;
 
                     /** Document mimeType. */
                     public mimeType: string;
@@ -977,7 +983,7 @@ export namespace google {
                         interface IImage {
 
                             /** Image content */
-                            content?: (Uint8Array|string|null);
+                            content?: (Uint8Array|Buffer|string|null);
 
                             /** Image mimeType */
                             mimeType?: (string|null);
@@ -999,7 +1005,7 @@ export namespace google {
                             constructor(properties?: google.cloud.documentai.v1.Document.Page.IImage);
 
                             /** Image content. */
-                            public content: (Uint8Array|string);
+                            public content: (Uint8Array|Buffer|string);
 
                             /** Image mimeType. */
                             public mimeType: string;
@@ -1101,7 +1107,7 @@ export namespace google {
                             type?: (number|null);
 
                             /** Matrix data */
-                            data?: (Uint8Array|string|null);
+                            data?: (Uint8Array|Buffer|string|null);
                         }
 
                         /** Represents a Matrix. */
@@ -1123,7 +1129,7 @@ export namespace google {
                             public type: number;
 
                             /** Matrix data. */
-                            public data: (Uint8Array|string);
+                            public data: (Uint8Array|Buffer|string);
 
                             /**
                              * Creates a new Matrix instance using the specified properties.
@@ -4735,6 +4741,9 @@ export namespace google {
 
                             /** DocumentLayoutBlock pageSpan */
                             pageSpan?: (google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.ILayoutPageSpan|null);
+
+                            /** DocumentLayoutBlock boundingBox */
+                            boundingBox?: (google.cloud.documentai.v1.IBoundingPoly|null);
                         }
 
                         /** Represents a DocumentLayoutBlock. */
@@ -4760,6 +4769,9 @@ export namespace google {
 
                             /** DocumentLayoutBlock pageSpan. */
                             public pageSpan?: (google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.ILayoutPageSpan|null);
+
+                            /** DocumentLayoutBlock boundingBox. */
+                            public boundingBox?: (google.cloud.documentai.v1.IBoundingPoly|null);
 
                             /** DocumentLayoutBlock block. */
                             public block?: ("textBlock"|"tableBlock"|"listBlock");
@@ -6426,7 +6438,7 @@ export namespace google {
                 interface IRawDocument {
 
                     /** RawDocument content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RawDocument mimeType */
                     mimeType?: (string|null);
@@ -6445,7 +6457,7 @@ export namespace google {
                     constructor(properties?: google.cloud.documentai.v1.IRawDocument);
 
                     /** RawDocument content. */
-                    public content: (Uint8Array|string);
+                    public content: (Uint8Array|Buffer|string);
 
                     /** RawDocument mimeType. */
                     public mimeType: string;
@@ -8223,6 +8235,12 @@ export namespace google {
 
                         /** LayoutConfig chunkingConfig */
                         chunkingConfig?: (google.cloud.documentai.v1.ProcessOptions.LayoutConfig.IChunkingConfig|null);
+
+                        /** LayoutConfig returnImages */
+                        returnImages?: (boolean|null);
+
+                        /** LayoutConfig returnBoundingBoxes */
+                        returnBoundingBoxes?: (boolean|null);
                     }
 
                     /** Represents a LayoutConfig. */
@@ -8236,6 +8254,12 @@ export namespace google {
 
                         /** LayoutConfig chunkingConfig. */
                         public chunkingConfig?: (google.cloud.documentai.v1.ProcessOptions.LayoutConfig.IChunkingConfig|null);
+
+                        /** LayoutConfig returnImages. */
+                        public returnImages: boolean;
+
+                        /** LayoutConfig returnBoundingBoxes. */
+                        public returnBoundingBoxes: boolean;
 
                         /**
                          * Creates a new LayoutConfig instance using the specified properties.
@@ -16770,7 +16794,7 @@ export namespace google {
                     uri?: (string|null);
 
                     /** Document content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** Document mimeType */
                     mimeType?: (string|null);
@@ -16810,7 +16834,7 @@ export namespace google {
                     public uri?: (string|null);
 
                     /** Document content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** Document mimeType. */
                     public mimeType: string;
@@ -21352,7 +21376,7 @@ export namespace google {
                     uri?: (string|null);
 
                     /** Document content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** Document mimeType */
                     mimeType?: (string|null);
@@ -21401,7 +21425,7 @@ export namespace google {
                     public uri?: (string|null);
 
                     /** Document content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** Document mimeType. */
                     public mimeType: string;
@@ -22293,7 +22317,7 @@ export namespace google {
                         interface IImage {
 
                             /** Image content */
-                            content?: (Uint8Array|string|null);
+                            content?: (Uint8Array|Buffer|string|null);
 
                             /** Image mimeType */
                             mimeType?: (string|null);
@@ -22315,7 +22339,7 @@ export namespace google {
                             constructor(properties?: google.cloud.documentai.v1beta2.Document.Page.IImage);
 
                             /** Image content. */
-                            public content: (Uint8Array|string);
+                            public content: (Uint8Array|Buffer|string);
 
                             /** Image mimeType. */
                             public mimeType: string;
@@ -22417,7 +22441,7 @@ export namespace google {
                             type?: (number|null);
 
                             /** Matrix data */
-                            data?: (Uint8Array|string|null);
+                            data?: (Uint8Array|Buffer|string|null);
                         }
 
                         /** Represents a Matrix. */
@@ -22439,7 +22463,7 @@ export namespace google {
                             public type: number;
 
                             /** Matrix data. */
-                            public data: (Uint8Array|string);
+                            public data: (Uint8Array|Buffer|string);
 
                             /**
                              * Creates a new Matrix instance using the specified properties.
@@ -27493,7 +27517,7 @@ export namespace google {
                     gcsSource?: (google.cloud.documentai.v1beta2.IGcsSource|null);
 
                     /** InputConfig contents */
-                    contents?: (Uint8Array|string|null);
+                    contents?: (Uint8Array|Buffer|string|null);
 
                     /** InputConfig mimeType */
                     mimeType?: (string|null);
@@ -27512,7 +27536,7 @@ export namespace google {
                     public gcsSource?: (google.cloud.documentai.v1beta2.IGcsSource|null);
 
                     /** InputConfig contents. */
-                    public contents?: (Uint8Array|string|null);
+                    public contents?: (Uint8Array|Buffer|string|null);
 
                     /** InputConfig mimeType. */
                     public mimeType: string;
@@ -29321,7 +29345,10 @@ export namespace google {
                     uri?: (string|null);
 
                     /** Document content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
+
+                    /** Document docid */
+                    docid?: (string|null);
 
                     /** Document mimeType */
                     mimeType?: (string|null);
@@ -29358,6 +29385,9 @@ export namespace google {
 
                     /** Document chunkedDocument */
                     chunkedDocument?: (google.cloud.documentai.v1beta3.Document.IChunkedDocument|null);
+
+                    /** Document blobAssets */
+                    blobAssets?: (google.cloud.documentai.v1beta3.Document.IBlobAsset[]|null);
                 }
 
                 /** Represents a Document. */
@@ -29373,7 +29403,10 @@ export namespace google {
                     public uri?: (string|null);
 
                     /** Document content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
+
+                    /** Document docid. */
+                    public docid: string;
 
                     /** Document mimeType. */
                     public mimeType: string;
@@ -29410,6 +29443,9 @@ export namespace google {
 
                     /** Document chunkedDocument. */
                     public chunkedDocument?: (google.cloud.documentai.v1beta3.Document.IChunkedDocument|null);
+
+                    /** Document blobAssets. */
+                    public blobAssets: google.cloud.documentai.v1beta3.Document.IBlobAsset[];
 
                     /** Document source. */
                     public source?: ("uri"|"content");
@@ -30156,7 +30192,7 @@ export namespace google {
                         interface IImage {
 
                             /** Image content */
-                            content?: (Uint8Array|string|null);
+                            content?: (Uint8Array|Buffer|string|null);
 
                             /** Image mimeType */
                             mimeType?: (string|null);
@@ -30178,7 +30214,7 @@ export namespace google {
                             constructor(properties?: google.cloud.documentai.v1beta3.Document.Page.IImage);
 
                             /** Image content. */
-                            public content: (Uint8Array|string);
+                            public content: (Uint8Array|Buffer|string);
 
                             /** Image mimeType. */
                             public mimeType: string;
@@ -30280,7 +30316,7 @@ export namespace google {
                             type?: (number|null);
 
                             /** Matrix data */
-                            data?: (Uint8Array|string|null);
+                            data?: (Uint8Array|Buffer|string|null);
                         }
 
                         /** Represents a Matrix. */
@@ -30302,7 +30338,7 @@ export namespace google {
                             public type: number;
 
                             /** Matrix data. */
-                            public data: (Uint8Array|string);
+                            public data: (Uint8Array|Buffer|string);
 
                             /**
                              * Creates a new Matrix instance using the specified properties.
@@ -33798,6 +33834,103 @@ export namespace google {
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
 
+                    /** Properties of an Annotations. */
+                    interface IAnnotations {
+
+                        /** Annotations description */
+                        description?: (string|null);
+                    }
+
+                    /** Represents an Annotations. */
+                    class Annotations implements IAnnotations {
+
+                        /**
+                         * Constructs a new Annotations.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.documentai.v1beta3.Document.IAnnotations);
+
+                        /** Annotations description. */
+                        public description: string;
+
+                        /**
+                         * Creates a new Annotations instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns Annotations instance
+                         */
+                        public static create(properties?: google.cloud.documentai.v1beta3.Document.IAnnotations): google.cloud.documentai.v1beta3.Document.Annotations;
+
+                        /**
+                         * Encodes the specified Annotations message. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.Annotations.verify|verify} messages.
+                         * @param message Annotations message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.documentai.v1beta3.Document.IAnnotations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified Annotations message, length delimited. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.Annotations.verify|verify} messages.
+                         * @param message Annotations message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.documentai.v1beta3.Document.IAnnotations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an Annotations message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns Annotations
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.documentai.v1beta3.Document.Annotations;
+
+                        /**
+                         * Decodes an Annotations message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns Annotations
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.documentai.v1beta3.Document.Annotations;
+
+                        /**
+                         * Verifies an Annotations message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an Annotations message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns Annotations
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.documentai.v1beta3.Document.Annotations;
+
+                        /**
+                         * Creates a plain object from an Annotations message. Also converts values to other types if specified.
+                         * @param message Annotations
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.documentai.v1beta3.Document.Annotations, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this Annotations to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for Annotations
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
                     /** Properties of a DocumentLayout. */
                     interface IDocumentLayout {
 
@@ -33909,11 +34042,17 @@ export namespace google {
                             /** DocumentLayoutBlock listBlock */
                             listBlock?: (google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutListBlock|null);
 
+                            /** DocumentLayoutBlock imageBlock */
+                            imageBlock?: (google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutImageBlock|null);
+
                             /** DocumentLayoutBlock blockId */
                             blockId?: (string|null);
 
                             /** DocumentLayoutBlock pageSpan */
                             pageSpan?: (google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutPageSpan|null);
+
+                            /** DocumentLayoutBlock boundingBox */
+                            boundingBox?: (google.cloud.documentai.v1beta3.IBoundingPoly|null);
                         }
 
                         /** Represents a DocumentLayoutBlock. */
@@ -33934,14 +34073,20 @@ export namespace google {
                             /** DocumentLayoutBlock listBlock. */
                             public listBlock?: (google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutListBlock|null);
 
+                            /** DocumentLayoutBlock imageBlock. */
+                            public imageBlock?: (google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutImageBlock|null);
+
                             /** DocumentLayoutBlock blockId. */
                             public blockId: string;
 
                             /** DocumentLayoutBlock pageSpan. */
                             public pageSpan?: (google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutPageSpan|null);
 
+                            /** DocumentLayoutBlock boundingBox. */
+                            public boundingBox?: (google.cloud.documentai.v1beta3.IBoundingPoly|null);
+
                             /** DocumentLayoutBlock block. */
-                            public block?: ("textBlock"|"tableBlock"|"listBlock");
+                            public block?: ("textBlock"|"tableBlock"|"listBlock"|"imageBlock");
 
                             /**
                              * Creates a new DocumentLayoutBlock instance using the specified properties.
@@ -34749,6 +34894,136 @@ export namespace google {
                                  */
                                 public static getTypeUrl(typeUrlPrefix?: string): string;
                             }
+
+                            /** Properties of a LayoutImageBlock. */
+                            interface ILayoutImageBlock {
+
+                                /** LayoutImageBlock blobAssetId */
+                                blobAssetId?: (string|null);
+
+                                /** LayoutImageBlock gcsUri */
+                                gcsUri?: (string|null);
+
+                                /** LayoutImageBlock dataUri */
+                                dataUri?: (string|null);
+
+                                /** LayoutImageBlock mimeType */
+                                mimeType?: (string|null);
+
+                                /** LayoutImageBlock imageText */
+                                imageText?: (string|null);
+
+                                /** LayoutImageBlock annotations */
+                                annotations?: (google.cloud.documentai.v1beta3.Document.IAnnotations|null);
+                            }
+
+                            /** Represents a LayoutImageBlock. */
+                            class LayoutImageBlock implements ILayoutImageBlock {
+
+                                /**
+                                 * Constructs a new LayoutImageBlock.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutImageBlock);
+
+                                /** LayoutImageBlock blobAssetId. */
+                                public blobAssetId?: (string|null);
+
+                                /** LayoutImageBlock gcsUri. */
+                                public gcsUri?: (string|null);
+
+                                /** LayoutImageBlock dataUri. */
+                                public dataUri?: (string|null);
+
+                                /** LayoutImageBlock mimeType. */
+                                public mimeType: string;
+
+                                /** LayoutImageBlock imageText. */
+                                public imageText: string;
+
+                                /** LayoutImageBlock annotations. */
+                                public annotations?: (google.cloud.documentai.v1beta3.Document.IAnnotations|null);
+
+                                /** LayoutImageBlock imageSource. */
+                                public imageSource?: ("blobAssetId"|"gcsUri"|"dataUri");
+
+                                /**
+                                 * Creates a new LayoutImageBlock instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns LayoutImageBlock instance
+                                 */
+                                public static create(properties?: google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutImageBlock): google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock;
+
+                                /**
+                                 * Encodes the specified LayoutImageBlock message. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock.verify|verify} messages.
+                                 * @param message LayoutImageBlock message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutImageBlock, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified LayoutImageBlock message, length delimited. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock.verify|verify} messages.
+                                 * @param message LayoutImageBlock message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.ILayoutImageBlock, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes a LayoutImageBlock message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns LayoutImageBlock
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock;
+
+                                /**
+                                 * Decodes a LayoutImageBlock message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns LayoutImageBlock
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock;
+
+                                /**
+                                 * Verifies a LayoutImageBlock message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates a LayoutImageBlock message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns LayoutImageBlock
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock;
+
+                                /**
+                                 * Creates a plain object from a LayoutImageBlock message. Also converts values to other types if specified.
+                                 * @param message LayoutImageBlock
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.documentai.v1beta3.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this LayoutImageBlock to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for LayoutImageBlock
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
                         }
                     }
 
@@ -34871,6 +35146,9 @@ export namespace google {
 
                             /** Chunk pageFooters */
                             pageFooters?: (google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkPageFooter[]|null);
+
+                            /** Chunk chunkFields */
+                            chunkFields?: (google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkField[]|null);
                         }
 
                         /** Represents a Chunk. */
@@ -34899,6 +35177,9 @@ export namespace google {
 
                             /** Chunk pageFooters. */
                             public pageFooters: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkPageFooter[];
+
+                            /** Chunk chunkFields. */
+                            public chunkFields: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkField[];
 
                             /**
                              * Creates a new Chunk instance using the specified properties.
@@ -35288,7 +35569,437 @@ export namespace google {
                                  */
                                 public static getTypeUrl(typeUrlPrefix?: string): string;
                             }
+
+                            /** Properties of an ImageChunkField. */
+                            interface IImageChunkField {
+
+                                /** ImageChunkField blobAssetId */
+                                blobAssetId?: (string|null);
+
+                                /** ImageChunkField gcsUri */
+                                gcsUri?: (string|null);
+
+                                /** ImageChunkField dataUri */
+                                dataUri?: (string|null);
+
+                                /** ImageChunkField annotations */
+                                annotations?: (google.cloud.documentai.v1beta3.Document.IAnnotations|null);
+                            }
+
+                            /** Represents an ImageChunkField. */
+                            class ImageChunkField implements IImageChunkField {
+
+                                /**
+                                 * Constructs a new ImageChunkField.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IImageChunkField);
+
+                                /** ImageChunkField blobAssetId. */
+                                public blobAssetId?: (string|null);
+
+                                /** ImageChunkField gcsUri. */
+                                public gcsUri?: (string|null);
+
+                                /** ImageChunkField dataUri. */
+                                public dataUri?: (string|null);
+
+                                /** ImageChunkField annotations. */
+                                public annotations?: (google.cloud.documentai.v1beta3.Document.IAnnotations|null);
+
+                                /** ImageChunkField imageSource. */
+                                public imageSource?: ("blobAssetId"|"gcsUri"|"dataUri");
+
+                                /**
+                                 * Creates a new ImageChunkField instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns ImageChunkField instance
+                                 */
+                                public static create(properties?: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IImageChunkField): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField;
+
+                                /**
+                                 * Encodes the specified ImageChunkField message. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField.verify|verify} messages.
+                                 * @param message ImageChunkField message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IImageChunkField, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified ImageChunkField message, length delimited. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField.verify|verify} messages.
+                                 * @param message ImageChunkField message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IImageChunkField, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes an ImageChunkField message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns ImageChunkField
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField;
+
+                                /**
+                                 * Decodes an ImageChunkField message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns ImageChunkField
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField;
+
+                                /**
+                                 * Verifies an ImageChunkField message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates an ImageChunkField message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns ImageChunkField
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField;
+
+                                /**
+                                 * Creates a plain object from an ImageChunkField message. Also converts values to other types if specified.
+                                 * @param message ImageChunkField
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ImageChunkField, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this ImageChunkField to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for ImageChunkField
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
+
+                            /** Properties of a TableChunkField. */
+                            interface ITableChunkField {
+
+                                /** TableChunkField annotations */
+                                annotations?: (google.cloud.documentai.v1beta3.Document.IAnnotations|null);
+                            }
+
+                            /** Represents a TableChunkField. */
+                            class TableChunkField implements ITableChunkField {
+
+                                /**
+                                 * Constructs a new TableChunkField.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ITableChunkField);
+
+                                /** TableChunkField annotations. */
+                                public annotations?: (google.cloud.documentai.v1beta3.Document.IAnnotations|null);
+
+                                /**
+                                 * Creates a new TableChunkField instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns TableChunkField instance
+                                 */
+                                public static create(properties?: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ITableChunkField): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField;
+
+                                /**
+                                 * Encodes the specified TableChunkField message. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField.verify|verify} messages.
+                                 * @param message TableChunkField message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ITableChunkField, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified TableChunkField message, length delimited. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField.verify|verify} messages.
+                                 * @param message TableChunkField message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ITableChunkField, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes a TableChunkField message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns TableChunkField
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField;
+
+                                /**
+                                 * Decodes a TableChunkField message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns TableChunkField
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField;
+
+                                /**
+                                 * Verifies a TableChunkField message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates a TableChunkField message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns TableChunkField
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField;
+
+                                /**
+                                 * Creates a plain object from a TableChunkField message. Also converts values to other types if specified.
+                                 * @param message TableChunkField
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.TableChunkField, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this TableChunkField to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for TableChunkField
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
+
+                            /** Properties of a ChunkField. */
+                            interface IChunkField {
+
+                                /** ChunkField imageChunkField */
+                                imageChunkField?: (google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IImageChunkField|null);
+
+                                /** ChunkField tableChunkField */
+                                tableChunkField?: (google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ITableChunkField|null);
+                            }
+
+                            /** Represents a ChunkField. */
+                            class ChunkField implements IChunkField {
+
+                                /**
+                                 * Constructs a new ChunkField.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkField);
+
+                                /** ChunkField imageChunkField. */
+                                public imageChunkField?: (google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IImageChunkField|null);
+
+                                /** ChunkField tableChunkField. */
+                                public tableChunkField?: (google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ITableChunkField|null);
+
+                                /** ChunkField fieldType. */
+                                public fieldType?: ("imageChunkField"|"tableChunkField");
+
+                                /**
+                                 * Creates a new ChunkField instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns ChunkField instance
+                                 */
+                                public static create(properties?: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkField): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField;
+
+                                /**
+                                 * Encodes the specified ChunkField message. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField.verify|verify} messages.
+                                 * @param message ChunkField message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkField, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified ChunkField message, length delimited. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField.verify|verify} messages.
+                                 * @param message ChunkField message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.IChunkField, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes a ChunkField message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns ChunkField
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField;
+
+                                /**
+                                 * Decodes a ChunkField message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns ChunkField
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField;
+
+                                /**
+                                 * Verifies a ChunkField message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates a ChunkField message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns ChunkField
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField;
+
+                                /**
+                                 * Creates a plain object from a ChunkField message. Also converts values to other types if specified.
+                                 * @param message ChunkField
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.documentai.v1beta3.Document.ChunkedDocument.Chunk.ChunkField, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this ChunkField to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for ChunkField
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
                         }
+                    }
+
+                    /** Properties of a BlobAsset. */
+                    interface IBlobAsset {
+
+                        /** BlobAsset assetId */
+                        assetId?: (string|null);
+
+                        /** BlobAsset content */
+                        content?: (Uint8Array|Buffer|string|null);
+
+                        /** BlobAsset mimeType */
+                        mimeType?: (string|null);
+                    }
+
+                    /** Represents a BlobAsset. */
+                    class BlobAsset implements IBlobAsset {
+
+                        /**
+                         * Constructs a new BlobAsset.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.documentai.v1beta3.Document.IBlobAsset);
+
+                        /** BlobAsset assetId. */
+                        public assetId: string;
+
+                        /** BlobAsset content. */
+                        public content: (Uint8Array|Buffer|string);
+
+                        /** BlobAsset mimeType. */
+                        public mimeType: string;
+
+                        /**
+                         * Creates a new BlobAsset instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns BlobAsset instance
+                         */
+                        public static create(properties?: google.cloud.documentai.v1beta3.Document.IBlobAsset): google.cloud.documentai.v1beta3.Document.BlobAsset;
+
+                        /**
+                         * Encodes the specified BlobAsset message. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.BlobAsset.verify|verify} messages.
+                         * @param message BlobAsset message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.documentai.v1beta3.Document.IBlobAsset, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified BlobAsset message, length delimited. Does not implicitly {@link google.cloud.documentai.v1beta3.Document.BlobAsset.verify|verify} messages.
+                         * @param message BlobAsset message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.documentai.v1beta3.Document.IBlobAsset, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a BlobAsset message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns BlobAsset
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.documentai.v1beta3.Document.BlobAsset;
+
+                        /**
+                         * Decodes a BlobAsset message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns BlobAsset
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.documentai.v1beta3.Document.BlobAsset;
+
+                        /**
+                         * Verifies a BlobAsset message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a BlobAsset message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns BlobAsset
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.documentai.v1beta3.Document.BlobAsset;
+
+                        /**
+                         * Creates a plain object from a BlobAsset message. Also converts values to other types if specified.
+                         * @param message BlobAsset
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.documentai.v1beta3.Document.BlobAsset, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this BlobAsset to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for BlobAsset
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
                 }
 
@@ -35728,7 +36439,7 @@ export namespace google {
                 interface IRawDocument {
 
                     /** RawDocument content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RawDocument mimeType */
                     mimeType?: (string|null);
@@ -35747,7 +36458,7 @@ export namespace google {
                     constructor(properties?: google.cloud.documentai.v1beta3.IRawDocument);
 
                     /** RawDocument content. */
-                    public content: (Uint8Array|string);
+                    public content: (Uint8Array|Buffer|string);
 
                     /** RawDocument mimeType. */
                     public mimeType: string;
@@ -38572,6 +39283,24 @@ export namespace google {
 
                         /** LayoutConfig chunkingConfig */
                         chunkingConfig?: (google.cloud.documentai.v1beta3.ProcessOptions.LayoutConfig.IChunkingConfig|null);
+
+                        /** LayoutConfig returnImages */
+                        returnImages?: (boolean|null);
+
+                        /** LayoutConfig returnBoundingBoxes */
+                        returnBoundingBoxes?: (boolean|null);
+
+                        /** LayoutConfig enableImageAnnotation */
+                        enableImageAnnotation?: (boolean|null);
+
+                        /** LayoutConfig enableImageExtraction */
+                        enableImageExtraction?: (boolean|null);
+
+                        /** LayoutConfig enableLlmLayoutParsing */
+                        enableLlmLayoutParsing?: (boolean|null);
+
+                        /** LayoutConfig enableTableAnnotation */
+                        enableTableAnnotation?: (boolean|null);
                     }
 
                     /** Represents a LayoutConfig. */
@@ -38585,6 +39314,24 @@ export namespace google {
 
                         /** LayoutConfig chunkingConfig. */
                         public chunkingConfig?: (google.cloud.documentai.v1beta3.ProcessOptions.LayoutConfig.IChunkingConfig|null);
+
+                        /** LayoutConfig returnImages. */
+                        public returnImages: boolean;
+
+                        /** LayoutConfig returnBoundingBoxes. */
+                        public returnBoundingBoxes: boolean;
+
+                        /** LayoutConfig enableImageAnnotation. */
+                        public enableImageAnnotation: boolean;
+
+                        /** LayoutConfig enableImageExtraction. */
+                        public enableImageExtraction: boolean;
+
+                        /** LayoutConfig enableLlmLayoutParsing. */
+                        public enableLlmLayoutParsing: boolean;
+
+                        /** LayoutConfig enableTableAnnotation. */
+                        public enableTableAnnotation: boolean;
 
                         /**
                          * Creates a new LayoutConfig instance using the specified properties.
@@ -50314,6 +51061,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -50354,6 +51104,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -54559,6 +55312,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -54810,7 +55566,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -54841,7 +55597,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -55980,7 +56736,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -55996,7 +56752,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -56856,7 +57612,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -56869,7 +57625,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.

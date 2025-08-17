@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -209,12 +209,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeliveryVehicleAttribute.decode = function decode(reader, length) {
+                        DeliveryVehicleAttribute.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.DeliveryVehicleAttribute();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.key = reader.string();
@@ -422,6 +424,10 @@
                          * @property {google.protobuf.ITimestamp|null} [rawLocationTime] DeliveryVehicleLocation rawLocationTime
                          * @property {maps.fleetengine.delivery.v1.DeliveryVehicleLocationSensor|null} [rawLocationSensor] DeliveryVehicleLocation rawLocationSensor
                          * @property {google.protobuf.IDoubleValue|null} [rawLocationAccuracy] DeliveryVehicleLocation rawLocationAccuracy
+                         * @property {google.type.ILatLng|null} [flpLocation] DeliveryVehicleLocation flpLocation
+                         * @property {google.protobuf.ITimestamp|null} [flpUpdateTime] DeliveryVehicleLocation flpUpdateTime
+                         * @property {google.protobuf.IDoubleValue|null} [flpLatlngAccuracyMeters] DeliveryVehicleLocation flpLatlngAccuracyMeters
+                         * @property {google.protobuf.IInt32Value|null} [flpHeadingDegrees] DeliveryVehicleLocation flpHeadingDegrees
                          * @property {google.type.ILatLng|null} [supplementalLocation] DeliveryVehicleLocation supplementalLocation
                          * @property {google.protobuf.ITimestamp|null} [supplementalLocationTime] DeliveryVehicleLocation supplementalLocationTime
                          * @property {maps.fleetengine.delivery.v1.DeliveryVehicleLocationSensor|null} [supplementalLocationSensor] DeliveryVehicleLocation supplementalLocationSensor
@@ -629,6 +635,38 @@
                         DeliveryVehicleLocation.prototype.rawLocationAccuracy = null;
     
                         /**
+                         * DeliveryVehicleLocation flpLocation.
+                         * @member {google.type.ILatLng|null|undefined} flpLocation
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryVehicleLocation
+                         * @instance
+                         */
+                        DeliveryVehicleLocation.prototype.flpLocation = null;
+    
+                        /**
+                         * DeliveryVehicleLocation flpUpdateTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} flpUpdateTime
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryVehicleLocation
+                         * @instance
+                         */
+                        DeliveryVehicleLocation.prototype.flpUpdateTime = null;
+    
+                        /**
+                         * DeliveryVehicleLocation flpLatlngAccuracyMeters.
+                         * @member {google.protobuf.IDoubleValue|null|undefined} flpLatlngAccuracyMeters
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryVehicleLocation
+                         * @instance
+                         */
+                        DeliveryVehicleLocation.prototype.flpLatlngAccuracyMeters = null;
+    
+                        /**
+                         * DeliveryVehicleLocation flpHeadingDegrees.
+                         * @member {google.protobuf.IInt32Value|null|undefined} flpHeadingDegrees
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryVehicleLocation
+                         * @instance
+                         */
+                        DeliveryVehicleLocation.prototype.flpHeadingDegrees = null;
+    
+                        /**
                          * DeliveryVehicleLocation supplementalLocation.
                          * @member {google.type.ILatLng|null|undefined} supplementalLocation
                          * @memberof maps.fleetengine.delivery.v1.DeliveryVehicleLocation
@@ -748,6 +786,14 @@
                                 $root.google.protobuf.BoolValue.encode(message.isRoadSnapped, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
                             if (message.rawLocationSensor != null && Object.hasOwnProperty.call(message, "rawLocationSensor"))
                                 writer.uint32(/* id 28, wireType 0 =*/224).int32(message.rawLocationSensor);
+                            if (message.flpLocation != null && Object.hasOwnProperty.call(message, "flpLocation"))
+                                $root.google.type.LatLng.encode(message.flpLocation, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
+                            if (message.flpUpdateTime != null && Object.hasOwnProperty.call(message, "flpUpdateTime"))
+                                $root.google.protobuf.Timestamp.encode(message.flpUpdateTime, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
+                            if (message.flpLatlngAccuracyMeters != null && Object.hasOwnProperty.call(message, "flpLatlngAccuracyMeters"))
+                                $root.google.protobuf.DoubleValue.encode(message.flpLatlngAccuracyMeters, writer.uint32(/* id 31, wireType 2 =*/250).fork()).ldelim();
+                            if (message.flpHeadingDegrees != null && Object.hasOwnProperty.call(message, "flpHeadingDegrees"))
+                                $root.google.protobuf.Int32Value.encode(message.flpHeadingDegrees, writer.uint32(/* id 32, wireType 2 =*/258).fork()).ldelim();
                             return writer;
                         };
     
@@ -775,12 +821,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeliveryVehicleLocation.decode = function decode(reader, length) {
+                        DeliveryVehicleLocation.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.location = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -872,6 +920,22 @@
                                     }
                                 case 25: {
                                         message.rawLocationAccuracy = $root.google.protobuf.DoubleValue.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 29: {
+                                        message.flpLocation = $root.google.type.LatLng.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 30: {
+                                        message.flpUpdateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 31: {
+                                        message.flpLatlngAccuracyMeters = $root.google.protobuf.DoubleValue.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 32: {
+                                        message.flpHeadingDegrees = $root.google.protobuf.Int32Value.decode(reader, reader.uint32());
                                         break;
                                     }
                                 case 18: {
@@ -1063,6 +1127,26 @@
                                 var error = $root.google.protobuf.DoubleValue.verify(message.rawLocationAccuracy);
                                 if (error)
                                     return "rawLocationAccuracy." + error;
+                            }
+                            if (message.flpLocation != null && message.hasOwnProperty("flpLocation")) {
+                                var error = $root.google.type.LatLng.verify(message.flpLocation);
+                                if (error)
+                                    return "flpLocation." + error;
+                            }
+                            if (message.flpUpdateTime != null && message.hasOwnProperty("flpUpdateTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.flpUpdateTime);
+                                if (error)
+                                    return "flpUpdateTime." + error;
+                            }
+                            if (message.flpLatlngAccuracyMeters != null && message.hasOwnProperty("flpLatlngAccuracyMeters")) {
+                                var error = $root.google.protobuf.DoubleValue.verify(message.flpLatlngAccuracyMeters);
+                                if (error)
+                                    return "flpLatlngAccuracyMeters." + error;
+                            }
+                            if (message.flpHeadingDegrees != null && message.hasOwnProperty("flpHeadingDegrees")) {
+                                var error = $root.google.protobuf.Int32Value.verify(message.flpHeadingDegrees);
+                                if (error)
+                                    return "flpHeadingDegrees." + error;
                             }
                             if (message.supplementalLocation != null && message.hasOwnProperty("supplementalLocation")) {
                                 var error = $root.google.type.LatLng.verify(message.supplementalLocation);
@@ -1305,6 +1389,26 @@
                                     throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicleLocation.rawLocationAccuracy: object expected");
                                 message.rawLocationAccuracy = $root.google.protobuf.DoubleValue.fromObject(object.rawLocationAccuracy);
                             }
+                            if (object.flpLocation != null) {
+                                if (typeof object.flpLocation !== "object")
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicleLocation.flpLocation: object expected");
+                                message.flpLocation = $root.google.type.LatLng.fromObject(object.flpLocation);
+                            }
+                            if (object.flpUpdateTime != null) {
+                                if (typeof object.flpUpdateTime !== "object")
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicleLocation.flpUpdateTime: object expected");
+                                message.flpUpdateTime = $root.google.protobuf.Timestamp.fromObject(object.flpUpdateTime);
+                            }
+                            if (object.flpLatlngAccuracyMeters != null) {
+                                if (typeof object.flpLatlngAccuracyMeters !== "object")
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicleLocation.flpLatlngAccuracyMeters: object expected");
+                                message.flpLatlngAccuracyMeters = $root.google.protobuf.DoubleValue.fromObject(object.flpLatlngAccuracyMeters);
+                            }
+                            if (object.flpHeadingDegrees != null) {
+                                if (typeof object.flpHeadingDegrees !== "object")
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicleLocation.flpHeadingDegrees: object expected");
+                                message.flpHeadingDegrees = $root.google.protobuf.Int32Value.fromObject(object.flpHeadingDegrees);
+                            }
                             if (object.supplementalLocation != null) {
                                 if (typeof object.supplementalLocation !== "object")
                                     throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicleLocation.supplementalLocation: object expected");
@@ -1411,6 +1515,10 @@
                                 object.roadSnapped = false;
                                 object.isRoadSnapped = null;
                                 object.rawLocationSensor = options.enums === String ? "UNKNOWN_SENSOR" : 0;
+                                object.flpLocation = null;
+                                object.flpUpdateTime = null;
+                                object.flpLatlngAccuracyMeters = null;
+                                object.flpHeadingDegrees = null;
                             }
                             if (message.location != null && message.hasOwnProperty("location"))
                                 object.location = $root.google.type.LatLng.toObject(message.location, options);
@@ -1468,6 +1576,14 @@
                                 object.isRoadSnapped = $root.google.protobuf.BoolValue.toObject(message.isRoadSnapped, options);
                             if (message.rawLocationSensor != null && message.hasOwnProperty("rawLocationSensor"))
                                 object.rawLocationSensor = options.enums === String ? $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocationSensor[message.rawLocationSensor] === undefined ? message.rawLocationSensor : $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocationSensor[message.rawLocationSensor] : message.rawLocationSensor;
+                            if (message.flpLocation != null && message.hasOwnProperty("flpLocation"))
+                                object.flpLocation = $root.google.type.LatLng.toObject(message.flpLocation, options);
+                            if (message.flpUpdateTime != null && message.hasOwnProperty("flpUpdateTime"))
+                                object.flpUpdateTime = $root.google.protobuf.Timestamp.toObject(message.flpUpdateTime, options);
+                            if (message.flpLatlngAccuracyMeters != null && message.hasOwnProperty("flpLatlngAccuracyMeters"))
+                                object.flpLatlngAccuracyMeters = $root.google.protobuf.DoubleValue.toObject(message.flpLatlngAccuracyMeters, options);
+                            if (message.flpHeadingDegrees != null && message.hasOwnProperty("flpHeadingDegrees"))
+                                object.flpHeadingDegrees = $root.google.protobuf.Int32Value.toObject(message.flpHeadingDegrees, options);
                             return object;
                         };
     
@@ -1644,12 +1760,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TimeWindow.decode = function decode(reader, length) {
+                        TimeWindow.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.TimeWindow();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -1917,12 +2035,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TaskAttribute.decode = function decode(reader, length) {
+                        TaskAttribute.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.TaskAttribute();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.key = reader.string();
@@ -2187,6 +2307,39 @@
                          */
     
                         /**
+                         * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|deleteDeliveryVehicle}.
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryService
+                         * @typedef DeleteDeliveryVehicleCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.protobuf.Empty} [response] Empty
+                         */
+    
+                        /**
+                         * Calls DeleteDeliveryVehicle.
+                         * @function deleteDeliveryVehicle
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryService
+                         * @instance
+                         * @param {maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest} request DeleteDeliveryVehicleRequest message or plain object
+                         * @param {maps.fleetengine.delivery.v1.DeliveryService.DeleteDeliveryVehicleCallback} callback Node-style callback called with the error, if any, and Empty
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(DeliveryService.prototype.deleteDeliveryVehicle = function deleteDeliveryVehicle(request, callback) {
+                            return this.rpcCall(deleteDeliveryVehicle, $root.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest, $root.google.protobuf.Empty, request, callback);
+                        }, "name", { value: "DeleteDeliveryVehicle" });
+    
+                        /**
+                         * Calls DeleteDeliveryVehicle.
+                         * @function deleteDeliveryVehicle
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryService
+                         * @instance
+                         * @param {maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest} request DeleteDeliveryVehicleRequest message or plain object
+                         * @returns {Promise<google.protobuf.Empty>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
                          * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|updateDeliveryVehicle}.
                          * @memberof maps.fleetengine.delivery.v1.DeliveryService
                          * @typedef UpdateDeliveryVehicleCallback
@@ -2315,6 +2468,39 @@
                          * @instance
                          * @param {maps.fleetengine.delivery.v1.IGetTaskRequest} request GetTaskRequest message or plain object
                          * @returns {Promise<maps.fleetengine.delivery.v1.Task>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|deleteTask}.
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryService
+                         * @typedef DeleteTaskCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.protobuf.Empty} [response] Empty
+                         */
+    
+                        /**
+                         * Calls DeleteTask.
+                         * @function deleteTask
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryService
+                         * @instance
+                         * @param {maps.fleetengine.delivery.v1.IDeleteTaskRequest} request DeleteTaskRequest message or plain object
+                         * @param {maps.fleetengine.delivery.v1.DeliveryService.DeleteTaskCallback} callback Node-style callback called with the error, if any, and Empty
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(DeliveryService.prototype.deleteTask = function deleteTask(request, callback) {
+                            return this.rpcCall(deleteTask, $root.maps.fleetengine.delivery.v1.DeleteTaskRequest, $root.google.protobuf.Empty, request, callback);
+                        }, "name", { value: "DeleteTask" });
+    
+                        /**
+                         * Calls DeleteTask.
+                         * @function deleteTask
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryService
+                         * @instance
+                         * @param {maps.fleetengine.delivery.v1.IDeleteTaskRequest} request DeleteTaskRequest message or plain object
+                         * @returns {Promise<google.protobuf.Empty>} Promise
                          * @variation 2
                          */
     
@@ -2571,12 +2757,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateDeliveryVehicleRequest.decode = function decode(reader, length) {
+                        CreateDeliveryVehicleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.CreateDeliveryVehicleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -2832,12 +3020,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetDeliveryVehicleRequest.decode = function decode(reader, length) {
+                        GetDeliveryVehicleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.GetDeliveryVehicleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -2966,6 +3156,240 @@
                         };
     
                         return GetDeliveryVehicleRequest;
+                    })();
+    
+                    v1.DeleteDeliveryVehicleRequest = (function() {
+    
+                        /**
+                         * Properties of a DeleteDeliveryVehicleRequest.
+                         * @memberof maps.fleetengine.delivery.v1
+                         * @interface IDeleteDeliveryVehicleRequest
+                         * @property {maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null} [header] DeleteDeliveryVehicleRequest header
+                         * @property {string|null} [name] DeleteDeliveryVehicleRequest name
+                         */
+    
+                        /**
+                         * Constructs a new DeleteDeliveryVehicleRequest.
+                         * @memberof maps.fleetengine.delivery.v1
+                         * @classdesc Represents a DeleteDeliveryVehicleRequest.
+                         * @implements IDeleteDeliveryVehicleRequest
+                         * @constructor
+                         * @param {maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest=} [properties] Properties to set
+                         */
+                        function DeleteDeliveryVehicleRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * DeleteDeliveryVehicleRequest header.
+                         * @member {maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null|undefined} header
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @instance
+                         */
+                        DeleteDeliveryVehicleRequest.prototype.header = null;
+    
+                        /**
+                         * DeleteDeliveryVehicleRequest name.
+                         * @member {string} name
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @instance
+                         */
+                        DeleteDeliveryVehicleRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new DeleteDeliveryVehicleRequest instance using the specified properties.
+                         * @function create
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest=} [properties] Properties to set
+                         * @returns {maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest} DeleteDeliveryVehicleRequest instance
+                         */
+                        DeleteDeliveryVehicleRequest.create = function create(properties) {
+                            return new DeleteDeliveryVehicleRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified DeleteDeliveryVehicleRequest message. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest} message DeleteDeliveryVehicleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DeleteDeliveryVehicleRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                                $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified DeleteDeliveryVehicleRequest message, length delimited. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest} message DeleteDeliveryVehicleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DeleteDeliveryVehicleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a DeleteDeliveryVehicleRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest} DeleteDeliveryVehicleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DeleteDeliveryVehicleRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a DeleteDeliveryVehicleRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest} DeleteDeliveryVehicleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DeleteDeliveryVehicleRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a DeleteDeliveryVehicleRequest message.
+                         * @function verify
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        DeleteDeliveryVehicleRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.header != null && message.hasOwnProperty("header")) {
+                                var error = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.verify(message.header);
+                                if (error)
+                                    return "header." + error;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a DeleteDeliveryVehicleRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest} DeleteDeliveryVehicleRequest
+                         */
+                        DeleteDeliveryVehicleRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest)
+                                return object;
+                            var message = new $root.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest();
+                            if (object.header != null) {
+                                if (typeof object.header !== "object")
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest.header: object expected");
+                                message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.fromObject(object.header);
+                            }
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a DeleteDeliveryVehicleRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest} message DeleteDeliveryVehicleRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        DeleteDeliveryVehicleRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.header = null;
+                                object.name = "";
+                            }
+                            if (message.header != null && message.hasOwnProperty("header"))
+                                object.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.toObject(message.header, options);
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this DeleteDeliveryVehicleRequest to JSON.
+                         * @function toJSON
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        DeleteDeliveryVehicleRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for DeleteDeliveryVehicleRequest
+                         * @function getTypeUrl
+                         * @memberof maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        DeleteDeliveryVehicleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest";
+                        };
+    
+                        return DeleteDeliveryVehicleRequest;
                     })();
     
                     v1.ListDeliveryVehiclesRequest = (function() {
@@ -3108,12 +3532,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListDeliveryVehiclesRequest.decode = function decode(reader, length) {
+                        ListDeliveryVehiclesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -3406,12 +3832,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListDeliveryVehiclesResponse.decode = function decode(reader, length) {
+                        ListDeliveryVehiclesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.ListDeliveryVehiclesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.deliveryVehicles && message.deliveryVehicles.length))
@@ -3690,12 +4118,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateDeliveryVehicleRequest.decode = function decode(reader, length) {
+                        UpdateDeliveryVehicleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.UpdateDeliveryVehicleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -3957,12 +4387,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        BatchCreateTasksRequest.decode = function decode(reader, length) {
+                        BatchCreateTasksRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.BatchCreateTasksRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -4212,12 +4644,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        BatchCreateTasksResponse.decode = function decode(reader, length) {
+                        BatchCreateTasksResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.BatchCreateTasksResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.tasks && message.tasks.length))
@@ -4467,12 +4901,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateTaskRequest.decode = function decode(reader, length) {
+                        CreateTaskRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.CreateTaskRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -4728,12 +5164,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetTaskRequest.decode = function decode(reader, length) {
+                        GetTaskRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.GetTaskRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -4864,6 +5302,240 @@
                         return GetTaskRequest;
                     })();
     
+                    v1.DeleteTaskRequest = (function() {
+    
+                        /**
+                         * Properties of a DeleteTaskRequest.
+                         * @memberof maps.fleetengine.delivery.v1
+                         * @interface IDeleteTaskRequest
+                         * @property {maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null} [header] DeleteTaskRequest header
+                         * @property {string|null} [name] DeleteTaskRequest name
+                         */
+    
+                        /**
+                         * Constructs a new DeleteTaskRequest.
+                         * @memberof maps.fleetengine.delivery.v1
+                         * @classdesc Represents a DeleteTaskRequest.
+                         * @implements IDeleteTaskRequest
+                         * @constructor
+                         * @param {maps.fleetengine.delivery.v1.IDeleteTaskRequest=} [properties] Properties to set
+                         */
+                        function DeleteTaskRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * DeleteTaskRequest header.
+                         * @member {maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null|undefined} header
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @instance
+                         */
+                        DeleteTaskRequest.prototype.header = null;
+    
+                        /**
+                         * DeleteTaskRequest name.
+                         * @member {string} name
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @instance
+                         */
+                        DeleteTaskRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new DeleteTaskRequest instance using the specified properties.
+                         * @function create
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.IDeleteTaskRequest=} [properties] Properties to set
+                         * @returns {maps.fleetengine.delivery.v1.DeleteTaskRequest} DeleteTaskRequest instance
+                         */
+                        DeleteTaskRequest.create = function create(properties) {
+                            return new DeleteTaskRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified DeleteTaskRequest message. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteTaskRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.IDeleteTaskRequest} message DeleteTaskRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DeleteTaskRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                                $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified DeleteTaskRequest message, length delimited. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteTaskRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.IDeleteTaskRequest} message DeleteTaskRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DeleteTaskRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a DeleteTaskRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {maps.fleetengine.delivery.v1.DeleteTaskRequest} DeleteTaskRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DeleteTaskRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.DeleteTaskRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a DeleteTaskRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {maps.fleetengine.delivery.v1.DeleteTaskRequest} DeleteTaskRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DeleteTaskRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a DeleteTaskRequest message.
+                         * @function verify
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        DeleteTaskRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.header != null && message.hasOwnProperty("header")) {
+                                var error = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.verify(message.header);
+                                if (error)
+                                    return "header." + error;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a DeleteTaskRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {maps.fleetengine.delivery.v1.DeleteTaskRequest} DeleteTaskRequest
+                         */
+                        DeleteTaskRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.maps.fleetengine.delivery.v1.DeleteTaskRequest)
+                                return object;
+                            var message = new $root.maps.fleetengine.delivery.v1.DeleteTaskRequest();
+                            if (object.header != null) {
+                                if (typeof object.header !== "object")
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeleteTaskRequest.header: object expected");
+                                message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.fromObject(object.header);
+                            }
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a DeleteTaskRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {maps.fleetengine.delivery.v1.DeleteTaskRequest} message DeleteTaskRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        DeleteTaskRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.header = null;
+                                object.name = "";
+                            }
+                            if (message.header != null && message.hasOwnProperty("header"))
+                                object.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.toObject(message.header, options);
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this DeleteTaskRequest to JSON.
+                         * @function toJSON
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        DeleteTaskRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for DeleteTaskRequest
+                         * @function getTypeUrl
+                         * @memberof maps.fleetengine.delivery.v1.DeleteTaskRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        DeleteTaskRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/maps.fleetengine.delivery.v1.DeleteTaskRequest";
+                        };
+    
+                        return DeleteTaskRequest;
+                    })();
+    
                     v1.UpdateTaskRequest = (function() {
     
                         /**
@@ -4971,12 +5643,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateTaskRequest.decode = function decode(reader, length) {
+                        UpdateTaskRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.UpdateTaskRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -5258,12 +5932,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListTasksRequest.decode = function decode(reader, length) {
+                        ListTasksRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.ListTasksRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -5539,12 +6215,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListTasksResponse.decode = function decode(reader, length) {
+                        ListTasksResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.ListTasksResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.tasks && message.tasks.length))
@@ -5812,12 +6490,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetTaskTrackingInfoRequest.decode = function decode(reader, length) {
+                        GetTaskTrackingInfoRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.GetTaskTrackingInfoRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.header = $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader.decode(reader, reader.uint32());
@@ -5956,6 +6636,7 @@
                          * @interface IDeliveryVehicle
                          * @property {string|null} [name] DeliveryVehicle name
                          * @property {maps.fleetengine.delivery.v1.IDeliveryVehicleLocation|null} [lastLocation] DeliveryVehicle lastLocation
+                         * @property {Array.<maps.fleetengine.delivery.v1.IDeliveryVehicleLocation>|null} [pastLocations] DeliveryVehicle pastLocations
                          * @property {maps.fleetengine.delivery.v1.DeliveryVehicleNavigationStatus|null} [navigationStatus] DeliveryVehicle navigationStatus
                          * @property {Uint8Array|null} [currentRouteSegment] DeliveryVehicle currentRouteSegment
                          * @property {google.type.ILatLng|null} [currentRouteSegmentEndPoint] DeliveryVehicle currentRouteSegmentEndPoint
@@ -5975,6 +6656,7 @@
                          * @param {maps.fleetengine.delivery.v1.IDeliveryVehicle=} [properties] Properties to set
                          */
                         function DeliveryVehicle(properties) {
+                            this.pastLocations = [];
                             this.remainingVehicleJourneySegments = [];
                             this.attributes = [];
                             if (properties)
@@ -5998,6 +6680,14 @@
                          * @instance
                          */
                         DeliveryVehicle.prototype.lastLocation = null;
+    
+                        /**
+                         * DeliveryVehicle pastLocations.
+                         * @member {Array.<maps.fleetengine.delivery.v1.IDeliveryVehicleLocation>} pastLocations
+                         * @memberof maps.fleetengine.delivery.v1.DeliveryVehicle
+                         * @instance
+                         */
+                        DeliveryVehicle.prototype.pastLocations = $util.emptyArray;
     
                         /**
                          * DeliveryVehicle navigationStatus.
@@ -6109,6 +6799,9 @@
                                     $root.maps.fleetengine.delivery.v1.DeliveryVehicleAttribute.encode(message.attributes[i], writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                                 writer.uint32(/* id 10, wireType 0 =*/80).int32(message.type);
+                            if (message.pastLocations != null && message.pastLocations.length)
+                                for (var i = 0; i < message.pastLocations.length; ++i)
+                                    $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.encode(message.pastLocations[i], writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                             return writer;
                         };
     
@@ -6136,12 +6829,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeliveryVehicle.decode = function decode(reader, length) {
+                        DeliveryVehicle.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.DeliveryVehicle();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6149,6 +6844,12 @@
                                     }
                                 case 2: {
                                         message.lastLocation = $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 12: {
+                                        if (!(message.pastLocations && message.pastLocations.length))
+                                            message.pastLocations = [];
+                                        message.pastLocations.push($root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.decode(reader, reader.uint32()));
                                         break;
                                     }
                                 case 3: {
@@ -6230,6 +6931,15 @@
                                 if (error)
                                     return "lastLocation." + error;
                             }
+                            if (message.pastLocations != null && message.hasOwnProperty("pastLocations")) {
+                                if (!Array.isArray(message.pastLocations))
+                                    return "pastLocations: array expected";
+                                for (var i = 0; i < message.pastLocations.length; ++i) {
+                                    var error = $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.verify(message.pastLocations[i]);
+                                    if (error)
+                                        return "pastLocations." + error;
+                                }
+                            }
                             if (message.navigationStatus != null && message.hasOwnProperty("navigationStatus"))
                                 switch (message.navigationStatus) {
                                 default:
@@ -6309,6 +7019,16 @@
                                 if (typeof object.lastLocation !== "object")
                                     throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicle.lastLocation: object expected");
                                 message.lastLocation = $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.fromObject(object.lastLocation);
+                            }
+                            if (object.pastLocations) {
+                                if (!Array.isArray(object.pastLocations))
+                                    throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicle.pastLocations: array expected");
+                                message.pastLocations = [];
+                                for (var i = 0; i < object.pastLocations.length; ++i) {
+                                    if (typeof object.pastLocations[i] !== "object")
+                                        throw TypeError(".maps.fleetengine.delivery.v1.DeliveryVehicle.pastLocations: object expected");
+                                    message.pastLocations[i] = $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.fromObject(object.pastLocations[i]);
+                                }
                             }
                             switch (object.navigationStatus) {
                             default:
@@ -6425,6 +7145,7 @@
                             if (options.arrays || options.defaults) {
                                 object.remainingVehicleJourneySegments = [];
                                 object.attributes = [];
+                                object.pastLocations = [];
                             }
                             if (options.defaults) {
                                 object.name = "";
@@ -6468,6 +7189,11 @@
                             }
                             if (message.type != null && message.hasOwnProperty("type"))
                                 object.type = options.enums === String ? $root.maps.fleetengine.delivery.v1.DeliveryVehicle.DeliveryVehicleType[message.type] === undefined ? message.type : $root.maps.fleetengine.delivery.v1.DeliveryVehicle.DeliveryVehicleType[message.type] : message.type;
+                            if (message.pastLocations && message.pastLocations.length) {
+                                object.pastLocations = [];
+                                for (var j = 0; j < message.pastLocations.length; ++j)
+                                    object.pastLocations[j] = $root.maps.fleetengine.delivery.v1.DeliveryVehicleLocation.toObject(message.pastLocations[j], options);
+                            }
                             return object;
                         };
     
@@ -6605,12 +7331,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LocationInfo.decode = function decode(reader, length) {
+                        LocationInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.LocationInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.point = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -6848,12 +7576,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VehicleJourneySegment.decode = function decode(reader, length) {
+                        VehicleJourneySegment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.VehicleJourneySegment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.stop = $root.maps.fleetengine.delivery.v1.VehicleStop.decode(reader, reader.uint32());
@@ -7147,12 +7877,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VehicleStop.decode = function decode(reader, length) {
+                        VehicleStop.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.VehicleStop();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.plannedLocation = $root.maps.fleetengine.delivery.v1.LocationInfo.decode(reader, reader.uint32());
@@ -7448,12 +8180,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            TaskInfo.decode = function decode(reader, length) {
+                            TaskInfo.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.VehicleStop.TaskInfo();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.taskId = reader.string();
@@ -7828,12 +8562,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeliveryRequestHeader.decode = function decode(reader, length) {
+                        DeliveryRequestHeader.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.DeliveryRequestHeader();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.languageCode = reader.string();
@@ -8405,12 +9141,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TaskTrackingInfo.decode = function decode(reader, length) {
+                        TaskTrackingInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.TaskTrackingInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -9049,12 +9787,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Task.decode = function decode(reader, length) {
+                        Task.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.Task();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -9671,12 +10411,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            JourneySharingInfo.decode = function decode(reader, length) {
+                            JourneySharingInfo.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.Task.JourneySharingInfo();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.remainingVehicleJourneySegments && message.remainingVehicleJourneySegments.length))
@@ -9982,12 +10724,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TaskTrackingViewConfig.decode = function decode(reader, length) {
+                        TaskTrackingViewConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.TaskTrackingViewConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.routePolylinePointsVisibility = $root.maps.fleetengine.delivery.v1.TaskTrackingViewConfig.VisibilityOption.decode(reader, reader.uint32());
@@ -10331,12 +11075,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            VisibilityOption.decode = function decode(reader, length) {
+                            VisibilityOption.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.maps.fleetengine.delivery.v1.TaskTrackingViewConfig.VisibilityOption();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.remainingStopCountThreshold = reader.int32();
@@ -10669,12 +11415,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Viewport.decode = function decode(reader, length) {
+                    Viewport.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.geo.type.Viewport();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.low = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -10921,12 +11669,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                LatLng.decode = function decode(reader, length) {
+                LatLng.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.LatLng();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.latitude = reader.double();
@@ -11190,12 +11940,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -11540,12 +12292,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -11924,12 +12678,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -12156,12 +12912,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -12525,12 +13283,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -13054,12 +13814,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -13505,12 +14267,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -13772,12 +14536,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -13980,12 +14746,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -14188,12 +14956,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -14396,12 +15166,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -14669,12 +15441,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15048,12 +15822,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15256,12 +16032,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15488,12 +16266,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -15766,12 +16546,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -16165,12 +16947,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -16560,12 +17344,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -16778,12 +17564,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RoutingRule.decode = function decode(reader, length) {
+                RoutingRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RoutingRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.routingParameters && message.routingParameters.length))
@@ -17011,12 +17799,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RoutingParameter.decode = function decode(reader, length) {
+                RoutingParameter.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RoutingParameter();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.field = reader.string();
@@ -17241,12 +18031,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -17641,12 +18433,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -18308,12 +19102,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -18793,12 +19589,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -19037,12 +19835,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -19293,12 +20093,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -19638,12 +20440,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -20017,12 +20821,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -20542,12 +21348,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -20813,12 +21621,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21132,12 +21942,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -21373,12 +22185,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21630,12 +22444,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21938,12 +22754,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22442,12 +23260,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -23062,12 +23882,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -23542,12 +24364,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -24273,12 +25097,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -24569,12 +25395,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -24855,12 +25683,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -25167,12 +25997,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -25489,12 +26321,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -25848,12 +26682,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -26282,12 +27118,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -26621,12 +27459,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -26897,12 +27737,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -27432,12 +28274,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -27816,12 +28660,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -28106,12 +28952,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -28381,12 +29229,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -28692,12 +29542,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -28960,12 +29812,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -29286,12 +30140,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -29516,12 +30372,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DoubleValue.decode = function decode(reader, length) {
+                DoubleValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DoubleValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.double();
@@ -29719,12 +30577,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FloatValue.decode = function decode(reader, length) {
+                FloatValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FloatValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.float();
@@ -29922,12 +30782,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int64Value.decode = function decode(reader, length) {
+                Int64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int64();
@@ -30139,12 +31001,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt64Value.decode = function decode(reader, length) {
+                UInt64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint64();
@@ -30356,12 +31220,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int32Value.decode = function decode(reader, length) {
+                Int32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int32();
@@ -30559,12 +31425,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt32Value.decode = function decode(reader, length) {
+                UInt32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint32();
@@ -30762,12 +31630,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BoolValue.decode = function decode(reader, length) {
+                BoolValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BoolValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bool();
@@ -30965,12 +31835,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                StringValue.decode = function decode(reader, length) {
+                StringValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.StringValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.string();
@@ -31168,12 +32040,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BytesValue.decode = function decode(reader, length) {
+                BytesValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BytesValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bytes();
@@ -31391,12 +32265,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -31536,6 +32412,183 @@
                 return Duration;
             })();
     
+            protobuf.Empty = (function() {
+    
+                /**
+                 * Properties of an Empty.
+                 * @memberof google.protobuf
+                 * @interface IEmpty
+                 */
+    
+                /**
+                 * Constructs a new Empty.
+                 * @memberof google.protobuf
+                 * @classdesc Represents an Empty.
+                 * @implements IEmpty
+                 * @constructor
+                 * @param {google.protobuf.IEmpty=} [properties] Properties to set
+                 */
+                function Empty(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Creates a new Empty instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {google.protobuf.IEmpty=} [properties] Properties to set
+                 * @returns {google.protobuf.Empty} Empty instance
+                 */
+                Empty.create = function create(properties) {
+                    return new Empty(properties);
+                };
+    
+                /**
+                 * Encodes the specified Empty message. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {google.protobuf.IEmpty} message Empty message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Empty.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Empty message, length delimited. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {google.protobuf.IEmpty} message Empty message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Empty.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes an Empty message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Empty} Empty
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Empty.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes an Empty message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Empty} Empty
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Empty.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies an Empty message.
+                 * @function verify
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Empty.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Empty} Empty
+                 */
+                Empty.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Empty)
+                        return object;
+                    return new $root.google.protobuf.Empty();
+                };
+    
+                /**
+                 * Creates a plain object from an Empty message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {google.protobuf.Empty} message Empty
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Empty.toObject = function toObject() {
+                    return {};
+                };
+    
+                /**
+                 * Converts this Empty to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Empty
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Empty.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Empty
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Empty
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Empty";
+                };
+    
+                return Empty;
+            })();
+    
             protobuf.FieldMask = (function() {
     
                 /**
@@ -31623,12 +32676,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))

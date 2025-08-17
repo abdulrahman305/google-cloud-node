@@ -1,7 +1,4 @@
 {
-  "options": {
-    "syntax": "proto3"
-  },
   "nested": {
     "google": {
       "nested": {
@@ -121,16 +118,24 @@
                           "responseType": "ListInfoTypesResponse",
                           "options": {
                             "(google.api.http).get": "/v2/infoTypes",
-                            "(google.api.http).additional_bindings.get": "/v2/{parent=locations/*}/infoTypes",
+                            "(google.api.http).additional_bindings.get": "/v2/{parent=organizations/*/locations/*}/infoTypes",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
                             {
                               "(google.api.http)": {
                                 "get": "/v2/infoTypes",
-                                "additional_bindings": {
-                                  "get": "/v2/{parent=locations/*}/infoTypes"
-                                }
+                                "additional_bindings": [
+                                  {
+                                    "get": "/v2/{parent=locations/*}/infoTypes"
+                                  },
+                                  {
+                                    "get": "/v2/{parent=projects/*/locations/*}/infoTypes"
+                                  },
+                                  {
+                                    "get": "/v2/{parent=organizations/*/locations/*}/infoTypes"
+                                  }
+                                ]
                               }
                             },
                             {
@@ -1658,7 +1663,8 @@
                             "TSV": 13,
                             "AUDIO": 15,
                             "VIDEO": 16,
-                            "EXECUTABLE": 17
+                            "EXECUTABLE": 17,
+                            "AI_MODEL": 18
                           }
                         }
                       }
@@ -2426,6 +2432,10 @@
                           "type": "string",
                           "id": 4
                         },
+                        "example": {
+                          "type": "string",
+                          "id": 8
+                        },
                         "versions": {
                           "rule": "repeated",
                           "type": "VersionDescription",
@@ -2439,6 +2449,11 @@
                         "sensitivityScore": {
                           "type": "SensitivityScore",
                           "id": 11
+                        },
+                        "specificInfoTypes": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 12
                         }
                       }
                     },
@@ -2483,6 +2498,7 @@
                             "CHINA": 8,
                             "COLOMBIA": 9,
                             "CROATIA": 42,
+                            "CZECHIA": 52,
                             "DENMARK": 10,
                             "FRANCE": 11,
                             "FINLAND": 12,
@@ -2539,7 +2555,8 @@
                             "CREDENTIAL": 4,
                             "GOVERNMENT_ID": 5,
                             "DOCUMENT": 6,
-                            "CONTEXTUAL_INFORMATION": 7
+                            "CONTEXTUAL_INFORMATION": 7,
+                            "CUSTOM": 8
                           }
                         }
                       }
@@ -4968,7 +4985,8 @@
                             "pubSubNotification",
                             "publishToChronicle",
                             "publishToScc",
-                            "tagResources"
+                            "tagResources",
+                            "publishToDataplexCatalog"
                           ]
                         }
                       },
@@ -4992,6 +5010,10 @@
                         "tagResources": {
                           "type": "TagResources",
                           "id": 8
+                        },
+                        "publishToDataplexCatalog": {
+                          "type": "PublishToDataplexCatalog",
+                          "id": 9
                         }
                       },
                       "nested": {
@@ -5000,6 +5022,10 @@
                             "profileTable": {
                               "type": "BigQueryTable",
                               "id": 1
+                            },
+                            "sampleFindingsTable": {
+                              "type": "BigQueryTable",
+                              "id": 2
                             }
                           }
                         },
@@ -5047,6 +5073,14 @@
                         },
                         "PublishToSecurityCommandCenter": {
                           "fields": {}
+                        },
+                        "PublishToDataplexCatalog": {
+                          "fields": {
+                            "lowerDataRiskToLow": {
+                              "type": "bool",
+                              "id": 1
+                            }
+                          }
                         },
                         "TagResources": {
                           "fields": {
@@ -5101,6 +5135,77 @@
                               }
                             }
                           }
+                        }
+                      }
+                    },
+                    "DataProfileFinding": {
+                      "fields": {
+                        "quote": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "infotype": {
+                          "type": "InfoType",
+                          "id": 2
+                        },
+                        "quoteInfo": {
+                          "type": "QuoteInfo",
+                          "id": 3
+                        },
+                        "dataProfileResourceName": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "findingId": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "timestamp": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 6
+                        },
+                        "location": {
+                          "type": "DataProfileFindingLocation",
+                          "id": 7
+                        },
+                        "resourceVisibility": {
+                          "type": "ResourceVisibility",
+                          "id": 8
+                        },
+                        "fullResourceName": {
+                          "type": "string",
+                          "id": 9
+                        },
+                        "dataSourceType": {
+                          "type": "DataSourceType",
+                          "id": 10
+                        }
+                      }
+                    },
+                    "DataProfileFindingLocation": {
+                      "oneofs": {
+                        "locationExtraDetails": {
+                          "oneof": [
+                            "dataProfileFindingRecordLocation"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "containerName": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "dataProfileFindingRecordLocation": {
+                          "type": "DataProfileFindingRecordLocation",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "DataProfileFindingRecordLocation": {
+                      "fields": {
+                        "field": {
+                          "type": "FieldId",
+                          "id": 1
                         }
                       }
                     },
@@ -5282,6 +5387,13 @@
                           "options": {
                             "(google.api.field_behavior)": "REQUIRED"
                           }
+                        },
+                        "processingLocation": {
+                          "type": "ProcessingLocation",
+                          "id": 13,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       },
                       "nested": {
@@ -5314,7 +5426,8 @@
                             "cloudSqlTarget",
                             "secretsTarget",
                             "cloudStorageTarget",
-                            "otherCloudTarget"
+                            "otherCloudTarget",
+                            "vertexDatasetTarget"
                           ]
                         }
                       },
@@ -5338,6 +5451,10 @@
                         "otherCloudTarget": {
                           "type": "OtherCloudDiscoveryTarget",
                           "id": 5
+                        },
+                        "vertexDatasetTarget": {
+                          "type": "VertexDatasetDiscoveryTarget",
+                          "id": 7
                         }
                       }
                     },
@@ -6299,6 +6416,132 @@
                     },
                     "AllOtherResources": {
                       "fields": {}
+                    },
+                    "VertexDatasetDiscoveryTarget": {
+                      "oneofs": {
+                        "cadence": {
+                          "oneof": [
+                            "generationCadence",
+                            "disabled"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "filter": {
+                          "type": "DiscoveryVertexDatasetFilter",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "conditions": {
+                          "type": "DiscoveryVertexDatasetConditions",
+                          "id": 2
+                        },
+                        "generationCadence": {
+                          "type": "DiscoveryVertexDatasetGenerationCadence",
+                          "id": 3
+                        },
+                        "disabled": {
+                          "type": "Disabled",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "DiscoveryVertexDatasetFilter": {
+                      "oneofs": {
+                        "filter": {
+                          "oneof": [
+                            "collection",
+                            "vertexDatasetResourceReference",
+                            "others"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "collection": {
+                          "type": "VertexDatasetCollection",
+                          "id": 1
+                        },
+                        "vertexDatasetResourceReference": {
+                          "type": "VertexDatasetResourceReference",
+                          "id": 2
+                        },
+                        "others": {
+                          "type": "AllOtherResources",
+                          "id": 100
+                        }
+                      }
+                    },
+                    "VertexDatasetCollection": {
+                      "oneofs": {
+                        "pattern": {
+                          "oneof": [
+                            "vertexDatasetRegexes"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "vertexDatasetRegexes": {
+                          "type": "VertexDatasetRegexes",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "VertexDatasetRegexes": {
+                      "fields": {
+                        "patterns": {
+                          "rule": "repeated",
+                          "type": "VertexDatasetRegex",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "VertexDatasetRegex": {
+                      "fields": {
+                        "projectIdRegex": {
+                          "type": "string",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "VertexDatasetResourceReference": {
+                      "fields": {
+                        "datasetResourceName": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "DiscoveryVertexDatasetConditions": {
+                      "fields": {
+                        "createdAfter": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 1
+                        },
+                        "minAge": {
+                          "type": "google.protobuf.Duration",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "DiscoveryVertexDatasetGenerationCadence": {
+                      "fields": {
+                        "refreshFrequency": {
+                          "type": "DataProfileUpdateFrequency",
+                          "id": 1
+                        },
+                        "inspectTemplateModifiedCadence": {
+                          "type": "DiscoveryInspectTemplateModifiedCadence",
+                          "id": 2
+                        }
+                      }
                     },
                     "DlpJob": {
                       "options": {
@@ -7283,6 +7526,20 @@
                         "createTime": {
                           "type": "google.protobuf.Timestamp",
                           "id": 23
+                        },
+                        "sampleFindingsTable": {
+                          "type": "BigQueryTable",
+                          "id": 37
+                        },
+                        "tags": {
+                          "rule": "repeated",
+                          "type": "Tag",
+                          "id": 39
+                        },
+                        "relatedResources": {
+                          "rule": "repeated",
+                          "type": "RelatedResource",
+                          "id": 41
                         }
                       },
                       "nested": {
@@ -7588,9 +7845,23 @@
                           "type": "FileStoreInfoTypeSummary",
                           "id": 21
                         },
+                        "sampleFindingsTable": {
+                          "type": "BigQueryTable",
+                          "id": 22
+                        },
                         "fileStoreIsEmpty": {
                           "type": "bool",
                           "id": 23
+                        },
+                        "tags": {
+                          "rule": "repeated",
+                          "type": "Tag",
+                          "id": 25
+                        },
+                        "relatedResources": {
+                          "rule": "repeated",
+                          "type": "RelatedResource",
+                          "id": 26
                         }
                       },
                       "nested": {
@@ -7600,6 +7871,30 @@
                             "RUNNING": 1,
                             "DONE": 2
                           }
+                        }
+                      }
+                    },
+                    "Tag": {
+                      "fields": {
+                        "namespacedTagValue": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "key": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "value": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "RelatedResource": {
+                      "fields": {
+                        "fullResource": {
+                          "type": "string",
+                          "id": 1
                         }
                       }
                     },
@@ -8177,8 +8472,46 @@
                             "CLUSTER_IMAGE": 6,
                             "CLUSTER_ARCHIVE": 7,
                             "CLUSTER_MULTIMEDIA": 8,
-                            "CLUSTER_EXECUTABLE": 9
+                            "CLUSTER_EXECUTABLE": 9,
+                            "CLUSTER_AI_MODEL": 10
                           }
+                        }
+                      }
+                    },
+                    "ProcessingLocation": {
+                      "fields": {
+                        "imageFallbackLocation": {
+                          "type": "ImageFallbackLocation",
+                          "id": 1
+                        }
+                      },
+                      "nested": {
+                        "MultiRegionProcessing": {
+                          "fields": {}
+                        },
+                        "GlobalProcessing": {
+                          "fields": {}
+                        },
+                        "ImageFallbackLocation": {
+                          "fields": {
+                            "multiRegionProcessing": {
+                              "type": "MultiRegionProcessing",
+                              "id": 100
+                            },
+                            "globalProcessing": {
+                              "type": "GlobalProcessing",
+                              "id": 200
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "SaveToGcsFindingsOutput": {
+                      "fields": {
+                        "findings": {
+                          "rule": "repeated",
+                          "type": "Finding",
+                          "id": 1
                         }
                       }
                     },
@@ -8780,6 +9113,10 @@
                         "tableId": {
                           "type": "string",
                           "id": 2
+                        },
+                        "projectId": {
+                          "type": "string",
+                          "id": 3
                         }
                       }
                     },
@@ -8931,6 +9268,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -9039,6 +9381,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -9214,7 +9560,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -9320,6 +9669,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -9329,6 +9679,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -9344,6 +9695,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9361,18 +9713,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -9413,6 +9759,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9495,6 +9842,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -9568,6 +9916,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9647,6 +9996,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9659,6 +10009,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9700,6 +10051,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9716,6 +10068,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9733,6 +10086,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -9767,6 +10121,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -9908,6 +10263,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -9981,6 +10337,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -10042,10 +10399,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -10129,6 +10483,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -10148,6 +10503,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -10191,6 +10547,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -10224,6 +10581,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -10250,6 +10608,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -10292,6 +10651,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -10341,6 +10701,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -10413,8 +10774,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -10470,6 +10843,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -10501,6 +10875,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -10514,12 +10889,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -10539,6 +10920,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -10552,7 +10934,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

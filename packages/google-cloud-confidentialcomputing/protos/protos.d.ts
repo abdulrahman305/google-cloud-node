@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -356,6 +356,9 @@ export namespace google {
 
                     /** VerifyAttestationRequest tokenOptions */
                     tokenOptions?: (google.cloud.confidentialcomputing.v1.ITokenOptions|null);
+
+                    /** VerifyAttestationRequest attester */
+                    attester?: (string|null);
                 }
 
                 /** Represents a VerifyAttestationRequest. */
@@ -387,6 +390,9 @@ export namespace google {
 
                     /** VerifyAttestationRequest tokenOptions. */
                     public tokenOptions?: (google.cloud.confidentialcomputing.v1.ITokenOptions|null);
+
+                    /** VerifyAttestationRequest attester. */
+                    public attester: string;
 
                     /** VerifyAttestationRequest teeAttestation. */
                     public teeAttestation?: ("tdCcel"|"sevSnpAttestation");
@@ -473,16 +479,16 @@ export namespace google {
                 interface ITdxCcelAttestation {
 
                     /** TdxCcelAttestation ccelAcpiTable */
-                    ccelAcpiTable?: (Uint8Array|string|null);
+                    ccelAcpiTable?: (Uint8Array|Buffer|string|null);
 
                     /** TdxCcelAttestation ccelData */
-                    ccelData?: (Uint8Array|string|null);
+                    ccelData?: (Uint8Array|Buffer|string|null);
 
                     /** TdxCcelAttestation canonicalEventLog */
-                    canonicalEventLog?: (Uint8Array|string|null);
+                    canonicalEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TdxCcelAttestation tdQuote */
-                    tdQuote?: (Uint8Array|string|null);
+                    tdQuote?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a TdxCcelAttestation. */
@@ -495,16 +501,16 @@ export namespace google {
                     constructor(properties?: google.cloud.confidentialcomputing.v1.ITdxCcelAttestation);
 
                     /** TdxCcelAttestation ccelAcpiTable. */
-                    public ccelAcpiTable: (Uint8Array|string);
+                    public ccelAcpiTable: (Uint8Array|Buffer|string);
 
                     /** TdxCcelAttestation ccelData. */
-                    public ccelData: (Uint8Array|string);
+                    public ccelData: (Uint8Array|Buffer|string);
 
                     /** TdxCcelAttestation canonicalEventLog. */
-                    public canonicalEventLog: (Uint8Array|string);
+                    public canonicalEventLog: (Uint8Array|Buffer|string);
 
                     /** TdxCcelAttestation tdQuote. */
-                    public tdQuote: (Uint8Array|string);
+                    public tdQuote: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new TdxCcelAttestation instance using the specified properties.
@@ -588,10 +594,10 @@ export namespace google {
                 interface ISevSnpAttestation {
 
                     /** SevSnpAttestation report */
-                    report?: (Uint8Array|string|null);
+                    report?: (Uint8Array|Buffer|string|null);
 
                     /** SevSnpAttestation auxBlob */
-                    auxBlob?: (Uint8Array|string|null);
+                    auxBlob?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a SevSnpAttestation. */
@@ -604,10 +610,10 @@ export namespace google {
                     constructor(properties?: google.cloud.confidentialcomputing.v1.ISevSnpAttestation);
 
                     /** SevSnpAttestation report. */
-                    public report: (Uint8Array|string);
+                    public report: (Uint8Array|Buffer|string);
 
                     /** SevSnpAttestation auxBlob. */
-                    public auxBlob: (Uint8Array|string);
+                    public auxBlob: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new SevSnpAttestation instance using the specified properties.
@@ -1312,13 +1318,13 @@ export namespace google {
                     quotes?: (google.cloud.confidentialcomputing.v1.TpmAttestation.IQuote[]|null);
 
                     /** TpmAttestation tcgEventLog */
-                    tcgEventLog?: (Uint8Array|string|null);
+                    tcgEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation canonicalEventLog */
-                    canonicalEventLog?: (Uint8Array|string|null);
+                    canonicalEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation akCert */
-                    akCert?: (Uint8Array|string|null);
+                    akCert?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation certChain */
                     certChain?: (Uint8Array[]|null);
@@ -1337,13 +1343,13 @@ export namespace google {
                     public quotes: google.cloud.confidentialcomputing.v1.TpmAttestation.IQuote[];
 
                     /** TpmAttestation tcgEventLog. */
-                    public tcgEventLog: (Uint8Array|string);
+                    public tcgEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation canonicalEventLog. */
-                    public canonicalEventLog: (Uint8Array|string);
+                    public canonicalEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation akCert. */
-                    public akCert: (Uint8Array|string);
+                    public akCert: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation certChain. */
                     public certChain: Uint8Array[];
@@ -1438,10 +1444,10 @@ export namespace google {
                         pcrValues?: ({ [k: string]: Uint8Array }|null);
 
                         /** Quote rawQuote */
-                        rawQuote?: (Uint8Array|string|null);
+                        rawQuote?: (Uint8Array|Buffer|string|null);
 
                         /** Quote rawSignature */
-                        rawSignature?: (Uint8Array|string|null);
+                        rawSignature?: (Uint8Array|Buffer|string|null);
                     }
 
                     /** Represents a Quote. */
@@ -1460,10 +1466,10 @@ export namespace google {
                         public pcrValues: { [k: string]: Uint8Array };
 
                         /** Quote rawQuote. */
-                        public rawQuote: (Uint8Array|string);
+                        public rawQuote: (Uint8Array|Buffer|string);
 
                         /** Quote rawSignature. */
-                        public rawSignature: (Uint8Array|string);
+                        public rawSignature: (Uint8Array|Buffer|string);
 
                         /**
                          * Creates a new Quote instance using the specified properties.
@@ -1742,13 +1748,13 @@ export namespace google {
                 interface IContainerImageSignature {
 
                     /** ContainerImageSignature payload */
-                    payload?: (Uint8Array|string|null);
+                    payload?: (Uint8Array|Buffer|string|null);
 
                     /** ContainerImageSignature signature */
-                    signature?: (Uint8Array|string|null);
+                    signature?: (Uint8Array|Buffer|string|null);
 
                     /** ContainerImageSignature publicKey */
-                    publicKey?: (Uint8Array|string|null);
+                    publicKey?: (Uint8Array|Buffer|string|null);
 
                     /** ContainerImageSignature sigAlg */
                     sigAlg?: (google.cloud.confidentialcomputing.v1.SigningAlgorithm|keyof typeof google.cloud.confidentialcomputing.v1.SigningAlgorithm|null);
@@ -1764,13 +1770,13 @@ export namespace google {
                     constructor(properties?: google.cloud.confidentialcomputing.v1.IContainerImageSignature);
 
                     /** ContainerImageSignature payload. */
-                    public payload: (Uint8Array|string);
+                    public payload: (Uint8Array|Buffer|string);
 
                     /** ContainerImageSignature signature. */
-                    public signature: (Uint8Array|string);
+                    public signature: (Uint8Array|Buffer|string);
 
                     /** ContainerImageSignature publicKey. */
-                    public publicKey: (Uint8Array|string);
+                    public publicKey: (Uint8Array|Buffer|string);
 
                     /** ContainerImageSignature sigAlg. */
                     public sigAlg: (google.cloud.confidentialcomputing.v1.SigningAlgorithm|keyof typeof google.cloud.confidentialcomputing.v1.SigningAlgorithm);
@@ -1939,7 +1945,7 @@ export namespace google {
                     used?: (boolean|null);
 
                     /** Challenge nonce */
-                    nonce?: (Uint8Array|string|null);
+                    nonce?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a Challenge. */
@@ -1964,7 +1970,7 @@ export namespace google {
                     public used: boolean;
 
                     /** Challenge nonce. */
-                    public nonce: (Uint8Array|string);
+                    public nonce: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new Challenge instance using the specified properties.
@@ -2260,7 +2266,7 @@ export namespace google {
                 interface IVerifyAttestationResponse {
 
                     /** VerifyAttestationResponse claimsToken */
-                    claimsToken?: (Uint8Array|string|null);
+                    claimsToken?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a VerifyAttestationResponse. */
@@ -2273,7 +2279,7 @@ export namespace google {
                     constructor(properties?: google.cloud.confidentialcomputing.v1alpha1.IVerifyAttestationResponse);
 
                     /** VerifyAttestationResponse claimsToken. */
-                    public claimsToken: (Uint8Array|string);
+                    public claimsToken: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new VerifyAttestationResponse instance using the specified properties.
@@ -2457,13 +2463,13 @@ export namespace google {
                     quotes?: (google.cloud.confidentialcomputing.v1alpha1.TpmAttestation.IQuote[]|null);
 
                     /** TpmAttestation tcgEventLog */
-                    tcgEventLog?: (Uint8Array|string|null);
+                    tcgEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation canonicalEventLog */
-                    canonicalEventLog?: (Uint8Array|string|null);
+                    canonicalEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation akCert */
-                    akCert?: (Uint8Array|string|null);
+                    akCert?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation certChain */
                     certChain?: (Uint8Array[]|null);
@@ -2482,13 +2488,13 @@ export namespace google {
                     public quotes: google.cloud.confidentialcomputing.v1alpha1.TpmAttestation.IQuote[];
 
                     /** TpmAttestation tcgEventLog. */
-                    public tcgEventLog: (Uint8Array|string);
+                    public tcgEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation canonicalEventLog. */
-                    public canonicalEventLog: (Uint8Array|string);
+                    public canonicalEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation akCert. */
-                    public akCert: (Uint8Array|string);
+                    public akCert: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation certChain. */
                     public certChain: Uint8Array[];
@@ -2583,10 +2589,10 @@ export namespace google {
                         pcrValues?: ({ [k: string]: Uint8Array }|null);
 
                         /** Quote rawQuote */
-                        rawQuote?: (Uint8Array|string|null);
+                        rawQuote?: (Uint8Array|Buffer|string|null);
 
                         /** Quote rawSignature */
-                        rawSignature?: (Uint8Array|string|null);
+                        rawSignature?: (Uint8Array|Buffer|string|null);
                     }
 
                     /** Represents a Quote. */
@@ -2605,10 +2611,10 @@ export namespace google {
                         public pcrValues: { [k: string]: Uint8Array };
 
                         /** Quote rawQuote. */
-                        public rawQuote: (Uint8Array|string);
+                        public rawQuote: (Uint8Array|Buffer|string);
 
                         /** Quote rawSignature. */
-                        public rawSignature: (Uint8Array|string);
+                        public rawSignature: (Uint8Array|Buffer|string);
 
                         /**
                          * Creates a new Quote instance using the specified properties.
@@ -3347,6 +3353,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -3387,6 +3396,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -7605,6 +7617,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -7853,7 +7868,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -7884,7 +7899,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -9126,7 +9141,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -9142,7 +9157,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

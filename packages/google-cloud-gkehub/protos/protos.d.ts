@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -223,6 +223,7 @@ export namespace google {
         /** Edition enum. */
         enum Edition {
             EDITION_UNKNOWN = 0,
+            EDITION_LEGACY = 900,
             EDITION_PROTO2 = 998,
             EDITION_PROTO3 = 999,
             EDITION_2023 = 1000,
@@ -252,6 +253,9 @@ export namespace google {
 
             /** FileDescriptorProto weakDependency */
             weakDependency?: (number[]|null);
+
+            /** FileDescriptorProto optionDependency */
+            optionDependency?: (string[]|null);
 
             /** FileDescriptorProto messageType */
             messageType?: (google.protobuf.IDescriptorProto[]|null);
@@ -301,6 +305,9 @@ export namespace google {
 
             /** FileDescriptorProto weakDependency. */
             public weakDependency: number[];
+
+            /** FileDescriptorProto optionDependency. */
+            public optionDependency: string[];
 
             /** FileDescriptorProto messageType. */
             public messageType: google.protobuf.IDescriptorProto[];
@@ -436,6 +443,9 @@ export namespace google {
 
             /** DescriptorProto reservedName */
             reservedName?: (string[]|null);
+
+            /** DescriptorProto visibility */
+            visibility?: (google.protobuf.SymbolVisibility|keyof typeof google.protobuf.SymbolVisibility|null);
         }
 
         /** Represents a DescriptorProto. */
@@ -476,6 +486,9 @@ export namespace google {
 
             /** DescriptorProto reservedName. */
             public reservedName: string[];
+
+            /** DescriptorProto visibility. */
+            public visibility: (google.protobuf.SymbolVisibility|keyof typeof google.protobuf.SymbolVisibility);
 
             /**
              * Creates a new DescriptorProto instance using the specified properties.
@@ -1324,6 +1337,9 @@ export namespace google {
 
             /** EnumDescriptorProto reservedName */
             reservedName?: (string[]|null);
+
+            /** EnumDescriptorProto visibility */
+            visibility?: (google.protobuf.SymbolVisibility|keyof typeof google.protobuf.SymbolVisibility|null);
         }
 
         /** Represents an EnumDescriptorProto. */
@@ -1349,6 +1365,9 @@ export namespace google {
 
             /** EnumDescriptorProto reservedName. */
             public reservedName: string[];
+
+            /** EnumDescriptorProto visibility. */
+            public visibility: (google.protobuf.SymbolVisibility|keyof typeof google.protobuf.SymbolVisibility);
 
             /**
              * Creates a new EnumDescriptorProto instance using the specified properties.
@@ -2284,6 +2303,9 @@ export namespace google {
             /** FieldOptions features */
             features?: (google.protobuf.IFeatureSet|null);
 
+            /** FieldOptions featureSupport */
+            featureSupport?: (google.protobuf.FieldOptions.IFeatureSupport|null);
+
             /** FieldOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
 
@@ -2338,6 +2360,9 @@ export namespace google {
 
             /** FieldOptions features. */
             public features?: (google.protobuf.IFeatureSet|null);
+
+            /** FieldOptions featureSupport. */
+            public featureSupport?: (google.protobuf.FieldOptions.IFeatureSupport|null);
 
             /** FieldOptions uninterpretedOption. */
             public uninterpretedOption: google.protobuf.IUninterpretedOption[];
@@ -2554,6 +2579,121 @@ export namespace google {
 
                 /**
                  * Gets the default type url for EditionDefault
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a FeatureSupport. */
+            interface IFeatureSupport {
+
+                /** FeatureSupport editionIntroduced */
+                editionIntroduced?: (google.protobuf.Edition|keyof typeof google.protobuf.Edition|null);
+
+                /** FeatureSupport editionDeprecated */
+                editionDeprecated?: (google.protobuf.Edition|keyof typeof google.protobuf.Edition|null);
+
+                /** FeatureSupport deprecationWarning */
+                deprecationWarning?: (string|null);
+
+                /** FeatureSupport editionRemoved */
+                editionRemoved?: (google.protobuf.Edition|keyof typeof google.protobuf.Edition|null);
+            }
+
+            /** Represents a FeatureSupport. */
+            class FeatureSupport implements IFeatureSupport {
+
+                /**
+                 * Constructs a new FeatureSupport.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: google.protobuf.FieldOptions.IFeatureSupport);
+
+                /** FeatureSupport editionIntroduced. */
+                public editionIntroduced: (google.protobuf.Edition|keyof typeof google.protobuf.Edition);
+
+                /** FeatureSupport editionDeprecated. */
+                public editionDeprecated: (google.protobuf.Edition|keyof typeof google.protobuf.Edition);
+
+                /** FeatureSupport deprecationWarning. */
+                public deprecationWarning: string;
+
+                /** FeatureSupport editionRemoved. */
+                public editionRemoved: (google.protobuf.Edition|keyof typeof google.protobuf.Edition);
+
+                /**
+                 * Creates a new FeatureSupport instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns FeatureSupport instance
+                 */
+                public static create(properties?: google.protobuf.FieldOptions.IFeatureSupport): google.protobuf.FieldOptions.FeatureSupport;
+
+                /**
+                 * Encodes the specified FeatureSupport message. Does not implicitly {@link google.protobuf.FieldOptions.FeatureSupport.verify|verify} messages.
+                 * @param message FeatureSupport message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: google.protobuf.FieldOptions.IFeatureSupport, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified FeatureSupport message, length delimited. Does not implicitly {@link google.protobuf.FieldOptions.FeatureSupport.verify|verify} messages.
+                 * @param message FeatureSupport message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: google.protobuf.FieldOptions.IFeatureSupport, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a FeatureSupport message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns FeatureSupport
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.FieldOptions.FeatureSupport;
+
+                /**
+                 * Decodes a FeatureSupport message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns FeatureSupport
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.FieldOptions.FeatureSupport;
+
+                /**
+                 * Verifies a FeatureSupport message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a FeatureSupport message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns FeatureSupport
+                 */
+                public static fromObject(object: { [k: string]: any }): google.protobuf.FieldOptions.FeatureSupport;
+
+                /**
+                 * Creates a plain object from a FeatureSupport message. Also converts values to other types if specified.
+                 * @param message FeatureSupport
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: google.protobuf.FieldOptions.FeatureSupport, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this FeatureSupport to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for FeatureSupport
                  * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns The default type url
                  */
@@ -2797,6 +2937,9 @@ export namespace google {
             /** EnumValueOptions debugRedact */
             debugRedact?: (boolean|null);
 
+            /** EnumValueOptions featureSupport */
+            featureSupport?: (google.protobuf.FieldOptions.IFeatureSupport|null);
+
             /** EnumValueOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
         }
@@ -2818,6 +2961,9 @@ export namespace google {
 
             /** EnumValueOptions debugRedact. */
             public debugRedact: boolean;
+
+            /** EnumValueOptions featureSupport. */
+            public featureSupport?: (google.protobuf.FieldOptions.IFeatureSupport|null);
 
             /** EnumValueOptions uninterpretedOption. */
             public uninterpretedOption: google.protobuf.IUninterpretedOption[];
@@ -2917,6 +3063,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -3168,7 +3317,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -3199,7 +3348,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -3408,6 +3557,12 @@ export namespace google {
 
             /** FeatureSet jsonFormat */
             jsonFormat?: (google.protobuf.FeatureSet.JsonFormat|keyof typeof google.protobuf.FeatureSet.JsonFormat|null);
+
+            /** FeatureSet enforceNamingStyle */
+            enforceNamingStyle?: (google.protobuf.FeatureSet.EnforceNamingStyle|keyof typeof google.protobuf.FeatureSet.EnforceNamingStyle|null);
+
+            /** FeatureSet defaultSymbolVisibility */
+            defaultSymbolVisibility?: (google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility|keyof typeof google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility|null);
         }
 
         /** Represents a FeatureSet. */
@@ -3436,6 +3591,12 @@ export namespace google {
 
             /** FeatureSet jsonFormat. */
             public jsonFormat: (google.protobuf.FeatureSet.JsonFormat|keyof typeof google.protobuf.FeatureSet.JsonFormat);
+
+            /** FeatureSet enforceNamingStyle. */
+            public enforceNamingStyle: (google.protobuf.FeatureSet.EnforceNamingStyle|keyof typeof google.protobuf.FeatureSet.EnforceNamingStyle);
+
+            /** FeatureSet defaultSymbolVisibility. */
+            public defaultSymbolVisibility: (google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility|keyof typeof google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility);
 
             /**
              * Creates a new FeatureSet instance using the specified properties.
@@ -3559,6 +3720,116 @@ export namespace google {
                 ALLOW = 1,
                 LEGACY_BEST_EFFORT = 2
             }
+
+            /** EnforceNamingStyle enum. */
+            enum EnforceNamingStyle {
+                ENFORCE_NAMING_STYLE_UNKNOWN = 0,
+                STYLE2024 = 1,
+                STYLE_LEGACY = 2
+            }
+
+            /** Properties of a VisibilityFeature. */
+            interface IVisibilityFeature {
+            }
+
+            /** Represents a VisibilityFeature. */
+            class VisibilityFeature implements IVisibilityFeature {
+
+                /**
+                 * Constructs a new VisibilityFeature.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: google.protobuf.FeatureSet.IVisibilityFeature);
+
+                /**
+                 * Creates a new VisibilityFeature instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns VisibilityFeature instance
+                 */
+                public static create(properties?: google.protobuf.FeatureSet.IVisibilityFeature): google.protobuf.FeatureSet.VisibilityFeature;
+
+                /**
+                 * Encodes the specified VisibilityFeature message. Does not implicitly {@link google.protobuf.FeatureSet.VisibilityFeature.verify|verify} messages.
+                 * @param message VisibilityFeature message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: google.protobuf.FeatureSet.IVisibilityFeature, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified VisibilityFeature message, length delimited. Does not implicitly {@link google.protobuf.FeatureSet.VisibilityFeature.verify|verify} messages.
+                 * @param message VisibilityFeature message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: google.protobuf.FeatureSet.IVisibilityFeature, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a VisibilityFeature message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns VisibilityFeature
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.FeatureSet.VisibilityFeature;
+
+                /**
+                 * Decodes a VisibilityFeature message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns VisibilityFeature
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.FeatureSet.VisibilityFeature;
+
+                /**
+                 * Verifies a VisibilityFeature message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a VisibilityFeature message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns VisibilityFeature
+                 */
+                public static fromObject(object: { [k: string]: any }): google.protobuf.FeatureSet.VisibilityFeature;
+
+                /**
+                 * Creates a plain object from a VisibilityFeature message. Also converts values to other types if specified.
+                 * @param message VisibilityFeature
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: google.protobuf.FeatureSet.VisibilityFeature, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this VisibilityFeature to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for VisibilityFeature
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace VisibilityFeature {
+
+                /** DefaultSymbolVisibility enum. */
+                enum DefaultSymbolVisibility {
+                    DEFAULT_SYMBOL_VISIBILITY_UNKNOWN = 0,
+                    EXPORT_ALL = 1,
+                    EXPORT_TOP_LEVEL = 2,
+                    LOCAL_ALL = 3,
+                    STRICT = 4
+                }
+            }
         }
 
         /** Properties of a FeatureSetDefaults. */
@@ -3678,8 +3949,11 @@ export namespace google {
                 /** FeatureSetEditionDefault edition */
                 edition?: (google.protobuf.Edition|keyof typeof google.protobuf.Edition|null);
 
-                /** FeatureSetEditionDefault features */
-                features?: (google.protobuf.IFeatureSet|null);
+                /** FeatureSetEditionDefault overridableFeatures */
+                overridableFeatures?: (google.protobuf.IFeatureSet|null);
+
+                /** FeatureSetEditionDefault fixedFeatures */
+                fixedFeatures?: (google.protobuf.IFeatureSet|null);
             }
 
             /** Represents a FeatureSetEditionDefault. */
@@ -3694,8 +3968,11 @@ export namespace google {
                 /** FeatureSetEditionDefault edition. */
                 public edition: (google.protobuf.Edition|keyof typeof google.protobuf.Edition);
 
-                /** FeatureSetEditionDefault features. */
-                public features?: (google.protobuf.IFeatureSet|null);
+                /** FeatureSetEditionDefault overridableFeatures. */
+                public overridableFeatures?: (google.protobuf.IFeatureSet|null);
+
+                /** FeatureSetEditionDefault fixedFeatures. */
+                public fixedFeatures?: (google.protobuf.IFeatureSet|null);
 
                 /**
                  * Creates a new FeatureSetEditionDefault instance using the specified properties.
@@ -4228,6 +4505,13 @@ export namespace google {
             }
         }
 
+        /** SymbolVisibility enum. */
+        enum SymbolVisibility {
+            VISIBILITY_UNSET = 0,
+            VISIBILITY_LOCAL = 1,
+            VISIBILITY_EXPORT = 2
+        }
+
         /** Properties of a Duration. */
         interface IDuration {
 
@@ -4338,7 +4622,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -4354,7 +4638,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -5286,9 +5570,6 @@ export namespace google {
                         /** ConfigSync metricsGcpServiceAccountEmail. */
                         public metricsGcpServiceAccountEmail: string;
 
-                        /** ConfigSync _enabled. */
-                        public _enabled?: "enabled";
-
                         /**
                          * Creates a new ConfigSync instance using the specified properties.
                          * @param [properties] Properties to set
@@ -5675,12 +5956,6 @@ export namespace google {
 
                         /** PolicyController logDeniesEnabled. */
                         public logDeniesEnabled: boolean;
-
-                        /** PolicyController _templateLibraryInstalled. */
-                        public _templateLibraryInstalled?: "templateLibraryInstalled";
-
-                        /** PolicyController _auditIntervalSeconds. */
-                        public _auditIntervalSeconds?: "auditIntervalSeconds";
 
                         /**
                          * Creates a new PolicyController instance using the specified properties.
@@ -8248,12 +8523,6 @@ export namespace google {
                         /** PolicyController mutationEnabled. */
                         public mutationEnabled: boolean;
 
-                        /** PolicyController _templateLibraryInstalled. */
-                        public _templateLibraryInstalled?: "templateLibraryInstalled";
-
-                        /** PolicyController _auditIntervalSeconds. */
-                        public _auditIntervalSeconds?: "auditIntervalSeconds";
-
                         /**
                          * Creates a new PolicyController instance using the specified properties.
                          * @param [properties] Properties to set
@@ -10415,7 +10684,8 @@ export namespace google {
                         DEPLOYMENT_STATE_UNSPECIFIED = 0,
                         NOT_INSTALLED = 1,
                         INSTALLED = 2,
-                        ERROR = 3
+                        ERROR = 3,
+                        PENDING = 4
                     }
 
                     /** Properties of a MembershipState. */
@@ -10568,6 +10838,12 @@ export namespace google {
 
                         /** MembershipSpec version */
                         version?: (string|null);
+
+                        /** MembershipSpec cluster */
+                        cluster?: (string|null);
+
+                        /** MembershipSpec management */
+                        management?: (google.cloud.gkehub.configmanagement.v1beta.MembershipSpec.Management|keyof typeof google.cloud.gkehub.configmanagement.v1beta.MembershipSpec.Management|null);
                     }
 
                     /** Represents a MembershipSpec. */
@@ -10593,6 +10869,12 @@ export namespace google {
 
                         /** MembershipSpec version. */
                         public version: string;
+
+                        /** MembershipSpec cluster. */
+                        public cluster: string;
+
+                        /** MembershipSpec management. */
+                        public management: (google.cloud.gkehub.configmanagement.v1beta.MembershipSpec.Management|keyof typeof google.cloud.gkehub.configmanagement.v1beta.MembershipSpec.Management);
 
                         /**
                          * Creates a new MembershipSpec instance using the specified properties.
@@ -10672,6 +10954,16 @@ export namespace google {
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
 
+                    namespace MembershipSpec {
+
+                        /** Management enum. */
+                        enum Management {
+                            MANAGEMENT_UNSPECIFIED = 0,
+                            MANAGEMENT_AUTOMATIC = 1,
+                            MANAGEMENT_MANUAL = 2
+                        }
+                    }
+
                     /** Properties of a ConfigSync. */
                     interface IConfigSync {
 
@@ -10680,6 +10972,18 @@ export namespace google {
 
                         /** ConfigSync sourceFormat */
                         sourceFormat?: (string|null);
+
+                        /** ConfigSync enabled */
+                        enabled?: (boolean|null);
+
+                        /** ConfigSync preventDrift */
+                        preventDrift?: (boolean|null);
+
+                        /** ConfigSync oci */
+                        oci?: (google.cloud.gkehub.configmanagement.v1beta.IOciConfig|null);
+
+                        /** ConfigSync stopSyncing */
+                        stopSyncing?: (boolean|null);
                     }
 
                     /** Represents a ConfigSync. */
@@ -10696,6 +11000,18 @@ export namespace google {
 
                         /** ConfigSync sourceFormat. */
                         public sourceFormat: string;
+
+                        /** ConfigSync enabled. */
+                        public enabled?: (boolean|null);
+
+                        /** ConfigSync preventDrift. */
+                        public preventDrift: boolean;
+
+                        /** ConfigSync oci. */
+                        public oci?: (google.cloud.gkehub.configmanagement.v1beta.IOciConfig|null);
+
+                        /** ConfigSync stopSyncing. */
+                        public stopSyncing: boolean;
 
                         /**
                          * Creates a new ConfigSync instance using the specified properties.
@@ -10914,6 +11230,127 @@ export namespace google {
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
 
+                    /** Properties of an OciConfig. */
+                    interface IOciConfig {
+
+                        /** OciConfig syncRepo */
+                        syncRepo?: (string|null);
+
+                        /** OciConfig policyDir */
+                        policyDir?: (string|null);
+
+                        /** OciConfig syncWaitSecs */
+                        syncWaitSecs?: (number|Long|string|null);
+
+                        /** OciConfig secretType */
+                        secretType?: (string|null);
+
+                        /** OciConfig gcpServiceAccountEmail */
+                        gcpServiceAccountEmail?: (string|null);
+                    }
+
+                    /** Represents an OciConfig. */
+                    class OciConfig implements IOciConfig {
+
+                        /**
+                         * Constructs a new OciConfig.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.gkehub.configmanagement.v1beta.IOciConfig);
+
+                        /** OciConfig syncRepo. */
+                        public syncRepo: string;
+
+                        /** OciConfig policyDir. */
+                        public policyDir: string;
+
+                        /** OciConfig syncWaitSecs. */
+                        public syncWaitSecs: (number|Long|string);
+
+                        /** OciConfig secretType. */
+                        public secretType: string;
+
+                        /** OciConfig gcpServiceAccountEmail. */
+                        public gcpServiceAccountEmail: string;
+
+                        /**
+                         * Creates a new OciConfig instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns OciConfig instance
+                         */
+                        public static create(properties?: google.cloud.gkehub.configmanagement.v1beta.IOciConfig): google.cloud.gkehub.configmanagement.v1beta.OciConfig;
+
+                        /**
+                         * Encodes the specified OciConfig message. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.OciConfig.verify|verify} messages.
+                         * @param message OciConfig message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.gkehub.configmanagement.v1beta.IOciConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified OciConfig message, length delimited. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.OciConfig.verify|verify} messages.
+                         * @param message OciConfig message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.gkehub.configmanagement.v1beta.IOciConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an OciConfig message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns OciConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.gkehub.configmanagement.v1beta.OciConfig;
+
+                        /**
+                         * Decodes an OciConfig message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns OciConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.gkehub.configmanagement.v1beta.OciConfig;
+
+                        /**
+                         * Verifies an OciConfig message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an OciConfig message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns OciConfig
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.gkehub.configmanagement.v1beta.OciConfig;
+
+                        /**
+                         * Creates a plain object from an OciConfig message. Also converts values to other types if specified.
+                         * @param message OciConfig
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.gkehub.configmanagement.v1beta.OciConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this OciConfig to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for OciConfig
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
                     /** Properties of a PolicyController. */
                     interface IPolicyController {
 
@@ -10934,6 +11371,15 @@ export namespace google {
 
                         /** PolicyController logDeniesEnabled */
                         logDeniesEnabled?: (boolean|null);
+
+                        /** PolicyController mutationEnabled */
+                        mutationEnabled?: (boolean|null);
+
+                        /** PolicyController monitoring */
+                        monitoring?: (google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMonitoring|null);
+
+                        /** PolicyController updateTime */
+                        updateTime?: (google.protobuf.ITimestamp|null);
                     }
 
                     /** Represents a PolicyController. */
@@ -10963,11 +11409,14 @@ export namespace google {
                         /** PolicyController logDeniesEnabled. */
                         public logDeniesEnabled: boolean;
 
-                        /** PolicyController _templateLibraryInstalled. */
-                        public _templateLibraryInstalled?: "templateLibraryInstalled";
+                        /** PolicyController mutationEnabled. */
+                        public mutationEnabled: boolean;
 
-                        /** PolicyController _auditIntervalSeconds. */
-                        public _auditIntervalSeconds?: "auditIntervalSeconds";
+                        /** PolicyController monitoring. */
+                        public monitoring?: (google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMonitoring|null);
+
+                        /** PolicyController updateTime. */
+                        public updateTime?: (google.protobuf.ITimestamp|null);
 
                         /**
                          * Creates a new PolicyController instance using the specified properties.
@@ -11045,6 +11494,113 @@ export namespace google {
                          * @returns The default type url
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of a PolicyControllerMonitoring. */
+                    interface IPolicyControllerMonitoring {
+
+                        /** PolicyControllerMonitoring backends */
+                        backends?: (google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring.MonitoringBackend[]|null);
+                    }
+
+                    /** Represents a PolicyControllerMonitoring. */
+                    class PolicyControllerMonitoring implements IPolicyControllerMonitoring {
+
+                        /**
+                         * Constructs a new PolicyControllerMonitoring.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMonitoring);
+
+                        /** PolicyControllerMonitoring backends. */
+                        public backends: google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring.MonitoringBackend[];
+
+                        /**
+                         * Creates a new PolicyControllerMonitoring instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns PolicyControllerMonitoring instance
+                         */
+                        public static create(properties?: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMonitoring): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring;
+
+                        /**
+                         * Encodes the specified PolicyControllerMonitoring message. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring.verify|verify} messages.
+                         * @param message PolicyControllerMonitoring message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMonitoring, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified PolicyControllerMonitoring message, length delimited. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring.verify|verify} messages.
+                         * @param message PolicyControllerMonitoring message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMonitoring, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a PolicyControllerMonitoring message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns PolicyControllerMonitoring
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring;
+
+                        /**
+                         * Decodes a PolicyControllerMonitoring message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns PolicyControllerMonitoring
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring;
+
+                        /**
+                         * Verifies a PolicyControllerMonitoring message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a PolicyControllerMonitoring message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns PolicyControllerMonitoring
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring;
+
+                        /**
+                         * Creates a plain object from a PolicyControllerMonitoring message. Also converts values to other types if specified.
+                         * @param message PolicyControllerMonitoring
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMonitoring, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this PolicyControllerMonitoring to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for PolicyControllerMonitoring
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace PolicyControllerMonitoring {
+
+                        /** MonitoringBackend enum. */
+                        enum MonitoringBackend {
+                            MONITORING_BACKEND_UNSPECIFIED = 0,
+                            PROMETHEUS = 1,
+                            CLOUD_MONITORING = 2
+                        }
                     }
 
                     /** Properties of a BinauthzConfig. */
@@ -11779,6 +12335,24 @@ export namespace google {
 
                         /** ConfigSyncState syncState */
                         syncState?: (google.cloud.gkehub.configmanagement.v1beta.ISyncState|null);
+
+                        /** ConfigSyncState errors */
+                        errors?: (google.cloud.gkehub.configmanagement.v1beta.IConfigSyncError[]|null);
+
+                        /** ConfigSyncState rootsyncCrd */
+                        rootsyncCrd?: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState|null);
+
+                        /** ConfigSyncState reposyncCrd */
+                        reposyncCrd?: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState|null);
+
+                        /** ConfigSyncState state */
+                        state?: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.State|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.State|null);
+
+                        /** ConfigSyncState clusterLevelStopSyncingState */
+                        clusterLevelStopSyncingState?: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.StopSyncingState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.StopSyncingState|null);
+
+                        /** ConfigSyncState crCount */
+                        crCount?: (number|null);
                     }
 
                     /** Represents a ConfigSyncState. */
@@ -11798,6 +12372,24 @@ export namespace google {
 
                         /** ConfigSyncState syncState. */
                         public syncState?: (google.cloud.gkehub.configmanagement.v1beta.ISyncState|null);
+
+                        /** ConfigSyncState errors. */
+                        public errors: google.cloud.gkehub.configmanagement.v1beta.IConfigSyncError[];
+
+                        /** ConfigSyncState rootsyncCrd. */
+                        public rootsyncCrd: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState);
+
+                        /** ConfigSyncState reposyncCrd. */
+                        public reposyncCrd: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.CRDState);
+
+                        /** ConfigSyncState state. */
+                        public state: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.State|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.State);
+
+                        /** ConfigSyncState clusterLevelStopSyncingState. */
+                        public clusterLevelStopSyncingState: (google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.StopSyncingState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.ConfigSyncState.StopSyncingState);
+
+                        /** ConfigSyncState crCount. */
+                        public crCount: number;
 
                         /**
                          * Creates a new ConfigSyncState instance using the specified properties.
@@ -11877,6 +12469,132 @@ export namespace google {
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
 
+                    namespace ConfigSyncState {
+
+                        /** CRDState enum. */
+                        enum CRDState {
+                            CRD_STATE_UNSPECIFIED = 0,
+                            NOT_INSTALLED = 1,
+                            INSTALLED = 2,
+                            TERMINATING = 3,
+                            INSTALLING = 4
+                        }
+
+                        /** State enum. */
+                        enum State {
+                            STATE_UNSPECIFIED = 0,
+                            CONFIG_SYNC_NOT_INSTALLED = 1,
+                            CONFIG_SYNC_INSTALLED = 2,
+                            CONFIG_SYNC_ERROR = 3,
+                            CONFIG_SYNC_PENDING = 4
+                        }
+
+                        /** StopSyncingState enum. */
+                        enum StopSyncingState {
+                            STOP_SYNCING_STATE_UNSPECIFIED = 0,
+                            NOT_STOPPED = 1,
+                            PENDING = 2,
+                            STOPPED = 3
+                        }
+                    }
+
+                    /** Properties of a ConfigSyncError. */
+                    interface IConfigSyncError {
+
+                        /** ConfigSyncError errorMessage */
+                        errorMessage?: (string|null);
+                    }
+
+                    /** Represents a ConfigSyncError. */
+                    class ConfigSyncError implements IConfigSyncError {
+
+                        /**
+                         * Constructs a new ConfigSyncError.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.gkehub.configmanagement.v1beta.IConfigSyncError);
+
+                        /** ConfigSyncError errorMessage. */
+                        public errorMessage: string;
+
+                        /**
+                         * Creates a new ConfigSyncError instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ConfigSyncError instance
+                         */
+                        public static create(properties?: google.cloud.gkehub.configmanagement.v1beta.IConfigSyncError): google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError;
+
+                        /**
+                         * Encodes the specified ConfigSyncError message. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError.verify|verify} messages.
+                         * @param message ConfigSyncError message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.gkehub.configmanagement.v1beta.IConfigSyncError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ConfigSyncError message, length delimited. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError.verify|verify} messages.
+                         * @param message ConfigSyncError message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.gkehub.configmanagement.v1beta.IConfigSyncError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a ConfigSyncError message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ConfigSyncError
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError;
+
+                        /**
+                         * Decodes a ConfigSyncError message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ConfigSyncError
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError;
+
+                        /**
+                         * Verifies a ConfigSyncError message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a ConfigSyncError message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ConfigSyncError
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError;
+
+                        /**
+                         * Creates a plain object from a ConfigSyncError message. Also converts values to other types if specified.
+                         * @param message ConfigSyncError
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.gkehub.configmanagement.v1beta.ConfigSyncError, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ConfigSyncError to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for ConfigSyncError
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
                     /** Properties of a ConfigSyncVersion. */
                     interface IConfigSyncVersion {
 
@@ -11897,6 +12615,15 @@ export namespace google {
 
                         /** ConfigSyncVersion rootReconciler */
                         rootReconciler?: (string|null);
+
+                        /** ConfigSyncVersion admissionWebhook */
+                        admissionWebhook?: (string|null);
+
+                        /** ConfigSyncVersion resourceGroupControllerManager */
+                        resourceGroupControllerManager?: (string|null);
+
+                        /** ConfigSyncVersion otelCollector */
+                        otelCollector?: (string|null);
                     }
 
                     /** Represents a ConfigSyncVersion. */
@@ -11925,6 +12652,15 @@ export namespace google {
 
                         /** ConfigSyncVersion rootReconciler. */
                         public rootReconciler: string;
+
+                        /** ConfigSyncVersion admissionWebhook. */
+                        public admissionWebhook: string;
+
+                        /** ConfigSyncVersion resourceGroupControllerManager. */
+                        public resourceGroupControllerManager: string;
+
+                        /** ConfigSyncVersion otelCollector. */
+                        public otelCollector: string;
 
                         /**
                          * Creates a new ConfigSyncVersion instance using the specified properties.
@@ -12024,6 +12760,15 @@ export namespace google {
 
                         /** ConfigSyncDeploymentState rootReconciler */
                         rootReconciler?: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState|null);
+
+                        /** ConfigSyncDeploymentState admissionWebhook */
+                        admissionWebhook?: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState|null);
+
+                        /** ConfigSyncDeploymentState resourceGroupControllerManager */
+                        resourceGroupControllerManager?: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState|null);
+
+                        /** ConfigSyncDeploymentState otelCollector */
+                        otelCollector?: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState|null);
                     }
 
                     /** Represents a ConfigSyncDeploymentState. */
@@ -12052,6 +12797,15 @@ export namespace google {
 
                         /** ConfigSyncDeploymentState rootReconciler. */
                         public rootReconciler: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState);
+
+                        /** ConfigSyncDeploymentState admissionWebhook. */
+                        public admissionWebhook: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState);
+
+                        /** ConfigSyncDeploymentState resourceGroupControllerManager. */
+                        public resourceGroupControllerManager: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState);
+
+                        /** ConfigSyncDeploymentState otelCollector. */
+                        public otelCollector: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState);
 
                         /**
                          * Creates a new ConfigSyncDeploymentState instance using the specified properties.
@@ -12620,6 +13374,9 @@ export namespace google {
 
                         /** PolicyControllerState deploymentState */
                         deploymentState?: (google.cloud.gkehub.configmanagement.v1beta.IGatekeeperDeploymentState|null);
+
+                        /** PolicyControllerState migration */
+                        migration?: (google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMigration|null);
                     }
 
                     /** Represents a PolicyControllerState. */
@@ -12636,6 +13393,9 @@ export namespace google {
 
                         /** PolicyControllerState deploymentState. */
                         public deploymentState?: (google.cloud.gkehub.configmanagement.v1beta.IGatekeeperDeploymentState|null);
+
+                        /** PolicyControllerState migration. */
+                        public migration?: (google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMigration|null);
 
                         /**
                          * Creates a new PolicyControllerState instance using the specified properties.
@@ -12810,6 +13570,119 @@ export namespace google {
                          * @returns The default type url
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of a PolicyControllerMigration. */
+                    interface IPolicyControllerMigration {
+
+                        /** PolicyControllerMigration stage */
+                        stage?: (google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration.Stage|keyof typeof google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration.Stage|null);
+
+                        /** PolicyControllerMigration copyTime */
+                        copyTime?: (google.protobuf.ITimestamp|null);
+                    }
+
+                    /** Represents a PolicyControllerMigration. */
+                    class PolicyControllerMigration implements IPolicyControllerMigration {
+
+                        /**
+                         * Constructs a new PolicyControllerMigration.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMigration);
+
+                        /** PolicyControllerMigration stage. */
+                        public stage: (google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration.Stage|keyof typeof google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration.Stage);
+
+                        /** PolicyControllerMigration copyTime. */
+                        public copyTime?: (google.protobuf.ITimestamp|null);
+
+                        /**
+                         * Creates a new PolicyControllerMigration instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns PolicyControllerMigration instance
+                         */
+                        public static create(properties?: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMigration): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration;
+
+                        /**
+                         * Encodes the specified PolicyControllerMigration message. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration.verify|verify} messages.
+                         * @param message PolicyControllerMigration message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMigration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified PolicyControllerMigration message, length delimited. Does not implicitly {@link google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration.verify|verify} messages.
+                         * @param message PolicyControllerMigration message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.gkehub.configmanagement.v1beta.IPolicyControllerMigration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a PolicyControllerMigration message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns PolicyControllerMigration
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration;
+
+                        /**
+                         * Decodes a PolicyControllerMigration message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns PolicyControllerMigration
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration;
+
+                        /**
+                         * Verifies a PolicyControllerMigration message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a PolicyControllerMigration message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns PolicyControllerMigration
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration;
+
+                        /**
+                         * Creates a plain object from a PolicyControllerMigration message. Also converts values to other types if specified.
+                         * @param message PolicyControllerMigration
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.gkehub.configmanagement.v1beta.PolicyControllerMigration, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this PolicyControllerMigration to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for PolicyControllerMigration
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace PolicyControllerMigration {
+
+                        /** Stage enum. */
+                        enum Stage {
+                            STAGE_UNSPECIFIED = 0,
+                            ACM_MANAGED = 1,
+                            POCO_MANAGED = 2
+                        }
                     }
 
                     /** Properties of a BinauthzState. */
@@ -13020,6 +13893,9 @@ export namespace google {
 
                         /** GatekeeperDeploymentState gatekeeperAudit */
                         gatekeeperAudit?: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState|null);
+
+                        /** GatekeeperDeploymentState gatekeeperMutation */
+                        gatekeeperMutation?: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState|null);
                     }
 
                     /** Represents a GatekeeperDeploymentState. */
@@ -13036,6 +13912,9 @@ export namespace google {
 
                         /** GatekeeperDeploymentState gatekeeperAudit. */
                         public gatekeeperAudit: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState);
+
+                        /** GatekeeperDeploymentState gatekeeperMutation. */
+                        public gatekeeperMutation: (google.cloud.gkehub.configmanagement.v1beta.DeploymentState|keyof typeof google.cloud.gkehub.configmanagement.v1beta.DeploymentState);
 
                         /**
                          * Creates a new GatekeeperDeploymentState instance using the specified properties.
@@ -14992,7 +15871,7 @@ export namespace google {
                     identityProvider?: (string|null);
 
                     /** Authority oidcJwks */
-                    oidcJwks?: (Uint8Array|string|null);
+                    oidcJwks?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents an Authority. */
@@ -15014,7 +15893,7 @@ export namespace google {
                     public identityProvider: string;
 
                     /** Authority oidcJwks. */
-                    public oidcJwks: (Uint8Array|string);
+                    public oidcJwks: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new Authority instance using the specified properties.
@@ -16025,7 +16904,7 @@ export namespace google {
                     namespace?: (string|null);
 
                     /** GenerateConnectManifestRequest proxy */
-                    proxy?: (Uint8Array|string|null);
+                    proxy?: (Uint8Array|Buffer|string|null);
 
                     /** GenerateConnectManifestRequest version */
                     version?: (string|null);
@@ -16037,7 +16916,7 @@ export namespace google {
                     registry?: (string|null);
 
                     /** GenerateConnectManifestRequest imagePullSecretContent */
-                    imagePullSecretContent?: (Uint8Array|string|null);
+                    imagePullSecretContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a GenerateConnectManifestRequest. */
@@ -16056,7 +16935,7 @@ export namespace google {
                     public namespace: string;
 
                     /** GenerateConnectManifestRequest proxy. */
-                    public proxy: (Uint8Array|string);
+                    public proxy: (Uint8Array|Buffer|string);
 
                     /** GenerateConnectManifestRequest version. */
                     public version: string;
@@ -16068,7 +16947,7 @@ export namespace google {
                     public registry: string;
 
                     /** GenerateConnectManifestRequest imagePullSecretContent. */
-                    public imagePullSecretContent: (Uint8Array|string);
+                    public imagePullSecretContent: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new GenerateConnectManifestRequest instance using the specified properties.
@@ -22062,7 +22941,7 @@ export namespace google {
                     issuer?: (string|null);
 
                     /** Authority oidcJwks */
-                    oidcJwks?: (Uint8Array|string|null);
+                    oidcJwks?: (Uint8Array|Buffer|string|null);
 
                     /** Authority identityProvider */
                     identityProvider?: (string|null);
@@ -22084,7 +22963,7 @@ export namespace google {
                     public issuer: string;
 
                     /** Authority oidcJwks. */
-                    public oidcJwks: (Uint8Array|string);
+                    public oidcJwks: (Uint8Array|Buffer|string);
 
                     /** Authority identityProvider. */
                     public identityProvider: string;
@@ -22932,7 +23811,7 @@ export namespace google {
                     namespace?: (string|null);
 
                     /** GenerateConnectManifestRequest proxy */
-                    proxy?: (Uint8Array|string|null);
+                    proxy?: (Uint8Array|Buffer|string|null);
 
                     /** GenerateConnectManifestRequest version */
                     version?: (string|null);
@@ -22944,7 +23823,7 @@ export namespace google {
                     registry?: (string|null);
 
                     /** GenerateConnectManifestRequest imagePullSecretContent */
-                    imagePullSecretContent?: (Uint8Array|string|null);
+                    imagePullSecretContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a GenerateConnectManifestRequest. */
@@ -22963,7 +23842,7 @@ export namespace google {
                     public namespace: string;
 
                     /** GenerateConnectManifestRequest proxy. */
-                    public proxy: (Uint8Array|string);
+                    public proxy: (Uint8Array|Buffer|string);
 
                     /** GenerateConnectManifestRequest version. */
                     public version: string;
@@ -22975,7 +23854,7 @@ export namespace google {
                     public registry: string;
 
                     /** GenerateConnectManifestRequest imagePullSecretContent. */
-                    public imagePullSecretContent: (Uint8Array|string);
+                    public imagePullSecretContent: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new GenerateConnectManifestRequest instance using the specified properties.
@@ -24212,18 +25091,6 @@ export namespace google {
                         /** HubConfig deploymentConfigs. */
                         public deploymentConfigs: { [k: string]: google.cloud.gkehub.policycontroller.v1beta.IPolicyControllerDeploymentConfig };
 
-                        /** HubConfig _auditIntervalSeconds. */
-                        public _auditIntervalSeconds?: "auditIntervalSeconds";
-
-                        /** HubConfig _monitoring. */
-                        public _monitoring?: "monitoring";
-
-                        /** HubConfig _policyContent. */
-                        public _policyContent?: "policyContent";
-
-                        /** HubConfig _constraintViolationLimit. */
-                        public _constraintViolationLimit?: "constraintViolationLimit";
-
                         /**
                          * Creates a new HubConfig instance using the specified properties.
                          * @param [properties] Properties to set
@@ -24357,15 +25224,6 @@ export namespace google {
                         /** PolicyControllerDeploymentConfig podAffinity. */
                         public podAffinity: (google.cloud.gkehub.policycontroller.v1beta.PolicyControllerDeploymentConfig.Affinity|keyof typeof google.cloud.gkehub.policycontroller.v1beta.PolicyControllerDeploymentConfig.Affinity);
 
-                        /** PolicyControllerDeploymentConfig _replicaCount. */
-                        public _replicaCount?: "replicaCount";
-
-                        /** PolicyControllerDeploymentConfig _containerResources. */
-                        public _containerResources?: "containerResources";
-
-                        /** PolicyControllerDeploymentConfig _podAntiAffinity. */
-                        public _podAntiAffinity?: "podAntiAffinity";
-
                         /**
                          * Creates a new PolicyControllerDeploymentConfig instance using the specified properties.
                          * @param [properties] Properties to set
@@ -24483,18 +25341,6 @@ export namespace google {
                             /** Toleration effect. */
                             public effect?: (string|null);
 
-                            /** Toleration _key. */
-                            public _key?: "key";
-
-                            /** Toleration _operator. */
-                            public _operator?: "operator";
-
-                            /** Toleration _value. */
-                            public _value?: "value";
-
-                            /** Toleration _effect. */
-                            public _effect?: "effect";
-
                             /**
                              * Creates a new Toleration instance using the specified properties.
                              * @param [properties] Properties to set
@@ -24606,12 +25452,6 @@ export namespace google {
                         /** ResourceRequirements requests. */
                         public requests?: (google.cloud.gkehub.policycontroller.v1beta.IResourceList|null);
 
-                        /** ResourceRequirements _limits. */
-                        public _limits?: "limits";
-
-                        /** ResourceRequirements _requests. */
-                        public _requests?: "requests";
-
                         /**
                          * Creates a new ResourceRequirements instance using the specified properties.
                          * @param [properties] Properties to set
@@ -24714,12 +25554,6 @@ export namespace google {
 
                         /** ResourceList cpu. */
                         public cpu?: (string|null);
-
-                        /** ResourceList _memory. */
-                        public _memory?: "memory";
-
-                        /** ResourceList _cpu. */
-                        public _cpu?: "cpu";
 
                         /**
                          * Creates a new ResourceList instance using the specified properties.
@@ -28571,7 +29405,7 @@ export namespace google {
                     identityProvider?: (string|null);
 
                     /** Authority oidcJwks */
-                    oidcJwks?: (Uint8Array|string|null);
+                    oidcJwks?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents an Authority. */
@@ -28593,7 +29427,7 @@ export namespace google {
                     public identityProvider: string;
 
                     /** Authority oidcJwks. */
-                    public oidcJwks: (Uint8Array|string);
+                    public oidcJwks: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new Authority instance using the specified properties.
@@ -29601,7 +30435,7 @@ export namespace google {
                     registry?: (string|null);
 
                     /** GenerateConnectManifestRequest imagePullSecretContent */
-                    imagePullSecretContent?: (Uint8Array|string|null);
+                    imagePullSecretContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a GenerateConnectManifestRequest. */
@@ -29629,7 +30463,7 @@ export namespace google {
                     public registry: string;
 
                     /** GenerateConnectManifestRequest imagePullSecretContent. */
-                    public imagePullSecretContent: (Uint8Array|string);
+                    public imagePullSecretContent: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new GenerateConnectManifestRequest instance using the specified properties.
@@ -30019,7 +30853,7 @@ export namespace google {
                     name?: (string|null);
 
                     /** ConnectAgent proxy */
-                    proxy?: (Uint8Array|string|null);
+                    proxy?: (Uint8Array|Buffer|string|null);
 
                     /** ConnectAgent namespace */
                     namespace?: (string|null);
@@ -30038,7 +30872,7 @@ export namespace google {
                     public name: string;
 
                     /** ConnectAgent proxy. */
-                    public proxy: (Uint8Array|string);
+                    public proxy: (Uint8Array|Buffer|string);
 
                     /** ConnectAgent namespace. */
                     public namespace: string;
@@ -31311,6 +32145,9 @@ export namespace google {
 
             /** CommonLanguageSettings destinations */
             destinations?: (google.api.ClientLibraryDestination[]|null);
+
+            /** CommonLanguageSettings selectiveGapicGeneration */
+            selectiveGapicGeneration?: (google.api.ISelectiveGapicGeneration|null);
         }
 
         /** Represents a CommonLanguageSettings. */
@@ -31327,6 +32164,9 @@ export namespace google {
 
             /** CommonLanguageSettings destinations. */
             public destinations: google.api.ClientLibraryDestination[];
+
+            /** CommonLanguageSettings selectiveGapicGeneration. */
+            public selectiveGapicGeneration?: (google.api.ISelectiveGapicGeneration|null);
 
             /**
              * Creates a new CommonLanguageSettings instance using the specified properties.
@@ -31595,6 +32435,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -31635,6 +32478,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -32022,6 +32868,9 @@ export namespace google {
 
             /** PythonSettings common */
             common?: (google.api.ICommonLanguageSettings|null);
+
+            /** PythonSettings experimentalFeatures */
+            experimentalFeatures?: (google.api.PythonSettings.IExperimentalFeatures|null);
         }
 
         /** Represents a PythonSettings. */
@@ -32035,6 +32884,9 @@ export namespace google {
 
             /** PythonSettings common. */
             public common?: (google.api.ICommonLanguageSettings|null);
+
+            /** PythonSettings experimentalFeatures. */
+            public experimentalFeatures?: (google.api.PythonSettings.IExperimentalFeatures|null);
 
             /**
              * Creates a new PythonSettings instance using the specified properties.
@@ -32112,6 +32964,118 @@ export namespace google {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace PythonSettings {
+
+            /** Properties of an ExperimentalFeatures. */
+            interface IExperimentalFeatures {
+
+                /** ExperimentalFeatures restAsyncIoEnabled */
+                restAsyncIoEnabled?: (boolean|null);
+
+                /** ExperimentalFeatures protobufPythonicTypesEnabled */
+                protobufPythonicTypesEnabled?: (boolean|null);
+
+                /** ExperimentalFeatures unversionedPackageDisabled */
+                unversionedPackageDisabled?: (boolean|null);
+            }
+
+            /** Represents an ExperimentalFeatures. */
+            class ExperimentalFeatures implements IExperimentalFeatures {
+
+                /**
+                 * Constructs a new ExperimentalFeatures.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: google.api.PythonSettings.IExperimentalFeatures);
+
+                /** ExperimentalFeatures restAsyncIoEnabled. */
+                public restAsyncIoEnabled: boolean;
+
+                /** ExperimentalFeatures protobufPythonicTypesEnabled. */
+                public protobufPythonicTypesEnabled: boolean;
+
+                /** ExperimentalFeatures unversionedPackageDisabled. */
+                public unversionedPackageDisabled: boolean;
+
+                /**
+                 * Creates a new ExperimentalFeatures instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns ExperimentalFeatures instance
+                 */
+                public static create(properties?: google.api.PythonSettings.IExperimentalFeatures): google.api.PythonSettings.ExperimentalFeatures;
+
+                /**
+                 * Encodes the specified ExperimentalFeatures message. Does not implicitly {@link google.api.PythonSettings.ExperimentalFeatures.verify|verify} messages.
+                 * @param message ExperimentalFeatures message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: google.api.PythonSettings.IExperimentalFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified ExperimentalFeatures message, length delimited. Does not implicitly {@link google.api.PythonSettings.ExperimentalFeatures.verify|verify} messages.
+                 * @param message ExperimentalFeatures message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: google.api.PythonSettings.IExperimentalFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes an ExperimentalFeatures message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns ExperimentalFeatures
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.PythonSettings.ExperimentalFeatures;
+
+                /**
+                 * Decodes an ExperimentalFeatures message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns ExperimentalFeatures
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.PythonSettings.ExperimentalFeatures;
+
+                /**
+                 * Verifies an ExperimentalFeatures message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates an ExperimentalFeatures message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns ExperimentalFeatures
+                 */
+                public static fromObject(object: { [k: string]: any }): google.api.PythonSettings.ExperimentalFeatures;
+
+                /**
+                 * Creates a plain object from an ExperimentalFeatures message. Also converts values to other types if specified.
+                 * @param message ExperimentalFeatures
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: google.api.PythonSettings.ExperimentalFeatures, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this ExperimentalFeatures to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for ExperimentalFeatures
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
         }
 
         /** Properties of a NodeSettings. */
@@ -32440,6 +33404,9 @@ export namespace google {
 
             /** GoSettings common */
             common?: (google.api.ICommonLanguageSettings|null);
+
+            /** GoSettings renamedServices */
+            renamedServices?: ({ [k: string]: string }|null);
         }
 
         /** Represents a GoSettings. */
@@ -32453,6 +33420,9 @@ export namespace google {
 
             /** GoSettings common. */
             public common?: (google.api.ICommonLanguageSettings|null);
+
+            /** GoSettings renamedServices. */
+            public renamedServices: { [k: string]: string };
 
             /**
              * Creates a new GoSettings instance using the specified properties.
@@ -32776,6 +33746,109 @@ export namespace google {
             CLIENT_LIBRARY_DESTINATION_UNSPECIFIED = 0,
             GITHUB = 10,
             PACKAGE_MANAGER = 20
+        }
+
+        /** Properties of a SelectiveGapicGeneration. */
+        interface ISelectiveGapicGeneration {
+
+            /** SelectiveGapicGeneration methods */
+            methods?: (string[]|null);
+
+            /** SelectiveGapicGeneration generateOmittedAsInternal */
+            generateOmittedAsInternal?: (boolean|null);
+        }
+
+        /** Represents a SelectiveGapicGeneration. */
+        class SelectiveGapicGeneration implements ISelectiveGapicGeneration {
+
+            /**
+             * Constructs a new SelectiveGapicGeneration.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.api.ISelectiveGapicGeneration);
+
+            /** SelectiveGapicGeneration methods. */
+            public methods: string[];
+
+            /** SelectiveGapicGeneration generateOmittedAsInternal. */
+            public generateOmittedAsInternal: boolean;
+
+            /**
+             * Creates a new SelectiveGapicGeneration instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SelectiveGapicGeneration instance
+             */
+            public static create(properties?: google.api.ISelectiveGapicGeneration): google.api.SelectiveGapicGeneration;
+
+            /**
+             * Encodes the specified SelectiveGapicGeneration message. Does not implicitly {@link google.api.SelectiveGapicGeneration.verify|verify} messages.
+             * @param message SelectiveGapicGeneration message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.api.ISelectiveGapicGeneration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SelectiveGapicGeneration message, length delimited. Does not implicitly {@link google.api.SelectiveGapicGeneration.verify|verify} messages.
+             * @param message SelectiveGapicGeneration message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.api.ISelectiveGapicGeneration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SelectiveGapicGeneration message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SelectiveGapicGeneration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.SelectiveGapicGeneration;
+
+            /**
+             * Decodes a SelectiveGapicGeneration message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SelectiveGapicGeneration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.SelectiveGapicGeneration;
+
+            /**
+             * Verifies a SelectiveGapicGeneration message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SelectiveGapicGeneration message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SelectiveGapicGeneration
+             */
+            public static fromObject(object: { [k: string]: any }): google.api.SelectiveGapicGeneration;
+
+            /**
+             * Creates a plain object from a SelectiveGapicGeneration message. Also converts values to other types if specified.
+             * @param message SelectiveGapicGeneration
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.api.SelectiveGapicGeneration, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SelectiveGapicGeneration to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SelectiveGapicGeneration
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** LaunchStage enum. */

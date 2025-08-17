@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -568,6 +568,12 @@ message MountOption {
 
   // Instructions for mounting
   string instructions = 4;
+
+  // Output only. IP Address.
+  string ip_address = 5 [
+    (google.api.field_info).format = IPV4,
+    (google.api.field_behavior) = OUTPUT_ONLY
+  ];
 }
 
 // The RestoreParameters if volume is created from a snapshot or backup.
@@ -638,16 +644,14 @@ message TieringPolicy {
   optional TierAction tier_action = 1 [(google.api.field_behavior) = OPTIONAL];
 
   // Optional. Time in days to mark the volume's data block as cold and make it
-  // eligible for tiering, can be range from 7-183. Default is 31.
+  // eligible for tiering, can be range from 2-183. Default is 31.
   optional int32 cooling_threshold_days = 2
       [(google.api.field_behavior) = OPTIONAL];
 }
 
 // The Hybrid Replication parameters for the volume.
 message HybridReplicationParameters {
-  // Required. Desired Identifier (name) of the replication which will be created for this volume.
-  // Format:
-  // `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
+  // Required. Desired name for the replication of this volume.
   string replication = 1 [
     (google.api.field_behavior) = REQUIRED,
     (google.api.resource_reference) = {

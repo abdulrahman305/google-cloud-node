@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -253,4 +253,36 @@ message StoragePool {
 
   // Optional. Specifies the active zone for regional storagePool.
   string zone = 21 [(google.api.field_behavior) = OPTIONAL];
+
+  // Output only. Reserved for future use
+  bool satisfies_pzs = 23 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Reserved for future use
+  bool satisfies_pzi = 24 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Optional. True if using Independent Scaling of capacity and performance
+  // (Hyperdisk) By default set to false
+  bool custom_performance_enabled = 25 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+  int64 total_throughput_mibps = 26 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Custom Performance Total IOPS of the pool
+  // If not provided, it will be calculated based on the total_throughput_mibps
+  int64 total_iops = 27 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// ValidateDirectoryServiceRequest validates the directory service policy
+// attached to the storage pool.
+message ValidateDirectoryServiceRequest {
+  // Required. Name of the storage pool
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {
+      type: "netapp.googleapis.com/StoragePool"
+    }
+  ];
+
+  // Type of directory service policy attached to the storage pool.
+  DirectoryServiceType directory_service_type = 2;
 }

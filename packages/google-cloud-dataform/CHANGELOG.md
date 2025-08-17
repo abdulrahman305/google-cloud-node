@@ -1,5 +1,50 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v2.1.0...dataform-v2.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [2.1.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v2.0.1...dataform-v2.1.0) (2025-05-20)
+
+
+### Features
+
+* Add initial files for google.cloud.dataform.v1beta1 ([#6364](https://github.com/googleapis/google-cloud-node/issues/6364)) ([efa3877](https://github.com/googleapis/google-cloud-node/commit/efa38775edbbb8a078b79e61b924a0041b2a6f6a))
+
+## [2.0.1](https://github.com/googleapis/google-cloud-node/compare/dataform-v2.0.0...dataform-v2.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6184](https://github.com/googleapis/google-cloud-node/issues/6184)) ([2fcd202](https://github.com/googleapis/google-cloud-node/commit/2fcd2029c35e8fb2199d03ac6e61e2d821ddf72e))
+
+## [2.0.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v1.4.0...dataform-v2.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([e7409c8](https://github.com/googleapis/google-cloud-node/commit/e7409c87febcf33359a2d36ae4551f502b8a2f93))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [1.4.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v1.3.0...dataform-v1.4.0) (2025-02-28)
+
+
+### Features
+
+* Added new field `internal_metadata` to all resources to export all the metadata information that is used internally to serve the resource ([#6098](https://github.com/googleapis/google-cloud-node/issues/6098)) ([d1826b9](https://github.com/googleapis/google-cloud-node/commit/d1826b988780dab8ba4f3866e1ca35f89c99ff5b))
+
 ## [1.3.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v1.2.0...dataform-v1.3.0) (2024-05-21)
 
 

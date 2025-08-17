@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -153,12 +153,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Viewport.decode = function decode(reader, length) {
+                    Viewport.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.geo.type.Viewport();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.low = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -405,12 +407,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                LatLng.decode = function decode(reader, length) {
+                LatLng.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.LatLng();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.latitude = reader.double();
@@ -632,12 +636,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                LocalizedText.decode = function decode(reader, length) {
+                LocalizedText.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.LocalizedText();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -763,6 +769,258 @@
                 return LocalizedText;
             })();
     
+            type.Date = (function() {
+    
+                /**
+                 * Properties of a Date.
+                 * @memberof google.type
+                 * @interface IDate
+                 * @property {number|null} [year] Date year
+                 * @property {number|null} [month] Date month
+                 * @property {number|null} [day] Date day
+                 */
+    
+                /**
+                 * Constructs a new Date.
+                 * @memberof google.type
+                 * @classdesc Represents a Date.
+                 * @implements IDate
+                 * @constructor
+                 * @param {google.type.IDate=} [properties] Properties to set
+                 */
+                function Date(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Date year.
+                 * @member {number} year
+                 * @memberof google.type.Date
+                 * @instance
+                 */
+                Date.prototype.year = 0;
+    
+                /**
+                 * Date month.
+                 * @member {number} month
+                 * @memberof google.type.Date
+                 * @instance
+                 */
+                Date.prototype.month = 0;
+    
+                /**
+                 * Date day.
+                 * @member {number} day
+                 * @memberof google.type.Date
+                 * @instance
+                 */
+                Date.prototype.day = 0;
+    
+                /**
+                 * Creates a new Date instance using the specified properties.
+                 * @function create
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {google.type.IDate=} [properties] Properties to set
+                 * @returns {google.type.Date} Date instance
+                 */
+                Date.create = function create(properties) {
+                    return new Date(properties);
+                };
+    
+                /**
+                 * Encodes the specified Date message. Does not implicitly {@link google.type.Date.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {google.type.IDate} message Date message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Date.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.year != null && Object.hasOwnProperty.call(message, "year"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.year);
+                    if (message.month != null && Object.hasOwnProperty.call(message, "month"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.month);
+                    if (message.day != null && Object.hasOwnProperty.call(message, "day"))
+                        writer.uint32(/* id 3, wireType 0 =*/24).int32(message.day);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Date message, length delimited. Does not implicitly {@link google.type.Date.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {google.type.IDate} message Date message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Date.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Date message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.type.Date} Date
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Date.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.Date();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.year = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.month = reader.int32();
+                                break;
+                            }
+                        case 3: {
+                                message.day = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Date message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.type.Date} Date
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Date.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Date message.
+                 * @function verify
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Date.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.year != null && message.hasOwnProperty("year"))
+                        if (!$util.isInteger(message.year))
+                            return "year: integer expected";
+                    if (message.month != null && message.hasOwnProperty("month"))
+                        if (!$util.isInteger(message.month))
+                            return "month: integer expected";
+                    if (message.day != null && message.hasOwnProperty("day"))
+                        if (!$util.isInteger(message.day))
+                            return "day: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Date message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.type.Date} Date
+                 */
+                Date.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.type.Date)
+                        return object;
+                    var message = new $root.google.type.Date();
+                    if (object.year != null)
+                        message.year = object.year | 0;
+                    if (object.month != null)
+                        message.month = object.month | 0;
+                    if (object.day != null)
+                        message.day = object.day | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Date message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {google.type.Date} message Date
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Date.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.year = 0;
+                        object.month = 0;
+                        object.day = 0;
+                    }
+                    if (message.year != null && message.hasOwnProperty("year"))
+                        object.year = message.year;
+                    if (message.month != null && message.hasOwnProperty("month"))
+                        object.month = message.month;
+                    if (message.day != null && message.hasOwnProperty("day"))
+                        object.day = message.day;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Date to JSON.
+                 * @function toJSON
+                 * @memberof google.type.Date
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Date.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Date
+                 * @function getTypeUrl
+                 * @memberof google.type.Date
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Date.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.type.Date";
+                };
+    
+                return Date;
+            })();
+    
             type.Money = (function() {
     
                 /**
@@ -870,12 +1128,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Money.decode = function decode(reader, length) {
+                Money.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.Money();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.currencyCode = reader.string();
@@ -1027,26 +1287,32 @@
                 return Money;
             })();
     
-            type.Date = (function() {
+            type.DateTime = (function() {
     
                 /**
-                 * Properties of a Date.
+                 * Properties of a DateTime.
                  * @memberof google.type
-                 * @interface IDate
-                 * @property {number|null} [year] Date year
-                 * @property {number|null} [month] Date month
-                 * @property {number|null} [day] Date day
+                 * @interface IDateTime
+                 * @property {number|null} [year] DateTime year
+                 * @property {number|null} [month] DateTime month
+                 * @property {number|null} [day] DateTime day
+                 * @property {number|null} [hours] DateTime hours
+                 * @property {number|null} [minutes] DateTime minutes
+                 * @property {number|null} [seconds] DateTime seconds
+                 * @property {number|null} [nanos] DateTime nanos
+                 * @property {google.protobuf.IDuration|null} [utcOffset] DateTime utcOffset
+                 * @property {google.type.ITimeZone|null} [timeZone] DateTime timeZone
                  */
     
                 /**
-                 * Constructs a new Date.
+                 * Constructs a new DateTime.
                  * @memberof google.type
-                 * @classdesc Represents a Date.
-                 * @implements IDate
+                 * @classdesc Represents a DateTime.
+                 * @implements IDateTime
                  * @constructor
-                 * @param {google.type.IDate=} [properties] Properties to set
+                 * @param {google.type.IDateTime=} [properties] Properties to set
                  */
-                function Date(properties) {
+                function DateTime(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -1054,51 +1320,113 @@
                 }
     
                 /**
-                 * Date year.
+                 * DateTime year.
                  * @member {number} year
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @instance
                  */
-                Date.prototype.year = 0;
+                DateTime.prototype.year = 0;
     
                 /**
-                 * Date month.
+                 * DateTime month.
                  * @member {number} month
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @instance
                  */
-                Date.prototype.month = 0;
+                DateTime.prototype.month = 0;
     
                 /**
-                 * Date day.
+                 * DateTime day.
                  * @member {number} day
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @instance
                  */
-                Date.prototype.day = 0;
+                DateTime.prototype.day = 0;
     
                 /**
-                 * Creates a new Date instance using the specified properties.
-                 * @function create
-                 * @memberof google.type.Date
-                 * @static
-                 * @param {google.type.IDate=} [properties] Properties to set
-                 * @returns {google.type.Date} Date instance
+                 * DateTime hours.
+                 * @member {number} hours
+                 * @memberof google.type.DateTime
+                 * @instance
                  */
-                Date.create = function create(properties) {
-                    return new Date(properties);
+                DateTime.prototype.hours = 0;
+    
+                /**
+                 * DateTime minutes.
+                 * @member {number} minutes
+                 * @memberof google.type.DateTime
+                 * @instance
+                 */
+                DateTime.prototype.minutes = 0;
+    
+                /**
+                 * DateTime seconds.
+                 * @member {number} seconds
+                 * @memberof google.type.DateTime
+                 * @instance
+                 */
+                DateTime.prototype.seconds = 0;
+    
+                /**
+                 * DateTime nanos.
+                 * @member {number} nanos
+                 * @memberof google.type.DateTime
+                 * @instance
+                 */
+                DateTime.prototype.nanos = 0;
+    
+                /**
+                 * DateTime utcOffset.
+                 * @member {google.protobuf.IDuration|null|undefined} utcOffset
+                 * @memberof google.type.DateTime
+                 * @instance
+                 */
+                DateTime.prototype.utcOffset = null;
+    
+                /**
+                 * DateTime timeZone.
+                 * @member {google.type.ITimeZone|null|undefined} timeZone
+                 * @memberof google.type.DateTime
+                 * @instance
+                 */
+                DateTime.prototype.timeZone = null;
+    
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+    
+                /**
+                 * DateTime timeOffset.
+                 * @member {"utcOffset"|"timeZone"|undefined} timeOffset
+                 * @memberof google.type.DateTime
+                 * @instance
+                 */
+                Object.defineProperty(DateTime.prototype, "timeOffset", {
+                    get: $util.oneOfGetter($oneOfFields = ["utcOffset", "timeZone"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+    
+                /**
+                 * Creates a new DateTime instance using the specified properties.
+                 * @function create
+                 * @memberof google.type.DateTime
+                 * @static
+                 * @param {google.type.IDateTime=} [properties] Properties to set
+                 * @returns {google.type.DateTime} DateTime instance
+                 */
+                DateTime.create = function create(properties) {
+                    return new DateTime(properties);
                 };
     
                 /**
-                 * Encodes the specified Date message. Does not implicitly {@link google.type.Date.verify|verify} messages.
+                 * Encodes the specified DateTime message. Does not implicitly {@link google.type.DateTime.verify|verify} messages.
                  * @function encode
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
-                 * @param {google.type.IDate} message Date message or plain object to encode
+                 * @param {google.type.IDateTime} message DateTime message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                Date.encode = function encode(message, writer) {
+                DateTime.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.year != null && Object.hasOwnProperty.call(message, "year"))
@@ -1107,39 +1435,53 @@
                         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.month);
                     if (message.day != null && Object.hasOwnProperty.call(message, "day"))
                         writer.uint32(/* id 3, wireType 0 =*/24).int32(message.day);
+                    if (message.hours != null && Object.hasOwnProperty.call(message, "hours"))
+                        writer.uint32(/* id 4, wireType 0 =*/32).int32(message.hours);
+                    if (message.minutes != null && Object.hasOwnProperty.call(message, "minutes"))
+                        writer.uint32(/* id 5, wireType 0 =*/40).int32(message.minutes);
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 6, wireType 0 =*/48).int32(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 7, wireType 0 =*/56).int32(message.nanos);
+                    if (message.utcOffset != null && Object.hasOwnProperty.call(message, "utcOffset"))
+                        $root.google.protobuf.Duration.encode(message.utcOffset, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                    if (message.timeZone != null && Object.hasOwnProperty.call(message, "timeZone"))
+                        $root.google.type.TimeZone.encode(message.timeZone, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                     return writer;
                 };
     
                 /**
-                 * Encodes the specified Date message, length delimited. Does not implicitly {@link google.type.Date.verify|verify} messages.
+                 * Encodes the specified DateTime message, length delimited. Does not implicitly {@link google.type.DateTime.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
-                 * @param {google.type.IDate} message Date message or plain object to encode
+                 * @param {google.type.IDateTime} message DateTime message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                Date.encodeDelimited = function encodeDelimited(message, writer) {
+                DateTime.encodeDelimited = function encodeDelimited(message, writer) {
                     return this.encode(message, writer).ldelim();
                 };
     
                 /**
-                 * Decodes a Date message from the specified reader or buffer.
+                 * Decodes a DateTime message from the specified reader or buffer.
                  * @function decode
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {google.type.Date} Date
+                 * @returns {google.type.DateTime} DateTime
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Date.decode = function decode(reader, length) {
+                DateTime.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.Date();
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.DateTime();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.year = reader.int32();
@@ -1153,6 +1495,30 @@
                                 message.day = reader.int32();
                                 break;
                             }
+                        case 4: {
+                                message.hours = reader.int32();
+                                break;
+                            }
+                        case 5: {
+                                message.minutes = reader.int32();
+                                break;
+                            }
+                        case 6: {
+                                message.seconds = reader.int32();
+                                break;
+                            }
+                        case 7: {
+                                message.nanos = reader.int32();
+                                break;
+                            }
+                        case 8: {
+                                message.utcOffset = $root.google.protobuf.Duration.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 9: {
+                                message.timeZone = $root.google.type.TimeZone.decode(reader, reader.uint32());
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -1162,32 +1528,33 @@
                 };
     
                 /**
-                 * Decodes a Date message from the specified reader or buffer, length delimited.
+                 * Decodes a DateTime message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.type.Date} Date
+                 * @returns {google.type.DateTime} DateTime
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Date.decodeDelimited = function decodeDelimited(reader) {
+                DateTime.decodeDelimited = function decodeDelimited(reader) {
                     if (!(reader instanceof $Reader))
                         reader = new $Reader(reader);
                     return this.decode(reader, reader.uint32());
                 };
     
                 /**
-                 * Verifies a Date message.
+                 * Verifies a DateTime message.
                  * @function verify
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                Date.verify = function verify(message) {
+                DateTime.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    var properties = {};
                     if (message.year != null && message.hasOwnProperty("year"))
                         if (!$util.isInteger(message.year))
                             return "year: integer expected";
@@ -1197,40 +1564,88 @@
                     if (message.day != null && message.hasOwnProperty("day"))
                         if (!$util.isInteger(message.day))
                             return "day: integer expected";
+                    if (message.hours != null && message.hasOwnProperty("hours"))
+                        if (!$util.isInteger(message.hours))
+                            return "hours: integer expected";
+                    if (message.minutes != null && message.hasOwnProperty("minutes"))
+                        if (!$util.isInteger(message.minutes))
+                            return "minutes: integer expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds))
+                            return "seconds: integer expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    if (message.utcOffset != null && message.hasOwnProperty("utcOffset")) {
+                        properties.timeOffset = 1;
+                        {
+                            var error = $root.google.protobuf.Duration.verify(message.utcOffset);
+                            if (error)
+                                return "utcOffset." + error;
+                        }
+                    }
+                    if (message.timeZone != null && message.hasOwnProperty("timeZone")) {
+                        if (properties.timeOffset === 1)
+                            return "timeOffset: multiple values";
+                        properties.timeOffset = 1;
+                        {
+                            var error = $root.google.type.TimeZone.verify(message.timeZone);
+                            if (error)
+                                return "timeZone." + error;
+                        }
+                    }
                     return null;
                 };
     
                 /**
-                 * Creates a Date message from a plain object. Also converts values to their respective internal types.
+                 * Creates a DateTime message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {google.type.Date} Date
+                 * @returns {google.type.DateTime} DateTime
                  */
-                Date.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.type.Date)
+                DateTime.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.type.DateTime)
                         return object;
-                    var message = new $root.google.type.Date();
+                    var message = new $root.google.type.DateTime();
                     if (object.year != null)
                         message.year = object.year | 0;
                     if (object.month != null)
                         message.month = object.month | 0;
                     if (object.day != null)
                         message.day = object.day | 0;
+                    if (object.hours != null)
+                        message.hours = object.hours | 0;
+                    if (object.minutes != null)
+                        message.minutes = object.minutes | 0;
+                    if (object.seconds != null)
+                        message.seconds = object.seconds | 0;
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    if (object.utcOffset != null) {
+                        if (typeof object.utcOffset !== "object")
+                            throw TypeError(".google.type.DateTime.utcOffset: object expected");
+                        message.utcOffset = $root.google.protobuf.Duration.fromObject(object.utcOffset);
+                    }
+                    if (object.timeZone != null) {
+                        if (typeof object.timeZone !== "object")
+                            throw TypeError(".google.type.DateTime.timeZone: object expected");
+                        message.timeZone = $root.google.type.TimeZone.fromObject(object.timeZone);
+                    }
                     return message;
                 };
     
                 /**
-                 * Creates a plain object from a Date message. Also converts values to other types if specified.
+                 * Creates a plain object from a DateTime message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
-                 * @param {google.type.Date} message Date
+                 * @param {google.type.DateTime} message DateTime
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                Date.toObject = function toObject(message, options) {
+                DateTime.toObject = function toObject(message, options) {
                     if (!options)
                         options = {};
                     var object = {};
@@ -1238,6 +1653,10 @@
                         object.year = 0;
                         object.month = 0;
                         object.day = 0;
+                        object.hours = 0;
+                        object.minutes = 0;
+                        object.seconds = 0;
+                        object.nanos = 0;
                     }
                     if (message.year != null && message.hasOwnProperty("year"))
                         object.year = message.year;
@@ -1245,36 +1664,753 @@
                         object.month = message.month;
                     if (message.day != null && message.hasOwnProperty("day"))
                         object.day = message.day;
+                    if (message.hours != null && message.hasOwnProperty("hours"))
+                        object.hours = message.hours;
+                    if (message.minutes != null && message.hasOwnProperty("minutes"))
+                        object.minutes = message.minutes;
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        object.seconds = message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    if (message.utcOffset != null && message.hasOwnProperty("utcOffset")) {
+                        object.utcOffset = $root.google.protobuf.Duration.toObject(message.utcOffset, options);
+                        if (options.oneofs)
+                            object.timeOffset = "utcOffset";
+                    }
+                    if (message.timeZone != null && message.hasOwnProperty("timeZone")) {
+                        object.timeZone = $root.google.type.TimeZone.toObject(message.timeZone, options);
+                        if (options.oneofs)
+                            object.timeOffset = "timeZone";
+                    }
                     return object;
                 };
     
                 /**
-                 * Converts this Date to JSON.
+                 * Converts this DateTime to JSON.
                  * @function toJSON
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
-                Date.prototype.toJSON = function toJSON() {
+                DateTime.prototype.toJSON = function toJSON() {
                     return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
                 };
     
                 /**
-                 * Gets the default type url for Date
+                 * Gets the default type url for DateTime
                  * @function getTypeUrl
-                 * @memberof google.type.Date
+                 * @memberof google.type.DateTime
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
                  */
-                Date.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                DateTime.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/google.type.Date";
+                    return typeUrlPrefix + "/google.type.DateTime";
                 };
     
-                return Date;
+                return DateTime;
+            })();
+    
+            type.TimeZone = (function() {
+    
+                /**
+                 * Properties of a TimeZone.
+                 * @memberof google.type
+                 * @interface ITimeZone
+                 * @property {string|null} [id] TimeZone id
+                 * @property {string|null} [version] TimeZone version
+                 */
+    
+                /**
+                 * Constructs a new TimeZone.
+                 * @memberof google.type
+                 * @classdesc Represents a TimeZone.
+                 * @implements ITimeZone
+                 * @constructor
+                 * @param {google.type.ITimeZone=} [properties] Properties to set
+                 */
+                function TimeZone(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * TimeZone id.
+                 * @member {string} id
+                 * @memberof google.type.TimeZone
+                 * @instance
+                 */
+                TimeZone.prototype.id = "";
+    
+                /**
+                 * TimeZone version.
+                 * @member {string} version
+                 * @memberof google.type.TimeZone
+                 * @instance
+                 */
+                TimeZone.prototype.version = "";
+    
+                /**
+                 * Creates a new TimeZone instance using the specified properties.
+                 * @function create
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {google.type.ITimeZone=} [properties] Properties to set
+                 * @returns {google.type.TimeZone} TimeZone instance
+                 */
+                TimeZone.create = function create(properties) {
+                    return new TimeZone(properties);
+                };
+    
+                /**
+                 * Encodes the specified TimeZone message. Does not implicitly {@link google.type.TimeZone.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {google.type.ITimeZone} message TimeZone message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                TimeZone.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                    if (message.version != null && Object.hasOwnProperty.call(message, "version"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.version);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified TimeZone message, length delimited. Does not implicitly {@link google.type.TimeZone.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {google.type.ITimeZone} message TimeZone message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                TimeZone.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a TimeZone message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.type.TimeZone} TimeZone
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                TimeZone.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.TimeZone();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.id = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.version = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a TimeZone message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.type.TimeZone} TimeZone
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                TimeZone.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a TimeZone message.
+                 * @function verify
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                TimeZone.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        if (!$util.isString(message.id))
+                            return "id: string expected";
+                    if (message.version != null && message.hasOwnProperty("version"))
+                        if (!$util.isString(message.version))
+                            return "version: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a TimeZone message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.type.TimeZone} TimeZone
+                 */
+                TimeZone.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.type.TimeZone)
+                        return object;
+                    var message = new $root.google.type.TimeZone();
+                    if (object.id != null)
+                        message.id = String(object.id);
+                    if (object.version != null)
+                        message.version = String(object.version);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a TimeZone message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {google.type.TimeZone} message TimeZone
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                TimeZone.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.id = "";
+                        object.version = "";
+                    }
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        object.id = message.id;
+                    if (message.version != null && message.hasOwnProperty("version"))
+                        object.version = message.version;
+                    return object;
+                };
+    
+                /**
+                 * Converts this TimeZone to JSON.
+                 * @function toJSON
+                 * @memberof google.type.TimeZone
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                TimeZone.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for TimeZone
+                 * @function getTypeUrl
+                 * @memberof google.type.TimeZone
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                TimeZone.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.type.TimeZone";
+                };
+    
+                return TimeZone;
+            })();
+    
+            type.PostalAddress = (function() {
+    
+                /**
+                 * Properties of a PostalAddress.
+                 * @memberof google.type
+                 * @interface IPostalAddress
+                 * @property {number|null} [revision] PostalAddress revision
+                 * @property {string|null} [regionCode] PostalAddress regionCode
+                 * @property {string|null} [languageCode] PostalAddress languageCode
+                 * @property {string|null} [postalCode] PostalAddress postalCode
+                 * @property {string|null} [sortingCode] PostalAddress sortingCode
+                 * @property {string|null} [administrativeArea] PostalAddress administrativeArea
+                 * @property {string|null} [locality] PostalAddress locality
+                 * @property {string|null} [sublocality] PostalAddress sublocality
+                 * @property {Array.<string>|null} [addressLines] PostalAddress addressLines
+                 * @property {Array.<string>|null} [recipients] PostalAddress recipients
+                 * @property {string|null} [organization] PostalAddress organization
+                 */
+    
+                /**
+                 * Constructs a new PostalAddress.
+                 * @memberof google.type
+                 * @classdesc Represents a PostalAddress.
+                 * @implements IPostalAddress
+                 * @constructor
+                 * @param {google.type.IPostalAddress=} [properties] Properties to set
+                 */
+                function PostalAddress(properties) {
+                    this.addressLines = [];
+                    this.recipients = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * PostalAddress revision.
+                 * @member {number} revision
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.revision = 0;
+    
+                /**
+                 * PostalAddress regionCode.
+                 * @member {string} regionCode
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.regionCode = "";
+    
+                /**
+                 * PostalAddress languageCode.
+                 * @member {string} languageCode
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.languageCode = "";
+    
+                /**
+                 * PostalAddress postalCode.
+                 * @member {string} postalCode
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.postalCode = "";
+    
+                /**
+                 * PostalAddress sortingCode.
+                 * @member {string} sortingCode
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.sortingCode = "";
+    
+                /**
+                 * PostalAddress administrativeArea.
+                 * @member {string} administrativeArea
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.administrativeArea = "";
+    
+                /**
+                 * PostalAddress locality.
+                 * @member {string} locality
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.locality = "";
+    
+                /**
+                 * PostalAddress sublocality.
+                 * @member {string} sublocality
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.sublocality = "";
+    
+                /**
+                 * PostalAddress addressLines.
+                 * @member {Array.<string>} addressLines
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.addressLines = $util.emptyArray;
+    
+                /**
+                 * PostalAddress recipients.
+                 * @member {Array.<string>} recipients
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.recipients = $util.emptyArray;
+    
+                /**
+                 * PostalAddress organization.
+                 * @member {string} organization
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 */
+                PostalAddress.prototype.organization = "";
+    
+                /**
+                 * Creates a new PostalAddress instance using the specified properties.
+                 * @function create
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {google.type.IPostalAddress=} [properties] Properties to set
+                 * @returns {google.type.PostalAddress} PostalAddress instance
+                 */
+                PostalAddress.create = function create(properties) {
+                    return new PostalAddress(properties);
+                };
+    
+                /**
+                 * Encodes the specified PostalAddress message. Does not implicitly {@link google.type.PostalAddress.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {google.type.IPostalAddress} message PostalAddress message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                PostalAddress.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.revision != null && Object.hasOwnProperty.call(message, "revision"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.revision);
+                    if (message.regionCode != null && Object.hasOwnProperty.call(message, "regionCode"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.regionCode);
+                    if (message.languageCode != null && Object.hasOwnProperty.call(message, "languageCode"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.languageCode);
+                    if (message.postalCode != null && Object.hasOwnProperty.call(message, "postalCode"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.postalCode);
+                    if (message.sortingCode != null && Object.hasOwnProperty.call(message, "sortingCode"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.sortingCode);
+                    if (message.administrativeArea != null && Object.hasOwnProperty.call(message, "administrativeArea"))
+                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.administrativeArea);
+                    if (message.locality != null && Object.hasOwnProperty.call(message, "locality"))
+                        writer.uint32(/* id 7, wireType 2 =*/58).string(message.locality);
+                    if (message.sublocality != null && Object.hasOwnProperty.call(message, "sublocality"))
+                        writer.uint32(/* id 8, wireType 2 =*/66).string(message.sublocality);
+                    if (message.addressLines != null && message.addressLines.length)
+                        for (var i = 0; i < message.addressLines.length; ++i)
+                            writer.uint32(/* id 9, wireType 2 =*/74).string(message.addressLines[i]);
+                    if (message.recipients != null && message.recipients.length)
+                        for (var i = 0; i < message.recipients.length; ++i)
+                            writer.uint32(/* id 10, wireType 2 =*/82).string(message.recipients[i]);
+                    if (message.organization != null && Object.hasOwnProperty.call(message, "organization"))
+                        writer.uint32(/* id 11, wireType 2 =*/90).string(message.organization);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified PostalAddress message, length delimited. Does not implicitly {@link google.type.PostalAddress.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {google.type.IPostalAddress} message PostalAddress message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                PostalAddress.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a PostalAddress message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.type.PostalAddress} PostalAddress
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                PostalAddress.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.PostalAddress();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.revision = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.regionCode = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.languageCode = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.postalCode = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.sortingCode = reader.string();
+                                break;
+                            }
+                        case 6: {
+                                message.administrativeArea = reader.string();
+                                break;
+                            }
+                        case 7: {
+                                message.locality = reader.string();
+                                break;
+                            }
+                        case 8: {
+                                message.sublocality = reader.string();
+                                break;
+                            }
+                        case 9: {
+                                if (!(message.addressLines && message.addressLines.length))
+                                    message.addressLines = [];
+                                message.addressLines.push(reader.string());
+                                break;
+                            }
+                        case 10: {
+                                if (!(message.recipients && message.recipients.length))
+                                    message.recipients = [];
+                                message.recipients.push(reader.string());
+                                break;
+                            }
+                        case 11: {
+                                message.organization = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a PostalAddress message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.type.PostalAddress} PostalAddress
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                PostalAddress.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a PostalAddress message.
+                 * @function verify
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                PostalAddress.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.revision != null && message.hasOwnProperty("revision"))
+                        if (!$util.isInteger(message.revision))
+                            return "revision: integer expected";
+                    if (message.regionCode != null && message.hasOwnProperty("regionCode"))
+                        if (!$util.isString(message.regionCode))
+                            return "regionCode: string expected";
+                    if (message.languageCode != null && message.hasOwnProperty("languageCode"))
+                        if (!$util.isString(message.languageCode))
+                            return "languageCode: string expected";
+                    if (message.postalCode != null && message.hasOwnProperty("postalCode"))
+                        if (!$util.isString(message.postalCode))
+                            return "postalCode: string expected";
+                    if (message.sortingCode != null && message.hasOwnProperty("sortingCode"))
+                        if (!$util.isString(message.sortingCode))
+                            return "sortingCode: string expected";
+                    if (message.administrativeArea != null && message.hasOwnProperty("administrativeArea"))
+                        if (!$util.isString(message.administrativeArea))
+                            return "administrativeArea: string expected";
+                    if (message.locality != null && message.hasOwnProperty("locality"))
+                        if (!$util.isString(message.locality))
+                            return "locality: string expected";
+                    if (message.sublocality != null && message.hasOwnProperty("sublocality"))
+                        if (!$util.isString(message.sublocality))
+                            return "sublocality: string expected";
+                    if (message.addressLines != null && message.hasOwnProperty("addressLines")) {
+                        if (!Array.isArray(message.addressLines))
+                            return "addressLines: array expected";
+                        for (var i = 0; i < message.addressLines.length; ++i)
+                            if (!$util.isString(message.addressLines[i]))
+                                return "addressLines: string[] expected";
+                    }
+                    if (message.recipients != null && message.hasOwnProperty("recipients")) {
+                        if (!Array.isArray(message.recipients))
+                            return "recipients: array expected";
+                        for (var i = 0; i < message.recipients.length; ++i)
+                            if (!$util.isString(message.recipients[i]))
+                                return "recipients: string[] expected";
+                    }
+                    if (message.organization != null && message.hasOwnProperty("organization"))
+                        if (!$util.isString(message.organization))
+                            return "organization: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a PostalAddress message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.type.PostalAddress} PostalAddress
+                 */
+                PostalAddress.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.type.PostalAddress)
+                        return object;
+                    var message = new $root.google.type.PostalAddress();
+                    if (object.revision != null)
+                        message.revision = object.revision | 0;
+                    if (object.regionCode != null)
+                        message.regionCode = String(object.regionCode);
+                    if (object.languageCode != null)
+                        message.languageCode = String(object.languageCode);
+                    if (object.postalCode != null)
+                        message.postalCode = String(object.postalCode);
+                    if (object.sortingCode != null)
+                        message.sortingCode = String(object.sortingCode);
+                    if (object.administrativeArea != null)
+                        message.administrativeArea = String(object.administrativeArea);
+                    if (object.locality != null)
+                        message.locality = String(object.locality);
+                    if (object.sublocality != null)
+                        message.sublocality = String(object.sublocality);
+                    if (object.addressLines) {
+                        if (!Array.isArray(object.addressLines))
+                            throw TypeError(".google.type.PostalAddress.addressLines: array expected");
+                        message.addressLines = [];
+                        for (var i = 0; i < object.addressLines.length; ++i)
+                            message.addressLines[i] = String(object.addressLines[i]);
+                    }
+                    if (object.recipients) {
+                        if (!Array.isArray(object.recipients))
+                            throw TypeError(".google.type.PostalAddress.recipients: array expected");
+                        message.recipients = [];
+                        for (var i = 0; i < object.recipients.length; ++i)
+                            message.recipients[i] = String(object.recipients[i]);
+                    }
+                    if (object.organization != null)
+                        message.organization = String(object.organization);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a PostalAddress message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {google.type.PostalAddress} message PostalAddress
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                PostalAddress.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults) {
+                        object.addressLines = [];
+                        object.recipients = [];
+                    }
+                    if (options.defaults) {
+                        object.revision = 0;
+                        object.regionCode = "";
+                        object.languageCode = "";
+                        object.postalCode = "";
+                        object.sortingCode = "";
+                        object.administrativeArea = "";
+                        object.locality = "";
+                        object.sublocality = "";
+                        object.organization = "";
+                    }
+                    if (message.revision != null && message.hasOwnProperty("revision"))
+                        object.revision = message.revision;
+                    if (message.regionCode != null && message.hasOwnProperty("regionCode"))
+                        object.regionCode = message.regionCode;
+                    if (message.languageCode != null && message.hasOwnProperty("languageCode"))
+                        object.languageCode = message.languageCode;
+                    if (message.postalCode != null && message.hasOwnProperty("postalCode"))
+                        object.postalCode = message.postalCode;
+                    if (message.sortingCode != null && message.hasOwnProperty("sortingCode"))
+                        object.sortingCode = message.sortingCode;
+                    if (message.administrativeArea != null && message.hasOwnProperty("administrativeArea"))
+                        object.administrativeArea = message.administrativeArea;
+                    if (message.locality != null && message.hasOwnProperty("locality"))
+                        object.locality = message.locality;
+                    if (message.sublocality != null && message.hasOwnProperty("sublocality"))
+                        object.sublocality = message.sublocality;
+                    if (message.addressLines && message.addressLines.length) {
+                        object.addressLines = [];
+                        for (var j = 0; j < message.addressLines.length; ++j)
+                            object.addressLines[j] = message.addressLines[j];
+                    }
+                    if (message.recipients && message.recipients.length) {
+                        object.recipients = [];
+                        for (var j = 0; j < message.recipients.length; ++j)
+                            object.recipients[j] = message.recipients[j];
+                    }
+                    if (message.organization != null && message.hasOwnProperty("organization"))
+                        object.organization = message.organization;
+                    return object;
+                };
+    
+                /**
+                 * Converts this PostalAddress to JSON.
+                 * @function toJSON
+                 * @memberof google.type.PostalAddress
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                PostalAddress.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for PostalAddress
+                 * @function getTypeUrl
+                 * @memberof google.type.PostalAddress
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                PostalAddress.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.type.PostalAddress";
+                };
+    
+                return PostalAddress;
             })();
     
             return type;
@@ -1306,6 +2442,1052 @@
                      * @namespace
                      */
                     var v1 = {};
+    
+                    v1.AddressDescriptor = (function() {
+    
+                        /**
+                         * Properties of an AddressDescriptor.
+                         * @memberof google.maps.places.v1
+                         * @interface IAddressDescriptor
+                         * @property {Array.<google.maps.places.v1.AddressDescriptor.ILandmark>|null} [landmarks] AddressDescriptor landmarks
+                         * @property {Array.<google.maps.places.v1.AddressDescriptor.IArea>|null} [areas] AddressDescriptor areas
+                         */
+    
+                        /**
+                         * Constructs a new AddressDescriptor.
+                         * @memberof google.maps.places.v1
+                         * @classdesc Represents an AddressDescriptor.
+                         * @implements IAddressDescriptor
+                         * @constructor
+                         * @param {google.maps.places.v1.IAddressDescriptor=} [properties] Properties to set
+                         */
+                        function AddressDescriptor(properties) {
+                            this.landmarks = [];
+                            this.areas = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * AddressDescriptor landmarks.
+                         * @member {Array.<google.maps.places.v1.AddressDescriptor.ILandmark>} landmarks
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @instance
+                         */
+                        AddressDescriptor.prototype.landmarks = $util.emptyArray;
+    
+                        /**
+                         * AddressDescriptor areas.
+                         * @member {Array.<google.maps.places.v1.AddressDescriptor.IArea>} areas
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @instance
+                         */
+                        AddressDescriptor.prototype.areas = $util.emptyArray;
+    
+                        /**
+                         * Creates a new AddressDescriptor instance using the specified properties.
+                         * @function create
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {google.maps.places.v1.IAddressDescriptor=} [properties] Properties to set
+                         * @returns {google.maps.places.v1.AddressDescriptor} AddressDescriptor instance
+                         */
+                        AddressDescriptor.create = function create(properties) {
+                            return new AddressDescriptor(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified AddressDescriptor message. Does not implicitly {@link google.maps.places.v1.AddressDescriptor.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {google.maps.places.v1.IAddressDescriptor} message AddressDescriptor message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AddressDescriptor.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.landmarks != null && message.landmarks.length)
+                                for (var i = 0; i < message.landmarks.length; ++i)
+                                    $root.google.maps.places.v1.AddressDescriptor.Landmark.encode(message.landmarks[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.areas != null && message.areas.length)
+                                for (var i = 0; i < message.areas.length; ++i)
+                                    $root.google.maps.places.v1.AddressDescriptor.Area.encode(message.areas[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified AddressDescriptor message, length delimited. Does not implicitly {@link google.maps.places.v1.AddressDescriptor.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {google.maps.places.v1.IAddressDescriptor} message AddressDescriptor message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AddressDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an AddressDescriptor message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.maps.places.v1.AddressDescriptor} AddressDescriptor
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AddressDescriptor.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AddressDescriptor();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.landmarks && message.landmarks.length))
+                                            message.landmarks = [];
+                                        message.landmarks.push($root.google.maps.places.v1.AddressDescriptor.Landmark.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.areas && message.areas.length))
+                                            message.areas = [];
+                                        message.areas.push($root.google.maps.places.v1.AddressDescriptor.Area.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an AddressDescriptor message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.maps.places.v1.AddressDescriptor} AddressDescriptor
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AddressDescriptor.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an AddressDescriptor message.
+                         * @function verify
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        AddressDescriptor.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.landmarks != null && message.hasOwnProperty("landmarks")) {
+                                if (!Array.isArray(message.landmarks))
+                                    return "landmarks: array expected";
+                                for (var i = 0; i < message.landmarks.length; ++i) {
+                                    var error = $root.google.maps.places.v1.AddressDescriptor.Landmark.verify(message.landmarks[i]);
+                                    if (error)
+                                        return "landmarks." + error;
+                                }
+                            }
+                            if (message.areas != null && message.hasOwnProperty("areas")) {
+                                if (!Array.isArray(message.areas))
+                                    return "areas: array expected";
+                                for (var i = 0; i < message.areas.length; ++i) {
+                                    var error = $root.google.maps.places.v1.AddressDescriptor.Area.verify(message.areas[i]);
+                                    if (error)
+                                        return "areas." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an AddressDescriptor message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.maps.places.v1.AddressDescriptor} AddressDescriptor
+                         */
+                        AddressDescriptor.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.maps.places.v1.AddressDescriptor)
+                                return object;
+                            var message = new $root.google.maps.places.v1.AddressDescriptor();
+                            if (object.landmarks) {
+                                if (!Array.isArray(object.landmarks))
+                                    throw TypeError(".google.maps.places.v1.AddressDescriptor.landmarks: array expected");
+                                message.landmarks = [];
+                                for (var i = 0; i < object.landmarks.length; ++i) {
+                                    if (typeof object.landmarks[i] !== "object")
+                                        throw TypeError(".google.maps.places.v1.AddressDescriptor.landmarks: object expected");
+                                    message.landmarks[i] = $root.google.maps.places.v1.AddressDescriptor.Landmark.fromObject(object.landmarks[i]);
+                                }
+                            }
+                            if (object.areas) {
+                                if (!Array.isArray(object.areas))
+                                    throw TypeError(".google.maps.places.v1.AddressDescriptor.areas: array expected");
+                                message.areas = [];
+                                for (var i = 0; i < object.areas.length; ++i) {
+                                    if (typeof object.areas[i] !== "object")
+                                        throw TypeError(".google.maps.places.v1.AddressDescriptor.areas: object expected");
+                                    message.areas[i] = $root.google.maps.places.v1.AddressDescriptor.Area.fromObject(object.areas[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an AddressDescriptor message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {google.maps.places.v1.AddressDescriptor} message AddressDescriptor
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        AddressDescriptor.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults) {
+                                object.landmarks = [];
+                                object.areas = [];
+                            }
+                            if (message.landmarks && message.landmarks.length) {
+                                object.landmarks = [];
+                                for (var j = 0; j < message.landmarks.length; ++j)
+                                    object.landmarks[j] = $root.google.maps.places.v1.AddressDescriptor.Landmark.toObject(message.landmarks[j], options);
+                            }
+                            if (message.areas && message.areas.length) {
+                                object.areas = [];
+                                for (var j = 0; j < message.areas.length; ++j)
+                                    object.areas[j] = $root.google.maps.places.v1.AddressDescriptor.Area.toObject(message.areas[j], options);
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this AddressDescriptor to JSON.
+                         * @function toJSON
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        AddressDescriptor.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for AddressDescriptor
+                         * @function getTypeUrl
+                         * @memberof google.maps.places.v1.AddressDescriptor
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        AddressDescriptor.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.maps.places.v1.AddressDescriptor";
+                        };
+    
+                        AddressDescriptor.Landmark = (function() {
+    
+                            /**
+                             * Properties of a Landmark.
+                             * @memberof google.maps.places.v1.AddressDescriptor
+                             * @interface ILandmark
+                             * @property {string|null} [name] Landmark name
+                             * @property {string|null} [placeId] Landmark placeId
+                             * @property {google.type.ILocalizedText|null} [displayName] Landmark displayName
+                             * @property {Array.<string>|null} [types] Landmark types
+                             * @property {google.maps.places.v1.AddressDescriptor.Landmark.SpatialRelationship|null} [spatialRelationship] Landmark spatialRelationship
+                             * @property {number|null} [straightLineDistanceMeters] Landmark straightLineDistanceMeters
+                             * @property {number|null} [travelDistanceMeters] Landmark travelDistanceMeters
+                             */
+    
+                            /**
+                             * Constructs a new Landmark.
+                             * @memberof google.maps.places.v1.AddressDescriptor
+                             * @classdesc Represents a Landmark.
+                             * @implements ILandmark
+                             * @constructor
+                             * @param {google.maps.places.v1.AddressDescriptor.ILandmark=} [properties] Properties to set
+                             */
+                            function Landmark(properties) {
+                                this.types = [];
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * Landmark name.
+                             * @member {string} name
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.name = "";
+    
+                            /**
+                             * Landmark placeId.
+                             * @member {string} placeId
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.placeId = "";
+    
+                            /**
+                             * Landmark displayName.
+                             * @member {google.type.ILocalizedText|null|undefined} displayName
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.displayName = null;
+    
+                            /**
+                             * Landmark types.
+                             * @member {Array.<string>} types
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.types = $util.emptyArray;
+    
+                            /**
+                             * Landmark spatialRelationship.
+                             * @member {google.maps.places.v1.AddressDescriptor.Landmark.SpatialRelationship} spatialRelationship
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.spatialRelationship = 0;
+    
+                            /**
+                             * Landmark straightLineDistanceMeters.
+                             * @member {number} straightLineDistanceMeters
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.straightLineDistanceMeters = 0;
+    
+                            /**
+                             * Landmark travelDistanceMeters.
+                             * @member {number|null|undefined} travelDistanceMeters
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             */
+                            Landmark.prototype.travelDistanceMeters = null;
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            // Virtual OneOf for proto3 optional field
+                            Object.defineProperty(Landmark.prototype, "_travelDistanceMeters", {
+                                get: $util.oneOfGetter($oneOfFields = ["travelDistanceMeters"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new Landmark instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.ILandmark=} [properties] Properties to set
+                             * @returns {google.maps.places.v1.AddressDescriptor.Landmark} Landmark instance
+                             */
+                            Landmark.create = function create(properties) {
+                                return new Landmark(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified Landmark message. Does not implicitly {@link google.maps.places.v1.AddressDescriptor.Landmark.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.ILandmark} message Landmark message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Landmark.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                if (message.placeId != null && Object.hasOwnProperty.call(message, "placeId"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.placeId);
+                                if (message.displayName != null && Object.hasOwnProperty.call(message, "displayName"))
+                                    $root.google.type.LocalizedText.encode(message.displayName, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                if (message.types != null && message.types.length)
+                                    for (var i = 0; i < message.types.length; ++i)
+                                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.types[i]);
+                                if (message.spatialRelationship != null && Object.hasOwnProperty.call(message, "spatialRelationship"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.spatialRelationship);
+                                if (message.straightLineDistanceMeters != null && Object.hasOwnProperty.call(message, "straightLineDistanceMeters"))
+                                    writer.uint32(/* id 6, wireType 5 =*/53).float(message.straightLineDistanceMeters);
+                                if (message.travelDistanceMeters != null && Object.hasOwnProperty.call(message, "travelDistanceMeters"))
+                                    writer.uint32(/* id 7, wireType 5 =*/61).float(message.travelDistanceMeters);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified Landmark message, length delimited. Does not implicitly {@link google.maps.places.v1.AddressDescriptor.Landmark.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.ILandmark} message Landmark message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Landmark.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a Landmark message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.places.v1.AddressDescriptor.Landmark} Landmark
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Landmark.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AddressDescriptor.Landmark();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.name = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.placeId = reader.string();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.displayName = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 4: {
+                                            if (!(message.types && message.types.length))
+                                                message.types = [];
+                                            message.types.push(reader.string());
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.spatialRelationship = reader.int32();
+                                            break;
+                                        }
+                                    case 6: {
+                                            message.straightLineDistanceMeters = reader.float();
+                                            break;
+                                        }
+                                    case 7: {
+                                            message.travelDistanceMeters = reader.float();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a Landmark message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.places.v1.AddressDescriptor.Landmark} Landmark
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Landmark.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a Landmark message.
+                             * @function verify
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            Landmark.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    if (!$util.isString(message.name))
+                                        return "name: string expected";
+                                if (message.placeId != null && message.hasOwnProperty("placeId"))
+                                    if (!$util.isString(message.placeId))
+                                        return "placeId: string expected";
+                                if (message.displayName != null && message.hasOwnProperty("displayName")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.displayName);
+                                    if (error)
+                                        return "displayName." + error;
+                                }
+                                if (message.types != null && message.hasOwnProperty("types")) {
+                                    if (!Array.isArray(message.types))
+                                        return "types: array expected";
+                                    for (var i = 0; i < message.types.length; ++i)
+                                        if (!$util.isString(message.types[i]))
+                                            return "types: string[] expected";
+                                }
+                                if (message.spatialRelationship != null && message.hasOwnProperty("spatialRelationship"))
+                                    switch (message.spatialRelationship) {
+                                    default:
+                                        return "spatialRelationship: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                    case 4:
+                                    case 5:
+                                    case 6:
+                                        break;
+                                    }
+                                if (message.straightLineDistanceMeters != null && message.hasOwnProperty("straightLineDistanceMeters"))
+                                    if (typeof message.straightLineDistanceMeters !== "number")
+                                        return "straightLineDistanceMeters: number expected";
+                                if (message.travelDistanceMeters != null && message.hasOwnProperty("travelDistanceMeters")) {
+                                    properties._travelDistanceMeters = 1;
+                                    if (typeof message.travelDistanceMeters !== "number")
+                                        return "travelDistanceMeters: number expected";
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a Landmark message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.places.v1.AddressDescriptor.Landmark} Landmark
+                             */
+                            Landmark.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.places.v1.AddressDescriptor.Landmark)
+                                    return object;
+                                var message = new $root.google.maps.places.v1.AddressDescriptor.Landmark();
+                                if (object.name != null)
+                                    message.name = String(object.name);
+                                if (object.placeId != null)
+                                    message.placeId = String(object.placeId);
+                                if (object.displayName != null) {
+                                    if (typeof object.displayName !== "object")
+                                        throw TypeError(".google.maps.places.v1.AddressDescriptor.Landmark.displayName: object expected");
+                                    message.displayName = $root.google.type.LocalizedText.fromObject(object.displayName);
+                                }
+                                if (object.types) {
+                                    if (!Array.isArray(object.types))
+                                        throw TypeError(".google.maps.places.v1.AddressDescriptor.Landmark.types: array expected");
+                                    message.types = [];
+                                    for (var i = 0; i < object.types.length; ++i)
+                                        message.types[i] = String(object.types[i]);
+                                }
+                                switch (object.spatialRelationship) {
+                                default:
+                                    if (typeof object.spatialRelationship === "number") {
+                                        message.spatialRelationship = object.spatialRelationship;
+                                        break;
+                                    }
+                                    break;
+                                case "NEAR":
+                                case 0:
+                                    message.spatialRelationship = 0;
+                                    break;
+                                case "WITHIN":
+                                case 1:
+                                    message.spatialRelationship = 1;
+                                    break;
+                                case "BESIDE":
+                                case 2:
+                                    message.spatialRelationship = 2;
+                                    break;
+                                case "ACROSS_THE_ROAD":
+                                case 3:
+                                    message.spatialRelationship = 3;
+                                    break;
+                                case "DOWN_THE_ROAD":
+                                case 4:
+                                    message.spatialRelationship = 4;
+                                    break;
+                                case "AROUND_THE_CORNER":
+                                case 5:
+                                    message.spatialRelationship = 5;
+                                    break;
+                                case "BEHIND":
+                                case 6:
+                                    message.spatialRelationship = 6;
+                                    break;
+                                }
+                                if (object.straightLineDistanceMeters != null)
+                                    message.straightLineDistanceMeters = Number(object.straightLineDistanceMeters);
+                                if (object.travelDistanceMeters != null)
+                                    message.travelDistanceMeters = Number(object.travelDistanceMeters);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a Landmark message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.Landmark} message Landmark
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            Landmark.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.arrays || options.defaults)
+                                    object.types = [];
+                                if (options.defaults) {
+                                    object.name = "";
+                                    object.placeId = "";
+                                    object.displayName = null;
+                                    object.spatialRelationship = options.enums === String ? "NEAR" : 0;
+                                    object.straightLineDistanceMeters = 0;
+                                }
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    object.name = message.name;
+                                if (message.placeId != null && message.hasOwnProperty("placeId"))
+                                    object.placeId = message.placeId;
+                                if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                    object.displayName = $root.google.type.LocalizedText.toObject(message.displayName, options);
+                                if (message.types && message.types.length) {
+                                    object.types = [];
+                                    for (var j = 0; j < message.types.length; ++j)
+                                        object.types[j] = message.types[j];
+                                }
+                                if (message.spatialRelationship != null && message.hasOwnProperty("spatialRelationship"))
+                                    object.spatialRelationship = options.enums === String ? $root.google.maps.places.v1.AddressDescriptor.Landmark.SpatialRelationship[message.spatialRelationship] === undefined ? message.spatialRelationship : $root.google.maps.places.v1.AddressDescriptor.Landmark.SpatialRelationship[message.spatialRelationship] : message.spatialRelationship;
+                                if (message.straightLineDistanceMeters != null && message.hasOwnProperty("straightLineDistanceMeters"))
+                                    object.straightLineDistanceMeters = options.json && !isFinite(message.straightLineDistanceMeters) ? String(message.straightLineDistanceMeters) : message.straightLineDistanceMeters;
+                                if (message.travelDistanceMeters != null && message.hasOwnProperty("travelDistanceMeters")) {
+                                    object.travelDistanceMeters = options.json && !isFinite(message.travelDistanceMeters) ? String(message.travelDistanceMeters) : message.travelDistanceMeters;
+                                    if (options.oneofs)
+                                        object._travelDistanceMeters = "travelDistanceMeters";
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this Landmark to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            Landmark.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for Landmark
+                             * @function getTypeUrl
+                             * @memberof google.maps.places.v1.AddressDescriptor.Landmark
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            Landmark.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.places.v1.AddressDescriptor.Landmark";
+                            };
+    
+                            /**
+                             * SpatialRelationship enum.
+                             * @name google.maps.places.v1.AddressDescriptor.Landmark.SpatialRelationship
+                             * @enum {number}
+                             * @property {number} NEAR=0 NEAR value
+                             * @property {number} WITHIN=1 WITHIN value
+                             * @property {number} BESIDE=2 BESIDE value
+                             * @property {number} ACROSS_THE_ROAD=3 ACROSS_THE_ROAD value
+                             * @property {number} DOWN_THE_ROAD=4 DOWN_THE_ROAD value
+                             * @property {number} AROUND_THE_CORNER=5 AROUND_THE_CORNER value
+                             * @property {number} BEHIND=6 BEHIND value
+                             */
+                            Landmark.SpatialRelationship = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "NEAR"] = 0;
+                                values[valuesById[1] = "WITHIN"] = 1;
+                                values[valuesById[2] = "BESIDE"] = 2;
+                                values[valuesById[3] = "ACROSS_THE_ROAD"] = 3;
+                                values[valuesById[4] = "DOWN_THE_ROAD"] = 4;
+                                values[valuesById[5] = "AROUND_THE_CORNER"] = 5;
+                                values[valuesById[6] = "BEHIND"] = 6;
+                                return values;
+                            })();
+    
+                            return Landmark;
+                        })();
+    
+                        AddressDescriptor.Area = (function() {
+    
+                            /**
+                             * Properties of an Area.
+                             * @memberof google.maps.places.v1.AddressDescriptor
+                             * @interface IArea
+                             * @property {string|null} [name] Area name
+                             * @property {string|null} [placeId] Area placeId
+                             * @property {google.type.ILocalizedText|null} [displayName] Area displayName
+                             * @property {google.maps.places.v1.AddressDescriptor.Area.Containment|null} [containment] Area containment
+                             */
+    
+                            /**
+                             * Constructs a new Area.
+                             * @memberof google.maps.places.v1.AddressDescriptor
+                             * @classdesc Represents an Area.
+                             * @implements IArea
+                             * @constructor
+                             * @param {google.maps.places.v1.AddressDescriptor.IArea=} [properties] Properties to set
+                             */
+                            function Area(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * Area name.
+                             * @member {string} name
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @instance
+                             */
+                            Area.prototype.name = "";
+    
+                            /**
+                             * Area placeId.
+                             * @member {string} placeId
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @instance
+                             */
+                            Area.prototype.placeId = "";
+    
+                            /**
+                             * Area displayName.
+                             * @member {google.type.ILocalizedText|null|undefined} displayName
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @instance
+                             */
+                            Area.prototype.displayName = null;
+    
+                            /**
+                             * Area containment.
+                             * @member {google.maps.places.v1.AddressDescriptor.Area.Containment} containment
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @instance
+                             */
+                            Area.prototype.containment = 0;
+    
+                            /**
+                             * Creates a new Area instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.IArea=} [properties] Properties to set
+                             * @returns {google.maps.places.v1.AddressDescriptor.Area} Area instance
+                             */
+                            Area.create = function create(properties) {
+                                return new Area(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified Area message. Does not implicitly {@link google.maps.places.v1.AddressDescriptor.Area.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.IArea} message Area message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Area.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                if (message.placeId != null && Object.hasOwnProperty.call(message, "placeId"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.placeId);
+                                if (message.displayName != null && Object.hasOwnProperty.call(message, "displayName"))
+                                    $root.google.type.LocalizedText.encode(message.displayName, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                if (message.containment != null && Object.hasOwnProperty.call(message, "containment"))
+                                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.containment);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified Area message, length delimited. Does not implicitly {@link google.maps.places.v1.AddressDescriptor.Area.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.IArea} message Area message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Area.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes an Area message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.places.v1.AddressDescriptor.Area} Area
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Area.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AddressDescriptor.Area();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.name = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.placeId = reader.string();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.displayName = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.containment = reader.int32();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes an Area message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.places.v1.AddressDescriptor.Area} Area
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Area.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies an Area message.
+                             * @function verify
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            Area.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    if (!$util.isString(message.name))
+                                        return "name: string expected";
+                                if (message.placeId != null && message.hasOwnProperty("placeId"))
+                                    if (!$util.isString(message.placeId))
+                                        return "placeId: string expected";
+                                if (message.displayName != null && message.hasOwnProperty("displayName")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.displayName);
+                                    if (error)
+                                        return "displayName." + error;
+                                }
+                                if (message.containment != null && message.hasOwnProperty("containment"))
+                                    switch (message.containment) {
+                                    default:
+                                        return "containment: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                        break;
+                                    }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates an Area message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.places.v1.AddressDescriptor.Area} Area
+                             */
+                            Area.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.places.v1.AddressDescriptor.Area)
+                                    return object;
+                                var message = new $root.google.maps.places.v1.AddressDescriptor.Area();
+                                if (object.name != null)
+                                    message.name = String(object.name);
+                                if (object.placeId != null)
+                                    message.placeId = String(object.placeId);
+                                if (object.displayName != null) {
+                                    if (typeof object.displayName !== "object")
+                                        throw TypeError(".google.maps.places.v1.AddressDescriptor.Area.displayName: object expected");
+                                    message.displayName = $root.google.type.LocalizedText.fromObject(object.displayName);
+                                }
+                                switch (object.containment) {
+                                default:
+                                    if (typeof object.containment === "number") {
+                                        message.containment = object.containment;
+                                        break;
+                                    }
+                                    break;
+                                case "CONTAINMENT_UNSPECIFIED":
+                                case 0:
+                                    message.containment = 0;
+                                    break;
+                                case "WITHIN":
+                                case 1:
+                                    message.containment = 1;
+                                    break;
+                                case "OUTSKIRTS":
+                                case 2:
+                                    message.containment = 2;
+                                    break;
+                                case "NEAR":
+                                case 3:
+                                    message.containment = 3;
+                                    break;
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from an Area message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {google.maps.places.v1.AddressDescriptor.Area} message Area
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            Area.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.name = "";
+                                    object.placeId = "";
+                                    object.displayName = null;
+                                    object.containment = options.enums === String ? "CONTAINMENT_UNSPECIFIED" : 0;
+                                }
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    object.name = message.name;
+                                if (message.placeId != null && message.hasOwnProperty("placeId"))
+                                    object.placeId = message.placeId;
+                                if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                    object.displayName = $root.google.type.LocalizedText.toObject(message.displayName, options);
+                                if (message.containment != null && message.hasOwnProperty("containment"))
+                                    object.containment = options.enums === String ? $root.google.maps.places.v1.AddressDescriptor.Area.Containment[message.containment] === undefined ? message.containment : $root.google.maps.places.v1.AddressDescriptor.Area.Containment[message.containment] : message.containment;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this Area to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            Area.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for Area
+                             * @function getTypeUrl
+                             * @memberof google.maps.places.v1.AddressDescriptor.Area
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            Area.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.places.v1.AddressDescriptor.Area";
+                            };
+    
+                            /**
+                             * Containment enum.
+                             * @name google.maps.places.v1.AddressDescriptor.Area.Containment
+                             * @enum {number}
+                             * @property {number} CONTAINMENT_UNSPECIFIED=0 CONTAINMENT_UNSPECIFIED value
+                             * @property {number} WITHIN=1 WITHIN value
+                             * @property {number} OUTSKIRTS=2 OUTSKIRTS value
+                             * @property {number} NEAR=3 NEAR value
+                             */
+                            Area.Containment = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "CONTAINMENT_UNSPECIFIED"] = 0;
+                                values[valuesById[1] = "WITHIN"] = 1;
+                                values[valuesById[2] = "OUTSKIRTS"] = 2;
+                                values[valuesById[3] = "NEAR"] = 3;
+                                return values;
+                            })();
+    
+                            return Area;
+                        })();
+    
+                        return AddressDescriptor;
+                    })();
     
                     v1.AuthorAttribution = (function() {
     
@@ -1414,12 +3596,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AuthorAttribution.decode = function decode(reader, length) {
+                        AuthorAttribution.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AuthorAttribution();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.displayName = reader.string();
@@ -1664,12 +3848,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ContentBlock.decode = function decode(reader, length) {
+                        ContentBlock.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContentBlock();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.topic = reader.string();
@@ -1917,12 +4103,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        References.decode = function decode(reader, length) {
+                        References.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.References();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.reviews && message.reviews.length))
@@ -2094,6 +4282,8 @@
                          * @property {number|null} [rating] Review rating
                          * @property {google.maps.places.v1.IAuthorAttribution|null} [authorAttribution] Review authorAttribution
                          * @property {google.protobuf.ITimestamp|null} [publishTime] Review publishTime
+                         * @property {string|null} [flagContentUri] Review flagContentUri
+                         * @property {string|null} [googleMapsUri] Review googleMapsUri
                          */
     
                         /**
@@ -2168,6 +4358,22 @@
                         Review.prototype.publishTime = null;
     
                         /**
+                         * Review flagContentUri.
+                         * @member {string} flagContentUri
+                         * @memberof google.maps.places.v1.Review
+                         * @instance
+                         */
+                        Review.prototype.flagContentUri = "";
+    
+                        /**
+                         * Review googleMapsUri.
+                         * @member {string} googleMapsUri
+                         * @memberof google.maps.places.v1.Review
+                         * @instance
+                         */
+                        Review.prototype.googleMapsUri = "";
+    
+                        /**
                          * Creates a new Review instance using the specified properties.
                          * @function create
                          * @memberof google.maps.places.v1.Review
@@ -2205,6 +4411,10 @@
                                 $root.google.maps.places.v1.AuthorAttribution.encode(message.authorAttribution, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
                             if (message.publishTime != null && Object.hasOwnProperty.call(message, "publishTime"))
                                 $root.google.protobuf.Timestamp.encode(message.publishTime, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                            if (message.flagContentUri != null && Object.hasOwnProperty.call(message, "flagContentUri"))
+                                writer.uint32(/* id 15, wireType 2 =*/122).string(message.flagContentUri);
+                            if (message.googleMapsUri != null && Object.hasOwnProperty.call(message, "googleMapsUri"))
+                                writer.uint32(/* id 16, wireType 2 =*/130).string(message.googleMapsUri);
                             return writer;
                         };
     
@@ -2232,12 +4442,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Review.decode = function decode(reader, length) {
+                        Review.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Review();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2265,6 +4477,14 @@
                                     }
                                 case 14: {
                                         message.publishTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 15: {
+                                        message.flagContentUri = reader.string();
+                                        break;
+                                    }
+                                case 16: {
+                                        message.googleMapsUri = reader.string();
                                         break;
                                     }
                                 default:
@@ -2331,6 +4551,12 @@
                                 if (error)
                                     return "publishTime." + error;
                             }
+                            if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                if (!$util.isString(message.flagContentUri))
+                                    return "flagContentUri: string expected";
+                            if (message.googleMapsUri != null && message.hasOwnProperty("googleMapsUri"))
+                                if (!$util.isString(message.googleMapsUri))
+                                    return "googleMapsUri: string expected";
                             return null;
                         };
     
@@ -2372,6 +4598,10 @@
                                     throw TypeError(".google.maps.places.v1.Review.publishTime: object expected");
                                 message.publishTime = $root.google.protobuf.Timestamp.fromObject(object.publishTime);
                             }
+                            if (object.flagContentUri != null)
+                                message.flagContentUri = String(object.flagContentUri);
+                            if (object.googleMapsUri != null)
+                                message.googleMapsUri = String(object.googleMapsUri);
                             return message;
                         };
     
@@ -2396,6 +4626,8 @@
                                 object.originalText = null;
                                 object.authorAttribution = null;
                                 object.publishTime = null;
+                                object.flagContentUri = "";
+                                object.googleMapsUri = "";
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -2411,6 +4643,10 @@
                                 object.authorAttribution = $root.google.maps.places.v1.AuthorAttribution.toObject(message.authorAttribution, options);
                             if (message.publishTime != null && message.hasOwnProperty("publishTime"))
                                 object.publishTime = $root.google.protobuf.Timestamp.toObject(message.publishTime, options);
+                            if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                object.flagContentUri = message.flagContentUri;
+                            if (message.googleMapsUri != null && message.hasOwnProperty("googleMapsUri"))
+                                object.googleMapsUri = message.googleMapsUri;
                             return object;
                         };
     
@@ -2556,12 +4792,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ContextualContent.decode = function decode(reader, length) {
+                        ContextualContent.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContextualContent();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.reviews && message.reviews.length))
@@ -2863,12 +5101,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Justification.decode = function decode(reader, length) {
+                            Justification.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContextualContent.Justification();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.reviewJustification = $root.google.maps.places.v1.ContextualContent.Justification.ReviewJustification.decode(reader, reader.uint32());
@@ -3108,12 +5348,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                ReviewJustification.decode = function decode(reader, length) {
+                                ReviewJustification.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContextualContent.Justification.ReviewJustification();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.highlightedText = $root.google.maps.places.v1.ContextualContent.Justification.ReviewJustification.HighlightedText.decode(reader, reader.uint32());
@@ -3344,12 +5586,14 @@
                                      * @throws {Error} If the payload is not a reader or valid buffer
                                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                      */
-                                    HighlightedText.decode = function decode(reader, length) {
+                                    HighlightedText.decode = function decode(reader, length, error) {
                                         if (!(reader instanceof $Reader))
                                             reader = $Reader.create(reader);
                                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContextualContent.Justification.ReviewJustification.HighlightedText();
                                         while (reader.pos < end) {
                                             var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
                                             switch (tag >>> 3) {
                                             case 1: {
                                                     message.text = reader.string();
@@ -3587,12 +5831,14 @@
                                          * @throws {Error} If the payload is not a reader or valid buffer
                                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                          */
-                                        HighlightedTextRange.decode = function decode(reader, length) {
+                                        HighlightedTextRange.decode = function decode(reader, length, error) {
                                             if (!(reader instanceof $Reader))
                                                 reader = $Reader.create(reader);
                                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContextualContent.Justification.ReviewJustification.HighlightedText.HighlightedTextRange();
                                             while (reader.pos < end) {
                                                 var tag = reader.uint32();
+                                                if (tag === error)
+                                                    break;
                                                 switch (tag >>> 3) {
                                                 case 1: {
                                                         message.startIndex = reader.int32();
@@ -3831,12 +6077,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                BusinessAvailabilityAttributesJustification.decode = function decode(reader, length) {
+                                BusinessAvailabilityAttributesJustification.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.ContextualContent.Justification.BusinessAvailabilityAttributesJustification();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.takeout = reader.bool();
@@ -3990,6 +6238,8 @@
                          * @property {number|null} [widthPx] Photo widthPx
                          * @property {number|null} [heightPx] Photo heightPx
                          * @property {Array.<google.maps.places.v1.IAuthorAttribution>|null} [authorAttributions] Photo authorAttributions
+                         * @property {string|null} [flagContentUri] Photo flagContentUri
+                         * @property {string|null} [googleMapsUri] Photo googleMapsUri
                          */
     
                         /**
@@ -4041,6 +6291,22 @@
                         Photo.prototype.authorAttributions = $util.emptyArray;
     
                         /**
+                         * Photo flagContentUri.
+                         * @member {string} flagContentUri
+                         * @memberof google.maps.places.v1.Photo
+                         * @instance
+                         */
+                        Photo.prototype.flagContentUri = "";
+    
+                        /**
+                         * Photo googleMapsUri.
+                         * @member {string} googleMapsUri
+                         * @memberof google.maps.places.v1.Photo
+                         * @instance
+                         */
+                        Photo.prototype.googleMapsUri = "";
+    
+                        /**
                          * Creates a new Photo instance using the specified properties.
                          * @function create
                          * @memberof google.maps.places.v1.Photo
@@ -4073,6 +6339,10 @@
                             if (message.authorAttributions != null && message.authorAttributions.length)
                                 for (var i = 0; i < message.authorAttributions.length; ++i)
                                     $root.google.maps.places.v1.AuthorAttribution.encode(message.authorAttributions[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.flagContentUri != null && Object.hasOwnProperty.call(message, "flagContentUri"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.flagContentUri);
+                            if (message.googleMapsUri != null && Object.hasOwnProperty.call(message, "googleMapsUri"))
+                                writer.uint32(/* id 6, wireType 2 =*/50).string(message.googleMapsUri);
                             return writer;
                         };
     
@@ -4100,12 +6370,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Photo.decode = function decode(reader, length) {
+                        Photo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Photo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4123,6 +6395,14 @@
                                         if (!(message.authorAttributions && message.authorAttributions.length))
                                             message.authorAttributions = [];
                                         message.authorAttributions.push($root.google.maps.places.v1.AuthorAttribution.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 5: {
+                                        message.flagContentUri = reader.string();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.googleMapsUri = reader.string();
                                         break;
                                     }
                                 default:
@@ -4178,6 +6458,12 @@
                                         return "authorAttributions." + error;
                                 }
                             }
+                            if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                if (!$util.isString(message.flagContentUri))
+                                    return "flagContentUri: string expected";
+                            if (message.googleMapsUri != null && message.hasOwnProperty("googleMapsUri"))
+                                if (!$util.isString(message.googleMapsUri))
+                                    return "googleMapsUri: string expected";
                             return null;
                         };
     
@@ -4209,6 +6495,10 @@
                                     message.authorAttributions[i] = $root.google.maps.places.v1.AuthorAttribution.fromObject(object.authorAttributions[i]);
                                 }
                             }
+                            if (object.flagContentUri != null)
+                                message.flagContentUri = String(object.flagContentUri);
+                            if (object.googleMapsUri != null)
+                                message.googleMapsUri = String(object.googleMapsUri);
                             return message;
                         };
     
@@ -4231,6 +6521,8 @@
                                 object.name = "";
                                 object.widthPx = 0;
                                 object.heightPx = 0;
+                                object.flagContentUri = "";
+                                object.googleMapsUri = "";
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -4243,6 +6535,10 @@
                                 for (var j = 0; j < message.authorAttributions.length; ++j)
                                     object.authorAttributions[j] = $root.google.maps.places.v1.AuthorAttribution.toObject(message.authorAttributions[j], options);
                             }
+                            if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                object.flagContentUri = message.flagContentUri;
+                            if (message.googleMapsUri != null && message.hasOwnProperty("googleMapsUri"))
+                                object.googleMapsUri = message.googleMapsUri;
                             return object;
                         };
     
@@ -4373,12 +6669,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EVChargeOptions.decode = function decode(reader, length) {
+                        EVChargeOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.EVChargeOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.connectorCount = reader.int32();
@@ -4600,23 +6898,13 @@
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
     
-                            /**
-                             * ConnectorAggregation _availableCount.
-                             * @member {"availableCount"|undefined} _availableCount
-                             * @memberof google.maps.places.v1.EVChargeOptions.ConnectorAggregation
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ConnectorAggregation.prototype, "_availableCount", {
                                 get: $util.oneOfGetter($oneOfFields = ["availableCount"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ConnectorAggregation _outOfServiceCount.
-                             * @member {"outOfServiceCount"|undefined} _outOfServiceCount
-                             * @memberof google.maps.places.v1.EVChargeOptions.ConnectorAggregation
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ConnectorAggregation.prototype, "_outOfServiceCount", {
                                 get: $util.oneOfGetter($oneOfFields = ["outOfServiceCount"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -4685,12 +6973,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ConnectorAggregation.decode = function decode(reader, length) {
+                            ConnectorAggregation.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.EVChargeOptions.ConnectorAggregation();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.type = reader.int32();
@@ -4766,6 +7056,7 @@
                                     case 7:
                                     case 8:
                                     case 9:
+                                    case 10:
                                         break;
                                     }
                                 if (message.maxChargeRateKw != null && message.hasOwnProperty("maxChargeRateKw"))
@@ -4850,6 +7141,10 @@
                                 case "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET":
                                 case 9:
                                     message.type = 9;
+                                    break;
+                                case "EV_CONNECTOR_TYPE_NACS":
+                                case 10:
+                                    message.type = 10;
                                     break;
                                 }
                                 if (object.maxChargeRateKw != null)
@@ -4954,6 +7249,7 @@
                      * @property {number} EV_CONNECTOR_TYPE_TESLA=7 EV_CONNECTOR_TYPE_TESLA value
                      * @property {number} EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T=8 EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T value
                      * @property {number} EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET=9 EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET value
+                     * @property {number} EV_CONNECTOR_TYPE_NACS=10 EV_CONNECTOR_TYPE_NACS value
                      */
                     v1.EVConnectorType = (function() {
                         var valuesById = {}, values = Object.create(valuesById);
@@ -4967,6 +7263,7 @@
                         values[valuesById[7] = "EV_CONNECTOR_TYPE_TESLA"] = 7;
                         values[valuesById[8] = "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T"] = 8;
                         values[valuesById[9] = "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"] = 9;
+                        values[valuesById[10] = "EV_CONNECTOR_TYPE_NACS"] = 10;
                         return values;
                     })();
     
@@ -5057,12 +7354,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FuelOptions.decode = function decode(reader, length) {
+                        FuelOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.FuelOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.fuelPrices && message.fuelPrices.length))
@@ -5298,12 +7597,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            FuelPrice.decode = function decode(reader, length) {
+                            FuelPrice.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.FuelOptions.FuelPrice();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.type = reader.int32();
@@ -5358,6 +7659,7 @@
                                         return "type: enum value expected";
                                     case 0:
                                     case 1:
+                                    case 19:
                                     case 2:
                                     case 3:
                                     case 4:
@@ -5372,6 +7674,7 @@
                                     case 13:
                                     case 14:
                                     case 15:
+                                    case 20:
                                     case 16:
                                     case 17:
                                     case 18:
@@ -5416,6 +7719,10 @@
                                 case "DIESEL":
                                 case 1:
                                     message.type = 1;
+                                    break;
+                                case "DIESEL_PLUS":
+                                case 19:
+                                    message.type = 19;
                                     break;
                                 case "REGULAR_UNLEADED":
                                 case 2:
@@ -5472,6 +7779,10 @@
                                 case "E85":
                                 case 15:
                                     message.type = 15;
+                                    break;
+                                case "E100":
+                                case 20:
+                                    message.type = 20;
                                     break;
                                 case "METHANE":
                                 case 16:
@@ -5558,6 +7869,7 @@
                              * @enum {number}
                              * @property {number} FUEL_TYPE_UNSPECIFIED=0 FUEL_TYPE_UNSPECIFIED value
                              * @property {number} DIESEL=1 DIESEL value
+                             * @property {number} DIESEL_PLUS=19 DIESEL_PLUS value
                              * @property {number} REGULAR_UNLEADED=2 REGULAR_UNLEADED value
                              * @property {number} MIDGRADE=3 MIDGRADE value
                              * @property {number} PREMIUM=4 PREMIUM value
@@ -5572,6 +7884,7 @@
                              * @property {number} LPG=13 LPG value
                              * @property {number} E80=14 E80 value
                              * @property {number} E85=15 E85 value
+                             * @property {number} E100=20 E100 value
                              * @property {number} METHANE=16 METHANE value
                              * @property {number} BIO_DIESEL=17 BIO_DIESEL value
                              * @property {number} TRUCK_DIESEL=18 TRUCK_DIESEL value
@@ -5580,6 +7893,7 @@
                                 var valuesById = {}, values = Object.create(valuesById);
                                 values[valuesById[0] = "FUEL_TYPE_UNSPECIFIED"] = 0;
                                 values[valuesById[1] = "DIESEL"] = 1;
+                                values[valuesById[19] = "DIESEL_PLUS"] = 19;
                                 values[valuesById[2] = "REGULAR_UNLEADED"] = 2;
                                 values[valuesById[3] = "MIDGRADE"] = 3;
                                 values[valuesById[4] = "PREMIUM"] = 4;
@@ -5594,6 +7908,7 @@
                                 values[valuesById[13] = "LPG"] = 13;
                                 values[valuesById[14] = "E80"] = 14;
                                 values[valuesById[15] = "E85"] = 15;
+                                values[valuesById[20] = "E100"] = 20;
                                 values[valuesById[16] = "METHANE"] = 16;
                                 values[valuesById[17] = "BIO_DIESEL"] = 17;
                                 values[valuesById[18] = "TRUCK_DIESEL"] = 18;
@@ -5702,12 +8017,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Circle.decode = function decode(reader, length) {
+                        Circle.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Circle();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.center = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -5854,6 +8171,7 @@
                          * @property {string|null} [internationalPhoneNumber] Place internationalPhoneNumber
                          * @property {string|null} [formattedAddress] Place formattedAddress
                          * @property {string|null} [shortFormattedAddress] Place shortFormattedAddress
+                         * @property {google.type.IPostalAddress|null} [postalAddress] Place postalAddress
                          * @property {Array.<google.maps.places.v1.Place.IAddressComponent>|null} [addressComponents] Place addressComponents
                          * @property {google.maps.places.v1.Place.IPlusCode|null} [plusCode] Place plusCode
                          * @property {google.type.ILatLng|null} [location] Place location
@@ -5864,6 +8182,7 @@
                          * @property {Array.<google.maps.places.v1.IReview>|null} [reviews] Place reviews
                          * @property {google.maps.places.v1.Place.IOpeningHours|null} [regularOpeningHours] Place regularOpeningHours
                          * @property {number|null} [utcOffsetMinutes] Place utcOffsetMinutes
+                         * @property {google.type.ITimeZone|null} [timeZone] Place timeZone
                          * @property {Array.<google.maps.places.v1.IPhoto>|null} [photos] Place photos
                          * @property {string|null} [adrFormatAddress] Place adrFormatAddress
                          * @property {google.maps.places.v1.Place.BusinessStatus|null} [businessStatus] Place businessStatus
@@ -5906,10 +8225,13 @@
                          * @property {google.maps.places.v1.IFuelOptions|null} [fuelOptions] Place fuelOptions
                          * @property {google.maps.places.v1.IEVChargeOptions|null} [evChargeOptions] Place evChargeOptions
                          * @property {google.maps.places.v1.Place.IGenerativeSummary|null} [generativeSummary] Place generativeSummary
-                         * @property {google.maps.places.v1.Place.IAreaSummary|null} [areaSummary] Place areaSummary
                          * @property {Array.<google.maps.places.v1.Place.IContainingPlace>|null} [containingPlaces] Place containingPlaces
                          * @property {boolean|null} [pureServiceAreaBusiness] Place pureServiceAreaBusiness
+                         * @property {google.maps.places.v1.IAddressDescriptor|null} [addressDescriptor] Place addressDescriptor
                          * @property {google.maps.places.v1.IPriceRange|null} [priceRange] Place priceRange
+                         * @property {google.maps.places.v1.Place.IReviewSummary|null} [reviewSummary] Place reviewSummary
+                         * @property {google.maps.places.v1.Place.IEvChargeAmenitySummary|null} [evChargeAmenitySummary] Place evChargeAmenitySummary
+                         * @property {google.maps.places.v1.Place.INeighborhoodSummary|null} [neighborhoodSummary] Place neighborhoodSummary
                          */
     
                         /**
@@ -6017,6 +8339,14 @@
                         Place.prototype.shortFormattedAddress = "";
     
                         /**
+                         * Place postalAddress.
+                         * @member {google.type.IPostalAddress|null|undefined} postalAddress
+                         * @memberof google.maps.places.v1.Place
+                         * @instance
+                         */
+                        Place.prototype.postalAddress = null;
+    
+                        /**
                          * Place addressComponents.
                          * @member {Array.<google.maps.places.v1.Place.IAddressComponent>} addressComponents
                          * @memberof google.maps.places.v1.Place
@@ -6095,6 +8425,14 @@
                          * @instance
                          */
                         Place.prototype.utcOffsetMinutes = null;
+    
+                        /**
+                         * Place timeZone.
+                         * @member {google.type.ITimeZone|null|undefined} timeZone
+                         * @memberof google.maps.places.v1.Place
+                         * @instance
+                         */
+                        Place.prototype.timeZone = null;
     
                         /**
                          * Place photos.
@@ -6433,14 +8771,6 @@
                         Place.prototype.generativeSummary = null;
     
                         /**
-                         * Place areaSummary.
-                         * @member {google.maps.places.v1.Place.IAreaSummary|null|undefined} areaSummary
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
-                        Place.prototype.areaSummary = null;
-    
-                        /**
                          * Place containingPlaces.
                          * @member {Array.<google.maps.places.v1.Place.IContainingPlace>} containingPlaces
                          * @memberof google.maps.places.v1.Place
@@ -6457,6 +8787,14 @@
                         Place.prototype.pureServiceAreaBusiness = null;
     
                         /**
+                         * Place addressDescriptor.
+                         * @member {google.maps.places.v1.IAddressDescriptor|null|undefined} addressDescriptor
+                         * @memberof google.maps.places.v1.Place
+                         * @instance
+                         */
+                        Place.prototype.addressDescriptor = null;
+    
+                        /**
                          * Place priceRange.
                          * @member {google.maps.places.v1.IPriceRange|null|undefined} priceRange
                          * @memberof google.maps.places.v1.Place
@@ -6464,301 +8802,190 @@
                          */
                         Place.prototype.priceRange = null;
     
-                        // OneOf field names bound to virtual getters and setters
-                        var $oneOfFields;
-    
                         /**
-                         * Place _utcOffsetMinutes.
-                         * @member {"utcOffsetMinutes"|undefined} _utcOffsetMinutes
+                         * Place reviewSummary.
+                         * @member {google.maps.places.v1.Place.IReviewSummary|null|undefined} reviewSummary
                          * @memberof google.maps.places.v1.Place
                          * @instance
                          */
+                        Place.prototype.reviewSummary = null;
+    
+                        /**
+                         * Place evChargeAmenitySummary.
+                         * @member {google.maps.places.v1.Place.IEvChargeAmenitySummary|null|undefined} evChargeAmenitySummary
+                         * @memberof google.maps.places.v1.Place
+                         * @instance
+                         */
+                        Place.prototype.evChargeAmenitySummary = null;
+    
+                        /**
+                         * Place neighborhoodSummary.
+                         * @member {google.maps.places.v1.Place.INeighborhoodSummary|null|undefined} neighborhoodSummary
+                         * @memberof google.maps.places.v1.Place
+                         * @instance
+                         */
+                        Place.prototype.neighborhoodSummary = null;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_utcOffsetMinutes", {
                             get: $util.oneOfGetter($oneOfFields = ["utcOffsetMinutes"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _userRatingCount.
-                         * @member {"userRatingCount"|undefined} _userRatingCount
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_userRatingCount", {
                             get: $util.oneOfGetter($oneOfFields = ["userRatingCount"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _takeout.
-                         * @member {"takeout"|undefined} _takeout
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_takeout", {
                             get: $util.oneOfGetter($oneOfFields = ["takeout"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _delivery.
-                         * @member {"delivery"|undefined} _delivery
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_delivery", {
                             get: $util.oneOfGetter($oneOfFields = ["delivery"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _dineIn.
-                         * @member {"dineIn"|undefined} _dineIn
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_dineIn", {
                             get: $util.oneOfGetter($oneOfFields = ["dineIn"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _curbsidePickup.
-                         * @member {"curbsidePickup"|undefined} _curbsidePickup
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_curbsidePickup", {
                             get: $util.oneOfGetter($oneOfFields = ["curbsidePickup"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _reservable.
-                         * @member {"reservable"|undefined} _reservable
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_reservable", {
                             get: $util.oneOfGetter($oneOfFields = ["reservable"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesBreakfast.
-                         * @member {"servesBreakfast"|undefined} _servesBreakfast
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesBreakfast", {
                             get: $util.oneOfGetter($oneOfFields = ["servesBreakfast"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesLunch.
-                         * @member {"servesLunch"|undefined} _servesLunch
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesLunch", {
                             get: $util.oneOfGetter($oneOfFields = ["servesLunch"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesDinner.
-                         * @member {"servesDinner"|undefined} _servesDinner
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesDinner", {
                             get: $util.oneOfGetter($oneOfFields = ["servesDinner"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesBeer.
-                         * @member {"servesBeer"|undefined} _servesBeer
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesBeer", {
                             get: $util.oneOfGetter($oneOfFields = ["servesBeer"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesWine.
-                         * @member {"servesWine"|undefined} _servesWine
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesWine", {
                             get: $util.oneOfGetter($oneOfFields = ["servesWine"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesBrunch.
-                         * @member {"servesBrunch"|undefined} _servesBrunch
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesBrunch", {
                             get: $util.oneOfGetter($oneOfFields = ["servesBrunch"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesVegetarianFood.
-                         * @member {"servesVegetarianFood"|undefined} _servesVegetarianFood
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesVegetarianFood", {
                             get: $util.oneOfGetter($oneOfFields = ["servesVegetarianFood"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _outdoorSeating.
-                         * @member {"outdoorSeating"|undefined} _outdoorSeating
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_outdoorSeating", {
                             get: $util.oneOfGetter($oneOfFields = ["outdoorSeating"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _liveMusic.
-                         * @member {"liveMusic"|undefined} _liveMusic
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_liveMusic", {
                             get: $util.oneOfGetter($oneOfFields = ["liveMusic"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _menuForChildren.
-                         * @member {"menuForChildren"|undefined} _menuForChildren
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_menuForChildren", {
                             get: $util.oneOfGetter($oneOfFields = ["menuForChildren"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesCocktails.
-                         * @member {"servesCocktails"|undefined} _servesCocktails
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesCocktails", {
                             get: $util.oneOfGetter($oneOfFields = ["servesCocktails"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesDessert.
-                         * @member {"servesDessert"|undefined} _servesDessert
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesDessert", {
                             get: $util.oneOfGetter($oneOfFields = ["servesDessert"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _servesCoffee.
-                         * @member {"servesCoffee"|undefined} _servesCoffee
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_servesCoffee", {
                             get: $util.oneOfGetter($oneOfFields = ["servesCoffee"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _goodForChildren.
-                         * @member {"goodForChildren"|undefined} _goodForChildren
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_goodForChildren", {
                             get: $util.oneOfGetter($oneOfFields = ["goodForChildren"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _allowsDogs.
-                         * @member {"allowsDogs"|undefined} _allowsDogs
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_allowsDogs", {
                             get: $util.oneOfGetter($oneOfFields = ["allowsDogs"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _restroom.
-                         * @member {"restroom"|undefined} _restroom
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_restroom", {
                             get: $util.oneOfGetter($oneOfFields = ["restroom"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _goodForGroups.
-                         * @member {"goodForGroups"|undefined} _goodForGroups
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_goodForGroups", {
                             get: $util.oneOfGetter($oneOfFields = ["goodForGroups"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _goodForWatchingSports.
-                         * @member {"goodForWatchingSports"|undefined} _goodForWatchingSports
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_goodForWatchingSports", {
                             get: $util.oneOfGetter($oneOfFields = ["goodForWatchingSports"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _accessibilityOptions.
-                         * @member {"accessibilityOptions"|undefined} _accessibilityOptions
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_accessibilityOptions", {
                             get: $util.oneOfGetter($oneOfFields = ["accessibilityOptions"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Place _pureServiceAreaBusiness.
-                         * @member {"pureServiceAreaBusiness"|undefined} _pureServiceAreaBusiness
-                         * @memberof google.maps.places.v1.Place
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Place.prototype, "_pureServiceAreaBusiness", {
                             get: $util.oneOfGetter($oneOfFields = ["pureServiceAreaBusiness"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -6920,15 +9147,25 @@
                                 $root.google.maps.places.v1.EVChargeOptions.encode(message.evChargeOptions, writer.uint32(/* id 79, wireType 2 =*/634).fork()).ldelim();
                             if (message.generativeSummary != null && Object.hasOwnProperty.call(message, "generativeSummary"))
                                 $root.google.maps.places.v1.Place.GenerativeSummary.encode(message.generativeSummary, writer.uint32(/* id 80, wireType 2 =*/642).fork()).ldelim();
-                            if (message.areaSummary != null && Object.hasOwnProperty.call(message, "areaSummary"))
-                                $root.google.maps.places.v1.Place.AreaSummary.encode(message.areaSummary, writer.uint32(/* id 81, wireType 2 =*/650).fork()).ldelim();
                             if (message.containingPlaces != null && message.containingPlaces.length)
                                 for (var i = 0; i < message.containingPlaces.length; ++i)
                                     $root.google.maps.places.v1.Place.ContainingPlace.encode(message.containingPlaces[i], writer.uint32(/* id 82, wireType 2 =*/658).fork()).ldelim();
                             if (message.pureServiceAreaBusiness != null && Object.hasOwnProperty.call(message, "pureServiceAreaBusiness"))
                                 writer.uint32(/* id 83, wireType 0 =*/664).bool(message.pureServiceAreaBusiness);
+                            if (message.addressDescriptor != null && Object.hasOwnProperty.call(message, "addressDescriptor"))
+                                $root.google.maps.places.v1.AddressDescriptor.encode(message.addressDescriptor, writer.uint32(/* id 84, wireType 2 =*/674).fork()).ldelim();
                             if (message.priceRange != null && Object.hasOwnProperty.call(message, "priceRange"))
                                 $root.google.maps.places.v1.PriceRange.encode(message.priceRange, writer.uint32(/* id 86, wireType 2 =*/690).fork()).ldelim();
+                            if (message.reviewSummary != null && Object.hasOwnProperty.call(message, "reviewSummary"))
+                                $root.google.maps.places.v1.Place.ReviewSummary.encode(message.reviewSummary, writer.uint32(/* id 87, wireType 2 =*/698).fork()).ldelim();
+                            if (message.timeZone != null && Object.hasOwnProperty.call(message, "timeZone"))
+                                $root.google.type.TimeZone.encode(message.timeZone, writer.uint32(/* id 88, wireType 2 =*/706).fork()).ldelim();
+                            if (message.evChargeAmenitySummary != null && Object.hasOwnProperty.call(message, "evChargeAmenitySummary"))
+                                $root.google.maps.places.v1.Place.EvChargeAmenitySummary.encode(message.evChargeAmenitySummary, writer.uint32(/* id 89, wireType 2 =*/714).fork()).ldelim();
+                            if (message.postalAddress != null && Object.hasOwnProperty.call(message, "postalAddress"))
+                                $root.google.type.PostalAddress.encode(message.postalAddress, writer.uint32(/* id 90, wireType 2 =*/722).fork()).ldelim();
+                            if (message.neighborhoodSummary != null && Object.hasOwnProperty.call(message, "neighborhoodSummary"))
+                                $root.google.maps.places.v1.Place.NeighborhoodSummary.encode(message.neighborhoodSummary, writer.uint32(/* id 91, wireType 2 =*/730).fork()).ldelim();
                             return writer;
                         };
     
@@ -6956,12 +9193,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Place.decode = function decode(reader, length) {
+                        Place.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -7003,6 +9242,10 @@
                                     }
                                 case 51: {
                                         message.shortFormattedAddress = reader.string();
+                                        break;
+                                    }
+                                case 90: {
+                                        message.postalAddress = $root.google.type.PostalAddress.decode(reader, reader.uint32());
                                         break;
                                     }
                                 case 10: {
@@ -7047,6 +9290,10 @@
                                     }
                                 case 22: {
                                         message.utcOffsetMinutes = reader.int32();
+                                        break;
+                                    }
+                                case 88: {
+                                        message.timeZone = $root.google.type.TimeZone.decode(reader, reader.uint32());
                                         break;
                                     }
                                 case 54: {
@@ -7227,10 +9474,6 @@
                                         message.generativeSummary = $root.google.maps.places.v1.Place.GenerativeSummary.decode(reader, reader.uint32());
                                         break;
                                     }
-                                case 81: {
-                                        message.areaSummary = $root.google.maps.places.v1.Place.AreaSummary.decode(reader, reader.uint32());
-                                        break;
-                                    }
                                 case 82: {
                                         if (!(message.containingPlaces && message.containingPlaces.length))
                                             message.containingPlaces = [];
@@ -7241,8 +9484,24 @@
                                         message.pureServiceAreaBusiness = reader.bool();
                                         break;
                                     }
+                                case 84: {
+                                        message.addressDescriptor = $root.google.maps.places.v1.AddressDescriptor.decode(reader, reader.uint32());
+                                        break;
+                                    }
                                 case 86: {
                                         message.priceRange = $root.google.maps.places.v1.PriceRange.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 87: {
+                                        message.reviewSummary = $root.google.maps.places.v1.Place.ReviewSummary.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 89: {
+                                        message.evChargeAmenitySummary = $root.google.maps.places.v1.Place.EvChargeAmenitySummary.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 91: {
+                                        message.neighborhoodSummary = $root.google.maps.places.v1.Place.NeighborhoodSummary.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -7319,6 +9578,11 @@
                             if (message.shortFormattedAddress != null && message.hasOwnProperty("shortFormattedAddress"))
                                 if (!$util.isString(message.shortFormattedAddress))
                                     return "shortFormattedAddress: string expected";
+                            if (message.postalAddress != null && message.hasOwnProperty("postalAddress")) {
+                                var error = $root.google.type.PostalAddress.verify(message.postalAddress);
+                                if (error)
+                                    return "postalAddress." + error;
+                            }
                             if (message.addressComponents != null && message.hasOwnProperty("addressComponents")) {
                                 if (!Array.isArray(message.addressComponents))
                                     return "addressComponents: array expected";
@@ -7370,6 +9634,11 @@
                                 properties._utcOffsetMinutes = 1;
                                 if (!$util.isInteger(message.utcOffsetMinutes))
                                     return "utcOffsetMinutes: integer expected";
+                            }
+                            if (message.timeZone != null && message.hasOwnProperty("timeZone")) {
+                                var error = $root.google.type.TimeZone.verify(message.timeZone);
+                                if (error)
+                                    return "timeZone." + error;
                             }
                             if (message.photos != null && message.hasOwnProperty("photos")) {
                                 if (!Array.isArray(message.photos))
@@ -7610,11 +9879,6 @@
                                 if (error)
                                     return "generativeSummary." + error;
                             }
-                            if (message.areaSummary != null && message.hasOwnProperty("areaSummary")) {
-                                var error = $root.google.maps.places.v1.Place.AreaSummary.verify(message.areaSummary);
-                                if (error)
-                                    return "areaSummary." + error;
-                            }
                             if (message.containingPlaces != null && message.hasOwnProperty("containingPlaces")) {
                                 if (!Array.isArray(message.containingPlaces))
                                     return "containingPlaces: array expected";
@@ -7629,10 +9893,30 @@
                                 if (typeof message.pureServiceAreaBusiness !== "boolean")
                                     return "pureServiceAreaBusiness: boolean expected";
                             }
+                            if (message.addressDescriptor != null && message.hasOwnProperty("addressDescriptor")) {
+                                var error = $root.google.maps.places.v1.AddressDescriptor.verify(message.addressDescriptor);
+                                if (error)
+                                    return "addressDescriptor." + error;
+                            }
                             if (message.priceRange != null && message.hasOwnProperty("priceRange")) {
                                 var error = $root.google.maps.places.v1.PriceRange.verify(message.priceRange);
                                 if (error)
                                     return "priceRange." + error;
+                            }
+                            if (message.reviewSummary != null && message.hasOwnProperty("reviewSummary")) {
+                                var error = $root.google.maps.places.v1.Place.ReviewSummary.verify(message.reviewSummary);
+                                if (error)
+                                    return "reviewSummary." + error;
+                            }
+                            if (message.evChargeAmenitySummary != null && message.hasOwnProperty("evChargeAmenitySummary")) {
+                                var error = $root.google.maps.places.v1.Place.EvChargeAmenitySummary.verify(message.evChargeAmenitySummary);
+                                if (error)
+                                    return "evChargeAmenitySummary." + error;
+                            }
+                            if (message.neighborhoodSummary != null && message.hasOwnProperty("neighborhoodSummary")) {
+                                var error = $root.google.maps.places.v1.Place.NeighborhoodSummary.verify(message.neighborhoodSummary);
+                                if (error)
+                                    return "neighborhoodSummary." + error;
                             }
                             return null;
                         };
@@ -7680,6 +9964,11 @@
                                 message.formattedAddress = String(object.formattedAddress);
                             if (object.shortFormattedAddress != null)
                                 message.shortFormattedAddress = String(object.shortFormattedAddress);
+                            if (object.postalAddress != null) {
+                                if (typeof object.postalAddress !== "object")
+                                    throw TypeError(".google.maps.places.v1.Place.postalAddress: object expected");
+                                message.postalAddress = $root.google.type.PostalAddress.fromObject(object.postalAddress);
+                            }
                             if (object.addressComponents) {
                                 if (!Array.isArray(object.addressComponents))
                                     throw TypeError(".google.maps.places.v1.Place.addressComponents: array expected");
@@ -7728,6 +10017,11 @@
                             }
                             if (object.utcOffsetMinutes != null)
                                 message.utcOffsetMinutes = object.utcOffsetMinutes | 0;
+                            if (object.timeZone != null) {
+                                if (typeof object.timeZone !== "object")
+                                    throw TypeError(".google.maps.places.v1.Place.timeZone: object expected");
+                                message.timeZone = $root.google.type.TimeZone.fromObject(object.timeZone);
+                            }
                             if (object.photos) {
                                 if (!Array.isArray(object.photos))
                                     throw TypeError(".google.maps.places.v1.Place.photos: array expected");
@@ -7928,11 +10222,6 @@
                                     throw TypeError(".google.maps.places.v1.Place.generativeSummary: object expected");
                                 message.generativeSummary = $root.google.maps.places.v1.Place.GenerativeSummary.fromObject(object.generativeSummary);
                             }
-                            if (object.areaSummary != null) {
-                                if (typeof object.areaSummary !== "object")
-                                    throw TypeError(".google.maps.places.v1.Place.areaSummary: object expected");
-                                message.areaSummary = $root.google.maps.places.v1.Place.AreaSummary.fromObject(object.areaSummary);
-                            }
                             if (object.containingPlaces) {
                                 if (!Array.isArray(object.containingPlaces))
                                     throw TypeError(".google.maps.places.v1.Place.containingPlaces: array expected");
@@ -7945,10 +10234,30 @@
                             }
                             if (object.pureServiceAreaBusiness != null)
                                 message.pureServiceAreaBusiness = Boolean(object.pureServiceAreaBusiness);
+                            if (object.addressDescriptor != null) {
+                                if (typeof object.addressDescriptor !== "object")
+                                    throw TypeError(".google.maps.places.v1.Place.addressDescriptor: object expected");
+                                message.addressDescriptor = $root.google.maps.places.v1.AddressDescriptor.fromObject(object.addressDescriptor);
+                            }
                             if (object.priceRange != null) {
                                 if (typeof object.priceRange !== "object")
                                     throw TypeError(".google.maps.places.v1.Place.priceRange: object expected");
                                 message.priceRange = $root.google.maps.places.v1.PriceRange.fromObject(object.priceRange);
+                            }
+                            if (object.reviewSummary != null) {
+                                if (typeof object.reviewSummary !== "object")
+                                    throw TypeError(".google.maps.places.v1.Place.reviewSummary: object expected");
+                                message.reviewSummary = $root.google.maps.places.v1.Place.ReviewSummary.fromObject(object.reviewSummary);
+                            }
+                            if (object.evChargeAmenitySummary != null) {
+                                if (typeof object.evChargeAmenitySummary !== "object")
+                                    throw TypeError(".google.maps.places.v1.Place.evChargeAmenitySummary: object expected");
+                                message.evChargeAmenitySummary = $root.google.maps.places.v1.Place.EvChargeAmenitySummary.fromObject(object.evChargeAmenitySummary);
+                            }
+                            if (object.neighborhoodSummary != null) {
+                                if (typeof object.neighborhoodSummary !== "object")
+                                    throw TypeError(".google.maps.places.v1.Place.neighborhoodSummary: object expected");
+                                message.neighborhoodSummary = $root.google.maps.places.v1.Place.NeighborhoodSummary.fromObject(object.neighborhoodSummary);
                             }
                             return message;
                         };
@@ -8006,8 +10315,13 @@
                                 object.fuelOptions = null;
                                 object.evChargeOptions = null;
                                 object.generativeSummary = null;
-                                object.areaSummary = null;
+                                object.addressDescriptor = null;
                                 object.priceRange = null;
+                                object.reviewSummary = null;
+                                object.timeZone = null;
+                                object.evChargeAmenitySummary = null;
+                                object.postalAddress = null;
+                                object.neighborhoodSummary = null;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -8235,8 +10549,6 @@
                                 object.evChargeOptions = $root.google.maps.places.v1.EVChargeOptions.toObject(message.evChargeOptions, options);
                             if (message.generativeSummary != null && message.hasOwnProperty("generativeSummary"))
                                 object.generativeSummary = $root.google.maps.places.v1.Place.GenerativeSummary.toObject(message.generativeSummary, options);
-                            if (message.areaSummary != null && message.hasOwnProperty("areaSummary"))
-                                object.areaSummary = $root.google.maps.places.v1.Place.AreaSummary.toObject(message.areaSummary, options);
                             if (message.containingPlaces && message.containingPlaces.length) {
                                 object.containingPlaces = [];
                                 for (var j = 0; j < message.containingPlaces.length; ++j)
@@ -8247,8 +10559,20 @@
                                 if (options.oneofs)
                                     object._pureServiceAreaBusiness = "pureServiceAreaBusiness";
                             }
+                            if (message.addressDescriptor != null && message.hasOwnProperty("addressDescriptor"))
+                                object.addressDescriptor = $root.google.maps.places.v1.AddressDescriptor.toObject(message.addressDescriptor, options);
                             if (message.priceRange != null && message.hasOwnProperty("priceRange"))
                                 object.priceRange = $root.google.maps.places.v1.PriceRange.toObject(message.priceRange, options);
+                            if (message.reviewSummary != null && message.hasOwnProperty("reviewSummary"))
+                                object.reviewSummary = $root.google.maps.places.v1.Place.ReviewSummary.toObject(message.reviewSummary, options);
+                            if (message.timeZone != null && message.hasOwnProperty("timeZone"))
+                                object.timeZone = $root.google.type.TimeZone.toObject(message.timeZone, options);
+                            if (message.evChargeAmenitySummary != null && message.hasOwnProperty("evChargeAmenitySummary"))
+                                object.evChargeAmenitySummary = $root.google.maps.places.v1.Place.EvChargeAmenitySummary.toObject(message.evChargeAmenitySummary, options);
+                            if (message.postalAddress != null && message.hasOwnProperty("postalAddress"))
+                                object.postalAddress = $root.google.type.PostalAddress.toObject(message.postalAddress, options);
+                            if (message.neighborhoodSummary != null && message.hasOwnProperty("neighborhoodSummary"))
+                                object.neighborhoodSummary = $root.google.maps.places.v1.Place.NeighborhoodSummary.toObject(message.neighborhoodSummary, options);
                             return object;
                         };
     
@@ -8398,12 +10722,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            AddressComponent.decode = function decode(reader, length) {
+                            AddressComponent.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.AddressComponent();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.longText = reader.string();
@@ -8664,12 +10990,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PlusCode.decode = function decode(reader, length) {
+                            PlusCode.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.PlusCode();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.globalCode = reader.string();
@@ -8887,12 +11215,7 @@
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
     
-                            /**
-                             * OpeningHours _openNow.
-                             * @member {"openNow"|undefined} _openNow
-                             * @memberof google.maps.places.v1.Place.OpeningHours
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(OpeningHours.prototype, "_openNow", {
                                 get: $util.oneOfGetter($oneOfFields = ["openNow"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -8966,12 +11289,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            OpeningHours.decode = function decode(reader, length) {
+                            OpeningHours.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.OpeningHours();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.openNow = reader.bool();
@@ -9398,12 +11723,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Period.decode = function decode(reader, length) {
+                                Period.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.OpeningHours.Period();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.open = $root.google.maps.places.v1.Place.OpeningHours.Period.Point.decode(reader, reader.uint32());
@@ -9607,34 +11934,19 @@
                                     // OneOf field names bound to virtual getters and setters
                                     var $oneOfFields;
     
-                                    /**
-                                     * Point _day.
-                                     * @member {"day"|undefined} _day
-                                     * @memberof google.maps.places.v1.Place.OpeningHours.Period.Point
-                                     * @instance
-                                     */
+                                    // Virtual OneOf for proto3 optional field
                                     Object.defineProperty(Point.prototype, "_day", {
                                         get: $util.oneOfGetter($oneOfFields = ["day"]),
                                         set: $util.oneOfSetter($oneOfFields)
                                     });
     
-                                    /**
-                                     * Point _hour.
-                                     * @member {"hour"|undefined} _hour
-                                     * @memberof google.maps.places.v1.Place.OpeningHours.Period.Point
-                                     * @instance
-                                     */
+                                    // Virtual OneOf for proto3 optional field
                                     Object.defineProperty(Point.prototype, "_hour", {
                                         get: $util.oneOfGetter($oneOfFields = ["hour"]),
                                         set: $util.oneOfSetter($oneOfFields)
                                     });
     
-                                    /**
-                                     * Point _minute.
-                                     * @member {"minute"|undefined} _minute
-                                     * @memberof google.maps.places.v1.Place.OpeningHours.Period.Point
-                                     * @instance
-                                     */
+                                    // Virtual OneOf for proto3 optional field
                                     Object.defineProperty(Point.prototype, "_minute", {
                                         get: $util.oneOfGetter($oneOfFields = ["minute"]),
                                         set: $util.oneOfSetter($oneOfFields)
@@ -9701,12 +12013,14 @@
                                      * @throws {Error} If the payload is not a reader or valid buffer
                                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                      */
-                                    Point.decode = function decode(reader, length) {
+                                    Point.decode = function decode(reader, length, error) {
                                         if (!(reader instanceof $Reader))
                                             reader = $Reader.create(reader);
                                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.OpeningHours.Period.Point();
                                         while (reader.pos < end) {
                                             var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
                                             switch (tag >>> 3) {
                                             case 1: {
                                                     message.day = reader.int32();
@@ -10012,12 +12326,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                SpecialDay.decode = function decode(reader, length) {
+                                SpecialDay.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.OpeningHours.SpecialDay();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.date = $root.google.type.Date.decode(reader, reader.uint32());
@@ -10252,12 +12568,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Attribution.decode = function decode(reader, length) {
+                            Attribution.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.Attribution();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.provider = reader.string();
@@ -10445,45 +12763,25 @@
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
     
-                            /**
-                             * PaymentOptions _acceptsCreditCards.
-                             * @member {"acceptsCreditCards"|undefined} _acceptsCreditCards
-                             * @memberof google.maps.places.v1.Place.PaymentOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(PaymentOptions.prototype, "_acceptsCreditCards", {
                                 get: $util.oneOfGetter($oneOfFields = ["acceptsCreditCards"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * PaymentOptions _acceptsDebitCards.
-                             * @member {"acceptsDebitCards"|undefined} _acceptsDebitCards
-                             * @memberof google.maps.places.v1.Place.PaymentOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(PaymentOptions.prototype, "_acceptsDebitCards", {
                                 get: $util.oneOfGetter($oneOfFields = ["acceptsDebitCards"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * PaymentOptions _acceptsCashOnly.
-                             * @member {"acceptsCashOnly"|undefined} _acceptsCashOnly
-                             * @memberof google.maps.places.v1.Place.PaymentOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(PaymentOptions.prototype, "_acceptsCashOnly", {
                                 get: $util.oneOfGetter($oneOfFields = ["acceptsCashOnly"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * PaymentOptions _acceptsNfc.
-                             * @member {"acceptsNfc"|undefined} _acceptsNfc
-                             * @memberof google.maps.places.v1.Place.PaymentOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(PaymentOptions.prototype, "_acceptsNfc", {
                                 get: $util.oneOfGetter($oneOfFields = ["acceptsNfc"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -10548,12 +12846,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PaymentOptions.decode = function decode(reader, length) {
+                            PaymentOptions.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.PaymentOptions();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.acceptsCreditCards = reader.bool();
@@ -10807,78 +13107,43 @@
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
     
-                            /**
-                             * ParkingOptions _freeParkingLot.
-                             * @member {"freeParkingLot"|undefined} _freeParkingLot
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_freeParkingLot", {
                                 get: $util.oneOfGetter($oneOfFields = ["freeParkingLot"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ParkingOptions _paidParkingLot.
-                             * @member {"paidParkingLot"|undefined} _paidParkingLot
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_paidParkingLot", {
                                 get: $util.oneOfGetter($oneOfFields = ["paidParkingLot"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ParkingOptions _freeStreetParking.
-                             * @member {"freeStreetParking"|undefined} _freeStreetParking
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_freeStreetParking", {
                                 get: $util.oneOfGetter($oneOfFields = ["freeStreetParking"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ParkingOptions _paidStreetParking.
-                             * @member {"paidStreetParking"|undefined} _paidStreetParking
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_paidStreetParking", {
                                 get: $util.oneOfGetter($oneOfFields = ["paidStreetParking"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ParkingOptions _valetParking.
-                             * @member {"valetParking"|undefined} _valetParking
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_valetParking", {
                                 get: $util.oneOfGetter($oneOfFields = ["valetParking"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ParkingOptions _freeGarageParking.
-                             * @member {"freeGarageParking"|undefined} _freeGarageParking
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_freeGarageParking", {
                                 get: $util.oneOfGetter($oneOfFields = ["freeGarageParking"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * ParkingOptions _paidGarageParking.
-                             * @member {"paidGarageParking"|undefined} _paidGarageParking
-                             * @memberof google.maps.places.v1.Place.ParkingOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(ParkingOptions.prototype, "_paidGarageParking", {
                                 get: $util.oneOfGetter($oneOfFields = ["paidGarageParking"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -10949,12 +13214,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ParkingOptions.decode = function decode(reader, length) {
+                            ParkingOptions.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.ParkingOptions();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.freeParkingLot = reader.bool();
@@ -11263,12 +13530,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SubDestination.decode = function decode(reader, length) {
+                            SubDestination.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.SubDestination();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -11456,45 +13725,25 @@
                             // OneOf field names bound to virtual getters and setters
                             var $oneOfFields;
     
-                            /**
-                             * AccessibilityOptions _wheelchairAccessibleParking.
-                             * @member {"wheelchairAccessibleParking"|undefined} _wheelchairAccessibleParking
-                             * @memberof google.maps.places.v1.Place.AccessibilityOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(AccessibilityOptions.prototype, "_wheelchairAccessibleParking", {
                                 get: $util.oneOfGetter($oneOfFields = ["wheelchairAccessibleParking"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * AccessibilityOptions _wheelchairAccessibleEntrance.
-                             * @member {"wheelchairAccessibleEntrance"|undefined} _wheelchairAccessibleEntrance
-                             * @memberof google.maps.places.v1.Place.AccessibilityOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(AccessibilityOptions.prototype, "_wheelchairAccessibleEntrance", {
                                 get: $util.oneOfGetter($oneOfFields = ["wheelchairAccessibleEntrance"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * AccessibilityOptions _wheelchairAccessibleRestroom.
-                             * @member {"wheelchairAccessibleRestroom"|undefined} _wheelchairAccessibleRestroom
-                             * @memberof google.maps.places.v1.Place.AccessibilityOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(AccessibilityOptions.prototype, "_wheelchairAccessibleRestroom", {
                                 get: $util.oneOfGetter($oneOfFields = ["wheelchairAccessibleRestroom"]),
                                 set: $util.oneOfSetter($oneOfFields)
                             });
     
-                            /**
-                             * AccessibilityOptions _wheelchairAccessibleSeating.
-                             * @member {"wheelchairAccessibleSeating"|undefined} _wheelchairAccessibleSeating
-                             * @memberof google.maps.places.v1.Place.AccessibilityOptions
-                             * @instance
-                             */
+                            // Virtual OneOf for proto3 optional field
                             Object.defineProperty(AccessibilityOptions.prototype, "_wheelchairAccessibleSeating", {
                                 get: $util.oneOfGetter($oneOfFields = ["wheelchairAccessibleSeating"]),
                                 set: $util.oneOfSetter($oneOfFields)
@@ -11559,12 +13808,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            AccessibilityOptions.decode = function decode(reader, length) {
+                            AccessibilityOptions.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.AccessibilityOptions();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.wheelchairAccessibleParking = reader.bool();
@@ -11736,8 +13987,8 @@
                              * @memberof google.maps.places.v1.Place
                              * @interface IGenerativeSummary
                              * @property {google.type.ILocalizedText|null} [overview] GenerativeSummary overview
-                             * @property {google.type.ILocalizedText|null} [description] GenerativeSummary description
-                             * @property {google.maps.places.v1.IReferences|null} [references] GenerativeSummary references
+                             * @property {string|null} [overviewFlagContentUri] GenerativeSummary overviewFlagContentUri
+                             * @property {google.type.ILocalizedText|null} [disclosureText] GenerativeSummary disclosureText
                              */
     
                             /**
@@ -11764,20 +14015,20 @@
                             GenerativeSummary.prototype.overview = null;
     
                             /**
-                             * GenerativeSummary description.
-                             * @member {google.type.ILocalizedText|null|undefined} description
+                             * GenerativeSummary overviewFlagContentUri.
+                             * @member {string} overviewFlagContentUri
                              * @memberof google.maps.places.v1.Place.GenerativeSummary
                              * @instance
                              */
-                            GenerativeSummary.prototype.description = null;
+                            GenerativeSummary.prototype.overviewFlagContentUri = "";
     
                             /**
-                             * GenerativeSummary references.
-                             * @member {google.maps.places.v1.IReferences|null|undefined} references
+                             * GenerativeSummary disclosureText.
+                             * @member {google.type.ILocalizedText|null|undefined} disclosureText
                              * @memberof google.maps.places.v1.Place.GenerativeSummary
                              * @instance
                              */
-                            GenerativeSummary.prototype.references = null;
+                            GenerativeSummary.prototype.disclosureText = null;
     
                             /**
                              * Creates a new GenerativeSummary instance using the specified properties.
@@ -11805,10 +14056,10 @@
                                     writer = $Writer.create();
                                 if (message.overview != null && Object.hasOwnProperty.call(message, "overview"))
                                     $root.google.type.LocalizedText.encode(message.overview, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
-                                    $root.google.type.LocalizedText.encode(message.description, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                                if (message.references != null && Object.hasOwnProperty.call(message, "references"))
-                                    $root.google.maps.places.v1.References.encode(message.references, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                if (message.overviewFlagContentUri != null && Object.hasOwnProperty.call(message, "overviewFlagContentUri"))
+                                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.overviewFlagContentUri);
+                                if (message.disclosureText != null && Object.hasOwnProperty.call(message, "disclosureText"))
+                                    $root.google.type.LocalizedText.encode(message.disclosureText, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                                 return writer;
                             };
     
@@ -11836,23 +14087,25 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GenerativeSummary.decode = function decode(reader, length) {
+                            GenerativeSummary.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.GenerativeSummary();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.overview = $root.google.type.LocalizedText.decode(reader, reader.uint32());
                                             break;
                                         }
-                                    case 2: {
-                                            message.description = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                    case 4: {
+                                            message.overviewFlagContentUri = reader.string();
                                             break;
                                         }
-                                    case 3: {
-                                            message.references = $root.google.maps.places.v1.References.decode(reader, reader.uint32());
+                                    case 6: {
+                                            message.disclosureText = $root.google.type.LocalizedText.decode(reader, reader.uint32());
                                             break;
                                         }
                                     default:
@@ -11895,15 +14148,13 @@
                                     if (error)
                                         return "overview." + error;
                                 }
-                                if (message.description != null && message.hasOwnProperty("description")) {
-                                    var error = $root.google.type.LocalizedText.verify(message.description);
+                                if (message.overviewFlagContentUri != null && message.hasOwnProperty("overviewFlagContentUri"))
+                                    if (!$util.isString(message.overviewFlagContentUri))
+                                        return "overviewFlagContentUri: string expected";
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.disclosureText);
                                     if (error)
-                                        return "description." + error;
-                                }
-                                if (message.references != null && message.hasOwnProperty("references")) {
-                                    var error = $root.google.maps.places.v1.References.verify(message.references);
-                                    if (error)
-                                        return "references." + error;
+                                        return "disclosureText." + error;
                                 }
                                 return null;
                             };
@@ -11925,15 +14176,12 @@
                                         throw TypeError(".google.maps.places.v1.Place.GenerativeSummary.overview: object expected");
                                     message.overview = $root.google.type.LocalizedText.fromObject(object.overview);
                                 }
-                                if (object.description != null) {
-                                    if (typeof object.description !== "object")
-                                        throw TypeError(".google.maps.places.v1.Place.GenerativeSummary.description: object expected");
-                                    message.description = $root.google.type.LocalizedText.fromObject(object.description);
-                                }
-                                if (object.references != null) {
-                                    if (typeof object.references !== "object")
-                                        throw TypeError(".google.maps.places.v1.Place.GenerativeSummary.references: object expected");
-                                    message.references = $root.google.maps.places.v1.References.fromObject(object.references);
+                                if (object.overviewFlagContentUri != null)
+                                    message.overviewFlagContentUri = String(object.overviewFlagContentUri);
+                                if (object.disclosureText != null) {
+                                    if (typeof object.disclosureText !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.GenerativeSummary.disclosureText: object expected");
+                                    message.disclosureText = $root.google.type.LocalizedText.fromObject(object.disclosureText);
                                 }
                                 return message;
                             };
@@ -11953,15 +14201,15 @@
                                 var object = {};
                                 if (options.defaults) {
                                     object.overview = null;
-                                    object.description = null;
-                                    object.references = null;
+                                    object.overviewFlagContentUri = "";
+                                    object.disclosureText = null;
                                 }
                                 if (message.overview != null && message.hasOwnProperty("overview"))
                                     object.overview = $root.google.type.LocalizedText.toObject(message.overview, options);
-                                if (message.description != null && message.hasOwnProperty("description"))
-                                    object.description = $root.google.type.LocalizedText.toObject(message.description, options);
-                                if (message.references != null && message.hasOwnProperty("references"))
-                                    object.references = $root.google.maps.places.v1.References.toObject(message.references, options);
+                                if (message.overviewFlagContentUri != null && message.hasOwnProperty("overviewFlagContentUri"))
+                                    object.overviewFlagContentUri = message.overviewFlagContentUri;
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText"))
+                                    object.disclosureText = $root.google.type.LocalizedText.toObject(message.disclosureText, options);
                                 return object;
                             };
     
@@ -11992,230 +14240,6 @@
                             };
     
                             return GenerativeSummary;
-                        })();
-    
-                        Place.AreaSummary = (function() {
-    
-                            /**
-                             * Properties of an AreaSummary.
-                             * @memberof google.maps.places.v1.Place
-                             * @interface IAreaSummary
-                             * @property {Array.<google.maps.places.v1.IContentBlock>|null} [contentBlocks] AreaSummary contentBlocks
-                             */
-    
-                            /**
-                             * Constructs a new AreaSummary.
-                             * @memberof google.maps.places.v1.Place
-                             * @classdesc Represents an AreaSummary.
-                             * @implements IAreaSummary
-                             * @constructor
-                             * @param {google.maps.places.v1.Place.IAreaSummary=} [properties] Properties to set
-                             */
-                            function AreaSummary(properties) {
-                                this.contentBlocks = [];
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-    
-                            /**
-                             * AreaSummary contentBlocks.
-                             * @member {Array.<google.maps.places.v1.IContentBlock>} contentBlocks
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @instance
-                             */
-                            AreaSummary.prototype.contentBlocks = $util.emptyArray;
-    
-                            /**
-                             * Creates a new AreaSummary instance using the specified properties.
-                             * @function create
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {google.maps.places.v1.Place.IAreaSummary=} [properties] Properties to set
-                             * @returns {google.maps.places.v1.Place.AreaSummary} AreaSummary instance
-                             */
-                            AreaSummary.create = function create(properties) {
-                                return new AreaSummary(properties);
-                            };
-    
-                            /**
-                             * Encodes the specified AreaSummary message. Does not implicitly {@link google.maps.places.v1.Place.AreaSummary.verify|verify} messages.
-                             * @function encode
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {google.maps.places.v1.Place.IAreaSummary} message AreaSummary message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            AreaSummary.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.contentBlocks != null && message.contentBlocks.length)
-                                    for (var i = 0; i < message.contentBlocks.length; ++i)
-                                        $root.google.maps.places.v1.ContentBlock.encode(message.contentBlocks[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                                return writer;
-                            };
-    
-                            /**
-                             * Encodes the specified AreaSummary message, length delimited. Does not implicitly {@link google.maps.places.v1.Place.AreaSummary.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {google.maps.places.v1.Place.IAreaSummary} message AreaSummary message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            AreaSummary.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-    
-                            /**
-                             * Decodes an AreaSummary message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {google.maps.places.v1.Place.AreaSummary} AreaSummary
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            AreaSummary.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.AreaSummary();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 4: {
-                                            if (!(message.contentBlocks && message.contentBlocks.length))
-                                                message.contentBlocks = [];
-                                            message.contentBlocks.push($root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32()));
-                                            break;
-                                        }
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Decodes an AreaSummary message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {google.maps.places.v1.Place.AreaSummary} AreaSummary
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            AreaSummary.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-    
-                            /**
-                             * Verifies an AreaSummary message.
-                             * @function verify
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            AreaSummary.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                if (message.contentBlocks != null && message.hasOwnProperty("contentBlocks")) {
-                                    if (!Array.isArray(message.contentBlocks))
-                                        return "contentBlocks: array expected";
-                                    for (var i = 0; i < message.contentBlocks.length; ++i) {
-                                        var error = $root.google.maps.places.v1.ContentBlock.verify(message.contentBlocks[i]);
-                                        if (error)
-                                            return "contentBlocks." + error;
-                                    }
-                                }
-                                return null;
-                            };
-    
-                            /**
-                             * Creates an AreaSummary message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {google.maps.places.v1.Place.AreaSummary} AreaSummary
-                             */
-                            AreaSummary.fromObject = function fromObject(object) {
-                                if (object instanceof $root.google.maps.places.v1.Place.AreaSummary)
-                                    return object;
-                                var message = new $root.google.maps.places.v1.Place.AreaSummary();
-                                if (object.contentBlocks) {
-                                    if (!Array.isArray(object.contentBlocks))
-                                        throw TypeError(".google.maps.places.v1.Place.AreaSummary.contentBlocks: array expected");
-                                    message.contentBlocks = [];
-                                    for (var i = 0; i < object.contentBlocks.length; ++i) {
-                                        if (typeof object.contentBlocks[i] !== "object")
-                                            throw TypeError(".google.maps.places.v1.Place.AreaSummary.contentBlocks: object expected");
-                                        message.contentBlocks[i] = $root.google.maps.places.v1.ContentBlock.fromObject(object.contentBlocks[i]);
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Creates a plain object from an AreaSummary message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {google.maps.places.v1.Place.AreaSummary} message AreaSummary
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            AreaSummary.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.arrays || options.defaults)
-                                    object.contentBlocks = [];
-                                if (message.contentBlocks && message.contentBlocks.length) {
-                                    object.contentBlocks = [];
-                                    for (var j = 0; j < message.contentBlocks.length; ++j)
-                                        object.contentBlocks[j] = $root.google.maps.places.v1.ContentBlock.toObject(message.contentBlocks[j], options);
-                                }
-                                return object;
-                            };
-    
-                            /**
-                             * Converts this AreaSummary to JSON.
-                             * @function toJSON
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            AreaSummary.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-    
-                            /**
-                             * Gets the default type url for AreaSummary
-                             * @function getTypeUrl
-                             * @memberof google.maps.places.v1.Place.AreaSummary
-                             * @static
-                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                             * @returns {string} The default type url
-                             */
-                            AreaSummary.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                                if (typeUrlPrefix === undefined) {
-                                    typeUrlPrefix = "type.googleapis.com";
-                                }
-                                return typeUrlPrefix + "/google.maps.places.v1.Place.AreaSummary";
-                            };
-    
-                            return AreaSummary;
                         })();
     
                         Place.ContainingPlace = (function() {
@@ -12314,12 +14338,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ContainingPlace.decode = function decode(reader, length) {
+                            ContainingPlace.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.ContainingPlace();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -12445,6 +14471,904 @@
                             return ContainingPlace;
                         })();
     
+                        Place.ReviewSummary = (function() {
+    
+                            /**
+                             * Properties of a ReviewSummary.
+                             * @memberof google.maps.places.v1.Place
+                             * @interface IReviewSummary
+                             * @property {google.type.ILocalizedText|null} [text] ReviewSummary text
+                             * @property {string|null} [flagContentUri] ReviewSummary flagContentUri
+                             * @property {google.type.ILocalizedText|null} [disclosureText] ReviewSummary disclosureText
+                             */
+    
+                            /**
+                             * Constructs a new ReviewSummary.
+                             * @memberof google.maps.places.v1.Place
+                             * @classdesc Represents a ReviewSummary.
+                             * @implements IReviewSummary
+                             * @constructor
+                             * @param {google.maps.places.v1.Place.IReviewSummary=} [properties] Properties to set
+                             */
+                            function ReviewSummary(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * ReviewSummary text.
+                             * @member {google.type.ILocalizedText|null|undefined} text
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @instance
+                             */
+                            ReviewSummary.prototype.text = null;
+    
+                            /**
+                             * ReviewSummary flagContentUri.
+                             * @member {string} flagContentUri
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @instance
+                             */
+                            ReviewSummary.prototype.flagContentUri = "";
+    
+                            /**
+                             * ReviewSummary disclosureText.
+                             * @member {google.type.ILocalizedText|null|undefined} disclosureText
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @instance
+                             */
+                            ReviewSummary.prototype.disclosureText = null;
+    
+                            /**
+                             * Creates a new ReviewSummary instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.IReviewSummary=} [properties] Properties to set
+                             * @returns {google.maps.places.v1.Place.ReviewSummary} ReviewSummary instance
+                             */
+                            ReviewSummary.create = function create(properties) {
+                                return new ReviewSummary(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified ReviewSummary message. Does not implicitly {@link google.maps.places.v1.Place.ReviewSummary.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.IReviewSummary} message ReviewSummary message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ReviewSummary.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                                    $root.google.type.LocalizedText.encode(message.text, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.flagContentUri != null && Object.hasOwnProperty.call(message, "flagContentUri"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.flagContentUri);
+                                if (message.disclosureText != null && Object.hasOwnProperty.call(message, "disclosureText"))
+                                    $root.google.type.LocalizedText.encode(message.disclosureText, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified ReviewSummary message, length delimited. Does not implicitly {@link google.maps.places.v1.Place.ReviewSummary.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.IReviewSummary} message ReviewSummary message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ReviewSummary.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a ReviewSummary message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.places.v1.Place.ReviewSummary} ReviewSummary
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ReviewSummary.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.ReviewSummary();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.text = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.flagContentUri = reader.string();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.disclosureText = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a ReviewSummary message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.places.v1.Place.ReviewSummary} ReviewSummary
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ReviewSummary.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a ReviewSummary message.
+                             * @function verify
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            ReviewSummary.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.text != null && message.hasOwnProperty("text")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.text);
+                                    if (error)
+                                        return "text." + error;
+                                }
+                                if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                    if (!$util.isString(message.flagContentUri))
+                                        return "flagContentUri: string expected";
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.disclosureText);
+                                    if (error)
+                                        return "disclosureText." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a ReviewSummary message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.places.v1.Place.ReviewSummary} ReviewSummary
+                             */
+                            ReviewSummary.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.places.v1.Place.ReviewSummary)
+                                    return object;
+                                var message = new $root.google.maps.places.v1.Place.ReviewSummary();
+                                if (object.text != null) {
+                                    if (typeof object.text !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.ReviewSummary.text: object expected");
+                                    message.text = $root.google.type.LocalizedText.fromObject(object.text);
+                                }
+                                if (object.flagContentUri != null)
+                                    message.flagContentUri = String(object.flagContentUri);
+                                if (object.disclosureText != null) {
+                                    if (typeof object.disclosureText !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.ReviewSummary.disclosureText: object expected");
+                                    message.disclosureText = $root.google.type.LocalizedText.fromObject(object.disclosureText);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a ReviewSummary message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.ReviewSummary} message ReviewSummary
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            ReviewSummary.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.text = null;
+                                    object.flagContentUri = "";
+                                    object.disclosureText = null;
+                                }
+                                if (message.text != null && message.hasOwnProperty("text"))
+                                    object.text = $root.google.type.LocalizedText.toObject(message.text, options);
+                                if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                    object.flagContentUri = message.flagContentUri;
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText"))
+                                    object.disclosureText = $root.google.type.LocalizedText.toObject(message.disclosureText, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this ReviewSummary to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            ReviewSummary.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for ReviewSummary
+                             * @function getTypeUrl
+                             * @memberof google.maps.places.v1.Place.ReviewSummary
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            ReviewSummary.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.places.v1.Place.ReviewSummary";
+                            };
+    
+                            return ReviewSummary;
+                        })();
+    
+                        Place.EvChargeAmenitySummary = (function() {
+    
+                            /**
+                             * Properties of an EvChargeAmenitySummary.
+                             * @memberof google.maps.places.v1.Place
+                             * @interface IEvChargeAmenitySummary
+                             * @property {google.maps.places.v1.IContentBlock|null} [overview] EvChargeAmenitySummary overview
+                             * @property {google.maps.places.v1.IContentBlock|null} [coffee] EvChargeAmenitySummary coffee
+                             * @property {google.maps.places.v1.IContentBlock|null} [restaurant] EvChargeAmenitySummary restaurant
+                             * @property {google.maps.places.v1.IContentBlock|null} [store] EvChargeAmenitySummary store
+                             * @property {string|null} [flagContentUri] EvChargeAmenitySummary flagContentUri
+                             * @property {google.type.ILocalizedText|null} [disclosureText] EvChargeAmenitySummary disclosureText
+                             */
+    
+                            /**
+                             * Constructs a new EvChargeAmenitySummary.
+                             * @memberof google.maps.places.v1.Place
+                             * @classdesc Represents an EvChargeAmenitySummary.
+                             * @implements IEvChargeAmenitySummary
+                             * @constructor
+                             * @param {google.maps.places.v1.Place.IEvChargeAmenitySummary=} [properties] Properties to set
+                             */
+                            function EvChargeAmenitySummary(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * EvChargeAmenitySummary overview.
+                             * @member {google.maps.places.v1.IContentBlock|null|undefined} overview
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             */
+                            EvChargeAmenitySummary.prototype.overview = null;
+    
+                            /**
+                             * EvChargeAmenitySummary coffee.
+                             * @member {google.maps.places.v1.IContentBlock|null|undefined} coffee
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             */
+                            EvChargeAmenitySummary.prototype.coffee = null;
+    
+                            /**
+                             * EvChargeAmenitySummary restaurant.
+                             * @member {google.maps.places.v1.IContentBlock|null|undefined} restaurant
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             */
+                            EvChargeAmenitySummary.prototype.restaurant = null;
+    
+                            /**
+                             * EvChargeAmenitySummary store.
+                             * @member {google.maps.places.v1.IContentBlock|null|undefined} store
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             */
+                            EvChargeAmenitySummary.prototype.store = null;
+    
+                            /**
+                             * EvChargeAmenitySummary flagContentUri.
+                             * @member {string} flagContentUri
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             */
+                            EvChargeAmenitySummary.prototype.flagContentUri = "";
+    
+                            /**
+                             * EvChargeAmenitySummary disclosureText.
+                             * @member {google.type.ILocalizedText|null|undefined} disclosureText
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             */
+                            EvChargeAmenitySummary.prototype.disclosureText = null;
+    
+                            /**
+                             * Creates a new EvChargeAmenitySummary instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.IEvChargeAmenitySummary=} [properties] Properties to set
+                             * @returns {google.maps.places.v1.Place.EvChargeAmenitySummary} EvChargeAmenitySummary instance
+                             */
+                            EvChargeAmenitySummary.create = function create(properties) {
+                                return new EvChargeAmenitySummary(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified EvChargeAmenitySummary message. Does not implicitly {@link google.maps.places.v1.Place.EvChargeAmenitySummary.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.IEvChargeAmenitySummary} message EvChargeAmenitySummary message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            EvChargeAmenitySummary.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.overview != null && Object.hasOwnProperty.call(message, "overview"))
+                                    $root.google.maps.places.v1.ContentBlock.encode(message.overview, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.coffee != null && Object.hasOwnProperty.call(message, "coffee"))
+                                    $root.google.maps.places.v1.ContentBlock.encode(message.coffee, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.restaurant != null && Object.hasOwnProperty.call(message, "restaurant"))
+                                    $root.google.maps.places.v1.ContentBlock.encode(message.restaurant, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                if (message.store != null && Object.hasOwnProperty.call(message, "store"))
+                                    $root.google.maps.places.v1.ContentBlock.encode(message.store, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                                if (message.flagContentUri != null && Object.hasOwnProperty.call(message, "flagContentUri"))
+                                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.flagContentUri);
+                                if (message.disclosureText != null && Object.hasOwnProperty.call(message, "disclosureText"))
+                                    $root.google.type.LocalizedText.encode(message.disclosureText, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified EvChargeAmenitySummary message, length delimited. Does not implicitly {@link google.maps.places.v1.Place.EvChargeAmenitySummary.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.IEvChargeAmenitySummary} message EvChargeAmenitySummary message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            EvChargeAmenitySummary.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes an EvChargeAmenitySummary message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.places.v1.Place.EvChargeAmenitySummary} EvChargeAmenitySummary
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            EvChargeAmenitySummary.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.EvChargeAmenitySummary();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.overview = $root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.coffee = $root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.restaurant = $root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.store = $root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.flagContentUri = reader.string();
+                                            break;
+                                        }
+                                    case 6: {
+                                            message.disclosureText = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes an EvChargeAmenitySummary message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.places.v1.Place.EvChargeAmenitySummary} EvChargeAmenitySummary
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            EvChargeAmenitySummary.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies an EvChargeAmenitySummary message.
+                             * @function verify
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            EvChargeAmenitySummary.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.overview != null && message.hasOwnProperty("overview")) {
+                                    var error = $root.google.maps.places.v1.ContentBlock.verify(message.overview);
+                                    if (error)
+                                        return "overview." + error;
+                                }
+                                if (message.coffee != null && message.hasOwnProperty("coffee")) {
+                                    var error = $root.google.maps.places.v1.ContentBlock.verify(message.coffee);
+                                    if (error)
+                                        return "coffee." + error;
+                                }
+                                if (message.restaurant != null && message.hasOwnProperty("restaurant")) {
+                                    var error = $root.google.maps.places.v1.ContentBlock.verify(message.restaurant);
+                                    if (error)
+                                        return "restaurant." + error;
+                                }
+                                if (message.store != null && message.hasOwnProperty("store")) {
+                                    var error = $root.google.maps.places.v1.ContentBlock.verify(message.store);
+                                    if (error)
+                                        return "store." + error;
+                                }
+                                if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                    if (!$util.isString(message.flagContentUri))
+                                        return "flagContentUri: string expected";
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.disclosureText);
+                                    if (error)
+                                        return "disclosureText." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates an EvChargeAmenitySummary message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.places.v1.Place.EvChargeAmenitySummary} EvChargeAmenitySummary
+                             */
+                            EvChargeAmenitySummary.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.places.v1.Place.EvChargeAmenitySummary)
+                                    return object;
+                                var message = new $root.google.maps.places.v1.Place.EvChargeAmenitySummary();
+                                if (object.overview != null) {
+                                    if (typeof object.overview !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.EvChargeAmenitySummary.overview: object expected");
+                                    message.overview = $root.google.maps.places.v1.ContentBlock.fromObject(object.overview);
+                                }
+                                if (object.coffee != null) {
+                                    if (typeof object.coffee !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.EvChargeAmenitySummary.coffee: object expected");
+                                    message.coffee = $root.google.maps.places.v1.ContentBlock.fromObject(object.coffee);
+                                }
+                                if (object.restaurant != null) {
+                                    if (typeof object.restaurant !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.EvChargeAmenitySummary.restaurant: object expected");
+                                    message.restaurant = $root.google.maps.places.v1.ContentBlock.fromObject(object.restaurant);
+                                }
+                                if (object.store != null) {
+                                    if (typeof object.store !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.EvChargeAmenitySummary.store: object expected");
+                                    message.store = $root.google.maps.places.v1.ContentBlock.fromObject(object.store);
+                                }
+                                if (object.flagContentUri != null)
+                                    message.flagContentUri = String(object.flagContentUri);
+                                if (object.disclosureText != null) {
+                                    if (typeof object.disclosureText !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.EvChargeAmenitySummary.disclosureText: object expected");
+                                    message.disclosureText = $root.google.type.LocalizedText.fromObject(object.disclosureText);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from an EvChargeAmenitySummary message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.EvChargeAmenitySummary} message EvChargeAmenitySummary
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            EvChargeAmenitySummary.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.overview = null;
+                                    object.coffee = null;
+                                    object.restaurant = null;
+                                    object.store = null;
+                                    object.flagContentUri = "";
+                                    object.disclosureText = null;
+                                }
+                                if (message.overview != null && message.hasOwnProperty("overview"))
+                                    object.overview = $root.google.maps.places.v1.ContentBlock.toObject(message.overview, options);
+                                if (message.coffee != null && message.hasOwnProperty("coffee"))
+                                    object.coffee = $root.google.maps.places.v1.ContentBlock.toObject(message.coffee, options);
+                                if (message.restaurant != null && message.hasOwnProperty("restaurant"))
+                                    object.restaurant = $root.google.maps.places.v1.ContentBlock.toObject(message.restaurant, options);
+                                if (message.store != null && message.hasOwnProperty("store"))
+                                    object.store = $root.google.maps.places.v1.ContentBlock.toObject(message.store, options);
+                                if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                    object.flagContentUri = message.flagContentUri;
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText"))
+                                    object.disclosureText = $root.google.type.LocalizedText.toObject(message.disclosureText, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this EvChargeAmenitySummary to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            EvChargeAmenitySummary.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for EvChargeAmenitySummary
+                             * @function getTypeUrl
+                             * @memberof google.maps.places.v1.Place.EvChargeAmenitySummary
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            EvChargeAmenitySummary.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.places.v1.Place.EvChargeAmenitySummary";
+                            };
+    
+                            return EvChargeAmenitySummary;
+                        })();
+    
+                        Place.NeighborhoodSummary = (function() {
+    
+                            /**
+                             * Properties of a NeighborhoodSummary.
+                             * @memberof google.maps.places.v1.Place
+                             * @interface INeighborhoodSummary
+                             * @property {google.maps.places.v1.IContentBlock|null} [overview] NeighborhoodSummary overview
+                             * @property {google.maps.places.v1.IContentBlock|null} [description] NeighborhoodSummary description
+                             * @property {string|null} [flagContentUri] NeighborhoodSummary flagContentUri
+                             * @property {google.type.ILocalizedText|null} [disclosureText] NeighborhoodSummary disclosureText
+                             */
+    
+                            /**
+                             * Constructs a new NeighborhoodSummary.
+                             * @memberof google.maps.places.v1.Place
+                             * @classdesc Represents a NeighborhoodSummary.
+                             * @implements INeighborhoodSummary
+                             * @constructor
+                             * @param {google.maps.places.v1.Place.INeighborhoodSummary=} [properties] Properties to set
+                             */
+                            function NeighborhoodSummary(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * NeighborhoodSummary overview.
+                             * @member {google.maps.places.v1.IContentBlock|null|undefined} overview
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @instance
+                             */
+                            NeighborhoodSummary.prototype.overview = null;
+    
+                            /**
+                             * NeighborhoodSummary description.
+                             * @member {google.maps.places.v1.IContentBlock|null|undefined} description
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @instance
+                             */
+                            NeighborhoodSummary.prototype.description = null;
+    
+                            /**
+                             * NeighborhoodSummary flagContentUri.
+                             * @member {string} flagContentUri
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @instance
+                             */
+                            NeighborhoodSummary.prototype.flagContentUri = "";
+    
+                            /**
+                             * NeighborhoodSummary disclosureText.
+                             * @member {google.type.ILocalizedText|null|undefined} disclosureText
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @instance
+                             */
+                            NeighborhoodSummary.prototype.disclosureText = null;
+    
+                            /**
+                             * Creates a new NeighborhoodSummary instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.INeighborhoodSummary=} [properties] Properties to set
+                             * @returns {google.maps.places.v1.Place.NeighborhoodSummary} NeighborhoodSummary instance
+                             */
+                            NeighborhoodSummary.create = function create(properties) {
+                                return new NeighborhoodSummary(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified NeighborhoodSummary message. Does not implicitly {@link google.maps.places.v1.Place.NeighborhoodSummary.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.INeighborhoodSummary} message NeighborhoodSummary message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            NeighborhoodSummary.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.overview != null && Object.hasOwnProperty.call(message, "overview"))
+                                    $root.google.maps.places.v1.ContentBlock.encode(message.overview, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                                    $root.google.maps.places.v1.ContentBlock.encode(message.description, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.flagContentUri != null && Object.hasOwnProperty.call(message, "flagContentUri"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.flagContentUri);
+                                if (message.disclosureText != null && Object.hasOwnProperty.call(message, "disclosureText"))
+                                    $root.google.type.LocalizedText.encode(message.disclosureText, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified NeighborhoodSummary message, length delimited. Does not implicitly {@link google.maps.places.v1.Place.NeighborhoodSummary.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.INeighborhoodSummary} message NeighborhoodSummary message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            NeighborhoodSummary.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a NeighborhoodSummary message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.places.v1.Place.NeighborhoodSummary} NeighborhoodSummary
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            NeighborhoodSummary.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Place.NeighborhoodSummary();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.overview = $root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.description = $root.google.maps.places.v1.ContentBlock.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.flagContentUri = reader.string();
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.disclosureText = $root.google.type.LocalizedText.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a NeighborhoodSummary message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.places.v1.Place.NeighborhoodSummary} NeighborhoodSummary
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            NeighborhoodSummary.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a NeighborhoodSummary message.
+                             * @function verify
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            NeighborhoodSummary.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.overview != null && message.hasOwnProperty("overview")) {
+                                    var error = $root.google.maps.places.v1.ContentBlock.verify(message.overview);
+                                    if (error)
+                                        return "overview." + error;
+                                }
+                                if (message.description != null && message.hasOwnProperty("description")) {
+                                    var error = $root.google.maps.places.v1.ContentBlock.verify(message.description);
+                                    if (error)
+                                        return "description." + error;
+                                }
+                                if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                    if (!$util.isString(message.flagContentUri))
+                                        return "flagContentUri: string expected";
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText")) {
+                                    var error = $root.google.type.LocalizedText.verify(message.disclosureText);
+                                    if (error)
+                                        return "disclosureText." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a NeighborhoodSummary message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.places.v1.Place.NeighborhoodSummary} NeighborhoodSummary
+                             */
+                            NeighborhoodSummary.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.places.v1.Place.NeighborhoodSummary)
+                                    return object;
+                                var message = new $root.google.maps.places.v1.Place.NeighborhoodSummary();
+                                if (object.overview != null) {
+                                    if (typeof object.overview !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.NeighborhoodSummary.overview: object expected");
+                                    message.overview = $root.google.maps.places.v1.ContentBlock.fromObject(object.overview);
+                                }
+                                if (object.description != null) {
+                                    if (typeof object.description !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.NeighborhoodSummary.description: object expected");
+                                    message.description = $root.google.maps.places.v1.ContentBlock.fromObject(object.description);
+                                }
+                                if (object.flagContentUri != null)
+                                    message.flagContentUri = String(object.flagContentUri);
+                                if (object.disclosureText != null) {
+                                    if (typeof object.disclosureText !== "object")
+                                        throw TypeError(".google.maps.places.v1.Place.NeighborhoodSummary.disclosureText: object expected");
+                                    message.disclosureText = $root.google.type.LocalizedText.fromObject(object.disclosureText);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a NeighborhoodSummary message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {google.maps.places.v1.Place.NeighborhoodSummary} message NeighborhoodSummary
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            NeighborhoodSummary.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.overview = null;
+                                    object.description = null;
+                                    object.flagContentUri = "";
+                                    object.disclosureText = null;
+                                }
+                                if (message.overview != null && message.hasOwnProperty("overview"))
+                                    object.overview = $root.google.maps.places.v1.ContentBlock.toObject(message.overview, options);
+                                if (message.description != null && message.hasOwnProperty("description"))
+                                    object.description = $root.google.maps.places.v1.ContentBlock.toObject(message.description, options);
+                                if (message.flagContentUri != null && message.hasOwnProperty("flagContentUri"))
+                                    object.flagContentUri = message.flagContentUri;
+                                if (message.disclosureText != null && message.hasOwnProperty("disclosureText"))
+                                    object.disclosureText = $root.google.type.LocalizedText.toObject(message.disclosureText, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this NeighborhoodSummary to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            NeighborhoodSummary.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for NeighborhoodSummary
+                             * @function getTypeUrl
+                             * @memberof google.maps.places.v1.Place.NeighborhoodSummary
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            NeighborhoodSummary.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.places.v1.Place.NeighborhoodSummary";
+                            };
+    
+                            return NeighborhoodSummary;
+                        })();
+    
                         return Place;
                     })();
     
@@ -12566,12 +15490,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PriceRange.decode = function decode(reader, length) {
+                        PriceRange.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.PriceRange();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.startPrice = $root.google.type.Money.decode(reader, reader.uint32());
@@ -13025,12 +15951,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RoutingParameters.decode = function decode(reader, length) {
+                        RoutingParameters.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.RoutingParameters();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.origin = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -13445,12 +16373,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchNearbyRequest.decode = function decode(reader, length) {
+                        SearchNearbyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchNearbyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.languageCode = reader.string();
@@ -13860,12 +16790,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocationRestriction.decode = function decode(reader, length) {
+                            LocationRestriction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchNearbyRequest.LocationRestriction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 2: {
                                             message.circle = $root.google.maps.places.v1.Circle.decode(reader, reader.uint32());
@@ -14107,12 +17039,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchNearbyResponse.decode = function decode(reader, length) {
+                        SearchNearbyResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchNearbyResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.places && message.places.length))
@@ -14531,12 +17465,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchTextRequest.decode = function decode(reader, length) {
+                        SearchTextRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchTextRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.textQuery = reader.string();
@@ -15061,12 +17997,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocationBias.decode = function decode(reader, length) {
+                            LocationBias.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchTextRequest.LocationBias();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.rectangle = $root.google.geo.type.Viewport.decode(reader, reader.uint32());
@@ -15312,12 +18250,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocationRestriction.decode = function decode(reader, length) {
+                            LocationRestriction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchTextRequest.LocationRestriction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.rectangle = $root.google.geo.type.Viewport.decode(reader, reader.uint32());
@@ -15541,12 +18481,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            EVOptions.decode = function decode(reader, length) {
+                            EVOptions.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchTextRequest.EVOptions();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.minimumChargingRateKw = reader.double();
@@ -15618,6 +18560,7 @@
                                         case 7:
                                         case 8:
                                         case 9:
+                                        case 10:
                                             break;
                                         }
                                 }
@@ -15688,6 +18631,10 @@
                                         case "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET":
                                         case 9:
                                             message.connectorTypes[i] = 9;
+                                            break;
+                                        case "EV_CONNECTOR_TYPE_NACS":
+                                        case 10:
+                                            message.connectorTypes[i] = 10;
                                             break;
                                         }
                                 }
@@ -15835,12 +18782,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SearchAlongRouteParameters.decode = function decode(reader, length) {
+                            SearchAlongRouteParameters.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchTextRequest.SearchAlongRouteParameters();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.polyline = $root.google.maps.places.v1.Polyline.decode(reader, reader.uint32());
@@ -16074,12 +19023,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchTextResponse.decode = function decode(reader, length) {
+                        SearchTextResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.SearchTextResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.places && message.places.length))
@@ -16392,12 +19343,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetPhotoMediaRequest.decode = function decode(reader, length) {
+                        GetPhotoMediaRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.GetPhotoMediaRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16643,12 +19596,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PhotoMedia.decode = function decode(reader, length) {
+                        PhotoMedia.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.PhotoMedia();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16892,12 +19847,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetPlaceRequest.decode = function decode(reader, length) {
+                        GetPlaceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.GetPlaceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17257,12 +20214,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AutocompletePlacesRequest.decode = function decode(reader, length) {
+                        AutocompletePlacesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.input = reader.string();
@@ -17660,12 +20619,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocationBias.decode = function decode(reader, length) {
+                            LocationBias.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesRequest.LocationBias();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.rectangle = $root.google.geo.type.Viewport.decode(reader, reader.uint32());
@@ -17922,12 +20883,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocationRestriction.decode = function decode(reader, length) {
+                            LocationRestriction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesRequest.LocationRestriction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.rectangle = $root.google.geo.type.Viewport.decode(reader, reader.uint32());
@@ -18164,12 +21127,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AutocompletePlacesResponse.decode = function decode(reader, length) {
+                        AutocompletePlacesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.suggestions && message.suggestions.length))
@@ -18408,12 +21373,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Suggestion.decode = function decode(reader, length) {
+                            Suggestion.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.placePrediction = $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.PlacePrediction.decode(reader, reader.uint32());
@@ -18653,12 +21620,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                StringRange.decode = function decode(reader, length) {
+                                StringRange.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.StringRange();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.startOffset = reader.int32();
@@ -18882,12 +21851,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                FormattableText.decode = function decode(reader, length) {
+                                FormattableText.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.FormattableText();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.text = reader.string();
@@ -19128,12 +22099,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                StructuredFormat.decode = function decode(reader, length) {
+                                StructuredFormat.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.StructuredFormat();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.mainText = $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.FormattableText.decode(reader, reader.uint32());
@@ -19411,12 +22384,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                PlacePrediction.decode = function decode(reader, length) {
+                                PlacePrediction.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.PlacePrediction();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.place = reader.string();
@@ -19711,12 +22686,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                QueryPrediction.decode = function decode(reader, length) {
+                                QueryPrediction.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.QueryPrediction();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.text = $root.google.maps.places.v1.AutocompletePlacesResponse.Suggestion.FormattableText.decode(reader, reader.uint32());
@@ -19957,12 +22934,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Polyline.decode = function decode(reader, length) {
+                        Polyline.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.Polyline();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.encodedPolyline = reader.string();
@@ -20197,12 +23176,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteModifiers.decode = function decode(reader, length) {
+                        RouteModifiers.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.RouteModifiers();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.avoidTolls = reader.bool();
@@ -20468,12 +23449,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RoutingSummary.decode = function decode(reader, length) {
+                        RoutingSummary.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.RoutingSummary();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.legs && message.legs.length))
@@ -20711,12 +23694,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Leg.decode = function decode(reader, length) {
+                            Leg.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.places.v1.RoutingSummary.Leg();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.duration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -21046,12 +24031,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -21441,12 +24428,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -21698,12 +24687,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -22048,12 +25039,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -22432,12 +25425,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -22664,12 +25659,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -23033,12 +26030,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -23377,6 +26376,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -23478,6 +26478,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -23524,6 +26532,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -23551,12 +26561,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -23602,6 +26614,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -23696,6 +26712,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -23790,6 +26809,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -23819,6 +26840,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -23849,6 +26871,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -23990,12 +27014,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -24257,12 +27283,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24465,12 +27493,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24673,12 +27703,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24881,12 +27913,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -25154,12 +28188,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -25533,12 +28569,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -25741,12 +28779,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -25973,12 +29013,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -26251,12 +29293,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -26591,12 +29635,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -26991,12 +30037,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -27658,12 +30706,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -28143,12 +31193,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -28387,12 +31439,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -28643,12 +31697,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -28988,12 +32044,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -29367,12 +32425,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -29892,12 +32952,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30163,12 +33225,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30482,12 +33546,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -30723,12 +33789,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30980,12 +34048,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31288,12 +34358,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31792,12 +34864,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -32412,12 +35486,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -32860,12 +35936,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -32895,12 +35968,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -33626,12 +36701,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -33922,12 +36999,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -34208,12 +37287,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -34520,12 +37601,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -34711,6 +37794,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -34770,6 +37854,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -34804,6 +37896,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -34831,12 +37925,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -34858,6 +37954,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -34918,6 +38018,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -34954,6 +38057,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -34977,6 +38082,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -34991,6 +38097,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -35167,12 +38275,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -35584,12 +38694,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -35923,12 +39035,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -36199,12 +39313,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -36734,12 +39850,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -37118,12 +40236,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -37408,12 +40528,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -37683,12 +40805,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -37994,12 +41118,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -38262,12 +41388,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -38588,12 +41716,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -38829,12 +41959,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();

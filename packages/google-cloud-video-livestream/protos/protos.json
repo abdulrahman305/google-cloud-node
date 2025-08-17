@@ -1120,6 +1120,13 @@
                               "options": {
                                 "(google.api.field_behavior)": "REQUIRED"
                               }
+                            },
+                            "outputType": {
+                              "type": "OutputType",
+                              "id": 13,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             }
                           },
                           "nested": {
@@ -1174,6 +1181,150 @@
                                   "options": {
                                     "(google.api.field_behavior)": "OUTPUT_ONLY"
                                   }
+                                }
+                              }
+                            },
+                            "OutputType": {
+                              "values": {
+                                "OUTPUT_TYPE_UNSPECIFIED": 0,
+                                "MANIFEST": 1,
+                                "MP4": 2
+                              }
+                            }
+                          }
+                        },
+                        "TimeInterval": {
+                          "fields": {
+                            "startTime": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "endTime": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "DvrSession": {
+                          "options": {
+                            "(google.api.resource).type": "livestream.googleapis.com/DvrSession",
+                            "(google.api.resource).pattern": "projects/{project}/locations/{location}/channels/{channel}/dvrSessions/{dvr_session}",
+                            "(google.api.resource).plural": "dvrSessions",
+                            "(google.api.resource).singular": "dvrSession"
+                          },
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "IDENTIFIER"
+                              }
+                            },
+                            "createTime": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "updateTime": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "labels": {
+                              "keyType": "string",
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "state": {
+                              "type": "State",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "error": {
+                              "type": "google.rpc.Status",
+                              "id": 6,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "dvrManifests": {
+                              "rule": "repeated",
+                              "type": "DvrManifest",
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "dvrWindows": {
+                              "rule": "repeated",
+                              "type": "DvrWindow",
+                              "id": 8,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "State": {
+                              "values": {
+                                "STATE_UNSPECIFIED": 0,
+                                "PENDING": 1,
+                                "UPDATING": 2,
+                                "SCHEDULED": 3,
+                                "LIVE": 4,
+                                "FINISHED": 5,
+                                "FAILED": 6,
+                                "DELETING": 7,
+                                "POST_PROCESSING": 8,
+                                "COOLDOWN": 9,
+                                "STOPPING": 10
+                              }
+                            },
+                            "DvrManifest": {
+                              "fields": {
+                                "manifestKey": {
+                                  "type": "string",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "REQUIRED"
+                                  }
+                                },
+                                "outputUri": {
+                                  "type": "string",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                }
+                              }
+                            },
+                            "DvrWindow": {
+                              "oneofs": {
+                                "kind": {
+                                  "oneof": [
+                                    "timeInterval"
+                                  ]
+                                }
+                              },
+                              "fields": {
+                                "timeInterval": {
+                                  "type": "TimeInterval",
+                                  "id": 1
                                 }
                               }
                             }
@@ -1887,6 +2038,124 @@
                                 {
                                   "(google.longrunning.operation_info)": {
                                     "response_type": "google.protobuf.Empty",
+                                    "metadata_type": "OperationMetadata"
+                                  }
+                                }
+                              ]
+                            },
+                            "CreateDvrSession": {
+                              "requestType": "CreateDvrSessionRequest",
+                              "responseType": "google.longrunning.Operation",
+                              "options": {
+                                "(google.api.http).post": "/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions",
+                                "(google.api.http).body": "dvr_session",
+                                "(google.api.method_signature)": "parent,dvr_session,dvr_session_id",
+                                "(google.longrunning.operation_info).response_type": "DvrSession",
+                                "(google.longrunning.operation_info).metadata_type": "OperationMetadata"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "post": "/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions",
+                                    "body": "dvr_session"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "parent,dvr_session,dvr_session_id"
+                                },
+                                {
+                                  "(google.longrunning.operation_info)": {
+                                    "response_type": "DvrSession",
+                                    "metadata_type": "OperationMetadata"
+                                  }
+                                }
+                              ]
+                            },
+                            "ListDvrSessions": {
+                              "requestType": "ListDvrSessionsRequest",
+                              "responseType": "ListDvrSessionsResponse",
+                              "options": {
+                                "(google.api.http).get": "/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions",
+                                "(google.api.method_signature)": "parent"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "get": "/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "parent"
+                                }
+                              ]
+                            },
+                            "GetDvrSession": {
+                              "requestType": "GetDvrSessionRequest",
+                              "responseType": "DvrSession",
+                              "options": {
+                                "(google.api.http).get": "/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}",
+                                "(google.api.method_signature)": "name"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "get": "/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "name"
+                                }
+                              ]
+                            },
+                            "DeleteDvrSession": {
+                              "requestType": "DeleteDvrSessionRequest",
+                              "responseType": "google.longrunning.Operation",
+                              "options": {
+                                "(google.api.http).delete": "/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}",
+                                "(google.api.method_signature)": "name",
+                                "(google.longrunning.operation_info).response_type": "google.protobuf.Empty",
+                                "(google.longrunning.operation_info).metadata_type": "OperationMetadata"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "delete": "/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "name"
+                                },
+                                {
+                                  "(google.longrunning.operation_info)": {
+                                    "response_type": "google.protobuf.Empty",
+                                    "metadata_type": "OperationMetadata"
+                                  }
+                                }
+                              ]
+                            },
+                            "UpdateDvrSession": {
+                              "requestType": "UpdateDvrSessionRequest",
+                              "responseType": "google.longrunning.Operation",
+                              "options": {
+                                "(google.api.http).patch": "/v1/{dvr_session.name=projects/*/locations/*/channels/*/dvrSessions/*}",
+                                "(google.api.http).body": "dvr_session",
+                                "(google.api.method_signature)": "dvr_session,update_mask",
+                                "(google.longrunning.operation_info).response_type": "DvrSession",
+                                "(google.longrunning.operation_info).metadata_type": "OperationMetadata"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "patch": "/v1/{dvr_session.name=projects/*/locations/*/channels/*/dvrSessions/*}",
+                                    "body": "dvr_session"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "dvr_session,update_mask"
+                                },
+                                {
+                                  "(google.longrunning.operation_info)": {
+                                    "response_type": "DvrSession",
                                     "metadata_type": "OperationMetadata"
                                   }
                                 }
@@ -2634,6 +2903,156 @@
                             }
                           }
                         },
+                        "ListDvrSessionsRequest": {
+                          "fields": {
+                            "parent": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED",
+                                "(google.api.resource_reference).child_type": "livestream.googleapis.com/DvrSession"
+                              }
+                            },
+                            "pageSize": {
+                              "type": "int32",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "pageToken": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "filter": {
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "orderBy": {
+                              "type": "string",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "ListDvrSessionsResponse": {
+                          "fields": {
+                            "dvrSessions": {
+                              "rule": "repeated",
+                              "type": "DvrSession",
+                              "id": 1
+                            },
+                            "nextPageToken": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "unreachable": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "GetDvrSessionRequest": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED",
+                                "(google.api.resource_reference).type": "livestream.googleapis.com/DvrSession"
+                              }
+                            }
+                          }
+                        },
+                        "CreateDvrSessionRequest": {
+                          "fields": {
+                            "parent": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED",
+                                "(google.api.resource_reference).child_type": "livestream.googleapis.com/DvrSession"
+                              }
+                            },
+                            "dvrSessionId": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "dvrSession": {
+                              "type": "DvrSession",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_info).format": "UUID4",
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "DeleteDvrSessionRequest": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED",
+                                "(google.api.resource_reference).type": "livestream.googleapis.com/DvrSession"
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_info).format": "UUID4",
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "UpdateDvrSessionRequest": {
+                          "fields": {
+                            "updateMask": {
+                              "type": "google.protobuf.FieldMask",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "dvrSession": {
+                              "type": "DvrSession",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_info).format": "UUID4",
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
                         "OperationMetadata": {
                           "fields": {
                             "createTime": {
@@ -2733,7 +3152,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -2928,6 +3350,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -3036,6 +3463,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -3245,6 +3676,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -3254,6 +3686,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -3269,6 +3702,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3286,18 +3720,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -3338,6 +3766,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3420,6 +3849,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -3493,6 +3923,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3572,6 +4003,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3584,6 +4016,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3625,6 +4058,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3641,6 +4075,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3658,6 +4093,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3692,6 +4128,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -3833,6 +4270,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -3906,6 +4344,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -3967,10 +4406,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -4054,6 +4490,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4073,6 +4510,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -4116,6 +4554,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4149,6 +4588,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4175,6 +4615,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4217,6 +4658,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -4266,6 +4708,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -4338,8 +4781,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -4395,6 +4850,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -4426,6 +4882,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -4439,12 +4896,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -4464,6 +4927,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -4477,7 +4941,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

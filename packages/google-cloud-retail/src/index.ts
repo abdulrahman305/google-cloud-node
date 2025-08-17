@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,39 +45,7 @@ type ServingConfigServiceClient = v2beta.ServingConfigServiceClient;
 const UserEventServiceClient = v2beta.UserEventServiceClient;
 type UserEventServiceClient = v2beta.UserEventServiceClient;
 
-export {
-  v2,
-  v2alpha,
-  v2beta,
-  AnalyticsServiceClient,
-  CatalogServiceClient,
-  CompletionServiceClient,
-  ControlServiceClient,
-  GenerativeQuestionServiceClient,
-  ModelServiceClient,
-  PredictionServiceClient,
-  ProductServiceClient,
-  ProjectServiceClient,
-  SearchServiceClient,
-  ServingConfigServiceClient,
-  UserEventServiceClient,
-};
-export default {
-  v2,
-  v2alpha,
-  v2beta,
-  AnalyticsServiceClient,
-  CatalogServiceClient,
-  CompletionServiceClient,
-  ControlServiceClient,
-  GenerativeQuestionServiceClient,
-  ModelServiceClient,
-  PredictionServiceClient,
-  ProductServiceClient,
-  ProjectServiceClient,
-  SearchServiceClient,
-  ServingConfigServiceClient,
-  UserEventServiceClient,
-};
+export {v2, v2alpha, v2beta, AnalyticsServiceClient, CatalogServiceClient, CompletionServiceClient, ControlServiceClient, GenerativeQuestionServiceClient, ModelServiceClient, PredictionServiceClient, ProductServiceClient, ProjectServiceClient, SearchServiceClient, ServingConfigServiceClient, UserEventServiceClient};
+export default {v2, v2alpha, v2beta, AnalyticsServiceClient, CatalogServiceClient, CompletionServiceClient, ControlServiceClient, GenerativeQuestionServiceClient, ModelServiceClient, PredictionServiceClient, ProductServiceClient, ProjectServiceClient, SearchServiceClient, ServingConfigServiceClient, UserEventServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

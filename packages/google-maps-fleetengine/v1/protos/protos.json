@@ -172,6 +172,22 @@
                           "type": "google.protobuf.DoubleValue",
                           "id": 25
                         },
+                        "flpLocation": {
+                          "type": "google.type.LatLng",
+                          "id": 29
+                        },
+                        "flpUpdateTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 30
+                        },
+                        "flpLatlngAccuracyMeters": {
+                          "type": "google.protobuf.DoubleValue",
+                          "id": 31
+                        },
+                        "flpHeadingDegrees": {
+                          "type": "google.protobuf.Int32Value",
+                          "id": 32
+                        },
                         "supplementalLocation": {
                           "type": "google.type.LatLng",
                           "id": 18
@@ -330,6 +346,34 @@
                             }
                           ]
                         },
+                        "DeleteDeliveryVehicle": {
+                          "requestType": "DeleteDeliveryVehicleRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1/{name=providers/*/deliveryVehicles/*}",
+                            "(google.api.routing).routing_parameters.field": "name",
+                            "(google.api.routing).routing_parameters.path_template": "{provider_id=providers/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1/{name=providers/*/deliveryVehicles/*}"
+                              }
+                            },
+                            {
+                              "(google.api.routing)": {
+                                "routing_parameters": {
+                                  "field": "name",
+                                  "path_template": "{provider_id=providers/*}"
+                                }
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
                         "UpdateDeliveryVehicle": {
                           "requestType": "UpdateDeliveryVehicleRequest",
                           "responseType": "DeliveryVehicle",
@@ -429,6 +473,34 @@
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=providers/*/tasks/*}"
+                              }
+                            },
+                            {
+                              "(google.api.routing)": {
+                                "routing_parameters": {
+                                  "field": "name",
+                                  "path_template": "{provider_id=providers/*}"
+                                }
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "DeleteTask": {
+                          "requestType": "DeleteTaskRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1/{name=providers/*/tasks/*}",
+                            "(google.api.routing).routing_parameters.field": "name",
+                            "(google.api.routing).routing_parameters.path_template": "{provider_id=providers/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1/{name=providers/*/tasks/*}"
                               }
                             },
                             {
@@ -604,6 +676,25 @@
                         "name": {
                           "type": "string",
                           "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "fleetengine.googleapis.com/DeliveryVehicle"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteDeliveryVehicleRequest": {
+                      "fields": {
+                        "header": {
+                          "type": "DeliveryRequestHeader",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 2,
                           "options": {
                             "(google.api.field_behavior)": "REQUIRED",
                             "(google.api.resource_reference).type": "fleetengine.googleapis.com/DeliveryVehicle"
@@ -787,6 +878,25 @@
                         }
                       }
                     },
+                    "DeleteTaskRequest": {
+                      "fields": {
+                        "header": {
+                          "type": "DeliveryRequestHeader",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "fleetengine.googleapis.com/Task"
+                          }
+                        }
+                      }
+                    },
                     "UpdateTaskRequest": {
                       "fields": {
                         "header": {
@@ -901,6 +1011,14 @@
                         "lastLocation": {
                           "type": "DeliveryVehicleLocation",
                           "id": 2
+                        },
+                        "pastLocations": {
+                          "rule": "repeated",
+                          "type": "DeliveryVehicleLocation",
+                          "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "INPUT_ONLY"
+                          }
                         },
                         "navigationStatus": {
                           "type": "DeliveryVehicleNavigationStatus",
@@ -1989,6 +2107,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -1998,6 +2117,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -2013,6 +2133,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2030,18 +2151,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -2082,6 +2197,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2164,6 +2280,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -2237,6 +2354,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2316,6 +2434,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2328,6 +2447,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2369,6 +2489,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2385,6 +2506,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2402,6 +2524,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2436,6 +2559,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -2577,6 +2701,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -2650,6 +2775,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -2711,10 +2837,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -2798,6 +2921,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2817,6 +2941,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -2860,6 +2985,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -2893,6 +3019,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2919,6 +3046,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -2961,6 +3089,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -3010,6 +3139,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -3151,6 +3281,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -3182,6 +3313,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -3195,12 +3327,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -3220,6 +3358,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -3233,7 +3372,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -3359,6 +3501,9 @@
                   "id": 2
                 }
               }
+            },
+            "Empty": {
+              "fields": {}
             },
             "FieldMask": {
               "fields": {

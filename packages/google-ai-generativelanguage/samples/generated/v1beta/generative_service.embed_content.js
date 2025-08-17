@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ function main(model, content) {
    */
   // const content = {}
   /**
-   *  Optional. Optional task type for which the embeddings will be used. Can
-   *  only be set for `models/embedding-001`.
+   *  Optional. Optional task type for which the embeddings will be used. Not
+   *  supported on earlier models (`models/embedding-001`).
    */
   // const taskType = {}
   /**

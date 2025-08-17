@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -228,6 +228,7 @@
                      * @property {number} OGG_OPUS=3 OGG_OPUS value
                      * @property {number} MULAW=5 MULAW value
                      * @property {number} ALAW=6 ALAW value
+                     * @property {number} PCM=7 PCM value
                      */
                     v1.AudioEncoding = (function() {
                         var valuesById = {}, values = Object.create(valuesById);
@@ -237,6 +238,7 @@
                         values[valuesById[3] = "OGG_OPUS"] = 3;
                         values[valuesById[5] = "MULAW"] = 5;
                         values[valuesById[6] = "ALAW"] = 6;
+                        values[valuesById[7] = "PCM"] = 7;
                         return values;
                     })();
     
@@ -325,12 +327,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVoicesRequest.decode = function decode(reader, length) {
+                        ListVoicesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.ListVoicesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.languageCode = reader.string();
@@ -530,12 +534,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVoicesResponse.decode = function decode(reader, length) {
+                        ListVoicesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.ListVoicesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.voices && message.voices.length))
@@ -787,12 +793,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Voice.decode = function decode(reader, length) {
+                        Voice.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.Voice();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.languageCodes && message.languageCodes.length))
@@ -1021,12 +1029,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * AdvancedVoiceOptions _lowLatencyJourneySynthesis.
-                         * @member {"lowLatencyJourneySynthesis"|undefined} _lowLatencyJourneySynthesis
-                         * @memberof google.cloud.texttospeech.v1.AdvancedVoiceOptions
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AdvancedVoiceOptions.prototype, "_lowLatencyJourneySynthesis", {
                             get: $util.oneOfGetter($oneOfFields = ["lowLatencyJourneySynthesis"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -1085,12 +1088,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AdvancedVoiceOptions.decode = function decode(reader, length) {
+                        AdvancedVoiceOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.AdvancedVoiceOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.lowLatencyJourneySynthesis = reader.bool();
@@ -1269,12 +1274,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * SynthesizeSpeechRequest _advancedVoiceOptions.
-                         * @member {"advancedVoiceOptions"|undefined} _advancedVoiceOptions
-                         * @memberof google.cloud.texttospeech.v1.SynthesizeSpeechRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SynthesizeSpeechRequest.prototype, "_advancedVoiceOptions", {
                             get: $util.oneOfGetter($oneOfFields = ["advancedVoiceOptions"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -1339,12 +1339,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeSpeechRequest.decode = function decode(reader, length) {
+                        SynthesizeSpeechRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.SynthesizeSpeechRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.input = $root.google.cloud.texttospeech.v1.SynthesisInput.decode(reader, reader.uint32());
@@ -1573,34 +1575,19 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * CustomPronunciationParams _phrase.
-                         * @member {"phrase"|undefined} _phrase
-                         * @memberof google.cloud.texttospeech.v1.CustomPronunciationParams
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(CustomPronunciationParams.prototype, "_phrase", {
                             get: $util.oneOfGetter($oneOfFields = ["phrase"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * CustomPronunciationParams _phoneticEncoding.
-                         * @member {"phoneticEncoding"|undefined} _phoneticEncoding
-                         * @memberof google.cloud.texttospeech.v1.CustomPronunciationParams
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(CustomPronunciationParams.prototype, "_phoneticEncoding", {
                             get: $util.oneOfGetter($oneOfFields = ["phoneticEncoding"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * CustomPronunciationParams _pronunciation.
-                         * @member {"pronunciation"|undefined} _pronunciation
-                         * @memberof google.cloud.texttospeech.v1.CustomPronunciationParams
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(CustomPronunciationParams.prototype, "_pronunciation", {
                             get: $util.oneOfGetter($oneOfFields = ["pronunciation"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -1663,12 +1650,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CustomPronunciationParams.decode = function decode(reader, length) {
+                        CustomPronunciationParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.CustomPronunciationParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.phrase = reader.string();
@@ -1731,6 +1720,8 @@
                                 case 0:
                                 case 1:
                                 case 2:
+                                case 3:
+                                case 4:
                                     break;
                                 }
                             }
@@ -1774,6 +1765,14 @@
                             case "PHONETIC_ENCODING_X_SAMPA":
                             case 2:
                                 message.phoneticEncoding = 2;
+                                break;
+                            case "PHONETIC_ENCODING_JAPANESE_YOMIGANA":
+                            case 3:
+                                message.phoneticEncoding = 3;
+                                break;
+                            case "PHONETIC_ENCODING_PINYIN":
+                            case 4:
+                                message.phoneticEncoding = 4;
                                 break;
                             }
                             if (object.pronunciation != null)
@@ -1845,12 +1844,16 @@
                          * @property {number} PHONETIC_ENCODING_UNSPECIFIED=0 PHONETIC_ENCODING_UNSPECIFIED value
                          * @property {number} PHONETIC_ENCODING_IPA=1 PHONETIC_ENCODING_IPA value
                          * @property {number} PHONETIC_ENCODING_X_SAMPA=2 PHONETIC_ENCODING_X_SAMPA value
+                         * @property {number} PHONETIC_ENCODING_JAPANESE_YOMIGANA=3 PHONETIC_ENCODING_JAPANESE_YOMIGANA value
+                         * @property {number} PHONETIC_ENCODING_PINYIN=4 PHONETIC_ENCODING_PINYIN value
                          */
                         CustomPronunciationParams.PhoneticEncoding = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
                             values[valuesById[0] = "PHONETIC_ENCODING_UNSPECIFIED"] = 0;
                             values[valuesById[1] = "PHONETIC_ENCODING_IPA"] = 1;
                             values[valuesById[2] = "PHONETIC_ENCODING_X_SAMPA"] = 2;
+                            values[valuesById[3] = "PHONETIC_ENCODING_JAPANESE_YOMIGANA"] = 3;
+                            values[valuesById[4] = "PHONETIC_ENCODING_PINYIN"] = 4;
                             return values;
                         })();
     
@@ -1944,12 +1947,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CustomPronunciations.decode = function decode(reader, length) {
+                        CustomPronunciations.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.CustomPronunciations();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.pronunciations && message.pronunciations.length))
@@ -2168,12 +2173,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MultiSpeakerMarkup.decode = function decode(reader, length) {
+                        MultiSpeakerMarkup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.MultiSpeakerMarkup();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.turns && message.turns.length))
@@ -2398,12 +2405,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Turn.decode = function decode(reader, length) {
+                            Turn.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.speaker = reader.string();
@@ -2539,6 +2548,7 @@
                          * @memberof google.cloud.texttospeech.v1
                          * @interface ISynthesisInput
                          * @property {string|null} [text] SynthesisInput text
+                         * @property {string|null} [markup] SynthesisInput markup
                          * @property {string|null} [ssml] SynthesisInput ssml
                          * @property {google.cloud.texttospeech.v1.IMultiSpeakerMarkup|null} [multiSpeakerMarkup] SynthesisInput multiSpeakerMarkup
                          * @property {google.cloud.texttospeech.v1.ICustomPronunciations|null} [customPronunciations] SynthesisInput customPronunciations
@@ -2566,6 +2576,14 @@
                          * @instance
                          */
                         SynthesisInput.prototype.text = null;
+    
+                        /**
+                         * SynthesisInput markup.
+                         * @member {string|null|undefined} markup
+                         * @memberof google.cloud.texttospeech.v1.SynthesisInput
+                         * @instance
+                         */
+                        SynthesisInput.prototype.markup = null;
     
                         /**
                          * SynthesisInput ssml.
@@ -2596,12 +2614,12 @@
     
                         /**
                          * SynthesisInput inputSource.
-                         * @member {"text"|"ssml"|"multiSpeakerMarkup"|undefined} inputSource
+                         * @member {"text"|"markup"|"ssml"|"multiSpeakerMarkup"|undefined} inputSource
                          * @memberof google.cloud.texttospeech.v1.SynthesisInput
                          * @instance
                          */
                         Object.defineProperty(SynthesisInput.prototype, "inputSource", {
-                            get: $util.oneOfGetter($oneOfFields = ["text", "ssml", "multiSpeakerMarkup"]),
+                            get: $util.oneOfGetter($oneOfFields = ["text", "markup", "ssml", "multiSpeakerMarkup"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
@@ -2637,6 +2655,8 @@
                                 $root.google.cloud.texttospeech.v1.CustomPronunciations.encode(message.customPronunciations, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                             if (message.multiSpeakerMarkup != null && Object.hasOwnProperty.call(message, "multiSpeakerMarkup"))
                                 $root.google.cloud.texttospeech.v1.MultiSpeakerMarkup.encode(message.multiSpeakerMarkup, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.markup != null && Object.hasOwnProperty.call(message, "markup"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.markup);
                             return writer;
                         };
     
@@ -2664,15 +2684,21 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesisInput.decode = function decode(reader, length) {
+                        SynthesisInput.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.SynthesisInput();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.text = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.markup = reader.string();
                                         break;
                                     }
                                 case 2: {
@@ -2728,6 +2754,13 @@
                                 if (!$util.isString(message.text))
                                     return "text: string expected";
                             }
+                            if (message.markup != null && message.hasOwnProperty("markup")) {
+                                if (properties.inputSource === 1)
+                                    return "inputSource: multiple values";
+                                properties.inputSource = 1;
+                                if (!$util.isString(message.markup))
+                                    return "markup: string expected";
+                            }
                             if (message.ssml != null && message.hasOwnProperty("ssml")) {
                                 if (properties.inputSource === 1)
                                     return "inputSource: multiple values";
@@ -2767,6 +2800,8 @@
                             var message = new $root.google.cloud.texttospeech.v1.SynthesisInput();
                             if (object.text != null)
                                 message.text = String(object.text);
+                            if (object.markup != null)
+                                message.markup = String(object.markup);
                             if (object.ssml != null)
                                 message.ssml = String(object.ssml);
                             if (object.multiSpeakerMarkup != null) {
@@ -2813,6 +2848,11 @@
                                 object.multiSpeakerMarkup = $root.google.cloud.texttospeech.v1.MultiSpeakerMarkup.toObject(message.multiSpeakerMarkup, options);
                                 if (options.oneofs)
                                     object.inputSource = "multiSpeakerMarkup";
+                            }
+                            if (message.markup != null && message.hasOwnProperty("markup")) {
+                                object.markup = message.markup;
+                                if (options.oneofs)
+                                    object.inputSource = "markup";
                             }
                             return object;
                         };
@@ -2975,12 +3015,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VoiceSelectionParams.decode = function decode(reader, length) {
+                        VoiceSelectionParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.VoiceSelectionParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.languageCode = reader.string();
@@ -3323,12 +3365,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AudioConfig.decode = function decode(reader, length) {
+                        AudioConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.AudioConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.audioEncoding = reader.int32();
@@ -3401,6 +3445,7 @@
                                 case 3:
                                 case 5:
                                 case 6:
+                                case 7:
                                     break;
                                 }
                             if (message.speakingRate != null && message.hasOwnProperty("speakingRate"))
@@ -3467,6 +3512,10 @@
                             case "ALAW":
                             case 6:
                                 message.audioEncoding = 6;
+                                break;
+                            case "PCM":
+                            case 7:
+                                message.audioEncoding = 7;
                                 break;
                             }
                             if (object.speakingRate != null)
@@ -3652,12 +3701,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CustomVoiceParams.decode = function decode(reader, length) {
+                        CustomVoiceParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.CustomVoiceParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.model = reader.string();
@@ -3908,12 +3959,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VoiceCloneParams.decode = function decode(reader, length) {
+                        VoiceCloneParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.VoiceCloneParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.voiceCloningKey = reader.string();
@@ -4111,12 +4164,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeSpeechResponse.decode = function decode(reader, length) {
+                        SynthesizeSpeechResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.SynthesizeSpeechResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.audioContent = reader.bytes();
@@ -4238,6 +4293,302 @@
                         return SynthesizeSpeechResponse;
                     })();
     
+                    v1.StreamingAudioConfig = (function() {
+    
+                        /**
+                         * Properties of a StreamingAudioConfig.
+                         * @memberof google.cloud.texttospeech.v1
+                         * @interface IStreamingAudioConfig
+                         * @property {google.cloud.texttospeech.v1.AudioEncoding|null} [audioEncoding] StreamingAudioConfig audioEncoding
+                         * @property {number|null} [sampleRateHertz] StreamingAudioConfig sampleRateHertz
+                         * @property {number|null} [speakingRate] StreamingAudioConfig speakingRate
+                         */
+    
+                        /**
+                         * Constructs a new StreamingAudioConfig.
+                         * @memberof google.cloud.texttospeech.v1
+                         * @classdesc Represents a StreamingAudioConfig.
+                         * @implements IStreamingAudioConfig
+                         * @constructor
+                         * @param {google.cloud.texttospeech.v1.IStreamingAudioConfig=} [properties] Properties to set
+                         */
+                        function StreamingAudioConfig(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * StreamingAudioConfig audioEncoding.
+                         * @member {google.cloud.texttospeech.v1.AudioEncoding} audioEncoding
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @instance
+                         */
+                        StreamingAudioConfig.prototype.audioEncoding = 0;
+    
+                        /**
+                         * StreamingAudioConfig sampleRateHertz.
+                         * @member {number} sampleRateHertz
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @instance
+                         */
+                        StreamingAudioConfig.prototype.sampleRateHertz = 0;
+    
+                        /**
+                         * StreamingAudioConfig speakingRate.
+                         * @member {number} speakingRate
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @instance
+                         */
+                        StreamingAudioConfig.prototype.speakingRate = 0;
+    
+                        /**
+                         * Creates a new StreamingAudioConfig instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1.IStreamingAudioConfig=} [properties] Properties to set
+                         * @returns {google.cloud.texttospeech.v1.StreamingAudioConfig} StreamingAudioConfig instance
+                         */
+                        StreamingAudioConfig.create = function create(properties) {
+                            return new StreamingAudioConfig(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified StreamingAudioConfig message. Does not implicitly {@link google.cloud.texttospeech.v1.StreamingAudioConfig.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1.IStreamingAudioConfig} message StreamingAudioConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        StreamingAudioConfig.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.audioEncoding != null && Object.hasOwnProperty.call(message, "audioEncoding"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.audioEncoding);
+                            if (message.sampleRateHertz != null && Object.hasOwnProperty.call(message, "sampleRateHertz"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.sampleRateHertz);
+                            if (message.speakingRate != null && Object.hasOwnProperty.call(message, "speakingRate"))
+                                writer.uint32(/* id 3, wireType 1 =*/25).double(message.speakingRate);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified StreamingAudioConfig message, length delimited. Does not implicitly {@link google.cloud.texttospeech.v1.StreamingAudioConfig.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1.IStreamingAudioConfig} message StreamingAudioConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        StreamingAudioConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a StreamingAudioConfig message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.texttospeech.v1.StreamingAudioConfig} StreamingAudioConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        StreamingAudioConfig.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.StreamingAudioConfig();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.audioEncoding = reader.int32();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.sampleRateHertz = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.speakingRate = reader.double();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a StreamingAudioConfig message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.texttospeech.v1.StreamingAudioConfig} StreamingAudioConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        StreamingAudioConfig.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a StreamingAudioConfig message.
+                         * @function verify
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        StreamingAudioConfig.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.audioEncoding != null && message.hasOwnProperty("audioEncoding"))
+                                switch (message.audioEncoding) {
+                                default:
+                                    return "audioEncoding: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 5:
+                                case 6:
+                                case 7:
+                                    break;
+                                }
+                            if (message.sampleRateHertz != null && message.hasOwnProperty("sampleRateHertz"))
+                                if (!$util.isInteger(message.sampleRateHertz))
+                                    return "sampleRateHertz: integer expected";
+                            if (message.speakingRate != null && message.hasOwnProperty("speakingRate"))
+                                if (typeof message.speakingRate !== "number")
+                                    return "speakingRate: number expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a StreamingAudioConfig message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.texttospeech.v1.StreamingAudioConfig} StreamingAudioConfig
+                         */
+                        StreamingAudioConfig.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.texttospeech.v1.StreamingAudioConfig)
+                                return object;
+                            var message = new $root.google.cloud.texttospeech.v1.StreamingAudioConfig();
+                            switch (object.audioEncoding) {
+                            default:
+                                if (typeof object.audioEncoding === "number") {
+                                    message.audioEncoding = object.audioEncoding;
+                                    break;
+                                }
+                                break;
+                            case "AUDIO_ENCODING_UNSPECIFIED":
+                            case 0:
+                                message.audioEncoding = 0;
+                                break;
+                            case "LINEAR16":
+                            case 1:
+                                message.audioEncoding = 1;
+                                break;
+                            case "MP3":
+                            case 2:
+                                message.audioEncoding = 2;
+                                break;
+                            case "OGG_OPUS":
+                            case 3:
+                                message.audioEncoding = 3;
+                                break;
+                            case "MULAW":
+                            case 5:
+                                message.audioEncoding = 5;
+                                break;
+                            case "ALAW":
+                            case 6:
+                                message.audioEncoding = 6;
+                                break;
+                            case "PCM":
+                            case 7:
+                                message.audioEncoding = 7;
+                                break;
+                            }
+                            if (object.sampleRateHertz != null)
+                                message.sampleRateHertz = object.sampleRateHertz | 0;
+                            if (object.speakingRate != null)
+                                message.speakingRate = Number(object.speakingRate);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a StreamingAudioConfig message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1.StreamingAudioConfig} message StreamingAudioConfig
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        StreamingAudioConfig.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.audioEncoding = options.enums === String ? "AUDIO_ENCODING_UNSPECIFIED" : 0;
+                                object.sampleRateHertz = 0;
+                                object.speakingRate = 0;
+                            }
+                            if (message.audioEncoding != null && message.hasOwnProperty("audioEncoding"))
+                                object.audioEncoding = options.enums === String ? $root.google.cloud.texttospeech.v1.AudioEncoding[message.audioEncoding] === undefined ? message.audioEncoding : $root.google.cloud.texttospeech.v1.AudioEncoding[message.audioEncoding] : message.audioEncoding;
+                            if (message.sampleRateHertz != null && message.hasOwnProperty("sampleRateHertz"))
+                                object.sampleRateHertz = message.sampleRateHertz;
+                            if (message.speakingRate != null && message.hasOwnProperty("speakingRate"))
+                                object.speakingRate = options.json && !isFinite(message.speakingRate) ? String(message.speakingRate) : message.speakingRate;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this StreamingAudioConfig to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        StreamingAudioConfig.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for StreamingAudioConfig
+                         * @function getTypeUrl
+                         * @memberof google.cloud.texttospeech.v1.StreamingAudioConfig
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        StreamingAudioConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.texttospeech.v1.StreamingAudioConfig";
+                        };
+    
+                        return StreamingAudioConfig;
+                    })();
+    
                     v1.StreamingSynthesizeConfig = (function() {
     
                         /**
@@ -4245,6 +4596,8 @@
                          * @memberof google.cloud.texttospeech.v1
                          * @interface IStreamingSynthesizeConfig
                          * @property {google.cloud.texttospeech.v1.IVoiceSelectionParams|null} [voice] StreamingSynthesizeConfig voice
+                         * @property {google.cloud.texttospeech.v1.IStreamingAudioConfig|null} [streamingAudioConfig] StreamingSynthesizeConfig streamingAudioConfig
+                         * @property {google.cloud.texttospeech.v1.ICustomPronunciations|null} [customPronunciations] StreamingSynthesizeConfig customPronunciations
                          */
     
                         /**
@@ -4269,6 +4622,22 @@
                          * @instance
                          */
                         StreamingSynthesizeConfig.prototype.voice = null;
+    
+                        /**
+                         * StreamingSynthesizeConfig streamingAudioConfig.
+                         * @member {google.cloud.texttospeech.v1.IStreamingAudioConfig|null|undefined} streamingAudioConfig
+                         * @memberof google.cloud.texttospeech.v1.StreamingSynthesizeConfig
+                         * @instance
+                         */
+                        StreamingSynthesizeConfig.prototype.streamingAudioConfig = null;
+    
+                        /**
+                         * StreamingSynthesizeConfig customPronunciations.
+                         * @member {google.cloud.texttospeech.v1.ICustomPronunciations|null|undefined} customPronunciations
+                         * @memberof google.cloud.texttospeech.v1.StreamingSynthesizeConfig
+                         * @instance
+                         */
+                        StreamingSynthesizeConfig.prototype.customPronunciations = null;
     
                         /**
                          * Creates a new StreamingSynthesizeConfig instance using the specified properties.
@@ -4296,6 +4665,10 @@
                                 writer = $Writer.create();
                             if (message.voice != null && Object.hasOwnProperty.call(message, "voice"))
                                 $root.google.cloud.texttospeech.v1.VoiceSelectionParams.encode(message.voice, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.streamingAudioConfig != null && Object.hasOwnProperty.call(message, "streamingAudioConfig"))
+                                $root.google.cloud.texttospeech.v1.StreamingAudioConfig.encode(message.streamingAudioConfig, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.customPronunciations != null && Object.hasOwnProperty.call(message, "customPronunciations"))
+                                $root.google.cloud.texttospeech.v1.CustomPronunciations.encode(message.customPronunciations, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                             return writer;
                         };
     
@@ -4323,15 +4696,25 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesizeConfig.decode = function decode(reader, length) {
+                        StreamingSynthesizeConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.StreamingSynthesizeConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.voice = $root.google.cloud.texttospeech.v1.VoiceSelectionParams.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 4: {
+                                        message.streamingAudioConfig = $root.google.cloud.texttospeech.v1.StreamingAudioConfig.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 5: {
+                                        message.customPronunciations = $root.google.cloud.texttospeech.v1.CustomPronunciations.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -4374,6 +4757,16 @@
                                 if (error)
                                     return "voice." + error;
                             }
+                            if (message.streamingAudioConfig != null && message.hasOwnProperty("streamingAudioConfig")) {
+                                var error = $root.google.cloud.texttospeech.v1.StreamingAudioConfig.verify(message.streamingAudioConfig);
+                                if (error)
+                                    return "streamingAudioConfig." + error;
+                            }
+                            if (message.customPronunciations != null && message.hasOwnProperty("customPronunciations")) {
+                                var error = $root.google.cloud.texttospeech.v1.CustomPronunciations.verify(message.customPronunciations);
+                                if (error)
+                                    return "customPronunciations." + error;
+                            }
                             return null;
                         };
     
@@ -4394,6 +4787,16 @@
                                     throw TypeError(".google.cloud.texttospeech.v1.StreamingSynthesizeConfig.voice: object expected");
                                 message.voice = $root.google.cloud.texttospeech.v1.VoiceSelectionParams.fromObject(object.voice);
                             }
+                            if (object.streamingAudioConfig != null) {
+                                if (typeof object.streamingAudioConfig !== "object")
+                                    throw TypeError(".google.cloud.texttospeech.v1.StreamingSynthesizeConfig.streamingAudioConfig: object expected");
+                                message.streamingAudioConfig = $root.google.cloud.texttospeech.v1.StreamingAudioConfig.fromObject(object.streamingAudioConfig);
+                            }
+                            if (object.customPronunciations != null) {
+                                if (typeof object.customPronunciations !== "object")
+                                    throw TypeError(".google.cloud.texttospeech.v1.StreamingSynthesizeConfig.customPronunciations: object expected");
+                                message.customPronunciations = $root.google.cloud.texttospeech.v1.CustomPronunciations.fromObject(object.customPronunciations);
+                            }
                             return message;
                         };
     
@@ -4410,10 +4813,17 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.defaults)
+                            if (options.defaults) {
                                 object.voice = null;
+                                object.streamingAudioConfig = null;
+                                object.customPronunciations = null;
+                            }
                             if (message.voice != null && message.hasOwnProperty("voice"))
                                 object.voice = $root.google.cloud.texttospeech.v1.VoiceSelectionParams.toObject(message.voice, options);
+                            if (message.streamingAudioConfig != null && message.hasOwnProperty("streamingAudioConfig"))
+                                object.streamingAudioConfig = $root.google.cloud.texttospeech.v1.StreamingAudioConfig.toObject(message.streamingAudioConfig, options);
+                            if (message.customPronunciations != null && message.hasOwnProperty("customPronunciations"))
+                                object.customPronunciations = $root.google.cloud.texttospeech.v1.CustomPronunciations.toObject(message.customPronunciations, options);
                             return object;
                         };
     
@@ -4453,6 +4863,7 @@
                          * @memberof google.cloud.texttospeech.v1
                          * @interface IStreamingSynthesisInput
                          * @property {string|null} [text] StreamingSynthesisInput text
+                         * @property {string|null} [markup] StreamingSynthesisInput markup
                          */
     
                         /**
@@ -4478,17 +4889,25 @@
                          */
                         StreamingSynthesisInput.prototype.text = null;
     
+                        /**
+                         * StreamingSynthesisInput markup.
+                         * @member {string|null|undefined} markup
+                         * @memberof google.cloud.texttospeech.v1.StreamingSynthesisInput
+                         * @instance
+                         */
+                        StreamingSynthesisInput.prototype.markup = null;
+    
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
                         /**
                          * StreamingSynthesisInput inputSource.
-                         * @member {"text"|undefined} inputSource
+                         * @member {"text"|"markup"|undefined} inputSource
                          * @memberof google.cloud.texttospeech.v1.StreamingSynthesisInput
                          * @instance
                          */
                         Object.defineProperty(StreamingSynthesisInput.prototype, "inputSource", {
-                            get: $util.oneOfGetter($oneOfFields = ["text"]),
+                            get: $util.oneOfGetter($oneOfFields = ["text", "markup"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
@@ -4518,6 +4937,8 @@
                                 writer = $Writer.create();
                             if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                            if (message.markup != null && Object.hasOwnProperty.call(message, "markup"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.markup);
                             return writer;
                         };
     
@@ -4545,15 +4966,21 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesisInput.decode = function decode(reader, length) {
+                        StreamingSynthesisInput.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.StreamingSynthesisInput();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.text = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.markup = reader.string();
                                         break;
                                     }
                                 default:
@@ -4597,6 +5024,13 @@
                                 if (!$util.isString(message.text))
                                     return "text: string expected";
                             }
+                            if (message.markup != null && message.hasOwnProperty("markup")) {
+                                if (properties.inputSource === 1)
+                                    return "inputSource: multiple values";
+                                properties.inputSource = 1;
+                                if (!$util.isString(message.markup))
+                                    return "markup: string expected";
+                            }
                             return null;
                         };
     
@@ -4614,6 +5048,8 @@
                             var message = new $root.google.cloud.texttospeech.v1.StreamingSynthesisInput();
                             if (object.text != null)
                                 message.text = String(object.text);
+                            if (object.markup != null)
+                                message.markup = String(object.markup);
                             return message;
                         };
     
@@ -4634,6 +5070,11 @@
                                 object.text = message.text;
                                 if (options.oneofs)
                                     object.inputSource = "text";
+                            }
+                            if (message.markup != null && message.hasOwnProperty("markup")) {
+                                object.markup = message.markup;
+                                if (options.oneofs)
+                                    object.inputSource = "markup";
                             }
                             return object;
                         };
@@ -4777,12 +5218,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesizeRequest.decode = function decode(reader, length) {
+                        StreamingSynthesizeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.StreamingSynthesizeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.streamingConfig = $root.google.cloud.texttospeech.v1.StreamingSynthesizeConfig.decode(reader, reader.uint32());
@@ -5014,12 +5457,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesizeResponse.decode = function decode(reader, length) {
+                        StreamingSynthesizeResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.StreamingSynthesizeResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.audioContent = reader.bytes();
@@ -5338,12 +5783,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeLongAudioRequest.decode = function decode(reader, length) {
+                        SynthesizeLongAudioRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.SynthesizeLongAudioRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -5594,12 +6041,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeLongAudioResponse.decode = function decode(reader, length) {
+                        SynthesizeLongAudioResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.SynthesizeLongAudioResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -5802,12 +6251,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeLongAudioMetadata.decode = function decode(reader, length) {
+                        SynthesizeLongAudioMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1.SynthesizeLongAudioMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -6130,6 +6581,7 @@
                      * @property {number} OGG_OPUS=3 OGG_OPUS value
                      * @property {number} MULAW=5 MULAW value
                      * @property {number} ALAW=6 ALAW value
+                     * @property {number} PCM=7 PCM value
                      */
                     v1beta1.AudioEncoding = (function() {
                         var valuesById = {}, values = Object.create(valuesById);
@@ -6140,6 +6592,7 @@
                         values[valuesById[3] = "OGG_OPUS"] = 3;
                         values[valuesById[5] = "MULAW"] = 5;
                         values[valuesById[6] = "ALAW"] = 6;
+                        values[valuesById[7] = "PCM"] = 7;
                         return values;
                     })();
     
@@ -6228,12 +6681,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVoicesRequest.decode = function decode(reader, length) {
+                        ListVoicesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.ListVoicesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.languageCode = reader.string();
@@ -6433,12 +6888,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVoicesResponse.decode = function decode(reader, length) {
+                        ListVoicesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.ListVoicesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.voices && message.voices.length))
@@ -6690,12 +7147,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Voice.decode = function decode(reader, length) {
+                        Voice.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.Voice();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.languageCodes && message.languageCodes.length))
@@ -6924,12 +7383,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * AdvancedVoiceOptions _lowLatencyJourneySynthesis.
-                         * @member {"lowLatencyJourneySynthesis"|undefined} _lowLatencyJourneySynthesis
-                         * @memberof google.cloud.texttospeech.v1beta1.AdvancedVoiceOptions
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AdvancedVoiceOptions.prototype, "_lowLatencyJourneySynthesis", {
                             get: $util.oneOfGetter($oneOfFields = ["lowLatencyJourneySynthesis"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -6988,12 +7442,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AdvancedVoiceOptions.decode = function decode(reader, length) {
+                        AdvancedVoiceOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.AdvancedVoiceOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.lowLatencyJourneySynthesis = reader.bool();
@@ -7182,12 +7638,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * SynthesizeSpeechRequest _advancedVoiceOptions.
-                         * @member {"advancedVoiceOptions"|undefined} _advancedVoiceOptions
-                         * @memberof google.cloud.texttospeech.v1beta1.SynthesizeSpeechRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SynthesizeSpeechRequest.prototype, "_advancedVoiceOptions", {
                             get: $util.oneOfGetter($oneOfFields = ["advancedVoiceOptions"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -7258,12 +7709,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeSpeechRequest.decode = function decode(reader, length) {
+                        SynthesizeSpeechRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.SynthesizeSpeechRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.input = $root.google.cloud.texttospeech.v1beta1.SynthesisInput.decode(reader, reader.uint32());
@@ -7557,34 +8010,19 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * CustomPronunciationParams _phrase.
-                         * @member {"phrase"|undefined} _phrase
-                         * @memberof google.cloud.texttospeech.v1beta1.CustomPronunciationParams
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(CustomPronunciationParams.prototype, "_phrase", {
                             get: $util.oneOfGetter($oneOfFields = ["phrase"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * CustomPronunciationParams _phoneticEncoding.
-                         * @member {"phoneticEncoding"|undefined} _phoneticEncoding
-                         * @memberof google.cloud.texttospeech.v1beta1.CustomPronunciationParams
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(CustomPronunciationParams.prototype, "_phoneticEncoding", {
                             get: $util.oneOfGetter($oneOfFields = ["phoneticEncoding"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * CustomPronunciationParams _pronunciation.
-                         * @member {"pronunciation"|undefined} _pronunciation
-                         * @memberof google.cloud.texttospeech.v1beta1.CustomPronunciationParams
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(CustomPronunciationParams.prototype, "_pronunciation", {
                             get: $util.oneOfGetter($oneOfFields = ["pronunciation"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -7647,12 +8085,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CustomPronunciationParams.decode = function decode(reader, length) {
+                        CustomPronunciationParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.CustomPronunciationParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.phrase = reader.string();
@@ -7928,12 +8368,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CustomPronunciations.decode = function decode(reader, length) {
+                        CustomPronunciations.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.CustomPronunciations();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.pronunciations && message.pronunciations.length))
@@ -8152,12 +8594,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MultiSpeakerMarkup.decode = function decode(reader, length) {
+                        MultiSpeakerMarkup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.MultiSpeakerMarkup();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.turns && message.turns.length))
@@ -8382,12 +8826,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Turn.decode = function decode(reader, length) {
+                            Turn.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.MultiSpeakerMarkup.Turn();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.speaker = reader.string();
@@ -8648,12 +9094,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesisInput.decode = function decode(reader, length) {
+                        SynthesisInput.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.SynthesisInput();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.text = reader.string();
@@ -8959,12 +9407,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VoiceSelectionParams.decode = function decode(reader, length) {
+                        VoiceSelectionParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.VoiceSelectionParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.languageCode = reader.string();
@@ -9307,12 +9757,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AudioConfig.decode = function decode(reader, length) {
+                        AudioConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.AudioConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.audioEncoding = reader.int32();
@@ -9386,6 +9838,7 @@
                                 case 3:
                                 case 5:
                                 case 6:
+                                case 7:
                                     break;
                                 }
                             if (message.speakingRate != null && message.hasOwnProperty("speakingRate"))
@@ -9456,6 +9909,10 @@
                             case "ALAW":
                             case 6:
                                 message.audioEncoding = 6;
+                                break;
+                            case "PCM":
+                            case 7:
+                                message.audioEncoding = 7;
                                 break;
                             }
                             if (object.speakingRate != null)
@@ -9641,12 +10098,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CustomVoiceParams.decode = function decode(reader, length) {
+                        CustomVoiceParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.CustomVoiceParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.model = reader.string();
@@ -9897,12 +10356,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VoiceCloneParams.decode = function decode(reader, length) {
+                        VoiceCloneParams.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.VoiceCloneParams();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.voiceCloningKey = reader.string();
@@ -10124,12 +10585,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeSpeechResponse.decode = function decode(reader, length) {
+                        SynthesizeSpeechResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.SynthesizeSpeechResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.audioContent = reader.bytes();
@@ -10397,12 +10860,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Timepoint.decode = function decode(reader, length) {
+                        Timepoint.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.Timepoint();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 4: {
                                         message.markName = reader.string();
@@ -10528,6 +10993,284 @@
                         return Timepoint;
                     })();
     
+                    v1beta1.StreamingAudioConfig = (function() {
+    
+                        /**
+                         * Properties of a StreamingAudioConfig.
+                         * @memberof google.cloud.texttospeech.v1beta1
+                         * @interface IStreamingAudioConfig
+                         * @property {google.cloud.texttospeech.v1beta1.AudioEncoding|null} [audioEncoding] StreamingAudioConfig audioEncoding
+                         * @property {number|null} [sampleRateHertz] StreamingAudioConfig sampleRateHertz
+                         */
+    
+                        /**
+                         * Constructs a new StreamingAudioConfig.
+                         * @memberof google.cloud.texttospeech.v1beta1
+                         * @classdesc Represents a StreamingAudioConfig.
+                         * @implements IStreamingAudioConfig
+                         * @constructor
+                         * @param {google.cloud.texttospeech.v1beta1.IStreamingAudioConfig=} [properties] Properties to set
+                         */
+                        function StreamingAudioConfig(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * StreamingAudioConfig audioEncoding.
+                         * @member {google.cloud.texttospeech.v1beta1.AudioEncoding} audioEncoding
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @instance
+                         */
+                        StreamingAudioConfig.prototype.audioEncoding = 0;
+    
+                        /**
+                         * StreamingAudioConfig sampleRateHertz.
+                         * @member {number} sampleRateHertz
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @instance
+                         */
+                        StreamingAudioConfig.prototype.sampleRateHertz = 0;
+    
+                        /**
+                         * Creates a new StreamingAudioConfig instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1beta1.IStreamingAudioConfig=} [properties] Properties to set
+                         * @returns {google.cloud.texttospeech.v1beta1.StreamingAudioConfig} StreamingAudioConfig instance
+                         */
+                        StreamingAudioConfig.create = function create(properties) {
+                            return new StreamingAudioConfig(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified StreamingAudioConfig message. Does not implicitly {@link google.cloud.texttospeech.v1beta1.StreamingAudioConfig.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1beta1.IStreamingAudioConfig} message StreamingAudioConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        StreamingAudioConfig.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.audioEncoding != null && Object.hasOwnProperty.call(message, "audioEncoding"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.audioEncoding);
+                            if (message.sampleRateHertz != null && Object.hasOwnProperty.call(message, "sampleRateHertz"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.sampleRateHertz);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified StreamingAudioConfig message, length delimited. Does not implicitly {@link google.cloud.texttospeech.v1beta1.StreamingAudioConfig.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1beta1.IStreamingAudioConfig} message StreamingAudioConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        StreamingAudioConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a StreamingAudioConfig message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.texttospeech.v1beta1.StreamingAudioConfig} StreamingAudioConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        StreamingAudioConfig.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.audioEncoding = reader.int32();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.sampleRateHertz = reader.int32();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a StreamingAudioConfig message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.texttospeech.v1beta1.StreamingAudioConfig} StreamingAudioConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        StreamingAudioConfig.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a StreamingAudioConfig message.
+                         * @function verify
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        StreamingAudioConfig.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.audioEncoding != null && message.hasOwnProperty("audioEncoding"))
+                                switch (message.audioEncoding) {
+                                default:
+                                    return "audioEncoding: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 4:
+                                case 3:
+                                case 5:
+                                case 6:
+                                case 7:
+                                    break;
+                                }
+                            if (message.sampleRateHertz != null && message.hasOwnProperty("sampleRateHertz"))
+                                if (!$util.isInteger(message.sampleRateHertz))
+                                    return "sampleRateHertz: integer expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a StreamingAudioConfig message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.texttospeech.v1beta1.StreamingAudioConfig} StreamingAudioConfig
+                         */
+                        StreamingAudioConfig.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig)
+                                return object;
+                            var message = new $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig();
+                            switch (object.audioEncoding) {
+                            default:
+                                if (typeof object.audioEncoding === "number") {
+                                    message.audioEncoding = object.audioEncoding;
+                                    break;
+                                }
+                                break;
+                            case "AUDIO_ENCODING_UNSPECIFIED":
+                            case 0:
+                                message.audioEncoding = 0;
+                                break;
+                            case "LINEAR16":
+                            case 1:
+                                message.audioEncoding = 1;
+                                break;
+                            case "MP3":
+                            case 2:
+                                message.audioEncoding = 2;
+                                break;
+                            case "MP3_64_KBPS":
+                            case 4:
+                                message.audioEncoding = 4;
+                                break;
+                            case "OGG_OPUS":
+                            case 3:
+                                message.audioEncoding = 3;
+                                break;
+                            case "MULAW":
+                            case 5:
+                                message.audioEncoding = 5;
+                                break;
+                            case "ALAW":
+                            case 6:
+                                message.audioEncoding = 6;
+                                break;
+                            case "PCM":
+                            case 7:
+                                message.audioEncoding = 7;
+                                break;
+                            }
+                            if (object.sampleRateHertz != null)
+                                message.sampleRateHertz = object.sampleRateHertz | 0;
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a StreamingAudioConfig message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {google.cloud.texttospeech.v1beta1.StreamingAudioConfig} message StreamingAudioConfig
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        StreamingAudioConfig.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.audioEncoding = options.enums === String ? "AUDIO_ENCODING_UNSPECIFIED" : 0;
+                                object.sampleRateHertz = 0;
+                            }
+                            if (message.audioEncoding != null && message.hasOwnProperty("audioEncoding"))
+                                object.audioEncoding = options.enums === String ? $root.google.cloud.texttospeech.v1beta1.AudioEncoding[message.audioEncoding] === undefined ? message.audioEncoding : $root.google.cloud.texttospeech.v1beta1.AudioEncoding[message.audioEncoding] : message.audioEncoding;
+                            if (message.sampleRateHertz != null && message.hasOwnProperty("sampleRateHertz"))
+                                object.sampleRateHertz = message.sampleRateHertz;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this StreamingAudioConfig to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        StreamingAudioConfig.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for StreamingAudioConfig
+                         * @function getTypeUrl
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingAudioConfig
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        StreamingAudioConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.texttospeech.v1beta1.StreamingAudioConfig";
+                        };
+    
+                        return StreamingAudioConfig;
+                    })();
+    
                     v1beta1.StreamingSynthesizeConfig = (function() {
     
                         /**
@@ -10535,6 +11278,7 @@
                          * @memberof google.cloud.texttospeech.v1beta1
                          * @interface IStreamingSynthesizeConfig
                          * @property {google.cloud.texttospeech.v1beta1.IVoiceSelectionParams|null} [voice] StreamingSynthesizeConfig voice
+                         * @property {google.cloud.texttospeech.v1beta1.IStreamingAudioConfig|null} [streamingAudioConfig] StreamingSynthesizeConfig streamingAudioConfig
                          */
     
                         /**
@@ -10559,6 +11303,14 @@
                          * @instance
                          */
                         StreamingSynthesizeConfig.prototype.voice = null;
+    
+                        /**
+                         * StreamingSynthesizeConfig streamingAudioConfig.
+                         * @member {google.cloud.texttospeech.v1beta1.IStreamingAudioConfig|null|undefined} streamingAudioConfig
+                         * @memberof google.cloud.texttospeech.v1beta1.StreamingSynthesizeConfig
+                         * @instance
+                         */
+                        StreamingSynthesizeConfig.prototype.streamingAudioConfig = null;
     
                         /**
                          * Creates a new StreamingSynthesizeConfig instance using the specified properties.
@@ -10586,6 +11338,8 @@
                                 writer = $Writer.create();
                             if (message.voice != null && Object.hasOwnProperty.call(message, "voice"))
                                 $root.google.cloud.texttospeech.v1beta1.VoiceSelectionParams.encode(message.voice, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.streamingAudioConfig != null && Object.hasOwnProperty.call(message, "streamingAudioConfig"))
+                                $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig.encode(message.streamingAudioConfig, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                             return writer;
                         };
     
@@ -10613,15 +11367,21 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesizeConfig.decode = function decode(reader, length) {
+                        StreamingSynthesizeConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.StreamingSynthesizeConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.voice = $root.google.cloud.texttospeech.v1beta1.VoiceSelectionParams.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 4: {
+                                        message.streamingAudioConfig = $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -10664,6 +11424,11 @@
                                 if (error)
                                     return "voice." + error;
                             }
+                            if (message.streamingAudioConfig != null && message.hasOwnProperty("streamingAudioConfig")) {
+                                var error = $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig.verify(message.streamingAudioConfig);
+                                if (error)
+                                    return "streamingAudioConfig." + error;
+                            }
                             return null;
                         };
     
@@ -10684,6 +11449,11 @@
                                     throw TypeError(".google.cloud.texttospeech.v1beta1.StreamingSynthesizeConfig.voice: object expected");
                                 message.voice = $root.google.cloud.texttospeech.v1beta1.VoiceSelectionParams.fromObject(object.voice);
                             }
+                            if (object.streamingAudioConfig != null) {
+                                if (typeof object.streamingAudioConfig !== "object")
+                                    throw TypeError(".google.cloud.texttospeech.v1beta1.StreamingSynthesizeConfig.streamingAudioConfig: object expected");
+                                message.streamingAudioConfig = $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig.fromObject(object.streamingAudioConfig);
+                            }
                             return message;
                         };
     
@@ -10700,10 +11470,14 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.defaults)
+                            if (options.defaults) {
                                 object.voice = null;
+                                object.streamingAudioConfig = null;
+                            }
                             if (message.voice != null && message.hasOwnProperty("voice"))
                                 object.voice = $root.google.cloud.texttospeech.v1beta1.VoiceSelectionParams.toObject(message.voice, options);
+                            if (message.streamingAudioConfig != null && message.hasOwnProperty("streamingAudioConfig"))
+                                object.streamingAudioConfig = $root.google.cloud.texttospeech.v1beta1.StreamingAudioConfig.toObject(message.streamingAudioConfig, options);
                             return object;
                         };
     
@@ -10835,12 +11609,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesisInput.decode = function decode(reader, length) {
+                        StreamingSynthesisInput.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.StreamingSynthesisInput();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.text = reader.string();
@@ -11067,12 +11843,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesizeRequest.decode = function decode(reader, length) {
+                        StreamingSynthesizeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.StreamingSynthesizeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.streamingConfig = $root.google.cloud.texttospeech.v1beta1.StreamingSynthesizeConfig.decode(reader, reader.uint32());
@@ -11304,12 +12082,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StreamingSynthesizeResponse.decode = function decode(reader, length) {
+                        StreamingSynthesizeResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.StreamingSynthesizeResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.audioContent = reader.bytes();
@@ -11628,12 +12408,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeLongAudioRequest.decode = function decode(reader, length) {
+                        SynthesizeLongAudioRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.SynthesizeLongAudioRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11884,12 +12666,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeLongAudioResponse.decode = function decode(reader, length) {
+                        SynthesizeLongAudioResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.SynthesizeLongAudioResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -12092,12 +12876,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SynthesizeLongAudioMetadata.decode = function decode(reader, length) {
+                        SynthesizeLongAudioMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.texttospeech.v1beta1.SynthesizeLongAudioMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -12361,12 +13147,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -12711,12 +13499,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -13095,12 +13885,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -13327,12 +14119,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -13696,12 +14490,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -14040,6 +14836,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -14141,6 +14938,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -14187,6 +14992,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -14214,12 +15021,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -14265,6 +15074,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -14359,6 +15172,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -14453,6 +15269,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -14482,6 +15300,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -14512,6 +15331,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -14653,12 +15474,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -14920,12 +15743,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15128,12 +15953,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15336,12 +16163,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15544,12 +16373,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15817,12 +16648,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -16196,12 +17029,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -16404,12 +17239,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -16636,12 +17473,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -16914,12 +17753,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -17341,12 +18182,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -17736,12 +18579,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -17966,12 +18811,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -18366,12 +19213,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -19033,12 +19882,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -19518,12 +20369,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -19762,12 +20615,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -20018,12 +20873,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -20363,12 +21220,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -20742,12 +21601,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21267,12 +22128,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21538,12 +22401,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21857,12 +22722,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -22098,12 +22965,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22355,12 +23224,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22663,12 +23534,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -23167,12 +24040,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -23787,12 +24662,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -24235,12 +25112,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -24270,12 +25144,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -25001,12 +25877,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -25297,12 +26175,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -25583,12 +26463,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -25895,12 +26777,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -26086,6 +26970,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -26145,6 +27030,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -26179,6 +27072,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -26206,12 +27101,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -26233,6 +27130,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -26293,6 +27194,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -26329,6 +27233,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -26352,6 +27258,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -26366,6 +27273,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -26553,12 +27462,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -26987,12 +27898,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -27326,12 +28239,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -27602,12 +28517,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -28137,12 +29054,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -28521,12 +29440,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -28811,12 +29732,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -29086,12 +30009,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -29397,12 +30322,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -29665,12 +30592,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -29991,12 +30920,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -30232,12 +31163,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -30446,12 +31379,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -30643,12 +31578,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -31143,12 +32080,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31423,12 +32362,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31659,12 +32600,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -31912,12 +32855,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -32147,12 +33092,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -32350,12 +33297,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -32564,12 +33513,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -32796,12 +33747,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();
@@ -33048,12 +34001,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

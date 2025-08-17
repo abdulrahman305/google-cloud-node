@@ -1,7 +1,4 @@
 {
-  "options": {
-    "syntax": "proto3"
-  },
   "nested": {
     "google": {
       "nested": {
@@ -89,17 +86,26 @@
               }
             },
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
                   "type": "FileDescriptorProto",
                   "id": 1
                 }
-              }
+              },
+              "extensions": [
+                [
+                  536000000,
+                  536000000
+                ]
+              ]
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
+                "EDITION_LEGACY": 900,
                 "EDITION_PROTO2": 998,
                 "EDITION_PROTO3": 999,
                 "EDITION_2023": 1000,
@@ -113,6 +119,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -130,18 +137,17 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
+                },
+                "optionDependency": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 15
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -182,6 +188,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -230,6 +237,10 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 10
+                },
+                "visibility": {
+                  "type": "SymbolVisibility",
+                  "id": 11
                 }
               },
               "nested": {
@@ -264,6 +275,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -337,6 +349,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -416,6 +429,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -428,6 +442,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -451,6 +466,10 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 5
+                },
+                "visibility": {
+                  "type": "SymbolVisibility",
+                  "id": 6
                 }
               },
               "nested": {
@@ -469,6 +488,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -485,6 +505,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -502,6 +523,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -536,6 +558,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -661,6 +684,7 @@
                   42,
                   42
                 ],
+                "php_generic_services",
                 [
                   38,
                   38
@@ -677,6 +701,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -750,6 +775,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -794,7 +820,8 @@
                   "type": "bool",
                   "id": 10,
                   "options": {
-                    "default": false
+                    "default": false,
+                    "deprecated": true
                   }
                 },
                 "debugRedact": {
@@ -811,10 +838,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -824,6 +848,10 @@
                 "features": {
                   "type": "FeatureSet",
                   "id": 21
+                },
+                "featureSupport": {
+                  "type": "FeatureSupport",
+                  "id": 22
                 },
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -894,10 +922,31 @@
                       "id": 2
                     }
                   }
+                },
+                "FeatureSupport": {
+                  "fields": {
+                    "editionIntroduced": {
+                      "type": "Edition",
+                      "id": 1
+                    },
+                    "editionDeprecated": {
+                      "type": "Edition",
+                      "id": 2
+                    },
+                    "deprecationWarning": {
+                      "type": "string",
+                      "id": 3
+                    },
+                    "editionRemoved": {
+                      "type": "Edition",
+                      "id": 4
+                    }
+                  }
                 }
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -917,6 +966,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -960,6 +1010,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -979,6 +1030,10 @@
                     "default": false
                   }
                 },
+                "featureSupport": {
+                  "type": "FieldOptions.FeatureSupport",
+                  "id": 4
+                },
                 "uninterpretedOption": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
@@ -993,6 +1048,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -1019,6 +1075,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -1061,6 +1118,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -1110,6 +1168,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -1117,6 +1176,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_2023",
                     "edition_defaults.value": "EXPLICIT"
                   }
@@ -1127,6 +1187,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "OPEN"
                   }
@@ -1137,6 +1198,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "PACKED"
                   }
@@ -1147,6 +1209,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "VERIFY"
                   }
@@ -1157,7 +1220,8 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
-                    "edition_defaults.edition": "EDITION_PROTO2",
+                    "feature_support.edition_introduced": "EDITION_2023",
+                    "edition_defaults.edition": "EDITION_LEGACY",
                     "edition_defaults.value": "LENGTH_PREFIXED"
                   }
                 },
@@ -1167,23 +1231,46 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "ALLOW"
+                  }
+                },
+                "enforceNamingStyle": {
+                  "type": "EnforceNamingStyle",
+                  "id": 7,
+                  "options": {
+                    "retention": "RETENTION_SOURCE",
+                    "targets": "TARGET_TYPE_METHOD",
+                    "feature_support.edition_introduced": "EDITION_2024",
+                    "edition_defaults.edition": "EDITION_2024",
+                    "edition_defaults.value": "STYLE2024"
+                  }
+                },
+                "defaultSymbolVisibility": {
+                  "type": "VisibilityFeature.DefaultSymbolVisibility",
+                  "id": 8,
+                  "options": {
+                    "retention": "RETENTION_SOURCE",
+                    "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2024",
+                    "edition_defaults.edition": "EDITION_2024",
+                    "edition_defaults.value": "EXPORT_TOP_LEVEL"
                   }
                 }
               },
               "extensions": [
                 [
                   1000,
-                  1000
-                ],
-                [
-                  1001,
-                  1001
+                  9994
                 ],
                 [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -1220,7 +1307,13 @@
                     "UTF8_VALIDATION_UNKNOWN": 0,
                     "VERIFY": 2,
                     "NONE": 3
-                  }
+                  },
+                  "reserved": [
+                    [
+                      1,
+                      1
+                    ]
+                  ]
                 },
                 "MessageEncoding": {
                   "values": {
@@ -1235,10 +1328,38 @@
                     "ALLOW": 1,
                     "LEGACY_BEST_EFFORT": 2
                   }
+                },
+                "EnforceNamingStyle": {
+                  "values": {
+                    "ENFORCE_NAMING_STYLE_UNKNOWN": 0,
+                    "STYLE2024": 1,
+                    "STYLE_LEGACY": 2
+                  }
+                },
+                "VisibilityFeature": {
+                  "fields": {},
+                  "reserved": [
+                    [
+                      1,
+                      536870911
+                    ]
+                  ],
+                  "nested": {
+                    "DefaultSymbolVisibility": {
+                      "values": {
+                        "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN": 0,
+                        "EXPORT_ALL": 1,
+                        "EXPORT_TOP_LEVEL": 2,
+                        "LOCAL_ALL": 3,
+                        "STRICT": 4
+                      }
+                    }
+                  }
                 }
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -1261,15 +1382,31 @@
                       "type": "Edition",
                       "id": 3
                     },
-                    "features": {
+                    "overridableFeatures": {
                       "type": "FeatureSet",
-                      "id": 2
+                      "id": 4
+                    },
+                    "fixedFeatures": {
+                      "type": "FeatureSet",
+                      "id": 5
                     }
-                  }
+                  },
+                  "reserved": [
+                    [
+                      1,
+                      1
+                    ],
+                    [
+                      2,
+                      2
+                    ],
+                    "features"
+                  ]
                 }
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -1277,18 +1414,30 @@
                   "id": 1
                 }
               },
+              "extensions": [
+                [
+                  536000000,
+                  536000000
+                ]
+              ],
               "nested": {
                 "Location": {
                   "fields": {
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -1308,6 +1457,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -1321,7 +1471,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -1350,6 +1503,14 @@
                     }
                   }
                 }
+              }
+            },
+            "SymbolVisibility": {
+              "edition": "proto2",
+              "values": {
+                "VISIBILITY_UNSET": 0,
+                "VISIBILITY_LOCAL": 1,
+                "VISIBILITY_EXPORT": 2
               }
             },
             "Duration": {
@@ -2442,7 +2603,8 @@
                       "oneof": [
                         "userMention",
                         "slashCommand",
-                        "richLinkMetadata"
+                        "richLinkMetadata",
+                        "customEmojiMetadata"
                       ]
                     }
                   },
@@ -2473,6 +2635,10 @@
                     "richLinkMetadata": {
                       "type": "RichLinkMetadata",
                       "id": 6
+                    },
+                    "customEmojiMetadata": {
+                      "type": "CustomEmojiMetadata",
+                      "id": 7
                     }
                   }
                 },
@@ -2535,7 +2701,9 @@
                     "data": {
                       "oneof": [
                         "driveLinkData",
-                        "chatSpaceLinkData"
+                        "chatSpaceLinkData",
+                        "meetSpaceLinkData",
+                        "calendarEventLinkData"
                       ]
                     }
                   },
@@ -2555,6 +2723,14 @@
                     "chatSpaceLinkData": {
                       "type": "ChatSpaceLinkData",
                       "id": 4
+                    },
+                    "meetSpaceLinkData": {
+                      "type": "MeetSpaceLinkData",
+                      "id": 5
+                    },
+                    "calendarEventLinkData": {
+                      "type": "CalendarEventLinkData",
+                      "id": 6
                     }
                   },
                   "nested": {
@@ -2562,8 +2738,18 @@
                       "values": {
                         "RICH_LINK_TYPE_UNSPECIFIED": 0,
                         "DRIVE_FILE": 1,
-                        "CHAT_SPACE": 2
+                        "CHAT_SPACE": 2,
+                        "MEET_SPACE": 4,
+                        "CALENDAR_EVENT": 5
                       }
+                    }
+                  }
+                },
+                "CustomEmojiMetadata": {
+                  "fields": {
+                    "customEmoji": {
+                      "type": "CustomEmoji",
+                      "id": 1
                     }
                   }
                 },
@@ -2604,12 +2790,61 @@
                     }
                   }
                 },
+                "MeetSpaceLinkData": {
+                  "fields": {
+                    "meetingCode": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "type": {
+                      "type": "Type",
+                      "id": 2
+                    },
+                    "huddleStatus": {
+                      "type": "HuddleStatus",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    }
+                  },
+                  "nested": {
+                    "Type": {
+                      "values": {
+                        "TYPE_UNSPECIFIED": 0,
+                        "MEETING": 1,
+                        "HUDDLE": 2
+                      }
+                    },
+                    "HuddleStatus": {
+                      "values": {
+                        "HUDDLE_STATUS_UNSPECIFIED": 0,
+                        "STARTED": 1,
+                        "ENDED": 2,
+                        "MISSED": 3
+                      }
+                    }
+                  }
+                },
+                "CalendarEventLinkData": {
+                  "fields": {
+                    "calendarId": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "eventId": {
+                      "type": "string",
+                      "id": 2
+                    }
+                  }
+                },
                 "AnnotationType": {
                   "values": {
                     "ANNOTATION_TYPE_UNSPECIFIED": 0,
                     "USER_MENTION": 1,
                     "SLASH_COMMAND": 2,
-                    "RICH_LINK": 3
+                    "RICH_LINK": 3,
+                    "CUSTOM_EMOJI": 4
                   }
                 },
                 "Attachment": {
@@ -2628,7 +2863,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "contentName": {
                       "type": "string",
@@ -2646,7 +2884,10 @@
                     },
                     "attachmentDataRef": {
                       "type": "AttachmentDataRef",
-                      "id": 4
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "driveDataRef": {
                       "type": "DriveDataRef",
@@ -2699,11 +2940,17 @@
                   "fields": {
                     "resourceName": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "attachmentUploadToken": {
                       "type": "string",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -2743,6 +2990,303 @@
                     "attachmentDataRef": {
                       "type": "AttachmentDataRef",
                       "id": 1
+                    }
+                  }
+                },
+                "Reaction": {
+                  "options": {
+                    "(google.api.resource).type": "chat.googleapis.com/Reaction",
+                    "(google.api.resource).pattern": "spaces/{space}/messages/{message}/reactions/{reaction}"
+                  },
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
+                    },
+                    "user": {
+                      "type": "User",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    },
+                    "emoji": {
+                      "type": "Emoji",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    }
+                  }
+                },
+                "Emoji": {
+                  "oneofs": {
+                    "content": {
+                      "oneof": [
+                        "unicode",
+                        "customEmoji"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "unicode": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "customEmoji": {
+                      "type": "CustomEmoji",
+                      "id": 2
+                    }
+                  }
+                },
+                "CustomEmoji": {
+                  "options": {
+                    "(google.api.resource).type": "chat.googleapis.com/CustomEmoji",
+                    "(google.api.resource).pattern": "customEmojis/{custom_emoji}",
+                    "(google.api.resource).plural": "customEmojis",
+                    "(google.api.resource).singular": "customEmoji"
+                  },
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
+                    },
+                    "uid": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_info).format": "UUID4",
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    },
+                    "emojiName": {
+                      "type": "string",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "IMMUTABLE"
+                      }
+                    },
+                    "temporaryImageUri": {
+                      "type": "string",
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    },
+                    "payload": {
+                      "type": "CustomEmojiPayload",
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    }
+                  },
+                  "nested": {
+                    "CustomEmojiPayload": {
+                      "fields": {
+                        "fileContent": {
+                          "type": "bytes",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "filename": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "EmojiReactionSummary": {
+                  "oneofs": {
+                    "_reactionCount": {
+                      "oneof": [
+                        "reactionCount"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "emoji": {
+                      "type": "Emoji",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
+                    },
+                    "reactionCount": {
+                      "type": "int32",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY",
+                        "proto3_optional": true
+                      }
+                    }
+                  }
+                },
+                "CreateReactionRequest": {
+                  "fields": {
+                    "parent": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
+                      }
+                    },
+                    "reaction": {
+                      "type": "Reaction",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    }
+                  }
+                },
+                "ListReactionsRequest": {
+                  "fields": {
+                    "parent": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
+                      }
+                    },
+                    "pageSize": {
+                      "type": "int32",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "pageToken": {
+                      "type": "string",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "filter": {
+                      "type": "string",
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    }
+                  }
+                },
+                "ListReactionsResponse": {
+                  "fields": {
+                    "reactions": {
+                      "rule": "repeated",
+                      "type": "Reaction",
+                      "id": 1
+                    },
+                    "nextPageToken": {
+                      "type": "string",
+                      "id": 2
+                    }
+                  }
+                },
+                "DeleteReactionRequest": {
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).type": "chat.googleapis.com/Reaction"
+                      }
+                    }
+                  }
+                },
+                "CreateCustomEmojiRequest": {
+                  "fields": {
+                    "customEmoji": {
+                      "type": "CustomEmoji",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    }
+                  }
+                },
+                "GetCustomEmojiRequest": {
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).type": "chat.googleapis.com/CustomEmoji"
+                      }
+                    }
+                  }
+                },
+                "ListCustomEmojisRequest": {
+                  "fields": {
+                    "pageSize": {
+                      "type": "int32",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "pageToken": {
+                      "type": "string",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "filter": {
+                      "type": "string",
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    }
+                  }
+                },
+                "ListCustomEmojisResponse": {
+                  "fields": {
+                    "customEmojis": {
+                      "rule": "repeated",
+                      "type": "CustomEmoji",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "UNORDERED_LIST"
+                      }
+                    },
+                    "nextPageToken": {
+                      "type": "string",
+                      "id": 2
+                    }
+                  }
+                },
+                "DeleteCustomEmojiRequest": {
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).type": "chat.googleapis.com/CustomEmoji"
+                      }
                     }
                   }
                 },
@@ -2788,7 +3332,7 @@
                 "ChatService": {
                   "options": {
                     "(google.api.default_host)": "chat.googleapis.com",
-                    "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/chat.admin.delete,https://www.googleapis.com/auth/chat.admin.memberships,https://www.googleapis.com/auth/chat.admin.memberships.readonly,https://www.googleapis.com/auth/chat.admin.spaces,https://www.googleapis.com/auth/chat.admin.spaces.readonly,https://www.googleapis.com/auth/chat.bot,https://www.googleapis.com/auth/chat.delete,https://www.googleapis.com/auth/chat.import,https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.app,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.create,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.create,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.create,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.users.readstate,https://www.googleapis.com/auth/chat.users.readstate.readonly"
+                    "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/chat.admin.delete,https://www.googleapis.com/auth/chat.admin.memberships,https://www.googleapis.com/auth/chat.admin.memberships.readonly,https://www.googleapis.com/auth/chat.admin.spaces,https://www.googleapis.com/auth/chat.admin.spaces.readonly,https://www.googleapis.com/auth/chat.app.delete,https://www.googleapis.com/auth/chat.app.memberships,https://www.googleapis.com/auth/chat.app.spaces,https://www.googleapis.com/auth/chat.app.spaces.create,https://www.googleapis.com/auth/chat.bot,https://www.googleapis.com/auth/chat.customemojis,https://www.googleapis.com/auth/chat.customemojis.readonly,https://www.googleapis.com/auth/chat.delete,https://www.googleapis.com/auth/chat.import,https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.app,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.create,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.create,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.create,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.users.readstate,https://www.googleapis.com/auth/chat.users.readstate.readonly,https://www.googleapis.com/auth/chat.users.spacesettings"
                   },
                   "methods": {
                     "CreateMessage": {
@@ -3233,6 +3777,80 @@
                         }
                       ]
                     },
+                    "CreateCustomEmoji": {
+                      "requestType": "CreateCustomEmojiRequest",
+                      "responseType": "CustomEmoji",
+                      "options": {
+                        "(google.api.http).post": "/v1/customEmojis",
+                        "(google.api.http).body": "custom_emoji",
+                        "(google.api.method_signature)": "custom_emoji"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "post": "/v1/customEmojis",
+                            "body": "custom_emoji"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "custom_emoji"
+                        }
+                      ]
+                    },
+                    "GetCustomEmoji": {
+                      "requestType": "GetCustomEmojiRequest",
+                      "responseType": "CustomEmoji",
+                      "options": {
+                        "(google.api.http).get": "/v1/{name=customEmojis/*}",
+                        "(google.api.method_signature)": "name"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "get": "/v1/{name=customEmojis/*}"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "name"
+                        }
+                      ]
+                    },
+                    "ListCustomEmojis": {
+                      "requestType": "ListCustomEmojisRequest",
+                      "responseType": "ListCustomEmojisResponse",
+                      "options": {
+                        "(google.api.http).get": "/v1/customEmojis",
+                        "(google.api.method_signature)": ""
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "get": "/v1/customEmojis"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": ""
+                        }
+                      ]
+                    },
+                    "DeleteCustomEmoji": {
+                      "requestType": "DeleteCustomEmojiRequest",
+                      "responseType": "google.protobuf.Empty",
+                      "options": {
+                        "(google.api.http).delete": "/v1/{name=customEmojis/*}",
+                        "(google.api.method_signature)": "name"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "delete": "/v1/{name=customEmojis/*}"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "name"
+                        }
+                      ]
+                    },
                     "GetSpaceReadState": {
                       "requestType": "GetSpaceReadStateRequest",
                       "responseType": "SpaceReadState",
@@ -3324,6 +3942,44 @@
                           "(google.api.method_signature)": "parent,filter"
                         }
                       ]
+                    },
+                    "GetSpaceNotificationSetting": {
+                      "requestType": "GetSpaceNotificationSettingRequest",
+                      "responseType": "SpaceNotificationSetting",
+                      "options": {
+                        "(google.api.http).get": "/v1/{name=users/*/spaces/*/spaceNotificationSetting}",
+                        "(google.api.method_signature)": "name"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "get": "/v1/{name=users/*/spaces/*/spaceNotificationSetting}"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "name"
+                        }
+                      ]
+                    },
+                    "UpdateSpaceNotificationSetting": {
+                      "requestType": "UpdateSpaceNotificationSettingRequest",
+                      "responseType": "SpaceNotificationSetting",
+                      "options": {
+                        "(google.api.http).patch": "/v1/{space_notification_setting.name=users/*/spaces/*/spaceNotificationSetting}",
+                        "(google.api.http).body": "space_notification_setting",
+                        "(google.api.method_signature)": "space_notification_setting,update_mask"
+                      },
+                      "parsedOptions": [
+                        {
+                          "(google.api.http)": {
+                            "patch": "/v1/{space_notification_setting.name=users/*/spaces/*/spaceNotificationSetting}",
+                            "body": "space_notification_setting"
+                          }
+                        },
+                        {
+                          "(google.api.method_signature)": "space_notification_setting,update_mask"
+                        }
+                      ]
                     }
                   }
                 },
@@ -3345,7 +4001,7 @@
                       "type": "string",
                       "id": 1,
                       "options": {
-                        "(google.api.resource_reference).type": "chat.googleapis.com/Membership"
+                        "(google.api.field_behavior)": "IDENTIFIER"
                       }
                     },
                     "state": {
@@ -3364,11 +4020,17 @@
                     },
                     "member": {
                       "type": "User",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "groupMember": {
                       "type": "Group",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "createTime": {
                       "type": "google.protobuf.Timestamp",
@@ -3422,7 +4084,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3444,7 +4109,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3495,7 +4163,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 8
+                      "id": 8,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3527,7 +4198,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3543,7 +4217,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3563,7 +4240,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
                     },
                     "sender": {
                       "type": "User",
@@ -3595,7 +4275,10 @@
                     },
                     "text": {
                       "type": "string",
-                      "id": 4
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "formattedText": {
                       "type": "string",
@@ -3615,7 +4298,10 @@
                     "cardsV2": {
                       "rule": "repeated",
                       "type": "CardWithId",
-                      "id": 22
+                      "id": 22,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "annotations": {
                       "rule": "repeated",
@@ -3631,11 +4317,17 @@
                     },
                     "space": {
                       "type": "Space",
-                      "id": 12
+                      "id": 12,
+                      "options": {
+                        "(google.api.field_behavior)": "OUTPUT_ONLY"
+                      }
                     },
                     "fallbackText": {
                       "type": "string",
-                      "id": 13
+                      "id": 13,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "actionResponse": {
                       "type": "ActionResponse",
@@ -3661,7 +4353,10 @@
                     "attachment": {
                       "rule": "repeated",
                       "type": "Attachment",
-                      "id": 18
+                      "id": 18,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "matchedUrl": {
                       "type": "MatchedUrl",
@@ -3679,7 +4374,10 @@
                     },
                     "clientAssignedMessageId": {
                       "type": "string",
-                      "id": 32
+                      "id": 32,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "emojiReactionSummaries": {
                       "rule": "repeated",
@@ -3693,7 +4391,7 @@
                       "type": "User",
                       "id": 36,
                       "options": {
-                        "(google.api.field_behavior)": "IMMUTABLE"
+                        "(google.api.field_behavior)": "OPTIONAL"
                       }
                     },
                     "deletionMetadata": {
@@ -3721,7 +4419,10 @@
                     "accessoryWidgets": {
                       "rule": "repeated",
                       "type": "AccessoryWidget",
-                      "id": 44
+                      "id": 44,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3767,7 +4468,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
                     },
                     "threadKey": {
                       "type": "string",
@@ -3890,7 +4594,10 @@
                     },
                     "force": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -3905,7 +4612,10 @@
                     },
                     "updateMask": {
                       "type": "google.protobuf.FieldMask",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
                     },
                     "allowMissing": {
                       "type": "bool",
@@ -3985,23 +4695,38 @@
                     },
                     "pageSize": {
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "pageToken": {
                       "type": "string",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "filter": {
                       "type": "string",
-                      "id": 4
+                      "id": 4,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "orderBy": {
                       "type": "string",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "showDeleted": {
                       "type": "bool",
-                      "id": 6
+                      "id": 6,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -4420,7 +5145,8 @@
                         "ADMIN": 3,
                         "APP_MESSAGE_EXPIRY": 4,
                         "CREATOR_VIA_APP": 5,
-                        "SPACE_OWNER_VIA_APP": 6
+                        "SPACE_OWNER_VIA_APP": 6,
+                        "SPACE_MEMBER": 7
                       }
                     }
                   }
@@ -4432,162 +5158,6 @@
                       "id": 2,
                       "options": {
                         "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    }
-                  }
-                },
-                "Reaction": {
-                  "options": {
-                    "(google.api.resource).type": "chat.googleapis.com/Reaction",
-                    "(google.api.resource).pattern": "spaces/{space}/messages/{message}/reactions/{reaction}"
-                  },
-                  "fields": {
-                    "name": {
-                      "type": "string",
-                      "id": 1
-                    },
-                    "user": {
-                      "type": "User",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    },
-                    "emoji": {
-                      "type": "Emoji",
-                      "id": 3
-                    }
-                  }
-                },
-                "Emoji": {
-                  "oneofs": {
-                    "content": {
-                      "oneof": [
-                        "unicode",
-                        "customEmoji"
-                      ]
-                    }
-                  },
-                  "fields": {
-                    "unicode": {
-                      "type": "string",
-                      "id": 1
-                    },
-                    "customEmoji": {
-                      "type": "CustomEmoji",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    }
-                  }
-                },
-                "CustomEmoji": {
-                  "fields": {
-                    "uid": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "OUTPUT_ONLY"
-                      }
-                    }
-                  }
-                },
-                "EmojiReactionSummary": {
-                  "oneofs": {
-                    "_reactionCount": {
-                      "oneof": [
-                        "reactionCount"
-                      ]
-                    }
-                  },
-                  "fields": {
-                    "emoji": {
-                      "type": "Emoji",
-                      "id": 1
-                    },
-                    "reactionCount": {
-                      "type": "int32",
-                      "id": 2,
-                      "options": {
-                        "proto3_optional": true
-                      }
-                    }
-                  }
-                },
-                "CreateReactionRequest": {
-                  "fields": {
-                    "parent": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED",
-                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
-                      }
-                    },
-                    "reaction": {
-                      "type": "Reaction",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED"
-                      }
-                    }
-                  }
-                },
-                "ListReactionsRequest": {
-                  "fields": {
-                    "parent": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED",
-                        "(google.api.resource_reference).child_type": "chat.googleapis.com/Reaction"
-                      }
-                    },
-                    "pageSize": {
-                      "type": "int32",
-                      "id": 2,
-                      "options": {
-                        "(google.api.field_behavior)": "OPTIONAL"
-                      }
-                    },
-                    "pageToken": {
-                      "type": "string",
-                      "id": 3,
-                      "options": {
-                        "(google.api.field_behavior)": "OPTIONAL"
-                      }
-                    },
-                    "filter": {
-                      "type": "string",
-                      "id": 4,
-                      "options": {
-                        "(google.api.field_behavior)": "OPTIONAL"
-                      }
-                    }
-                  }
-                },
-                "ListReactionsResponse": {
-                  "fields": {
-                    "reactions": {
-                      "rule": "repeated",
-                      "type": "Reaction",
-                      "id": 1
-                    },
-                    "nextPageToken": {
-                      "type": "string",
-                      "id": 2
-                    }
-                  }
-                },
-                "DeleteReactionRequest": {
-                  "fields": {
-                    "name": {
-                      "type": "string",
-                      "id": 1,
-                      "options": {
-                        "(google.api.field_behavior)": "REQUIRED",
-                        "(google.api.resource_reference).type": "chat.googleapis.com/Reaction"
                       }
                     }
                   }
@@ -4606,6 +5176,11 @@
                     "(google.api.resource).pattern": "spaces/{space}"
                   },
                   "oneofs": {
+                    "_customer": {
+                      "oneof": [
+                        "customer"
+                      ]
+                    },
                     "spacePermissionSettings": {
                       "oneof": [
                         "predefinedPermissionSettings",
@@ -4616,7 +5191,10 @@
                   "fields": {
                     "name": {
                       "type": "string",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
                     },
                     "type": {
                       "type": "Type",
@@ -4628,7 +5206,10 @@
                     },
                     "spaceType": {
                       "type": "SpaceType",
-                      "id": 10
+                      "id": 10,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "singleUserBotDm": {
                       "type": "bool",
@@ -4647,13 +5228,16 @@
                     },
                     "displayName": {
                       "type": "string",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "externalUserAllowed": {
                       "type": "bool",
                       "id": 8,
                       "options": {
-                        "(google.api.field_behavior)": "IMMUTABLE"
+                        "(google.api.field_behavior)": "OPTIONAL"
                       }
                     },
                     "spaceThreadingState": {
@@ -4665,11 +5249,17 @@
                     },
                     "spaceDetails": {
                       "type": "SpaceDetails",
-                      "id": 11
+                      "id": 11,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "spaceHistoryState": {
                       "type": "HistoryState",
-                      "id": 13
+                      "id": 13,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "importMode": {
                       "type": "bool",
@@ -4711,6 +5301,14 @@
                       "id": 23,
                       "options": {
                         "(google.api.field_behavior)": "OPTIONAL"
+                      }
+                    },
+                    "customer": {
+                      "type": "string",
+                      "id": 24,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL",
+                        "proto3_optional": true
                       }
                     },
                     "spaceUri": {
@@ -4770,11 +5368,17 @@
                       "fields": {
                         "description": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "guidelines": {
                           "type": "string",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -4782,11 +5386,17 @@
                       "fields": {
                         "joinedDirectHumanUserCount": {
                           "type": "int32",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "joinedGroupCount": {
                           "type": "int32",
-                          "id": 5
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -4872,6 +5482,7 @@
                           "type": "PermissionSetting",
                           "id": 1,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4879,6 +5490,7 @@
                           "type": "PermissionSetting",
                           "id": 2,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4886,6 +5498,7 @@
                           "type": "PermissionSetting",
                           "id": 3,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4893,6 +5506,7 @@
                           "type": "PermissionSetting",
                           "id": 4,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4900,6 +5514,7 @@
                           "type": "PermissionSetting",
                           "id": 5,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4907,6 +5522,7 @@
                           "type": "PermissionSetting",
                           "id": 6,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         },
@@ -4922,6 +5538,7 @@
                           "type": "PermissionSetting",
                           "id": 8,
                           "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
                             "proto3_optional": true
                           }
                         }
@@ -4931,11 +5548,17 @@
                       "fields": {
                         "managersAllowed": {
                           "type": "bool",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "membersAllowed": {
                           "type": "bool",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     }
@@ -5009,7 +5632,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -5035,11 +5661,17 @@
                     },
                     "updateMask": {
                       "type": "google.protobuf.FieldMask",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 3
+                      "id": 3,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -5102,7 +5734,10 @@
                     },
                     "useAdminAccess": {
                       "type": "bool",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     }
                   }
                 },
@@ -5273,11 +5908,17 @@
                     },
                     "pageSize": {
                       "type": "int32",
-                      "id": 5
+                      "id": 5,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "pageToken": {
                       "type": "string",
-                      "id": 6
+                      "id": 6,
+                      "options": {
+                        "(google.api.field_behavior)": "OPTIONAL"
+                      }
                     },
                     "filter": {
                       "type": "string",
@@ -5454,6 +6095,96 @@
                     }
                   }
                 },
+                "SpaceNotificationSetting": {
+                  "options": {
+                    "(google.api.resource).type": "chat.googleapis.com/SpaceNotificationSetting",
+                    "(google.api.resource).pattern": "users/{user}/spaces/{space}/spaceNotificationSetting",
+                    "(google.api.resource).singular": "spaceNotificationSetting"
+                  },
+                  "oneofs": {
+                    "_notificationSetting": {
+                      "oneof": [
+                        "notificationSetting"
+                      ]
+                    },
+                    "_muteSetting": {
+                      "oneof": [
+                        "muteSetting"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "IDENTIFIER"
+                      }
+                    },
+                    "notificationSetting": {
+                      "type": "NotificationSetting",
+                      "id": 2,
+                      "options": {
+                        "proto3_optional": true
+                      }
+                    },
+                    "muteSetting": {
+                      "type": "MuteSetting",
+                      "id": 3,
+                      "options": {
+                        "proto3_optional": true
+                      }
+                    }
+                  },
+                  "nested": {
+                    "NotificationSetting": {
+                      "values": {
+                        "NOTIFICATION_SETTING_UNSPECIFIED": 0,
+                        "ALL": 1,
+                        "MAIN_CONVERSATIONS": 2,
+                        "FOR_YOU": 3,
+                        "OFF": 4
+                      }
+                    },
+                    "MuteSetting": {
+                      "values": {
+                        "MUTE_SETTING_UNSPECIFIED": 0,
+                        "UNMUTED": 1,
+                        "MUTED": 2
+                      }
+                    }
+                  }
+                },
+                "GetSpaceNotificationSettingRequest": {
+                  "fields": {
+                    "name": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED",
+                        "(google.api.resource_reference).type": "chat.googleapis.com/SpaceNotificationSetting"
+                      }
+                    }
+                  }
+                },
+                "UpdateSpaceNotificationSettingRequest": {
+                  "fields": {
+                    "spaceNotificationSetting": {
+                      "type": "SpaceNotificationSetting",
+                      "id": 1,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    },
+                    "updateMask": {
+                      "type": "google.protobuf.FieldMask",
+                      "id": 2,
+                      "options": {
+                        "(google.api.field_behavior)": "REQUIRED"
+                      }
+                    }
+                  }
+                },
                 "SpaceReadState": {
                   "options": {
                     "(google.api.resource).type": "chat.googleapis.com/SpaceReadState",
@@ -5597,7 +6328,6 @@
         },
         "api": {
           "options": {
-            "cc_enable_arenas": true,
             "go_package": "google.golang.org/genproto/googleapis/api;api",
             "java_multiple_files": true,
             "java_outer_classname": "LaunchStageProto",
@@ -5605,6 +6335,28 @@
             "objc_class_prefix": "GAPI"
           },
           "nested": {
+            "fieldBehavior": {
+              "rule": "repeated",
+              "type": "google.api.FieldBehavior",
+              "id": 1052,
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
+            },
+            "FieldBehavior": {
+              "values": {
+                "FIELD_BEHAVIOR_UNSPECIFIED": 0,
+                "OPTIONAL": 1,
+                "REQUIRED": 2,
+                "OUTPUT_ONLY": 3,
+                "INPUT_ONLY": 4,
+                "IMMUTABLE": 5,
+                "UNORDERED_LIST": 6,
+                "NON_EMPTY_DEFAULT": 7,
+                "IDENTIFIER": 8
+              }
+            },
             "resourceReference": {
               "type": "google.api.ResourceReference",
               "id": 1055,
@@ -5682,23 +6434,41 @@
                 }
               }
             },
-            "fieldBehavior": {
-              "rule": "repeated",
-              "type": "google.api.FieldBehavior",
-              "id": 1052,
+            "fieldInfo": {
+              "type": "google.api.FieldInfo",
+              "id": 291403980,
               "extend": "google.protobuf.FieldOptions"
             },
-            "FieldBehavior": {
-              "values": {
-                "FIELD_BEHAVIOR_UNSPECIFIED": 0,
-                "OPTIONAL": 1,
-                "REQUIRED": 2,
-                "OUTPUT_ONLY": 3,
-                "INPUT_ONLY": 4,
-                "IMMUTABLE": 5,
-                "UNORDERED_LIST": 6,
-                "NON_EMPTY_DEFAULT": 7,
-                "IDENTIFIER": 8
+            "FieldInfo": {
+              "fields": {
+                "format": {
+                  "type": "Format",
+                  "id": 1
+                },
+                "referencedTypes": {
+                  "rule": "repeated",
+                  "type": "TypeReference",
+                  "id": 2
+                }
+              },
+              "nested": {
+                "Format": {
+                  "values": {
+                    "FORMAT_UNSPECIFIED": 0,
+                    "UUID4": 1,
+                    "IPV4": 2,
+                    "IPV6": 3,
+                    "IPV4_OR_IPV6": 4
+                  }
+                }
+              }
+            },
+            "TypeReference": {
+              "fields": {
+                "typeName": {
+                  "type": "string",
+                  "id": 1
+                }
               }
             },
             "http": {
@@ -5804,6 +6574,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -5817,6 +6592,10 @@
                   "rule": "repeated",
                   "type": "ClientLibraryDestination",
                   "id": 2
+                },
+                "selectiveGapicGeneration": {
+                  "type": "SelectiveGapicGeneration",
+                  "id": 3
                 }
               }
             },
@@ -5912,6 +6691,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -5953,6 +6736,28 @@
                 "common": {
                   "type": "CommonLanguageSettings",
                   "id": 1
+                },
+                "experimentalFeatures": {
+                  "type": "ExperimentalFeatures",
+                  "id": 2
+                }
+              },
+              "nested": {
+                "ExperimentalFeatures": {
+                  "fields": {
+                    "restAsyncIoEnabled": {
+                      "type": "bool",
+                      "id": 1
+                    },
+                    "protobufPythonicTypesEnabled": {
+                      "type": "bool",
+                      "id": 2
+                    },
+                    "unversionedPackageDisabled": {
+                      "type": "bool",
+                      "id": 3
+                    }
+                  }
                 }
               }
             },
@@ -6010,6 +6815,11 @@
                 "common": {
                   "type": "CommonLanguageSettings",
                   "id": 1
+                },
+                "renamedServices": {
+                  "keyType": "string",
+                  "type": "string",
+                  "id": 2
                 }
               }
             },
@@ -6069,6 +6879,19 @@
                 "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED": 0,
                 "GITHUB": 10,
                 "PACKAGE_MANAGER": 20
+              }
+            },
+            "SelectiveGapicGeneration": {
+              "fields": {
+                "methods": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 1
+                },
+                "generateOmittedAsInternal": {
+                  "type": "bool",
+                  "id": 2
+                }
               }
             },
             "LaunchStage": {

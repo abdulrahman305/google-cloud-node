@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -292,6 +292,8 @@ message SpeechToTextConfig {
   string model = 2;
 
   // List of names of Cloud Speech phrase sets that are used for transcription.
+  // For phrase set limitations, please refer to [Cloud Speech API quotas and
+  // limits](https://cloud.google.com/speech-to-text/quotas#content).
   repeated string phrase_sets = 4 [(google.api.resource_reference) = {
     type: "speech.googleapis.com/PhraseSet"
   }];
@@ -320,7 +322,7 @@ message SpeechToTextConfig {
   // information.
   bool enable_word_info = 9;
 
-  // Use timeout based endpointing, interpreting endpointer sensitivy as
+  // Use timeout based endpointing, interpreting endpointer sensitivity as
   // seconds of timeout value.
   bool use_timeout_based_endpointing = 11;
 }
@@ -445,8 +447,8 @@ enum SpeechModelVariant {
   // USE_BEST_AVAILABLE.
   SPEECH_MODEL_VARIANT_UNSPECIFIED = 0;
 
-  // Use the best available variant of the [Speech
-  // model][InputAudioConfig.model] that the caller is eligible for.
+  // Use the best available variant of the [Speech model][model] that the caller
+  // is eligible for.
   //
   // Please see the [Dialogflow
   // docs](https://cloud.google.com/dialogflow/docs/data-logging) for

@@ -4,6 +4,64 @@
 
 [1]: https://www.npmjs.com/package/nodejs-translate?activeTab=versions
 
+## [9.2.0](https://github.com/googleapis/google-cloud-node/compare/translate-v9.1.0...translate-v9.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6424](https://github.com/googleapis/google-cloud-node/issues/6424)) ([9a595a6](https://github.com/googleapis/google-cloud-node/commit/9a595a658b5fc2a02a18ffbca618190eb64d8013))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [9.1.0](https://github.com/googleapis/google-cloud-node/compare/translate-v9.0.1...translate-v9.1.0) (2025-05-09)
+
+
+### Features
+
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/automl to v5 ([#6206](https://github.com/googleapis/google-cloud-node/issues/6206)) ([7c12c9b](https://github.com/googleapis/google-cloud-node/commit/7c12c9b077e24bc91b8d7e3b4e94d44d92905949))
+* **deps:** Update dependency @google-cloud/text-to-speech to v6 ([#6194](https://github.com/googleapis/google-cloud-node/issues/6194)) ([75049d6](https://github.com/googleapis/google-cloud-node/commit/75049d694302c6f053f933abc20517beea5b2c1a))
+* **deps:** Update dependency @google-cloud/vision to v5 ([#6202](https://github.com/googleapis/google-cloud-node/issues/6202)) ([dc9182d](https://github.com/googleapis/google-cloud-node/commit/dc9182d598bfd02af63e95c340e6600db4bac240))
+
+## [9.0.1](https://github.com/googleapis/google-cloud-node/compare/translate-v9.0.0...translate-v9.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6189](https://github.com/googleapis/google-cloud-node/issues/6189)) ([0eab6d4](https://github.com/googleapis/google-cloud-node/commit/0eab6d40a12aa7f387a4621c6611aa4cbc86e178))
+
+## [9.0.0](https://github.com/googleapis/google-cloud-node/compare/translate-v8.5.1...translate-v9.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate translate to Node 18 ([#6152](https://github.com/googleapis/google-cloud-node/issues/6152))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Miscellaneous Chores
+
+* Migrate translate to Node 18 ([#6152](https://github.com/googleapis/google-cloud-node/issues/6152)) ([c06edca](https://github.com/googleapis/google-cloud-node/commit/c06edca281971bf2751dfdb351ffd27a44f2429d))
+
+## [8.5.1](https://github.com/googleapis/google-cloud-node/compare/translate-v8.5.0...translate-v8.5.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6018](https://github.com/googleapis/google-cloud-node/issues/6018)) ([9dc5856](https://github.com/googleapis/google-cloud-node/commit/9dc585661489f51bb7a85b39519fd8b11dfffc5b))
+
 ## [8.5.0](https://github.com/googleapis/google-cloud-node/compare/translate-v8.4.0...translate-v8.5.0) (2024-08-19)
 
 

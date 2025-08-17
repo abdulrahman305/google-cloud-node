@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ function main(name, query) {
   // const name = 'abc123'
   /**
    *  Required. The query against which entries in scope should be matched.
+   *  The query syntax is defined in Search syntax for Dataplex
+   *  Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
    */
   // const query = 'abc123'
   /**
@@ -50,6 +52,10 @@ function main(name, query) {
   // const pageToken = 'abc123'
   /**
    *  Optional. Specifies the ordering of results.
+   *  Supported values are:
+   *  * `relevance` (default)
+   *  * `last_modified_timestamp`
+   *  * `last_modified_timestamp asc`
    */
   // const orderBy = 'abc123'
   /**
@@ -59,6 +65,11 @@ function main(name, query) {
    *  `name` is located.
    */
   // const scope = 'abc123'
+  /**
+   *  Optional. Specifies whether the search should understand the meaning and
+   *  intent behind the query, rather than just matching keywords.
+   */
+  // const semanticSearch = true
 
   // Imports the Dataplex library
   const {CatalogServiceClient} = require('@google-cloud/dataplex').v1;

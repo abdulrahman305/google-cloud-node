@@ -12,7 +12,26 @@
 
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
+  * [Cross_network_automation_service.create_service_connection_map](#cross_network_automation_service.create_service_connection_map)
+  * [Cross_network_automation_service.create_service_connection_policy](#cross_network_automation_service.create_service_connection_policy)
+  * [Cross_network_automation_service.create_service_connection_token](#cross_network_automation_service.create_service_connection_token)
+  * [Cross_network_automation_service.delete_service_class](#cross_network_automation_service.delete_service_class)
+  * [Cross_network_automation_service.delete_service_connection_map](#cross_network_automation_service.delete_service_connection_map)
+  * [Cross_network_automation_service.delete_service_connection_policy](#cross_network_automation_service.delete_service_connection_policy)
+  * [Cross_network_automation_service.delete_service_connection_token](#cross_network_automation_service.delete_service_connection_token)
+  * [Cross_network_automation_service.get_service_class](#cross_network_automation_service.get_service_class)
+  * [Cross_network_automation_service.get_service_connection_map](#cross_network_automation_service.get_service_connection_map)
+  * [Cross_network_automation_service.get_service_connection_policy](#cross_network_automation_service.get_service_connection_policy)
+  * [Cross_network_automation_service.get_service_connection_token](#cross_network_automation_service.get_service_connection_token)
+  * [Cross_network_automation_service.list_service_classes](#cross_network_automation_service.list_service_classes)
+  * [Cross_network_automation_service.list_service_connection_maps](#cross_network_automation_service.list_service_connection_maps)
+  * [Cross_network_automation_service.list_service_connection_policies](#cross_network_automation_service.list_service_connection_policies)
+  * [Cross_network_automation_service.list_service_connection_tokens](#cross_network_automation_service.list_service_connection_tokens)
+  * [Cross_network_automation_service.update_service_class](#cross_network_automation_service.update_service_class)
+  * [Cross_network_automation_service.update_service_connection_map](#cross_network_automation_service.update_service_connection_map)
+  * [Cross_network_automation_service.update_service_connection_policy](#cross_network_automation_service.update_service_connection_policy)
   * [Hub_service.accept_hub_spoke](#hub_service.accept_hub_spoke)
+  * [Hub_service.accept_spoke_update](#hub_service.accept_spoke_update)
   * [Hub_service.create_hub](#hub_service.create_hub)
   * [Hub_service.create_spoke](#hub_service.create_spoke)
   * [Hub_service.delete_hub](#hub_service.delete_hub)
@@ -30,9 +49,15 @@
   * [Hub_service.list_spokes](#hub_service.list_spokes)
   * [Hub_service.query_hub_status](#hub_service.query_hub_status)
   * [Hub_service.reject_hub_spoke](#hub_service.reject_hub_spoke)
+  * [Hub_service.reject_spoke_update](#hub_service.reject_spoke_update)
   * [Hub_service.update_group](#hub_service.update_group)
   * [Hub_service.update_hub](#hub_service.update_hub)
   * [Hub_service.update_spoke](#hub_service.update_spoke)
+  * [Internal_range_service.create_internal_range](#internal_range_service.create_internal_range)
+  * [Internal_range_service.delete_internal_range](#internal_range_service.delete_internal_range)
+  * [Internal_range_service.get_internal_range](#internal_range_service.get_internal_range)
+  * [Internal_range_service.list_internal_ranges](#internal_range_service.list_internal_ranges)
+  * [Internal_range_service.update_internal_range](#internal_range_service.update_internal_range)
   * [Policy_based_routing_service.create_policy_based_route](#policy_based_routing_service.create_policy_based_route)
   * [Policy_based_routing_service.delete_policy_based_route](#policy_based_routing_service.delete_policy_based_route)
   * [Policy_based_routing_service.get_policy_based_route](#policy_based_routing_service.get_policy_based_route)
@@ -64,6 +89,312 @@ Before running the samples, make sure you've followed the steps outlined in
 
 
 
+### Cross_network_automation_service.create_service_connection_map
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_map.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_map.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_map.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.create_service_connection_policy
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_policy.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_policy.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_policy.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.create_service_connection_token
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_token.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_token.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.create_service_connection_token.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.delete_service_class
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_class.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_class.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_class.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.delete_service_connection_map
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_map.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_map.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_map.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.delete_service_connection_policy
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_policy.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_policy.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_policy.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.delete_service_connection_token
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_token.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_token.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.delete_service_connection_token.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.get_service_class
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_class.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_class.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_class.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.get_service_connection_map
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_map.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_map.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_map.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.get_service_connection_policy
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_policy.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_policy.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_policy.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.get_service_connection_token
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_token.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_token.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.get_service_connection_token.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.list_service_classes
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_classes.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_classes.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_classes.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.list_service_connection_maps
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_maps.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_maps.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_maps.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.list_service_connection_policies
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_policies.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_policies.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_policies.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.list_service_connection_tokens
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_tokens.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_tokens.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.list_service_connection_tokens.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.update_service_class
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_class.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_class.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_class.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.update_service_connection_map
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_connection_map.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_connection_map.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_connection_map.js`
+
+
+-----
+
+
+
+
+### Cross_network_automation_service.update_service_connection_policy
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_connection_policy.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_connection_policy.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/cross_network_automation_service.update_service_connection_policy.js`
+
+
+-----
+
+
+
+
 ### Hub_service.accept_hub_spoke
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.accept_hub_spoke.js).
@@ -74,6 +405,23 @@ __Usage:__
 
 
 `node packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.accept_hub_spoke.js`
+
+
+-----
+
+
+
+
+### Hub_service.accept_spoke_update
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.accept_spoke_update.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.accept_spoke_update.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.accept_spoke_update.js`
 
 
 -----
@@ -370,6 +718,23 @@ __Usage:__
 
 
 
+### Hub_service.reject_spoke_update
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.reject_spoke_update.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.reject_spoke_update.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.reject_spoke_update.js`
+
+
+-----
+
+
+
+
 ### Hub_service.update_group
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.update_group.js).
@@ -414,6 +779,91 @@ __Usage:__
 
 
 `node packages/google-cloud-networkconnectivity/samples/generated/v1/hub_service.update_spoke.js`
+
+
+-----
+
+
+
+
+### Internal_range_service.create_internal_range
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.create_internal_range.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.create_internal_range.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.create_internal_range.js`
+
+
+-----
+
+
+
+
+### Internal_range_service.delete_internal_range
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.delete_internal_range.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.delete_internal_range.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.delete_internal_range.js`
+
+
+-----
+
+
+
+
+### Internal_range_service.get_internal_range
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.get_internal_range.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.get_internal_range.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.get_internal_range.js`
+
+
+-----
+
+
+
+
+### Internal_range_service.list_internal_ranges
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.list_internal_ranges.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.list_internal_ranges.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.list_internal_ranges.js`
+
+
+-----
+
+
+
+
+### Internal_range_service.update_internal_range
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.update_internal_range.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.update_internal_range.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-networkconnectivity/samples/generated/v1/internal_range_service.update_internal_range.js`
 
 
 -----

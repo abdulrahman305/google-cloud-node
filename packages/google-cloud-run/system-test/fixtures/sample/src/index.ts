@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,14 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  BuildsClient,
-  ExecutionsClient,
-  JobsClient,
-  RevisionsClient,
-  ServicesClient,
-  TasksClient,
-} from '@google-cloud/run';
+import {BuildsClient, ExecutionsClient, JobsClient, RevisionsClient, ServicesClient, TasksClient, WorkerPoolsClient} from '@google-cloud/run';
 
 // check that the client class type name can be used
 function doStuffWithBuildsClient(client: BuildsClient) {
@@ -42,6 +35,9 @@ function doStuffWithServicesClient(client: ServicesClient) {
   client.close();
 }
 function doStuffWithTasksClient(client: TasksClient) {
+  client.close();
+}
+function doStuffWithWorkerPoolsClient(client: WorkerPoolsClient) {
   client.close();
 }
 
@@ -64,6 +60,9 @@ function main() {
   // check that the client instance can be created
   const tasksClient = new TasksClient();
   doStuffWithTasksClient(tasksClient);
+  // check that the client instance can be created
+  const workerPoolsClient = new WorkerPoolsClient();
+  doStuffWithWorkerPoolsClient(workerPoolsClient);
 }
 
 main();

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,13 @@ function main(parent) {
    *  `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
    */
   // const generatorName = 'abc123'
+  /**
+   *  Optional. A section of ingested context information. The key is the name of
+   *  the context reference and the value contains the contents of the context
+   *  reference. The key is used to incorporate ingested context references to
+   *  enhance the generator.
+   */
+  // const contextReferences = [1,2,3,4]
   /**
    *  Optional. Context of the conversation, including transcripts.
    */

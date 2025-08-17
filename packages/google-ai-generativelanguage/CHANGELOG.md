@@ -1,5 +1,67 @@
 # Changelog
 
+## [3.3.0](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v3.2.0...generativelanguage-v3.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6417](https://github.com/googleapis/google-cloud-node/issues/6417)) ([0d6d584](https://github.com/googleapis/google-cloud-node/commit/0d6d584a0c5c8f9f96daf3ede46f9440758e0f35))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [3.2.0](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v3.1.0...generativelanguage-v3.2.0) (2025-05-09)
+
+
+### Features
+
+* [generativelanguage] add CODE_RETRIEVAL_QUERY embedding task type ([#6307](https://github.com/googleapis/google-cloud-node/issues/6307)) ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* [generativelanguage] add support for live API (https://togithub.com/googleapis/go-genai/issues/275) ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add CODE_RETRIEVAL_QUERY embedding task type ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add language_code to speech config ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add minimum, maximum, any_of, property_ordering, default and null type to Schema ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add seed to GenerationConfig ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add support for ModalityTokenCounts in UsageMetadata responses ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add support for ModalityTokenCounts in UsageMetadata responses ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add support for Veo: PredictLongRunning and generated/downloadable files ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+* Add ThinkingConfig, MediaResolution, and seed to GenerationConfig ([484c6e0](https://github.com/googleapis/google-cloud-node/commit/484c6e0934fa16c4d500fb9d441dbf8c9f441015))
+
+## [3.1.0](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v3.0.0...generativelanguage-v3.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+## [3.0.0](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v2.9.1...generativelanguage-v3.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics, update templates to gax 5  ([54a73fe](https://github.com/googleapis/google-cloud-node/commit/54a73fe74eab0675c006f24d5f1e4574c44d829b))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [2.9.1](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v2.9.0...generativelanguage-v2.9.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6011](https://github.com/googleapis/google-cloud-node/issues/6011)) ([ee865ff](https://github.com/googleapis/google-cloud-node/commit/ee865ff34a696fbd657e4cfb6cc4be2f6651f77a))
+
+## [2.9.0](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v2.8.0...generativelanguage-v2.9.0) (2025-01-11)
+
+
+### Features
+
+* [generativelanguage] Add GoogleSearch tool type ([#5929](https://github.com/googleapis/google-cloud-node/issues/5929)) ([e5a665a](https://github.com/googleapis/google-cloud-node/commit/e5a665a909fb52d2ec4d05f147ac2c7ebd8ceb01))
+
 ## [2.8.0](https://github.com/googleapis/google-cloud-node/compare/generativelanguage-v2.7.0...generativelanguage-v2.8.0) (2024-11-21)
 
 

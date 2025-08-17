@@ -35,24 +35,24 @@
     "test": "c8 mocha build/test"
   },
   "dependencies": {
-    "google-gax": "^4.3.4"
+    "google-gax": "^5.1.1-rc.1"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.12.12",
-    "@types/sinon": "^10.0.20",
-    "c8": "^9.1.0",
-    "gapic-tools": "^0.4.2",
-    "gts": "5.3.1",
-    "jsdoc": "^4.0.3",
-    "jsdoc-fresh": "^3.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.15.31",
+    "@types/sinon": "^17.0.4",
+    "c8": "^10.1.3",
+    "gapic-tools": "^1.0.2",
+    "gts": "^6.0.2",
+    "jsdoc": "^4.0.4",
+    "jsdoc-fresh": "^4.0.0",
     "jsdoc-region-tag": "^3.0.0",
-    "mocha": "^10.4.0",
-    "pack-n-play": "^2.0.3",
-    "sinon": "^15.2.0",
-    "typescript": "5.1.6"
+    "mocha": "^11.1.0",
+    "pack-n-play": "^3.0.0",
+    "typescript": "5.8.3",
+    "sinon": "^21.0.0"
   },
   "engines": {
-    "node": ">=v14"
+    "node": ">=v18"
   }
 }

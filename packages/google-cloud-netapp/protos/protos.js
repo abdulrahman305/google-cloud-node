@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -195,12 +195,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListActiveDirectoriesRequest.decode = function decode(reader, length) {
+                        ListActiveDirectoriesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListActiveDirectoriesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -473,12 +475,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListActiveDirectoriesResponse.decode = function decode(reader, length) {
+                        ListActiveDirectoriesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListActiveDirectoriesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.activeDirectories && message.activeDirectories.length))
@@ -735,12 +739,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetActiveDirectoryRequest.decode = function decode(reader, length) {
+                        GetActiveDirectoryRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetActiveDirectoryRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -960,12 +966,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateActiveDirectoryRequest.decode = function decode(reader, length) {
+                        CreateActiveDirectoryRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateActiveDirectoryRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -1204,12 +1212,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateActiveDirectoryRequest.decode = function decode(reader, length) {
+                        UpdateActiveDirectoryRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateActiveDirectoryRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -1430,12 +1440,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteActiveDirectoryRequest.decode = function decode(reader, length) {
+                        DeleteActiveDirectoryRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteActiveDirectoryRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -1872,12 +1884,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ActiveDirectory.decode = function decode(reader, length) {
+                        ActiveDirectory.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ActiveDirectory(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2417,6 +2431,11 @@
                          * @property {google.protobuf.ITimestamp|null} [createTime] Backup createTime
                          * @property {Object.<string,string>|null} [labels] Backup labels
                          * @property {number|Long|null} [chainStorageBytes] Backup chainStorageBytes
+                         * @property {boolean|null} [satisfiesPzs] Backup satisfiesPzs
+                         * @property {boolean|null} [satisfiesPzi] Backup satisfiesPzi
+                         * @property {string|null} [volumeRegion] Backup volumeRegion
+                         * @property {string|null} [backupRegion] Backup backupRegion
+                         * @property {google.protobuf.ITimestamp|null} [enforcedRetentionEndTime] Backup enforcedRetentionEndTime
                          */
     
                         /**
@@ -2515,15 +2534,50 @@
                          */
                         Backup.prototype.chainStorageBytes = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
     
-                        // OneOf field names bound to virtual getters and setters
-                        var $oneOfFields;
-    
                         /**
-                         * Backup _sourceSnapshot.
-                         * @member {"sourceSnapshot"|undefined} _sourceSnapshot
+                         * Backup satisfiesPzs.
+                         * @member {boolean} satisfiesPzs
                          * @memberof google.cloud.netapp.v1.Backup
                          * @instance
                          */
+                        Backup.prototype.satisfiesPzs = false;
+    
+                        /**
+                         * Backup satisfiesPzi.
+                         * @member {boolean} satisfiesPzi
+                         * @memberof google.cloud.netapp.v1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.satisfiesPzi = false;
+    
+                        /**
+                         * Backup volumeRegion.
+                         * @member {string} volumeRegion
+                         * @memberof google.cloud.netapp.v1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.volumeRegion = "";
+    
+                        /**
+                         * Backup backupRegion.
+                         * @member {string} backupRegion
+                         * @memberof google.cloud.netapp.v1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.backupRegion = "";
+    
+                        /**
+                         * Backup enforcedRetentionEndTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} enforcedRetentionEndTime
+                         * @memberof google.cloud.netapp.v1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.enforcedRetentionEndTime = null;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Backup.prototype, "_sourceSnapshot", {
                             get: $util.oneOfGetter($oneOfFields = ["sourceSnapshot"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -2574,6 +2628,16 @@
                                     writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
                             if (message.chainStorageBytes != null && Object.hasOwnProperty.call(message, "chainStorageBytes"))
                                 writer.uint32(/* id 10, wireType 0 =*/80).int64(message.chainStorageBytes);
+                            if (message.satisfiesPzs != null && Object.hasOwnProperty.call(message, "satisfiesPzs"))
+                                writer.uint32(/* id 11, wireType 0 =*/88).bool(message.satisfiesPzs);
+                            if (message.satisfiesPzi != null && Object.hasOwnProperty.call(message, "satisfiesPzi"))
+                                writer.uint32(/* id 12, wireType 0 =*/96).bool(message.satisfiesPzi);
+                            if (message.volumeRegion != null && Object.hasOwnProperty.call(message, "volumeRegion"))
+                                writer.uint32(/* id 13, wireType 2 =*/106).string(message.volumeRegion);
+                            if (message.backupRegion != null && Object.hasOwnProperty.call(message, "backupRegion"))
+                                writer.uint32(/* id 14, wireType 2 =*/114).string(message.backupRegion);
+                            if (message.enforcedRetentionEndTime != null && Object.hasOwnProperty.call(message, "enforcedRetentionEndTime"))
+                                $root.google.protobuf.Timestamp.encode(message.enforcedRetentionEndTime, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                             return writer;
                         };
     
@@ -2601,12 +2665,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Backup.decode = function decode(reader, length) {
+                        Backup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.Backup(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2665,6 +2731,26 @@
                                     }
                                 case 10: {
                                         message.chainStorageBytes = reader.int64();
+                                        break;
+                                    }
+                                case 11: {
+                                        message.satisfiesPzs = reader.bool();
+                                        break;
+                                    }
+                                case 12: {
+                                        message.satisfiesPzi = reader.bool();
+                                        break;
+                                    }
+                                case 13: {
+                                        message.volumeRegion = reader.string();
+                                        break;
+                                    }
+                                case 14: {
+                                        message.backupRegion = reader.string();
+                                        break;
+                                    }
+                                case 15: {
+                                        message.enforcedRetentionEndTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -2758,6 +2844,23 @@
                             if (message.chainStorageBytes != null && message.hasOwnProperty("chainStorageBytes"))
                                 if (!$util.isInteger(message.chainStorageBytes) && !(message.chainStorageBytes && $util.isInteger(message.chainStorageBytes.low) && $util.isInteger(message.chainStorageBytes.high)))
                                     return "chainStorageBytes: integer|Long expected";
+                            if (message.satisfiesPzs != null && message.hasOwnProperty("satisfiesPzs"))
+                                if (typeof message.satisfiesPzs !== "boolean")
+                                    return "satisfiesPzs: boolean expected";
+                            if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
+                                if (typeof message.satisfiesPzi !== "boolean")
+                                    return "satisfiesPzi: boolean expected";
+                            if (message.volumeRegion != null && message.hasOwnProperty("volumeRegion"))
+                                if (!$util.isString(message.volumeRegion))
+                                    return "volumeRegion: string expected";
+                            if (message.backupRegion != null && message.hasOwnProperty("backupRegion"))
+                                if (!$util.isString(message.backupRegion))
+                                    return "backupRegion: string expected";
+                            if (message.enforcedRetentionEndTime != null && message.hasOwnProperty("enforcedRetentionEndTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.enforcedRetentionEndTime);
+                                if (error)
+                                    return "enforcedRetentionEndTime." + error;
+                            }
                             return null;
                         };
     
@@ -2867,6 +2970,19 @@
                                     message.chainStorageBytes = object.chainStorageBytes;
                                 else if (typeof object.chainStorageBytes === "object")
                                     message.chainStorageBytes = new $util.LongBits(object.chainStorageBytes.low >>> 0, object.chainStorageBytes.high >>> 0).toNumber();
+                            if (object.satisfiesPzs != null)
+                                message.satisfiesPzs = Boolean(object.satisfiesPzs);
+                            if (object.satisfiesPzi != null)
+                                message.satisfiesPzi = Boolean(object.satisfiesPzi);
+                            if (object.volumeRegion != null)
+                                message.volumeRegion = String(object.volumeRegion);
+                            if (object.backupRegion != null)
+                                message.backupRegion = String(object.backupRegion);
+                            if (object.enforcedRetentionEndTime != null) {
+                                if (typeof object.enforcedRetentionEndTime !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.Backup.enforcedRetentionEndTime: object expected");
+                                message.enforcedRetentionEndTime = $root.google.protobuf.Timestamp.fromObject(object.enforcedRetentionEndTime);
+                            }
                             return message;
                         };
     
@@ -2902,6 +3018,11 @@
                                     object.chainStorageBytes = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                                 } else
                                     object.chainStorageBytes = options.longs === String ? "0" : 0;
+                                object.satisfiesPzs = false;
+                                object.satisfiesPzi = false;
+                                object.volumeRegion = "";
+                                object.backupRegion = "";
+                                object.enforcedRetentionEndTime = null;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -2936,6 +3057,16 @@
                                     object.chainStorageBytes = options.longs === String ? String(message.chainStorageBytes) : message.chainStorageBytes;
                                 else
                                     object.chainStorageBytes = options.longs === String ? $util.Long.prototype.toString.call(message.chainStorageBytes) : options.longs === Number ? new $util.LongBits(message.chainStorageBytes.low >>> 0, message.chainStorageBytes.high >>> 0).toNumber() : message.chainStorageBytes;
+                            if (message.satisfiesPzs != null && message.hasOwnProperty("satisfiesPzs"))
+                                object.satisfiesPzs = message.satisfiesPzs;
+                            if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
+                                object.satisfiesPzi = message.satisfiesPzi;
+                            if (message.volumeRegion != null && message.hasOwnProperty("volumeRegion"))
+                                object.volumeRegion = message.volumeRegion;
+                            if (message.backupRegion != null && message.hasOwnProperty("backupRegion"))
+                                object.backupRegion = message.backupRegion;
+                            if (message.enforcedRetentionEndTime != null && message.hasOwnProperty("enforcedRetentionEndTime"))
+                                object.enforcedRetentionEndTime = $root.google.protobuf.Timestamp.toObject(message.enforcedRetentionEndTime, options);
                             return object;
                         };
     
@@ -3137,12 +3268,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupsRequest.decode = function decode(reader, length) {
+                        ListBackupsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListBackupsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -3415,12 +3548,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupsResponse.decode = function decode(reader, length) {
+                        ListBackupsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListBackupsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.backups && message.backups.length))
@@ -3677,12 +3812,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetBackupRequest.decode = function decode(reader, length) {
+                        GetBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3902,12 +4039,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateBackupRequest.decode = function decode(reader, length) {
+                        CreateBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -4135,12 +4274,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteBackupRequest.decode = function decode(reader, length) {
+                        DeleteBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4349,12 +4490,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateBackupRequest.decode = function decode(reader, length) {
+                        UpdateBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -4607,67 +4750,37 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * BackupPolicy _dailyBackupLimit.
-                         * @member {"dailyBackupLimit"|undefined} _dailyBackupLimit
-                         * @memberof google.cloud.netapp.v1.BackupPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupPolicy.prototype, "_dailyBackupLimit", {
                             get: $util.oneOfGetter($oneOfFields = ["dailyBackupLimit"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * BackupPolicy _weeklyBackupLimit.
-                         * @member {"weeklyBackupLimit"|undefined} _weeklyBackupLimit
-                         * @memberof google.cloud.netapp.v1.BackupPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupPolicy.prototype, "_weeklyBackupLimit", {
                             get: $util.oneOfGetter($oneOfFields = ["weeklyBackupLimit"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * BackupPolicy _monthlyBackupLimit.
-                         * @member {"monthlyBackupLimit"|undefined} _monthlyBackupLimit
-                         * @memberof google.cloud.netapp.v1.BackupPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupPolicy.prototype, "_monthlyBackupLimit", {
                             get: $util.oneOfGetter($oneOfFields = ["monthlyBackupLimit"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * BackupPolicy _description.
-                         * @member {"description"|undefined} _description
-                         * @memberof google.cloud.netapp.v1.BackupPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupPolicy.prototype, "_description", {
                             get: $util.oneOfGetter($oneOfFields = ["description"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * BackupPolicy _enabled.
-                         * @member {"enabled"|undefined} _enabled
-                         * @memberof google.cloud.netapp.v1.BackupPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupPolicy.prototype, "_enabled", {
                             get: $util.oneOfGetter($oneOfFields = ["enabled"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * BackupPolicy _assignedVolumeCount.
-                         * @member {"assignedVolumeCount"|undefined} _assignedVolumeCount
-                         * @memberof google.cloud.netapp.v1.BackupPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupPolicy.prototype, "_assignedVolumeCount", {
                             get: $util.oneOfGetter($oneOfFields = ["assignedVolumeCount"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -4745,12 +4858,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        BackupPolicy.decode = function decode(reader, length) {
+                        BackupPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.BackupPolicy(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5204,12 +5319,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateBackupPolicyRequest.decode = function decode(reader, length) {
+                        CreateBackupPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateBackupPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -5437,12 +5554,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetBackupPolicyRequest.decode = function decode(reader, length) {
+                        GetBackupPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetBackupPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5684,12 +5803,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupPoliciesRequest.decode = function decode(reader, length) {
+                        ListBackupPoliciesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListBackupPoliciesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -5962,12 +6083,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupPoliciesResponse.decode = function decode(reader, length) {
+                        ListBackupPoliciesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListBackupPoliciesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.backupPolicies && message.backupPolicies.length))
@@ -6235,12 +6358,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateBackupPolicyRequest.decode = function decode(reader, length) {
+                        UpdateBackupPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateBackupPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -6461,12 +6586,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteBackupPolicyRequest.decode = function decode(reader, length) {
+                        DeleteBackupPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteBackupPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6590,6 +6717,12 @@
                          * @property {google.protobuf.ITimestamp|null} [createTime] BackupVault createTime
                          * @property {string|null} [description] BackupVault description
                          * @property {Object.<string,string>|null} [labels] BackupVault labels
+                         * @property {google.cloud.netapp.v1.BackupVault.BackupVaultType|null} [backupVaultType] BackupVault backupVaultType
+                         * @property {string|null} [sourceRegion] BackupVault sourceRegion
+                         * @property {string|null} [backupRegion] BackupVault backupRegion
+                         * @property {string|null} [sourceBackupVault] BackupVault sourceBackupVault
+                         * @property {string|null} [destinationBackupVault] BackupVault destinationBackupVault
+                         * @property {google.cloud.netapp.v1.BackupVault.IBackupRetentionPolicy|null} [backupRetentionPolicy] BackupVault backupRetentionPolicy
                          */
     
                         /**
@@ -6649,6 +6782,54 @@
                         BackupVault.prototype.labels = $util.emptyObject;
     
                         /**
+                         * BackupVault backupVaultType.
+                         * @member {google.cloud.netapp.v1.BackupVault.BackupVaultType} backupVaultType
+                         * @memberof google.cloud.netapp.v1.BackupVault
+                         * @instance
+                         */
+                        BackupVault.prototype.backupVaultType = 0;
+    
+                        /**
+                         * BackupVault sourceRegion.
+                         * @member {string} sourceRegion
+                         * @memberof google.cloud.netapp.v1.BackupVault
+                         * @instance
+                         */
+                        BackupVault.prototype.sourceRegion = "";
+    
+                        /**
+                         * BackupVault backupRegion.
+                         * @member {string} backupRegion
+                         * @memberof google.cloud.netapp.v1.BackupVault
+                         * @instance
+                         */
+                        BackupVault.prototype.backupRegion = "";
+    
+                        /**
+                         * BackupVault sourceBackupVault.
+                         * @member {string} sourceBackupVault
+                         * @memberof google.cloud.netapp.v1.BackupVault
+                         * @instance
+                         */
+                        BackupVault.prototype.sourceBackupVault = "";
+    
+                        /**
+                         * BackupVault destinationBackupVault.
+                         * @member {string} destinationBackupVault
+                         * @memberof google.cloud.netapp.v1.BackupVault
+                         * @instance
+                         */
+                        BackupVault.prototype.destinationBackupVault = "";
+    
+                        /**
+                         * BackupVault backupRetentionPolicy.
+                         * @member {google.cloud.netapp.v1.BackupVault.IBackupRetentionPolicy|null|undefined} backupRetentionPolicy
+                         * @memberof google.cloud.netapp.v1.BackupVault
+                         * @instance
+                         */
+                        BackupVault.prototype.backupRetentionPolicy = null;
+    
+                        /**
                          * Creates a new BackupVault instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.netapp.v1.BackupVault
@@ -6683,6 +6864,18 @@
                             if (message.labels != null && Object.hasOwnProperty.call(message, "labels"))
                                 for (var keys = Object.keys(message.labels), i = 0; i < keys.length; ++i)
                                     writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
+                            if (message.backupVaultType != null && Object.hasOwnProperty.call(message, "backupVaultType"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.backupVaultType);
+                            if (message.sourceRegion != null && Object.hasOwnProperty.call(message, "sourceRegion"))
+                                writer.uint32(/* id 7, wireType 2 =*/58).string(message.sourceRegion);
+                            if (message.backupRegion != null && Object.hasOwnProperty.call(message, "backupRegion"))
+                                writer.uint32(/* id 8, wireType 2 =*/66).string(message.backupRegion);
+                            if (message.sourceBackupVault != null && Object.hasOwnProperty.call(message, "sourceBackupVault"))
+                                writer.uint32(/* id 9, wireType 2 =*/74).string(message.sourceBackupVault);
+                            if (message.destinationBackupVault != null && Object.hasOwnProperty.call(message, "destinationBackupVault"))
+                                writer.uint32(/* id 10, wireType 2 =*/82).string(message.destinationBackupVault);
+                            if (message.backupRetentionPolicy != null && Object.hasOwnProperty.call(message, "backupRetentionPolicy"))
+                                $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.encode(message.backupRetentionPolicy, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                             return writer;
                         };
     
@@ -6710,12 +6903,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        BackupVault.decode = function decode(reader, length) {
+                        BackupVault.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.BackupVault(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6754,6 +6949,30 @@
                                             }
                                         }
                                         message.labels[key] = value;
+                                        break;
+                                    }
+                                case 6: {
+                                        message.backupVaultType = reader.int32();
+                                        break;
+                                    }
+                                case 7: {
+                                        message.sourceRegion = reader.string();
+                                        break;
+                                    }
+                                case 8: {
+                                        message.backupRegion = reader.string();
+                                        break;
+                                    }
+                                case 9: {
+                                        message.sourceBackupVault = reader.string();
+                                        break;
+                                    }
+                                case 10: {
+                                        message.destinationBackupVault = reader.string();
+                                        break;
+                                    }
+                                case 11: {
+                                        message.backupRetentionPolicy = $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -6822,6 +7041,32 @@
                                     if (!$util.isString(message.labels[key[i]]))
                                         return "labels: string{k:string} expected";
                             }
+                            if (message.backupVaultType != null && message.hasOwnProperty("backupVaultType"))
+                                switch (message.backupVaultType) {
+                                default:
+                                    return "backupVaultType: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            if (message.sourceRegion != null && message.hasOwnProperty("sourceRegion"))
+                                if (!$util.isString(message.sourceRegion))
+                                    return "sourceRegion: string expected";
+                            if (message.backupRegion != null && message.hasOwnProperty("backupRegion"))
+                                if (!$util.isString(message.backupRegion))
+                                    return "backupRegion: string expected";
+                            if (message.sourceBackupVault != null && message.hasOwnProperty("sourceBackupVault"))
+                                if (!$util.isString(message.sourceBackupVault))
+                                    return "sourceBackupVault: string expected";
+                            if (message.destinationBackupVault != null && message.hasOwnProperty("destinationBackupVault"))
+                                if (!$util.isString(message.destinationBackupVault))
+                                    return "destinationBackupVault: string expected";
+                            if (message.backupRetentionPolicy != null && message.hasOwnProperty("backupRetentionPolicy")) {
+                                var error = $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.verify(message.backupRetentionPolicy);
+                                if (error)
+                                    return "backupRetentionPolicy." + error;
+                            }
                             return null;
                         };
     
@@ -6885,6 +7130,39 @@
                                 for (var keys = Object.keys(object.labels), i = 0; i < keys.length; ++i)
                                     message.labels[keys[i]] = String(object.labels[keys[i]]);
                             }
+                            switch (object.backupVaultType) {
+                            default:
+                                if (typeof object.backupVaultType === "number") {
+                                    message.backupVaultType = object.backupVaultType;
+                                    break;
+                                }
+                                break;
+                            case "BACKUP_VAULT_TYPE_UNSPECIFIED":
+                            case 0:
+                                message.backupVaultType = 0;
+                                break;
+                            case "IN_REGION":
+                            case 1:
+                                message.backupVaultType = 1;
+                                break;
+                            case "CROSS_REGION":
+                            case 2:
+                                message.backupVaultType = 2;
+                                break;
+                            }
+                            if (object.sourceRegion != null)
+                                message.sourceRegion = String(object.sourceRegion);
+                            if (object.backupRegion != null)
+                                message.backupRegion = String(object.backupRegion);
+                            if (object.sourceBackupVault != null)
+                                message.sourceBackupVault = String(object.sourceBackupVault);
+                            if (object.destinationBackupVault != null)
+                                message.destinationBackupVault = String(object.destinationBackupVault);
+                            if (object.backupRetentionPolicy != null) {
+                                if (typeof object.backupRetentionPolicy !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.BackupVault.backupRetentionPolicy: object expected");
+                                message.backupRetentionPolicy = $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.fromObject(object.backupRetentionPolicy);
+                            }
                             return message;
                         };
     
@@ -6908,6 +7186,12 @@
                                 object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
                                 object.createTime = null;
                                 object.description = "";
+                                object.backupVaultType = options.enums === String ? "BACKUP_VAULT_TYPE_UNSPECIFIED" : 0;
+                                object.sourceRegion = "";
+                                object.backupRegion = "";
+                                object.sourceBackupVault = "";
+                                object.destinationBackupVault = "";
+                                object.backupRetentionPolicy = null;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -6923,6 +7207,18 @@
                                 for (var j = 0; j < keys2.length; ++j)
                                     object.labels[keys2[j]] = message.labels[keys2[j]];
                             }
+                            if (message.backupVaultType != null && message.hasOwnProperty("backupVaultType"))
+                                object.backupVaultType = options.enums === String ? $root.google.cloud.netapp.v1.BackupVault.BackupVaultType[message.backupVaultType] === undefined ? message.backupVaultType : $root.google.cloud.netapp.v1.BackupVault.BackupVaultType[message.backupVaultType] : message.backupVaultType;
+                            if (message.sourceRegion != null && message.hasOwnProperty("sourceRegion"))
+                                object.sourceRegion = message.sourceRegion;
+                            if (message.backupRegion != null && message.hasOwnProperty("backupRegion"))
+                                object.backupRegion = message.backupRegion;
+                            if (message.sourceBackupVault != null && message.hasOwnProperty("sourceBackupVault"))
+                                object.sourceBackupVault = message.sourceBackupVault;
+                            if (message.destinationBackupVault != null && message.hasOwnProperty("destinationBackupVault"))
+                                object.destinationBackupVault = message.destinationBackupVault;
+                            if (message.backupRetentionPolicy != null && message.hasOwnProperty("backupRetentionPolicy"))
+                                object.backupRetentionPolicy = $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.toObject(message.backupRetentionPolicy, options);
                             return object;
                         };
     
@@ -6952,6 +7248,304 @@
                             return typeUrlPrefix + "/google.cloud.netapp.v1.BackupVault";
                         };
     
+                        BackupVault.BackupRetentionPolicy = (function() {
+    
+                            /**
+                             * Properties of a BackupRetentionPolicy.
+                             * @memberof google.cloud.netapp.v1.BackupVault
+                             * @interface IBackupRetentionPolicy
+                             * @property {number|null} [backupMinimumEnforcedRetentionDays] BackupRetentionPolicy backupMinimumEnforcedRetentionDays
+                             * @property {boolean|null} [dailyBackupImmutable] BackupRetentionPolicy dailyBackupImmutable
+                             * @property {boolean|null} [weeklyBackupImmutable] BackupRetentionPolicy weeklyBackupImmutable
+                             * @property {boolean|null} [monthlyBackupImmutable] BackupRetentionPolicy monthlyBackupImmutable
+                             * @property {boolean|null} [manualBackupImmutable] BackupRetentionPolicy manualBackupImmutable
+                             */
+    
+                            /**
+                             * Constructs a new BackupRetentionPolicy.
+                             * @memberof google.cloud.netapp.v1.BackupVault
+                             * @classdesc Represents a BackupRetentionPolicy.
+                             * @implements IBackupRetentionPolicy
+                             * @constructor
+                             * @param {google.cloud.netapp.v1.BackupVault.IBackupRetentionPolicy=} [properties] Properties to set
+                             */
+                            function BackupRetentionPolicy(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * BackupRetentionPolicy backupMinimumEnforcedRetentionDays.
+                             * @member {number} backupMinimumEnforcedRetentionDays
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @instance
+                             */
+                            BackupRetentionPolicy.prototype.backupMinimumEnforcedRetentionDays = 0;
+    
+                            /**
+                             * BackupRetentionPolicy dailyBackupImmutable.
+                             * @member {boolean} dailyBackupImmutable
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @instance
+                             */
+                            BackupRetentionPolicy.prototype.dailyBackupImmutable = false;
+    
+                            /**
+                             * BackupRetentionPolicy weeklyBackupImmutable.
+                             * @member {boolean} weeklyBackupImmutable
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @instance
+                             */
+                            BackupRetentionPolicy.prototype.weeklyBackupImmutable = false;
+    
+                            /**
+                             * BackupRetentionPolicy monthlyBackupImmutable.
+                             * @member {boolean} monthlyBackupImmutable
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @instance
+                             */
+                            BackupRetentionPolicy.prototype.monthlyBackupImmutable = false;
+    
+                            /**
+                             * BackupRetentionPolicy manualBackupImmutable.
+                             * @member {boolean} manualBackupImmutable
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @instance
+                             */
+                            BackupRetentionPolicy.prototype.manualBackupImmutable = false;
+    
+                            /**
+                             * Creates a new BackupRetentionPolicy instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {google.cloud.netapp.v1.BackupVault.IBackupRetentionPolicy=} [properties] Properties to set
+                             * @returns {google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy} BackupRetentionPolicy instance
+                             */
+                            BackupRetentionPolicy.create = function create(properties) {
+                                return new BackupRetentionPolicy(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified BackupRetentionPolicy message. Does not implicitly {@link google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {google.cloud.netapp.v1.BackupVault.IBackupRetentionPolicy} message BackupRetentionPolicy message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            BackupRetentionPolicy.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.backupMinimumEnforcedRetentionDays != null && Object.hasOwnProperty.call(message, "backupMinimumEnforcedRetentionDays"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.backupMinimumEnforcedRetentionDays);
+                                if (message.dailyBackupImmutable != null && Object.hasOwnProperty.call(message, "dailyBackupImmutable"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.dailyBackupImmutable);
+                                if (message.weeklyBackupImmutable != null && Object.hasOwnProperty.call(message, "weeklyBackupImmutable"))
+                                    writer.uint32(/* id 3, wireType 0 =*/24).bool(message.weeklyBackupImmutable);
+                                if (message.monthlyBackupImmutable != null && Object.hasOwnProperty.call(message, "monthlyBackupImmutable"))
+                                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.monthlyBackupImmutable);
+                                if (message.manualBackupImmutable != null && Object.hasOwnProperty.call(message, "manualBackupImmutable"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).bool(message.manualBackupImmutable);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified BackupRetentionPolicy message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {google.cloud.netapp.v1.BackupVault.IBackupRetentionPolicy} message BackupRetentionPolicy message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            BackupRetentionPolicy.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a BackupRetentionPolicy message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy} BackupRetentionPolicy
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            BackupRetentionPolicy.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.backupMinimumEnforcedRetentionDays = reader.int32();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.dailyBackupImmutable = reader.bool();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.weeklyBackupImmutable = reader.bool();
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.monthlyBackupImmutable = reader.bool();
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.manualBackupImmutable = reader.bool();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a BackupRetentionPolicy message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy} BackupRetentionPolicy
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            BackupRetentionPolicy.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a BackupRetentionPolicy message.
+                             * @function verify
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            BackupRetentionPolicy.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.backupMinimumEnforcedRetentionDays != null && message.hasOwnProperty("backupMinimumEnforcedRetentionDays"))
+                                    if (!$util.isInteger(message.backupMinimumEnforcedRetentionDays))
+                                        return "backupMinimumEnforcedRetentionDays: integer expected";
+                                if (message.dailyBackupImmutable != null && message.hasOwnProperty("dailyBackupImmutable"))
+                                    if (typeof message.dailyBackupImmutable !== "boolean")
+                                        return "dailyBackupImmutable: boolean expected";
+                                if (message.weeklyBackupImmutable != null && message.hasOwnProperty("weeklyBackupImmutable"))
+                                    if (typeof message.weeklyBackupImmutable !== "boolean")
+                                        return "weeklyBackupImmutable: boolean expected";
+                                if (message.monthlyBackupImmutable != null && message.hasOwnProperty("monthlyBackupImmutable"))
+                                    if (typeof message.monthlyBackupImmutable !== "boolean")
+                                        return "monthlyBackupImmutable: boolean expected";
+                                if (message.manualBackupImmutable != null && message.hasOwnProperty("manualBackupImmutable"))
+                                    if (typeof message.manualBackupImmutable !== "boolean")
+                                        return "manualBackupImmutable: boolean expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a BackupRetentionPolicy message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy} BackupRetentionPolicy
+                             */
+                            BackupRetentionPolicy.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy)
+                                    return object;
+                                var message = new $root.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy();
+                                if (object.backupMinimumEnforcedRetentionDays != null)
+                                    message.backupMinimumEnforcedRetentionDays = object.backupMinimumEnforcedRetentionDays | 0;
+                                if (object.dailyBackupImmutable != null)
+                                    message.dailyBackupImmutable = Boolean(object.dailyBackupImmutable);
+                                if (object.weeklyBackupImmutable != null)
+                                    message.weeklyBackupImmutable = Boolean(object.weeklyBackupImmutable);
+                                if (object.monthlyBackupImmutable != null)
+                                    message.monthlyBackupImmutable = Boolean(object.monthlyBackupImmutable);
+                                if (object.manualBackupImmutable != null)
+                                    message.manualBackupImmutable = Boolean(object.manualBackupImmutable);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a BackupRetentionPolicy message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy} message BackupRetentionPolicy
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            BackupRetentionPolicy.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.backupMinimumEnforcedRetentionDays = 0;
+                                    object.dailyBackupImmutable = false;
+                                    object.weeklyBackupImmutable = false;
+                                    object.monthlyBackupImmutable = false;
+                                    object.manualBackupImmutable = false;
+                                }
+                                if (message.backupMinimumEnforcedRetentionDays != null && message.hasOwnProperty("backupMinimumEnforcedRetentionDays"))
+                                    object.backupMinimumEnforcedRetentionDays = message.backupMinimumEnforcedRetentionDays;
+                                if (message.dailyBackupImmutable != null && message.hasOwnProperty("dailyBackupImmutable"))
+                                    object.dailyBackupImmutable = message.dailyBackupImmutable;
+                                if (message.weeklyBackupImmutable != null && message.hasOwnProperty("weeklyBackupImmutable"))
+                                    object.weeklyBackupImmutable = message.weeklyBackupImmutable;
+                                if (message.monthlyBackupImmutable != null && message.hasOwnProperty("monthlyBackupImmutable"))
+                                    object.monthlyBackupImmutable = message.monthlyBackupImmutable;
+                                if (message.manualBackupImmutable != null && message.hasOwnProperty("manualBackupImmutable"))
+                                    object.manualBackupImmutable = message.manualBackupImmutable;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this BackupRetentionPolicy to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            BackupRetentionPolicy.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for BackupRetentionPolicy
+                             * @function getTypeUrl
+                             * @memberof google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            BackupRetentionPolicy.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy";
+                            };
+    
+                            return BackupRetentionPolicy;
+                        })();
+    
                         /**
                          * State enum.
                          * @name google.cloud.netapp.v1.BackupVault.State
@@ -6971,6 +7565,22 @@
                             values[valuesById[3] = "DELETING"] = 3;
                             values[valuesById[4] = "ERROR"] = 4;
                             values[valuesById[5] = "UPDATING"] = 5;
+                            return values;
+                        })();
+    
+                        /**
+                         * BackupVaultType enum.
+                         * @name google.cloud.netapp.v1.BackupVault.BackupVaultType
+                         * @enum {number}
+                         * @property {number} BACKUP_VAULT_TYPE_UNSPECIFIED=0 BACKUP_VAULT_TYPE_UNSPECIFIED value
+                         * @property {number} IN_REGION=1 IN_REGION value
+                         * @property {number} CROSS_REGION=2 CROSS_REGION value
+                         */
+                        BackupVault.BackupVaultType = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "BACKUP_VAULT_TYPE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "IN_REGION"] = 1;
+                            values[valuesById[2] = "CROSS_REGION"] = 2;
                             return values;
                         })();
     
@@ -7062,12 +7672,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetBackupVaultRequest.decode = function decode(reader, length) {
+                        GetBackupVaultRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetBackupVaultRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -7309,12 +7921,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupVaultsRequest.decode = function decode(reader, length) {
+                        ListBackupVaultsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListBackupVaultsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -7587,12 +8201,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupVaultsResponse.decode = function decode(reader, length) {
+                        ListBackupVaultsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListBackupVaultsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.backupVaults && message.backupVaults.length))
@@ -7871,12 +8487,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateBackupVaultRequest.decode = function decode(reader, length) {
+                        CreateBackupVaultRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateBackupVaultRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -8104,12 +8722,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteBackupVaultRequest.decode = function decode(reader, length) {
+                        DeleteBackupVaultRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteBackupVaultRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8318,12 +8938,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateBackupVaultRequest.decode = function decode(reader, length) {
+                        UpdateBackupVaultRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateBackupVaultRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -8652,6 +9274,39 @@
                          * @memberof google.cloud.netapp.v1.NetApp
                          * @instance
                          * @param {google.cloud.netapp.v1.IDeleteStoragePoolRequest} request DeleteStoragePoolRequest message or plain object
+                         * @returns {Promise<google.longrunning.Operation>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.netapp.v1.NetApp|validateDirectoryService}.
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @typedef ValidateDirectoryServiceCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.longrunning.Operation} [response] Operation
+                         */
+    
+                        /**
+                         * Calls ValidateDirectoryService.
+                         * @function validateDirectoryService
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IValidateDirectoryServiceRequest} request ValidateDirectoryServiceRequest message or plain object
+                         * @param {google.cloud.netapp.v1.NetApp.ValidateDirectoryServiceCallback} callback Node-style callback called with the error, if any, and Operation
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(NetApp.prototype.validateDirectoryService = function validateDirectoryService(request, callback) {
+                            return this.rpcCall(validateDirectoryService, $root.google.cloud.netapp.v1.ValidateDirectoryServiceRequest, $root.google.longrunning.Operation, request, callback);
+                        }, "name", { value: "ValidateDirectoryService" });
+    
+                        /**
+                         * Calls ValidateDirectoryService.
+                         * @function validateDirectoryService
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IValidateDirectoryServiceRequest} request ValidateDirectoryServiceRequest message or plain object
                          * @returns {Promise<google.longrunning.Operation>} Promise
                          * @variation 2
                          */
@@ -10273,6 +10928,171 @@
                          * @variation 2
                          */
     
+                        /**
+                         * Callback as used by {@link google.cloud.netapp.v1.NetApp|listQuotaRules}.
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @typedef ListQuotaRulesCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.netapp.v1.ListQuotaRulesResponse} [response] ListQuotaRulesResponse
+                         */
+    
+                        /**
+                         * Calls ListQuotaRules.
+                         * @function listQuotaRules
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesRequest} request ListQuotaRulesRequest message or plain object
+                         * @param {google.cloud.netapp.v1.NetApp.ListQuotaRulesCallback} callback Node-style callback called with the error, if any, and ListQuotaRulesResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(NetApp.prototype.listQuotaRules = function listQuotaRules(request, callback) {
+                            return this.rpcCall(listQuotaRules, $root.google.cloud.netapp.v1.ListQuotaRulesRequest, $root.google.cloud.netapp.v1.ListQuotaRulesResponse, request, callback);
+                        }, "name", { value: "ListQuotaRules" });
+    
+                        /**
+                         * Calls ListQuotaRules.
+                         * @function listQuotaRules
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesRequest} request ListQuotaRulesRequest message or plain object
+                         * @returns {Promise<google.cloud.netapp.v1.ListQuotaRulesResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.netapp.v1.NetApp|getQuotaRule}.
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @typedef GetQuotaRuleCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.netapp.v1.QuotaRule} [response] QuotaRule
+                         */
+    
+                        /**
+                         * Calls GetQuotaRule.
+                         * @function getQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IGetQuotaRuleRequest} request GetQuotaRuleRequest message or plain object
+                         * @param {google.cloud.netapp.v1.NetApp.GetQuotaRuleCallback} callback Node-style callback called with the error, if any, and QuotaRule
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(NetApp.prototype.getQuotaRule = function getQuotaRule(request, callback) {
+                            return this.rpcCall(getQuotaRule, $root.google.cloud.netapp.v1.GetQuotaRuleRequest, $root.google.cloud.netapp.v1.QuotaRule, request, callback);
+                        }, "name", { value: "GetQuotaRule" });
+    
+                        /**
+                         * Calls GetQuotaRule.
+                         * @function getQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IGetQuotaRuleRequest} request GetQuotaRuleRequest message or plain object
+                         * @returns {Promise<google.cloud.netapp.v1.QuotaRule>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.netapp.v1.NetApp|createQuotaRule}.
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @typedef CreateQuotaRuleCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.longrunning.Operation} [response] Operation
+                         */
+    
+                        /**
+                         * Calls CreateQuotaRule.
+                         * @function createQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.ICreateQuotaRuleRequest} request CreateQuotaRuleRequest message or plain object
+                         * @param {google.cloud.netapp.v1.NetApp.CreateQuotaRuleCallback} callback Node-style callback called with the error, if any, and Operation
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(NetApp.prototype.createQuotaRule = function createQuotaRule(request, callback) {
+                            return this.rpcCall(createQuotaRule, $root.google.cloud.netapp.v1.CreateQuotaRuleRequest, $root.google.longrunning.Operation, request, callback);
+                        }, "name", { value: "CreateQuotaRule" });
+    
+                        /**
+                         * Calls CreateQuotaRule.
+                         * @function createQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.ICreateQuotaRuleRequest} request CreateQuotaRuleRequest message or plain object
+                         * @returns {Promise<google.longrunning.Operation>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.netapp.v1.NetApp|updateQuotaRule}.
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @typedef UpdateQuotaRuleCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.longrunning.Operation} [response] Operation
+                         */
+    
+                        /**
+                         * Calls UpdateQuotaRule.
+                         * @function updateQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IUpdateQuotaRuleRequest} request UpdateQuotaRuleRequest message or plain object
+                         * @param {google.cloud.netapp.v1.NetApp.UpdateQuotaRuleCallback} callback Node-style callback called with the error, if any, and Operation
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(NetApp.prototype.updateQuotaRule = function updateQuotaRule(request, callback) {
+                            return this.rpcCall(updateQuotaRule, $root.google.cloud.netapp.v1.UpdateQuotaRuleRequest, $root.google.longrunning.Operation, request, callback);
+                        }, "name", { value: "UpdateQuotaRule" });
+    
+                        /**
+                         * Calls UpdateQuotaRule.
+                         * @function updateQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IUpdateQuotaRuleRequest} request UpdateQuotaRuleRequest message or plain object
+                         * @returns {Promise<google.longrunning.Operation>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.netapp.v1.NetApp|deleteQuotaRule}.
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @typedef DeleteQuotaRuleCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.longrunning.Operation} [response] Operation
+                         */
+    
+                        /**
+                         * Calls DeleteQuotaRule.
+                         * @function deleteQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IDeleteQuotaRuleRequest} request DeleteQuotaRuleRequest message or plain object
+                         * @param {google.cloud.netapp.v1.NetApp.DeleteQuotaRuleCallback} callback Node-style callback called with the error, if any, and Operation
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(NetApp.prototype.deleteQuotaRule = function deleteQuotaRule(request, callback) {
+                            return this.rpcCall(deleteQuotaRule, $root.google.cloud.netapp.v1.DeleteQuotaRuleRequest, $root.google.longrunning.Operation, request, callback);
+                        }, "name", { value: "DeleteQuotaRule" });
+    
+                        /**
+                         * Calls DeleteQuotaRule.
+                         * @function deleteQuotaRule
+                         * @memberof google.cloud.netapp.v1.NetApp
+                         * @instance
+                         * @param {google.cloud.netapp.v1.IDeleteQuotaRuleRequest} request DeleteQuotaRuleRequest message or plain object
+                         * @returns {Promise<google.longrunning.Operation>} Promise
+                         * @variation 2
+                         */
+    
                         return NetApp;
                     })();
     
@@ -10427,12 +11247,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OperationMetadata.decode = function decode(reader, length) {
+                        OperationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.OperationMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -10713,12 +11535,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetKmsConfigRequest.decode = function decode(reader, length) {
+                        GetKmsConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetKmsConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10960,12 +11784,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKmsConfigsRequest.decode = function decode(reader, length) {
+                        ListKmsConfigsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListKmsConfigsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11238,12 +12064,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKmsConfigsResponse.decode = function decode(reader, length) {
+                        ListKmsConfigsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListKmsConfigsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.kmsConfigs && message.kmsConfigs.length))
@@ -11522,12 +12350,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateKmsConfigRequest.decode = function decode(reader, length) {
+                        CreateKmsConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateKmsConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11766,12 +12596,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateKmsConfigRequest.decode = function decode(reader, length) {
+                        UpdateKmsConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateKmsConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -11992,12 +12824,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteKmsConfigRequest.decode = function decode(reader, length) {
+                        DeleteKmsConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteKmsConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12195,12 +13029,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EncryptVolumesRequest.decode = function decode(reader, length) {
+                        EncryptVolumesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.EncryptVolumesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12398,12 +13234,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyKmsConfigRequest.decode = function decode(reader, length) {
+                        VerifyKmsConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.VerifyKmsConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12623,12 +13461,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyKmsConfigResponse.decode = function decode(reader, length) {
+                        VerifyKmsConfigResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.VerifyKmsConfigResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.healthy = reader.bool();
@@ -12941,12 +13781,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        KmsConfig.decode = function decode(reader, length) {
+                        KmsConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.KmsConfig(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -13298,6 +14140,2046 @@
                         return KmsConfig;
                     })();
     
+                    v1.ListQuotaRulesRequest = (function() {
+    
+                        /**
+                         * Properties of a ListQuotaRulesRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IListQuotaRulesRequest
+                         * @property {string|null} [parent] ListQuotaRulesRequest parent
+                         * @property {number|null} [pageSize] ListQuotaRulesRequest pageSize
+                         * @property {string|null} [pageToken] ListQuotaRulesRequest pageToken
+                         * @property {string|null} [filter] ListQuotaRulesRequest filter
+                         * @property {string|null} [orderBy] ListQuotaRulesRequest orderBy
+                         */
+    
+                        /**
+                         * Constructs a new ListQuotaRulesRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a ListQuotaRulesRequest.
+                         * @implements IListQuotaRulesRequest
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesRequest=} [properties] Properties to set
+                         */
+                        function ListQuotaRulesRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListQuotaRulesRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @instance
+                         */
+                        ListQuotaRulesRequest.prototype.parent = "";
+    
+                        /**
+                         * ListQuotaRulesRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @instance
+                         */
+                        ListQuotaRulesRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListQuotaRulesRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @instance
+                         */
+                        ListQuotaRulesRequest.prototype.pageToken = "";
+    
+                        /**
+                         * ListQuotaRulesRequest filter.
+                         * @member {string} filter
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @instance
+                         */
+                        ListQuotaRulesRequest.prototype.filter = "";
+    
+                        /**
+                         * ListQuotaRulesRequest orderBy.
+                         * @member {string} orderBy
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @instance
+                         */
+                        ListQuotaRulesRequest.prototype.orderBy = "";
+    
+                        /**
+                         * Creates a new ListQuotaRulesRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesRequest=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesRequest} ListQuotaRulesRequest instance
+                         */
+                        ListQuotaRulesRequest.create = function create(properties) {
+                            return new ListQuotaRulesRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaRulesRequest message. Does not implicitly {@link google.cloud.netapp.v1.ListQuotaRulesRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesRequest} message ListQuotaRulesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaRulesRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.filter);
+                            if (message.orderBy != null && Object.hasOwnProperty.call(message, "orderBy"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.orderBy);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaRulesRequest message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.ListQuotaRulesRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesRequest} message ListQuotaRulesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaRulesRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaRulesRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesRequest} ListQuotaRulesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaRulesRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListQuotaRulesRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.filter = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.orderBy = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaRulesRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesRequest} ListQuotaRulesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaRulesRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListQuotaRulesRequest message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListQuotaRulesRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            if (message.filter != null && message.hasOwnProperty("filter"))
+                                if (!$util.isString(message.filter))
+                                    return "filter: string expected";
+                            if (message.orderBy != null && message.hasOwnProperty("orderBy"))
+                                if (!$util.isString(message.orderBy))
+                                    return "orderBy: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListQuotaRulesRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesRequest} ListQuotaRulesRequest
+                         */
+                        ListQuotaRulesRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.ListQuotaRulesRequest)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.ListQuotaRulesRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            if (object.filter != null)
+                                message.filter = String(object.filter);
+                            if (object.orderBy != null)
+                                message.orderBy = String(object.orderBy);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListQuotaRulesRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.ListQuotaRulesRequest} message ListQuotaRulesRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListQuotaRulesRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                                object.filter = "";
+                                object.orderBy = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            if (message.filter != null && message.hasOwnProperty("filter"))
+                                object.filter = message.filter;
+                            if (message.orderBy != null && message.hasOwnProperty("orderBy"))
+                                object.orderBy = message.orderBy;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListQuotaRulesRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListQuotaRulesRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListQuotaRulesRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListQuotaRulesRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.ListQuotaRulesRequest";
+                        };
+    
+                        return ListQuotaRulesRequest;
+                    })();
+    
+                    v1.ListQuotaRulesResponse = (function() {
+    
+                        /**
+                         * Properties of a ListQuotaRulesResponse.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IListQuotaRulesResponse
+                         * @property {Array.<google.cloud.netapp.v1.IQuotaRule>|null} [quotaRules] ListQuotaRulesResponse quotaRules
+                         * @property {string|null} [nextPageToken] ListQuotaRulesResponse nextPageToken
+                         * @property {Array.<string>|null} [unreachable] ListQuotaRulesResponse unreachable
+                         */
+    
+                        /**
+                         * Constructs a new ListQuotaRulesResponse.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a ListQuotaRulesResponse.
+                         * @implements IListQuotaRulesResponse
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesResponse=} [properties] Properties to set
+                         */
+                        function ListQuotaRulesResponse(properties) {
+                            this.quotaRules = [];
+                            this.unreachable = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListQuotaRulesResponse quotaRules.
+                         * @member {Array.<google.cloud.netapp.v1.IQuotaRule>} quotaRules
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @instance
+                         */
+                        ListQuotaRulesResponse.prototype.quotaRules = $util.emptyArray;
+    
+                        /**
+                         * ListQuotaRulesResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @instance
+                         */
+                        ListQuotaRulesResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * ListQuotaRulesResponse unreachable.
+                         * @member {Array.<string>} unreachable
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @instance
+                         */
+                        ListQuotaRulesResponse.prototype.unreachable = $util.emptyArray;
+    
+                        /**
+                         * Creates a new ListQuotaRulesResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesResponse=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesResponse} ListQuotaRulesResponse instance
+                         */
+                        ListQuotaRulesResponse.create = function create(properties) {
+                            return new ListQuotaRulesResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaRulesResponse message. Does not implicitly {@link google.cloud.netapp.v1.ListQuotaRulesResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesResponse} message ListQuotaRulesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaRulesResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.quotaRules != null && message.quotaRules.length)
+                                for (var i = 0; i < message.quotaRules.length; ++i)
+                                    $root.google.cloud.netapp.v1.QuotaRule.encode(message.quotaRules[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            if (message.unreachable != null && message.unreachable.length)
+                                for (var i = 0; i < message.unreachable.length; ++i)
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.unreachable[i]);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaRulesResponse message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.ListQuotaRulesResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {google.cloud.netapp.v1.IListQuotaRulesResponse} message ListQuotaRulesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaRulesResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaRulesResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesResponse} ListQuotaRulesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaRulesResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListQuotaRulesResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.quotaRules && message.quotaRules.length))
+                                            message.quotaRules = [];
+                                        message.quotaRules.push($root.google.cloud.netapp.v1.QuotaRule.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        if (!(message.unreachable && message.unreachable.length))
+                                            message.unreachable = [];
+                                        message.unreachable.push(reader.string());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaRulesResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesResponse} ListQuotaRulesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaRulesResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListQuotaRulesResponse message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListQuotaRulesResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.quotaRules != null && message.hasOwnProperty("quotaRules")) {
+                                if (!Array.isArray(message.quotaRules))
+                                    return "quotaRules: array expected";
+                                for (var i = 0; i < message.quotaRules.length; ++i) {
+                                    var error = $root.google.cloud.netapp.v1.QuotaRule.verify(message.quotaRules[i]);
+                                    if (error)
+                                        return "quotaRules." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            if (message.unreachable != null && message.hasOwnProperty("unreachable")) {
+                                if (!Array.isArray(message.unreachable))
+                                    return "unreachable: array expected";
+                                for (var i = 0; i < message.unreachable.length; ++i)
+                                    if (!$util.isString(message.unreachable[i]))
+                                        return "unreachable: string[] expected";
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListQuotaRulesResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.ListQuotaRulesResponse} ListQuotaRulesResponse
+                         */
+                        ListQuotaRulesResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.ListQuotaRulesResponse)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.ListQuotaRulesResponse();
+                            if (object.quotaRules) {
+                                if (!Array.isArray(object.quotaRules))
+                                    throw TypeError(".google.cloud.netapp.v1.ListQuotaRulesResponse.quotaRules: array expected");
+                                message.quotaRules = [];
+                                for (var i = 0; i < object.quotaRules.length; ++i) {
+                                    if (typeof object.quotaRules[i] !== "object")
+                                        throw TypeError(".google.cloud.netapp.v1.ListQuotaRulesResponse.quotaRules: object expected");
+                                    message.quotaRules[i] = $root.google.cloud.netapp.v1.QuotaRule.fromObject(object.quotaRules[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            if (object.unreachable) {
+                                if (!Array.isArray(object.unreachable))
+                                    throw TypeError(".google.cloud.netapp.v1.ListQuotaRulesResponse.unreachable: array expected");
+                                message.unreachable = [];
+                                for (var i = 0; i < object.unreachable.length; ++i)
+                                    message.unreachable[i] = String(object.unreachable[i]);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListQuotaRulesResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {google.cloud.netapp.v1.ListQuotaRulesResponse} message ListQuotaRulesResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListQuotaRulesResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults) {
+                                object.quotaRules = [];
+                                object.unreachable = [];
+                            }
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.quotaRules && message.quotaRules.length) {
+                                object.quotaRules = [];
+                                for (var j = 0; j < message.quotaRules.length; ++j)
+                                    object.quotaRules[j] = $root.google.cloud.netapp.v1.QuotaRule.toObject(message.quotaRules[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            if (message.unreachable && message.unreachable.length) {
+                                object.unreachable = [];
+                                for (var j = 0; j < message.unreachable.length; ++j)
+                                    object.unreachable[j] = message.unreachable[j];
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListQuotaRulesResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListQuotaRulesResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListQuotaRulesResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.ListQuotaRulesResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListQuotaRulesResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.ListQuotaRulesResponse";
+                        };
+    
+                        return ListQuotaRulesResponse;
+                    })();
+    
+                    v1.GetQuotaRuleRequest = (function() {
+    
+                        /**
+                         * Properties of a GetQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IGetQuotaRuleRequest
+                         * @property {string|null} [name] GetQuotaRuleRequest name
+                         */
+    
+                        /**
+                         * Constructs a new GetQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a GetQuotaRuleRequest.
+                         * @implements IGetQuotaRuleRequest
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IGetQuotaRuleRequest=} [properties] Properties to set
+                         */
+                        function GetQuotaRuleRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * GetQuotaRuleRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @instance
+                         */
+                        GetQuotaRuleRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new GetQuotaRuleRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IGetQuotaRuleRequest=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.GetQuotaRuleRequest} GetQuotaRuleRequest instance
+                         */
+                        GetQuotaRuleRequest.create = function create(properties) {
+                            return new GetQuotaRuleRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified GetQuotaRuleRequest message. Does not implicitly {@link google.cloud.netapp.v1.GetQuotaRuleRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IGetQuotaRuleRequest} message GetQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetQuotaRuleRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified GetQuotaRuleRequest message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.GetQuotaRuleRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IGetQuotaRuleRequest} message GetQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetQuotaRuleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a GetQuotaRuleRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.GetQuotaRuleRequest} GetQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetQuotaRuleRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetQuotaRuleRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a GetQuotaRuleRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.GetQuotaRuleRequest} GetQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetQuotaRuleRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a GetQuotaRuleRequest message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetQuotaRuleRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a GetQuotaRuleRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.GetQuotaRuleRequest} GetQuotaRuleRequest
+                         */
+                        GetQuotaRuleRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.GetQuotaRuleRequest)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.GetQuotaRuleRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a GetQuotaRuleRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.GetQuotaRuleRequest} message GetQuotaRuleRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetQuotaRuleRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.name = "";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this GetQuotaRuleRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetQuotaRuleRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for GetQuotaRuleRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.GetQuotaRuleRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        GetQuotaRuleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.GetQuotaRuleRequest";
+                        };
+    
+                        return GetQuotaRuleRequest;
+                    })();
+    
+                    v1.CreateQuotaRuleRequest = (function() {
+    
+                        /**
+                         * Properties of a CreateQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface ICreateQuotaRuleRequest
+                         * @property {string|null} [parent] CreateQuotaRuleRequest parent
+                         * @property {google.cloud.netapp.v1.IQuotaRule|null} [quotaRule] CreateQuotaRuleRequest quotaRule
+                         * @property {string|null} [quotaRuleId] CreateQuotaRuleRequest quotaRuleId
+                         */
+    
+                        /**
+                         * Constructs a new CreateQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a CreateQuotaRuleRequest.
+                         * @implements ICreateQuotaRuleRequest
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.ICreateQuotaRuleRequest=} [properties] Properties to set
+                         */
+                        function CreateQuotaRuleRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CreateQuotaRuleRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @instance
+                         */
+                        CreateQuotaRuleRequest.prototype.parent = "";
+    
+                        /**
+                         * CreateQuotaRuleRequest quotaRule.
+                         * @member {google.cloud.netapp.v1.IQuotaRule|null|undefined} quotaRule
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @instance
+                         */
+                        CreateQuotaRuleRequest.prototype.quotaRule = null;
+    
+                        /**
+                         * CreateQuotaRuleRequest quotaRuleId.
+                         * @member {string} quotaRuleId
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @instance
+                         */
+                        CreateQuotaRuleRequest.prototype.quotaRuleId = "";
+    
+                        /**
+                         * Creates a new CreateQuotaRuleRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.ICreateQuotaRuleRequest=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.CreateQuotaRuleRequest} CreateQuotaRuleRequest instance
+                         */
+                        CreateQuotaRuleRequest.create = function create(properties) {
+                            return new CreateQuotaRuleRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CreateQuotaRuleRequest message. Does not implicitly {@link google.cloud.netapp.v1.CreateQuotaRuleRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.ICreateQuotaRuleRequest} message CreateQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateQuotaRuleRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.quotaRule != null && Object.hasOwnProperty.call(message, "quotaRule"))
+                                $root.google.cloud.netapp.v1.QuotaRule.encode(message.quotaRule, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.quotaRuleId != null && Object.hasOwnProperty.call(message, "quotaRuleId"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.quotaRuleId);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CreateQuotaRuleRequest message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.CreateQuotaRuleRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.ICreateQuotaRuleRequest} message CreateQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateQuotaRuleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CreateQuotaRuleRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.CreateQuotaRuleRequest} CreateQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateQuotaRuleRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateQuotaRuleRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.quotaRule = $root.google.cloud.netapp.v1.QuotaRule.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 3: {
+                                        message.quotaRuleId = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CreateQuotaRuleRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.CreateQuotaRuleRequest} CreateQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateQuotaRuleRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CreateQuotaRuleRequest message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CreateQuotaRuleRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.quotaRule != null && message.hasOwnProperty("quotaRule")) {
+                                var error = $root.google.cloud.netapp.v1.QuotaRule.verify(message.quotaRule);
+                                if (error)
+                                    return "quotaRule." + error;
+                            }
+                            if (message.quotaRuleId != null && message.hasOwnProperty("quotaRuleId"))
+                                if (!$util.isString(message.quotaRuleId))
+                                    return "quotaRuleId: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CreateQuotaRuleRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.CreateQuotaRuleRequest} CreateQuotaRuleRequest
+                         */
+                        CreateQuotaRuleRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.CreateQuotaRuleRequest)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.CreateQuotaRuleRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.quotaRule != null) {
+                                if (typeof object.quotaRule !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.CreateQuotaRuleRequest.quotaRule: object expected");
+                                message.quotaRule = $root.google.cloud.netapp.v1.QuotaRule.fromObject(object.quotaRule);
+                            }
+                            if (object.quotaRuleId != null)
+                                message.quotaRuleId = String(object.quotaRuleId);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CreateQuotaRuleRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.CreateQuotaRuleRequest} message CreateQuotaRuleRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CreateQuotaRuleRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.quotaRule = null;
+                                object.quotaRuleId = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.quotaRule != null && message.hasOwnProperty("quotaRule"))
+                                object.quotaRule = $root.google.cloud.netapp.v1.QuotaRule.toObject(message.quotaRule, options);
+                            if (message.quotaRuleId != null && message.hasOwnProperty("quotaRuleId"))
+                                object.quotaRuleId = message.quotaRuleId;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CreateQuotaRuleRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CreateQuotaRuleRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for CreateQuotaRuleRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.CreateQuotaRuleRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        CreateQuotaRuleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.CreateQuotaRuleRequest";
+                        };
+    
+                        return CreateQuotaRuleRequest;
+                    })();
+    
+                    v1.UpdateQuotaRuleRequest = (function() {
+    
+                        /**
+                         * Properties of an UpdateQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IUpdateQuotaRuleRequest
+                         * @property {google.protobuf.IFieldMask|null} [updateMask] UpdateQuotaRuleRequest updateMask
+                         * @property {google.cloud.netapp.v1.IQuotaRule|null} [quotaRule] UpdateQuotaRuleRequest quotaRule
+                         */
+    
+                        /**
+                         * Constructs a new UpdateQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents an UpdateQuotaRuleRequest.
+                         * @implements IUpdateQuotaRuleRequest
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IUpdateQuotaRuleRequest=} [properties] Properties to set
+                         */
+                        function UpdateQuotaRuleRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * UpdateQuotaRuleRequest updateMask.
+                         * @member {google.protobuf.IFieldMask|null|undefined} updateMask
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @instance
+                         */
+                        UpdateQuotaRuleRequest.prototype.updateMask = null;
+    
+                        /**
+                         * UpdateQuotaRuleRequest quotaRule.
+                         * @member {google.cloud.netapp.v1.IQuotaRule|null|undefined} quotaRule
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @instance
+                         */
+                        UpdateQuotaRuleRequest.prototype.quotaRule = null;
+    
+                        /**
+                         * Creates a new UpdateQuotaRuleRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IUpdateQuotaRuleRequest=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.UpdateQuotaRuleRequest} UpdateQuotaRuleRequest instance
+                         */
+                        UpdateQuotaRuleRequest.create = function create(properties) {
+                            return new UpdateQuotaRuleRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified UpdateQuotaRuleRequest message. Does not implicitly {@link google.cloud.netapp.v1.UpdateQuotaRuleRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IUpdateQuotaRuleRequest} message UpdateQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UpdateQuotaRuleRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.updateMask != null && Object.hasOwnProperty.call(message, "updateMask"))
+                                $root.google.protobuf.FieldMask.encode(message.updateMask, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.quotaRule != null && Object.hasOwnProperty.call(message, "quotaRule"))
+                                $root.google.cloud.netapp.v1.QuotaRule.encode(message.quotaRule, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified UpdateQuotaRuleRequest message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.UpdateQuotaRuleRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IUpdateQuotaRuleRequest} message UpdateQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UpdateQuotaRuleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an UpdateQuotaRuleRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.UpdateQuotaRuleRequest} UpdateQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UpdateQuotaRuleRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateQuotaRuleRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.quotaRule = $root.google.cloud.netapp.v1.QuotaRule.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an UpdateQuotaRuleRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.UpdateQuotaRuleRequest} UpdateQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UpdateQuotaRuleRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an UpdateQuotaRuleRequest message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        UpdateQuotaRuleRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.updateMask != null && message.hasOwnProperty("updateMask")) {
+                                var error = $root.google.protobuf.FieldMask.verify(message.updateMask);
+                                if (error)
+                                    return "updateMask." + error;
+                            }
+                            if (message.quotaRule != null && message.hasOwnProperty("quotaRule")) {
+                                var error = $root.google.cloud.netapp.v1.QuotaRule.verify(message.quotaRule);
+                                if (error)
+                                    return "quotaRule." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an UpdateQuotaRuleRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.UpdateQuotaRuleRequest} UpdateQuotaRuleRequest
+                         */
+                        UpdateQuotaRuleRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.UpdateQuotaRuleRequest)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.UpdateQuotaRuleRequest();
+                            if (object.updateMask != null) {
+                                if (typeof object.updateMask !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.UpdateQuotaRuleRequest.updateMask: object expected");
+                                message.updateMask = $root.google.protobuf.FieldMask.fromObject(object.updateMask);
+                            }
+                            if (object.quotaRule != null) {
+                                if (typeof object.quotaRule !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.UpdateQuotaRuleRequest.quotaRule: object expected");
+                                message.quotaRule = $root.google.cloud.netapp.v1.QuotaRule.fromObject(object.quotaRule);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an UpdateQuotaRuleRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.UpdateQuotaRuleRequest} message UpdateQuotaRuleRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        UpdateQuotaRuleRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.updateMask = null;
+                                object.quotaRule = null;
+                            }
+                            if (message.updateMask != null && message.hasOwnProperty("updateMask"))
+                                object.updateMask = $root.google.protobuf.FieldMask.toObject(message.updateMask, options);
+                            if (message.quotaRule != null && message.hasOwnProperty("quotaRule"))
+                                object.quotaRule = $root.google.cloud.netapp.v1.QuotaRule.toObject(message.quotaRule, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this UpdateQuotaRuleRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        UpdateQuotaRuleRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for UpdateQuotaRuleRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.UpdateQuotaRuleRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        UpdateQuotaRuleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.UpdateQuotaRuleRequest";
+                        };
+    
+                        return UpdateQuotaRuleRequest;
+                    })();
+    
+                    v1.DeleteQuotaRuleRequest = (function() {
+    
+                        /**
+                         * Properties of a DeleteQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IDeleteQuotaRuleRequest
+                         * @property {string|null} [name] DeleteQuotaRuleRequest name
+                         */
+    
+                        /**
+                         * Constructs a new DeleteQuotaRuleRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a DeleteQuotaRuleRequest.
+                         * @implements IDeleteQuotaRuleRequest
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IDeleteQuotaRuleRequest=} [properties] Properties to set
+                         */
+                        function DeleteQuotaRuleRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * DeleteQuotaRuleRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @instance
+                         */
+                        DeleteQuotaRuleRequest.prototype.name = "";
+    
+                        /**
+                         * Creates a new DeleteQuotaRuleRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IDeleteQuotaRuleRequest=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.DeleteQuotaRuleRequest} DeleteQuotaRuleRequest instance
+                         */
+                        DeleteQuotaRuleRequest.create = function create(properties) {
+                            return new DeleteQuotaRuleRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified DeleteQuotaRuleRequest message. Does not implicitly {@link google.cloud.netapp.v1.DeleteQuotaRuleRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IDeleteQuotaRuleRequest} message DeleteQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DeleteQuotaRuleRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified DeleteQuotaRuleRequest message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.DeleteQuotaRuleRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IDeleteQuotaRuleRequest} message DeleteQuotaRuleRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DeleteQuotaRuleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a DeleteQuotaRuleRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.DeleteQuotaRuleRequest} DeleteQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DeleteQuotaRuleRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteQuotaRuleRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a DeleteQuotaRuleRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.DeleteQuotaRuleRequest} DeleteQuotaRuleRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DeleteQuotaRuleRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a DeleteQuotaRuleRequest message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        DeleteQuotaRuleRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a DeleteQuotaRuleRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.DeleteQuotaRuleRequest} DeleteQuotaRuleRequest
+                         */
+                        DeleteQuotaRuleRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.DeleteQuotaRuleRequest)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.DeleteQuotaRuleRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a DeleteQuotaRuleRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.DeleteQuotaRuleRequest} message DeleteQuotaRuleRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        DeleteQuotaRuleRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.name = "";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this DeleteQuotaRuleRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        DeleteQuotaRuleRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for DeleteQuotaRuleRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.DeleteQuotaRuleRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        DeleteQuotaRuleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.DeleteQuotaRuleRequest";
+                        };
+    
+                        return DeleteQuotaRuleRequest;
+                    })();
+    
+                    v1.QuotaRule = (function() {
+    
+                        /**
+                         * Properties of a QuotaRule.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IQuotaRule
+                         * @property {string|null} [name] QuotaRule name
+                         * @property {string|null} [target] QuotaRule target
+                         * @property {google.cloud.netapp.v1.QuotaRule.Type|null} [type] QuotaRule type
+                         * @property {number|null} [diskLimitMib] QuotaRule diskLimitMib
+                         * @property {google.cloud.netapp.v1.QuotaRule.State|null} [state] QuotaRule state
+                         * @property {string|null} [stateDetails] QuotaRule stateDetails
+                         * @property {google.protobuf.ITimestamp|null} [createTime] QuotaRule createTime
+                         * @property {string|null} [description] QuotaRule description
+                         * @property {Object.<string,string>|null} [labels] QuotaRule labels
+                         */
+    
+                        /**
+                         * Constructs a new QuotaRule.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a QuotaRule.
+                         * @implements IQuotaRule
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IQuotaRule=} [properties] Properties to set
+                         */
+                        function QuotaRule(properties) {
+                            this.labels = {};
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * QuotaRule name.
+                         * @member {string} name
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.name = "";
+    
+                        /**
+                         * QuotaRule target.
+                         * @member {string} target
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.target = "";
+    
+                        /**
+                         * QuotaRule type.
+                         * @member {google.cloud.netapp.v1.QuotaRule.Type} type
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.type = 0;
+    
+                        /**
+                         * QuotaRule diskLimitMib.
+                         * @member {number} diskLimitMib
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.diskLimitMib = 0;
+    
+                        /**
+                         * QuotaRule state.
+                         * @member {google.cloud.netapp.v1.QuotaRule.State} state
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.state = 0;
+    
+                        /**
+                         * QuotaRule stateDetails.
+                         * @member {string} stateDetails
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.stateDetails = "";
+    
+                        /**
+                         * QuotaRule createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.createTime = null;
+    
+                        /**
+                         * QuotaRule description.
+                         * @member {string} description
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.description = "";
+    
+                        /**
+                         * QuotaRule labels.
+                         * @member {Object.<string,string>} labels
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         */
+                        QuotaRule.prototype.labels = $util.emptyObject;
+    
+                        /**
+                         * Creates a new QuotaRule instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {google.cloud.netapp.v1.IQuotaRule=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.QuotaRule} QuotaRule instance
+                         */
+                        QuotaRule.create = function create(properties) {
+                            return new QuotaRule(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified QuotaRule message. Does not implicitly {@link google.cloud.netapp.v1.QuotaRule.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {google.cloud.netapp.v1.IQuotaRule} message QuotaRule message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        QuotaRule.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.target != null && Object.hasOwnProperty.call(message, "target"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.target);
+                            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
+                            if (message.diskLimitMib != null && Object.hasOwnProperty.call(message, "diskLimitMib"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.diskLimitMib);
+                            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.state);
+                            if (message.stateDetails != null && Object.hasOwnProperty.call(message, "stateDetails"))
+                                writer.uint32(/* id 7, wireType 2 =*/58).string(message.stateDetails);
+                            if (message.createTime != null && Object.hasOwnProperty.call(message, "createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                            if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                                writer.uint32(/* id 9, wireType 2 =*/74).string(message.description);
+                            if (message.labels != null && Object.hasOwnProperty.call(message, "labels"))
+                                for (var keys = Object.keys(message.labels), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 10, wireType 2 =*/82).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified QuotaRule message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.QuotaRule.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {google.cloud.netapp.v1.IQuotaRule} message QuotaRule message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        QuotaRule.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a QuotaRule message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.QuotaRule} QuotaRule
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        QuotaRule.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.QuotaRule(), key, value;
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.target = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.type = reader.int32();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.diskLimitMib = reader.int32();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.state = reader.int32();
+                                        break;
+                                    }
+                                case 7: {
+                                        message.stateDetails = reader.string();
+                                        break;
+                                    }
+                                case 8: {
+                                        message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 9: {
+                                        message.description = reader.string();
+                                        break;
+                                    }
+                                case 10: {
+                                        if (message.labels === $util.emptyObject)
+                                            message.labels = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.labels[key] = value;
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a QuotaRule message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.QuotaRule} QuotaRule
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        QuotaRule.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a QuotaRule message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        QuotaRule.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.target != null && message.hasOwnProperty("target"))
+                                if (!$util.isString(message.target))
+                                    return "target: string expected";
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                switch (message.type) {
+                                default:
+                                    return "type: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                    break;
+                                }
+                            if (message.diskLimitMib != null && message.hasOwnProperty("diskLimitMib"))
+                                if (!$util.isInteger(message.diskLimitMib))
+                                    return "diskLimitMib: integer expected";
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                switch (message.state) {
+                                default:
+                                    return "state: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    break;
+                                }
+                            if (message.stateDetails != null && message.hasOwnProperty("stateDetails"))
+                                if (!$util.isString(message.stateDetails))
+                                    return "stateDetails: string expected";
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                if (!$util.isString(message.description))
+                                    return "description: string expected";
+                            if (message.labels != null && message.hasOwnProperty("labels")) {
+                                if (!$util.isObject(message.labels))
+                                    return "labels: object expected";
+                                var key = Object.keys(message.labels);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.labels[key[i]]))
+                                        return "labels: string{k:string} expected";
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a QuotaRule message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.QuotaRule} QuotaRule
+                         */
+                        QuotaRule.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.QuotaRule)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.QuotaRule();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.target != null)
+                                message.target = String(object.target);
+                            switch (object.type) {
+                            default:
+                                if (typeof object.type === "number") {
+                                    message.type = object.type;
+                                    break;
+                                }
+                                break;
+                            case "TYPE_UNSPECIFIED":
+                            case 0:
+                                message.type = 0;
+                                break;
+                            case "INDIVIDUAL_USER_QUOTA":
+                            case 1:
+                                message.type = 1;
+                                break;
+                            case "INDIVIDUAL_GROUP_QUOTA":
+                            case 2:
+                                message.type = 2;
+                                break;
+                            case "DEFAULT_USER_QUOTA":
+                            case 3:
+                                message.type = 3;
+                                break;
+                            case "DEFAULT_GROUP_QUOTA":
+                            case 4:
+                                message.type = 4;
+                                break;
+                            }
+                            if (object.diskLimitMib != null)
+                                message.diskLimitMib = object.diskLimitMib | 0;
+                            switch (object.state) {
+                            default:
+                                if (typeof object.state === "number") {
+                                    message.state = object.state;
+                                    break;
+                                }
+                                break;
+                            case "STATE_UNSPECIFIED":
+                            case 0:
+                                message.state = 0;
+                                break;
+                            case "CREATING":
+                            case 1:
+                                message.state = 1;
+                                break;
+                            case "UPDATING":
+                            case 2:
+                                message.state = 2;
+                                break;
+                            case "DELETING":
+                            case 3:
+                                message.state = 3;
+                                break;
+                            case "READY":
+                            case 4:
+                                message.state = 4;
+                                break;
+                            case "ERROR":
+                            case 5:
+                                message.state = 5;
+                                break;
+                            }
+                            if (object.stateDetails != null)
+                                message.stateDetails = String(object.stateDetails);
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.QuotaRule.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.description != null)
+                                message.description = String(object.description);
+                            if (object.labels) {
+                                if (typeof object.labels !== "object")
+                                    throw TypeError(".google.cloud.netapp.v1.QuotaRule.labels: object expected");
+                                message.labels = {};
+                                for (var keys = Object.keys(object.labels), i = 0; i < keys.length; ++i)
+                                    message.labels[keys[i]] = String(object.labels[keys[i]]);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a QuotaRule message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {google.cloud.netapp.v1.QuotaRule} message QuotaRule
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        QuotaRule.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.objects || options.defaults)
+                                object.labels = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.target = "";
+                                object.type = options.enums === String ? "TYPE_UNSPECIFIED" : 0;
+                                object.diskLimitMib = 0;
+                                object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                object.stateDetails = "";
+                                object.createTime = null;
+                                object.description = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.target != null && message.hasOwnProperty("target"))
+                                object.target = message.target;
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                object.type = options.enums === String ? $root.google.cloud.netapp.v1.QuotaRule.Type[message.type] === undefined ? message.type : $root.google.cloud.netapp.v1.QuotaRule.Type[message.type] : message.type;
+                            if (message.diskLimitMib != null && message.hasOwnProperty("diskLimitMib"))
+                                object.diskLimitMib = message.diskLimitMib;
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                object.state = options.enums === String ? $root.google.cloud.netapp.v1.QuotaRule.State[message.state] === undefined ? message.state : $root.google.cloud.netapp.v1.QuotaRule.State[message.state] : message.state;
+                            if (message.stateDetails != null && message.hasOwnProperty("stateDetails"))
+                                object.stateDetails = message.stateDetails;
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                object.description = message.description;
+                            var keys2;
+                            if (message.labels && (keys2 = Object.keys(message.labels)).length) {
+                                object.labels = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.labels[keys2[j]] = message.labels[keys2[j]];
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this QuotaRule to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        QuotaRule.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for QuotaRule
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.QuotaRule
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        QuotaRule.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.QuotaRule";
+                        };
+    
+                        /**
+                         * Type enum.
+                         * @name google.cloud.netapp.v1.QuotaRule.Type
+                         * @enum {number}
+                         * @property {number} TYPE_UNSPECIFIED=0 TYPE_UNSPECIFIED value
+                         * @property {number} INDIVIDUAL_USER_QUOTA=1 INDIVIDUAL_USER_QUOTA value
+                         * @property {number} INDIVIDUAL_GROUP_QUOTA=2 INDIVIDUAL_GROUP_QUOTA value
+                         * @property {number} DEFAULT_USER_QUOTA=3 DEFAULT_USER_QUOTA value
+                         * @property {number} DEFAULT_GROUP_QUOTA=4 DEFAULT_GROUP_QUOTA value
+                         */
+                        QuotaRule.Type = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "TYPE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "INDIVIDUAL_USER_QUOTA"] = 1;
+                            values[valuesById[2] = "INDIVIDUAL_GROUP_QUOTA"] = 2;
+                            values[valuesById[3] = "DEFAULT_USER_QUOTA"] = 3;
+                            values[valuesById[4] = "DEFAULT_GROUP_QUOTA"] = 4;
+                            return values;
+                        })();
+    
+                        /**
+                         * State enum.
+                         * @name google.cloud.netapp.v1.QuotaRule.State
+                         * @enum {number}
+                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                         * @property {number} CREATING=1 CREATING value
+                         * @property {number} UPDATING=2 UPDATING value
+                         * @property {number} DELETING=3 DELETING value
+                         * @property {number} READY=4 READY value
+                         * @property {number} ERROR=5 ERROR value
+                         */
+                        QuotaRule.State = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "CREATING"] = 1;
+                            values[valuesById[2] = "UPDATING"] = 2;
+                            values[valuesById[3] = "DELETING"] = 3;
+                            values[valuesById[4] = "READY"] = 4;
+                            values[valuesById[5] = "ERROR"] = 5;
+                            return values;
+                        })();
+    
+                        return QuotaRule;
+                    })();
+    
                     v1.TransferStats = (function() {
     
                         /**
@@ -13396,89 +16278,49 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * TransferStats _transferBytes.
-                         * @member {"transferBytes"|undefined} _transferBytes
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_transferBytes", {
                             get: $util.oneOfGetter($oneOfFields = ["transferBytes"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _totalTransferDuration.
-                         * @member {"totalTransferDuration"|undefined} _totalTransferDuration
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_totalTransferDuration", {
                             get: $util.oneOfGetter($oneOfFields = ["totalTransferDuration"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _lastTransferBytes.
-                         * @member {"lastTransferBytes"|undefined} _lastTransferBytes
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_lastTransferBytes", {
                             get: $util.oneOfGetter($oneOfFields = ["lastTransferBytes"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _lastTransferDuration.
-                         * @member {"lastTransferDuration"|undefined} _lastTransferDuration
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_lastTransferDuration", {
                             get: $util.oneOfGetter($oneOfFields = ["lastTransferDuration"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _lagDuration.
-                         * @member {"lagDuration"|undefined} _lagDuration
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_lagDuration", {
                             get: $util.oneOfGetter($oneOfFields = ["lagDuration"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _updateTime.
-                         * @member {"updateTime"|undefined} _updateTime
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_updateTime", {
                             get: $util.oneOfGetter($oneOfFields = ["updateTime"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _lastTransferEndTime.
-                         * @member {"lastTransferEndTime"|undefined} _lastTransferEndTime
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_lastTransferEndTime", {
                             get: $util.oneOfGetter($oneOfFields = ["lastTransferEndTime"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TransferStats _lastTransferError.
-                         * @member {"lastTransferError"|undefined} _lastTransferError
-                         * @memberof google.cloud.netapp.v1.TransferStats
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransferStats.prototype, "_lastTransferError", {
                             get: $util.oneOfGetter($oneOfFields = ["lastTransferError"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -13551,12 +16393,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransferStats.decode = function decode(reader, length) {
+                        TransferStats.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.TransferStats();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.transferBytes = reader.int64();
@@ -14015,23 +16859,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * Replication _healthy.
-                         * @member {"healthy"|undefined} _healthy
-                         * @memberof google.cloud.netapp.v1.Replication
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Replication.prototype, "_healthy", {
                             get: $util.oneOfGetter($oneOfFields = ["healthy"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Replication _description.
-                         * @member {"description"|undefined} _description
-                         * @memberof google.cloud.netapp.v1.Replication
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Replication.prototype, "_description", {
                             get: $util.oneOfGetter($oneOfFields = ["description"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -14123,12 +16957,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Replication.decode = function decode(reader, length) {
+                        Replication.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.Replication(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -14777,6 +17613,9 @@
                          * @property {string|null} [command] HybridPeeringDetails command
                          * @property {google.protobuf.ITimestamp|null} [commandExpiryTime] HybridPeeringDetails commandExpiryTime
                          * @property {string|null} [passphrase] HybridPeeringDetails passphrase
+                         * @property {string|null} [peerVolumeName] HybridPeeringDetails peerVolumeName
+                         * @property {string|null} [peerClusterName] HybridPeeringDetails peerClusterName
+                         * @property {string|null} [peerSvmName] HybridPeeringDetails peerSvmName
                          */
     
                         /**
@@ -14827,6 +17666,30 @@
                         HybridPeeringDetails.prototype.passphrase = "";
     
                         /**
+                         * HybridPeeringDetails peerVolumeName.
+                         * @member {string} peerVolumeName
+                         * @memberof google.cloud.netapp.v1.HybridPeeringDetails
+                         * @instance
+                         */
+                        HybridPeeringDetails.prototype.peerVolumeName = "";
+    
+                        /**
+                         * HybridPeeringDetails peerClusterName.
+                         * @member {string} peerClusterName
+                         * @memberof google.cloud.netapp.v1.HybridPeeringDetails
+                         * @instance
+                         */
+                        HybridPeeringDetails.prototype.peerClusterName = "";
+    
+                        /**
+                         * HybridPeeringDetails peerSvmName.
+                         * @member {string} peerSvmName
+                         * @memberof google.cloud.netapp.v1.HybridPeeringDetails
+                         * @instance
+                         */
+                        HybridPeeringDetails.prototype.peerSvmName = "";
+    
+                        /**
                          * Creates a new HybridPeeringDetails instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.netapp.v1.HybridPeeringDetails
@@ -14858,6 +17721,12 @@
                                 $root.google.protobuf.Timestamp.encode(message.commandExpiryTime, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                             if (message.passphrase != null && Object.hasOwnProperty.call(message, "passphrase"))
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.passphrase);
+                            if (message.peerVolumeName != null && Object.hasOwnProperty.call(message, "peerVolumeName"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.peerVolumeName);
+                            if (message.peerClusterName != null && Object.hasOwnProperty.call(message, "peerClusterName"))
+                                writer.uint32(/* id 6, wireType 2 =*/50).string(message.peerClusterName);
+                            if (message.peerSvmName != null && Object.hasOwnProperty.call(message, "peerSvmName"))
+                                writer.uint32(/* id 7, wireType 2 =*/58).string(message.peerSvmName);
                             return writer;
                         };
     
@@ -14885,12 +17754,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HybridPeeringDetails.decode = function decode(reader, length) {
+                        HybridPeeringDetails.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.HybridPeeringDetails();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.subnetIp = reader.string();
@@ -14906,6 +17777,18 @@
                                     }
                                 case 4: {
                                         message.passphrase = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.peerVolumeName = reader.string();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.peerClusterName = reader.string();
+                                        break;
+                                    }
+                                case 7: {
+                                        message.peerSvmName = reader.string();
                                         break;
                                     }
                                 default:
@@ -14957,6 +17840,15 @@
                             if (message.passphrase != null && message.hasOwnProperty("passphrase"))
                                 if (!$util.isString(message.passphrase))
                                     return "passphrase: string expected";
+                            if (message.peerVolumeName != null && message.hasOwnProperty("peerVolumeName"))
+                                if (!$util.isString(message.peerVolumeName))
+                                    return "peerVolumeName: string expected";
+                            if (message.peerClusterName != null && message.hasOwnProperty("peerClusterName"))
+                                if (!$util.isString(message.peerClusterName))
+                                    return "peerClusterName: string expected";
+                            if (message.peerSvmName != null && message.hasOwnProperty("peerSvmName"))
+                                if (!$util.isString(message.peerSvmName))
+                                    return "peerSvmName: string expected";
                             return null;
                         };
     
@@ -14983,6 +17875,12 @@
                             }
                             if (object.passphrase != null)
                                 message.passphrase = String(object.passphrase);
+                            if (object.peerVolumeName != null)
+                                message.peerVolumeName = String(object.peerVolumeName);
+                            if (object.peerClusterName != null)
+                                message.peerClusterName = String(object.peerClusterName);
+                            if (object.peerSvmName != null)
+                                message.peerSvmName = String(object.peerSvmName);
                             return message;
                         };
     
@@ -15004,6 +17902,9 @@
                                 object.command = "";
                                 object.commandExpiryTime = null;
                                 object.passphrase = "";
+                                object.peerVolumeName = "";
+                                object.peerClusterName = "";
+                                object.peerSvmName = "";
                             }
                             if (message.subnetIp != null && message.hasOwnProperty("subnetIp"))
                                 object.subnetIp = message.subnetIp;
@@ -15013,6 +17914,12 @@
                                 object.commandExpiryTime = $root.google.protobuf.Timestamp.toObject(message.commandExpiryTime, options);
                             if (message.passphrase != null && message.hasOwnProperty("passphrase"))
                                 object.passphrase = message.passphrase;
+                            if (message.peerVolumeName != null && message.hasOwnProperty("peerVolumeName"))
+                                object.peerVolumeName = message.peerVolumeName;
+                            if (message.peerClusterName != null && message.hasOwnProperty("peerClusterName"))
+                                object.peerClusterName = message.peerClusterName;
+                            if (message.peerSvmName != null && message.hasOwnProperty("peerSvmName"))
+                                object.peerSvmName = message.peerSvmName;
                             return object;
                         };
     
@@ -15174,12 +18081,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListReplicationsRequest.decode = function decode(reader, length) {
+                        ListReplicationsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListReplicationsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -15452,12 +18361,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListReplicationsResponse.decode = function decode(reader, length) {
+                        ListReplicationsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListReplicationsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.replications && message.replications.length))
@@ -15714,12 +18625,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetReplicationRequest.decode = function decode(reader, length) {
+                        GetReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15903,23 +18816,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * DestinationVolumeParameters _description.
-                         * @member {"description"|undefined} _description
-                         * @memberof google.cloud.netapp.v1.DestinationVolumeParameters
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DestinationVolumeParameters.prototype, "_description", {
                             get: $util.oneOfGetter($oneOfFields = ["description"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * DestinationVolumeParameters _tieringPolicy.
-                         * @member {"tieringPolicy"|undefined} _tieringPolicy
-                         * @memberof google.cloud.netapp.v1.DestinationVolumeParameters
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DestinationVolumeParameters.prototype, "_tieringPolicy", {
                             get: $util.oneOfGetter($oneOfFields = ["tieringPolicy"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -15986,12 +18889,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DestinationVolumeParameters.decode = function decode(reader, length) {
+                        DestinationVolumeParameters.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DestinationVolumeParameters();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.storagePool = reader.string();
@@ -16275,12 +19180,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateReplicationRequest.decode = function decode(reader, length) {
+                        CreateReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16508,12 +19415,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteReplicationRequest.decode = function decode(reader, length) {
+                        DeleteReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16722,12 +19631,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateReplicationRequest.decode = function decode(reader, length) {
+                        UpdateReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -16959,12 +19870,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StopReplicationRequest.decode = function decode(reader, length) {
+                        StopReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.StopReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17175,12 +20088,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ResumeReplicationRequest.decode = function decode(reader, length) {
+                        ResumeReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ResumeReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17378,12 +20293,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ReverseReplicationDirectionRequest.decode = function decode(reader, length) {
+                        ReverseReplicationDirectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ReverseReplicationDirectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17627,12 +20544,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EstablishPeeringRequest.decode = function decode(reader, length) {
+                        EstablishPeeringRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.EstablishPeeringRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17894,12 +20813,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SyncReplicationRequest.decode = function decode(reader, length) {
+                        SyncReplicationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.SyncReplicationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -18237,12 +21158,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVolumesRequest.decode = function decode(reader, length) {
+                        ListVolumesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListVolumesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -18515,12 +21438,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVolumesResponse.decode = function decode(reader, length) {
+                        ListVolumesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListVolumesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.volumes && message.volumes.length))
@@ -18777,12 +21702,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetVolumeRequest.decode = function decode(reader, length) {
+                        GetVolumeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetVolumeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19002,12 +21929,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateVolumeRequest.decode = function decode(reader, length) {
+                        CreateVolumeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateVolumeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -19246,12 +22175,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateVolumeRequest.decode = function decode(reader, length) {
+                        UpdateVolumeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateVolumeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -19483,12 +22414,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteVolumeRequest.decode = function decode(reader, length) {
+                        DeleteVolumeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteVolumeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19710,12 +22643,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RevertVolumeRequest.decode = function decode(reader, length) {
+                        RevertVolumeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.RevertVolumeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20214,23 +23149,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * Volume _backupConfig.
-                         * @member {"backupConfig"|undefined} _backupConfig
-                         * @memberof google.cloud.netapp.v1.Volume
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Volume.prototype, "_backupConfig", {
                             get: $util.oneOfGetter($oneOfFields = ["backupConfig"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Volume _tieringPolicy.
-                         * @member {"tieringPolicy"|undefined} _tieringPolicy
-                         * @memberof google.cloud.netapp.v1.Volume
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Volume.prototype, "_tieringPolicy", {
                             get: $util.oneOfGetter($oneOfFields = ["tieringPolicy"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -20377,12 +23302,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Volume.decode = function decode(reader, length) {
+                        Volume.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.Volume(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -21505,12 +24432,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ExportPolicy.decode = function decode(reader, length) {
+                        ExportPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ExportPolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.rules && message.rules.length))
@@ -21767,122 +24696,67 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * SimpleExportPolicyRule _allowedClients.
-                         * @member {"allowedClients"|undefined} _allowedClients
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_allowedClients", {
                             get: $util.oneOfGetter($oneOfFields = ["allowedClients"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _hasRootAccess.
-                         * @member {"hasRootAccess"|undefined} _hasRootAccess
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_hasRootAccess", {
                             get: $util.oneOfGetter($oneOfFields = ["hasRootAccess"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _accessType.
-                         * @member {"accessType"|undefined} _accessType
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_accessType", {
                             get: $util.oneOfGetter($oneOfFields = ["accessType"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _nfsv3.
-                         * @member {"nfsv3"|undefined} _nfsv3
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_nfsv3", {
                             get: $util.oneOfGetter($oneOfFields = ["nfsv3"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _nfsv4.
-                         * @member {"nfsv4"|undefined} _nfsv4
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_nfsv4", {
                             get: $util.oneOfGetter($oneOfFields = ["nfsv4"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _kerberos_5ReadOnly.
-                         * @member {"kerberos_5ReadOnly"|undefined} _kerberos_5ReadOnly
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_kerberos_5ReadOnly", {
                             get: $util.oneOfGetter($oneOfFields = ["kerberos_5ReadOnly"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _kerberos_5ReadWrite.
-                         * @member {"kerberos_5ReadWrite"|undefined} _kerberos_5ReadWrite
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_kerberos_5ReadWrite", {
                             get: $util.oneOfGetter($oneOfFields = ["kerberos_5ReadWrite"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _kerberos_5iReadOnly.
-                         * @member {"kerberos_5iReadOnly"|undefined} _kerberos_5iReadOnly
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_kerberos_5iReadOnly", {
                             get: $util.oneOfGetter($oneOfFields = ["kerberos_5iReadOnly"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _kerberos_5iReadWrite.
-                         * @member {"kerberos_5iReadWrite"|undefined} _kerberos_5iReadWrite
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_kerberos_5iReadWrite", {
                             get: $util.oneOfGetter($oneOfFields = ["kerberos_5iReadWrite"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _kerberos_5pReadOnly.
-                         * @member {"kerberos_5pReadOnly"|undefined} _kerberos_5pReadOnly
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_kerberos_5pReadOnly", {
                             get: $util.oneOfGetter($oneOfFields = ["kerberos_5pReadOnly"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SimpleExportPolicyRule _kerberos_5pReadWrite.
-                         * @member {"kerberos_5pReadWrite"|undefined} _kerberos_5pReadWrite
-                         * @memberof google.cloud.netapp.v1.SimpleExportPolicyRule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SimpleExportPolicyRule.prototype, "_kerberos_5pReadWrite", {
                             get: $util.oneOfGetter($oneOfFields = ["kerberos_5pReadWrite"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -21961,12 +24835,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SimpleExportPolicyRule.decode = function decode(reader, length) {
+                        SimpleExportPolicyRule.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.SimpleExportPolicyRule();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.allowedClients = reader.string();
@@ -22343,56 +25219,31 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * SnapshotPolicy _enabled.
-                         * @member {"enabled"|undefined} _enabled
-                         * @memberof google.cloud.netapp.v1.SnapshotPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SnapshotPolicy.prototype, "_enabled", {
                             get: $util.oneOfGetter($oneOfFields = ["enabled"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SnapshotPolicy _hourlySchedule.
-                         * @member {"hourlySchedule"|undefined} _hourlySchedule
-                         * @memberof google.cloud.netapp.v1.SnapshotPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SnapshotPolicy.prototype, "_hourlySchedule", {
                             get: $util.oneOfGetter($oneOfFields = ["hourlySchedule"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SnapshotPolicy _dailySchedule.
-                         * @member {"dailySchedule"|undefined} _dailySchedule
-                         * @memberof google.cloud.netapp.v1.SnapshotPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SnapshotPolicy.prototype, "_dailySchedule", {
                             get: $util.oneOfGetter($oneOfFields = ["dailySchedule"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SnapshotPolicy _weeklySchedule.
-                         * @member {"weeklySchedule"|undefined} _weeklySchedule
-                         * @memberof google.cloud.netapp.v1.SnapshotPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SnapshotPolicy.prototype, "_weeklySchedule", {
                             get: $util.oneOfGetter($oneOfFields = ["weeklySchedule"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SnapshotPolicy _monthlySchedule.
-                         * @member {"monthlySchedule"|undefined} _monthlySchedule
-                         * @memberof google.cloud.netapp.v1.SnapshotPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SnapshotPolicy.prototype, "_monthlySchedule", {
                             get: $util.oneOfGetter($oneOfFields = ["monthlySchedule"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -22459,12 +25310,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SnapshotPolicy.decode = function decode(reader, length) {
+                        SnapshotPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.SnapshotPolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.enabled = reader.bool();
@@ -22713,23 +25566,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * HourlySchedule _snapshotsToKeep.
-                         * @member {"snapshotsToKeep"|undefined} _snapshotsToKeep
-                         * @memberof google.cloud.netapp.v1.HourlySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(HourlySchedule.prototype, "_snapshotsToKeep", {
                             get: $util.oneOfGetter($oneOfFields = ["snapshotsToKeep"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * HourlySchedule _minute.
-                         * @member {"minute"|undefined} _minute
-                         * @memberof google.cloud.netapp.v1.HourlySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(HourlySchedule.prototype, "_minute", {
                             get: $util.oneOfGetter($oneOfFields = ["minute"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -22790,12 +25633,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HourlySchedule.decode = function decode(reader, length) {
+                        HourlySchedule.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.HourlySchedule();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.snapshotsToKeep = reader.double();
@@ -22981,34 +25826,19 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * DailySchedule _snapshotsToKeep.
-                         * @member {"snapshotsToKeep"|undefined} _snapshotsToKeep
-                         * @memberof google.cloud.netapp.v1.DailySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DailySchedule.prototype, "_snapshotsToKeep", {
                             get: $util.oneOfGetter($oneOfFields = ["snapshotsToKeep"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * DailySchedule _minute.
-                         * @member {"minute"|undefined} _minute
-                         * @memberof google.cloud.netapp.v1.DailySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DailySchedule.prototype, "_minute", {
                             get: $util.oneOfGetter($oneOfFields = ["minute"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * DailySchedule _hour.
-                         * @member {"hour"|undefined} _hour
-                         * @memberof google.cloud.netapp.v1.DailySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DailySchedule.prototype, "_hour", {
                             get: $util.oneOfGetter($oneOfFields = ["hour"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -23071,12 +25901,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DailySchedule.decode = function decode(reader, length) {
+                        DailySchedule.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DailySchedule();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.snapshotsToKeep = reader.double();
@@ -23287,45 +26119,25 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * WeeklySchedule _snapshotsToKeep.
-                         * @member {"snapshotsToKeep"|undefined} _snapshotsToKeep
-                         * @memberof google.cloud.netapp.v1.WeeklySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(WeeklySchedule.prototype, "_snapshotsToKeep", {
                             get: $util.oneOfGetter($oneOfFields = ["snapshotsToKeep"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * WeeklySchedule _minute.
-                         * @member {"minute"|undefined} _minute
-                         * @memberof google.cloud.netapp.v1.WeeklySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(WeeklySchedule.prototype, "_minute", {
                             get: $util.oneOfGetter($oneOfFields = ["minute"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * WeeklySchedule _hour.
-                         * @member {"hour"|undefined} _hour
-                         * @memberof google.cloud.netapp.v1.WeeklySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(WeeklySchedule.prototype, "_hour", {
                             get: $util.oneOfGetter($oneOfFields = ["hour"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * WeeklySchedule _day.
-                         * @member {"day"|undefined} _day
-                         * @memberof google.cloud.netapp.v1.WeeklySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(WeeklySchedule.prototype, "_day", {
                             get: $util.oneOfGetter($oneOfFields = ["day"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -23390,12 +26202,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        WeeklySchedule.decode = function decode(reader, length) {
+                        WeeklySchedule.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.WeeklySchedule();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.snapshotsToKeep = reader.double();
@@ -23622,45 +26436,25 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * MonthlySchedule _snapshotsToKeep.
-                         * @member {"snapshotsToKeep"|undefined} _snapshotsToKeep
-                         * @memberof google.cloud.netapp.v1.MonthlySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(MonthlySchedule.prototype, "_snapshotsToKeep", {
                             get: $util.oneOfGetter($oneOfFields = ["snapshotsToKeep"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * MonthlySchedule _minute.
-                         * @member {"minute"|undefined} _minute
-                         * @memberof google.cloud.netapp.v1.MonthlySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(MonthlySchedule.prototype, "_minute", {
                             get: $util.oneOfGetter($oneOfFields = ["minute"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * MonthlySchedule _hour.
-                         * @member {"hour"|undefined} _hour
-                         * @memberof google.cloud.netapp.v1.MonthlySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(MonthlySchedule.prototype, "_hour", {
                             get: $util.oneOfGetter($oneOfFields = ["hour"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * MonthlySchedule _daysOfMonth.
-                         * @member {"daysOfMonth"|undefined} _daysOfMonth
-                         * @memberof google.cloud.netapp.v1.MonthlySchedule
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(MonthlySchedule.prototype, "_daysOfMonth", {
                             get: $util.oneOfGetter($oneOfFields = ["daysOfMonth"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -23725,12 +26519,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MonthlySchedule.decode = function decode(reader, length) {
+                        MonthlySchedule.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.MonthlySchedule();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.snapshotsToKeep = reader.double();
@@ -23905,6 +26701,7 @@
                          * @property {string|null} [exportFull] MountOption exportFull
                          * @property {google.cloud.netapp.v1.Protocols|null} [protocol] MountOption protocol
                          * @property {string|null} [instructions] MountOption instructions
+                         * @property {string|null} [ipAddress] MountOption ipAddress
                          */
     
                         /**
@@ -23955,6 +26752,14 @@
                         MountOption.prototype.instructions = "";
     
                         /**
+                         * MountOption ipAddress.
+                         * @member {string} ipAddress
+                         * @memberof google.cloud.netapp.v1.MountOption
+                         * @instance
+                         */
+                        MountOption.prototype.ipAddress = "";
+    
+                        /**
                          * Creates a new MountOption instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.netapp.v1.MountOption
@@ -23986,6 +26791,8 @@
                                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.protocol);
                             if (message.instructions != null && Object.hasOwnProperty.call(message, "instructions"))
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.instructions);
+                            if (message.ipAddress != null && Object.hasOwnProperty.call(message, "ipAddress"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.ipAddress);
                             return writer;
                         };
     
@@ -24013,12 +26820,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MountOption.decode = function decode(reader, length) {
+                        MountOption.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.MountOption();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message["export"] = reader.string();
@@ -24034,6 +26843,10 @@
                                     }
                                 case 4: {
                                         message.instructions = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.ipAddress = reader.string();
                                         break;
                                     }
                                 default:
@@ -24090,6 +26903,9 @@
                             if (message.instructions != null && message.hasOwnProperty("instructions"))
                                 if (!$util.isString(message.instructions))
                                     return "instructions: string expected";
+                            if (message.ipAddress != null && message.hasOwnProperty("ipAddress"))
+                                if (!$util.isString(message.ipAddress))
+                                    return "ipAddress: string expected";
                             return null;
                         };
     
@@ -24135,6 +26951,8 @@
                             }
                             if (object.instructions != null)
                                 message.instructions = String(object.instructions);
+                            if (object.ipAddress != null)
+                                message.ipAddress = String(object.ipAddress);
                             return message;
                         };
     
@@ -24156,6 +26974,7 @@
                                 object.exportFull = "";
                                 object.protocol = options.enums === String ? "PROTOCOLS_UNSPECIFIED" : 0;
                                 object.instructions = "";
+                                object.ipAddress = "";
                             }
                             if (message["export"] != null && message.hasOwnProperty("export"))
                                 object["export"] = message["export"];
@@ -24165,6 +26984,8 @@
                                 object.protocol = options.enums === String ? $root.google.cloud.netapp.v1.Protocols[message.protocol] === undefined ? message.protocol : $root.google.cloud.netapp.v1.Protocols[message.protocol] : message.protocol;
                             if (message.instructions != null && message.hasOwnProperty("instructions"))
                                 object.instructions = message.instructions;
+                            if (message.ipAddress != null && message.hasOwnProperty("ipAddress"))
+                                object.ipAddress = message.ipAddress;
                             return object;
                         };
     
@@ -24307,12 +27128,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RestoreParameters.decode = function decode(reader, length) {
+                        RestoreParameters.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.RestoreParameters();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.sourceSnapshot = reader.string();
@@ -24510,23 +27333,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * BackupConfig _scheduledBackupEnabled.
-                         * @member {"scheduledBackupEnabled"|undefined} _scheduledBackupEnabled
-                         * @memberof google.cloud.netapp.v1.BackupConfig
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupConfig.prototype, "_scheduledBackupEnabled", {
                             get: $util.oneOfGetter($oneOfFields = ["scheduledBackupEnabled"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * BackupConfig _backupChainBytes.
-                         * @member {"backupChainBytes"|undefined} _backupChainBytes
-                         * @memberof google.cloud.netapp.v1.BackupConfig
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(BackupConfig.prototype, "_backupChainBytes", {
                             get: $util.oneOfGetter($oneOfFields = ["backupChainBytes"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -24592,12 +27405,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        BackupConfig.decode = function decode(reader, length) {
+                        BackupConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.BackupConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.backupPolicies && message.backupPolicies.length))
@@ -24824,23 +27639,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * TieringPolicy _tierAction.
-                         * @member {"tierAction"|undefined} _tierAction
-                         * @memberof google.cloud.netapp.v1.TieringPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TieringPolicy.prototype, "_tierAction", {
                             get: $util.oneOfGetter($oneOfFields = ["tierAction"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * TieringPolicy _coolingThresholdDays.
-                         * @member {"coolingThresholdDays"|undefined} _coolingThresholdDays
-                         * @memberof google.cloud.netapp.v1.TieringPolicy
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TieringPolicy.prototype, "_coolingThresholdDays", {
                             get: $util.oneOfGetter($oneOfFields = ["coolingThresholdDays"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -24901,12 +27706,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TieringPolicy.decode = function decode(reader, length) {
+                        TieringPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.TieringPolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.tierAction = reader.int32();
@@ -25245,12 +28052,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HybridReplicationParameters.decode = function decode(reader, length) {
+                        HybridReplicationParameters.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.HybridReplicationParameters(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.replication = reader.string();
@@ -25518,6 +28327,22 @@
                     })();
     
                     /**
+                     * FlexPerformance enum.
+                     * @name google.cloud.netapp.v1.FlexPerformance
+                     * @enum {number}
+                     * @property {number} FLEX_PERFORMANCE_UNSPECIFIED=0 FLEX_PERFORMANCE_UNSPECIFIED value
+                     * @property {number} FLEX_PERFORMANCE_DEFAULT=1 FLEX_PERFORMANCE_DEFAULT value
+                     * @property {number} FLEX_PERFORMANCE_CUSTOM=2 FLEX_PERFORMANCE_CUSTOM value
+                     */
+                    v1.FlexPerformance = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "FLEX_PERFORMANCE_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "FLEX_PERFORMANCE_DEFAULT"] = 1;
+                        values[valuesById[2] = "FLEX_PERFORMANCE_CUSTOM"] = 2;
+                        return values;
+                    })();
+    
+                    /**
                      * EncryptionType enum.
                      * @name google.cloud.netapp.v1.EncryptionType
                      * @enum {number}
@@ -25533,6 +28358,20 @@
                         return values;
                     })();
     
+                    /**
+                     * DirectoryServiceType enum.
+                     * @name google.cloud.netapp.v1.DirectoryServiceType
+                     * @enum {number}
+                     * @property {number} DIRECTORY_SERVICE_TYPE_UNSPECIFIED=0 DIRECTORY_SERVICE_TYPE_UNSPECIFIED value
+                     * @property {number} ACTIVE_DIRECTORY=1 ACTIVE_DIRECTORY value
+                     */
+                    v1.DirectoryServiceType = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "DIRECTORY_SERVICE_TYPE_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "ACTIVE_DIRECTORY"] = 1;
+                        return values;
+                    })();
+    
                     v1.LocationMetadata = (function() {
     
                         /**
@@ -25540,6 +28379,7 @@
                          * @memberof google.cloud.netapp.v1
                          * @interface ILocationMetadata
                          * @property {Array.<google.cloud.netapp.v1.ServiceLevel>|null} [supportedServiceLevels] LocationMetadata supportedServiceLevels
+                         * @property {Array.<google.cloud.netapp.v1.FlexPerformance>|null} [supportedFlexPerformance] LocationMetadata supportedFlexPerformance
                          */
     
                         /**
@@ -25552,6 +28392,7 @@
                          */
                         function LocationMetadata(properties) {
                             this.supportedServiceLevels = [];
+                            this.supportedFlexPerformance = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -25565,6 +28406,14 @@
                          * @instance
                          */
                         LocationMetadata.prototype.supportedServiceLevels = $util.emptyArray;
+    
+                        /**
+                         * LocationMetadata supportedFlexPerformance.
+                         * @member {Array.<google.cloud.netapp.v1.FlexPerformance>} supportedFlexPerformance
+                         * @memberof google.cloud.netapp.v1.LocationMetadata
+                         * @instance
+                         */
+                        LocationMetadata.prototype.supportedFlexPerformance = $util.emptyArray;
     
                         /**
                          * Creates a new LocationMetadata instance using the specified properties.
@@ -25596,6 +28445,12 @@
                                     writer.int32(message.supportedServiceLevels[i]);
                                 writer.ldelim();
                             }
+                            if (message.supportedFlexPerformance != null && message.supportedFlexPerformance.length) {
+                                writer.uint32(/* id 2, wireType 2 =*/18).fork();
+                                for (var i = 0; i < message.supportedFlexPerformance.length; ++i)
+                                    writer.int32(message.supportedFlexPerformance[i]);
+                                writer.ldelim();
+                            }
                             return writer;
                         };
     
@@ -25623,12 +28478,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LocationMetadata.decode = function decode(reader, length) {
+                        LocationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.LocationMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.supportedServiceLevels && message.supportedServiceLevels.length))
@@ -25639,6 +28496,17 @@
                                                 message.supportedServiceLevels.push(reader.int32());
                                         } else
                                             message.supportedServiceLevels.push(reader.int32());
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.supportedFlexPerformance && message.supportedFlexPerformance.length))
+                                            message.supportedFlexPerformance = [];
+                                        if ((tag & 7) === 2) {
+                                            var end2 = reader.uint32() + reader.pos;
+                                            while (reader.pos < end2)
+                                                message.supportedFlexPerformance.push(reader.int32());
+                                        } else
+                                            message.supportedFlexPerformance.push(reader.int32());
                                         break;
                                     }
                                 default:
@@ -25691,6 +28559,19 @@
                                         break;
                                     }
                             }
+                            if (message.supportedFlexPerformance != null && message.hasOwnProperty("supportedFlexPerformance")) {
+                                if (!Array.isArray(message.supportedFlexPerformance))
+                                    return "supportedFlexPerformance: array expected";
+                                for (var i = 0; i < message.supportedFlexPerformance.length; ++i)
+                                    switch (message.supportedFlexPerformance[i]) {
+                                    default:
+                                        return "supportedFlexPerformance: enum value[] expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
+                            }
                             return null;
                         };
     
@@ -25739,6 +28620,31 @@
                                         break;
                                     }
                             }
+                            if (object.supportedFlexPerformance) {
+                                if (!Array.isArray(object.supportedFlexPerformance))
+                                    throw TypeError(".google.cloud.netapp.v1.LocationMetadata.supportedFlexPerformance: array expected");
+                                message.supportedFlexPerformance = [];
+                                for (var i = 0; i < object.supportedFlexPerformance.length; ++i)
+                                    switch (object.supportedFlexPerformance[i]) {
+                                    default:
+                                        if (typeof object.supportedFlexPerformance[i] === "number") {
+                                            message.supportedFlexPerformance[i] = object.supportedFlexPerformance[i];
+                                            break;
+                                        }
+                                    case "FLEX_PERFORMANCE_UNSPECIFIED":
+                                    case 0:
+                                        message.supportedFlexPerformance[i] = 0;
+                                        break;
+                                    case "FLEX_PERFORMANCE_DEFAULT":
+                                    case 1:
+                                        message.supportedFlexPerformance[i] = 1;
+                                        break;
+                                    case "FLEX_PERFORMANCE_CUSTOM":
+                                    case 2:
+                                        message.supportedFlexPerformance[i] = 2;
+                                        break;
+                                    }
+                            }
                             return message;
                         };
     
@@ -25755,12 +28661,19 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.arrays || options.defaults)
+                            if (options.arrays || options.defaults) {
                                 object.supportedServiceLevels = [];
+                                object.supportedFlexPerformance = [];
+                            }
                             if (message.supportedServiceLevels && message.supportedServiceLevels.length) {
                                 object.supportedServiceLevels = [];
                                 for (var j = 0; j < message.supportedServiceLevels.length; ++j)
                                     object.supportedServiceLevels[j] = options.enums === String ? $root.google.cloud.netapp.v1.ServiceLevel[message.supportedServiceLevels[j]] === undefined ? message.supportedServiceLevels[j] : $root.google.cloud.netapp.v1.ServiceLevel[message.supportedServiceLevels[j]] : message.supportedServiceLevels[j];
+                            }
+                            if (message.supportedFlexPerformance && message.supportedFlexPerformance.length) {
+                                object.supportedFlexPerformance = [];
+                                for (var j = 0; j < message.supportedFlexPerformance.length; ++j)
+                                    object.supportedFlexPerformance[j] = options.enums === String ? $root.google.cloud.netapp.v1.FlexPerformance[message.supportedFlexPerformance[j]] === undefined ? message.supportedFlexPerformance[j] : $root.google.cloud.netapp.v1.FlexPerformance[message.supportedFlexPerformance[j]] : message.supportedFlexPerformance[j];
                             }
                             return object;
                         };
@@ -25923,12 +28836,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSnapshotsRequest.decode = function decode(reader, length) {
+                        ListSnapshotsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListSnapshotsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -26201,12 +29116,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSnapshotsResponse.decode = function decode(reader, length) {
+                        ListSnapshotsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListSnapshotsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.snapshots && message.snapshots.length))
@@ -26463,12 +29380,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetSnapshotRequest.decode = function decode(reader, length) {
+                        GetSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -26688,12 +29607,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateSnapshotRequest.decode = function decode(reader, length) {
+                        CreateSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -26921,12 +29842,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteSnapshotRequest.decode = function decode(reader, length) {
+                        DeleteSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -27135,12 +30058,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateSnapshotRequest.decode = function decode(reader, length) {
+                        UpdateSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -27429,12 +30354,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Snapshot.decode = function decode(reader, length) {
+                        Snapshot.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.Snapshot(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -27812,12 +30739,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetStoragePoolRequest.decode = function decode(reader, length) {
+                        GetStoragePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.GetStoragePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -28059,12 +30988,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListStoragePoolsRequest.decode = function decode(reader, length) {
+                        ListStoragePoolsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListStoragePoolsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -28337,12 +31268,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListStoragePoolsResponse.decode = function decode(reader, length) {
+                        ListStoragePoolsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ListStoragePoolsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.storagePools && message.storagePools.length))
@@ -28621,12 +31554,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateStoragePoolRequest.decode = function decode(reader, length) {
+                        CreateStoragePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.CreateStoragePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -28865,12 +31800,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateStoragePoolRequest.decode = function decode(reader, length) {
+                        UpdateStoragePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.UpdateStoragePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -29091,12 +32028,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteStoragePoolRequest.decode = function decode(reader, length) {
+                        DeleteStoragePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.DeleteStoragePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -29294,12 +32233,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SwitchActiveReplicaZoneRequest.decode = function decode(reader, length) {
+                        SwitchActiveReplicaZoneRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.SwitchActiveReplicaZoneRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -29438,6 +32379,11 @@
                          * @property {boolean|null} [allowAutoTiering] StoragePool allowAutoTiering
                          * @property {string|null} [replicaZone] StoragePool replicaZone
                          * @property {string|null} [zone] StoragePool zone
+                         * @property {boolean|null} [satisfiesPzs] StoragePool satisfiesPzs
+                         * @property {boolean|null} [satisfiesPzi] StoragePool satisfiesPzi
+                         * @property {boolean|null} [customPerformanceEnabled] StoragePool customPerformanceEnabled
+                         * @property {number|Long|null} [totalThroughputMibps] StoragePool totalThroughputMibps
+                         * @property {number|Long|null} [totalIops] StoragePool totalIops
                          */
     
                         /**
@@ -29616,15 +32562,50 @@
                          */
                         StoragePool.prototype.zone = "";
     
-                        // OneOf field names bound to virtual getters and setters
-                        var $oneOfFields;
-    
                         /**
-                         * StoragePool _globalAccessAllowed.
-                         * @member {"globalAccessAllowed"|undefined} _globalAccessAllowed
+                         * StoragePool satisfiesPzs.
+                         * @member {boolean} satisfiesPzs
                          * @memberof google.cloud.netapp.v1.StoragePool
                          * @instance
                          */
+                        StoragePool.prototype.satisfiesPzs = false;
+    
+                        /**
+                         * StoragePool satisfiesPzi.
+                         * @member {boolean} satisfiesPzi
+                         * @memberof google.cloud.netapp.v1.StoragePool
+                         * @instance
+                         */
+                        StoragePool.prototype.satisfiesPzi = false;
+    
+                        /**
+                         * StoragePool customPerformanceEnabled.
+                         * @member {boolean} customPerformanceEnabled
+                         * @memberof google.cloud.netapp.v1.StoragePool
+                         * @instance
+                         */
+                        StoragePool.prototype.customPerformanceEnabled = false;
+    
+                        /**
+                         * StoragePool totalThroughputMibps.
+                         * @member {number|Long} totalThroughputMibps
+                         * @memberof google.cloud.netapp.v1.StoragePool
+                         * @instance
+                         */
+                        StoragePool.prototype.totalThroughputMibps = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                        /**
+                         * StoragePool totalIops.
+                         * @member {number|Long} totalIops
+                         * @memberof google.cloud.netapp.v1.StoragePool
+                         * @instance
+                         */
+                        StoragePool.prototype.totalIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(StoragePool.prototype, "_globalAccessAllowed", {
                             get: $util.oneOfGetter($oneOfFields = ["globalAccessAllowed"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -29695,6 +32676,16 @@
                                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.replicaZone);
                             if (message.zone != null && Object.hasOwnProperty.call(message, "zone"))
                                 writer.uint32(/* id 21, wireType 2 =*/170).string(message.zone);
+                            if (message.satisfiesPzs != null && Object.hasOwnProperty.call(message, "satisfiesPzs"))
+                                writer.uint32(/* id 23, wireType 0 =*/184).bool(message.satisfiesPzs);
+                            if (message.satisfiesPzi != null && Object.hasOwnProperty.call(message, "satisfiesPzi"))
+                                writer.uint32(/* id 24, wireType 0 =*/192).bool(message.satisfiesPzi);
+                            if (message.customPerformanceEnabled != null && Object.hasOwnProperty.call(message, "customPerformanceEnabled"))
+                                writer.uint32(/* id 25, wireType 0 =*/200).bool(message.customPerformanceEnabled);
+                            if (message.totalThroughputMibps != null && Object.hasOwnProperty.call(message, "totalThroughputMibps"))
+                                writer.uint32(/* id 26, wireType 0 =*/208).int64(message.totalThroughputMibps);
+                            if (message.totalIops != null && Object.hasOwnProperty.call(message, "totalIops"))
+                                writer.uint32(/* id 27, wireType 0 =*/216).int64(message.totalIops);
                             return writer;
                         };
     
@@ -29722,12 +32713,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StoragePool.decode = function decode(reader, length) {
+                        StoragePool.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.StoragePool(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -29826,6 +32819,26 @@
                                     }
                                 case 21: {
                                         message.zone = reader.string();
+                                        break;
+                                    }
+                                case 23: {
+                                        message.satisfiesPzs = reader.bool();
+                                        break;
+                                    }
+                                case 24: {
+                                        message.satisfiesPzi = reader.bool();
+                                        break;
+                                    }
+                                case 25: {
+                                        message.customPerformanceEnabled = reader.bool();
+                                        break;
+                                    }
+                                case 26: {
+                                        message.totalThroughputMibps = reader.int64();
+                                        break;
+                                    }
+                                case 27: {
+                                        message.totalIops = reader.int64();
                                         break;
                                     }
                                 default:
@@ -29958,6 +32971,21 @@
                             if (message.zone != null && message.hasOwnProperty("zone"))
                                 if (!$util.isString(message.zone))
                                     return "zone: string expected";
+                            if (message.satisfiesPzs != null && message.hasOwnProperty("satisfiesPzs"))
+                                if (typeof message.satisfiesPzs !== "boolean")
+                                    return "satisfiesPzs: boolean expected";
+                            if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
+                                if (typeof message.satisfiesPzi !== "boolean")
+                                    return "satisfiesPzi: boolean expected";
+                            if (message.customPerformanceEnabled != null && message.hasOwnProperty("customPerformanceEnabled"))
+                                if (typeof message.customPerformanceEnabled !== "boolean")
+                                    return "customPerformanceEnabled: boolean expected";
+                            if (message.totalThroughputMibps != null && message.hasOwnProperty("totalThroughputMibps"))
+                                if (!$util.isInteger(message.totalThroughputMibps) && !(message.totalThroughputMibps && $util.isInteger(message.totalThroughputMibps.low) && $util.isInteger(message.totalThroughputMibps.high)))
+                                    return "totalThroughputMibps: integer|Long expected";
+                            if (message.totalIops != null && message.hasOwnProperty("totalIops"))
+                                if (!$util.isInteger(message.totalIops) && !(message.totalIops && $util.isInteger(message.totalIops.low) && $util.isInteger(message.totalIops.high)))
+                                    return "totalIops: integer|Long expected";
                             return null;
                         };
     
@@ -30117,6 +33145,30 @@
                                 message.replicaZone = String(object.replicaZone);
                             if (object.zone != null)
                                 message.zone = String(object.zone);
+                            if (object.satisfiesPzs != null)
+                                message.satisfiesPzs = Boolean(object.satisfiesPzs);
+                            if (object.satisfiesPzi != null)
+                                message.satisfiesPzi = Boolean(object.satisfiesPzi);
+                            if (object.customPerformanceEnabled != null)
+                                message.customPerformanceEnabled = Boolean(object.customPerformanceEnabled);
+                            if (object.totalThroughputMibps != null)
+                                if ($util.Long)
+                                    (message.totalThroughputMibps = $util.Long.fromValue(object.totalThroughputMibps)).unsigned = false;
+                                else if (typeof object.totalThroughputMibps === "string")
+                                    message.totalThroughputMibps = parseInt(object.totalThroughputMibps, 10);
+                                else if (typeof object.totalThroughputMibps === "number")
+                                    message.totalThroughputMibps = object.totalThroughputMibps;
+                                else if (typeof object.totalThroughputMibps === "object")
+                                    message.totalThroughputMibps = new $util.LongBits(object.totalThroughputMibps.low >>> 0, object.totalThroughputMibps.high >>> 0).toNumber();
+                            if (object.totalIops != null)
+                                if ($util.Long)
+                                    (message.totalIops = $util.Long.fromValue(object.totalIops)).unsigned = false;
+                                else if (typeof object.totalIops === "string")
+                                    message.totalIops = parseInt(object.totalIops, 10);
+                                else if (typeof object.totalIops === "number")
+                                    message.totalIops = object.totalIops;
+                                else if (typeof object.totalIops === "object")
+                                    message.totalIops = new $util.LongBits(object.totalIops.low >>> 0, object.totalIops.high >>> 0).toNumber();
                             return message;
                         };
     
@@ -30162,6 +33214,19 @@
                                 object.allowAutoTiering = false;
                                 object.replicaZone = "";
                                 object.zone = "";
+                                object.satisfiesPzs = false;
+                                object.satisfiesPzi = false;
+                                object.customPerformanceEnabled = false;
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, false);
+                                    object.totalThroughputMibps = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.totalThroughputMibps = options.longs === String ? "0" : 0;
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, false);
+                                    object.totalIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.totalIops = options.longs === String ? "0" : 0;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -30216,6 +33281,22 @@
                                 object.replicaZone = message.replicaZone;
                             if (message.zone != null && message.hasOwnProperty("zone"))
                                 object.zone = message.zone;
+                            if (message.satisfiesPzs != null && message.hasOwnProperty("satisfiesPzs"))
+                                object.satisfiesPzs = message.satisfiesPzs;
+                            if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
+                                object.satisfiesPzi = message.satisfiesPzi;
+                            if (message.customPerformanceEnabled != null && message.hasOwnProperty("customPerformanceEnabled"))
+                                object.customPerformanceEnabled = message.customPerformanceEnabled;
+                            if (message.totalThroughputMibps != null && message.hasOwnProperty("totalThroughputMibps"))
+                                if (typeof message.totalThroughputMibps === "number")
+                                    object.totalThroughputMibps = options.longs === String ? String(message.totalThroughputMibps) : message.totalThroughputMibps;
+                                else
+                                    object.totalThroughputMibps = options.longs === String ? $util.Long.prototype.toString.call(message.totalThroughputMibps) : options.longs === Number ? new $util.LongBits(message.totalThroughputMibps.low >>> 0, message.totalThroughputMibps.high >>> 0).toNumber() : message.totalThroughputMibps;
+                            if (message.totalIops != null && message.hasOwnProperty("totalIops"))
+                                if (typeof message.totalIops === "number")
+                                    object.totalIops = options.longs === String ? String(message.totalIops) : message.totalIops;
+                                else
+                                    object.totalIops = options.longs === String ? $util.Long.prototype.toString.call(message.totalIops) : options.longs === Number ? new $util.LongBits(message.totalIops.low >>> 0, message.totalIops.high >>> 0).toNumber() : message.totalIops;
                             return object;
                         };
     
@@ -30272,6 +33353,254 @@
                         })();
     
                         return StoragePool;
+                    })();
+    
+                    v1.ValidateDirectoryServiceRequest = (function() {
+    
+                        /**
+                         * Properties of a ValidateDirectoryServiceRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @interface IValidateDirectoryServiceRequest
+                         * @property {string|null} [name] ValidateDirectoryServiceRequest name
+                         * @property {google.cloud.netapp.v1.DirectoryServiceType|null} [directoryServiceType] ValidateDirectoryServiceRequest directoryServiceType
+                         */
+    
+                        /**
+                         * Constructs a new ValidateDirectoryServiceRequest.
+                         * @memberof google.cloud.netapp.v1
+                         * @classdesc Represents a ValidateDirectoryServiceRequest.
+                         * @implements IValidateDirectoryServiceRequest
+                         * @constructor
+                         * @param {google.cloud.netapp.v1.IValidateDirectoryServiceRequest=} [properties] Properties to set
+                         */
+                        function ValidateDirectoryServiceRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ValidateDirectoryServiceRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @instance
+                         */
+                        ValidateDirectoryServiceRequest.prototype.name = "";
+    
+                        /**
+                         * ValidateDirectoryServiceRequest directoryServiceType.
+                         * @member {google.cloud.netapp.v1.DirectoryServiceType} directoryServiceType
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @instance
+                         */
+                        ValidateDirectoryServiceRequest.prototype.directoryServiceType = 0;
+    
+                        /**
+                         * Creates a new ValidateDirectoryServiceRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IValidateDirectoryServiceRequest=} [properties] Properties to set
+                         * @returns {google.cloud.netapp.v1.ValidateDirectoryServiceRequest} ValidateDirectoryServiceRequest instance
+                         */
+                        ValidateDirectoryServiceRequest.create = function create(properties) {
+                            return new ValidateDirectoryServiceRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ValidateDirectoryServiceRequest message. Does not implicitly {@link google.cloud.netapp.v1.ValidateDirectoryServiceRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IValidateDirectoryServiceRequest} message ValidateDirectoryServiceRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ValidateDirectoryServiceRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.directoryServiceType != null && Object.hasOwnProperty.call(message, "directoryServiceType"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.directoryServiceType);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ValidateDirectoryServiceRequest message, length delimited. Does not implicitly {@link google.cloud.netapp.v1.ValidateDirectoryServiceRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.IValidateDirectoryServiceRequest} message ValidateDirectoryServiceRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ValidateDirectoryServiceRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ValidateDirectoryServiceRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.netapp.v1.ValidateDirectoryServiceRequest} ValidateDirectoryServiceRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ValidateDirectoryServiceRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.netapp.v1.ValidateDirectoryServiceRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.directoryServiceType = reader.int32();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ValidateDirectoryServiceRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.netapp.v1.ValidateDirectoryServiceRequest} ValidateDirectoryServiceRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ValidateDirectoryServiceRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ValidateDirectoryServiceRequest message.
+                         * @function verify
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ValidateDirectoryServiceRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.directoryServiceType != null && message.hasOwnProperty("directoryServiceType"))
+                                switch (message.directoryServiceType) {
+                                default:
+                                    return "directoryServiceType: enum value expected";
+                                case 0:
+                                case 1:
+                                    break;
+                                }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ValidateDirectoryServiceRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.netapp.v1.ValidateDirectoryServiceRequest} ValidateDirectoryServiceRequest
+                         */
+                        ValidateDirectoryServiceRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.netapp.v1.ValidateDirectoryServiceRequest)
+                                return object;
+                            var message = new $root.google.cloud.netapp.v1.ValidateDirectoryServiceRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            switch (object.directoryServiceType) {
+                            default:
+                                if (typeof object.directoryServiceType === "number") {
+                                    message.directoryServiceType = object.directoryServiceType;
+                                    break;
+                                }
+                                break;
+                            case "DIRECTORY_SERVICE_TYPE_UNSPECIFIED":
+                            case 0:
+                                message.directoryServiceType = 0;
+                                break;
+                            case "ACTIVE_DIRECTORY":
+                            case 1:
+                                message.directoryServiceType = 1;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ValidateDirectoryServiceRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {google.cloud.netapp.v1.ValidateDirectoryServiceRequest} message ValidateDirectoryServiceRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ValidateDirectoryServiceRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.directoryServiceType = options.enums === String ? "DIRECTORY_SERVICE_TYPE_UNSPECIFIED" : 0;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.directoryServiceType != null && message.hasOwnProperty("directoryServiceType"))
+                                object.directoryServiceType = options.enums === String ? $root.google.cloud.netapp.v1.DirectoryServiceType[message.directoryServiceType] === undefined ? message.directoryServiceType : $root.google.cloud.netapp.v1.DirectoryServiceType[message.directoryServiceType] : message.directoryServiceType;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ValidateDirectoryServiceRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ValidateDirectoryServiceRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ValidateDirectoryServiceRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.netapp.v1.ValidateDirectoryServiceRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ValidateDirectoryServiceRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.netapp.v1.ValidateDirectoryServiceRequest";
+                        };
+    
+                        return ValidateDirectoryServiceRequest;
                     })();
     
                     return v1;
@@ -30478,12 +33807,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -30873,12 +34204,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -31102,12 +34435,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -31452,12 +34787,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -31836,12 +35173,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -32068,12 +35407,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -32437,12 +35778,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -32781,6 +36124,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -32882,6 +36226,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -32928,6 +36280,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -32955,12 +36309,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -33006,6 +36362,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -33100,6 +36460,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -33194,6 +36557,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -33223,6 +36588,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -33253,6 +36619,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -33394,12 +36762,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -33661,12 +37031,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -33869,12 +37241,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34077,12 +37451,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34285,12 +37661,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34558,12 +37936,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34937,12 +38317,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -35145,12 +38527,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -35377,12 +38761,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -35655,12 +39041,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -35981,12 +39369,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldInfo.decode = function decode(reader, length) {
+                FieldInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.FieldInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.format = reader.int32();
@@ -36252,12 +39642,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -36652,12 +40044,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37319,12 +40713,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37804,12 +41200,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -38048,12 +41446,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -38304,12 +41704,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -38649,12 +42051,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -39028,12 +42432,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -39553,12 +42959,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -39824,12 +43232,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -40143,12 +43553,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -40384,12 +43796,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -40641,12 +44055,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -40949,12 +44365,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -41453,12 +44871,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -42073,12 +45493,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -42530,12 +45952,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     if (message[".google.api.fieldInfo"] != null && Object.hasOwnProperty.call(message, ".google.api.fieldInfo"))
@@ -42567,12 +45986,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -43315,12 +46736,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -43611,12 +47034,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -43897,12 +47322,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -44209,12 +47636,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -44400,6 +47829,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -44459,6 +47889,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -44493,6 +47931,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -44520,12 +47960,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -44547,6 +47989,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -44607,6 +48053,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -44643,6 +48092,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -44666,6 +48117,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -44680,6 +48132,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -44867,12 +48321,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -45301,12 +48757,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -45640,12 +49098,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -45916,12 +49376,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -46451,12 +49913,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -46835,12 +50299,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -47125,12 +50591,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -47400,12 +50868,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -47711,12 +51181,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -47979,12 +51451,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -48296,12 +51770,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -48524,12 +52000,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -48765,12 +52243,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -49006,12 +52486,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -49220,12 +52702,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -49676,12 +53160,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -49956,12 +53442,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -50192,12 +53680,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -50445,12 +53935,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -50680,12 +54172,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -50883,12 +54377,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -51097,12 +54593,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -51329,12 +54827,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();
@@ -51581,12 +55081,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

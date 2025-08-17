@@ -1,5 +1,59 @@
 # Changelog
 
+## [2.4.0](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v2.3.0...discoveryengine-v2.4.0) (2025-07-28)
+
+
+### Features
+
+* [discoveryengine] add AssistantService ([#6524](https://github.com/googleapis/google-cloud-node/issues/6524)) ([fe83966](https://github.com/googleapis/google-cloud-node/commit/fe839667fab84d85b7dedc82947309579cf443c6))
+* [discoveryengine] add SessionService ([#6528](https://github.com/googleapis/google-cloud-node/issues/6528)) ([032112f](https://github.com/googleapis/google-cloud-node/commit/032112fc61ff177814bfde60f95bc5dbaf170605))
+
+## [2.3.0](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v2.2.0...discoveryengine-v2.3.0) (2025-07-09)
+
+
+### Features
+
+* [discoveryengine] add methods from gax to cache proto root and process custom error details ([#6396](https://github.com/googleapis/google-cloud-node/issues/6396)) ([9a504a4](https://github.com/googleapis/google-cloud-node/commit/9a504a4d8f8aeb6d86ac731fc969dc148b62ea5f))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [2.2.0](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v2.1.0...discoveryengine-v2.2.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([b3bd921](https://github.com/googleapis/google-cloud-node/commit/b3bd921a30b15a632d8e8495b91723d314c23c71))
+
+## [2.1.0](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v2.0.1...discoveryengine-v2.1.0) (2025-05-09)
+
+
+### Features
+
+* [discoveryengine] move serving config update API to GA ([#6211](https://github.com/googleapis/google-cloud-node/issues/6211)) ([2fcdb39](https://github.com/googleapis/google-cloud-node/commit/2fcdb39efdd799850847756f2dcf128d1262e1a0))
+
+## [2.0.1](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v2.0.0...discoveryengine-v2.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6185](https://github.com/googleapis/google-cloud-node/issues/6185)) ([ab30412](https://github.com/googleapis/google-cloud-node/commit/ab304122e3e825c9a76af7d6b0ef4ddc9aa6e906))
+
+## [2.0.0](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v1.14.0...discoveryengine-v2.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([afcb5c0](https://github.com/googleapis/google-cloud-node/commit/afcb5c07e82bc8349b9677766cd880f69a97f77f))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
 ## [1.14.0](https://github.com/googleapis/google-cloud-node/compare/discoveryengine-v1.13.0...discoveryengine-v1.14.0) (2024-09-10)
 
 

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -271,23 +271,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * ListChildAccountsRequest _labelId.
-                         * @member {"labelId"|undefined} _labelId
-                         * @memberof google.shopping.css.v1.ListChildAccountsRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(ListChildAccountsRequest.prototype, "_labelId", {
                             get: $util.oneOfGetter($oneOfFields = ["labelId"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * ListChildAccountsRequest _fullName.
-                         * @member {"fullName"|undefined} _fullName
-                         * @memberof google.shopping.css.v1.ListChildAccountsRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(ListChildAccountsRequest.prototype, "_fullName", {
                             get: $util.oneOfGetter($oneOfFields = ["fullName"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -354,12 +344,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListChildAccountsRequest.decode = function decode(reader, length) {
+                        ListChildAccountsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListChildAccountsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -638,12 +630,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListChildAccountsResponse.decode = function decode(reader, length) {
+                        ListChildAccountsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListChildAccountsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.accounts && message.accounts.length))
@@ -832,12 +826,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * GetAccountRequest _parent.
-                         * @member {"parent"|undefined} _parent
-                         * @memberof google.shopping.css.v1.GetAccountRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(GetAccountRequest.prototype, "_parent", {
                             get: $util.oneOfGetter($oneOfFields = ["parent"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -898,12 +887,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetAccountRequest.decode = function decode(reader, length) {
+                        GetAccountRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.GetAccountRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -1087,12 +1078,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * UpdateAccountLabelsRequest _parent.
-                         * @member {"parent"|undefined} _parent
-                         * @memberof google.shopping.css.v1.UpdateAccountLabelsRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(UpdateAccountLabelsRequest.prototype, "_parent", {
                             get: $util.oneOfGetter($oneOfFields = ["parent"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -1159,12 +1145,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateAccountLabelsRequest.decode = function decode(reader, length) {
+                        UpdateAccountLabelsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.UpdateAccountLabelsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -1436,34 +1424,19 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * Account _displayName.
-                         * @member {"displayName"|undefined} _displayName
-                         * @memberof google.shopping.css.v1.Account
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Account.prototype, "_displayName", {
                             get: $util.oneOfGetter($oneOfFields = ["displayName"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Account _homepageUri.
-                         * @member {"homepageUri"|undefined} _homepageUri
-                         * @memberof google.shopping.css.v1.Account
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Account.prototype, "_homepageUri", {
                             get: $util.oneOfGetter($oneOfFields = ["homepageUri"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Account _parent.
-                         * @member {"parent"|undefined} _parent
-                         * @memberof google.shopping.css.v1.Account
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Account.prototype, "_parent", {
                             get: $util.oneOfGetter($oneOfFields = ["parent"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -1544,12 +1517,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Account.decode = function decode(reader, length) {
+                        Account.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.Account();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2149,23 +2124,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * AccountLabel _displayName.
-                         * @member {"displayName"|undefined} _displayName
-                         * @memberof google.shopping.css.v1.AccountLabel
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AccountLabel.prototype, "_displayName", {
                             get: $util.oneOfGetter($oneOfFields = ["displayName"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * AccountLabel _description.
-                         * @member {"description"|undefined} _description
-                         * @memberof google.shopping.css.v1.AccountLabel
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(AccountLabel.prototype, "_description", {
                             get: $util.oneOfGetter($oneOfFields = ["description"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -2234,12 +2199,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AccountLabel.decode = function decode(reader, length) {
+                        AccountLabel.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.AccountLabel();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2597,12 +2564,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListAccountLabelsRequest.decode = function decode(reader, length) {
+                        ListAccountLabelsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListAccountLabelsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -2838,12 +2807,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListAccountLabelsResponse.decode = function decode(reader, length) {
+                        ListAccountLabelsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListAccountLabelsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.accountLabels && message.accountLabels.length))
@@ -3084,12 +3055,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateAccountLabelRequest.decode = function decode(reader, length) {
+                        CreateAccountLabelRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.CreateAccountLabelRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -3305,12 +3278,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateAccountLabelRequest.decode = function decode(reader, length) {
+                        UpdateAccountLabelRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.UpdateAccountLabelRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.accountLabel = $root.google.shopping.css.v1.AccountLabel.decode(reader, reader.uint32());
@@ -3513,12 +3488,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteAccountLabelRequest.decode = function decode(reader, length) {
+                        DeleteAccountLabelRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.DeleteAccountLabelRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4115,342 +4092,187 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * Attributes _cppLink.
-                         * @member {"cppLink"|undefined} _cppLink
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_cppLink", {
                             get: $util.oneOfGetter($oneOfFields = ["cppLink"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _cppMobileLink.
-                         * @member {"cppMobileLink"|undefined} _cppMobileLink
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_cppMobileLink", {
                             get: $util.oneOfGetter($oneOfFields = ["cppMobileLink"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _cppAdsRedirect.
-                         * @member {"cppAdsRedirect"|undefined} _cppAdsRedirect
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_cppAdsRedirect", {
                             get: $util.oneOfGetter($oneOfFields = ["cppAdsRedirect"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _numberOfOffers.
-                         * @member {"numberOfOffers"|undefined} _numberOfOffers
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_numberOfOffers", {
                             get: $util.oneOfGetter($oneOfFields = ["numberOfOffers"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _headlineOfferCondition.
-                         * @member {"headlineOfferCondition"|undefined} _headlineOfferCondition
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_headlineOfferCondition", {
                             get: $util.oneOfGetter($oneOfFields = ["headlineOfferCondition"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _headlineOfferLink.
-                         * @member {"headlineOfferLink"|undefined} _headlineOfferLink
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_headlineOfferLink", {
                             get: $util.oneOfGetter($oneOfFields = ["headlineOfferLink"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _headlineOfferMobileLink.
-                         * @member {"headlineOfferMobileLink"|undefined} _headlineOfferMobileLink
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_headlineOfferMobileLink", {
                             get: $util.oneOfGetter($oneOfFields = ["headlineOfferMobileLink"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _title.
-                         * @member {"title"|undefined} _title
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_title", {
                             get: $util.oneOfGetter($oneOfFields = ["title"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _imageLink.
-                         * @member {"imageLink"|undefined} _imageLink
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_imageLink", {
                             get: $util.oneOfGetter($oneOfFields = ["imageLink"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _description.
-                         * @member {"description"|undefined} _description
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_description", {
                             get: $util.oneOfGetter($oneOfFields = ["description"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _brand.
-                         * @member {"brand"|undefined} _brand
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_brand", {
                             get: $util.oneOfGetter($oneOfFields = ["brand"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _mpn.
-                         * @member {"mpn"|undefined} _mpn
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_mpn", {
                             get: $util.oneOfGetter($oneOfFields = ["mpn"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _gtin.
-                         * @member {"gtin"|undefined} _gtin
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_gtin", {
                             get: $util.oneOfGetter($oneOfFields = ["gtin"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _googleProductCategory.
-                         * @member {"googleProductCategory"|undefined} _googleProductCategory
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_googleProductCategory", {
                             get: $util.oneOfGetter($oneOfFields = ["googleProductCategory"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _adult.
-                         * @member {"adult"|undefined} _adult
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_adult", {
                             get: $util.oneOfGetter($oneOfFields = ["adult"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _multipack.
-                         * @member {"multipack"|undefined} _multipack
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_multipack", {
                             get: $util.oneOfGetter($oneOfFields = ["multipack"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _isBundle.
-                         * @member {"isBundle"|undefined} _isBundle
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_isBundle", {
                             get: $util.oneOfGetter($oneOfFields = ["isBundle"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _ageGroup.
-                         * @member {"ageGroup"|undefined} _ageGroup
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_ageGroup", {
                             get: $util.oneOfGetter($oneOfFields = ["ageGroup"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _color.
-                         * @member {"color"|undefined} _color
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_color", {
                             get: $util.oneOfGetter($oneOfFields = ["color"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _gender.
-                         * @member {"gender"|undefined} _gender
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_gender", {
                             get: $util.oneOfGetter($oneOfFields = ["gender"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _material.
-                         * @member {"material"|undefined} _material
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_material", {
                             get: $util.oneOfGetter($oneOfFields = ["material"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _pattern.
-                         * @member {"pattern"|undefined} _pattern
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_pattern", {
                             get: $util.oneOfGetter($oneOfFields = ["pattern"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _size.
-                         * @member {"size"|undefined} _size
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_size", {
                             get: $util.oneOfGetter($oneOfFields = ["size"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _sizeSystem.
-                         * @member {"sizeSystem"|undefined} _sizeSystem
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_sizeSystem", {
                             get: $util.oneOfGetter($oneOfFields = ["sizeSystem"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _itemGroupId.
-                         * @member {"itemGroupId"|undefined} _itemGroupId
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_itemGroupId", {
                             get: $util.oneOfGetter($oneOfFields = ["itemGroupId"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _pause.
-                         * @member {"pause"|undefined} _pause
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_pause", {
                             get: $util.oneOfGetter($oneOfFields = ["pause"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _customLabel_0.
-                         * @member {"customLabel_0"|undefined} _customLabel_0
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_customLabel_0", {
                             get: $util.oneOfGetter($oneOfFields = ["customLabel_0"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _customLabel_1.
-                         * @member {"customLabel_1"|undefined} _customLabel_1
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_customLabel_1", {
                             get: $util.oneOfGetter($oneOfFields = ["customLabel_1"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _customLabel_2.
-                         * @member {"customLabel_2"|undefined} _customLabel_2
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_customLabel_2", {
                             get: $util.oneOfGetter($oneOfFields = ["customLabel_2"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _customLabel_3.
-                         * @member {"customLabel_3"|undefined} _customLabel_3
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_customLabel_3", {
                             get: $util.oneOfGetter($oneOfFields = ["customLabel_3"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * Attributes _customLabel_4.
-                         * @member {"customLabel_4"|undefined} _customLabel_4
-                         * @memberof google.shopping.css.v1.Attributes
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(Attributes.prototype, "_customLabel_4", {
                             get: $util.oneOfGetter($oneOfFields = ["customLabel_4"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -4615,12 +4437,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Attributes.decode = function decode(reader, length) {
+                        Attributes.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.Attributes();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.cppLink = reader.string();
@@ -5753,12 +5577,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Certification.decode = function decode(reader, length) {
+                        Certification.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.Certification();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6003,12 +5829,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ProductDetail.decode = function decode(reader, length) {
+                        ProductDetail.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ProductDetail();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.sectionName = reader.string();
@@ -6242,12 +6070,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ProductDimension.decode = function decode(reader, length) {
+                        ProductDimension.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ProductDimension();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.value = reader.double();
@@ -6469,12 +6299,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ProductWeight.decode = function decode(reader, length) {
+                        ProductWeight.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ProductWeight();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.value = reader.double();
@@ -6733,12 +6565,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CssProductStatus.decode = function decode(reader, length) {
+                        CssProductStatus.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.CssProductStatus();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 3: {
                                         if (!(message.destinationStatuses && message.destinationStatuses.length))
@@ -7076,12 +6910,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            DestinationStatus.decode = function decode(reader, length) {
+                            DestinationStatus.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.CssProductStatus.DestinationStatus();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.destination = reader.string();
@@ -7449,12 +7285,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ItemLevelIssue.decode = function decode(reader, length) {
+                            ItemLevelIssue.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.CssProductStatus.ItemLevelIssue();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.code = reader.string();
@@ -7789,12 +7627,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HeadlineOfferSubscriptionCost.decode = function decode(reader, length) {
+                        HeadlineOfferSubscriptionCost.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.HeadlineOfferSubscriptionCost();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.period = reader.int32();
@@ -8082,12 +7922,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HeadlineOfferInstallment.decode = function decode(reader, length) {
+                        HeadlineOfferInstallment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.HeadlineOfferInstallment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.months = reader.int64();
@@ -8331,6 +8173,39 @@
                          */
     
                         /**
+                         * Callback as used by {@link google.shopping.css.v1.CssProductInputsService|updateCssProductInput}.
+                         * @memberof google.shopping.css.v1.CssProductInputsService
+                         * @typedef UpdateCssProductInputCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.shopping.css.v1.CssProductInput} [response] CssProductInput
+                         */
+    
+                        /**
+                         * Calls UpdateCssProductInput.
+                         * @function updateCssProductInput
+                         * @memberof google.shopping.css.v1.CssProductInputsService
+                         * @instance
+                         * @param {google.shopping.css.v1.IUpdateCssProductInputRequest} request UpdateCssProductInputRequest message or plain object
+                         * @param {google.shopping.css.v1.CssProductInputsService.UpdateCssProductInputCallback} callback Node-style callback called with the error, if any, and CssProductInput
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CssProductInputsService.prototype.updateCssProductInput = function updateCssProductInput(request, callback) {
+                            return this.rpcCall(updateCssProductInput, $root.google.shopping.css.v1.UpdateCssProductInputRequest, $root.google.shopping.css.v1.CssProductInput, request, callback);
+                        }, "name", { value: "UpdateCssProductInput" });
+    
+                        /**
+                         * Calls UpdateCssProductInput.
+                         * @function updateCssProductInput
+                         * @memberof google.shopping.css.v1.CssProductInputsService
+                         * @instance
+                         * @param {google.shopping.css.v1.IUpdateCssProductInputRequest} request UpdateCssProductInputRequest message or plain object
+                         * @returns {Promise<google.shopping.css.v1.CssProductInput>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
                          * Callback as used by {@link google.shopping.css.v1.CssProductInputsService|deleteCssProductInput}.
                          * @memberof google.shopping.css.v1.CssProductInputsService
                          * @typedef DeleteCssProductInputCallback
@@ -8530,12 +8405,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CssProductInput.decode = function decode(reader, length) {
+                        CssProductInput.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.CssProductInput();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8870,12 +8747,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        InsertCssProductInputRequest.decode = function decode(reader, length) {
+                        InsertCssProductInputRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.InsertCssProductInputRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -9032,6 +8911,245 @@
                         return InsertCssProductInputRequest;
                     })();
     
+                    v1.UpdateCssProductInputRequest = (function() {
+    
+                        /**
+                         * Properties of an UpdateCssProductInputRequest.
+                         * @memberof google.shopping.css.v1
+                         * @interface IUpdateCssProductInputRequest
+                         * @property {google.shopping.css.v1.ICssProductInput|null} [cssProductInput] UpdateCssProductInputRequest cssProductInput
+                         * @property {google.protobuf.IFieldMask|null} [updateMask] UpdateCssProductInputRequest updateMask
+                         */
+    
+                        /**
+                         * Constructs a new UpdateCssProductInputRequest.
+                         * @memberof google.shopping.css.v1
+                         * @classdesc Represents an UpdateCssProductInputRequest.
+                         * @implements IUpdateCssProductInputRequest
+                         * @constructor
+                         * @param {google.shopping.css.v1.IUpdateCssProductInputRequest=} [properties] Properties to set
+                         */
+                        function UpdateCssProductInputRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * UpdateCssProductInputRequest cssProductInput.
+                         * @member {google.shopping.css.v1.ICssProductInput|null|undefined} cssProductInput
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @instance
+                         */
+                        UpdateCssProductInputRequest.prototype.cssProductInput = null;
+    
+                        /**
+                         * UpdateCssProductInputRequest updateMask.
+                         * @member {google.protobuf.IFieldMask|null|undefined} updateMask
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @instance
+                         */
+                        UpdateCssProductInputRequest.prototype.updateMask = null;
+    
+                        /**
+                         * Creates a new UpdateCssProductInputRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {google.shopping.css.v1.IUpdateCssProductInputRequest=} [properties] Properties to set
+                         * @returns {google.shopping.css.v1.UpdateCssProductInputRequest} UpdateCssProductInputRequest instance
+                         */
+                        UpdateCssProductInputRequest.create = function create(properties) {
+                            return new UpdateCssProductInputRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified UpdateCssProductInputRequest message. Does not implicitly {@link google.shopping.css.v1.UpdateCssProductInputRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {google.shopping.css.v1.IUpdateCssProductInputRequest} message UpdateCssProductInputRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UpdateCssProductInputRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.cssProductInput != null && Object.hasOwnProperty.call(message, "cssProductInput"))
+                                $root.google.shopping.css.v1.CssProductInput.encode(message.cssProductInput, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.updateMask != null && Object.hasOwnProperty.call(message, "updateMask"))
+                                $root.google.protobuf.FieldMask.encode(message.updateMask, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified UpdateCssProductInputRequest message, length delimited. Does not implicitly {@link google.shopping.css.v1.UpdateCssProductInputRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {google.shopping.css.v1.IUpdateCssProductInputRequest} message UpdateCssProductInputRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UpdateCssProductInputRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an UpdateCssProductInputRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.shopping.css.v1.UpdateCssProductInputRequest} UpdateCssProductInputRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UpdateCssProductInputRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.UpdateCssProductInputRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.cssProductInput = $root.google.shopping.css.v1.CssProductInput.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an UpdateCssProductInputRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.shopping.css.v1.UpdateCssProductInputRequest} UpdateCssProductInputRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UpdateCssProductInputRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an UpdateCssProductInputRequest message.
+                         * @function verify
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        UpdateCssProductInputRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.cssProductInput != null && message.hasOwnProperty("cssProductInput")) {
+                                var error = $root.google.shopping.css.v1.CssProductInput.verify(message.cssProductInput);
+                                if (error)
+                                    return "cssProductInput." + error;
+                            }
+                            if (message.updateMask != null && message.hasOwnProperty("updateMask")) {
+                                var error = $root.google.protobuf.FieldMask.verify(message.updateMask);
+                                if (error)
+                                    return "updateMask." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an UpdateCssProductInputRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.shopping.css.v1.UpdateCssProductInputRequest} UpdateCssProductInputRequest
+                         */
+                        UpdateCssProductInputRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.shopping.css.v1.UpdateCssProductInputRequest)
+                                return object;
+                            var message = new $root.google.shopping.css.v1.UpdateCssProductInputRequest();
+                            if (object.cssProductInput != null) {
+                                if (typeof object.cssProductInput !== "object")
+                                    throw TypeError(".google.shopping.css.v1.UpdateCssProductInputRequest.cssProductInput: object expected");
+                                message.cssProductInput = $root.google.shopping.css.v1.CssProductInput.fromObject(object.cssProductInput);
+                            }
+                            if (object.updateMask != null) {
+                                if (typeof object.updateMask !== "object")
+                                    throw TypeError(".google.shopping.css.v1.UpdateCssProductInputRequest.updateMask: object expected");
+                                message.updateMask = $root.google.protobuf.FieldMask.fromObject(object.updateMask);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an UpdateCssProductInputRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {google.shopping.css.v1.UpdateCssProductInputRequest} message UpdateCssProductInputRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        UpdateCssProductInputRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.cssProductInput = null;
+                                object.updateMask = null;
+                            }
+                            if (message.cssProductInput != null && message.hasOwnProperty("cssProductInput"))
+                                object.cssProductInput = $root.google.shopping.css.v1.CssProductInput.toObject(message.cssProductInput, options);
+                            if (message.updateMask != null && message.hasOwnProperty("updateMask"))
+                                object.updateMask = $root.google.protobuf.FieldMask.toObject(message.updateMask, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this UpdateCssProductInputRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        UpdateCssProductInputRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for UpdateCssProductInputRequest
+                         * @function getTypeUrl
+                         * @memberof google.shopping.css.v1.UpdateCssProductInputRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        UpdateCssProductInputRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.shopping.css.v1.UpdateCssProductInputRequest";
+                        };
+    
+                        return UpdateCssProductInputRequest;
+                    })();
+    
                     v1.DeleteCssProductInputRequest = (function() {
     
                         /**
@@ -9076,12 +9194,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * DeleteCssProductInputRequest _supplementalFeedId.
-                         * @member {"supplementalFeedId"|undefined} _supplementalFeedId
-                         * @memberof google.shopping.css.v1.DeleteCssProductInputRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DeleteCssProductInputRequest.prototype, "_supplementalFeedId", {
                             get: $util.oneOfGetter($oneOfFields = ["supplementalFeedId"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -9142,12 +9255,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteCssProductInputRequest.decode = function decode(reader, length) {
+                        DeleteCssProductInputRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.DeleteCssProductInputRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -9473,12 +9588,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetCssProductRequest.decode = function decode(reader, length) {
+                        GetCssProductRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.GetCssProductRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -9744,12 +9861,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CssProduct.decode = function decode(reader, length) {
+                        CssProduct.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.CssProduct();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10072,12 +10191,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCssProductsRequest.decode = function decode(reader, length) {
+                        ListCssProductsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListCssProductsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -10313,12 +10434,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCssProductsResponse.decode = function decode(reader, length) {
+                        ListCssProductsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListCssProductsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.cssProducts && message.cssProducts.length))
@@ -10463,6 +10586,1213 @@
                         return ListCssProductsResponse;
                     })();
     
+                    v1.QuotaService = (function() {
+    
+                        /**
+                         * Constructs a new QuotaService service.
+                         * @memberof google.shopping.css.v1
+                         * @classdesc Represents a QuotaService
+                         * @extends $protobuf.rpc.Service
+                         * @constructor
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         */
+                        function QuotaService(rpcImpl, requestDelimited, responseDelimited) {
+                            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                        }
+    
+                        (QuotaService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = QuotaService;
+    
+                        /**
+                         * Creates new QuotaService service using the specified rpc implementation.
+                         * @function create
+                         * @memberof google.shopping.css.v1.QuotaService
+                         * @static
+                         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                         * @returns {QuotaService} RPC service. Useful where requests and/or responses are streamed.
+                         */
+                        QuotaService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                            return new this(rpcImpl, requestDelimited, responseDelimited);
+                        };
+    
+                        /**
+                         * Callback as used by {@link google.shopping.css.v1.QuotaService|listQuotaGroups}.
+                         * @memberof google.shopping.css.v1.QuotaService
+                         * @typedef ListQuotaGroupsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.shopping.css.v1.ListQuotaGroupsResponse} [response] ListQuotaGroupsResponse
+                         */
+    
+                        /**
+                         * Calls ListQuotaGroups.
+                         * @function listQuotaGroups
+                         * @memberof google.shopping.css.v1.QuotaService
+                         * @instance
+                         * @param {google.shopping.css.v1.IListQuotaGroupsRequest} request ListQuotaGroupsRequest message or plain object
+                         * @param {google.shopping.css.v1.QuotaService.ListQuotaGroupsCallback} callback Node-style callback called with the error, if any, and ListQuotaGroupsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(QuotaService.prototype.listQuotaGroups = function listQuotaGroups(request, callback) {
+                            return this.rpcCall(listQuotaGroups, $root.google.shopping.css.v1.ListQuotaGroupsRequest, $root.google.shopping.css.v1.ListQuotaGroupsResponse, request, callback);
+                        }, "name", { value: "ListQuotaGroups" });
+    
+                        /**
+                         * Calls ListQuotaGroups.
+                         * @function listQuotaGroups
+                         * @memberof google.shopping.css.v1.QuotaService
+                         * @instance
+                         * @param {google.shopping.css.v1.IListQuotaGroupsRequest} request ListQuotaGroupsRequest message or plain object
+                         * @returns {Promise<google.shopping.css.v1.ListQuotaGroupsResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        return QuotaService;
+                    })();
+    
+                    v1.QuotaGroup = (function() {
+    
+                        /**
+                         * Properties of a QuotaGroup.
+                         * @memberof google.shopping.css.v1
+                         * @interface IQuotaGroup
+                         * @property {string|null} [name] QuotaGroup name
+                         * @property {number|Long|null} [quotaUsage] QuotaGroup quotaUsage
+                         * @property {number|Long|null} [quotaLimit] QuotaGroup quotaLimit
+                         * @property {number|Long|null} [quotaMinuteLimit] QuotaGroup quotaMinuteLimit
+                         * @property {Array.<google.shopping.css.v1.IMethodDetails>|null} [methodDetails] QuotaGroup methodDetails
+                         */
+    
+                        /**
+                         * Constructs a new QuotaGroup.
+                         * @memberof google.shopping.css.v1
+                         * @classdesc Represents a QuotaGroup.
+                         * @implements IQuotaGroup
+                         * @constructor
+                         * @param {google.shopping.css.v1.IQuotaGroup=} [properties] Properties to set
+                         */
+                        function QuotaGroup(properties) {
+                            this.methodDetails = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * QuotaGroup name.
+                         * @member {string} name
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @instance
+                         */
+                        QuotaGroup.prototype.name = "";
+    
+                        /**
+                         * QuotaGroup quotaUsage.
+                         * @member {number|Long} quotaUsage
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @instance
+                         */
+                        QuotaGroup.prototype.quotaUsage = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                        /**
+                         * QuotaGroup quotaLimit.
+                         * @member {number|Long} quotaLimit
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @instance
+                         */
+                        QuotaGroup.prototype.quotaLimit = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                        /**
+                         * QuotaGroup quotaMinuteLimit.
+                         * @member {number|Long} quotaMinuteLimit
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @instance
+                         */
+                        QuotaGroup.prototype.quotaMinuteLimit = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                        /**
+                         * QuotaGroup methodDetails.
+                         * @member {Array.<google.shopping.css.v1.IMethodDetails>} methodDetails
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @instance
+                         */
+                        QuotaGroup.prototype.methodDetails = $util.emptyArray;
+    
+                        /**
+                         * Creates a new QuotaGroup instance using the specified properties.
+                         * @function create
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {google.shopping.css.v1.IQuotaGroup=} [properties] Properties to set
+                         * @returns {google.shopping.css.v1.QuotaGroup} QuotaGroup instance
+                         */
+                        QuotaGroup.create = function create(properties) {
+                            return new QuotaGroup(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified QuotaGroup message. Does not implicitly {@link google.shopping.css.v1.QuotaGroup.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {google.shopping.css.v1.IQuotaGroup} message QuotaGroup message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        QuotaGroup.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.quotaUsage != null && Object.hasOwnProperty.call(message, "quotaUsage"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.quotaUsage);
+                            if (message.quotaLimit != null && Object.hasOwnProperty.call(message, "quotaLimit"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.quotaLimit);
+                            if (message.methodDetails != null && message.methodDetails.length)
+                                for (var i = 0; i < message.methodDetails.length; ++i)
+                                    $root.google.shopping.css.v1.MethodDetails.encode(message.methodDetails[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.quotaMinuteLimit != null && Object.hasOwnProperty.call(message, "quotaMinuteLimit"))
+                                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.quotaMinuteLimit);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified QuotaGroup message, length delimited. Does not implicitly {@link google.shopping.css.v1.QuotaGroup.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {google.shopping.css.v1.IQuotaGroup} message QuotaGroup message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        QuotaGroup.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a QuotaGroup message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.shopping.css.v1.QuotaGroup} QuotaGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        QuotaGroup.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.QuotaGroup();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.quotaUsage = reader.int64();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.quotaLimit = reader.int64();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.quotaMinuteLimit = reader.int64();
+                                        break;
+                                    }
+                                case 4: {
+                                        if (!(message.methodDetails && message.methodDetails.length))
+                                            message.methodDetails = [];
+                                        message.methodDetails.push($root.google.shopping.css.v1.MethodDetails.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a QuotaGroup message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.shopping.css.v1.QuotaGroup} QuotaGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        QuotaGroup.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a QuotaGroup message.
+                         * @function verify
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        QuotaGroup.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.quotaUsage != null && message.hasOwnProperty("quotaUsage"))
+                                if (!$util.isInteger(message.quotaUsage) && !(message.quotaUsage && $util.isInteger(message.quotaUsage.low) && $util.isInteger(message.quotaUsage.high)))
+                                    return "quotaUsage: integer|Long expected";
+                            if (message.quotaLimit != null && message.hasOwnProperty("quotaLimit"))
+                                if (!$util.isInteger(message.quotaLimit) && !(message.quotaLimit && $util.isInteger(message.quotaLimit.low) && $util.isInteger(message.quotaLimit.high)))
+                                    return "quotaLimit: integer|Long expected";
+                            if (message.quotaMinuteLimit != null && message.hasOwnProperty("quotaMinuteLimit"))
+                                if (!$util.isInteger(message.quotaMinuteLimit) && !(message.quotaMinuteLimit && $util.isInteger(message.quotaMinuteLimit.low) && $util.isInteger(message.quotaMinuteLimit.high)))
+                                    return "quotaMinuteLimit: integer|Long expected";
+                            if (message.methodDetails != null && message.hasOwnProperty("methodDetails")) {
+                                if (!Array.isArray(message.methodDetails))
+                                    return "methodDetails: array expected";
+                                for (var i = 0; i < message.methodDetails.length; ++i) {
+                                    var error = $root.google.shopping.css.v1.MethodDetails.verify(message.methodDetails[i]);
+                                    if (error)
+                                        return "methodDetails." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a QuotaGroup message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.shopping.css.v1.QuotaGroup} QuotaGroup
+                         */
+                        QuotaGroup.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.shopping.css.v1.QuotaGroup)
+                                return object;
+                            var message = new $root.google.shopping.css.v1.QuotaGroup();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.quotaUsage != null)
+                                if ($util.Long)
+                                    (message.quotaUsage = $util.Long.fromValue(object.quotaUsage)).unsigned = false;
+                                else if (typeof object.quotaUsage === "string")
+                                    message.quotaUsage = parseInt(object.quotaUsage, 10);
+                                else if (typeof object.quotaUsage === "number")
+                                    message.quotaUsage = object.quotaUsage;
+                                else if (typeof object.quotaUsage === "object")
+                                    message.quotaUsage = new $util.LongBits(object.quotaUsage.low >>> 0, object.quotaUsage.high >>> 0).toNumber();
+                            if (object.quotaLimit != null)
+                                if ($util.Long)
+                                    (message.quotaLimit = $util.Long.fromValue(object.quotaLimit)).unsigned = false;
+                                else if (typeof object.quotaLimit === "string")
+                                    message.quotaLimit = parseInt(object.quotaLimit, 10);
+                                else if (typeof object.quotaLimit === "number")
+                                    message.quotaLimit = object.quotaLimit;
+                                else if (typeof object.quotaLimit === "object")
+                                    message.quotaLimit = new $util.LongBits(object.quotaLimit.low >>> 0, object.quotaLimit.high >>> 0).toNumber();
+                            if (object.quotaMinuteLimit != null)
+                                if ($util.Long)
+                                    (message.quotaMinuteLimit = $util.Long.fromValue(object.quotaMinuteLimit)).unsigned = false;
+                                else if (typeof object.quotaMinuteLimit === "string")
+                                    message.quotaMinuteLimit = parseInt(object.quotaMinuteLimit, 10);
+                                else if (typeof object.quotaMinuteLimit === "number")
+                                    message.quotaMinuteLimit = object.quotaMinuteLimit;
+                                else if (typeof object.quotaMinuteLimit === "object")
+                                    message.quotaMinuteLimit = new $util.LongBits(object.quotaMinuteLimit.low >>> 0, object.quotaMinuteLimit.high >>> 0).toNumber();
+                            if (object.methodDetails) {
+                                if (!Array.isArray(object.methodDetails))
+                                    throw TypeError(".google.shopping.css.v1.QuotaGroup.methodDetails: array expected");
+                                message.methodDetails = [];
+                                for (var i = 0; i < object.methodDetails.length; ++i) {
+                                    if (typeof object.methodDetails[i] !== "object")
+                                        throw TypeError(".google.shopping.css.v1.QuotaGroup.methodDetails: object expected");
+                                    message.methodDetails[i] = $root.google.shopping.css.v1.MethodDetails.fromObject(object.methodDetails[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a QuotaGroup message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {google.shopping.css.v1.QuotaGroup} message QuotaGroup
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        QuotaGroup.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.methodDetails = [];
+                            if (options.defaults) {
+                                object.name = "";
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, false);
+                                    object.quotaUsage = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.quotaUsage = options.longs === String ? "0" : 0;
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, false);
+                                    object.quotaLimit = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.quotaLimit = options.longs === String ? "0" : 0;
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, false);
+                                    object.quotaMinuteLimit = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.quotaMinuteLimit = options.longs === String ? "0" : 0;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.quotaUsage != null && message.hasOwnProperty("quotaUsage"))
+                                if (typeof message.quotaUsage === "number")
+                                    object.quotaUsage = options.longs === String ? String(message.quotaUsage) : message.quotaUsage;
+                                else
+                                    object.quotaUsage = options.longs === String ? $util.Long.prototype.toString.call(message.quotaUsage) : options.longs === Number ? new $util.LongBits(message.quotaUsage.low >>> 0, message.quotaUsage.high >>> 0).toNumber() : message.quotaUsage;
+                            if (message.quotaLimit != null && message.hasOwnProperty("quotaLimit"))
+                                if (typeof message.quotaLimit === "number")
+                                    object.quotaLimit = options.longs === String ? String(message.quotaLimit) : message.quotaLimit;
+                                else
+                                    object.quotaLimit = options.longs === String ? $util.Long.prototype.toString.call(message.quotaLimit) : options.longs === Number ? new $util.LongBits(message.quotaLimit.low >>> 0, message.quotaLimit.high >>> 0).toNumber() : message.quotaLimit;
+                            if (message.methodDetails && message.methodDetails.length) {
+                                object.methodDetails = [];
+                                for (var j = 0; j < message.methodDetails.length; ++j)
+                                    object.methodDetails[j] = $root.google.shopping.css.v1.MethodDetails.toObject(message.methodDetails[j], options);
+                            }
+                            if (message.quotaMinuteLimit != null && message.hasOwnProperty("quotaMinuteLimit"))
+                                if (typeof message.quotaMinuteLimit === "number")
+                                    object.quotaMinuteLimit = options.longs === String ? String(message.quotaMinuteLimit) : message.quotaMinuteLimit;
+                                else
+                                    object.quotaMinuteLimit = options.longs === String ? $util.Long.prototype.toString.call(message.quotaMinuteLimit) : options.longs === Number ? new $util.LongBits(message.quotaMinuteLimit.low >>> 0, message.quotaMinuteLimit.high >>> 0).toNumber() : message.quotaMinuteLimit;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this QuotaGroup to JSON.
+                         * @function toJSON
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        QuotaGroup.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for QuotaGroup
+                         * @function getTypeUrl
+                         * @memberof google.shopping.css.v1.QuotaGroup
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        QuotaGroup.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.shopping.css.v1.QuotaGroup";
+                        };
+    
+                        return QuotaGroup;
+                    })();
+    
+                    v1.MethodDetails = (function() {
+    
+                        /**
+                         * Properties of a MethodDetails.
+                         * @memberof google.shopping.css.v1
+                         * @interface IMethodDetails
+                         * @property {string|null} [method] MethodDetails method
+                         * @property {string|null} [version] MethodDetails version
+                         * @property {string|null} [subapi] MethodDetails subapi
+                         * @property {string|null} [path] MethodDetails path
+                         */
+    
+                        /**
+                         * Constructs a new MethodDetails.
+                         * @memberof google.shopping.css.v1
+                         * @classdesc Represents a MethodDetails.
+                         * @implements IMethodDetails
+                         * @constructor
+                         * @param {google.shopping.css.v1.IMethodDetails=} [properties] Properties to set
+                         */
+                        function MethodDetails(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * MethodDetails method.
+                         * @member {string} method
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @instance
+                         */
+                        MethodDetails.prototype.method = "";
+    
+                        /**
+                         * MethodDetails version.
+                         * @member {string} version
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @instance
+                         */
+                        MethodDetails.prototype.version = "";
+    
+                        /**
+                         * MethodDetails subapi.
+                         * @member {string} subapi
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @instance
+                         */
+                        MethodDetails.prototype.subapi = "";
+    
+                        /**
+                         * MethodDetails path.
+                         * @member {string} path
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @instance
+                         */
+                        MethodDetails.prototype.path = "";
+    
+                        /**
+                         * Creates a new MethodDetails instance using the specified properties.
+                         * @function create
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {google.shopping.css.v1.IMethodDetails=} [properties] Properties to set
+                         * @returns {google.shopping.css.v1.MethodDetails} MethodDetails instance
+                         */
+                        MethodDetails.create = function create(properties) {
+                            return new MethodDetails(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified MethodDetails message. Does not implicitly {@link google.shopping.css.v1.MethodDetails.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {google.shopping.css.v1.IMethodDetails} message MethodDetails message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        MethodDetails.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.method != null && Object.hasOwnProperty.call(message, "method"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.method);
+                            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.version);
+                            if (message.subapi != null && Object.hasOwnProperty.call(message, "subapi"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.subapi);
+                            if (message.path != null && Object.hasOwnProperty.call(message, "path"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.path);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified MethodDetails message, length delimited. Does not implicitly {@link google.shopping.css.v1.MethodDetails.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {google.shopping.css.v1.IMethodDetails} message MethodDetails message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        MethodDetails.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a MethodDetails message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.shopping.css.v1.MethodDetails} MethodDetails
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        MethodDetails.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.MethodDetails();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.method = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.version = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.subapi = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.path = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a MethodDetails message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.shopping.css.v1.MethodDetails} MethodDetails
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        MethodDetails.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a MethodDetails message.
+                         * @function verify
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        MethodDetails.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.method != null && message.hasOwnProperty("method"))
+                                if (!$util.isString(message.method))
+                                    return "method: string expected";
+                            if (message.version != null && message.hasOwnProperty("version"))
+                                if (!$util.isString(message.version))
+                                    return "version: string expected";
+                            if (message.subapi != null && message.hasOwnProperty("subapi"))
+                                if (!$util.isString(message.subapi))
+                                    return "subapi: string expected";
+                            if (message.path != null && message.hasOwnProperty("path"))
+                                if (!$util.isString(message.path))
+                                    return "path: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a MethodDetails message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.shopping.css.v1.MethodDetails} MethodDetails
+                         */
+                        MethodDetails.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.shopping.css.v1.MethodDetails)
+                                return object;
+                            var message = new $root.google.shopping.css.v1.MethodDetails();
+                            if (object.method != null)
+                                message.method = String(object.method);
+                            if (object.version != null)
+                                message.version = String(object.version);
+                            if (object.subapi != null)
+                                message.subapi = String(object.subapi);
+                            if (object.path != null)
+                                message.path = String(object.path);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a MethodDetails message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {google.shopping.css.v1.MethodDetails} message MethodDetails
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        MethodDetails.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.method = "";
+                                object.version = "";
+                                object.subapi = "";
+                                object.path = "";
+                            }
+                            if (message.method != null && message.hasOwnProperty("method"))
+                                object.method = message.method;
+                            if (message.version != null && message.hasOwnProperty("version"))
+                                object.version = message.version;
+                            if (message.subapi != null && message.hasOwnProperty("subapi"))
+                                object.subapi = message.subapi;
+                            if (message.path != null && message.hasOwnProperty("path"))
+                                object.path = message.path;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this MethodDetails to JSON.
+                         * @function toJSON
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        MethodDetails.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for MethodDetails
+                         * @function getTypeUrl
+                         * @memberof google.shopping.css.v1.MethodDetails
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        MethodDetails.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.shopping.css.v1.MethodDetails";
+                        };
+    
+                        return MethodDetails;
+                    })();
+    
+                    v1.ListQuotaGroupsRequest = (function() {
+    
+                        /**
+                         * Properties of a ListQuotaGroupsRequest.
+                         * @memberof google.shopping.css.v1
+                         * @interface IListQuotaGroupsRequest
+                         * @property {string|null} [parent] ListQuotaGroupsRequest parent
+                         * @property {number|null} [pageSize] ListQuotaGroupsRequest pageSize
+                         * @property {string|null} [pageToken] ListQuotaGroupsRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListQuotaGroupsRequest.
+                         * @memberof google.shopping.css.v1
+                         * @classdesc Represents a ListQuotaGroupsRequest.
+                         * @implements IListQuotaGroupsRequest
+                         * @constructor
+                         * @param {google.shopping.css.v1.IListQuotaGroupsRequest=} [properties] Properties to set
+                         */
+                        function ListQuotaGroupsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListQuotaGroupsRequest parent.
+                         * @member {string} parent
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @instance
+                         */
+                        ListQuotaGroupsRequest.prototype.parent = "";
+    
+                        /**
+                         * ListQuotaGroupsRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @instance
+                         */
+                        ListQuotaGroupsRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListQuotaGroupsRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @instance
+                         */
+                        ListQuotaGroupsRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ListQuotaGroupsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {google.shopping.css.v1.IListQuotaGroupsRequest=} [properties] Properties to set
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsRequest} ListQuotaGroupsRequest instance
+                         */
+                        ListQuotaGroupsRequest.create = function create(properties) {
+                            return new ListQuotaGroupsRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaGroupsRequest message. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {google.shopping.css.v1.IListQuotaGroupsRequest} message ListQuotaGroupsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaGroupsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaGroupsRequest message, length delimited. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {google.shopping.css.v1.IListQuotaGroupsRequest} message ListQuotaGroupsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaGroupsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaGroupsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsRequest} ListQuotaGroupsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaGroupsRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListQuotaGroupsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaGroupsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsRequest} ListQuotaGroupsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaGroupsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListQuotaGroupsRequest message.
+                         * @function verify
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListQuotaGroupsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListQuotaGroupsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsRequest} ListQuotaGroupsRequest
+                         */
+                        ListQuotaGroupsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.shopping.css.v1.ListQuotaGroupsRequest)
+                                return object;
+                            var message = new $root.google.shopping.css.v1.ListQuotaGroupsRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListQuotaGroupsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {google.shopping.css.v1.ListQuotaGroupsRequest} message ListQuotaGroupsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListQuotaGroupsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListQuotaGroupsRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListQuotaGroupsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListQuotaGroupsRequest
+                         * @function getTypeUrl
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListQuotaGroupsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.shopping.css.v1.ListQuotaGroupsRequest";
+                        };
+    
+                        return ListQuotaGroupsRequest;
+                    })();
+    
+                    v1.ListQuotaGroupsResponse = (function() {
+    
+                        /**
+                         * Properties of a ListQuotaGroupsResponse.
+                         * @memberof google.shopping.css.v1
+                         * @interface IListQuotaGroupsResponse
+                         * @property {Array.<google.shopping.css.v1.IQuotaGroup>|null} [quotaGroups] ListQuotaGroupsResponse quotaGroups
+                         * @property {string|null} [nextPageToken] ListQuotaGroupsResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListQuotaGroupsResponse.
+                         * @memberof google.shopping.css.v1
+                         * @classdesc Represents a ListQuotaGroupsResponse.
+                         * @implements IListQuotaGroupsResponse
+                         * @constructor
+                         * @param {google.shopping.css.v1.IListQuotaGroupsResponse=} [properties] Properties to set
+                         */
+                        function ListQuotaGroupsResponse(properties) {
+                            this.quotaGroups = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListQuotaGroupsResponse quotaGroups.
+                         * @member {Array.<google.shopping.css.v1.IQuotaGroup>} quotaGroups
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @instance
+                         */
+                        ListQuotaGroupsResponse.prototype.quotaGroups = $util.emptyArray;
+    
+                        /**
+                         * ListQuotaGroupsResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @instance
+                         */
+                        ListQuotaGroupsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListQuotaGroupsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {google.shopping.css.v1.IListQuotaGroupsResponse=} [properties] Properties to set
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsResponse} ListQuotaGroupsResponse instance
+                         */
+                        ListQuotaGroupsResponse.create = function create(properties) {
+                            return new ListQuotaGroupsResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaGroupsResponse message. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {google.shopping.css.v1.IListQuotaGroupsResponse} message ListQuotaGroupsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaGroupsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.quotaGroups != null && message.quotaGroups.length)
+                                for (var i = 0; i < message.quotaGroups.length; ++i)
+                                    $root.google.shopping.css.v1.QuotaGroup.encode(message.quotaGroups[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListQuotaGroupsResponse message, length delimited. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {google.shopping.css.v1.IListQuotaGroupsResponse} message ListQuotaGroupsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListQuotaGroupsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaGroupsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsResponse} ListQuotaGroupsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaGroupsResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.css.v1.ListQuotaGroupsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.quotaGroups && message.quotaGroups.length))
+                                            message.quotaGroups = [];
+                                        message.quotaGroups.push($root.google.shopping.css.v1.QuotaGroup.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListQuotaGroupsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsResponse} ListQuotaGroupsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListQuotaGroupsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListQuotaGroupsResponse message.
+                         * @function verify
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListQuotaGroupsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.quotaGroups != null && message.hasOwnProperty("quotaGroups")) {
+                                if (!Array.isArray(message.quotaGroups))
+                                    return "quotaGroups: array expected";
+                                for (var i = 0; i < message.quotaGroups.length; ++i) {
+                                    var error = $root.google.shopping.css.v1.QuotaGroup.verify(message.quotaGroups[i]);
+                                    if (error)
+                                        return "quotaGroups." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListQuotaGroupsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.shopping.css.v1.ListQuotaGroupsResponse} ListQuotaGroupsResponse
+                         */
+                        ListQuotaGroupsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.shopping.css.v1.ListQuotaGroupsResponse)
+                                return object;
+                            var message = new $root.google.shopping.css.v1.ListQuotaGroupsResponse();
+                            if (object.quotaGroups) {
+                                if (!Array.isArray(object.quotaGroups))
+                                    throw TypeError(".google.shopping.css.v1.ListQuotaGroupsResponse.quotaGroups: array expected");
+                                message.quotaGroups = [];
+                                for (var i = 0; i < object.quotaGroups.length; ++i) {
+                                    if (typeof object.quotaGroups[i] !== "object")
+                                        throw TypeError(".google.shopping.css.v1.ListQuotaGroupsResponse.quotaGroups: object expected");
+                                    message.quotaGroups[i] = $root.google.shopping.css.v1.QuotaGroup.fromObject(object.quotaGroups[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListQuotaGroupsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {google.shopping.css.v1.ListQuotaGroupsResponse} message ListQuotaGroupsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListQuotaGroupsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.quotaGroups = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.quotaGroups && message.quotaGroups.length) {
+                                object.quotaGroups = [];
+                                for (var j = 0; j < message.quotaGroups.length; ++j)
+                                    object.quotaGroups[j] = $root.google.shopping.css.v1.QuotaGroup.toObject(message.quotaGroups[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListQuotaGroupsResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListQuotaGroupsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListQuotaGroupsResponse
+                         * @function getTypeUrl
+                         * @memberof google.shopping.css.v1.ListQuotaGroupsResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListQuotaGroupsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.shopping.css.v1.ListQuotaGroupsResponse";
+                        };
+    
+                        return ListQuotaGroupsResponse;
+                    })();
+    
                     return v1;
                 })();
     
@@ -10522,12 +11852,7 @@
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
     
-                    /**
-                     * Weight _amountMicros.
-                     * @member {"amountMicros"|undefined} _amountMicros
-                     * @memberof google.shopping.type.Weight
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(Weight.prototype, "_amountMicros", {
                         get: $util.oneOfGetter($oneOfFields = ["amountMicros"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -10588,12 +11913,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Weight.decode = function decode(reader, length) {
+                    Weight.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.type.Weight();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.amountMicros = reader.int64();
@@ -10817,23 +12144,13 @@
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
     
-                    /**
-                     * Price _amountMicros.
-                     * @member {"amountMicros"|undefined} _amountMicros
-                     * @memberof google.shopping.type.Price
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(Price.prototype, "_amountMicros", {
                         get: $util.oneOfGetter($oneOfFields = ["amountMicros"]),
                         set: $util.oneOfSetter($oneOfFields)
                     });
     
-                    /**
-                     * Price _currencyCode.
-                     * @member {"currencyCode"|undefined} _currencyCode
-                     * @memberof google.shopping.type.Price
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(Price.prototype, "_currencyCode", {
                         get: $util.oneOfGetter($oneOfFields = ["currencyCode"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -10894,12 +12211,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Price.decode = function decode(reader, length) {
+                    Price.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.type.Price();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.amountMicros = reader.int64();
@@ -11096,23 +12415,13 @@
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
     
-                    /**
-                     * CustomAttribute _name.
-                     * @member {"name"|undefined} _name
-                     * @memberof google.shopping.type.CustomAttribute
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(CustomAttribute.prototype, "_name", {
                         get: $util.oneOfGetter($oneOfFields = ["name"]),
                         set: $util.oneOfSetter($oneOfFields)
                     });
     
-                    /**
-                     * CustomAttribute _value.
-                     * @member {"value"|undefined} _value
-                     * @memberof google.shopping.type.CustomAttribute
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(CustomAttribute.prototype, "_value", {
                         get: $util.oneOfGetter($oneOfFields = ["value"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -11176,12 +12485,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    CustomAttribute.decode = function decode(reader, length) {
+                    CustomAttribute.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.type.CustomAttribute();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -11420,12 +12731,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Destination.decode = function decode(reader, length) {
+                    Destination.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.type.Destination();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             default:
                                 reader.skipType(tag & 7);
@@ -11619,12 +12932,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReportingContext.decode = function decode(reader, length) {
+                    ReportingContext.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.type.ReportingContext();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             default:
                                 reader.skipType(tag & 7);
@@ -11834,12 +13149,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Channel.decode = function decode(reader, length) {
+                    Channel.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.shopping.type.Channel();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             default:
                                 reader.skipType(tag & 7);
@@ -12064,12 +13381,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -12414,12 +13733,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -12798,12 +14119,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -13030,12 +14353,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -13399,12 +14724,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -13743,6 +15070,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -13844,6 +15172,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -13890,6 +15226,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -13917,12 +15255,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -13968,6 +15308,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -14062,6 +15406,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -14156,6 +15503,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -14185,6 +15534,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -14215,6 +15565,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -14356,12 +15708,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -14623,12 +15977,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -14831,12 +16187,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15039,12 +16397,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15247,12 +16607,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15520,12 +16882,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -15899,12 +17263,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -16107,12 +17473,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -16339,12 +17707,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -16617,12 +17987,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -17044,12 +18416,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -17439,12 +18813,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -17669,12 +19045,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -18069,12 +19447,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -18736,12 +20116,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -19221,12 +20603,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -19465,12 +20849,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -19721,12 +21107,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -20066,12 +21454,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -20445,12 +21835,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -20970,12 +22362,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21241,12 +22635,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21560,12 +22956,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -21801,12 +23199,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22058,12 +23458,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22366,12 +23768,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22870,12 +24274,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -23490,12 +24896,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -23938,12 +25346,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -23973,12 +25378,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -24704,12 +26111,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -25000,12 +26409,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -25286,12 +26697,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -25598,12 +27011,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -25789,6 +27204,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -25848,6 +27264,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -25882,6 +27306,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -25909,12 +27335,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -25936,6 +27364,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -25996,6 +27428,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -26032,6 +27467,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -26055,6 +27492,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -26069,6 +27507,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -26245,12 +27685,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -26662,12 +28104,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -27001,12 +28445,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -27277,12 +28723,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -27812,12 +29260,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -28196,12 +29646,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -28486,12 +29938,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -28761,12 +30215,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -29072,12 +30528,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -29340,12 +30798,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -29666,12 +31126,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -29885,12 +31347,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -30082,12 +31546,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -30225,6 +31691,227 @@
                 };
     
                 return Timestamp;
+            })();
+    
+            protobuf.FieldMask = (function() {
+    
+                /**
+                 * Properties of a FieldMask.
+                 * @memberof google.protobuf
+                 * @interface IFieldMask
+                 * @property {Array.<string>|null} [paths] FieldMask paths
+                 */
+    
+                /**
+                 * Constructs a new FieldMask.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a FieldMask.
+                 * @implements IFieldMask
+                 * @constructor
+                 * @param {google.protobuf.IFieldMask=} [properties] Properties to set
+                 */
+                function FieldMask(properties) {
+                    this.paths = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * FieldMask paths.
+                 * @member {Array.<string>} paths
+                 * @memberof google.protobuf.FieldMask
+                 * @instance
+                 */
+                FieldMask.prototype.paths = $util.emptyArray;
+    
+                /**
+                 * Creates a new FieldMask instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {google.protobuf.IFieldMask=} [properties] Properties to set
+                 * @returns {google.protobuf.FieldMask} FieldMask instance
+                 */
+                FieldMask.create = function create(properties) {
+                    return new FieldMask(properties);
+                };
+    
+                /**
+                 * Encodes the specified FieldMask message. Does not implicitly {@link google.protobuf.FieldMask.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {google.protobuf.IFieldMask} message FieldMask message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                FieldMask.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.paths != null && message.paths.length)
+                        for (var i = 0; i < message.paths.length; ++i)
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.paths[i]);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified FieldMask message, length delimited. Does not implicitly {@link google.protobuf.FieldMask.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {google.protobuf.IFieldMask} message FieldMask message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                FieldMask.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a FieldMask message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.FieldMask} FieldMask
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                FieldMask.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                if (!(message.paths && message.paths.length))
+                                    message.paths = [];
+                                message.paths.push(reader.string());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a FieldMask message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.FieldMask} FieldMask
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                FieldMask.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a FieldMask message.
+                 * @function verify
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                FieldMask.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.paths != null && message.hasOwnProperty("paths")) {
+                        if (!Array.isArray(message.paths))
+                            return "paths: array expected";
+                        for (var i = 0; i < message.paths.length; ++i)
+                            if (!$util.isString(message.paths[i]))
+                                return "paths: string[] expected";
+                    }
+                    return null;
+                };
+    
+                /**
+                 * Creates a FieldMask message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.FieldMask} FieldMask
+                 */
+                FieldMask.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.FieldMask)
+                        return object;
+                    var message = new $root.google.protobuf.FieldMask();
+                    if (object.paths) {
+                        if (!Array.isArray(object.paths))
+                            throw TypeError(".google.protobuf.FieldMask.paths: array expected");
+                        message.paths = [];
+                        for (var i = 0; i < object.paths.length; ++i)
+                            message.paths[i] = String(object.paths[i]);
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a FieldMask message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {google.protobuf.FieldMask} message FieldMask
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                FieldMask.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.paths = [];
+                    if (message.paths && message.paths.length) {
+                        object.paths = [];
+                        for (var j = 0; j < message.paths.length; ++j)
+                            object.paths[j] = message.paths[j];
+                    }
+                    return object;
+                };
+    
+                /**
+                 * Converts this FieldMask to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.FieldMask
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                FieldMask.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for FieldMask
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.FieldMask
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                FieldMask.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.FieldMask";
+                };
+    
+                return FieldMask;
             })();
     
             return protobuf;

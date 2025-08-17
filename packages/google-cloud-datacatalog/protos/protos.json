@@ -1,7 +1,4 @@
 {
-  "options": {
-    "syntax": "proto3"
-  },
   "nested": {
     "google": {
       "nested": {
@@ -174,6 +171,7 @@
                     },
                     "DataCatalog": {
                       "options": {
+                        "deprecated": true,
                         "(google.api.default_host)": "datacatalog.googleapis.com",
                         "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
                       },
@@ -182,11 +180,15 @@
                           "requestType": "SearchCatalogRequest",
                           "responseType": "SearchCatalogResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/catalog:search",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "scope,query"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/catalog:search",
@@ -202,11 +204,15 @@
                           "requestType": "CreateEntryGroupRequest",
                           "responseType": "EntryGroup",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*}/entryGroups",
                             "(google.api.http).body": "entry_group",
                             "(google.api.method_signature)": "parent,entry_group_id,entry_group"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*}/entryGroups",
@@ -222,10 +228,14 @@
                           "requestType": "GetEntryGroupRequest",
                           "responseType": "EntryGroup",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{name=projects/*/locations/*/entryGroups/*}",
                             "(google.api.method_signature)": "name,read_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=projects/*/locations/*/entryGroups/*}"
@@ -243,11 +253,15 @@
                           "requestType": "UpdateEntryGroupRequest",
                           "responseType": "EntryGroup",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1/{entry_group.name=projects/*/locations/*/entryGroups/*}",
                             "(google.api.http).body": "entry_group",
                             "(google.api.method_signature)": "entry_group,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1/{entry_group.name=projects/*/locations/*/entryGroups/*}",
@@ -266,10 +280,14 @@
                           "requestType": "DeleteEntryGroupRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1/{name=projects/*/locations/*/entryGroups/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1/{name=projects/*/locations/*/entryGroups/*}"
@@ -284,10 +302,14 @@
                           "requestType": "ListEntryGroupsRequest",
                           "responseType": "ListEntryGroupsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{parent=projects/*/locations/*}/entryGroups",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{parent=projects/*/locations/*}/entryGroups"
@@ -302,11 +324,15 @@
                           "requestType": "CreateEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*/entryGroups/*}/entries",
                             "(google.api.http).body": "entry",
                             "(google.api.method_signature)": "parent,entry_id,entry"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*/entryGroups/*}/entries",
@@ -322,11 +348,15 @@
                           "requestType": "UpdateEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1/{entry.name=projects/*/locations/*/entryGroups/*/entries/*}",
                             "(google.api.http).body": "entry",
                             "(google.api.method_signature)": "entry,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1/{entry.name=projects/*/locations/*/entryGroups/*/entries/*}",
@@ -345,10 +375,14 @@
                           "requestType": "DeleteEntryRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}"
@@ -363,10 +397,14 @@
                           "requestType": "GetEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}"
@@ -381,9 +419,13 @@
                           "requestType": "LookupEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/entries:lookup"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/entries:lookup"
@@ -395,10 +437,14 @@
                           "requestType": "ListEntriesRequest",
                           "responseType": "ListEntriesResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{parent=projects/*/locations/*/entryGroups/*}/entries",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{parent=projects/*/locations/*/entryGroups/*}/entries"
@@ -413,10 +459,14 @@
                           "requestType": "ModifyEntryOverviewRequest",
                           "responseType": "EntryOverview",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:modifyEntryOverview",
                             "(google.api.http).body": "*"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:modifyEntryOverview",
@@ -429,10 +479,14 @@
                           "requestType": "ModifyEntryContactsRequest",
                           "responseType": "Contacts",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:modifyEntryContacts",
                             "(google.api.http).body": "*"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:modifyEntryContacts",
@@ -445,11 +499,15 @@
                           "requestType": "CreateTagTemplateRequest",
                           "responseType": "TagTemplate",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*}/tagTemplates",
                             "(google.api.http).body": "tag_template",
                             "(google.api.method_signature)": "parent,tag_template_id,tag_template"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*}/tagTemplates",
@@ -465,10 +523,14 @@
                           "requestType": "GetTagTemplateRequest",
                           "responseType": "TagTemplate",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{name=projects/*/locations/*/tagTemplates/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=projects/*/locations/*/tagTemplates/*}"
@@ -483,11 +545,15 @@
                           "requestType": "UpdateTagTemplateRequest",
                           "responseType": "TagTemplate",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1/{tag_template.name=projects/*/locations/*/tagTemplates/*}",
                             "(google.api.http).body": "tag_template",
                             "(google.api.method_signature)": "tag_template,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1/{tag_template.name=projects/*/locations/*/tagTemplates/*}",
@@ -506,10 +572,14 @@
                           "requestType": "DeleteTagTemplateRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1/{name=projects/*/locations/*/tagTemplates/*}",
                             "(google.api.method_signature)": "name,force"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1/{name=projects/*/locations/*/tagTemplates/*}"
@@ -524,11 +594,15 @@
                           "requestType": "CreateTagTemplateFieldRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*/tagTemplates/*}/fields",
                             "(google.api.http).body": "tag_template_field",
                             "(google.api.method_signature)": "parent,tag_template_field_id,tag_template_field"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*/tagTemplates/*}/fields",
@@ -544,11 +618,15 @@
                           "requestType": "UpdateTagTemplateFieldRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}",
                             "(google.api.http).body": "tag_template_field",
                             "(google.api.method_signature)": "name,tag_template_field,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}",
@@ -567,11 +645,15 @@
                           "requestType": "RenameTagTemplateFieldRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}:rename",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "name,new_tag_template_field_id"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}:rename",
@@ -587,11 +669,15 @@
                           "requestType": "RenameTagTemplateFieldEnumValueRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*/enumValues/*}:rename",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "name,new_enum_value_display_name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*/enumValues/*}:rename",
@@ -607,10 +693,14 @@
                           "requestType": "DeleteTagTemplateFieldRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}",
                             "(google.api.method_signature)": "name,force"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}"
@@ -625,6 +715,7 @@
                           "requestType": "CreateTagRequest",
                           "responseType": "Tag",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
                             "(google.api.http).body": "tag",
                             "(google.api.http).additional_bindings.post": "/v1/{parent=projects/*/locations/*/entryGroups/*}/tags",
@@ -632,6 +723,9 @@
                             "(google.api.method_signature)": "parent,tag"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
@@ -651,6 +745,7 @@
                           "requestType": "UpdateTagRequest",
                           "responseType": "Tag",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1/{tag.name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
                             "(google.api.http).body": "tag",
                             "(google.api.http).additional_bindings.patch": "/v1/{tag.name=projects/*/locations/*/entryGroups/*/tags/*}",
@@ -658,6 +753,9 @@
                             "(google.api.method_signature)": "tag,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1/{tag.name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
@@ -680,11 +778,15 @@
                           "requestType": "DeleteTagRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
                             "(google.api.http).additional_bindings.delete": "/v1/{name=projects/*/locations/*/entryGroups/*/tags/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
@@ -702,11 +804,15 @@
                           "requestType": "ListTagsRequest",
                           "responseType": "ListTagsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
                             "(google.api.http).additional_bindings.get": "/v1/{parent=projects/*/locations/*/entryGroups/*}/tags",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
@@ -724,12 +830,16 @@
                           "requestType": "ReconcileTagsRequest",
                           "responseType": "google.longrunning.Operation",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags:reconcile",
                             "(google.api.http).body": "*",
                             "(google.longrunning.operation_info).response_type": "ReconcileTagsResponse",
                             "(google.longrunning.operation_info).metadata_type": "ReconcileTagsMetadata"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags:reconcile",
@@ -748,11 +858,15 @@
                           "requestType": "StarEntryRequest",
                           "responseType": "StarEntryResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:star",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:star",
@@ -768,11 +882,15 @@
                           "requestType": "UnstarEntryRequest",
                           "responseType": "UnstarEntryResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:unstar",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:unstar",
@@ -788,6 +906,7 @@
                           "requestType": "google.iam.v1.SetIamPolicyRequest",
                           "responseType": "google.iam.v1.Policy",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{resource=projects/*/locations/*/tagTemplates/*}:setIamPolicy",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1/{resource=projects/*/locations/*/entryGroups/*}:setIamPolicy",
@@ -795,6 +914,9 @@
                             "(google.api.method_signature)": "resource,policy"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{resource=projects/*/locations/*/tagTemplates/*}:setIamPolicy",
@@ -814,6 +936,7 @@
                           "requestType": "google.iam.v1.GetIamPolicyRequest",
                           "responseType": "google.iam.v1.Policy",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{resource=projects/*/locations/*/tagTemplates/*}:getIamPolicy",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1/{resource=projects/*/locations/*/entryGroups/*/entries/*}:getIamPolicy",
@@ -821,6 +944,9 @@
                             "(google.api.method_signature)": "resource"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{resource=projects/*/locations/*/tagTemplates/*}:getIamPolicy",
@@ -846,12 +972,16 @@
                           "requestType": "google.iam.v1.TestIamPermissionsRequest",
                           "responseType": "google.iam.v1.TestIamPermissionsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{resource=projects/*/locations/*/tagTemplates/*}:testIamPermissions",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1/{resource=projects/*/locations/*/entryGroups/*/entries/*}:testIamPermissions",
                             "(google.api.http).additional_bindings.body": "*"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{resource=projects/*/locations/*/tagTemplates/*}:testIamPermissions",
@@ -874,12 +1004,16 @@
                           "requestType": "ImportEntriesRequest",
                           "responseType": "google.longrunning.Operation",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{parent=projects/*/locations/*/entryGroups/*}/entries:import",
                             "(google.api.http).body": "*",
                             "(google.longrunning.operation_info).response_type": "ImportEntriesResponse",
                             "(google.longrunning.operation_info).metadata_type": "ImportEntriesMetadata"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{parent=projects/*/locations/*/entryGroups/*}/entries:import",
@@ -898,12 +1032,16 @@
                           "requestType": "SetConfigRequest",
                           "responseType": "MigrationConfig",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1/{name=organizations/*/locations/*}:setConfig",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1/{name=projects/*/locations/*}:setConfig",
                             "(google.api.http).additional_bindings.body": "*"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1/{name=organizations/*/locations/*}:setConfig",
@@ -920,9 +1058,13 @@
                           "requestType": "RetrieveConfigRequest",
                           "responseType": "OrganizationConfig",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{name=organizations/*/locations/*}:retrieveConfig"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=organizations/*/locations/*}:retrieveConfig"
@@ -934,10 +1076,14 @@
                           "requestType": "RetrieveEffectiveConfigRequest",
                           "responseType": "MigrationConfig",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{name=organizations/*/locations/*}:retrieveEffectiveConfig",
                             "(google.api.http).additional_bindings.get": "/v1/{name=projects/*/locations/*}:retrieveEffectiveConfig"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=organizations/*/locations/*}:retrieveEffectiveConfig",
@@ -2532,6 +2678,10 @@
                         "catalogUiExperience": {
                           "type": "CatalogUIExperience",
                           "id": 2
+                        },
+                        "templateMigrationEnabledTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
                         }
                       }
                     },
@@ -4198,7 +4348,6 @@
                     "java_package": "com.google.cloud.datacatalog.v1beta1",
                     "php_namespace": "Google\\Cloud\\DataCatalog\\V1beta1",
                     "ruby_package": "Google::Cloud::DataCatalog::V1beta1",
-                    "cc_enable_arenas": true,
                     "(google.api.resource_definition).type": "datacatalog.googleapis.com/TagTemplateFieldEnumValue",
                     "(google.api.resource_definition).pattern": "projects/{project}/locations/{location}/tagTemplates/{tag_template}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}",
                     "java_outer_classname": "PolicyTagManagerSerializationProto"
@@ -4220,6 +4369,7 @@
                     },
                     "DataCatalog": {
                       "options": {
+                        "deprecated": true,
                         "(google.api.default_host)": "datacatalog.googleapis.com",
                         "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
                       },
@@ -4228,11 +4378,15 @@
                           "requestType": "SearchCatalogRequest",
                           "responseType": "SearchCatalogResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/catalog:search",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "scope,query"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/catalog:search",
@@ -4248,11 +4402,15 @@
                           "requestType": "CreateEntryGroupRequest",
                           "responseType": "EntryGroup",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{parent=projects/*/locations/*}/entryGroups",
                             "(google.api.http).body": "entry_group",
                             "(google.api.method_signature)": "parent,entry_group_id,entry_group"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{parent=projects/*/locations/*}/entryGroups",
@@ -4268,11 +4426,15 @@
                           "requestType": "UpdateEntryGroupRequest",
                           "responseType": "EntryGroup",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1beta1/{entry_group.name=projects/*/locations/*/entryGroups/*}",
                             "(google.api.http).body": "entry_group",
                             "(google.api.method_signature)": "entry_group,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1beta1/{entry_group.name=projects/*/locations/*/entryGroups/*}",
@@ -4291,10 +4453,14 @@
                           "requestType": "GetEntryGroupRequest",
                           "responseType": "EntryGroup",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/{name=projects/*/locations/*/entryGroups/*}",
                             "(google.api.method_signature)": "name,read_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/{name=projects/*/locations/*/entryGroups/*}"
@@ -4312,10 +4478,14 @@
                           "requestType": "DeleteEntryGroupRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*}"
@@ -4330,10 +4500,14 @@
                           "requestType": "ListEntryGroupsRequest",
                           "responseType": "ListEntryGroupsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/{parent=projects/*/locations/*}/entryGroups",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/{parent=projects/*/locations/*}/entryGroups"
@@ -4348,11 +4522,15 @@
                           "requestType": "CreateEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*}/entries",
                             "(google.api.http).body": "entry",
                             "(google.api.method_signature)": "parent,entry_id,entry"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*}/entries",
@@ -4368,11 +4546,15 @@
                           "requestType": "UpdateEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1beta1/{entry.name=projects/*/locations/*/entryGroups/*/entries/*}",
                             "(google.api.http).body": "entry",
                             "(google.api.method_signature)": "entry,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1beta1/{entry.name=projects/*/locations/*/entryGroups/*/entries/*}",
@@ -4391,10 +4573,14 @@
                           "requestType": "DeleteEntryRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/entries/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/entries/*}"
@@ -4409,10 +4595,14 @@
                           "requestType": "GetEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/entries/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/entries/*}"
@@ -4427,9 +4617,13 @@
                           "requestType": "LookupEntryRequest",
                           "responseType": "Entry",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/entries:lookup"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/entries:lookup"
@@ -4441,10 +4635,14 @@
                           "requestType": "ListEntriesRequest",
                           "responseType": "ListEntriesResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*}/entries",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*}/entries"
@@ -4459,11 +4657,15 @@
                           "requestType": "CreateTagTemplateRequest",
                           "responseType": "TagTemplate",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{parent=projects/*/locations/*}/tagTemplates",
                             "(google.api.http).body": "tag_template",
                             "(google.api.method_signature)": "parent,tag_template_id,tag_template"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{parent=projects/*/locations/*}/tagTemplates",
@@ -4479,10 +4681,14 @@
                           "requestType": "GetTagTemplateRequest",
                           "responseType": "TagTemplate",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*}"
@@ -4497,11 +4703,15 @@
                           "requestType": "UpdateTagTemplateRequest",
                           "responseType": "TagTemplate",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1beta1/{tag_template.name=projects/*/locations/*/tagTemplates/*}",
                             "(google.api.http).body": "tag_template",
                             "(google.api.method_signature)": "tag_template,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1beta1/{tag_template.name=projects/*/locations/*/tagTemplates/*}",
@@ -4520,10 +4730,14 @@
                           "requestType": "DeleteTagTemplateRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*}",
                             "(google.api.method_signature)": "name,force"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*}"
@@ -4538,11 +4752,15 @@
                           "requestType": "CreateTagTemplateFieldRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{parent=projects/*/locations/*/tagTemplates/*}/fields",
                             "(google.api.http).body": "tag_template_field",
                             "(google.api.method_signature)": "parent,tag_template_field_id,tag_template_field"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{parent=projects/*/locations/*/tagTemplates/*}/fields",
@@ -4558,11 +4776,15 @@
                           "requestType": "UpdateTagTemplateFieldRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*}",
                             "(google.api.http).body": "tag_template_field",
                             "(google.api.method_signature)": "name,tag_template_field,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*}",
@@ -4581,11 +4803,15 @@
                           "requestType": "RenameTagTemplateFieldRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*}:rename",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "name,new_tag_template_field_id"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*}:rename",
@@ -4601,11 +4827,15 @@
                           "requestType": "RenameTagTemplateFieldEnumValueRequest",
                           "responseType": "TagTemplateField",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*/enumValues/*}:rename",
                             "(google.api.http).body": "*",
                             "(google.api.method_signature)": "name,new_enum_value_display_name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*/enumValues/*}:rename",
@@ -4621,10 +4851,14 @@
                           "requestType": "DeleteTagTemplateFieldRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*}",
                             "(google.api.method_signature)": "name,force"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1beta1/{name=projects/*/locations/*/tagTemplates/*/fields/*}"
@@ -4639,6 +4873,7 @@
                           "requestType": "CreateTagRequest",
                           "responseType": "Tag",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
                             "(google.api.http).body": "tag",
                             "(google.api.http).additional_bindings.post": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*}/tags",
@@ -4646,6 +4881,9 @@
                             "(google.api.method_signature)": "parent,tag"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
@@ -4665,6 +4903,7 @@
                           "requestType": "UpdateTagRequest",
                           "responseType": "Tag",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1beta1/{tag.name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
                             "(google.api.http).body": "tag",
                             "(google.api.http).additional_bindings.patch": "/v1beta1/{tag.name=projects/*/locations/*/entryGroups/*/tags/*}",
@@ -4672,6 +4911,9 @@
                             "(google.api.method_signature)": "tag,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1beta1/{tag.name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
@@ -4694,11 +4936,15 @@
                           "requestType": "DeleteTagRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
                             "(google.api.http).additional_bindings.delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/tags/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1beta1/{name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}",
@@ -4716,11 +4962,15 @@
                           "requestType": "ListTagsRequest",
                           "responseType": "ListTagsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
                             "(google.api.http).additional_bindings.get": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*}/tags",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags",
@@ -4738,6 +4988,7 @@
                           "requestType": "google.iam.v1.SetIamPolicyRequest",
                           "responseType": "google.iam.v1.Policy",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{resource=projects/*/locations/*/tagTemplates/*}:setIamPolicy",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1beta1/{resource=projects/*/locations/*/entryGroups/*}:setIamPolicy",
@@ -4745,6 +4996,9 @@
                             "(google.api.method_signature)": "resource,policy"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{resource=projects/*/locations/*/tagTemplates/*}:setIamPolicy",
@@ -4764,6 +5018,7 @@
                           "requestType": "google.iam.v1.GetIamPolicyRequest",
                           "responseType": "google.iam.v1.Policy",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{resource=projects/*/locations/*/tagTemplates/*}:getIamPolicy",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1beta1/{resource=projects/*/locations/*/entryGroups/*/entries/*}:getIamPolicy",
@@ -4771,6 +5026,9 @@
                             "(google.api.method_signature)": "resource"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{resource=projects/*/locations/*/tagTemplates/*}:getIamPolicy",
@@ -4796,12 +5054,16 @@
                           "requestType": "google.iam.v1.TestIamPermissionsRequest",
                           "responseType": "google.iam.v1.TestIamPermissionsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta1/{resource=projects/*/locations/*/tagTemplates/*}:testIamPermissions",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1beta1/{resource=projects/*/locations/*/entryGroups/*/entries/*}:testIamPermissions",
                             "(google.api.http).additional_bindings.body": "*"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta1/{resource=projects/*/locations/*/tagTemplates/*}:testIamPermissions",
@@ -6790,7 +7052,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -6908,6 +7173,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -7016,6 +7286,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -7278,6 +7552,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -7287,6 +7562,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -7302,6 +7578,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7319,18 +7596,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -7371,6 +7642,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7453,6 +7725,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -7526,6 +7799,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7605,6 +7879,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7617,6 +7892,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7658,6 +7934,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7674,6 +7951,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7691,6 +7969,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7725,6 +8004,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -7866,6 +8146,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -7939,6 +8220,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -8000,10 +8282,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -8087,6 +8366,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -8106,6 +8386,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -8149,6 +8430,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -8182,6 +8464,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -8208,6 +8491,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -8250,6 +8534,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -8299,6 +8584,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -8371,8 +8657,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -8428,6 +8726,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -8459,6 +8758,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -8472,12 +8772,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -8497,6 +8803,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -8510,7 +8817,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

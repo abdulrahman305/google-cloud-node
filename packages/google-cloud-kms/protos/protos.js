@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -307,12 +307,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateKeyHandleRequest.decode = function decode(reader, length) {
+                        CreateKeyHandleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateKeyHandleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -540,12 +542,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetKeyHandleRequest.decode = function decode(reader, length) {
+                        GetKeyHandleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetKeyHandleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -765,12 +769,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        KeyHandle.decode = function decode(reader, length) {
+                        KeyHandle.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.KeyHandle();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -982,12 +988,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateKeyHandleMetadata.decode = function decode(reader, length) {
+                        CreateKeyHandleMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateKeyHandleMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -1090,6 +1098,8 @@
                          * @memberof google.cloud.kms.v1
                          * @interface IListKeyHandlesRequest
                          * @property {string|null} [parent] ListKeyHandlesRequest parent
+                         * @property {number|null} [pageSize] ListKeyHandlesRequest pageSize
+                         * @property {string|null} [pageToken] ListKeyHandlesRequest pageToken
                          * @property {string|null} [filter] ListKeyHandlesRequest filter
                          */
     
@@ -1115,6 +1125,22 @@
                          * @instance
                          */
                         ListKeyHandlesRequest.prototype.parent = "";
+    
+                        /**
+                         * ListKeyHandlesRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.kms.v1.ListKeyHandlesRequest
+                         * @instance
+                         */
+                        ListKeyHandlesRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListKeyHandlesRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.kms.v1.ListKeyHandlesRequest
+                         * @instance
+                         */
+                        ListKeyHandlesRequest.prototype.pageToken = "";
     
                         /**
                          * ListKeyHandlesRequest filter.
@@ -1150,6 +1176,10 @@
                                 writer = $Writer.create();
                             if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
                             if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.filter);
                             return writer;
@@ -1179,15 +1209,25 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKeyHandlesRequest.decode = function decode(reader, length) {
+                        ListKeyHandlesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListKeyHandlesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
                                         break;
                                     }
                                 case 4: {
@@ -1232,6 +1272,12 @@
                             if (message.parent != null && message.hasOwnProperty("parent"))
                                 if (!$util.isString(message.parent))
                                     return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
                             if (message.filter != null && message.hasOwnProperty("filter"))
                                 if (!$util.isString(message.filter))
                                     return "filter: string expected";
@@ -1252,6 +1298,10 @@
                             var message = new $root.google.cloud.kms.v1.ListKeyHandlesRequest();
                             if (object.parent != null)
                                 message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
                             if (object.filter != null)
                                 message.filter = String(object.filter);
                             return message;
@@ -1272,10 +1322,16 @@
                             var object = {};
                             if (options.defaults) {
                                 object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
                                 object.filter = "";
                             }
                             if (message.parent != null && message.hasOwnProperty("parent"))
                                 object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
                             if (message.filter != null && message.hasOwnProperty("filter"))
                                 object.filter = message.filter;
                             return object;
@@ -1317,6 +1373,7 @@
                          * @memberof google.cloud.kms.v1
                          * @interface IListKeyHandlesResponse
                          * @property {Array.<google.cloud.kms.v1.IKeyHandle>|null} [keyHandles] ListKeyHandlesResponse keyHandles
+                         * @property {string|null} [nextPageToken] ListKeyHandlesResponse nextPageToken
                          */
     
                         /**
@@ -1342,6 +1399,14 @@
                          * @instance
                          */
                         ListKeyHandlesResponse.prototype.keyHandles = $util.emptyArray;
+    
+                        /**
+                         * ListKeyHandlesResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.kms.v1.ListKeyHandlesResponse
+                         * @instance
+                         */
+                        ListKeyHandlesResponse.prototype.nextPageToken = "";
     
                         /**
                          * Creates a new ListKeyHandlesResponse instance using the specified properties.
@@ -1370,6 +1435,8 @@
                             if (message.keyHandles != null && message.keyHandles.length)
                                 for (var i = 0; i < message.keyHandles.length; ++i)
                                     $root.google.cloud.kms.v1.KeyHandle.encode(message.keyHandles[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
                             return writer;
                         };
     
@@ -1397,17 +1464,23 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKeyHandlesResponse.decode = function decode(reader, length) {
+                        ListKeyHandlesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListKeyHandlesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.keyHandles && message.keyHandles.length))
                                             message.keyHandles = [];
                                         message.keyHandles.push($root.google.cloud.kms.v1.KeyHandle.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
                                         break;
                                     }
                                 default:
@@ -1454,6 +1527,9 @@
                                         return "keyHandles." + error;
                                 }
                             }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
                             return null;
                         };
     
@@ -1479,6 +1555,8 @@
                                     message.keyHandles[i] = $root.google.cloud.kms.v1.KeyHandle.fromObject(object.keyHandles[i]);
                                 }
                             }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
                             return message;
                         };
     
@@ -1497,11 +1575,15 @@
                             var object = {};
                             if (options.arrays || options.defaults)
                                 object.keyHandles = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
                             if (message.keyHandles && message.keyHandles.length) {
                                 object.keyHandles = [];
                                 for (var j = 0; j < message.keyHandles.length; ++j)
                                     object.keyHandles[j] = $root.google.cloud.kms.v1.KeyHandle.toObject(message.keyHandles[j], options);
                             }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
                             return object;
                         };
     
@@ -1764,12 +1846,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateAutokeyConfigRequest.decode = function decode(reader, length) {
+                        UpdateAutokeyConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.UpdateAutokeyConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.autokeyConfig = $root.google.cloud.kms.v1.AutokeyConfig.decode(reader, reader.uint32());
@@ -1990,12 +2074,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetAutokeyConfigRequest.decode = function decode(reader, length) {
+                        GetAutokeyConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetAutokeyConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2116,6 +2202,8 @@
                          * @interface IAutokeyConfig
                          * @property {string|null} [name] AutokeyConfig name
                          * @property {string|null} [keyProject] AutokeyConfig keyProject
+                         * @property {google.cloud.kms.v1.AutokeyConfig.State|null} [state] AutokeyConfig state
+                         * @property {string|null} [etag] AutokeyConfig etag
                          */
     
                         /**
@@ -2150,6 +2238,22 @@
                         AutokeyConfig.prototype.keyProject = "";
     
                         /**
+                         * AutokeyConfig state.
+                         * @member {google.cloud.kms.v1.AutokeyConfig.State} state
+                         * @memberof google.cloud.kms.v1.AutokeyConfig
+                         * @instance
+                         */
+                        AutokeyConfig.prototype.state = 0;
+    
+                        /**
+                         * AutokeyConfig etag.
+                         * @member {string} etag
+                         * @memberof google.cloud.kms.v1.AutokeyConfig
+                         * @instance
+                         */
+                        AutokeyConfig.prototype.etag = "";
+    
+                        /**
                          * Creates a new AutokeyConfig instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.kms.v1.AutokeyConfig
@@ -2177,6 +2281,10 @@
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                             if (message.keyProject != null && Object.hasOwnProperty.call(message, "keyProject"))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.keyProject);
+                            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.state);
+                            if (message.etag != null && Object.hasOwnProperty.call(message, "etag"))
+                                writer.uint32(/* id 6, wireType 2 =*/50).string(message.etag);
                             return writer;
                         };
     
@@ -2204,12 +2312,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AutokeyConfig.decode = function decode(reader, length) {
+                        AutokeyConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.AutokeyConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2217,6 +2327,14 @@
                                     }
                                 case 2: {
                                         message.keyProject = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.state = reader.int32();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.etag = reader.string();
                                         break;
                                     }
                                 default:
@@ -2260,6 +2378,19 @@
                             if (message.keyProject != null && message.hasOwnProperty("keyProject"))
                                 if (!$util.isString(message.keyProject))
                                     return "keyProject: string expected";
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                switch (message.state) {
+                                default:
+                                    return "state: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                    break;
+                                }
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                if (!$util.isString(message.etag))
+                                    return "etag: string expected";
                             return null;
                         };
     
@@ -2279,6 +2410,32 @@
                                 message.name = String(object.name);
                             if (object.keyProject != null)
                                 message.keyProject = String(object.keyProject);
+                            switch (object.state) {
+                            default:
+                                if (typeof object.state === "number") {
+                                    message.state = object.state;
+                                    break;
+                                }
+                                break;
+                            case "STATE_UNSPECIFIED":
+                            case 0:
+                                message.state = 0;
+                                break;
+                            case "ACTIVE":
+                            case 1:
+                                message.state = 1;
+                                break;
+                            case "KEY_PROJECT_DELETED":
+                            case 2:
+                                message.state = 2;
+                                break;
+                            case "UNINITIALIZED":
+                            case 3:
+                                message.state = 3;
+                                break;
+                            }
+                            if (object.etag != null)
+                                message.etag = String(object.etag);
                             return message;
                         };
     
@@ -2298,11 +2455,17 @@
                             if (options.defaults) {
                                 object.name = "";
                                 object.keyProject = "";
+                                object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                object.etag = "";
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
                             if (message.keyProject != null && message.hasOwnProperty("keyProject"))
                                 object.keyProject = message.keyProject;
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                object.state = options.enums === String ? $root.google.cloud.kms.v1.AutokeyConfig.State[message.state] === undefined ? message.state : $root.google.cloud.kms.v1.AutokeyConfig.State[message.state] : message.state;
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                object.etag = message.etag;
                             return object;
                         };
     
@@ -2331,6 +2494,24 @@
                             }
                             return typeUrlPrefix + "/google.cloud.kms.v1.AutokeyConfig";
                         };
+    
+                        /**
+                         * State enum.
+                         * @name google.cloud.kms.v1.AutokeyConfig.State
+                         * @enum {number}
+                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                         * @property {number} ACTIVE=1 ACTIVE value
+                         * @property {number} KEY_PROJECT_DELETED=2 KEY_PROJECT_DELETED value
+                         * @property {number} UNINITIALIZED=3 UNINITIALIZED value
+                         */
+                        AutokeyConfig.State = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "ACTIVE"] = 1;
+                            values[valuesById[2] = "KEY_PROJECT_DELETED"] = 2;
+                            values[valuesById[3] = "UNINITIALIZED"] = 3;
+                            return values;
+                        })();
     
                         return AutokeyConfig;
                     })();
@@ -2420,12 +2601,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ShowEffectiveAutokeyConfigRequest.decode = function decode(reader, length) {
+                        ShowEffectiveAutokeyConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ShowEffectiveAutokeyConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -2623,12 +2806,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ShowEffectiveAutokeyConfigResponse.decode = function decode(reader, length) {
+                        ShowEffectiveAutokeyConfigResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ShowEffectiveAutokeyConfigResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.keyProject = reader.string();
@@ -3136,12 +3321,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListEkmConnectionsRequest.decode = function decode(reader, length) {
+                        ListEkmConnectionsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListEkmConnectionsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -3412,12 +3599,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListEkmConnectionsResponse.decode = function decode(reader, length) {
+                        ListEkmConnectionsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListEkmConnectionsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.ekmConnections && message.ekmConnections.length))
@@ -3660,12 +3849,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetEkmConnectionRequest.decode = function decode(reader, length) {
+                        GetEkmConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetEkmConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3885,12 +4076,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateEkmConnectionRequest.decode = function decode(reader, length) {
+                        CreateEkmConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateEkmConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -4129,12 +4322,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateEkmConnectionRequest.decode = function decode(reader, length) {
+                        UpdateEkmConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.UpdateEkmConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.ekmConnection = $root.google.cloud.kms.v1.EkmConnection.decode(reader, reader.uint32());
@@ -4355,12 +4550,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetEkmConfigRequest.decode = function decode(reader, length) {
+                        GetEkmConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetEkmConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4569,12 +4766,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateEkmConfigRequest.decode = function decode(reader, length) {
+                        UpdateEkmConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.UpdateEkmConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.ekmConfig = $root.google.cloud.kms.v1.EkmConfig.decode(reader, reader.uint32());
@@ -4885,12 +5084,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Certificate.decode = function decode(reader, length) {
+                        Certificate.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.Certificate();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.rawDer = reader.bytes();
@@ -5276,12 +5477,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EkmConnection.decode = function decode(reader, length) {
+                        EkmConnection.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.EkmConnection();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5621,12 +5824,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ServiceResolver.decode = function decode(reader, length) {
+                            ServiceResolver.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.EkmConnection.ServiceResolver();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.serviceDirectoryService = reader.string();
@@ -5911,12 +6116,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EkmConfig.decode = function decode(reader, length) {
+                        EkmConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.EkmConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6127,12 +6334,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyConnectivityRequest.decode = function decode(reader, length) {
+                        VerifyConnectivityRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.VerifyConnectivityRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6319,12 +6528,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyConnectivityResponse.decode = function decode(reader, length) {
+                        VerifyConnectivityResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.VerifyConnectivityResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -6516,12 +6727,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        KeyRing.decode = function decode(reader, length) {
+                        KeyRing.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.KeyRing();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6874,12 +7087,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CryptoKey.decode = function decode(reader, length) {
+                        CryptoKey.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CryptoKey(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -7357,12 +7572,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CryptoKeyVersionTemplate.decode = function decode(reader, length) {
+                        CryptoKeyVersionTemplate.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CryptoKeyVersionTemplate();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.protectionLevel = reader.int32();
@@ -7458,6 +7675,8 @@
                                 case 35:
                                 case 36:
                                 case 18:
+                                case 56:
+                                case 57:
                                     break;
                                 }
                             return null;
@@ -7654,6 +7873,14 @@
                             case 18:
                                 message.algorithm = 18;
                                 break;
+                            case "PQ_SIGN_ML_DSA_65":
+                            case 56:
+                                message.algorithm = 56;
+                                break;
+                            case "PQ_SIGN_SLH_DSA_SHA2_128S":
+                            case 57:
+                                message.algorithm = 57;
+                                break;
                             }
                             return message;
                         };
@@ -7818,12 +8045,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        KeyOperationAttestation.decode = function decode(reader, length) {
+                        KeyOperationAttestation.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.KeyOperationAttestation();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 4: {
                                         message.format = reader.int32();
@@ -8125,12 +8354,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CertificateChains.decode = function decode(reader, length) {
+                            CertificateChains.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.KeyOperationAttestation.CertificateChains();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.caviumCerts && message.caviumCerts.length))
@@ -8563,12 +8794,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CryptoKeyVersion.decode = function decode(reader, length) {
+                        CryptoKeyVersion.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CryptoKeyVersion();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8740,6 +8973,8 @@
                                 case 35:
                                 case 36:
                                 case 18:
+                                case 56:
+                                case 57:
                                     break;
                                 }
                             if (message.attestation != null && message.hasOwnProperty("attestation")) {
@@ -9040,6 +9275,14 @@
                             case 18:
                                 message.algorithm = 18;
                                 break;
+                            case "PQ_SIGN_ML_DSA_65":
+                            case 56:
+                                message.algorithm = 56;
+                                break;
+                            case "PQ_SIGN_SLH_DSA_SHA2_128S":
+                            case 57:
+                                message.algorithm = 57;
+                                break;
                             }
                             if (object.attestation != null) {
                                 if (typeof object.attestation !== "object")
@@ -9221,6 +9464,8 @@
                          * @property {number} HMAC_SHA512=35 HMAC_SHA512 value
                          * @property {number} HMAC_SHA224=36 HMAC_SHA224 value
                          * @property {number} EXTERNAL_SYMMETRIC_ENCRYPTION=18 EXTERNAL_SYMMETRIC_ENCRYPTION value
+                         * @property {number} PQ_SIGN_ML_DSA_65=56 PQ_SIGN_ML_DSA_65 value
+                         * @property {number} PQ_SIGN_SLH_DSA_SHA2_128S=57 PQ_SIGN_SLH_DSA_SHA2_128S value
                          */
                         CryptoKeyVersion.CryptoKeyVersionAlgorithm = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
@@ -9260,6 +9505,8 @@
                             values[valuesById[35] = "HMAC_SHA512"] = 35;
                             values[valuesById[36] = "HMAC_SHA224"] = 36;
                             values[valuesById[18] = "EXTERNAL_SYMMETRIC_ENCRYPTION"] = 18;
+                            values[valuesById[56] = "PQ_SIGN_ML_DSA_65"] = 56;
+                            values[valuesById[57] = "PQ_SIGN_SLH_DSA_SHA2_128S"] = 57;
                             return values;
                         })();
     
@@ -9312,6 +9559,249 @@
                         return CryptoKeyVersion;
                     })();
     
+                    v1.ChecksummedData = (function() {
+    
+                        /**
+                         * Properties of a ChecksummedData.
+                         * @memberof google.cloud.kms.v1
+                         * @interface IChecksummedData
+                         * @property {Uint8Array|null} [data] ChecksummedData data
+                         * @property {google.protobuf.IInt64Value|null} [crc32cChecksum] ChecksummedData crc32cChecksum
+                         */
+    
+                        /**
+                         * Constructs a new ChecksummedData.
+                         * @memberof google.cloud.kms.v1
+                         * @classdesc Represents a ChecksummedData.
+                         * @implements IChecksummedData
+                         * @constructor
+                         * @param {google.cloud.kms.v1.IChecksummedData=} [properties] Properties to set
+                         */
+                        function ChecksummedData(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ChecksummedData data.
+                         * @member {Uint8Array} data
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @instance
+                         */
+                        ChecksummedData.prototype.data = $util.newBuffer([]);
+    
+                        /**
+                         * ChecksummedData crc32cChecksum.
+                         * @member {google.protobuf.IInt64Value|null|undefined} crc32cChecksum
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @instance
+                         */
+                        ChecksummedData.prototype.crc32cChecksum = null;
+    
+                        /**
+                         * Creates a new ChecksummedData instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {google.cloud.kms.v1.IChecksummedData=} [properties] Properties to set
+                         * @returns {google.cloud.kms.v1.ChecksummedData} ChecksummedData instance
+                         */
+                        ChecksummedData.create = function create(properties) {
+                            return new ChecksummedData(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ChecksummedData message. Does not implicitly {@link google.cloud.kms.v1.ChecksummedData.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {google.cloud.kms.v1.IChecksummedData} message ChecksummedData message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ChecksummedData.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.crc32cChecksum != null && Object.hasOwnProperty.call(message, "crc32cChecksum"))
+                                $root.google.protobuf.Int64Value.encode(message.crc32cChecksum, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.data);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ChecksummedData message, length delimited. Does not implicitly {@link google.cloud.kms.v1.ChecksummedData.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {google.cloud.kms.v1.IChecksummedData} message ChecksummedData message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ChecksummedData.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ChecksummedData message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.kms.v1.ChecksummedData} ChecksummedData
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ChecksummedData.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ChecksummedData();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 3: {
+                                        message.data = reader.bytes();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.crc32cChecksum = $root.google.protobuf.Int64Value.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ChecksummedData message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.kms.v1.ChecksummedData} ChecksummedData
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ChecksummedData.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ChecksummedData message.
+                         * @function verify
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ChecksummedData.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.data != null && message.hasOwnProperty("data"))
+                                if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
+                                    return "data: buffer expected";
+                            if (message.crc32cChecksum != null && message.hasOwnProperty("crc32cChecksum")) {
+                                var error = $root.google.protobuf.Int64Value.verify(message.crc32cChecksum);
+                                if (error)
+                                    return "crc32cChecksum." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ChecksummedData message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.kms.v1.ChecksummedData} ChecksummedData
+                         */
+                        ChecksummedData.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.kms.v1.ChecksummedData)
+                                return object;
+                            var message = new $root.google.cloud.kms.v1.ChecksummedData();
+                            if (object.data != null)
+                                if (typeof object.data === "string")
+                                    $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
+                                else if (object.data.length >= 0)
+                                    message.data = object.data;
+                            if (object.crc32cChecksum != null) {
+                                if (typeof object.crc32cChecksum !== "object")
+                                    throw TypeError(".google.cloud.kms.v1.ChecksummedData.crc32cChecksum: object expected");
+                                message.crc32cChecksum = $root.google.protobuf.Int64Value.fromObject(object.crc32cChecksum);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ChecksummedData message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {google.cloud.kms.v1.ChecksummedData} message ChecksummedData
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ChecksummedData.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.crc32cChecksum = null;
+                                if (options.bytes === String)
+                                    object.data = "";
+                                else {
+                                    object.data = [];
+                                    if (options.bytes !== Array)
+                                        object.data = $util.newBuffer(object.data);
+                                }
+                            }
+                            if (message.crc32cChecksum != null && message.hasOwnProperty("crc32cChecksum"))
+                                object.crc32cChecksum = $root.google.protobuf.Int64Value.toObject(message.crc32cChecksum, options);
+                            if (message.data != null && message.hasOwnProperty("data"))
+                                object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ChecksummedData to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ChecksummedData.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ChecksummedData
+                         * @function getTypeUrl
+                         * @memberof google.cloud.kms.v1.ChecksummedData
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ChecksummedData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.kms.v1.ChecksummedData";
+                        };
+    
+                        return ChecksummedData;
+                    })();
+    
                     v1.PublicKey = (function() {
     
                         /**
@@ -9323,6 +9813,8 @@
                          * @property {google.protobuf.IInt64Value|null} [pemCrc32c] PublicKey pemCrc32c
                          * @property {string|null} [name] PublicKey name
                          * @property {google.cloud.kms.v1.ProtectionLevel|null} [protectionLevel] PublicKey protectionLevel
+                         * @property {google.cloud.kms.v1.PublicKey.PublicKeyFormat|null} [publicKeyFormat] PublicKey publicKeyFormat
+                         * @property {google.cloud.kms.v1.IChecksummedData|null} [publicKey] PublicKey publicKey
                          */
     
                         /**
@@ -9381,6 +9873,22 @@
                         PublicKey.prototype.protectionLevel = 0;
     
                         /**
+                         * PublicKey publicKeyFormat.
+                         * @member {google.cloud.kms.v1.PublicKey.PublicKeyFormat} publicKeyFormat
+                         * @memberof google.cloud.kms.v1.PublicKey
+                         * @instance
+                         */
+                        PublicKey.prototype.publicKeyFormat = 0;
+    
+                        /**
+                         * PublicKey publicKey.
+                         * @member {google.cloud.kms.v1.IChecksummedData|null|undefined} publicKey
+                         * @memberof google.cloud.kms.v1.PublicKey
+                         * @instance
+                         */
+                        PublicKey.prototype.publicKey = null;
+    
+                        /**
                          * Creates a new PublicKey instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.kms.v1.PublicKey
@@ -9414,6 +9922,10 @@
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
                             if (message.protectionLevel != null && Object.hasOwnProperty.call(message, "protectionLevel"))
                                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.protectionLevel);
+                            if (message.publicKeyFormat != null && Object.hasOwnProperty.call(message, "publicKeyFormat"))
+                                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.publicKeyFormat);
+                            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                                $root.google.cloud.kms.v1.ChecksummedData.encode(message.publicKey, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                             return writer;
                         };
     
@@ -9441,12 +9953,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PublicKey.decode = function decode(reader, length) {
+                        PublicKey.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.PublicKey();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.pem = reader.string();
@@ -9466,6 +9980,14 @@
                                     }
                                 case 5: {
                                         message.protectionLevel = reader.int32();
+                                        break;
+                                    }
+                                case 7: {
+                                        message.publicKeyFormat = reader.int32();
+                                        break;
+                                    }
+                                case 8: {
+                                        message.publicKey = $root.google.cloud.kms.v1.ChecksummedData.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -9546,6 +10068,8 @@
                                 case 35:
                                 case 36:
                                 case 18:
+                                case 56:
+                                case 57:
                                     break;
                                 }
                             if (message.pemCrc32c != null && message.hasOwnProperty("pemCrc32c")) {
@@ -9567,6 +10091,20 @@
                                 case 4:
                                     break;
                                 }
+                            if (message.publicKeyFormat != null && message.hasOwnProperty("publicKeyFormat"))
+                                switch (message.publicKeyFormat) {
+                                default:
+                                    return "publicKeyFormat: enum value expected";
+                                case 0:
+                                case 1:
+                                case 3:
+                                    break;
+                                }
+                            if (message.publicKey != null && message.hasOwnProperty("publicKey")) {
+                                var error = $root.google.cloud.kms.v1.ChecksummedData.verify(message.publicKey);
+                                if (error)
+                                    return "publicKey." + error;
+                            }
                             return null;
                         };
     
@@ -9735,6 +10273,14 @@
                             case 18:
                                 message.algorithm = 18;
                                 break;
+                            case "PQ_SIGN_ML_DSA_65":
+                            case 56:
+                                message.algorithm = 56;
+                                break;
+                            case "PQ_SIGN_SLH_DSA_SHA2_128S":
+                            case 57:
+                                message.algorithm = 57;
+                                break;
                             }
                             if (object.pemCrc32c != null) {
                                 if (typeof object.pemCrc32c !== "object")
@@ -9771,6 +10317,31 @@
                                 message.protectionLevel = 4;
                                 break;
                             }
+                            switch (object.publicKeyFormat) {
+                            default:
+                                if (typeof object.publicKeyFormat === "number") {
+                                    message.publicKeyFormat = object.publicKeyFormat;
+                                    break;
+                                }
+                                break;
+                            case "PUBLIC_KEY_FORMAT_UNSPECIFIED":
+                            case 0:
+                                message.publicKeyFormat = 0;
+                                break;
+                            case "PEM":
+                            case 1:
+                                message.publicKeyFormat = 1;
+                                break;
+                            case "NIST_PQC":
+                            case 3:
+                                message.publicKeyFormat = 3;
+                                break;
+                            }
+                            if (object.publicKey != null) {
+                                if (typeof object.publicKey !== "object")
+                                    throw TypeError(".google.cloud.kms.v1.PublicKey.publicKey: object expected");
+                                message.publicKey = $root.google.cloud.kms.v1.ChecksummedData.fromObject(object.publicKey);
+                            }
                             return message;
                         };
     
@@ -9793,6 +10364,8 @@
                                 object.pemCrc32c = null;
                                 object.name = "";
                                 object.protectionLevel = options.enums === String ? "PROTECTION_LEVEL_UNSPECIFIED" : 0;
+                                object.publicKeyFormat = options.enums === String ? "PUBLIC_KEY_FORMAT_UNSPECIFIED" : 0;
+                                object.publicKey = null;
                             }
                             if (message.pem != null && message.hasOwnProperty("pem"))
                                 object.pem = message.pem;
@@ -9804,6 +10377,10 @@
                                 object.name = message.name;
                             if (message.protectionLevel != null && message.hasOwnProperty("protectionLevel"))
                                 object.protectionLevel = options.enums === String ? $root.google.cloud.kms.v1.ProtectionLevel[message.protectionLevel] === undefined ? message.protectionLevel : $root.google.cloud.kms.v1.ProtectionLevel[message.protectionLevel] : message.protectionLevel;
+                            if (message.publicKeyFormat != null && message.hasOwnProperty("publicKeyFormat"))
+                                object.publicKeyFormat = options.enums === String ? $root.google.cloud.kms.v1.PublicKey.PublicKeyFormat[message.publicKeyFormat] === undefined ? message.publicKeyFormat : $root.google.cloud.kms.v1.PublicKey.PublicKeyFormat[message.publicKeyFormat] : message.publicKeyFormat;
+                            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+                                object.publicKey = $root.google.cloud.kms.v1.ChecksummedData.toObject(message.publicKey, options);
                             return object;
                         };
     
@@ -9832,6 +10409,22 @@
                             }
                             return typeUrlPrefix + "/google.cloud.kms.v1.PublicKey";
                         };
+    
+                        /**
+                         * PublicKeyFormat enum.
+                         * @name google.cloud.kms.v1.PublicKey.PublicKeyFormat
+                         * @enum {number}
+                         * @property {number} PUBLIC_KEY_FORMAT_UNSPECIFIED=0 PUBLIC_KEY_FORMAT_UNSPECIFIED value
+                         * @property {number} PEM=1 PEM value
+                         * @property {number} NIST_PQC=3 NIST_PQC value
+                         */
+                        PublicKey.PublicKeyFormat = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "PUBLIC_KEY_FORMAT_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "PEM"] = 1;
+                            values[valuesById[3] = "NIST_PQC"] = 3;
+                            return values;
+                        })();
     
                         return PublicKey;
                     })();
@@ -10020,12 +10613,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ImportJob.decode = function decode(reader, length) {
+                        ImportJob.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ImportJob();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10508,12 +11103,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            WrappingPublicKey.decode = function decode(reader, length) {
+                            WrappingPublicKey.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ImportJob.WrappingPublicKey();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.pem = reader.string();
@@ -10725,12 +11322,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ExternalProtectionLevelOptions.decode = function decode(reader, length) {
+                        ExternalProtectionLevelOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ExternalProtectionLevelOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.externalKeyUri = reader.string();
@@ -10856,60 +11455,6 @@
                         return ExternalProtectionLevelOptions;
                     })();
     
-                    /**
-                     * ProtectionLevel enum.
-                     * @name google.cloud.kms.v1.ProtectionLevel
-                     * @enum {number}
-                     * @property {number} PROTECTION_LEVEL_UNSPECIFIED=0 PROTECTION_LEVEL_UNSPECIFIED value
-                     * @property {number} SOFTWARE=1 SOFTWARE value
-                     * @property {number} HSM=2 HSM value
-                     * @property {number} EXTERNAL=3 EXTERNAL value
-                     * @property {number} EXTERNAL_VPC=4 EXTERNAL_VPC value
-                     */
-                    v1.ProtectionLevel = (function() {
-                        var valuesById = {}, values = Object.create(valuesById);
-                        values[valuesById[0] = "PROTECTION_LEVEL_UNSPECIFIED"] = 0;
-                        values[valuesById[1] = "SOFTWARE"] = 1;
-                        values[valuesById[2] = "HSM"] = 2;
-                        values[valuesById[3] = "EXTERNAL"] = 3;
-                        values[valuesById[4] = "EXTERNAL_VPC"] = 4;
-                        return values;
-                    })();
-    
-                    /**
-                     * AccessReason enum.
-                     * @name google.cloud.kms.v1.AccessReason
-                     * @enum {number}
-                     * @property {number} REASON_UNSPECIFIED=0 REASON_UNSPECIFIED value
-                     * @property {number} CUSTOMER_INITIATED_SUPPORT=1 CUSTOMER_INITIATED_SUPPORT value
-                     * @property {number} GOOGLE_INITIATED_SERVICE=2 GOOGLE_INITIATED_SERVICE value
-                     * @property {number} THIRD_PARTY_DATA_REQUEST=3 THIRD_PARTY_DATA_REQUEST value
-                     * @property {number} GOOGLE_INITIATED_REVIEW=4 GOOGLE_INITIATED_REVIEW value
-                     * @property {number} CUSTOMER_INITIATED_ACCESS=5 CUSTOMER_INITIATED_ACCESS value
-                     * @property {number} GOOGLE_INITIATED_SYSTEM_OPERATION=6 GOOGLE_INITIATED_SYSTEM_OPERATION value
-                     * @property {number} REASON_NOT_EXPECTED=7 REASON_NOT_EXPECTED value
-                     * @property {number} MODIFIED_CUSTOMER_INITIATED_ACCESS=8 MODIFIED_CUSTOMER_INITIATED_ACCESS value
-                     * @property {number} MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION=9 MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION value
-                     * @property {number} GOOGLE_RESPONSE_TO_PRODUCTION_ALERT=10 GOOGLE_RESPONSE_TO_PRODUCTION_ALERT value
-                     * @property {number} CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING=11 CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING value
-                     */
-                    v1.AccessReason = (function() {
-                        var valuesById = {}, values = Object.create(valuesById);
-                        values[valuesById[0] = "REASON_UNSPECIFIED"] = 0;
-                        values[valuesById[1] = "CUSTOMER_INITIATED_SUPPORT"] = 1;
-                        values[valuesById[2] = "GOOGLE_INITIATED_SERVICE"] = 2;
-                        values[valuesById[3] = "THIRD_PARTY_DATA_REQUEST"] = 3;
-                        values[valuesById[4] = "GOOGLE_INITIATED_REVIEW"] = 4;
-                        values[valuesById[5] = "CUSTOMER_INITIATED_ACCESS"] = 5;
-                        values[valuesById[6] = "GOOGLE_INITIATED_SYSTEM_OPERATION"] = 6;
-                        values[valuesById[7] = "REASON_NOT_EXPECTED"] = 7;
-                        values[valuesById[8] = "MODIFIED_CUSTOMER_INITIATED_ACCESS"] = 8;
-                        values[valuesById[9] = "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION"] = 9;
-                        values[valuesById[10] = "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"] = 10;
-                        values[valuesById[11] = "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING"] = 11;
-                        return values;
-                    })();
-    
                     v1.KeyAccessJustificationsPolicy = (function() {
     
                         /**
@@ -11000,12 +11545,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        KeyAccessJustificationsPolicy.decode = function decode(reader, length) {
+                        KeyAccessJustificationsPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.KeyAccessJustificationsPolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.allowedAccessReasons && message.allowedAccessReasons.length))
@@ -11204,6 +11751,60 @@
                         };
     
                         return KeyAccessJustificationsPolicy;
+                    })();
+    
+                    /**
+                     * ProtectionLevel enum.
+                     * @name google.cloud.kms.v1.ProtectionLevel
+                     * @enum {number}
+                     * @property {number} PROTECTION_LEVEL_UNSPECIFIED=0 PROTECTION_LEVEL_UNSPECIFIED value
+                     * @property {number} SOFTWARE=1 SOFTWARE value
+                     * @property {number} HSM=2 HSM value
+                     * @property {number} EXTERNAL=3 EXTERNAL value
+                     * @property {number} EXTERNAL_VPC=4 EXTERNAL_VPC value
+                     */
+                    v1.ProtectionLevel = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "PROTECTION_LEVEL_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "SOFTWARE"] = 1;
+                        values[valuesById[2] = "HSM"] = 2;
+                        values[valuesById[3] = "EXTERNAL"] = 3;
+                        values[valuesById[4] = "EXTERNAL_VPC"] = 4;
+                        return values;
+                    })();
+    
+                    /**
+                     * AccessReason enum.
+                     * @name google.cloud.kms.v1.AccessReason
+                     * @enum {number}
+                     * @property {number} REASON_UNSPECIFIED=0 REASON_UNSPECIFIED value
+                     * @property {number} CUSTOMER_INITIATED_SUPPORT=1 CUSTOMER_INITIATED_SUPPORT value
+                     * @property {number} GOOGLE_INITIATED_SERVICE=2 GOOGLE_INITIATED_SERVICE value
+                     * @property {number} THIRD_PARTY_DATA_REQUEST=3 THIRD_PARTY_DATA_REQUEST value
+                     * @property {number} GOOGLE_INITIATED_REVIEW=4 GOOGLE_INITIATED_REVIEW value
+                     * @property {number} CUSTOMER_INITIATED_ACCESS=5 CUSTOMER_INITIATED_ACCESS value
+                     * @property {number} GOOGLE_INITIATED_SYSTEM_OPERATION=6 GOOGLE_INITIATED_SYSTEM_OPERATION value
+                     * @property {number} REASON_NOT_EXPECTED=7 REASON_NOT_EXPECTED value
+                     * @property {number} MODIFIED_CUSTOMER_INITIATED_ACCESS=8 MODIFIED_CUSTOMER_INITIATED_ACCESS value
+                     * @property {number} MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION=9 MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION value
+                     * @property {number} GOOGLE_RESPONSE_TO_PRODUCTION_ALERT=10 GOOGLE_RESPONSE_TO_PRODUCTION_ALERT value
+                     * @property {number} CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING=11 CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING value
+                     */
+                    v1.AccessReason = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "REASON_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "CUSTOMER_INITIATED_SUPPORT"] = 1;
+                        values[valuesById[2] = "GOOGLE_INITIATED_SERVICE"] = 2;
+                        values[valuesById[3] = "THIRD_PARTY_DATA_REQUEST"] = 3;
+                        values[valuesById[4] = "GOOGLE_INITIATED_REVIEW"] = 4;
+                        values[valuesById[5] = "CUSTOMER_INITIATED_ACCESS"] = 5;
+                        values[valuesById[6] = "GOOGLE_INITIATED_SYSTEM_OPERATION"] = 6;
+                        values[valuesById[7] = "REASON_NOT_EXPECTED"] = 7;
+                        values[valuesById[8] = "MODIFIED_CUSTOMER_INITIATED_ACCESS"] = 8;
+                        values[valuesById[9] = "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION"] = 9;
+                        values[valuesById[10] = "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"] = 10;
+                        values[valuesById[11] = "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING"] = 11;
+                        return values;
                     })();
     
                     v1.KeyManagementService = (function() {
@@ -12294,12 +12895,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKeyRingsRequest.decode = function decode(reader, length) {
+                        ListKeyRingsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListKeyRingsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -12601,12 +13204,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCryptoKeysRequest.decode = function decode(reader, length) {
+                        ListCryptoKeysRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListCryptoKeysRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -12939,12 +13544,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCryptoKeyVersionsRequest.decode = function decode(reader, length) {
+                        ListCryptoKeyVersionsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListCryptoKeyVersionsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -13266,12 +13873,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListImportJobsRequest.decode = function decode(reader, length) {
+                        ListImportJobsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListImportJobsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -13542,12 +14151,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKeyRingsResponse.decode = function decode(reader, length) {
+                        ListKeyRingsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListKeyRingsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.keyRings && message.keyRings.length))
@@ -13814,12 +14425,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCryptoKeysResponse.decode = function decode(reader, length) {
+                        ListCryptoKeysResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListCryptoKeysResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.cryptoKeys && message.cryptoKeys.length))
@@ -14086,12 +14699,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListCryptoKeyVersionsResponse.decode = function decode(reader, length) {
+                        ListCryptoKeyVersionsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListCryptoKeyVersionsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.cryptoKeyVersions && message.cryptoKeyVersions.length))
@@ -14358,12 +14973,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListImportJobsResponse.decode = function decode(reader, length) {
+                        ListImportJobsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ListImportJobsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.importJobs && message.importJobs.length))
@@ -14606,12 +15223,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetKeyRingRequest.decode = function decode(reader, length) {
+                        GetKeyRingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetKeyRingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -14809,12 +15428,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetCryptoKeyRequest.decode = function decode(reader, length) {
+                        GetCryptoKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetCryptoKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15012,12 +15633,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetCryptoKeyVersionRequest.decode = function decode(reader, length) {
+                        GetCryptoKeyVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetCryptoKeyVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15137,6 +15760,7 @@
                          * @memberof google.cloud.kms.v1
                          * @interface IGetPublicKeyRequest
                          * @property {string|null} [name] GetPublicKeyRequest name
+                         * @property {google.cloud.kms.v1.PublicKey.PublicKeyFormat|null} [publicKeyFormat] GetPublicKeyRequest publicKeyFormat
                          */
     
                         /**
@@ -15161,6 +15785,14 @@
                          * @instance
                          */
                         GetPublicKeyRequest.prototype.name = "";
+    
+                        /**
+                         * GetPublicKeyRequest publicKeyFormat.
+                         * @member {google.cloud.kms.v1.PublicKey.PublicKeyFormat} publicKeyFormat
+                         * @memberof google.cloud.kms.v1.GetPublicKeyRequest
+                         * @instance
+                         */
+                        GetPublicKeyRequest.prototype.publicKeyFormat = 0;
     
                         /**
                          * Creates a new GetPublicKeyRequest instance using the specified properties.
@@ -15188,6 +15820,8 @@
                                 writer = $Writer.create();
                             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.publicKeyFormat != null && Object.hasOwnProperty.call(message, "publicKeyFormat"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.publicKeyFormat);
                             return writer;
                         };
     
@@ -15215,15 +15849,21 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetPublicKeyRequest.decode = function decode(reader, length) {
+                        GetPublicKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetPublicKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.publicKeyFormat = reader.int32();
                                         break;
                                     }
                                 default:
@@ -15264,6 +15904,15 @@
                             if (message.name != null && message.hasOwnProperty("name"))
                                 if (!$util.isString(message.name))
                                     return "name: string expected";
+                            if (message.publicKeyFormat != null && message.hasOwnProperty("publicKeyFormat"))
+                                switch (message.publicKeyFormat) {
+                                default:
+                                    return "publicKeyFormat: enum value expected";
+                                case 0:
+                                case 1:
+                                case 3:
+                                    break;
+                                }
                             return null;
                         };
     
@@ -15281,6 +15930,26 @@
                             var message = new $root.google.cloud.kms.v1.GetPublicKeyRequest();
                             if (object.name != null)
                                 message.name = String(object.name);
+                            switch (object.publicKeyFormat) {
+                            default:
+                                if (typeof object.publicKeyFormat === "number") {
+                                    message.publicKeyFormat = object.publicKeyFormat;
+                                    break;
+                                }
+                                break;
+                            case "PUBLIC_KEY_FORMAT_UNSPECIFIED":
+                            case 0:
+                                message.publicKeyFormat = 0;
+                                break;
+                            case "PEM":
+                            case 1:
+                                message.publicKeyFormat = 1;
+                                break;
+                            case "NIST_PQC":
+                            case 3:
+                                message.publicKeyFormat = 3;
+                                break;
+                            }
                             return message;
                         };
     
@@ -15297,10 +15966,14 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.defaults)
+                            if (options.defaults) {
                                 object.name = "";
+                                object.publicKeyFormat = options.enums === String ? "PUBLIC_KEY_FORMAT_UNSPECIFIED" : 0;
+                            }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
+                            if (message.publicKeyFormat != null && message.hasOwnProperty("publicKeyFormat"))
+                                object.publicKeyFormat = options.enums === String ? $root.google.cloud.kms.v1.PublicKey.PublicKeyFormat[message.publicKeyFormat] === undefined ? message.publicKeyFormat : $root.google.cloud.kms.v1.PublicKey.PublicKeyFormat[message.publicKeyFormat] : message.publicKeyFormat;
                             return object;
                         };
     
@@ -15418,12 +16091,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetImportJobRequest.decode = function decode(reader, length) {
+                        GetImportJobRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GetImportJobRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15643,12 +16318,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateKeyRingRequest.decode = function decode(reader, length) {
+                        CreateKeyRingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateKeyRingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -15909,12 +16586,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateCryptoKeyRequest.decode = function decode(reader, length) {
+                        CreateCryptoKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateCryptoKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16165,12 +16844,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateCryptoKeyVersionRequest.decode = function decode(reader, length) {
+                        CreateCryptoKeyVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateCryptoKeyVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16455,12 +17136,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ImportCryptoKeyVersionRequest.decode = function decode(reader, length) {
+                        ImportCryptoKeyVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.ImportCryptoKeyVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16568,6 +17251,8 @@
                                 case 35:
                                 case 36:
                                 case 18:
+                                case 56:
+                                case 57:
                                     break;
                                 }
                             if (message.importJob != null && message.hasOwnProperty("importJob"))
@@ -16750,6 +17435,14 @@
                             case "EXTERNAL_SYMMETRIC_ENCRYPTION":
                             case 18:
                                 message.algorithm = 18;
+                                break;
+                            case "PQ_SIGN_ML_DSA_65":
+                            case 56:
+                                message.algorithm = 56;
+                                break;
+                            case "PQ_SIGN_SLH_DSA_SHA2_128S":
+                            case 57:
+                                message.algorithm = 57;
                                 break;
                             }
                             if (object.importJob != null)
@@ -16947,12 +17640,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateImportJobRequest.decode = function decode(reader, length) {
+                        CreateImportJobRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.CreateImportJobRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -17191,12 +17886,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateCryptoKeyRequest.decode = function decode(reader, length) {
+                        UpdateCryptoKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.UpdateCryptoKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.cryptoKey = $root.google.cloud.kms.v1.CryptoKey.decode(reader, reader.uint32());
@@ -17428,12 +18125,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateCryptoKeyVersionRequest.decode = function decode(reader, length) {
+                        UpdateCryptoKeyVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.UpdateCryptoKeyVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.cryptoKeyVersion = $root.google.cloud.kms.v1.CryptoKeyVersion.decode(reader, reader.uint32());
@@ -17665,12 +18364,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateCryptoKeyPrimaryVersionRequest.decode = function decode(reader, length) {
+                        UpdateCryptoKeyPrimaryVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.UpdateCryptoKeyPrimaryVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17881,12 +18582,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DestroyCryptoKeyVersionRequest.decode = function decode(reader, length) {
+                        DestroyCryptoKeyVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.DestroyCryptoKeyVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -18084,12 +18787,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RestoreCryptoKeyVersionRequest.decode = function decode(reader, length) {
+                        RestoreCryptoKeyVersionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.RestoreCryptoKeyVersionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -18331,12 +19036,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EncryptRequest.decode = function decode(reader, length) {
+                        EncryptRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.EncryptRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -18655,12 +19362,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DecryptRequest.decode = function decode(reader, length) {
+                        DecryptRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.DecryptRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19001,12 +19710,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RawEncryptRequest.decode = function decode(reader, length) {
+                        RawEncryptRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.RawEncryptRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19396,12 +20107,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RawDecryptRequest.decode = function decode(reader, length) {
+                        RawDecryptRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.RawDecryptRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19770,12 +20483,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AsymmetricSignRequest.decode = function decode(reader, length) {
+                        AsymmetricSignRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.AsymmetricSignRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20068,12 +20783,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AsymmetricDecryptRequest.decode = function decode(reader, length) {
+                        AsymmetricDecryptRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.AsymmetricDecryptRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20332,12 +21049,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MacSignRequest.decode = function decode(reader, length) {
+                        MacSignRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.MacSignRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20618,12 +21337,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MacVerifyRequest.decode = function decode(reader, length) {
+                        MacVerifyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.MacVerifyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20920,12 +21641,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GenerateRandomBytesRequest.decode = function decode(reader, length) {
+                        GenerateRandomBytesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GenerateRandomBytesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.location = reader.string();
@@ -21237,12 +21960,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EncryptResponse.decode = function decode(reader, length) {
+                        EncryptResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.EncryptResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -21582,12 +22307,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DecryptResponse.decode = function decode(reader, length) {
+                        DecryptResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.DecryptResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.plaintext = reader.bytes();
@@ -21969,12 +22696,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RawEncryptResponse.decode = function decode(reader, length) {
+                        RawEncryptResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.RawEncryptResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.ciphertext = reader.bytes();
@@ -22398,12 +23127,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RawDecryptResponse.decode = function decode(reader, length) {
+                        RawDecryptResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.RawDecryptResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.plaintext = reader.bytes();
@@ -22765,12 +23496,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AsymmetricSignResponse.decode = function decode(reader, length) {
+                        AsymmetricSignResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.AsymmetricSignResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.signature = reader.bytes();
@@ -23110,12 +23843,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AsymmetricDecryptResponse.decode = function decode(reader, length) {
+                        AsymmetricDecryptResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.AsymmetricDecryptResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.plaintext = reader.bytes();
@@ -23442,12 +24177,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MacSignResponse.decode = function decode(reader, length) {
+                        MacSignResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.MacSignResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -23797,12 +24534,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MacVerifyResponse.decode = function decode(reader, length) {
+                        MacVerifyResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.MacVerifyResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -24106,12 +24845,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GenerateRandomBytesResponse.decode = function decode(reader, length) {
+                        GenerateRandomBytesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.GenerateRandomBytesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.data = reader.bytes();
@@ -24372,12 +25113,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Digest.decode = function decode(reader, length) {
+                        Digest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.Digest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.sha256 = reader.bytes();
@@ -24635,12 +25378,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LocationMetadata.decode = function decode(reader, length) {
+                        LocationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.kms.v1.LocationMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.hsmAvailable = reader.bool();
@@ -24882,12 +25627,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -25232,12 +25979,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -25616,12 +26365,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -25848,12 +26599,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -26217,12 +26970,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -26561,6 +27316,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -26662,6 +27418,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -26708,6 +27472,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -26735,12 +27501,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -26786,6 +27554,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -26880,6 +27652,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -26974,6 +27749,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -27003,6 +27780,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -27033,6 +27811,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -27174,12 +27954,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -27441,12 +28223,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -27649,12 +28433,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -27857,12 +28643,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -28065,12 +28853,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -28338,12 +29128,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -28717,12 +29509,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -28925,12 +29719,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -29157,12 +29953,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -29435,12 +30233,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -29862,12 +30662,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -30257,12 +31059,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -30487,12 +31291,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -30887,12 +31693,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31554,12 +32362,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -32039,12 +32849,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -32283,12 +33095,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -32539,12 +33353,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -32884,12 +33700,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -33263,12 +34081,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -33788,12 +34608,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -34059,12 +34881,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -34378,12 +35202,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -34619,12 +35445,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -34876,12 +35704,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -35184,12 +36014,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -35688,12 +36520,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -36308,12 +37142,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -36756,12 +37592,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -36791,12 +37624,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -37522,12 +38357,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -37818,12 +38655,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -38104,12 +38943,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -38416,12 +39257,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -38607,6 +39450,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -38666,6 +39510,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -38700,6 +39552,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -38727,12 +39581,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -38754,6 +39610,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -38814,6 +39674,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -38850,6 +39713,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -38873,6 +39738,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -38887,6 +39753,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -39074,12 +39942,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -39508,12 +40378,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -39847,12 +40719,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -40123,12 +40997,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -40658,12 +41534,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -41042,12 +41920,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -41332,12 +42212,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -41607,12 +42489,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -41918,12 +42802,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -42186,12 +43072,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -42512,12 +43400,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -42753,12 +43643,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -42967,12 +43859,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -43155,12 +44049,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -43383,12 +44279,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -43613,12 +44511,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DoubleValue.decode = function decode(reader, length) {
+                DoubleValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DoubleValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.double();
@@ -43816,12 +44716,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FloatValue.decode = function decode(reader, length) {
+                FloatValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FloatValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.float();
@@ -44019,12 +44921,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int64Value.decode = function decode(reader, length) {
+                Int64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int64();
@@ -44236,12 +45140,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt64Value.decode = function decode(reader, length) {
+                UInt64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint64();
@@ -44453,12 +45359,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int32Value.decode = function decode(reader, length) {
+                Int32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int32();
@@ -44656,12 +45564,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt32Value.decode = function decode(reader, length) {
+                UInt32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint32();
@@ -44859,12 +45769,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BoolValue.decode = function decode(reader, length) {
+                BoolValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BoolValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bool();
@@ -45062,12 +45974,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                StringValue.decode = function decode(reader, length) {
+                StringValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.StringValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.string();
@@ -45265,12 +46179,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BytesValue.decode = function decode(reader, length) {
+                BytesValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BytesValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bytes();
@@ -45747,12 +46663,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -46027,12 +46945,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -46263,12 +47183,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -46516,12 +47438,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -46751,12 +47675,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -46954,12 +47880,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47168,12 +48096,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47400,12 +48330,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();
@@ -47652,12 +48584,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

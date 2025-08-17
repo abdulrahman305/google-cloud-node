@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,51 +58,7 @@ type SessionsClient = v2.SessionsClient;
 const VersionsClient = v2.VersionsClient;
 type VersionsClient = v2.VersionsClient;
 
-export {
-  v2,
-  v2beta1,
-  AgentsClient,
-  AnswerRecordsClient,
-  ContextsClient,
-  ConversationDatasetsClient,
-  ConversationModelsClient,
-  ConversationProfilesClient,
-  ConversationsClient,
-  DocumentsClient,
-  EncryptionSpecServiceClient,
-  EntityTypesClient,
-  EnvironmentsClient,
-  FulfillmentsClient,
-  GeneratorsClient,
-  IntentsClient,
-  KnowledgeBasesClient,
-  ParticipantsClient,
-  SessionEntityTypesClient,
-  SessionsClient,
-  VersionsClient,
-};
-export default {
-  v2,
-  v2beta1,
-  AgentsClient,
-  AnswerRecordsClient,
-  ContextsClient,
-  ConversationDatasetsClient,
-  ConversationModelsClient,
-  ConversationProfilesClient,
-  ConversationsClient,
-  DocumentsClient,
-  EncryptionSpecServiceClient,
-  EntityTypesClient,
-  EnvironmentsClient,
-  FulfillmentsClient,
-  GeneratorsClient,
-  IntentsClient,
-  KnowledgeBasesClient,
-  ParticipantsClient,
-  SessionEntityTypesClient,
-  SessionsClient,
-  VersionsClient,
-};
+export {v2, v2beta1, AgentsClient, AnswerRecordsClient, ContextsClient, ConversationDatasetsClient, ConversationModelsClient, ConversationProfilesClient, ConversationsClient, DocumentsClient, EncryptionSpecServiceClient, EntityTypesClient, EnvironmentsClient, FulfillmentsClient, GeneratorsClient, IntentsClient, KnowledgeBasesClient, ParticipantsClient, SessionEntityTypesClient, SessionsClient, VersionsClient};
+export default {v2, v2beta1, AgentsClient, AnswerRecordsClient, ContextsClient, ConversationDatasetsClient, ConversationModelsClient, ConversationProfilesClient, ConversationsClient, DocumentsClient, EncryptionSpecServiceClient, EntityTypesClient, EnvironmentsClient, FulfillmentsClient, GeneratorsClient, IntentsClient, KnowledgeBasesClient, ParticipantsClient, SessionEntityTypesClient, SessionsClient, VersionsClient};
 import * as protos from '../protos/protos';
 export {protos};

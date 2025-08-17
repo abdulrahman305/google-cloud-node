@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -155,12 +155,6 @@ export namespace google {
 
                     /** ListChildAccountsRequest pageToken. */
                     public pageToken: string;
-
-                    /** ListChildAccountsRequest _labelId. */
-                    public _labelId?: "labelId";
-
-                    /** ListChildAccountsRequest _fullName. */
-                    public _fullName?: "fullName";
 
                     /**
                      * Creates a new ListChildAccountsRequest instance using the specified properties.
@@ -368,9 +362,6 @@ export namespace google {
                     /** GetAccountRequest parent. */
                     public parent?: (string|null);
 
-                    /** GetAccountRequest _parent. */
-                    public _parent?: "parent";
-
                     /**
                      * Creates a new GetAccountRequest instance using the specified properties.
                      * @param [properties] Properties to set
@@ -479,9 +470,6 @@ export namespace google {
 
                     /** UpdateAccountLabelsRequest parent. */
                     public parent?: (string|null);
-
-                    /** UpdateAccountLabelsRequest _parent. */
-                    public _parent?: "parent";
 
                     /**
                      * Creates a new UpdateAccountLabelsRequest instance using the specified properties.
@@ -621,15 +609,6 @@ export namespace google {
 
                     /** Account accountType. */
                     public accountType: (google.shopping.css.v1.Account.AccountType|keyof typeof google.shopping.css.v1.Account.AccountType);
-
-                    /** Account _displayName. */
-                    public _displayName?: "displayName";
-
-                    /** Account _homepageUri. */
-                    public _homepageUri?: "homepageUri";
-
-                    /** Account _parent. */
-                    public _parent?: "parent";
 
                     /**
                      * Creates a new Account instance using the specified properties.
@@ -881,12 +860,6 @@ export namespace google {
 
                     /** AccountLabel labelType. */
                     public labelType: (google.shopping.css.v1.AccountLabel.LabelType|keyof typeof google.shopping.css.v1.AccountLabel.LabelType);
-
-                    /** AccountLabel _displayName. */
-                    public _displayName?: "displayName";
-
-                    /** AccountLabel _description. */
-                    public _description?: "description";
 
                     /**
                      * Creates a new AccountLabel instance using the specified properties.
@@ -1797,99 +1770,6 @@ export namespace google {
 
                     /** Attributes headlineOfferSubscriptionCost. */
                     public headlineOfferSubscriptionCost?: (google.shopping.css.v1.IHeadlineOfferSubscriptionCost|null);
-
-                    /** Attributes _cppLink. */
-                    public _cppLink?: "cppLink";
-
-                    /** Attributes _cppMobileLink. */
-                    public _cppMobileLink?: "cppMobileLink";
-
-                    /** Attributes _cppAdsRedirect. */
-                    public _cppAdsRedirect?: "cppAdsRedirect";
-
-                    /** Attributes _numberOfOffers. */
-                    public _numberOfOffers?: "numberOfOffers";
-
-                    /** Attributes _headlineOfferCondition. */
-                    public _headlineOfferCondition?: "headlineOfferCondition";
-
-                    /** Attributes _headlineOfferLink. */
-                    public _headlineOfferLink?: "headlineOfferLink";
-
-                    /** Attributes _headlineOfferMobileLink. */
-                    public _headlineOfferMobileLink?: "headlineOfferMobileLink";
-
-                    /** Attributes _title. */
-                    public _title?: "title";
-
-                    /** Attributes _imageLink. */
-                    public _imageLink?: "imageLink";
-
-                    /** Attributes _description. */
-                    public _description?: "description";
-
-                    /** Attributes _brand. */
-                    public _brand?: "brand";
-
-                    /** Attributes _mpn. */
-                    public _mpn?: "mpn";
-
-                    /** Attributes _gtin. */
-                    public _gtin?: "gtin";
-
-                    /** Attributes _googleProductCategory. */
-                    public _googleProductCategory?: "googleProductCategory";
-
-                    /** Attributes _adult. */
-                    public _adult?: "adult";
-
-                    /** Attributes _multipack. */
-                    public _multipack?: "multipack";
-
-                    /** Attributes _isBundle. */
-                    public _isBundle?: "isBundle";
-
-                    /** Attributes _ageGroup. */
-                    public _ageGroup?: "ageGroup";
-
-                    /** Attributes _color. */
-                    public _color?: "color";
-
-                    /** Attributes _gender. */
-                    public _gender?: "gender";
-
-                    /** Attributes _material. */
-                    public _material?: "material";
-
-                    /** Attributes _pattern. */
-                    public _pattern?: "pattern";
-
-                    /** Attributes _size. */
-                    public _size?: "size";
-
-                    /** Attributes _sizeSystem. */
-                    public _sizeSystem?: "sizeSystem";
-
-                    /** Attributes _itemGroupId. */
-                    public _itemGroupId?: "itemGroupId";
-
-                    /** Attributes _pause. */
-                    public _pause?: "pause";
-
-                    /** Attributes _customLabel_0. */
-                    public _customLabel_0?: "customLabel_0";
-
-                    /** Attributes _customLabel_1. */
-                    public _customLabel_1?: "customLabel_1";
-
-                    /** Attributes _customLabel_2. */
-                    public _customLabel_2?: "customLabel_2";
-
-                    /** Attributes _customLabel_3. */
-                    public _customLabel_3?: "customLabel_3";
-
-                    /** Attributes _customLabel_4. */
-                    public _customLabel_4?: "customLabel_4";
 
                     /**
                      * Creates a new Attributes instance using the specified properties.
@@ -3037,6 +2917,20 @@ export namespace google {
                     public insertCssProductInput(request: google.shopping.css.v1.IInsertCssProductInputRequest): Promise<google.shopping.css.v1.CssProductInput>;
 
                     /**
+                     * Calls UpdateCssProductInput.
+                     * @param request UpdateCssProductInputRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and CssProductInput
+                     */
+                    public updateCssProductInput(request: google.shopping.css.v1.IUpdateCssProductInputRequest, callback: google.shopping.css.v1.CssProductInputsService.UpdateCssProductInputCallback): void;
+
+                    /**
+                     * Calls UpdateCssProductInput.
+                     * @param request UpdateCssProductInputRequest message or plain object
+                     * @returns Promise
+                     */
+                    public updateCssProductInput(request: google.shopping.css.v1.IUpdateCssProductInputRequest): Promise<google.shopping.css.v1.CssProductInput>;
+
+                    /**
                      * Calls DeleteCssProductInput.
                      * @param request DeleteCssProductInputRequest message or plain object
                      * @param callback Node-style callback called with the error, if any, and Empty
@@ -3059,6 +2953,13 @@ export namespace google {
                      * @param [response] CssProductInput
                      */
                     type InsertCssProductInputCallback = (error: (Error|null), response?: google.shopping.css.v1.CssProductInput) => void;
+
+                    /**
+                     * Callback as used by {@link google.shopping.css.v1.CssProductInputsService|updateCssProductInput}.
+                     * @param error Error, if any
+                     * @param [response] CssProductInput
+                     */
+                    type UpdateCssProductInputCallback = (error: (Error|null), response?: google.shopping.css.v1.CssProductInput) => void;
 
                     /**
                      * Callback as used by {@link google.shopping.css.v1.CssProductInputsService|deleteCssProductInput}.
@@ -3316,6 +3217,109 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of an UpdateCssProductInputRequest. */
+                interface IUpdateCssProductInputRequest {
+
+                    /** UpdateCssProductInputRequest cssProductInput */
+                    cssProductInput?: (google.shopping.css.v1.ICssProductInput|null);
+
+                    /** UpdateCssProductInputRequest updateMask */
+                    updateMask?: (google.protobuf.IFieldMask|null);
+                }
+
+                /** Represents an UpdateCssProductInputRequest. */
+                class UpdateCssProductInputRequest implements IUpdateCssProductInputRequest {
+
+                    /**
+                     * Constructs a new UpdateCssProductInputRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.shopping.css.v1.IUpdateCssProductInputRequest);
+
+                    /** UpdateCssProductInputRequest cssProductInput. */
+                    public cssProductInput?: (google.shopping.css.v1.ICssProductInput|null);
+
+                    /** UpdateCssProductInputRequest updateMask. */
+                    public updateMask?: (google.protobuf.IFieldMask|null);
+
+                    /**
+                     * Creates a new UpdateCssProductInputRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns UpdateCssProductInputRequest instance
+                     */
+                    public static create(properties?: google.shopping.css.v1.IUpdateCssProductInputRequest): google.shopping.css.v1.UpdateCssProductInputRequest;
+
+                    /**
+                     * Encodes the specified UpdateCssProductInputRequest message. Does not implicitly {@link google.shopping.css.v1.UpdateCssProductInputRequest.verify|verify} messages.
+                     * @param message UpdateCssProductInputRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.shopping.css.v1.IUpdateCssProductInputRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified UpdateCssProductInputRequest message, length delimited. Does not implicitly {@link google.shopping.css.v1.UpdateCssProductInputRequest.verify|verify} messages.
+                     * @param message UpdateCssProductInputRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.shopping.css.v1.IUpdateCssProductInputRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an UpdateCssProductInputRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns UpdateCssProductInputRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.shopping.css.v1.UpdateCssProductInputRequest;
+
+                    /**
+                     * Decodes an UpdateCssProductInputRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns UpdateCssProductInputRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.shopping.css.v1.UpdateCssProductInputRequest;
+
+                    /**
+                     * Verifies an UpdateCssProductInputRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an UpdateCssProductInputRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns UpdateCssProductInputRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.shopping.css.v1.UpdateCssProductInputRequest;
+
+                    /**
+                     * Creates a plain object from an UpdateCssProductInputRequest message. Also converts values to other types if specified.
+                     * @param message UpdateCssProductInputRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.shopping.css.v1.UpdateCssProductInputRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this UpdateCssProductInputRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for UpdateCssProductInputRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a DeleteCssProductInputRequest. */
                 interface IDeleteCssProductInputRequest {
 
@@ -3340,9 +3344,6 @@ export namespace google {
 
                     /** DeleteCssProductInputRequest supplementalFeedId. */
                     public supplementalFeedId?: (number|Long|string|null);
-
-                    /** DeleteCssProductInputRequest _supplementalFeedId. */
-                    public _supplementalFeedId?: "supplementalFeedId";
 
                     /**
                      * Creates a new DeleteCssProductInputRequest instance using the specified properties.
@@ -3929,6 +3930,499 @@ export namespace google {
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
+
+                /** Represents a QuotaService */
+                class QuotaService extends $protobuf.rpc.Service {
+
+                    /**
+                     * Constructs a new QuotaService service.
+                     * @param rpcImpl RPC implementation
+                     * @param [requestDelimited=false] Whether requests are length-delimited
+                     * @param [responseDelimited=false] Whether responses are length-delimited
+                     */
+                    constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+                    /**
+                     * Creates new QuotaService service using the specified rpc implementation.
+                     * @param rpcImpl RPC implementation
+                     * @param [requestDelimited=false] Whether requests are length-delimited
+                     * @param [responseDelimited=false] Whether responses are length-delimited
+                     * @returns RPC service. Useful where requests and/or responses are streamed.
+                     */
+                    public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): QuotaService;
+
+                    /**
+                     * Calls ListQuotaGroups.
+                     * @param request ListQuotaGroupsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListQuotaGroupsResponse
+                     */
+                    public listQuotaGroups(request: google.shopping.css.v1.IListQuotaGroupsRequest, callback: google.shopping.css.v1.QuotaService.ListQuotaGroupsCallback): void;
+
+                    /**
+                     * Calls ListQuotaGroups.
+                     * @param request ListQuotaGroupsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listQuotaGroups(request: google.shopping.css.v1.IListQuotaGroupsRequest): Promise<google.shopping.css.v1.ListQuotaGroupsResponse>;
+                }
+
+                namespace QuotaService {
+
+                    /**
+                     * Callback as used by {@link google.shopping.css.v1.QuotaService|listQuotaGroups}.
+                     * @param error Error, if any
+                     * @param [response] ListQuotaGroupsResponse
+                     */
+                    type ListQuotaGroupsCallback = (error: (Error|null), response?: google.shopping.css.v1.ListQuotaGroupsResponse) => void;
+                }
+
+                /** Properties of a QuotaGroup. */
+                interface IQuotaGroup {
+
+                    /** QuotaGroup name */
+                    name?: (string|null);
+
+                    /** QuotaGroup quotaUsage */
+                    quotaUsage?: (number|Long|string|null);
+
+                    /** QuotaGroup quotaLimit */
+                    quotaLimit?: (number|Long|string|null);
+
+                    /** QuotaGroup quotaMinuteLimit */
+                    quotaMinuteLimit?: (number|Long|string|null);
+
+                    /** QuotaGroup methodDetails */
+                    methodDetails?: (google.shopping.css.v1.IMethodDetails[]|null);
+                }
+
+                /** Represents a QuotaGroup. */
+                class QuotaGroup implements IQuotaGroup {
+
+                    /**
+                     * Constructs a new QuotaGroup.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.shopping.css.v1.IQuotaGroup);
+
+                    /** QuotaGroup name. */
+                    public name: string;
+
+                    /** QuotaGroup quotaUsage. */
+                    public quotaUsage: (number|Long|string);
+
+                    /** QuotaGroup quotaLimit. */
+                    public quotaLimit: (number|Long|string);
+
+                    /** QuotaGroup quotaMinuteLimit. */
+                    public quotaMinuteLimit: (number|Long|string);
+
+                    /** QuotaGroup methodDetails. */
+                    public methodDetails: google.shopping.css.v1.IMethodDetails[];
+
+                    /**
+                     * Creates a new QuotaGroup instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns QuotaGroup instance
+                     */
+                    public static create(properties?: google.shopping.css.v1.IQuotaGroup): google.shopping.css.v1.QuotaGroup;
+
+                    /**
+                     * Encodes the specified QuotaGroup message. Does not implicitly {@link google.shopping.css.v1.QuotaGroup.verify|verify} messages.
+                     * @param message QuotaGroup message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.shopping.css.v1.IQuotaGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified QuotaGroup message, length delimited. Does not implicitly {@link google.shopping.css.v1.QuotaGroup.verify|verify} messages.
+                     * @param message QuotaGroup message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.shopping.css.v1.IQuotaGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a QuotaGroup message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns QuotaGroup
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.shopping.css.v1.QuotaGroup;
+
+                    /**
+                     * Decodes a QuotaGroup message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns QuotaGroup
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.shopping.css.v1.QuotaGroup;
+
+                    /**
+                     * Verifies a QuotaGroup message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a QuotaGroup message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns QuotaGroup
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.shopping.css.v1.QuotaGroup;
+
+                    /**
+                     * Creates a plain object from a QuotaGroup message. Also converts values to other types if specified.
+                     * @param message QuotaGroup
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.shopping.css.v1.QuotaGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this QuotaGroup to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for QuotaGroup
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a MethodDetails. */
+                interface IMethodDetails {
+
+                    /** MethodDetails method */
+                    method?: (string|null);
+
+                    /** MethodDetails version */
+                    version?: (string|null);
+
+                    /** MethodDetails subapi */
+                    subapi?: (string|null);
+
+                    /** MethodDetails path */
+                    path?: (string|null);
+                }
+
+                /** Represents a MethodDetails. */
+                class MethodDetails implements IMethodDetails {
+
+                    /**
+                     * Constructs a new MethodDetails.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.shopping.css.v1.IMethodDetails);
+
+                    /** MethodDetails method. */
+                    public method: string;
+
+                    /** MethodDetails version. */
+                    public version: string;
+
+                    /** MethodDetails subapi. */
+                    public subapi: string;
+
+                    /** MethodDetails path. */
+                    public path: string;
+
+                    /**
+                     * Creates a new MethodDetails instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns MethodDetails instance
+                     */
+                    public static create(properties?: google.shopping.css.v1.IMethodDetails): google.shopping.css.v1.MethodDetails;
+
+                    /**
+                     * Encodes the specified MethodDetails message. Does not implicitly {@link google.shopping.css.v1.MethodDetails.verify|verify} messages.
+                     * @param message MethodDetails message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.shopping.css.v1.IMethodDetails, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified MethodDetails message, length delimited. Does not implicitly {@link google.shopping.css.v1.MethodDetails.verify|verify} messages.
+                     * @param message MethodDetails message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.shopping.css.v1.IMethodDetails, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a MethodDetails message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns MethodDetails
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.shopping.css.v1.MethodDetails;
+
+                    /**
+                     * Decodes a MethodDetails message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns MethodDetails
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.shopping.css.v1.MethodDetails;
+
+                    /**
+                     * Verifies a MethodDetails message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a MethodDetails message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns MethodDetails
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.shopping.css.v1.MethodDetails;
+
+                    /**
+                     * Creates a plain object from a MethodDetails message. Also converts values to other types if specified.
+                     * @param message MethodDetails
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.shopping.css.v1.MethodDetails, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this MethodDetails to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for MethodDetails
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListQuotaGroupsRequest. */
+                interface IListQuotaGroupsRequest {
+
+                    /** ListQuotaGroupsRequest parent */
+                    parent?: (string|null);
+
+                    /** ListQuotaGroupsRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListQuotaGroupsRequest pageToken */
+                    pageToken?: (string|null);
+                }
+
+                /** Represents a ListQuotaGroupsRequest. */
+                class ListQuotaGroupsRequest implements IListQuotaGroupsRequest {
+
+                    /**
+                     * Constructs a new ListQuotaGroupsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.shopping.css.v1.IListQuotaGroupsRequest);
+
+                    /** ListQuotaGroupsRequest parent. */
+                    public parent: string;
+
+                    /** ListQuotaGroupsRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListQuotaGroupsRequest pageToken. */
+                    public pageToken: string;
+
+                    /**
+                     * Creates a new ListQuotaGroupsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListQuotaGroupsRequest instance
+                     */
+                    public static create(properties?: google.shopping.css.v1.IListQuotaGroupsRequest): google.shopping.css.v1.ListQuotaGroupsRequest;
+
+                    /**
+                     * Encodes the specified ListQuotaGroupsRequest message. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsRequest.verify|verify} messages.
+                     * @param message ListQuotaGroupsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.shopping.css.v1.IListQuotaGroupsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListQuotaGroupsRequest message, length delimited. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsRequest.verify|verify} messages.
+                     * @param message ListQuotaGroupsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.shopping.css.v1.IListQuotaGroupsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListQuotaGroupsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListQuotaGroupsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.shopping.css.v1.ListQuotaGroupsRequest;
+
+                    /**
+                     * Decodes a ListQuotaGroupsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListQuotaGroupsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.shopping.css.v1.ListQuotaGroupsRequest;
+
+                    /**
+                     * Verifies a ListQuotaGroupsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListQuotaGroupsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListQuotaGroupsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.shopping.css.v1.ListQuotaGroupsRequest;
+
+                    /**
+                     * Creates a plain object from a ListQuotaGroupsRequest message. Also converts values to other types if specified.
+                     * @param message ListQuotaGroupsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.shopping.css.v1.ListQuotaGroupsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListQuotaGroupsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListQuotaGroupsRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListQuotaGroupsResponse. */
+                interface IListQuotaGroupsResponse {
+
+                    /** ListQuotaGroupsResponse quotaGroups */
+                    quotaGroups?: (google.shopping.css.v1.IQuotaGroup[]|null);
+
+                    /** ListQuotaGroupsResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListQuotaGroupsResponse. */
+                class ListQuotaGroupsResponse implements IListQuotaGroupsResponse {
+
+                    /**
+                     * Constructs a new ListQuotaGroupsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.shopping.css.v1.IListQuotaGroupsResponse);
+
+                    /** ListQuotaGroupsResponse quotaGroups. */
+                    public quotaGroups: google.shopping.css.v1.IQuotaGroup[];
+
+                    /** ListQuotaGroupsResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListQuotaGroupsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListQuotaGroupsResponse instance
+                     */
+                    public static create(properties?: google.shopping.css.v1.IListQuotaGroupsResponse): google.shopping.css.v1.ListQuotaGroupsResponse;
+
+                    /**
+                     * Encodes the specified ListQuotaGroupsResponse message. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsResponse.verify|verify} messages.
+                     * @param message ListQuotaGroupsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.shopping.css.v1.IListQuotaGroupsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListQuotaGroupsResponse message, length delimited. Does not implicitly {@link google.shopping.css.v1.ListQuotaGroupsResponse.verify|verify} messages.
+                     * @param message ListQuotaGroupsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.shopping.css.v1.IListQuotaGroupsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListQuotaGroupsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListQuotaGroupsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.shopping.css.v1.ListQuotaGroupsResponse;
+
+                    /**
+                     * Decodes a ListQuotaGroupsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListQuotaGroupsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.shopping.css.v1.ListQuotaGroupsResponse;
+
+                    /**
+                     * Verifies a ListQuotaGroupsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListQuotaGroupsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListQuotaGroupsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.shopping.css.v1.ListQuotaGroupsResponse;
+
+                    /**
+                     * Creates a plain object from a ListQuotaGroupsResponse message. Also converts values to other types if specified.
+                     * @param message ListQuotaGroupsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.shopping.css.v1.ListQuotaGroupsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListQuotaGroupsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListQuotaGroupsResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
             }
         }
 
@@ -3959,9 +4453,6 @@ export namespace google {
 
                 /** Weight unit. */
                 public unit: (google.shopping.type.Weight.WeightUnit|keyof typeof google.shopping.type.Weight.WeightUnit);
-
-                /** Weight _amountMicros. */
-                public _amountMicros?: "amountMicros";
 
                 /**
                  * Creates a new Weight instance using the specified properties.
@@ -4076,12 +4567,6 @@ export namespace google {
                 /** Price currencyCode. */
                 public currencyCode?: (string|null);
 
-                /** Price _amountMicros. */
-                public _amountMicros?: "amountMicros";
-
-                /** Price _currencyCode. */
-                public _currencyCode?: "currencyCode";
-
                 /**
                  * Creates a new Price instance using the specified properties.
                  * @param [properties] Properties to set
@@ -4190,12 +4675,6 @@ export namespace google {
 
                 /** CustomAttribute groupValues. */
                 public groupValues: google.shopping.type.ICustomAttribute[];
-
-                /** CustomAttribute _name. */
-                public _name?: "name";
-
-                /** CustomAttribute _value. */
-                public _value?: "value";
 
                 /**
                  * Creates a new CustomAttribute instance using the specified properties.
@@ -5251,6 +5730,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -5291,6 +5773,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -9509,6 +9994,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -9757,7 +10245,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -9788,7 +10276,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -11108,6 +11596,103 @@ export namespace google {
 
             /**
              * Gets the default type url for Timestamp
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a FieldMask. */
+        interface IFieldMask {
+
+            /** FieldMask paths */
+            paths?: (string[]|null);
+        }
+
+        /** Represents a FieldMask. */
+        class FieldMask implements IFieldMask {
+
+            /**
+             * Constructs a new FieldMask.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.protobuf.IFieldMask);
+
+            /** FieldMask paths. */
+            public paths: string[];
+
+            /**
+             * Creates a new FieldMask instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns FieldMask instance
+             */
+            public static create(properties?: google.protobuf.IFieldMask): google.protobuf.FieldMask;
+
+            /**
+             * Encodes the specified FieldMask message. Does not implicitly {@link google.protobuf.FieldMask.verify|verify} messages.
+             * @param message FieldMask message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.protobuf.IFieldMask, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified FieldMask message, length delimited. Does not implicitly {@link google.protobuf.FieldMask.verify|verify} messages.
+             * @param message FieldMask message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.protobuf.IFieldMask, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a FieldMask message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns FieldMask
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.FieldMask;
+
+            /**
+             * Decodes a FieldMask message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns FieldMask
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.FieldMask;
+
+            /**
+             * Verifies a FieldMask message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a FieldMask message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns FieldMask
+             */
+            public static fromObject(object: { [k: string]: any }): google.protobuf.FieldMask;
+
+            /**
+             * Creates a plain object from a FieldMask message. Also converts values to other types if specified.
+             * @param message FieldMask
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.protobuf.FieldMask, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this FieldMask to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for FieldMask
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

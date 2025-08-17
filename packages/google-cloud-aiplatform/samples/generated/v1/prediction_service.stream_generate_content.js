@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,6 +51,14 @@ function main(model, contents) {
    */
   // const systemInstruction = {}
   /**
+   *  Optional. The name of the cached content used as context to serve the
+   *  prediction. Note: only used in explicit caching, where users can have
+   *  control over caching (e.g. what content to cache) and enjoy guaranteed cost
+   *  savings. Format:
+   *  `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+   */
+  // const cachedContent = 'abc123'
+  /**
    *  Optional. A list of `Tools` the model may use to generate the next
    *  response.
    *  A `Tool` is a piece of code that enables the system to interact with
@@ -77,6 +85,11 @@ function main(model, contents) {
    *  Enforced on GenerateContentResponse.candidates.
    */
   // const safetySettings = [1,2,3,4]
+  /**
+   *  Optional. Settings for prompt and response sanitization using the Model
+   *  Armor service. If supplied, safety_settings must not be supplied.
+   */
+  // const modelArmorConfig = {}
   /**
    *  Optional. Generation config.
    */

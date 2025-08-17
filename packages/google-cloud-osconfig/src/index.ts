@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,12 +26,6 @@ const OsConfigZonalServiceClient = v1.OsConfigZonalServiceClient;
 type OsConfigZonalServiceClient = v1.OsConfigZonalServiceClient;
 
 export {v1, v1alpha, v1beta, OsConfigServiceClient, OsConfigZonalServiceClient};
-export default {
-  v1,
-  v1alpha,
-  v1beta,
-  OsConfigServiceClient,
-  OsConfigZonalServiceClient,
-};
+export default {v1, v1alpha, v1beta, OsConfigServiceClient, OsConfigZonalServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

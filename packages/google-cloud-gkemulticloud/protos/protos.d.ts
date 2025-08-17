@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -97,6 +97,9 @@ export namespace google {
 
                     /** AttachedCluster securityPostureConfig */
                     securityPostureConfig?: (google.cloud.gkemulticloud.v1.ISecurityPostureConfig|null);
+
+                    /** AttachedCluster tags */
+                    tags?: ({ [k: string]: string }|null);
                 }
 
                 /** Represents an AttachedCluster. */
@@ -176,6 +179,9 @@ export namespace google {
 
                     /** AttachedCluster securityPostureConfig. */
                     public securityPostureConfig?: (google.cloud.gkemulticloud.v1.ISecurityPostureConfig|null);
+
+                    /** AttachedCluster tags. */
+                    public tags: { [k: string]: string };
 
                     /**
                      * Creates a new AttachedCluster instance using the specified properties.
@@ -573,7 +579,7 @@ export namespace google {
                     issuerUrl?: (string|null);
 
                     /** AttachedOidcConfig jwks */
-                    jwks?: (Uint8Array|string|null);
+                    jwks?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents an AttachedOidcConfig. */
@@ -589,7 +595,7 @@ export namespace google {
                     public issuerUrl: string;
 
                     /** AttachedOidcConfig jwks. */
-                    public jwks: (Uint8Array|string);
+                    public jwks: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new AttachedOidcConfig instance using the specified properties.
@@ -1813,18 +1819,6 @@ export namespace google {
                     /** NodeKubeletConfig podPidsLimit. */
                     public podPidsLimit?: (number|Long|string|null);
 
-                    /** NodeKubeletConfig _cpuManagerPolicy. */
-                    public _cpuManagerPolicy?: "cpuManagerPolicy";
-
-                    /** NodeKubeletConfig _cpuCfsQuota. */
-                    public _cpuCfsQuota?: "cpuCfsQuota";
-
-                    /** NodeKubeletConfig _cpuCfsQuotaPeriod. */
-                    public _cpuCfsQuotaPeriod?: "cpuCfsQuotaPeriod";
-
-                    /** NodeKubeletConfig _podPidsLimit. */
-                    public _podPidsLimit?: "podPidsLimit";
-
                     /**
                      * Creates a new NodeKubeletConfig instance using the specified properties.
                      * @param [properties] Properties to set
@@ -2215,6 +2209,9 @@ export namespace google {
 
                     /** MonitoringConfig managedPrometheusConfig */
                     managedPrometheusConfig?: (google.cloud.gkemulticloud.v1.IManagedPrometheusConfig|null);
+
+                    /** MonitoringConfig cloudMonitoringConfig */
+                    cloudMonitoringConfig?: (google.cloud.gkemulticloud.v1.ICloudMonitoringConfig|null);
                 }
 
                 /** Represents a MonitoringConfig. */
@@ -2228,6 +2225,9 @@ export namespace google {
 
                     /** MonitoringConfig managedPrometheusConfig. */
                     public managedPrometheusConfig?: (google.cloud.gkemulticloud.v1.IManagedPrometheusConfig|null);
+
+                    /** MonitoringConfig cloudMonitoringConfig. */
+                    public cloudMonitoringConfig?: (google.cloud.gkemulticloud.v1.ICloudMonitoringConfig|null);
 
                     /**
                      * Creates a new MonitoringConfig instance using the specified properties.
@@ -2398,6 +2398,103 @@ export namespace google {
 
                     /**
                      * Gets the default type url for ManagedPrometheusConfig
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CloudMonitoringConfig. */
+                interface ICloudMonitoringConfig {
+
+                    /** CloudMonitoringConfig enabled */
+                    enabled?: (boolean|null);
+                }
+
+                /** Represents a CloudMonitoringConfig. */
+                class CloudMonitoringConfig implements ICloudMonitoringConfig {
+
+                    /**
+                     * Constructs a new CloudMonitoringConfig.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.gkemulticloud.v1.ICloudMonitoringConfig);
+
+                    /** CloudMonitoringConfig enabled. */
+                    public enabled?: (boolean|null);
+
+                    /**
+                     * Creates a new CloudMonitoringConfig instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CloudMonitoringConfig instance
+                     */
+                    public static create(properties?: google.cloud.gkemulticloud.v1.ICloudMonitoringConfig): google.cloud.gkemulticloud.v1.CloudMonitoringConfig;
+
+                    /**
+                     * Encodes the specified CloudMonitoringConfig message. Does not implicitly {@link google.cloud.gkemulticloud.v1.CloudMonitoringConfig.verify|verify} messages.
+                     * @param message CloudMonitoringConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.gkemulticloud.v1.ICloudMonitoringConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CloudMonitoringConfig message, length delimited. Does not implicitly {@link google.cloud.gkemulticloud.v1.CloudMonitoringConfig.verify|verify} messages.
+                     * @param message CloudMonitoringConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.gkemulticloud.v1.ICloudMonitoringConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CloudMonitoringConfig message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CloudMonitoringConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.gkemulticloud.v1.CloudMonitoringConfig;
+
+                    /**
+                     * Decodes a CloudMonitoringConfig message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CloudMonitoringConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.gkemulticloud.v1.CloudMonitoringConfig;
+
+                    /**
+                     * Verifies a CloudMonitoringConfig message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CloudMonitoringConfig message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CloudMonitoringConfig
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.gkemulticloud.v1.CloudMonitoringConfig;
+
+                    /**
+                     * Creates a plain object from a CloudMonitoringConfig message. Also converts values to other types if specified.
+                     * @param message CloudMonitoringConfig
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.gkemulticloud.v1.CloudMonitoringConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CloudMonitoringConfig to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CloudMonitoringConfig
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -16800,6 +16897,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -16840,6 +16940,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -20793,6 +20896,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -21044,7 +21150,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -21075,7 +21181,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -22317,7 +22423,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -22333,7 +22439,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

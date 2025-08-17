@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,8 @@
 
 import * as v1alpha from './v1alpha';
 
-const MarketingplatformAdminServiceClient =
-  v1alpha.MarketingplatformAdminServiceClient;
-type MarketingplatformAdminServiceClient =
-  v1alpha.MarketingplatformAdminServiceClient;
+const MarketingplatformAdminServiceClient = v1alpha.MarketingplatformAdminServiceClient;
+type MarketingplatformAdminServiceClient = v1alpha.MarketingplatformAdminServiceClient;
 
 export {v1alpha, MarketingplatformAdminServiceClient};
 export default {v1alpha, MarketingplatformAdminServiceClient};

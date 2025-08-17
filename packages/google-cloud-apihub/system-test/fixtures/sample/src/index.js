@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const apihub = require('@google-cloud/apihub');
 
@@ -23,12 +24,10 @@ function main() {
   const apiHubClient = new apihub.ApiHubClient();
   const apiHubDependenciesClient = new apihub.ApiHubDependenciesClient();
   const apiHubPluginClient = new apihub.ApiHubPluginClient();
-  const hostProjectRegistrationServiceClient =
-    new apihub.HostProjectRegistrationServiceClient();
+  const hostProjectRegistrationServiceClient = new apihub.HostProjectRegistrationServiceClient();
   const lintingServiceClient = new apihub.LintingServiceClient();
   const provisioningClient = new apihub.ProvisioningClient();
-  const runtimeProjectAttachmentServiceClient =
-    new apihub.RuntimeProjectAttachmentServiceClient();
+  const runtimeProjectAttachmentServiceClient = new apihub.RuntimeProjectAttachmentServiceClient();
 }
 
 main();

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 
 'use strict';
 
-function main(instance, database, user, sqlStatement) {
+function main(instance, database, sqlStatement) {
   // [START alloydb_v1_generated_AlloyDBAdmin_ExecuteSql_async]
   /**
    * This snippet has been automatically generated and should be regarded as a code template only.
@@ -66,7 +66,6 @@ function main(instance, database, user, sqlStatement) {
     const request = {
       instance,
       database,
-      user,
       sqlStatement,
     };
 

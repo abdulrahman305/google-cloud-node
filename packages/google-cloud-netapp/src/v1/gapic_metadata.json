@@ -60,6 +60,11 @@
                 "getBackupPolicy"
               ]
             },
+            "GetQuotaRule": {
+              "methods": [
+                "getQuotaRule"
+              ]
+            },
             "CreateStoragePool": {
               "methods": [
                 "createStoragePool"
@@ -73,6 +78,11 @@
             "DeleteStoragePool": {
               "methods": [
                 "deleteStoragePool"
+              ]
+            },
+            "ValidateDirectoryService": {
+              "methods": [
+                "validateDirectoryService"
               ]
             },
             "SwitchActiveReplicaZone": {
@@ -235,6 +245,21 @@
                 "deleteBackupPolicy"
               ]
             },
+            "CreateQuotaRule": {
+              "methods": [
+                "createQuotaRule"
+              ]
+            },
+            "UpdateQuotaRule": {
+              "methods": [
+                "updateQuotaRule"
+              ]
+            },
+            "DeleteQuotaRule": {
+              "methods": [
+                "deleteQuotaRule"
+              ]
+            },
             "ListStoragePools": {
               "methods": [
                 "listStoragePools",
@@ -296,6 +321,13 @@
                 "listBackupPolicies",
                 "listBackupPoliciesStream",
                 "listBackupPoliciesAsync"
+              ]
+            },
+            "ListQuotaRules": {
+              "methods": [
+                "listQuotaRules",
+                "listQuotaRulesStream",
+                "listQuotaRulesAsync"
               ]
             }
           }
@@ -353,6 +385,11 @@
                 "getBackupPolicy"
               ]
             },
+            "GetQuotaRule": {
+              "methods": [
+                "getQuotaRule"
+              ]
+            },
             "CreateStoragePool": {
               "methods": [
                 "createStoragePool"
@@ -366,6 +403,11 @@
             "DeleteStoragePool": {
               "methods": [
                 "deleteStoragePool"
+              ]
+            },
+            "ValidateDirectoryService": {
+              "methods": [
+                "validateDirectoryService"
               ]
             },
             "SwitchActiveReplicaZone": {
@@ -528,6 +570,21 @@
                 "deleteBackupPolicy"
               ]
             },
+            "CreateQuotaRule": {
+              "methods": [
+                "createQuotaRule"
+              ]
+            },
+            "UpdateQuotaRule": {
+              "methods": [
+                "updateQuotaRule"
+              ]
+            },
+            "DeleteQuotaRule": {
+              "methods": [
+                "deleteQuotaRule"
+              ]
+            },
             "ListStoragePools": {
               "methods": [
                 "listStoragePools",
@@ -589,6 +646,13 @@
                 "listBackupPolicies",
                 "listBackupPoliciesStream",
                 "listBackupPoliciesAsync"
+              ]
+            },
+            "ListQuotaRules": {
+              "methods": [
+                "listQuotaRules",
+                "listQuotaRulesStream",
+                "listQuotaRulesAsync"
               ]
             }
           }

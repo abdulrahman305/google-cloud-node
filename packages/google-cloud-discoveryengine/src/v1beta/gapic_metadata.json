@@ -15,6 +15,11 @@
                 "completeQuery"
               ]
             },
+            "AdvancedCompleteQuery": {
+              "methods": [
+                "advancedCompleteQuery"
+              ]
+            },
             "ImportSuggestionDenyListEntries": {
               "methods": [
                 "importSuggestionDenyListEntries"
@@ -43,6 +48,11 @@
             "CompleteQuery": {
               "methods": [
                 "completeQuery"
+              ]
+            },
+            "AdvancedCompleteQuery": {
+              "methods": [
+                "advancedCompleteQuery"
               ]
             },
             "ImportSuggestionDenyListEntries": {
@@ -620,9 +630,19 @@
         "grpc": {
           "libraryClient": "GroundedGenerationServiceClient",
           "rpcs": {
+            "GenerateGroundedContent": {
+              "methods": [
+                "generateGroundedContent"
+              ]
+            },
             "CheckGrounding": {
               "methods": [
                 "checkGrounding"
+              ]
+            },
+            "StreamGenerateGroundedContent": {
+              "methods": [
+                "streamGenerateGroundedContent"
               ]
             }
           }
@@ -630,6 +650,11 @@
         "grpc-fallback": {
           "libraryClient": "GroundedGenerationServiceClient",
           "rpcs": {
+            "GenerateGroundedContent": {
+              "methods": [
+                "generateGroundedContent"
+              ]
+            },
             "CheckGrounding": {
               "methods": [
                 "checkGrounding"
@@ -936,6 +961,13 @@
                 "searchStream",
                 "searchAsync"
               ]
+            },
+            "SearchLite": {
+              "methods": [
+                "searchLite",
+                "searchLiteStream",
+                "searchLiteAsync"
+              ]
             }
           }
         },
@@ -947,6 +979,13 @@
                 "search",
                 "searchStream",
                 "searchAsync"
+              ]
+            },
+            "SearchLite": {
+              "methods": [
+                "searchLite",
+                "searchLiteStream",
+                "searchLiteAsync"
               ]
             }
           }
@@ -1035,6 +1074,74 @@
         }
       }
     },
+    "SessionService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "SiteSearchEngineService": {
       "clients": {
         "grpc": {
@@ -1048,6 +1155,11 @@
             "GetTargetSite": {
               "methods": [
                 "getTargetSite"
+              ]
+            },
+            "FetchSitemaps": {
+              "methods": [
+                "fetchSitemaps"
               ]
             },
             "CreateTargetSite": {
@@ -1068,6 +1180,16 @@
             "DeleteTargetSite": {
               "methods": [
                 "deleteTargetSite"
+              ]
+            },
+            "CreateSitemap": {
+              "methods": [
+                "createSitemap"
+              ]
+            },
+            "DeleteSitemap": {
+              "methods": [
+                "deleteSitemap"
               ]
             },
             "EnableAdvancedSiteSearch": {
@@ -1119,6 +1241,11 @@
                 "getTargetSite"
               ]
             },
+            "FetchSitemaps": {
+              "methods": [
+                "fetchSitemaps"
+              ]
+            },
             "CreateTargetSite": {
               "methods": [
                 "createTargetSite"
@@ -1137,6 +1264,16 @@
             "DeleteTargetSite": {
               "methods": [
                 "deleteTargetSite"
+              ]
+            },
+            "CreateSitemap": {
+              "methods": [
+                "createSitemap"
+              ]
+            },
+            "DeleteSitemap": {
+              "methods": [
+                "deleteSitemap"
               ]
             },
             "EnableAdvancedSiteSearch": {

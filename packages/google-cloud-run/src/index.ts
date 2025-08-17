@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,24 +30,10 @@ const ServicesClient = v2.ServicesClient;
 type ServicesClient = v2.ServicesClient;
 const TasksClient = v2.TasksClient;
 type TasksClient = v2.TasksClient;
+const WorkerPoolsClient = v2.WorkerPoolsClient;
+type WorkerPoolsClient = v2.WorkerPoolsClient;
 
-export {
-  v2,
-  BuildsClient,
-  ExecutionsClient,
-  JobsClient,
-  RevisionsClient,
-  ServicesClient,
-  TasksClient,
-};
-export default {
-  v2,
-  BuildsClient,
-  ExecutionsClient,
-  JobsClient,
-  RevisionsClient,
-  ServicesClient,
-  TasksClient,
-};
+export {v2, BuildsClient, ExecutionsClient, JobsClient, RevisionsClient, ServicesClient, TasksClient, WorkerPoolsClient};
+export default {v2, BuildsClient, ExecutionsClient, JobsClient, RevisionsClient, ServicesClient, TasksClient, WorkerPoolsClient};
 import * as protos from '../protos/protos';
 export {protos};

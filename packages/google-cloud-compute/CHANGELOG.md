@@ -4,6 +4,147 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/compute?activeTab=versions
 
+## [6.2.0](https://github.com/googleapis/google-cloud-node/compare/compute-v6.1.0...compute-v6.2.0) (2025-08-12)
+
+
+### Features
+
+* [compute] Update Compute Engine v1 API to revision 20250729 ([#1085](https://github.com/googleapis/google-cloud-node/issues/1085)) ([#6579](https://github.com/googleapis/google-cloud-node/issues/6579)) ([0cbf8ac](https://github.com/googleapis/google-cloud-node/commit/0cbf8ac3e6697d92428f21010beb1c776e5e86fd))
+
+## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/compute-v6.0.0...compute-v6.1.0) (2025-08-04)
+
+
+### Features
+
+* [compute] Update Compute Engine v1beta API to revision 20250717 ([#6552](https://github.com/googleapis/google-cloud-node/issues/6552)) ([a04a1fc](https://github.com/googleapis/google-cloud-node/commit/a04a1fc159d93f263b0c496193f178bb8fd1283c))
+
+## [6.0.0](https://github.com/googleapis/google-cloud-node/compare/compute-v5.3.0...compute-v6.0.0) (2025-07-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Correct resource reference type for `parent` field in `data_chat_service.proto`
+* Remove field `restricted` within encryption enforcement config.
+
+### Features
+
+* [compute] Update Compute Engine v1beta API to revision 20250708 ([#1072](https://github.com/googleapis/google-cloud-node/issues/1072)) ([#6501](https://github.com/googleapis/google-cloud-node/issues/6501)) ([11e8105](https://github.com/googleapis/google-cloud-node/commit/11e810577f3d6550fc60397785bcea5018a53286))
+* A new field `semantic_search` is added to `message.google.cloud.dataplex.v1.SearchEntriesRequest` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add backdate duration ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `DeliverInfo.GoogleServiceType` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `Status` to message `InstanceInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `VpcFlowLogsConfig.CrossProjectMetadata` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `VpcFlowLogsConfig.TargetResourceState` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum value `AbortInfo.Cause.GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum value `RouteInfo.NextHopType.SECURE_WEB_PROXY_GATEWAY` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum values `NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS`, `TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED`, `NO_MATCHING_NAT64_GATEWAY`, `LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH`, and `NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION` to `DropInfo.Cause` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `google_service_type` to message `DeliverInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `policy_priority` to message `NetworkInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `running` to message `InstanceInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `service_uri` to message `Endpoint.CloudRunRevisionEndpoint` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add fields `cross_project_metadata`, `target_resource_state`, `network`, and `subnet` to message `VpcFlowLogsConfig` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add http additional_bindings ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add isolation support to prevent cross-region overflow by adding a new field "isolation_config" to message "ServiceLbPolicy" ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add message `Endpoint.SingleEdgeResponse` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add new field `restriction_mode` for encryption enforcement config in message Bucket ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add RDN sequence ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add rpc `VpcFlowLogsService.QueryOrgVpcFlowLogsConfigs` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add safebrowsing proto defs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add service `OrganizationVpcFlowLogsService` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add User Defined Access URLs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Adds tbs_certificate_digest to CertificateDescription ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Enable organization-level support for VPC Flow Logs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update Compute Engine v1 API to revision 20250626 ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update Compute Engine v1beta API to revision 20250626 ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update libraries and clients for Managed Kafka ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+
+
+### Bug Fixes
+
+* Correct resource reference type for `parent` field in `data_chat_service.proto` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Pagination response for Compute Subnetworks.ListUsable (39952d9) ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Remove field `restricted` within encryption enforcement config. ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+
+## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/compute-v5.2.0...compute-v5.3.0) (2025-07-09)
+
+
+### Features
+
+* [compute] Update Compute Engine v1 API to revision 20250601 ([#1052](https://github.com/googleapis/google-cloud-node/issues/1052)) ([#6363](https://github.com/googleapis/google-cloud-node/issues/6363)) ([e1de991](https://github.com/googleapis/google-cloud-node/commit/e1de991a0bc00a3042e4b19990f9a84f20363bcb))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency nodemailer to v7 ([#6336](https://github.com/googleapis/google-cloud-node/issues/6336)) ([bebe8fe](https://github.com/googleapis/google-cloud-node/commit/bebe8febba147fc5653c2eb86d0967a5eae9f578))
+
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/compute-v5.1.0...compute-v5.2.0) (2025-05-09)
+
+
+### Features
+
+* [compute] Update Compute Engine API to revision 20250320 ([#6216](https://github.com/googleapis/google-cloud-node/issues/6216)) ([130faf5](https://github.com/googleapis/google-cloud-node/commit/130faf558ddb3c17472753a23fdb9a0a0a63053b))
+* [compute] Update Compute Engine API to revision 20250415 ([#6275](https://github.com/googleapis/google-cloud-node/issues/6275)) ([b73d5bc](https://github.com/googleapis/google-cloud-node/commit/b73d5bc584eae4a079241ab7ecbbbd4932c8f89a))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/compute-v5.0.0...compute-v5.1.0) (2025-03-19)
+
+
+### Features
+
+* [compute] Update Compute Engine API to revision 20250302 ([#987](https://github.com/googleapis/google-cloud-node/issues/987)) ([#6155](https://github.com/googleapis/google-cloud-node/issues/6155)) ([dfab9f0](https://github.com/googleapis/google-cloud-node/commit/dfab9f0902564fee15fdcff914851ebab07c4c9d))
+* [compute] Update Compute Engine API to revision 20250302 ([#995](https://github.com/googleapis/google-cloud-node/issues/995)) ([#6178](https://github.com/googleapis/google-cloud-node/issues/6178)) ([2be675d](https://github.com/googleapis/google-cloud-node/commit/2be675d236ff0fa1bdf634f6959b1f260d66f77c))
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6184](https://github.com/googleapis/google-cloud-node/issues/6184)) ([2fcd202](https://github.com/googleapis/google-cloud-node/commit/2fcd2029c35e8fb2199d03ac6e61e2d821ddf72e))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/compute-v4.12.0...compute-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([e7409c8](https://github.com/googleapis/google-cloud-node/commit/e7409c87febcf33359a2d36ae4551f502b8a2f93))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.12.0](https://github.com/googleapis/google-cloud-node/compare/compute-v4.11.0...compute-v4.12.0) (2025-02-12)
+
+
+### Features
+
+* [compute] Update Compute Engine API to revision 20250119 ([#981](https://github.com/googleapis/google-cloud-node/issues/981)) ([#6003](https://github.com/googleapis/google-cloud-node/issues/6003)) ([943c3b7](https://github.com/googleapis/google-cloud-node/commit/943c3b70eedc956b01c4151760e9fcd5fec0ac2a))
+
+## [4.11.0](https://github.com/googleapis/google-cloud-node/compare/compute-v4.10.0...compute-v4.11.0) (2025-01-23)
+
+
+### Features
+
+* [compute] Update Compute Engine API to revision 20250107 ([#975](https://github.com/googleapis/google-cloud-node/issues/975)) ([#5976](https://github.com/googleapis/google-cloud-node/issues/5976)) ([752d41e](https://github.com/googleapis/google-cloud-node/commit/752d41e737c1dd7c5ace18ceae4bf215b60e728f))
+
+## [4.10.0](https://github.com/googleapis/google-cloud-node/compare/compute-v4.9.0...compute-v4.10.0) (2025-01-16)
+
+
+### Features
+
+* [compute] add Model Armor API ([#5953](https://github.com/googleapis/google-cloud-node/issues/5953)) ([50ecc13](https://github.com/googleapis/google-cloud-node/commit/50ecc133ebdda28636068abfe7e38d4d2666f7d8))
+
+## [4.9.0](https://github.com/googleapis/google-cloud-node/compare/compute-v4.8.0...compute-v4.9.0) (2024-12-18)
+
+
+### Features
+
+* [compute] Update Compute Engine API to revision 20241201 ([#966](https://github.com/googleapis/google-cloud-node/issues/966)) ([#5873](https://github.com/googleapis/google-cloud-node/issues/5873)) ([8bb5b1d](https://github.com/googleapis/google-cloud-node/commit/8bb5b1df5980f9f5ac5f30c2ee0e2bc9d825d73e))
+* [compute] Update Compute Engine API to revision 20241201 ([#971](https://github.com/googleapis/google-cloud-node/issues/971)) ([#5880](https://github.com/googleapis/google-cloud-node/issues/5880)) ([21a7622](https://github.com/googleapis/google-cloud-node/commit/21a76226793b5eaf5ef222dd8abb273fdf62d8be))
+
 ## [4.8.0](https://github.com/googleapis/google-cloud-node/compare/compute-v4.7.0...compute-v4.8.0) (2024-11-14)
 
 

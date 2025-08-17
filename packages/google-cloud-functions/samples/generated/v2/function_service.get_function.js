@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ function main(name) {
    */
   // const name = 'abc123'
   /**
-   *  Optional. The version of the 1st gen function whose details should
+   *  Optional. The optional version of the 1st gen function whose details should
    *  be obtained. The version of a 1st gen function is an integer that starts
    *  from 1 and gets incremented on redeployments. GCF may keep historical
    *  configs for old versions of 1st gen function. This field can be specified

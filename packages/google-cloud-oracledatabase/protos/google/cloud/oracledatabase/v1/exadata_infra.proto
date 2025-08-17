@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -131,20 +131,21 @@ message CloudExadataInfrastructureProperties {
   // Output only. Deep link to the OCI console to view this resource.
   string oci_url = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 
-  // Optional. The number of enabled CPU cores.
-  int32 cpu_count = 10 [(google.api.field_behavior) = OPTIONAL];
+  // Output only. The number of enabled CPU cores.
+  int32 cpu_count = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The total number of CPU cores available.
   int32 max_cpu_count = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
 
-  // Optional. The memory allocated in GBs.
-  int32 memory_size_gb = 12 [(google.api.field_behavior) = OPTIONAL];
+  // Output only. The memory allocated in GBs.
+  int32 memory_size_gb = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The total memory available in GBs.
   int32 max_memory_gb = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
 
-  // Optional. The local node storage allocated in GBs.
-  int32 db_node_storage_size_gb = 14 [(google.api.field_behavior) = OPTIONAL];
+  // Output only. The local node storage allocated in GBs.
+  int32 db_node_storage_size_gb = 14
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The total local node storage available in GBs.
   int32 max_db_node_storage_size_gb = 15
@@ -263,8 +264,7 @@ message MaintenanceWindow {
   int32 lead_time_week = 6 [(google.api.field_behavior) = OPTIONAL];
 
   // Optional. Cloud CloudExadataInfrastructure node patching method, either
-  // "ROLLING"
-  //  or "NONROLLING". Default value is ROLLING.
+  // "ROLLING" or "NONROLLING". Default value is ROLLING.
   PatchingMode patching_mode = 7 [(google.api.field_behavior) = OPTIONAL];
 
   // Optional. Determines the amount of time the system will wait before the

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,19 +18,11 @@
 
 /* global window */
 import type * as gax from 'google-gax';
-import type {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  GrpcClientOptions,
-  LROperation,
-  LocationsClient,
-  LocationProtos,
-} from 'google-gax';
+import type {Callback, CallOptions, Descriptors, ClientOptions, GrpcClientOptions, LROperation, LocationsClient, LocationProtos} from 'google-gax';
 
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -55,6 +47,8 @@ export class ProvisioningClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('apihub');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -91,7 +85,7 @@ export class ProvisioningClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -108,36 +102,17 @@ export class ProvisioningClient {
    *     const client = new ProvisioningClient({fallback: true}, gax);
    *     ```
    */
-  constructor(
-    opts?: ClientOptions,
-    gaxInstance?: typeof gax | typeof gax.fallback
-  ) {
+  constructor(opts?: ClientOptions, gaxInstance?: typeof gax | typeof gax.fallback) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof ProvisioningClient;
-    if (
-      opts?.universe_domain &&
-      opts?.universeDomain &&
-      opts?.universe_domain !== opts?.universeDomain
-    ) {
-      throw new Error(
-        'Please set either universe_domain or universeDomain, but not both.'
-      );
+    if (opts?.universe_domain && opts?.universeDomain && opts?.universe_domain !== opts?.universeDomain) {
+      throw new Error('Please set either universe_domain or universeDomain, but not both.');
     }
-    const universeDomainEnvVar =
-      typeof process === 'object' && typeof process.env === 'object'
-        ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN']
-        : undefined;
-    this._universeDomain =
-      opts?.universeDomain ??
-      opts?.universe_domain ??
-      universeDomainEnvVar ??
-      'googleapis.com';
+    const universeDomainEnvVar = (typeof process === 'object' && typeof process.env === 'object') ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN'] : undefined;
+    this._universeDomain = opts?.universeDomain ?? opts?.universe_domain ?? universeDomainEnvVar ?? 'googleapis.com';
     this._servicePath = 'apihub.' + this._universeDomain;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || this._servicePath;
-    this._providedCustomServicePath = !!(
-      opts?.servicePath || opts?.apiEndpoint
-    );
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || this._servicePath;
+    this._providedCustomServicePath = !!(opts?.servicePath || opts?.apiEndpoint);
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
     // Implicitly enable HTTP transport for the APIs that use REST as transport (e.g. Google Cloud Compute).
@@ -146,9 +121,7 @@ export class ProvisioningClient {
     } else {
       opts.fallback = opts.fallback ?? true;
     }
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window?.fetch === 'function');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // Request numeric enum values if REST transport is used.
@@ -174,7 +147,7 @@ export class ProvisioningClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set useJWTAccessWithScope on the auth object.
     this.auth.useJWTAccessWithScope = true;
@@ -190,9 +163,13 @@ export class ProvisioningClient {
       this._gaxGrpc,
       opts
     );
+  
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process === 'object' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -263,69 +240,35 @@ export class ProvisioningClient {
       ),
     };
 
-    const protoFilesRoot = this._gaxModule.protobuf.Root.fromJSON(jsonProtos);
+    const protoFilesRoot = this._gaxModule.protobufFromJSON(jsonProtos);
     // This API contains "long-running operations", which return a
     // an Operation object that allows for tracking of the operation,
     // rather than holding a request open.
     const lroOptions: GrpcClientOptions = {
       auth: this.auth,
-      grpc: 'grpc' in this._gaxGrpc ? this._gaxGrpc.grpc : undefined,
+      grpc: 'grpc' in this._gaxGrpc ? this._gaxGrpc.grpc : undefined
     };
     if (opts.fallback) {
       lroOptions.protoJson = protoFilesRoot;
-      lroOptions.httpRules = [
-        {
-          selector: 'google.cloud.location.Locations.GetLocation',
-          get: '/v1/{name=projects/*/locations/*}',
-        },
-        {
-          selector: 'google.cloud.location.Locations.ListLocations',
-          get: '/v1/{name=projects/*}/locations',
-        },
-        {
-          selector: 'google.longrunning.Operations.CancelOperation',
-          post: '/v1/{name=projects/*/locations/*/operations/*}:cancel',
-          body: '*',
-        },
-        {
-          selector: 'google.longrunning.Operations.DeleteOperation',
-          delete: '/v1/{name=projects/*/locations/*/operations/*}',
-        },
-        {
-          selector: 'google.longrunning.Operations.GetOperation',
-          get: '/v1/{name=projects/*/locations/*/operations/*}',
-        },
-        {
-          selector: 'google.longrunning.Operations.ListOperations',
-          get: '/v1/{name=projects/*/locations/*}/operations',
-        },
-      ];
+      lroOptions.httpRules = [{selector: 'google.cloud.location.Locations.GetLocation',get: '/v1/{name=projects/*/locations/*}',},{selector: 'google.cloud.location.Locations.ListLocations',get: '/v1/{name=projects/*}/locations',},{selector: 'google.longrunning.Operations.CancelOperation',post: '/v1/{name=projects/*/locations/*/operations/*}:cancel',body: '*',},{selector: 'google.longrunning.Operations.DeleteOperation',delete: '/v1/{name=projects/*/locations/*/operations/*}',},{selector: 'google.longrunning.Operations.GetOperation',get: '/v1/{name=projects/*/locations/*/operations/*}',},{selector: 'google.longrunning.Operations.ListOperations',get: '/v1/{name=projects/*/locations/*}/operations',}];
     }
-    this.operationsClient = this._gaxModule
-      .lro(lroOptions)
-      .operationsClient(opts);
+    this.operationsClient = this._gaxModule.lro(lroOptions).operationsClient(opts);
     const createApiHubInstanceResponse = protoFilesRoot.lookup(
-      '.google.cloud.apihub.v1.ApiHubInstance'
-    ) as gax.protobuf.Type;
+      '.google.cloud.apihub.v1.ApiHubInstance') as gax.protobuf.Type;
     const createApiHubInstanceMetadata = protoFilesRoot.lookup(
-      '.google.cloud.apihub.v1.OperationMetadata'
-    ) as gax.protobuf.Type;
+      '.google.cloud.apihub.v1.OperationMetadata') as gax.protobuf.Type;
 
     this.descriptors.longrunning = {
       createApiHubInstance: new this._gaxModule.LongrunningDescriptor(
         this.operationsClient,
         createApiHubInstanceResponse.decode.bind(createApiHubInstanceResponse),
-        createApiHubInstanceMetadata.decode.bind(createApiHubInstanceMetadata)
-      ),
+        createApiHubInstanceMetadata.decode.bind(createApiHubInstanceMetadata))
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.apihub.v1.Provisioning',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.apihub.v1.Provisioning', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -356,39 +299,32 @@ export class ProvisioningClient {
     // Put together the "service stub" for
     // google.cloud.apihub.v1.Provisioning.
     this.provisioningStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.apihub.v1.Provisioning'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.apihub.v1.Provisioning') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.apihub.v1.Provisioning,
-      this._opts,
-      this._providedCustomServicePath
-    ) as Promise<{[method: string]: Function}>;
+        this._opts, this._providedCustomServicePath) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const provisioningStubMethods = [
-      'createApiHubInstance',
-      'getApiHubInstance',
-      'lookupApiHubInstance',
-    ];
+    const provisioningStubMethods =
+        ['createApiHubInstance', 'getApiHubInstance', 'lookupApiHubInstance'];
     for (const methodName of provisioningStubMethods) {
       const callPromise = this.provisioningStub.then(
-        stub =>
-          (...args: Array<{}>) => {
-            if (this._terminated) {
-              return Promise.reject('The client has already been closed.');
-            }
-            const func = stub[methodName];
-            return func.apply(stub, args);
-          },
-        (err: Error | null | undefined) => () => {
+        stub => (...args: Array<{}>) => {
+          if (this._terminated) {
+            return Promise.reject('The client has already been closed.');
+          }
+          const func = stub[methodName];
+          return func.apply(stub, args);
+        },
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.longrunning[methodName] || undefined;
+      const descriptor =
+        this.descriptors.longrunning[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -408,14 +344,8 @@ export class ProvisioningClient {
    * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static servicePath is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static servicePath is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'apihub.googleapis.com';
   }
@@ -426,14 +356,8 @@ export class ProvisioningClient {
    * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static apiEndpoint is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static apiEndpoint is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'apihub.googleapis.com';
   }
@@ -464,7 +388,9 @@ export class ProvisioningClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -473,9 +399,8 @@ export class ProvisioningClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -486,340 +411,319 @@ export class ProvisioningClient {
   // -------------------
   // -- Service calls --
   // -------------------
-  /**
-   * Gets details of a single API Hub instance.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The name of the Api Hub instance to retrieve.
-   *   Format:
-   *   `projects/{project}/locations/{location}/apiHubInstances/{apiHubInstance}`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.apihub.v1.ApiHubInstance|ApiHubInstance}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/provisioning.get_api_hub_instance.js</caption>
-   * region_tag:apihub_v1_generated_Provisioning_GetApiHubInstance_async
-   */
+/**
+ * Gets details of a single API Hub instance.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The name of the Api Hub instance to retrieve.
+ *   Format:
+ *   `projects/{project}/locations/{location}/apiHubInstances/{apiHubInstance}`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.apihub.v1.ApiHubInstance|ApiHubInstance}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/provisioning.get_api_hub_instance.js</caption>
+ * region_tag:apihub_v1_generated_Provisioning_GetApiHubInstance_async
+ */
   getApiHubInstance(
-    request?: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.apihub.v1.IApiHubInstance,
-      protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.apihub.v1.IApiHubInstance,
+        protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|undefined, {}|undefined
+      ]>;
   getApiHubInstance(
-    request: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.apihub.v1.IApiHubInstance,
-      | protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getApiHubInstance(
-    request: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
-    callback: Callback<
-      protos.google.cloud.apihub.v1.IApiHubInstance,
-      | protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getApiHubInstance(
-    request?: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.apihub.v1.IApiHubInstance,
-          | protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.apihub.v1.IApiHubInstance,
-      | protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.apihub.v1.IApiHubInstance,
-      protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>): void;
+  getApiHubInstance(
+      request: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
+      callback: Callback<
+          protos.google.cloud.apihub.v1.IApiHubInstance,
+          protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>): void;
+  getApiHubInstance(
+      request?: protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.apihub.v1.IApiHubInstance,
+          protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.apihub.v1.IApiHubInstance,
+          protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.apihub.v1.IApiHubInstance,
+        protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getApiHubInstance request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.apihub.v1.IApiHubInstance,
+        protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getApiHubInstance response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getApiHubInstance(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.apihub.v1.IApiHubInstance,
+        protos.google.cloud.apihub.v1.IGetApiHubInstanceRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getApiHubInstance response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getApiHubInstance(request, options, callback);
   }
-  /**
-   * Looks up an Api Hub instance in a given GCP project. There will always be
-   * only one Api Hub instance for a GCP project across all locations.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. There will always be only one Api Hub instance for a GCP project
-   *   across all locations.
-   *   The parent resource for the Api Hub instance resource.
-   *   Format: `projects/{project}/locations/{location}`
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.apihub.v1.LookupApiHubInstanceResponse|LookupApiHubInstanceResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/provisioning.lookup_api_hub_instance.js</caption>
-   * region_tag:apihub_v1_generated_Provisioning_LookupApiHubInstance_async
-   */
+/**
+ * Looks up an Api Hub instance in a given GCP project. There will always be
+ * only one Api Hub instance for a GCP project across all locations.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. There will always be only one Api Hub instance for a GCP project
+ *   across all locations.
+ *   The parent resource for the Api Hub instance resource.
+ *   Format: `projects/{project}/locations/{location}`
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.apihub.v1.LookupApiHubInstanceResponse|LookupApiHubInstanceResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/provisioning.lookup_api_hub_instance.js</caption>
+ * region_tag:apihub_v1_generated_Provisioning_LookupApiHubInstance_async
+ */
   lookupApiHubInstance(
-    request?: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|undefined, {}|undefined
+      ]>;
   lookupApiHubInstance(
-    request: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
-      | protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  lookupApiHubInstance(
-    request: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
-    callback: Callback<
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
-      | protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  lookupApiHubInstance(
-    request?: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
-          | protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
-      | protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
-      protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>): void;
+  lookupApiHubInstance(
+      request: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
+      callback: Callback<
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>): void;
+  lookupApiHubInstance(
+      request?: protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+          protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('lookupApiHubInstance request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('lookupApiHubInstance response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.lookupApiHubInstance(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceResponse,
+        protos.google.cloud.apihub.v1.ILookupApiHubInstanceRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('lookupApiHubInstance response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.lookupApiHubInstance(request, options, callback);
   }
 
-  /**
-   * Provisions instance resources for the API Hub.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The parent resource for the Api Hub instance resource.
-   *   Format: `projects/{project}/locations/{location}`
-   * @param {string} [request.apiHubInstanceId]
-   *   Optional. Identifier to assign to the Api Hub instance. Must be unique
-   *   within scope of the parent resource. If the field is not provided, system
-   *   generated id will be used.
-   *
-   *   This value should be 4-40 characters, and valid characters
-   *   are `/{@link protos.A-Z|a-z}[0-9]-_/`.
-   * @param {google.cloud.apihub.v1.ApiHubInstance} request.apiHubInstance
-   *   Required. The ApiHub instance.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing
-   *   a long running operation. Its `promise()` method returns a promise
-   *   you can `await` for.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/provisioning.create_api_hub_instance.js</caption>
-   * region_tag:apihub_v1_generated_Provisioning_CreateApiHubInstance_async
-   */
+/**
+ * Provisions instance resources for the API Hub.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The parent resource for the Api Hub instance resource.
+ *   Format: `projects/{project}/locations/{location}`
+ * @param {string} [request.apiHubInstanceId]
+ *   Optional. Identifier to assign to the Api Hub instance. Must be unique
+ *   within scope of the parent resource. If the field is not provided, system
+ *   generated id will be used.
+ *
+ *   This value should be 4-40 characters, and valid characters
+ *   are `/{@link protos.A-Z|a-z}[0-9]-_/`.
+ * @param {google.cloud.apihub.v1.ApiHubInstance} request.apiHubInstance
+ *   Required. The ApiHub instance.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing
+ *   a long running operation. Its `promise()` method returns a promise
+ *   you can `await` for.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/provisioning.create_api_hub_instance.js</caption>
+ * region_tag:apihub_v1_generated_Provisioning_CreateApiHubInstance_async
+ */
   createApiHubInstance(
-    request?: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      LROperation<
-        protos.google.cloud.apihub.v1.IApiHubInstance,
-        protos.google.cloud.apihub.v1.IOperationMetadata
-      >,
-      protos.google.longrunning.IOperation | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
+      options?: CallOptions):
+      Promise<[
+        LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+        protos.google.longrunning.IOperation|undefined, {}|undefined
+      ]>;
   createApiHubInstance(
-    request: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
-    options: CallOptions,
-    callback: Callback<
-      LROperation<
-        protos.google.cloud.apihub.v1.IApiHubInstance,
-        protos.google.cloud.apihub.v1.IOperationMetadata
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
+      options: CallOptions,
+      callback: Callback<
+          LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>): void;
   createApiHubInstance(
-    request: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
-    callback: Callback<
-      LROperation<
-        protos.google.cloud.apihub.v1.IApiHubInstance,
-        protos.google.cloud.apihub.v1.IOperationMetadata
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
+      callback: Callback<
+          LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>): void;
   createApiHubInstance(
-    request?: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
-          LROperation<
-            protos.google.cloud.apihub.v1.IApiHubInstance,
-            protos.google.cloud.apihub.v1.IOperationMetadata
-          >,
-          protos.google.longrunning.IOperation | null | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      LROperation<
-        protos.google.cloud.apihub.v1.IApiHubInstance,
-        protos.google.cloud.apihub.v1.IOperationMetadata
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      LROperation<
-        protos.google.cloud.apihub.v1.IApiHubInstance,
-        protos.google.cloud.apihub.v1.IOperationMetadata
-      >,
-      protos.google.longrunning.IOperation | undefined,
-      {} | undefined,
-    ]
-  > | void {
+      request?: protos.google.cloud.apihub.v1.ICreateApiHubInstanceRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+        protos.google.longrunning.IOperation|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.createApiHubInstance(request, options, callback);
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: Callback<
+          LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>|undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('createApiHubInstance response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('createApiHubInstance request %j', request);
+    return this.innerApiCalls.createApiHubInstance(request, options, wrappedCallback)
+    ?.then(([response, rawResponse, _]: [
+      LROperation<protos.google.cloud.apihub.v1.IApiHubInstance, protos.google.cloud.apihub.v1.IOperationMetadata>,
+      protos.google.longrunning.IOperation|undefined, {}|undefined
+    ]) => {
+      this._log.info('createApiHubInstance response %j', rawResponse);
+      return [response, rawResponse, _];
+    });
   }
-  /**
-   * Check the status of the long running operation returned by `createApiHubInstance()`.
-   * @param {String} name
-   *   The operation name that will be passed.
-   * @returns {Promise} - The promise which resolves to an object.
-   *   The decoded operation object has result and metadata field to get information from.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/provisioning.create_api_hub_instance.js</caption>
-   * region_tag:apihub_v1_generated_Provisioning_CreateApiHubInstance_async
-   */
-  async checkCreateApiHubInstanceProgress(
-    name: string
-  ): Promise<
-    LROperation<
-      protos.google.cloud.apihub.v1.ApiHubInstance,
-      protos.google.cloud.apihub.v1.OperationMetadata
-    >
-  > {
-    const request =
-      new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
-        {name}
-      );
+/**
+ * Check the status of the long running operation returned by `createApiHubInstance()`.
+ * @param {String} name
+ *   The operation name that will be passed.
+ * @returns {Promise} - The promise which resolves to an object.
+ *   The decoded operation object has result and metadata field to get information from.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/provisioning.create_api_hub_instance.js</caption>
+ * region_tag:apihub_v1_generated_Provisioning_CreateApiHubInstance_async
+ */
+  async checkCreateApiHubInstanceProgress(name: string): Promise<LROperation<protos.google.cloud.apihub.v1.ApiHubInstance, protos.google.cloud.apihub.v1.OperationMetadata>>{
+    this._log.info('createApiHubInstance long-running');
+    const request = new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest({name});
     const [operation] = await this.operationsClient.getOperation(request);
-    const decodeOperation = new this._gaxModule.Operation(
-      operation,
-      this.descriptors.longrunning.createApiHubInstance,
-      this._gaxModule.createDefaultBackoffSettings()
-    );
-    return decodeOperation as LROperation<
-      protos.google.cloud.apihub.v1.ApiHubInstance,
-      protos.google.cloud.apihub.v1.OperationMetadata
-    >;
+    const decodeOperation = new this._gaxModule.Operation(operation, this.descriptors.longrunning.createApiHubInstance, this._gaxModule.createDefaultBackoffSettings());
+    return decodeOperation as LROperation<protos.google.cloud.apihub.v1.ApiHubInstance, protos.google.cloud.apihub.v1.OperationMetadata>;
   }
-  /**
+/**
    * Gets information about a location.
    *
    * @param {Object} request
@@ -859,7 +763,7 @@ export class ProvisioningClient {
     return this.locationsClient.getLocation(request, options, callback);
   }
 
-  /**
+/**
    * Lists information about the supported locations for this service. Returns an iterable object.
    *
    * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
@@ -897,7 +801,7 @@ export class ProvisioningClient {
     return this.locationsClient.listLocationsAsync(request, options);
   }
 
-  /**
+/**
    * Gets the latest state of a long-running operation.  Clients can use this
    * method to poll the operation result at intervals as recommended by the API
    * service.
@@ -929,7 +833,7 @@ export class ProvisioningClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -942,6 +846,20 @@ export class ProvisioningClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+     let options: gax.CallOptions;
+     if (typeof optionsOrCallback === 'function' && callback === undefined) {
+       callback = optionsOrCallback;
+       options = {};
+     } else {
+       options = optionsOrCallback as gax.CallOptions;
+     }
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -977,7 +895,14 @@ export class ProvisioningClient {
   listOperationsAsync(
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
-  ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+  ): AsyncIterable<protos.google.longrunning.IOperation> {
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -1011,13 +936,13 @@ export class ProvisioningClient {
    * await client.cancelOperation({name: ''});
    * ```
    */
-  cancelOperation(
+   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -1026,6 +951,20 @@ export class ProvisioningClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+     let options: gax.CallOptions;
+     if (typeof optionsOrCallback === 'function' && callback === undefined) {
+       callback = optionsOrCallback;
+       options = {};
+     } else {
+       options = optionsOrCallback as gax.CallOptions;
+     }
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -1056,7 +995,7 @@ export class ProvisioningClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -1069,6 +1008,20 @@ export class ProvisioningClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+     let options: gax.CallOptions;
+     if (typeof optionsOrCallback === 'function' && callback === undefined) {
+       callback = optionsOrCallback;
+       options = {};
+     } else {
+       options = optionsOrCallback as gax.CallOptions;
+     }
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -1084,7 +1037,7 @@ export class ProvisioningClient {
    * @param {string} api
    * @returns {string} Resource name string.
    */
-  apiPath(project: string, location: string, api: string) {
+  apiPath(project:string,location:string,api:string) {
     return this.pathTemplates.apiPathTemplate.render({
       project: project,
       location: location,
@@ -1133,11 +1086,7 @@ export class ProvisioningClient {
    * @param {string} api_hub_instance
    * @returns {string} Resource name string.
    */
-  apiHubInstancePath(
-    project: string,
-    location: string,
-    apiHubInstance: string
-  ) {
+  apiHubInstancePath(project:string,location:string,apiHubInstance:string) {
     return this.pathTemplates.apiHubInstancePathTemplate.render({
       project: project,
       location: location,
@@ -1153,9 +1102,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromApiHubInstanceName(apiHubInstanceName: string) {
-    return this.pathTemplates.apiHubInstancePathTemplate.match(
-      apiHubInstanceName
-    ).project;
+    return this.pathTemplates.apiHubInstancePathTemplate.match(apiHubInstanceName).project;
   }
 
   /**
@@ -1166,9 +1113,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromApiHubInstanceName(apiHubInstanceName: string) {
-    return this.pathTemplates.apiHubInstancePathTemplate.match(
-      apiHubInstanceName
-    ).location;
+    return this.pathTemplates.apiHubInstancePathTemplate.match(apiHubInstanceName).location;
   }
 
   /**
@@ -1179,9 +1124,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the api_hub_instance.
    */
   matchApiHubInstanceFromApiHubInstanceName(apiHubInstanceName: string) {
-    return this.pathTemplates.apiHubInstancePathTemplate.match(
-      apiHubInstanceName
-    ).api_hub_instance;
+    return this.pathTemplates.apiHubInstancePathTemplate.match(apiHubInstanceName).api_hub_instance;
   }
 
   /**
@@ -1194,13 +1137,7 @@ export class ProvisioningClient {
    * @param {string} operation
    * @returns {string} Resource name string.
    */
-  apiOperationPath(
-    project: string,
-    location: string,
-    api: string,
-    version: string,
-    operation: string
-  ) {
+  apiOperationPath(project:string,location:string,api:string,version:string,operation:string) {
     return this.pathTemplates.apiOperationPathTemplate.render({
       project: project,
       location: location,
@@ -1218,8 +1155,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromApiOperationName(apiOperationName: string) {
-    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName)
-      .project;
+    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName).project;
   }
 
   /**
@@ -1230,8 +1166,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromApiOperationName(apiOperationName: string) {
-    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName)
-      .location;
+    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName).location;
   }
 
   /**
@@ -1242,8 +1177,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the api.
    */
   matchApiFromApiOperationName(apiOperationName: string) {
-    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName)
-      .api;
+    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName).api;
   }
 
   /**
@@ -1254,8 +1188,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the version.
    */
   matchVersionFromApiOperationName(apiOperationName: string) {
-    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName)
-      .version;
+    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName).version;
   }
 
   /**
@@ -1266,8 +1199,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the operation.
    */
   matchOperationFromApiOperationName(apiOperationName: string) {
-    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName)
-      .operation;
+    return this.pathTemplates.apiOperationPathTemplate.match(apiOperationName).operation;
   }
 
   /**
@@ -1278,7 +1210,7 @@ export class ProvisioningClient {
    * @param {string} attribute
    * @returns {string} Resource name string.
    */
-  attributePath(project: string, location: string, attribute: string) {
+  attributePath(project:string,location:string,attribute:string) {
     return this.pathTemplates.attributePathTemplate.render({
       project: project,
       location: location,
@@ -1294,8 +1226,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromAttributeName(attributeName: string) {
-    return this.pathTemplates.attributePathTemplate.match(attributeName)
-      .project;
+    return this.pathTemplates.attributePathTemplate.match(attributeName).project;
   }
 
   /**
@@ -1306,8 +1237,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromAttributeName(attributeName: string) {
-    return this.pathTemplates.attributePathTemplate.match(attributeName)
-      .location;
+    return this.pathTemplates.attributePathTemplate.match(attributeName).location;
   }
 
   /**
@@ -1318,8 +1248,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the attribute.
    */
   matchAttributeFromAttributeName(attributeName: string) {
-    return this.pathTemplates.attributePathTemplate.match(attributeName)
-      .attribute;
+    return this.pathTemplates.attributePathTemplate.match(attributeName).attribute;
   }
 
   /**
@@ -1332,13 +1261,7 @@ export class ProvisioningClient {
    * @param {string} definition
    * @returns {string} Resource name string.
    */
-  definitionPath(
-    project: string,
-    location: string,
-    api: string,
-    version: string,
-    definition: string
-  ) {
+  definitionPath(project:string,location:string,api:string,version:string,definition:string) {
     return this.pathTemplates.definitionPathTemplate.render({
       project: project,
       location: location,
@@ -1356,8 +1279,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromDefinitionName(definitionName: string) {
-    return this.pathTemplates.definitionPathTemplate.match(definitionName)
-      .project;
+    return this.pathTemplates.definitionPathTemplate.match(definitionName).project;
   }
 
   /**
@@ -1368,8 +1290,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromDefinitionName(definitionName: string) {
-    return this.pathTemplates.definitionPathTemplate.match(definitionName)
-      .location;
+    return this.pathTemplates.definitionPathTemplate.match(definitionName).location;
   }
 
   /**
@@ -1391,8 +1312,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the version.
    */
   matchVersionFromDefinitionName(definitionName: string) {
-    return this.pathTemplates.definitionPathTemplate.match(definitionName)
-      .version;
+    return this.pathTemplates.definitionPathTemplate.match(definitionName).version;
   }
 
   /**
@@ -1403,8 +1323,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the definition.
    */
   matchDefinitionFromDefinitionName(definitionName: string) {
-    return this.pathTemplates.definitionPathTemplate.match(definitionName)
-      .definition;
+    return this.pathTemplates.definitionPathTemplate.match(definitionName).definition;
   }
 
   /**
@@ -1415,7 +1334,7 @@ export class ProvisioningClient {
    * @param {string} dependency
    * @returns {string} Resource name string.
    */
-  dependencyPath(project: string, location: string, dependency: string) {
+  dependencyPath(project:string,location:string,dependency:string) {
     return this.pathTemplates.dependencyPathTemplate.render({
       project: project,
       location: location,
@@ -1431,8 +1350,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromDependencyName(dependencyName: string) {
-    return this.pathTemplates.dependencyPathTemplate.match(dependencyName)
-      .project;
+    return this.pathTemplates.dependencyPathTemplate.match(dependencyName).project;
   }
 
   /**
@@ -1443,8 +1361,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromDependencyName(dependencyName: string) {
-    return this.pathTemplates.dependencyPathTemplate.match(dependencyName)
-      .location;
+    return this.pathTemplates.dependencyPathTemplate.match(dependencyName).location;
   }
 
   /**
@@ -1455,8 +1372,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the dependency.
    */
   matchDependencyFromDependencyName(dependencyName: string) {
-    return this.pathTemplates.dependencyPathTemplate.match(dependencyName)
-      .dependency;
+    return this.pathTemplates.dependencyPathTemplate.match(dependencyName).dependency;
   }
 
   /**
@@ -1467,7 +1383,7 @@ export class ProvisioningClient {
    * @param {string} deployment
    * @returns {string} Resource name string.
    */
-  deploymentPath(project: string, location: string, deployment: string) {
+  deploymentPath(project:string,location:string,deployment:string) {
     return this.pathTemplates.deploymentPathTemplate.render({
       project: project,
       location: location,
@@ -1483,8 +1399,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromDeploymentName(deploymentName: string) {
-    return this.pathTemplates.deploymentPathTemplate.match(deploymentName)
-      .project;
+    return this.pathTemplates.deploymentPathTemplate.match(deploymentName).project;
   }
 
   /**
@@ -1495,8 +1410,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromDeploymentName(deploymentName: string) {
-    return this.pathTemplates.deploymentPathTemplate.match(deploymentName)
-      .location;
+    return this.pathTemplates.deploymentPathTemplate.match(deploymentName).location;
   }
 
   /**
@@ -1507,8 +1421,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the deployment.
    */
   matchDeploymentFromDeploymentName(deploymentName: string) {
-    return this.pathTemplates.deploymentPathTemplate.match(deploymentName)
-      .deployment;
+    return this.pathTemplates.deploymentPathTemplate.match(deploymentName).deployment;
   }
 
   /**
@@ -1519,7 +1432,7 @@ export class ProvisioningClient {
    * @param {string} external_api
    * @returns {string} Resource name string.
    */
-  externalApiPath(project: string, location: string, externalApi: string) {
+  externalApiPath(project:string,location:string,externalApi:string) {
     return this.pathTemplates.externalApiPathTemplate.render({
       project: project,
       location: location,
@@ -1535,8 +1448,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromExternalApiName(externalApiName: string) {
-    return this.pathTemplates.externalApiPathTemplate.match(externalApiName)
-      .project;
+    return this.pathTemplates.externalApiPathTemplate.match(externalApiName).project;
   }
 
   /**
@@ -1547,8 +1459,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromExternalApiName(externalApiName: string) {
-    return this.pathTemplates.externalApiPathTemplate.match(externalApiName)
-      .location;
+    return this.pathTemplates.externalApiPathTemplate.match(externalApiName).location;
   }
 
   /**
@@ -1559,8 +1470,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the external_api.
    */
   matchExternalApiFromExternalApiName(externalApiName: string) {
-    return this.pathTemplates.externalApiPathTemplate.match(externalApiName)
-      .external_api;
+    return this.pathTemplates.externalApiPathTemplate.match(externalApiName).external_api;
   }
 
   /**
@@ -1571,11 +1481,7 @@ export class ProvisioningClient {
    * @param {string} host_project_registration
    * @returns {string} Resource name string.
    */
-  hostProjectRegistrationPath(
-    project: string,
-    location: string,
-    hostProjectRegistration: string
-  ) {
+  hostProjectRegistrationPath(project:string,location:string,hostProjectRegistration:string) {
     return this.pathTemplates.hostProjectRegistrationPathTemplate.render({
       project: project,
       location: location,
@@ -1590,12 +1496,8 @@ export class ProvisioningClient {
    *   A fully-qualified path representing HostProjectRegistration resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromHostProjectRegistrationName(
-    hostProjectRegistrationName: string
-  ) {
-    return this.pathTemplates.hostProjectRegistrationPathTemplate.match(
-      hostProjectRegistrationName
-    ).project;
+  matchProjectFromHostProjectRegistrationName(hostProjectRegistrationName: string) {
+    return this.pathTemplates.hostProjectRegistrationPathTemplate.match(hostProjectRegistrationName).project;
   }
 
   /**
@@ -1605,12 +1507,8 @@ export class ProvisioningClient {
    *   A fully-qualified path representing HostProjectRegistration resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromHostProjectRegistrationName(
-    hostProjectRegistrationName: string
-  ) {
-    return this.pathTemplates.hostProjectRegistrationPathTemplate.match(
-      hostProjectRegistrationName
-    ).location;
+  matchLocationFromHostProjectRegistrationName(hostProjectRegistrationName: string) {
+    return this.pathTemplates.hostProjectRegistrationPathTemplate.match(hostProjectRegistrationName).location;
   }
 
   /**
@@ -1620,12 +1518,8 @@ export class ProvisioningClient {
    *   A fully-qualified path representing HostProjectRegistration resource.
    * @returns {string} A string representing the host_project_registration.
    */
-  matchHostProjectRegistrationFromHostProjectRegistrationName(
-    hostProjectRegistrationName: string
-  ) {
-    return this.pathTemplates.hostProjectRegistrationPathTemplate.match(
-      hostProjectRegistrationName
-    ).host_project_registration;
+  matchHostProjectRegistrationFromHostProjectRegistrationName(hostProjectRegistrationName: string) {
+    return this.pathTemplates.hostProjectRegistrationPathTemplate.match(hostProjectRegistrationName).host_project_registration;
   }
 
   /**
@@ -1635,7 +1529,7 @@ export class ProvisioningClient {
    * @param {string} location
    * @returns {string} Resource name string.
    */
-  locationPath(project: string, location: string) {
+  locationPath(project:string,location:string) {
     return this.pathTemplates.locationPathTemplate.render({
       project: project,
       location: location,
@@ -1672,7 +1566,7 @@ export class ProvisioningClient {
    * @param {string} plugin
    * @returns {string} Resource name string.
    */
-  pluginPath(project: string, location: string, plugin: string) {
+  pluginPath(project:string,location:string,plugin:string) {
     return this.pathTemplates.pluginPathTemplate.render({
       project: project,
       location: location,
@@ -1719,7 +1613,7 @@ export class ProvisioningClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectPath(project: string) {
+  projectPath(project:string) {
     return this.pathTemplates.projectPathTemplate.render({
       project: project,
     });
@@ -1744,11 +1638,7 @@ export class ProvisioningClient {
    * @param {string} runtime_project_attachment
    * @returns {string} Resource name string.
    */
-  runtimeProjectAttachmentPath(
-    project: string,
-    location: string,
-    runtimeProjectAttachment: string
-  ) {
+  runtimeProjectAttachmentPath(project:string,location:string,runtimeProjectAttachment:string) {
     return this.pathTemplates.runtimeProjectAttachmentPathTemplate.render({
       project: project,
       location: location,
@@ -1763,12 +1653,8 @@ export class ProvisioningClient {
    *   A fully-qualified path representing RuntimeProjectAttachment resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromRuntimeProjectAttachmentName(
-    runtimeProjectAttachmentName: string
-  ) {
-    return this.pathTemplates.runtimeProjectAttachmentPathTemplate.match(
-      runtimeProjectAttachmentName
-    ).project;
+  matchProjectFromRuntimeProjectAttachmentName(runtimeProjectAttachmentName: string) {
+    return this.pathTemplates.runtimeProjectAttachmentPathTemplate.match(runtimeProjectAttachmentName).project;
   }
 
   /**
@@ -1778,12 +1664,8 @@ export class ProvisioningClient {
    *   A fully-qualified path representing RuntimeProjectAttachment resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromRuntimeProjectAttachmentName(
-    runtimeProjectAttachmentName: string
-  ) {
-    return this.pathTemplates.runtimeProjectAttachmentPathTemplate.match(
-      runtimeProjectAttachmentName
-    ).location;
+  matchLocationFromRuntimeProjectAttachmentName(runtimeProjectAttachmentName: string) {
+    return this.pathTemplates.runtimeProjectAttachmentPathTemplate.match(runtimeProjectAttachmentName).location;
   }
 
   /**
@@ -1793,12 +1675,8 @@ export class ProvisioningClient {
    *   A fully-qualified path representing RuntimeProjectAttachment resource.
    * @returns {string} A string representing the runtime_project_attachment.
    */
-  matchRuntimeProjectAttachmentFromRuntimeProjectAttachmentName(
-    runtimeProjectAttachmentName: string
-  ) {
-    return this.pathTemplates.runtimeProjectAttachmentPathTemplate.match(
-      runtimeProjectAttachmentName
-    ).runtime_project_attachment;
+  matchRuntimeProjectAttachmentFromRuntimeProjectAttachmentName(runtimeProjectAttachmentName: string) {
+    return this.pathTemplates.runtimeProjectAttachmentPathTemplate.match(runtimeProjectAttachmentName).runtime_project_attachment;
   }
 
   /**
@@ -1811,13 +1689,7 @@ export class ProvisioningClient {
    * @param {string} spec
    * @returns {string} Resource name string.
    */
-  specPath(
-    project: string,
-    location: string,
-    api: string,
-    version: string,
-    spec: string
-  ) {
+  specPath(project:string,location:string,api:string,version:string,spec:string) {
     return this.pathTemplates.specPathTemplate.render({
       project: project,
       location: location,
@@ -1890,7 +1762,7 @@ export class ProvisioningClient {
    * @param {string} plugin
    * @returns {string} Resource name string.
    */
-  styleGuidePath(project: string, location: string, plugin: string) {
+  styleGuidePath(project:string,location:string,plugin:string) {
     return this.pathTemplates.styleGuidePathTemplate.render({
       project: project,
       location: location,
@@ -1906,8 +1778,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromStyleGuideName(styleGuideName: string) {
-    return this.pathTemplates.styleGuidePathTemplate.match(styleGuideName)
-      .project;
+    return this.pathTemplates.styleGuidePathTemplate.match(styleGuideName).project;
   }
 
   /**
@@ -1918,8 +1789,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromStyleGuideName(styleGuideName: string) {
-    return this.pathTemplates.styleGuidePathTemplate.match(styleGuideName)
-      .location;
+    return this.pathTemplates.styleGuidePathTemplate.match(styleGuideName).location;
   }
 
   /**
@@ -1930,8 +1800,7 @@ export class ProvisioningClient {
    * @returns {string} A string representing the plugin.
    */
   matchPluginFromStyleGuideName(styleGuideName: string) {
-    return this.pathTemplates.styleGuidePathTemplate.match(styleGuideName)
-      .plugin;
+    return this.pathTemplates.styleGuidePathTemplate.match(styleGuideName).plugin;
   }
 
   /**
@@ -1943,7 +1812,7 @@ export class ProvisioningClient {
    * @param {string} version
    * @returns {string} Resource name string.
    */
-  versionPath(project: string, location: string, api: string, version: string) {
+  versionPath(project:string,location:string,api:string,version:string) {
     return this.pathTemplates.versionPathTemplate.render({
       project: project,
       location: location,
@@ -2005,10 +1874,11 @@ export class ProvisioningClient {
   close(): Promise<void> {
     if (this.provisioningStub && !this._terminated) {
       return this.provisioningStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
-        this.locationsClient.close();
-        this.operationsClient.close();
+        this.locationsClient.close().catch(err => {throw err});
+        void this.operationsClient.close();
       });
     }
     return Promise.resolve();

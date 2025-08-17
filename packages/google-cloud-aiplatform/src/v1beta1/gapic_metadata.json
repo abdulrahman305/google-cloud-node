@@ -75,6 +75,16 @@
                 "deleteSavedQuery"
               ]
             },
+            "AssessData": {
+              "methods": [
+                "assessData"
+              ]
+            },
+            "AssembleData": {
+              "methods": [
+                "assembleData"
+              ]
+            },
             "ListDatasets": {
               "methods": [
                 "listDatasets",
@@ -185,6 +195,16 @@
             "DeleteSavedQuery": {
               "methods": [
                 "deleteSavedQuery"
+              ]
+            },
+            "AssessData": {
+              "methods": [
+                "assessData"
+              ]
+            },
+            "AssembleData": {
+              "methods": [
+                "assembleData"
               ]
             },
             "ListDatasets": {
@@ -330,6 +350,11 @@
                 "updateEndpoint"
               ]
             },
+            "FetchPublisherModelConfig": {
+              "methods": [
+                "fetchPublisherModelConfig"
+              ]
+            },
             "CreateEndpoint": {
               "methods": [
                 "createEndpoint"
@@ -358,6 +383,11 @@
             "MutateDeployedModel": {
               "methods": [
                 "mutateDeployedModel"
+              ]
+            },
+            "SetPublisherModelConfig": {
+              "methods": [
+                "setPublisherModelConfig"
               ]
             },
             "ListEndpoints": {
@@ -382,6 +412,11 @@
                 "updateEndpoint"
               ]
             },
+            "FetchPublisherModelConfig": {
+              "methods": [
+                "fetchPublisherModelConfig"
+              ]
+            },
             "CreateEndpoint": {
               "methods": [
                 "createEndpoint"
@@ -412,6 +447,11 @@
                 "mutateDeployedModel"
               ]
             },
+            "SetPublisherModelConfig": {
+              "methods": [
+                "setPublisherModelConfig"
+              ]
+            },
             "ListEndpoints": {
               "methods": [
                 "listEndpoints",
@@ -432,6 +472,11 @@
               "methods": [
                 "evaluateInstances"
               ]
+            },
+            "EvaluateDataset": {
+              "methods": [
+                "evaluateDataset"
+              ]
             }
           }
         },
@@ -441,6 +486,123 @@
             "EvaluateInstances": {
               "methods": [
                 "evaluateInstances"
+              ]
+            },
+            "EvaluateDataset": {
+              "methods": [
+                "evaluateDataset"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ExampleStoreService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "ExampleStoreServiceClient",
+          "rpcs": {
+            "GetExampleStore": {
+              "methods": [
+                "getExampleStore"
+              ]
+            },
+            "UpsertExamples": {
+              "methods": [
+                "upsertExamples"
+              ]
+            },
+            "RemoveExamples": {
+              "methods": [
+                "removeExamples"
+              ]
+            },
+            "SearchExamples": {
+              "methods": [
+                "searchExamples"
+              ]
+            },
+            "CreateExampleStore": {
+              "methods": [
+                "createExampleStore"
+              ]
+            },
+            "UpdateExampleStore": {
+              "methods": [
+                "updateExampleStore"
+              ]
+            },
+            "DeleteExampleStore": {
+              "methods": [
+                "deleteExampleStore"
+              ]
+            },
+            "ListExampleStores": {
+              "methods": [
+                "listExampleStores",
+                "listExampleStoresStream",
+                "listExampleStoresAsync"
+              ]
+            },
+            "FetchExamples": {
+              "methods": [
+                "fetchExamples",
+                "fetchExamplesStream",
+                "fetchExamplesAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "ExampleStoreServiceClient",
+          "rpcs": {
+            "GetExampleStore": {
+              "methods": [
+                "getExampleStore"
+              ]
+            },
+            "UpsertExamples": {
+              "methods": [
+                "upsertExamples"
+              ]
+            },
+            "RemoveExamples": {
+              "methods": [
+                "removeExamples"
+              ]
+            },
+            "SearchExamples": {
+              "methods": [
+                "searchExamples"
+              ]
+            },
+            "CreateExampleStore": {
+              "methods": [
+                "createExampleStore"
+              ]
+            },
+            "UpdateExampleStore": {
+              "methods": [
+                "updateExampleStore"
+              ]
+            },
+            "DeleteExampleStore": {
+              "methods": [
+                "deleteExampleStore"
+              ]
+            },
+            "ListExampleStores": {
+              "methods": [
+                "listExampleStores",
+                "listExampleStoresStream",
+                "listExampleStoresAsync"
+              ]
+            },
+            "FetchExamples": {
+              "methods": [
+                "fetchExamples",
+                "fetchExamplesStream",
+                "fetchExamplesAsync"
               ]
             }
           }
@@ -724,6 +886,11 @@
               "methods": [
                 "streamingFetchFeatureValues"
               ]
+            },
+            "FeatureViewDirectWrite": {
+              "methods": [
+                "featureViewDirectWrite"
+              ]
             }
           }
         },
@@ -812,6 +979,11 @@
             "CreateFeatureMonitor": {
               "methods": [
                 "createFeatureMonitor"
+              ]
+            },
+            "UpdateFeatureMonitor": {
+              "methods": [
+                "updateFeatureMonitor"
               ]
             },
             "DeleteFeatureMonitor": {
@@ -915,6 +1087,11 @@
             "CreateFeatureMonitor": {
               "methods": [
                 "createFeatureMonitor"
+              ]
+            },
+            "UpdateFeatureMonitor": {
+              "methods": [
+                "updateFeatureMonitor"
               ]
             },
             "DeleteFeatureMonitor": {
@@ -1492,6 +1669,11 @@
                 "createIndex"
               ]
             },
+            "ImportIndex": {
+              "methods": [
+                "importIndex"
+              ]
+            },
             "UpdateIndex": {
               "methods": [
                 "updateIndex"
@@ -1532,6 +1714,11 @@
             "CreateIndex": {
               "methods": [
                 "createIndex"
+              ]
+            },
+            "ImportIndex": {
+              "methods": [
+                "importIndex"
               ]
             },
             "UpdateIndex": {
@@ -2009,6 +2196,94 @@
         }
       }
     },
+    "MemoryBankService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "MemoryBankServiceClient",
+          "rpcs": {
+            "GetMemory": {
+              "methods": [
+                "getMemory"
+              ]
+            },
+            "RetrieveMemories": {
+              "methods": [
+                "retrieveMemories"
+              ]
+            },
+            "CreateMemory": {
+              "methods": [
+                "createMemory"
+              ]
+            },
+            "UpdateMemory": {
+              "methods": [
+                "updateMemory"
+              ]
+            },
+            "DeleteMemory": {
+              "methods": [
+                "deleteMemory"
+              ]
+            },
+            "GenerateMemories": {
+              "methods": [
+                "generateMemories"
+              ]
+            },
+            "ListMemories": {
+              "methods": [
+                "listMemories",
+                "listMemoriesStream",
+                "listMemoriesAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "MemoryBankServiceClient",
+          "rpcs": {
+            "GetMemory": {
+              "methods": [
+                "getMemory"
+              ]
+            },
+            "RetrieveMemories": {
+              "methods": [
+                "retrieveMemories"
+              ]
+            },
+            "CreateMemory": {
+              "methods": [
+                "createMemory"
+              ]
+            },
+            "UpdateMemory": {
+              "methods": [
+                "updateMemory"
+              ]
+            },
+            "DeleteMemory": {
+              "methods": [
+                "deleteMemory"
+              ]
+            },
+            "GenerateMemories": {
+              "methods": [
+                "generateMemories"
+              ]
+            },
+            "ListMemories": {
+              "methods": [
+                "listMemories",
+                "listMemoriesStream",
+                "listMemoriesAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "MetadataService": {
       "clients": {
         "grpc": {
@@ -2411,6 +2686,31 @@
                 "getPublisherModel"
               ]
             },
+            "CheckPublisherModelEulaAcceptance": {
+              "methods": [
+                "checkPublisherModelEulaAcceptance"
+              ]
+            },
+            "AcceptPublisherModelEula": {
+              "methods": [
+                "acceptPublisherModelEula"
+              ]
+            },
+            "Deploy": {
+              "methods": [
+                "deploy"
+              ]
+            },
+            "DeployPublisherModel": {
+              "methods": [
+                "deployPublisherModel"
+              ]
+            },
+            "ExportPublisherModel": {
+              "methods": [
+                "exportPublisherModel"
+              ]
+            },
             "ListPublisherModels": {
               "methods": [
                 "listPublisherModels",
@@ -2426,6 +2726,31 @@
             "GetPublisherModel": {
               "methods": [
                 "getPublisherModel"
+              ]
+            },
+            "CheckPublisherModelEulaAcceptance": {
+              "methods": [
+                "checkPublisherModelEulaAcceptance"
+              ]
+            },
+            "AcceptPublisherModelEula": {
+              "methods": [
+                "acceptPublisherModelEula"
+              ]
+            },
+            "Deploy": {
+              "methods": [
+                "deploy"
+              ]
+            },
+            "DeployPublisherModel": {
+              "methods": [
+                "deployPublisherModel"
+              ]
+            },
+            "ExportPublisherModel": {
+              "methods": [
+                "exportPublisherModel"
               ]
             },
             "ListPublisherModels": {
@@ -2624,6 +2949,11 @@
                 "getModelEvaluationSlice"
               ]
             },
+            "RecommendSpec": {
+              "methods": [
+                "recommendSpec"
+              ]
+            },
             "UploadModel": {
               "methods": [
                 "uploadModel"
@@ -2666,6 +2996,13 @@
                 "listModelVersions",
                 "listModelVersionsStream",
                 "listModelVersionsAsync"
+              ]
+            },
+            "ListModelVersionCheckpoints": {
+              "methods": [
+                "listModelVersionCheckpoints",
+                "listModelVersionCheckpointsStream",
+                "listModelVersionCheckpointsAsync"
               ]
             },
             "ListModelEvaluations": {
@@ -2727,6 +3064,11 @@
                 "getModelEvaluationSlice"
               ]
             },
+            "RecommendSpec": {
+              "methods": [
+                "recommendSpec"
+              ]
+            },
             "UploadModel": {
               "methods": [
                 "uploadModel"
@@ -2769,6 +3111,13 @@
                 "listModelVersions",
                 "listModelVersionsStream",
                 "listModelVersionsAsync"
+              ]
+            },
+            "ListModelVersionCheckpoints": {
+              "methods": [
+                "listModelVersionCheckpoints",
+                "listModelVersionCheckpointsStream",
+                "listModelVersionCheckpointsAsync"
               ]
             },
             "ListModelEvaluations": {
@@ -3328,6 +3677,11 @@
               "methods": [
                 "queryReasoningEngine"
               ]
+            },
+            "StreamQueryReasoningEngine": {
+              "methods": [
+                "streamQueryReasoningEngine"
+              ]
             }
           }
         },
@@ -3493,6 +3847,98 @@
                 "listSchedules",
                 "listSchedulesStream",
                 "listSchedulesAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SessionService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "AppendEvent": {
+              "methods": [
+                "appendEvent"
+              ]
+            },
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            },
+            "ListEvents": {
+              "methods": [
+                "listEvents",
+                "listEventsStream",
+                "listEventsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "AppendEvent": {
+              "methods": [
+                "appendEvent"
+              ]
+            },
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            },
+            "ListEvents": {
+              "methods": [
+                "listEvents",
+                "listEventsStream",
+                "listEventsAsync"
               ]
             }
           }
@@ -3916,6 +4362,11 @@
                 "getRagFile"
               ]
             },
+            "GetRagEngineConfig": {
+              "methods": [
+                "getRagEngineConfig"
+              ]
+            },
             "CreateRagCorpus": {
               "methods": [
                 "createRagCorpus"
@@ -3939,6 +4390,11 @@
             "DeleteRagFile": {
               "methods": [
                 "deleteRagFile"
+              ]
+            },
+            "UpdateRagEngineConfig": {
+              "methods": [
+                "updateRagEngineConfig"
               ]
             },
             "ListRagCorpora": {
@@ -3975,6 +4431,11 @@
                 "getRagFile"
               ]
             },
+            "GetRagEngineConfig": {
+              "methods": [
+                "getRagEngineConfig"
+              ]
+            },
             "CreateRagCorpus": {
               "methods": [
                 "createRagCorpus"
@@ -3998,6 +4459,11 @@
             "DeleteRagFile": {
               "methods": [
                 "deleteRagFile"
+              ]
+            },
+            "UpdateRagEngineConfig": {
+              "methods": [
+                "updateRagEngineConfig"
               ]
             },
             "ListRagCorpora": {
@@ -4027,6 +4493,16 @@
               "methods": [
                 "retrieveContexts"
               ]
+            },
+            "AugmentPrompt": {
+              "methods": [
+                "augmentPrompt"
+              ]
+            },
+            "CorroborateContent": {
+              "methods": [
+                "corroborateContent"
+              ]
             }
           }
         },
@@ -4036,6 +4512,16 @@
             "RetrieveContexts": {
               "methods": [
                 "retrieveContexts"
+              ]
+            },
+            "AugmentPrompt": {
+              "methods": [
+                "augmentPrompt"
+              ]
+            },
+            "CorroborateContent": {
+              "methods": [
+                "corroborateContent"
               ]
             }
           }

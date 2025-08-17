@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,6 +52,11 @@ function main(name) {
    *  Optional. Token used to access Hugging Face gated models.
    */
   // const huggingFaceToken = 'abc123'
+  /**
+   *  Optional. Whether to cnclude the deployment configs from the equivalent
+   *  Model Garden model if the requested model is a Hugging Face model.
+   */
+  // const includeEquivalentModelGardenModelDeploymentConfigs = true
 
   // Imports the Aiplatform library
   const {ModelGardenServiceClient} = require('@google-cloud/aiplatform').v1beta1;

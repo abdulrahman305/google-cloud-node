@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -208,11 +208,11 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            client.initialize().catch(err => {throw err});
             assert(client.tripServiceStub);
             client.close().then(() => {
                 done();
-            });
+            }).catch(err => {throw err});
         });
 
         it('has close method for the non-initialized client', done => {
@@ -223,7 +223,7 @@ describe('v1.TripServiceClient', () => {
             assert.strictEqual(client.tripServiceStub, undefined);
             client.close().then(() => {
                 done();
-            });
+            }).catch(err => {throw err});
         });
 
         it('has getProjectId method', async () => {
@@ -265,7 +265,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateTripRequest()
             );
@@ -291,7 +291,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateTripRequest()
             );
@@ -328,7 +328,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateTripRequest()
             );
@@ -351,14 +351,14 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateTripRequest()
             );
             // path template: {provider_id=providers/*}
             request.parent = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.createTrip(request), expectedError);
         });
     });
@@ -369,7 +369,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetTripRequest()
             );
@@ -395,7 +395,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetTripRequest()
             );
@@ -432,7 +432,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetTripRequest()
             );
@@ -455,15 +455,119 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetTripRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.getTrip(request), expectedError);
+        });
+    });
+
+    describe('deleteTrip', () => {
+        it('invokes deleteTrip without error', async () => {
+            const client = new tripserviceModule.v1.TripServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteTripRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteTrip = stubSimpleCall(expectedResponse);
+            const [response] = await client.deleteTrip(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteTrip as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteTrip as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteTrip without error using callback', async () => {
+            const client = new tripserviceModule.v1.TripServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteTripRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteTrip = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.deleteTrip(
+                    request,
+                    (err?: Error|null, result?: protos.google.protobuf.IEmpty|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteTrip as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteTrip as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteTrip with error', async () => {
+            const client = new tripserviceModule.v1.TripServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteTripRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedError = new Error('expected');
+            client.innerApiCalls.deleteTrip = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.deleteTrip(request), expectedError);
+            const actualRequest = (client.innerApiCalls.deleteTrip as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteTrip as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteTrip with closed client', async () => {
+            const client = new tripserviceModule.v1.TripServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteTripRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedError = new Error('The client has already been closed.');
+            client.close().catch(err => {throw err});
+            await assert.rejects(client.deleteTrip(request), expectedError);
         });
     });
 
@@ -473,7 +577,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ReportBillableTripRequest()
             );
@@ -499,7 +603,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ReportBillableTripRequest()
             );
@@ -536,7 +640,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ReportBillableTripRequest()
             );
@@ -559,14 +663,14 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ReportBillableTripRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.reportBillableTrip(request), expectedError);
         });
     });
@@ -577,7 +681,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateTripRequest()
             );
@@ -603,7 +707,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateTripRequest()
             );
@@ -640,7 +744,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateTripRequest()
             );
@@ -663,14 +767,14 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateTripRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.updateTrip(request), expectedError);
         });
     });
@@ -681,7 +785,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -708,7 +812,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -746,7 +850,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -769,7 +873,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -812,7 +916,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -850,7 +954,7 @@ describe('v1.TripServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -885,7 +989,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchTripsRequest()
             );
@@ -915,7 +1019,7 @@ describe('v1.TripServiceClient', () => {
 
     describe('Path templates', () => {
 
-        describe('trip', () => {
+        describe('trip', async () => {
             const fakePath = "/rendered/path/trip";
             const expectedParameters = {
                 provider: "providerValue",
@@ -925,7 +1029,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.tripPathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.tripPathTemplate.match =
@@ -953,7 +1057,7 @@ describe('v1.TripServiceClient', () => {
             });
         });
 
-        describe('vehicle', () => {
+        describe('vehicle', async () => {
             const fakePath = "/rendered/path/vehicle";
             const expectedParameters = {
                 provider: "providerValue",
@@ -963,7 +1067,7 @@ describe('v1.TripServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.vehiclePathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.vehiclePathTemplate.match =

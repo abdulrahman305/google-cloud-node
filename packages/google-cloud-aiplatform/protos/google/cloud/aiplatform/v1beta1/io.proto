@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ message CsvSource {
 message GcsSource {
   // Required. Google Cloud Storage URI(-s) to the input file(s). May contain
   // wildcards. For more information on wildcards, see
-  // https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
+  // https://cloud.google.com/storage/docs/wildcards.
   repeated string uris = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
@@ -193,8 +193,8 @@ message JiraSource {
 
     // Required. The SecretManager secret version resource name (e.g.
     // projects/{project}/secrets/{secret}/versions/{version}) storing the
-    // Jira API key
-    // (https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+    // Jira API key. See [Manage API tokens for your Atlassian
+    // account](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
     ApiAuth.ApiKeyConfig api_key_config = 7
         [(google.api.field_behavior) = REQUIRED];
   }

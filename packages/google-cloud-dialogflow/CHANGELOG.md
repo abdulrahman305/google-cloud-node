@@ -4,6 +4,62 @@
 
 [1]: https://www.npmjs.com/package/dialogflow?activeTab=versions
 
+## [7.2.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v7.1.0...dialogflow-v7.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6420](https://github.com/googleapis/google-cloud-node/issues/6420)) ([fe8d6cc](https://github.com/googleapis/google-cloud-node/commit/fe8d6cc157bea696790f2844fa7d410a481c79ed))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [7.1.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v7.0.1...dialogflow-v7.1.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([b3bd921](https://github.com/googleapis/google-cloud-node/commit/b3bd921a30b15a632d8e8495b91723d314c23c71))
+
+## [7.0.1](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v7.0.0...dialogflow-v7.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6185](https://github.com/googleapis/google-cloud-node/issues/6185)) ([ab30412](https://github.com/googleapis/google-cloud-node/commit/ab304122e3e825c9a76af7d6b0ef4ddc9aa6e906))
+
+## [7.0.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v6.14.0...dialogflow-v7.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [dialogflow] Add new RPC IngestContextReferences, GenerateSuggestions ([#6111](https://github.com/googleapis/google-cloud-node/issues/6111)) ([9129d93](https://github.com/googleapis/google-cloud-node/commit/9129d93549847996346f7842ea0a650d5cc493fc))
+* [Many APIs] add request/response debug logging to gapics ([afcb5c0](https://github.com/googleapis/google-cloud-node/commit/afcb5c07e82bc8349b9677766cd880f69a97f77f))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [6.14.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v6.13.0...dialogflow-v6.14.0) (2025-01-23)
+
+
+### Features
+
+* [dialogflow] add Model Armor API ([#5952](https://github.com/googleapis/google-cloud-node/issues/5952)) ([d765c81](https://github.com/googleapis/google-cloud-node/commit/d765c81cca8ce084f5a9505e717962e8ed649dfd))
+
+## [6.13.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v6.12.0...dialogflow-v6.13.0) (2024-12-18)
+
+
+### Features
+
+* [dialogflow] add new fields for delivering intermediate transcriptions through PubSub ([#5881](https://github.com/googleapis/google-cloud-node/issues/5881)) ([7c8a115](https://github.com/googleapis/google-cloud-node/commit/7c8a115c88865b3aadfa649b3b2a89207d5502c2))
+* [dialogflow] make TrainingPhrase name field output-only ([#5861](https://github.com/googleapis/google-cloud-node/issues/5861)) ([7238530](https://github.com/googleapis/google-cloud-node/commit/72385303b7b0d8f3f5462d05c490f0200415fc20))
+* [dialogflow] properly mark TrainingPhrase name field output-only ([#5862](https://github.com/googleapis/google-cloud-node/issues/5862)) ([522c389](https://github.com/googleapis/google-cloud-node/commit/522c389d50d175c26afcbe513e98824eb9e190e9))
+
 ## [6.12.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-v6.11.0...dialogflow-v6.12.0) (2024-11-21)
 
 

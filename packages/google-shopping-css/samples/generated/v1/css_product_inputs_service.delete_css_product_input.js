@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,10 @@ function main(name) {
    */
   /**
    *  Required. The name of the CSS product input resource to delete.
-   *  Format: accounts/{account}/cssProductInputs/{css_product_input}
+   *  Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+   *  last section `css_product_input` consists of 3 parts:
+   *  contentLanguage~feedLabel~offerId. Example:
+   *  accounts/123/cssProductInputs/de~DE~rawProvidedId123
    */
   // const name = 'abc123'
   /**

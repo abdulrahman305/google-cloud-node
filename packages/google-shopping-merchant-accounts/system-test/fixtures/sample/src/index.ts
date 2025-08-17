@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,62 +16,46 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  AccountIssueServiceClient,
-  AccountsServiceClient,
-  AccountTaxServiceClient,
-  AutofeedSettingsServiceClient,
-  BusinessIdentityServiceClient,
-  BusinessInfoServiceClient,
-  EmailPreferencesServiceClient,
-  HomepageServiceClient,
-  OnlineReturnPolicyServiceClient,
-  ProgramsServiceClient,
-  RegionsServiceClient,
-  ShippingSettingsServiceClient,
-  TermsOfServiceAgreementStateServiceClient,
-  TermsOfServiceServiceClient,
-  UserServiceClient,
-} from '@google-shopping/accounts';
+import {AccountIssueServiceClient, AccountsServiceClient, AutofeedSettingsServiceClient, AutomaticImprovementsServiceClient, BusinessIdentityServiceClient, BusinessInfoServiceClient, CheckoutSettingsServiceClient, EmailPreferencesServiceClient, GbpAccountsServiceClient, HomepageServiceClient, LfpProvidersServiceClient, OmnichannelSettingsServiceClient, OnlineReturnPolicyServiceClient, ProgramsServiceClient, RegionsServiceClient, ShippingSettingsServiceClient, TermsOfServiceAgreementStateServiceClient, TermsOfServiceServiceClient, UserServiceClient} from '@google-shopping/accounts';
 
 // check that the client class type name can be used
-function doStuffWithAccountIssueServiceClient(
-  client: AccountIssueServiceClient
-) {
+function doStuffWithAccountIssueServiceClient(client: AccountIssueServiceClient) {
   client.close();
 }
 function doStuffWithAccountsServiceClient(client: AccountsServiceClient) {
   client.close();
 }
-function doStuffWithAccountTaxServiceClient(client: AccountTaxServiceClient) {
+function doStuffWithAutofeedSettingsServiceClient(client: AutofeedSettingsServiceClient) {
   client.close();
 }
-function doStuffWithAutofeedSettingsServiceClient(
-  client: AutofeedSettingsServiceClient
-) {
+function doStuffWithAutomaticImprovementsServiceClient(client: AutomaticImprovementsServiceClient) {
   client.close();
 }
-function doStuffWithBusinessIdentityServiceClient(
-  client: BusinessIdentityServiceClient
-) {
+function doStuffWithBusinessIdentityServiceClient(client: BusinessIdentityServiceClient) {
   client.close();
 }
-function doStuffWithBusinessInfoServiceClient(
-  client: BusinessInfoServiceClient
-) {
+function doStuffWithBusinessInfoServiceClient(client: BusinessInfoServiceClient) {
   client.close();
 }
-function doStuffWithEmailPreferencesServiceClient(
-  client: EmailPreferencesServiceClient
-) {
+function doStuffWithCheckoutSettingsServiceClient(client: CheckoutSettingsServiceClient) {
+  client.close();
+}
+function doStuffWithEmailPreferencesServiceClient(client: EmailPreferencesServiceClient) {
+  client.close();
+}
+function doStuffWithGbpAccountsServiceClient(client: GbpAccountsServiceClient) {
   client.close();
 }
 function doStuffWithHomepageServiceClient(client: HomepageServiceClient) {
   client.close();
 }
-function doStuffWithOnlineReturnPolicyServiceClient(
-  client: OnlineReturnPolicyServiceClient
-) {
+function doStuffWithLfpProvidersServiceClient(client: LfpProvidersServiceClient) {
+  client.close();
+}
+function doStuffWithOmnichannelSettingsServiceClient(client: OmnichannelSettingsServiceClient) {
+  client.close();
+}
+function doStuffWithOnlineReturnPolicyServiceClient(client: OnlineReturnPolicyServiceClient) {
   client.close();
 }
 function doStuffWithProgramsServiceClient(client: ProgramsServiceClient) {
@@ -80,19 +64,13 @@ function doStuffWithProgramsServiceClient(client: ProgramsServiceClient) {
 function doStuffWithRegionsServiceClient(client: RegionsServiceClient) {
   client.close();
 }
-function doStuffWithShippingSettingsServiceClient(
-  client: ShippingSettingsServiceClient
-) {
+function doStuffWithShippingSettingsServiceClient(client: ShippingSettingsServiceClient) {
   client.close();
 }
-function doStuffWithTermsOfServiceAgreementStateServiceClient(
-  client: TermsOfServiceAgreementStateServiceClient
-) {
+function doStuffWithTermsOfServiceAgreementStateServiceClient(client: TermsOfServiceAgreementStateServiceClient) {
   client.close();
 }
-function doStuffWithTermsOfServiceServiceClient(
-  client: TermsOfServiceServiceClient
-) {
+function doStuffWithTermsOfServiceServiceClient(client: TermsOfServiceServiceClient) {
   client.close();
 }
 function doStuffWithUserServiceClient(client: UserServiceClient) {
@@ -107,11 +85,11 @@ function main() {
   const accountsServiceClient = new AccountsServiceClient();
   doStuffWithAccountsServiceClient(accountsServiceClient);
   // check that the client instance can be created
-  const accountTaxServiceClient = new AccountTaxServiceClient();
-  doStuffWithAccountTaxServiceClient(accountTaxServiceClient);
-  // check that the client instance can be created
   const autofeedSettingsServiceClient = new AutofeedSettingsServiceClient();
   doStuffWithAutofeedSettingsServiceClient(autofeedSettingsServiceClient);
+  // check that the client instance can be created
+  const automaticImprovementsServiceClient = new AutomaticImprovementsServiceClient();
+  doStuffWithAutomaticImprovementsServiceClient(automaticImprovementsServiceClient);
   // check that the client instance can be created
   const businessIdentityServiceClient = new BusinessIdentityServiceClient();
   doStuffWithBusinessIdentityServiceClient(businessIdentityServiceClient);
@@ -119,11 +97,23 @@ function main() {
   const businessInfoServiceClient = new BusinessInfoServiceClient();
   doStuffWithBusinessInfoServiceClient(businessInfoServiceClient);
   // check that the client instance can be created
+  const checkoutSettingsServiceClient = new CheckoutSettingsServiceClient();
+  doStuffWithCheckoutSettingsServiceClient(checkoutSettingsServiceClient);
+  // check that the client instance can be created
   const emailPreferencesServiceClient = new EmailPreferencesServiceClient();
   doStuffWithEmailPreferencesServiceClient(emailPreferencesServiceClient);
   // check that the client instance can be created
+  const gbpAccountsServiceClient = new GbpAccountsServiceClient();
+  doStuffWithGbpAccountsServiceClient(gbpAccountsServiceClient);
+  // check that the client instance can be created
   const homepageServiceClient = new HomepageServiceClient();
   doStuffWithHomepageServiceClient(homepageServiceClient);
+  // check that the client instance can be created
+  const lfpProvidersServiceClient = new LfpProvidersServiceClient();
+  doStuffWithLfpProvidersServiceClient(lfpProvidersServiceClient);
+  // check that the client instance can be created
+  const omnichannelSettingsServiceClient = new OmnichannelSettingsServiceClient();
+  doStuffWithOmnichannelSettingsServiceClient(omnichannelSettingsServiceClient);
   // check that the client instance can be created
   const onlineReturnPolicyServiceClient = new OnlineReturnPolicyServiceClient();
   doStuffWithOnlineReturnPolicyServiceClient(onlineReturnPolicyServiceClient);
@@ -137,11 +127,8 @@ function main() {
   const shippingSettingsServiceClient = new ShippingSettingsServiceClient();
   doStuffWithShippingSettingsServiceClient(shippingSettingsServiceClient);
   // check that the client instance can be created
-  const termsOfServiceAgreementStateServiceClient =
-    new TermsOfServiceAgreementStateServiceClient();
-  doStuffWithTermsOfServiceAgreementStateServiceClient(
-    termsOfServiceAgreementStateServiceClient
-  );
+  const termsOfServiceAgreementStateServiceClient = new TermsOfServiceAgreementStateServiceClient();
+  doStuffWithTermsOfServiceAgreementStateServiceClient(termsOfServiceAgreementStateServiceClient);
   // check that the client instance can be created
   const termsOfServiceServiceClient = new TermsOfServiceServiceClient();
   doStuffWithTermsOfServiceServiceClient(termsOfServiceServiceClient);

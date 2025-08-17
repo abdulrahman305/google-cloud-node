@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,9 +60,9 @@ function main(parent) {
    */
   // const publicKey = 'abc123'
   /**
-   *  Optional. An optional hint to the endpoint to generate a client
-   *  ceritificate that can be used by AlloyDB connectors to exchange additional
-   *  metadata with the server after TLS handshake.
+   *  Optional. An optional hint to the endpoint to generate a client certificate
+   *  that can be used by AlloyDB connectors to exchange additional metadata with
+   *  the server after TLS handshake.
    */
   // const useMetadataExchange = true
 

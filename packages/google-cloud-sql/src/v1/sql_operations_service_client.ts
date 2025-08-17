@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import type {
 
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -53,6 +54,8 @@ export class SqlOperationsServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('sql');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -87,7 +90,7 @@ export class SqlOperationsServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -449,8 +452,52 @@ export class SqlOperationsServiceClient {
         project: request.project ?? '',
         operation: request.operation ?? '',
       });
-    this.initialize();
-    return this.innerApiCalls.get(request, options, callback);
+    this.initialize().catch(err => {
+      throw err;
+    });
+    this._log.info('get request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.sql.v1.IOperation,
+          | protos.google.cloud.sql.v1.ISqlOperationsGetRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('get response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .get(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.sql.v1.IOperation,
+          protos.google.cloud.sql.v1.ISqlOperationsGetRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('get response %j', response);
+          return [response, options, rawResponse];
+        }
+      )
+      .catch((error: any) => {
+        if (
+          error &&
+          'statusDetails' in error &&
+          error.statusDetails instanceof Array
+        ) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(
+            jsonProtos
+          ) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(
+            error.statusDetails,
+            protos
+          );
+        }
+        throw error;
+      });
   }
   /**
    * Lists all instance operations that have been performed on the given Cloud
@@ -541,8 +588,52 @@ export class SqlOperationsServiceClient {
       this._gaxModule.routingHeader.fromParams({
         project: request.project ?? '',
       });
-    this.initialize();
-    return this.innerApiCalls.list(request, options, callback);
+    this.initialize().catch(err => {
+      throw err;
+    });
+    this._log.info('list request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.cloud.sql.v1.IOperationsListResponse,
+          | protos.google.cloud.sql.v1.ISqlOperationsListRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('list response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .list(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.cloud.sql.v1.IOperationsListResponse,
+          protos.google.cloud.sql.v1.ISqlOperationsListRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('list response %j', response);
+          return [response, options, rawResponse];
+        }
+      )
+      .catch((error: any) => {
+        if (
+          error &&
+          'statusDetails' in error &&
+          error.statusDetails instanceof Array
+        ) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(
+            jsonProtos
+          ) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(
+            error.statusDetails,
+            protos
+          );
+        }
+        throw error;
+      });
   }
   /**
    * Cancels an instance operation that has been performed on an instance.
@@ -628,8 +719,52 @@ export class SqlOperationsServiceClient {
         project: request.project ?? '',
         operation: request.operation ?? '',
       });
-    this.initialize();
-    return this.innerApiCalls.cancel(request, options, callback);
+    this.initialize().catch(err => {
+      throw err;
+    });
+    this._log.info('cancel request %j', request);
+    const wrappedCallback:
+      | Callback<
+          protos.google.protobuf.IEmpty,
+          | protos.google.cloud.sql.v1.ISqlOperationsCancelRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >
+      | undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('cancel response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls
+      .cancel(request, options, wrappedCallback)
+      ?.then(
+        ([response, options, rawResponse]: [
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.sql.v1.ISqlOperationsCancelRequest | undefined,
+          {} | undefined,
+        ]) => {
+          this._log.info('cancel response %j', response);
+          return [response, options, rawResponse];
+        }
+      )
+      .catch((error: any) => {
+        if (
+          error &&
+          'statusDetails' in error &&
+          error.statusDetails instanceof Array
+        ) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(
+            jsonProtos
+          ) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(
+            error.statusDetails,
+            protos
+          );
+        }
+        throw error;
+      });
   }
 
   /**
@@ -719,9 +854,12 @@ export class SqlOperationsServiceClient {
   close(): Promise<void> {
     if (this.sqlOperationsServiceStub && !this._terminated) {
       return this.sqlOperationsServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
-        this.locationsClient.close();
+        this.locationsClient.close().catch(err => {
+          throw err;
+        });
       });
     }
     return Promise.resolve();

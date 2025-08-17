@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,27 +35,7 @@ type ServicesClient = v1.ServicesClient;
 const VersionsClient = v1.VersionsClient;
 type VersionsClient = v1.VersionsClient;
 
-export {
-  v1,
-  ApplicationsClient,
-  AuthorizedCertificatesClient,
-  AuthorizedDomainsClient,
-  DomainMappingsClient,
-  FirewallClient,
-  InstancesClient,
-  ServicesClient,
-  VersionsClient,
-};
-export default {
-  v1,
-  ApplicationsClient,
-  AuthorizedCertificatesClient,
-  AuthorizedDomainsClient,
-  DomainMappingsClient,
-  FirewallClient,
-  InstancesClient,
-  ServicesClient,
-  VersionsClient,
-};
+export {v1, ApplicationsClient, AuthorizedCertificatesClient, AuthorizedDomainsClient, DomainMappingsClient, FirewallClient, InstancesClient, ServicesClient, VersionsClient};
+export default {v1, ApplicationsClient, AuthorizedCertificatesClient, AuthorizedDomainsClient, DomainMappingsClient, FirewallClient, InstancesClient, ServicesClient, VersionsClient};
 import * as protos from '../protos/protos';
 export {protos};

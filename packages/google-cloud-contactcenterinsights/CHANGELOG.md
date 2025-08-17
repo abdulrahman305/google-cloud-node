@@ -1,5 +1,56 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v4.0.1...contact-center-insights-v4.1.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/bigquery to v8 ([#6317](https://github.com/googleapis/google-cloud-node/issues/6317)) ([f5763b2](https://github.com/googleapis/google-cloud-node/commit/f5763b2e5febc387fe4157052d5c9f17b235addf))
+* **deps:** Update dependency @google-cloud/pubsub to v5 ([#6311](https://github.com/googleapis/google-cloud-node/issues/6311)) ([1f69d9a](https://github.com/googleapis/google-cloud-node/commit/1f69d9a5e789b4c76c1fbd7700a5da12ce0b956e))
+
+## [4.0.1](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v4.0.0...contact-center-insights-v4.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6184](https://github.com/googleapis/google-cloud-node/issues/6184)) ([2fcd202](https://github.com/googleapis/google-cloud-node/commit/2fcd2029c35e8fb2199d03ac6e61e2d821ddf72e))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.9.0...contact-center-insights-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([e7409c8](https://github.com/googleapis/google-cloud-node/commit/e7409c87febcf33359a2d36ae4551f502b8a2f93))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [3.9.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.8.0...contact-center-insights-v3.9.0) (2025-01-23)
+
+
+### Features
+
+* [Many APIs] Reasoning Engine v1 GAPIC release ([#5965](https://github.com/googleapis/google-cloud-node/issues/5965)) ([050db4d](https://github.com/googleapis/google-cloud-node/commit/050db4d28f9a203ce2d41db21eb74b3ecb6b4a16))
+
+## [3.8.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.7.0...contact-center-insights-v3.8.0) (2024-12-18)
+
+
+### Features
+
+* [contactcenterinsights] A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}` added to the resource definition `contactcenter... ([#5890](https://github.com/googleapis/google-cloud-node/issues/5890)) ([5564d05](https://github.com/googleapis/google-cloud-node/commit/5564d0548d8681e7647c46e4e33df4af4da4d6aa))
+
 ## [3.7.0](https://github.com/googleapis/google-cloud-node/compare/contact-center-insights-v3.6.0...contact-center-insights-v3.7.0) (2024-11-21)
 
 

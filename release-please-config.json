@@ -93,7 +93,6 @@
     "packages/google-cloud-networksecurity": {},
     "packages/google-cloud-networkservices": {},
     "packages/google-cloud-notebooks": {},
-    "packages/google-cloud-optimization": {},
     "packages/google-cloud-orchestration-airflow-service": {},
     "packages/google-cloud-orgpolicy": {},
     "packages/google-cloud-osconfig": {},
@@ -192,12 +191,32 @@
     "packages/google-cloud-gdchardwaremanagement": {},
     "packages/google-cloud-apihub": {},
     "packages/google-marketingplatform-admin": {},
-    "packages/google-cloud-oracledatabase": {}
+    "packages/google-cloud-oracledatabase": {},
+    "packages/google-ads-admanager": {},
+    "packages/google-shopping-merchant-reviews": {},
+    "packages/google-cloud-memorystore": {},
+    "packages/google-cloud-parametermanager": {},
+    "packages/google-cloud-modelarmor": {},
+    "packages/google-maps-areainsights": {},
+    "packages/google-cloud-financialservices": {},
+    "packages/google-shopping-merchant-issueresolution": {},
+    "packages/google-shopping-merchant-ordertracking": {},
+    "packages/google-cloud-chronicle": {},
+    "packages/google-cloud-devicestreaming": {},
+    "packages/google-cloud-lustre": {},
+    "packages/google-cloud-storagebatchoperations": {},
+    "packages/google-apps-events-subscriptions": {},
+    "packages/google-cloud-maintenance-api": {},
+    "packages/google-cloud-managedkafka-schemaregistry": {},
+    "packages/google-cloud-licensemanager": {},
+    "packages/google-cloud-configdelivery": {},
+    "packages/google-cloud-saasplatform-saasservicemgmt": {}
   },
   "plugins": [
     {
       "type": "sentence-case"
     }
   ],
+  "bump-minor-pre-major": true,
   "release-type": "node"
 }
