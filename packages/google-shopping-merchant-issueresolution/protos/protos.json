@@ -1,0 +1,81 @@
+{
+  "nested": {
+    "google": {
+      "nested": {
+        "shopping": {
+          "nested": {
+            "merchant": {
+              "nested": {
+                "issueresolution": {
+                  "nested": {
+                    "v1": {
+                      "options": {
+                        "csharp_namespace": "Google.Shopping.Merchant.IssueResolution.V1",
+                        "go_package": "cloud.google.com/go/shopping/merchant/issueresolution/apiv1/issueresolutionpb;issueresolutionpb",
+                        "java_multiple_files": true,
+                        "java_outer_classname": "IssueResolutionProto",
+                        "java_package": "com.google.shopping.merchant.issueresolution.v1",
+                        "php_namespace": "Google\\Shopping\\Merchant\\IssueResolution\\V1",
+                        "ruby_package": "Google::Shopping::Merchant::IssueResolution::V1",
+                        "(google.api.resource_definition).type": "merchantapi.googleapis.com/Product",
+                        "(google.api.resource_definition).pattern": "accounts/{account}/products/{product}"
+                      },
+                      "nested": {
+                        "AggregateProductStatusesService": {
+                          "options": {
+                            "(google.api.default_host)": "merchantapi.googleapis.com",
+                            "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/content"
+                          },
+                          "methods": {
+                            "ListAggregateProductStatuses": {
+                              "requestType": "ListAggregateProductStatusesRequest",
+                              "responseType": "ListAggregateProductStatusesResponse",
+                              "options": {
+                                "(google.api.http).get": "/issueresolution/v1/{parent=accounts/*}/aggregateProductStatuses",
+                                "(google.api.method_signature)": "parent"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "get": "/issueresolution/v1/{parent=accounts/*}/aggregateProductStatuses"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "parent"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "ListAggregateProductStatusesRequest": {
+                          "fields": {
+                            "parent": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED",
+                                "(google.api.resource_reference).child_type": "merchantapi.googleapis.com/AggregateProductStatus"
+                              }
+                            },
+                            "pageSize": {
+                              "type": "int32",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "pageToken": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "filter": {
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+               
