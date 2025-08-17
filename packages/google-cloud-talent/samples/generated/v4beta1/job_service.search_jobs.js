@@ -315,27 +315,4 @@ function main(parent, requestMetadata) {
   // Imports the Talent library
   const {JobServiceClient} = require('@google-cloud/talent').v4beta1;
 
-  // Instantiates a client
-  const talentClient = new JobServiceClient();
-
-  async function callSearchJobs() {
-    // Construct request
-    const request = {
-      parent,
-      requestMetadata,
-    };
-
-    // Run request
-    const response = await talentClient.searchJobs(request);
-    console.log(response);
-  }
-
-  callSearchJobs();
-  // [END jobs_v4beta1_generated_JobService_SearchJobs_async]
-}
-
-process.on('unhandledRejection', err => {
-  console.error(err.message);
-  process.exitCode = 1;
-});
-main(...process.argv.slice(2));
+  // Instantiates a c
