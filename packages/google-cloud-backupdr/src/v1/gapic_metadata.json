@@ -15,6 +15,41 @@
                 "getManagementServer"
               ]
             },
+            "GetBackupVault": {
+              "methods": [
+                "getBackupVault"
+              ]
+            },
+            "GetDataSource": {
+              "methods": [
+                "getDataSource"
+              ]
+            },
+            "GetBackup": {
+              "methods": [
+                "getBackup"
+              ]
+            },
+            "GetBackupPlan": {
+              "methods": [
+                "getBackupPlan"
+              ]
+            },
+            "GetBackupPlanRevision": {
+              "methods": [
+                "getBackupPlanRevision"
+              ]
+            },
+            "GetBackupPlanAssociation": {
+              "methods": [
+                "getBackupPlanAssociation"
+              ]
+            },
+            "GetDataSourceReference": {
+              "methods": [
+                "getDataSourceReference"
+              ]
+            },
             "CreateManagementServer": {
               "methods": [
                 "createManagementServer"
@@ -25,11 +60,149 @@
                 "deleteManagementServer"
               ]
             },
+            "CreateBackupVault": {
+              "methods": [
+                "createBackupVault"
+              ]
+            },
+            "UpdateBackupVault": {
+              "methods": [
+                "updateBackupVault"
+              ]
+            },
+            "DeleteBackupVault": {
+              "methods": [
+                "deleteBackupVault"
+              ]
+            },
+            "UpdateDataSource": {
+              "methods": [
+                "updateDataSource"
+              ]
+            },
+            "UpdateBackup": {
+              "methods": [
+                "updateBackup"
+              ]
+            },
+            "DeleteBackup": {
+              "methods": [
+                "deleteBackup"
+              ]
+            },
+            "RestoreBackup": {
+              "methods": [
+                "restoreBackup"
+              ]
+            },
+            "CreateBackupPlan": {
+              "methods": [
+                "createBackupPlan"
+              ]
+            },
+            "UpdateBackupPlan": {
+              "methods": [
+                "updateBackupPlan"
+              ]
+            },
+            "DeleteBackupPlan": {
+              "methods": [
+                "deleteBackupPlan"
+              ]
+            },
+            "CreateBackupPlanAssociation": {
+              "methods": [
+                "createBackupPlanAssociation"
+              ]
+            },
+            "UpdateBackupPlanAssociation": {
+              "methods": [
+                "updateBackupPlanAssociation"
+              ]
+            },
+            "DeleteBackupPlanAssociation": {
+              "methods": [
+                "deleteBackupPlanAssociation"
+              ]
+            },
+            "TriggerBackup": {
+              "methods": [
+                "triggerBackup"
+              ]
+            },
+            "InitializeService": {
+              "methods": [
+                "initializeService"
+              ]
+            },
             "ListManagementServers": {
               "methods": [
                 "listManagementServers",
                 "listManagementServersStream",
                 "listManagementServersAsync"
+              ]
+            },
+            "ListBackupVaults": {
+              "methods": [
+                "listBackupVaults",
+                "listBackupVaultsStream",
+                "listBackupVaultsAsync"
+              ]
+            },
+            "FetchUsableBackupVaults": {
+              "methods": [
+                "fetchUsableBackupVaults",
+                "fetchUsableBackupVaultsStream",
+                "fetchUsableBackupVaultsAsync"
+              ]
+            },
+            "ListDataSources": {
+              "methods": [
+                "listDataSources",
+                "listDataSourcesStream",
+                "listDataSourcesAsync"
+              ]
+            },
+            "ListBackups": {
+              "methods": [
+                "listBackups",
+                "listBackupsStream",
+                "listBackupsAsync"
+              ]
+            },
+            "ListBackupPlans": {
+              "methods": [
+                "listBackupPlans",
+                "listBackupPlansStream",
+                "listBackupPlansAsync"
+              ]
+            },
+            "ListBackupPlanRevisions": {
+              "methods": [
+                "listBackupPlanRevisions",
+                "listBackupPlanRevisionsStream",
+                "listBackupPlanRevisionsAsync"
+              ]
+            },
+            "ListBackupPlanAssociations": {
+              "methods": [
+                "listBackupPlanAssociations",
+                "listBackupPlanAssociationsStream",
+                "listBackupPlanAssociationsAsync"
+              ]
+            },
+            "FetchBackupPlanAssociationsForResourceType": {
+              "methods": [
+                "fetchBackupPlanAssociationsForResourceType",
+                "fetchBackupPlanAssociationsForResourceTypeStream",
+                "fetchBackupPlanAssociationsForResourceTypeAsync"
+              ]
+            },
+            "FetchDataSourceReferencesForResourceType": {
+              "methods": [
+                "fetchDataSourceReferencesForResourceType",
+                "fetchDataSourceReferencesForResourceTypeStream",
+                "fetchDataSourceReferencesForResourceTypeAsync"
               ]
             }
           }
@@ -42,6 +215,41 @@
                 "getManagementServer"
               ]
             },
+            "GetBackupVault": {
+              "methods": [
+                "getBackupVault"
+              ]
+            },
+            "GetDataSource": {
+              "methods": [
+                "getDataSource"
+              ]
+            },
+            "GetBackup": {
+              "methods": [
+                "getBackup"
+              ]
+            },
+            "GetBackupPlan": {
+              "methods": [
+                "getBackupPlan"
+              ]
+            },
+            "GetBackupPlanRevision": {
+              "methods": [
+                "getBackupPlanRevision"
+              ]
+            },
+            "GetBackupPlanAssociation": {
+              "methods": [
+                "getBackupPlanAssociation"
+              ]
+            },
+            "GetDataSourceReference": {
+              "methods": [
+                "getDataSourceReference"
+              ]
+            },
             "CreateManagementServer": {
               "methods": [
                 "createManagementServer"
@@ -52,11 +260,149 @@
                 "deleteManagementServer"
               ]
             },
+            "CreateBackupVault": {
+              "methods": [
+                "createBackupVault"
+              ]
+            },
+            "UpdateBackupVault": {
+              "methods": [
+                "updateBackupVault"
+              ]
+            },
+            "DeleteBackupVault": {
+              "methods": [
+                "deleteBackupVault"
+              ]
+            },
+            "UpdateDataSource": {
+              "methods": [
+                "updateDataSource"
+              ]
+            },
+            "UpdateBackup": {
+              "methods": [
+                "updateBackup"
+              ]
+            },
+            "DeleteBackup": {
+              "methods": [
+                "deleteBackup"
+              ]
+            },
+            "RestoreBackup": {
+              "methods": [
+                "restoreBackup"
+              ]
+            },
+            "CreateBackupPlan": {
+              "methods": [
+                "createBackupPlan"
+              ]
+            },
+            "UpdateBackupPlan": {
+              "methods": [
+                "updateBackupPlan"
+              ]
+            },
+            "DeleteBackupPlan": {
+              "methods": [
+                "deleteBackupPlan"
+              ]
+            },
+            "CreateBackupPlanAssociation": {
+              "methods": [
+                "createBackupPlanAssociation"
+              ]
+            },
+            "UpdateBackupPlanAssociation": {
+              "methods": [
+                "updateBackupPlanAssociation"
+              ]
+            },
+            "DeleteBackupPlanAssociation": {
+              "methods": [
+                "deleteBackupPlanAssociation"
+              ]
+            },
+            "TriggerBackup": {
+              "methods": [
+                "triggerBackup"
+              ]
+            },
+            "InitializeService": {
+              "methods": [
+                "initializeService"
+              ]
+            },
             "ListManagementServers": {
               "methods": [
                 "listManagementServers",
                 "listManagementServersStream",
                 "listManagementServersAsync"
+              ]
+            },
+            "ListBackupVaults": {
+              "methods": [
+                "listBackupVaults",
+                "listBackupVaultsStream",
+                "listBackupVaultsAsync"
+              ]
+            },
+            "FetchUsableBackupVaults": {
+              "methods": [
+                "fetchUsableBackupVaults",
+                "fetchUsableBackupVaultsStream",
+                "fetchUsableBackupVaultsAsync"
+              ]
+            },
+            "ListDataSources": {
+              "methods": [
+                "listDataSources",
+                "listDataSourcesStream",
+                "listDataSourcesAsync"
+              ]
+            },
+            "ListBackups": {
+              "methods": [
+                "listBackups",
+                "listBackupsStream",
+                "listBackupsAsync"
+              ]
+            },
+            "ListBackupPlans": {
+              "methods": [
+                "listBackupPlans",
+                "listBackupPlansStream",
+                "listBackupPlansAsync"
+              ]
+            },
+            "ListBackupPlanRevisions": {
+              "methods": [
+                "listBackupPlanRevisions",
+                "listBackupPlanRevisionsStream",
+                "listBackupPlanRevisionsAsync"
+              ]
+            },
+            "ListBackupPlanAssociations": {
+              "methods": [
+                "listBackupPlanAssociations",
+                "listBackupPlanAssociationsStream",
+                "listBackupPlanAssociationsAsync"
+              ]
+            },
+            "FetchBackupPlanAssociationsForResourceType": {
+              "methods": [
+                "fetchBackupPlanAssociationsForResourceType",
+                "fetchBackupPlanAssociationsForResourceTypeStream",
+                "fetchBackupPlanAssociationsForResourceTypeAsync"
+              ]
+            },
+            "FetchDataSourceReferencesForResourceType": {
+              "methods": [
+                "fetchDataSourceReferencesForResourceType",
+                "fetchDataSourceReferencesForResourceTypeStream",
+                "fetchDataSourceReferencesForResourceTypeAsync"
               ]
             }
           }

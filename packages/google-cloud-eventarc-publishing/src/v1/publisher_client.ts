@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,15 +18,11 @@
 
 /* global window */
 import type * as gax from 'google-gax';
-import type {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-} from 'google-gax';
+import type {Callback, CallOptions, Descriptors, ClientOptions} from 'google-gax';
 
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -47,18 +43,23 @@ const version = require('../../../package.json').version;
  *
  *  A partner is a third-party event provider that is integrated with Eventarc.
  *
- *  A subscriber is a GCP customer interested in receiving events.
+ *  A subscriber is a Google Cloud customer interested in receiving events.
  *
  *  Channel is a first-class Eventarc resource that is created and managed
- *  by the subscriber in their GCP project. A Channel represents a subscriber's
- *  intent to receive events from an event provider. A Channel is associated with
- *  exactly one event provider.
+ *  by the subscriber in their Google Cloud project. A Channel represents a
+ *  subscriber's intent to receive events from an event provider. A Channel is
+ *  associated with exactly one event provider.
  *
  *  ChannelConnection is a first-class Eventarc resource that
- *  is created and managed by the partner in their GCP project. A
+ *  is created and managed by the partner in their Google Cloud project. A
  *  ChannelConnection represents a connection between a partner and a
  *  subscriber's Channel. A ChannelConnection has a one-to-one mapping with a
  *  Channel.
+ *
+ *  Bus is a first-class Eventarc resource that is created and managed in a
+ *  Google Cloud project. A Bus provides a discoverable endpoint for events and
+ *  is a router that receives all events published by event providers and
+ *  delivers them to zero or more subscribers.
  *
  *  Publisher allows an event provider to publish events to Eventarc.
  * @class
@@ -74,6 +75,8 @@ export class PublisherClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('eventarc-publishing');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -107,7 +110,7 @@ export class PublisherClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -124,41 +127,20 @@ export class PublisherClient {
    *     const client = new PublisherClient({fallback: true}, gax);
    *     ```
    */
-  constructor(
-    opts?: ClientOptions,
-    gaxInstance?: typeof gax | typeof gax.fallback
-  ) {
+  constructor(opts?: ClientOptions, gaxInstance?: typeof gax | typeof gax.fallback) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof PublisherClient;
-    if (
-      opts?.universe_domain &&
-      opts?.universeDomain &&
-      opts?.universe_domain !== opts?.universeDomain
-    ) {
-      throw new Error(
-        'Please set either universe_domain or universeDomain, but not both.'
-      );
+    if (opts?.universe_domain && opts?.universeDomain && opts?.universe_domain !== opts?.universeDomain) {
+      throw new Error('Please set either universe_domain or universeDomain, but not both.');
     }
-    const universeDomainEnvVar =
-      typeof process === 'object' && typeof process.env === 'object'
-        ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN']
-        : undefined;
-    this._universeDomain =
-      opts?.universeDomain ??
-      opts?.universe_domain ??
-      universeDomainEnvVar ??
-      'googleapis.com';
+    const universeDomainEnvVar = (typeof process === 'object' && typeof process.env === 'object') ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN'] : undefined;
+    this._universeDomain = opts?.universeDomain ?? opts?.universe_domain ?? universeDomainEnvVar ?? 'googleapis.com';
     this._servicePath = 'eventarcpublishing.' + this._universeDomain;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || this._servicePath;
-    this._providedCustomServicePath = !!(
-      opts?.servicePath || opts?.apiEndpoint
-    );
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || this._servicePath;
+    this._providedCustomServicePath = !!(opts?.servicePath || opts?.apiEndpoint);
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window?.fetch === 'function');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // Request numeric enum values if REST transport is used.
@@ -184,7 +166,7 @@ export class PublisherClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set useJWTAccessWithScope on the auth object.
     this.auth.useJWTAccessWithScope = true;
@@ -198,7 +180,10 @@ export class PublisherClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process === 'object' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -217,11 +202,8 @@ export class PublisherClient {
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.eventarc.publishing.v1.Publisher',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.eventarc.publishing.v1.Publisher', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -252,38 +234,31 @@ export class PublisherClient {
     // Put together the "service stub" for
     // google.cloud.eventarc.publishing.v1.Publisher.
     this.publisherStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.eventarc.publishing.v1.Publisher'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.eventarc.publishing.v1.Publisher') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.eventarc.publishing.v1.Publisher,
-      this._opts,
-      this._providedCustomServicePath
-    ) as Promise<{[method: string]: Function}>;
+        this._opts, this._providedCustomServicePath) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const publisherStubMethods = [
-      'publishChannelConnectionEvents',
-      'publishEvents',
-    ];
+    const publisherStubMethods =
+        ['publishChannelConnectionEvents', 'publishEvents', 'publish'];
     for (const methodName of publisherStubMethods) {
       const callPromise = this.publisherStub.then(
-        stub =>
-          (...args: Array<{}>) => {
-            if (this._terminated) {
-              return Promise.reject('The client has already been closed.');
-            }
-            const func = stub[methodName];
-            return func.apply(stub, args);
-          },
-        (err: Error | null | undefined) => () => {
+        stub => (...args: Array<{}>) => {
+          if (this._terminated) {
+            return Promise.reject('The client has already been closed.');
+          }
+          const func = stub[methodName];
+          return func.apply(stub, args);
+        },
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = undefined;
+      const descriptor =
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -303,14 +278,8 @@ export class PublisherClient {
    * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static servicePath is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static servicePath is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'eventarcpublishing.googleapis.com';
   }
@@ -321,14 +290,8 @@ export class PublisherClient {
    * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static apiEndpoint is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static apiEndpoint is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'eventarcpublishing.googleapis.com';
   }
@@ -359,7 +322,9 @@ export class PublisherClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -368,9 +333,8 @@ export class PublisherClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -381,236 +345,192 @@ export class PublisherClient {
   // -------------------
   // -- Service calls --
   // -------------------
-  /**
-   * Publish events to a ChannelConnection in a partner's project.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.channelConnection
-   *   The channel_connection that the events are published from. For example:
-   *   `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
-   * @param {number[]} request.events
-   *   The CloudEvents v1.0 events to publish. No other types are allowed.
-   *   If this field is set, then the `text_events` fields must not be set.
-   * @param {string[]} request.textEvents
-   *   The text representation of events to publish.
-   *   CloudEvent v1.0 in JSON format is the only allowed type. Refer to
-   *   https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
-   *   for specification.
-   *   If this field is set, then the `events` fields must not be set.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse|PublishChannelConnectionEventsResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/publisher.publish_channel_connection_events.js</caption>
-   * region_tag:eventarcpublishing_v1_generated_Publisher_PublishChannelConnectionEvents_async
-   */
+/**
+ * Publish events to a ChannelConnection in a partner's project.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.channelConnection
+ *   The channel_connection that the events are published from. For example:
+ *   `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
+ * @param {number[]} request.events
+ *   The CloudEvents v1.0 events to publish. No other types are allowed.
+ *   If this field is set, then the `text_events` fields must not be set.
+ * @param {string[]} request.textEvents
+ *   The text representation of events to publish.
+ *   CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+ *   https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+ *   for specification.
+ *   If this field is set, then the `events` fields must not be set.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse|PublishChannelConnectionEventsResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/publisher.publish_channel_connection_events.js</caption>
+ * region_tag:eventarcpublishing_v1_generated_Publisher_PublishChannelConnectionEvents_async
+ */
   publishChannelConnectionEvents(
-    request?: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
-      (
-        | protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|undefined, {}|undefined
+      ]>;
   publishChannelConnectionEvents(
-    request: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
-      | protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  publishChannelConnectionEvents(
-    request: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
-    callback: Callback<
-      protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
-      | protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  publishChannelConnectionEvents(
-    request?: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
-          | protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
-      | protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
-      (
-        | protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|null|undefined,
+          {}|null|undefined>): void;
+  publishChannelConnectionEvents(
+      request: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
+      callback: Callback<
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|null|undefined,
+          {}|null|undefined>): void;
+  publishChannelConnectionEvents(
+      request?: protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+          protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        channel_connection: request.channelConnection ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'channel_connection': request.channelConnection ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('publishChannelConnectionEvents request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('publishChannelConnectionEvents response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.publishChannelConnectionEvents(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishChannelConnectionEventsRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('publishChannelConnectionEvents response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.publishChannelConnectionEvents(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Publish events to a subscriber's channel.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.channel
-   *   The full name of the channel to publish to. For example:
-   *   `projects/{project}/locations/{location}/channels/{channel-id}`.
-   * @param {number[]} request.events
-   *   The CloudEvents v1.0 events to publish. No other types are allowed.
-   *   If this field is set, then the `text_events` fields must not be set.
-   * @param {string[]} request.textEvents
-   *   The text representation of events to publish.
-   *   CloudEvent v1.0 in JSON format is the only allowed type. Refer to
-   *   https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
-   *   for specification.
-   *   If this field is set, then the `events` fields must not be set.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.eventarc.publishing.v1.PublishEventsResponse|PublishEventsResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/publisher.publish_events.js</caption>
-   * region_tag:eventarcpublishing_v1_generated_Publisher_PublishEvents_async
-   */
+/**
+ * Publish events to a subscriber's channel.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.channel
+ *   The full name of the channel to publish to. For example:
+ *   `projects/{project}/locations/{location}/channels/{channel-id}`.
+ * @param {number[]} request.events
+ *   The CloudEvents v1.0 events to publish. No other types are allowed.
+ *   If this field is set, then the `text_events` fields must not be set.
+ * @param {string[]} request.textEvents
+ *   The text representation of events to publish.
+ *   CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+ *   https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+ *   for specification.
+ *   If this field is set, then the `events` fields must not be set.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.eventarc.publishing.v1.PublishEventsResponse|PublishEventsResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/publisher.publish_events.js</caption>
+ * region_tag:eventarcpublishing_v1_generated_Publisher_PublishEvents_async
+ */
   publishEvents(
-    request?: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
-      (
-        | protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|undefined, {}|undefined
+      ]>;
   publishEvents(
-    request: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
-      | protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  publishEvents(
-    request: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
-    callback: Callback<
-      protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
-      | protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  publishEvents(
-    request?: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
-          | protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
-      | protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
-      (
-        | protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|null|undefined,
+          {}|null|undefined>): void;
+  publishEvents(
+      request: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
+      callback: Callback<
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|null|undefined,
+          {}|null|undefined>): void;
+  publishEvents(
+      request?: protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
+          protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        channel: request.channel ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.publishEvents(request, options, callback);
-  }
-
-  /**
-   * Terminate the gRPC channel and close the client.
-   *
-   * The client will no longer be usable and all future behavior is undefined.
-   * @returns {Promise} A promise that resolves when the client is closed.
-   */
-  close(): Promise<void> {
-    if (this.publisherStub && !this._terminated) {
-      return this.publisherStub.then(stub => {
-        this._terminated = true;
-        stub.close();
-      });
-    }
-    return Promise.resolve();
-  }
-}
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'channel': request.channel ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('publishEvents request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.eventarc.publishing.v1.IPublishEventsResponse,
+        protos.google.cloud.eventarc.publishing.v1.IPublishEventsRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+    

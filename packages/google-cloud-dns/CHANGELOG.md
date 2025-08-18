@@ -4,6 +4,55 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/dns?activeTab=versions
 
+## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/dns-v5.2.0...dns-v5.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/dns-v5.1.0...dns-v5.2.0) (2025-05-09)
+
+
+### Features
+
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+
+### Bug Fixes
+
+* Update outdated types for DNS ([#6238](https://github.com/googleapis/google-cloud-node/issues/6238)) ([96aa3d8](https://github.com/googleapis/google-cloud-node/commit/96aa3d809b7cfff6410ce89b177ba3fbc6a607da))
+* Update Record typings ([7aa1c72](https://github.com/googleapis/google-cloud-node/commit/7aa1c72d37b636a6fde876758701a9b37c7a609c))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/dns-v5.0.0...dns-v5.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/promisify to v5 ([#6150](https://github.com/googleapis/google-cloud-node/issues/6150)) ([1135b86](https://github.com/googleapis/google-cloud-node/commit/1135b8610b2471249dc3aec47eb0f985ded13f93))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/dns-v4.1.0...dns-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/paginator to v6 ([#6128](https://github.com/googleapis/google-cloud-node/issues/6128)) ([3e16aca](https://github.com/googleapis/google-cloud-node/commit/3e16acaf81165b03bfbb636ca8f24197c971443a))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
 ## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/dns-v4.0.0...dns-v4.1.0) (2024-05-21)
 
 

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,20 +16,23 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {ConsumerProcurementServiceClient} from '@google-cloud/procurement';
+import {ConsumerProcurementServiceClient, LicenseManagementServiceClient} from '@google-cloud/procurement';
 
 // check that the client class type name can be used
-function doStuffWithConsumerProcurementServiceClient(
-  client: ConsumerProcurementServiceClient
-) {
+function doStuffWithConsumerProcurementServiceClient(client: ConsumerProcurementServiceClient) {
+  client.close();
+}
+function doStuffWithLicenseManagementServiceClient(client: LicenseManagementServiceClient) {
   client.close();
 }
 
 function main() {
   // check that the client instance can be created
-  const consumerProcurementServiceClient =
-    new ConsumerProcurementServiceClient();
+  const consumerProcurementServiceClient = new ConsumerProcurementServiceClient();
   doStuffWithConsumerProcurementServiceClient(consumerProcurementServiceClient);
+  // check that the client instance can be created
+  const licenseManagementServiceClient = new LicenseManagementServiceClient();
+  doStuffWithLicenseManagementServiceClient(licenseManagementServiceClient);
 }
 
 main();

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -81,8 +81,7 @@ function main(parent) {
    *  emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid}"
    *  AND user.name = "users/{user}"
    *  ```
-   *  Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
-   *  error.
+   *  Invalid queries are rejected with an `INVALID_ARGUMENT` error.
    */
   // const filter = 'abc123'
 

@@ -24,6 +24,10 @@
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
+        "UpdateRagCorpus": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
         "GetRagCorpus": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
@@ -53,6 +57,14 @@
           "retry_params_name": "default"
         },
         "DeleteRagFile": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "UpdateRagEngineConfig": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "GetRagEngineConfig": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         }

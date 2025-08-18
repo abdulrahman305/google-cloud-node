@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -2917,6 +2917,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -3168,7 +3171,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -3199,7 +3202,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -4235,7 +4238,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -4251,7 +4254,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -4682,6 +4685,20 @@ export namespace google {
                     public listRecurringAudienceLists(request: google.analytics.data.v1alpha.IListRecurringAudienceListsRequest): Promise<google.analytics.data.v1alpha.ListRecurringAudienceListsResponse>;
 
                     /**
+                     * Calls GetPropertyQuotasSnapshot.
+                     * @param request GetPropertyQuotasSnapshotRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and PropertyQuotasSnapshot
+                     */
+                    public getPropertyQuotasSnapshot(request: google.analytics.data.v1alpha.IGetPropertyQuotasSnapshotRequest, callback: google.analytics.data.v1alpha.AlphaAnalyticsData.GetPropertyQuotasSnapshotCallback): void;
+
+                    /**
+                     * Calls GetPropertyQuotasSnapshot.
+                     * @param request GetPropertyQuotasSnapshotRequest message or plain object
+                     * @returns Promise
+                     */
+                    public getPropertyQuotasSnapshot(request: google.analytics.data.v1alpha.IGetPropertyQuotasSnapshotRequest): Promise<google.analytics.data.v1alpha.PropertyQuotasSnapshot>;
+
+                    /**
                      * Calls CreateReportTask.
                      * @param request CreateReportTaskRequest message or plain object
                      * @param callback Node-style callback called with the error, if any, and Operation
@@ -4802,6 +4819,13 @@ export namespace google {
                      * @param [response] ListRecurringAudienceListsResponse
                      */
                     type ListRecurringAudienceListsCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.ListRecurringAudienceListsResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData|getPropertyQuotasSnapshot}.
+                     * @param error Error, if any
+                     * @param [response] PropertyQuotasSnapshot
+                     */
+                    type GetPropertyQuotasSnapshotCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.PropertyQuotasSnapshot) => void;
 
                     /**
                      * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData|createReportTask}.
@@ -4990,12 +5014,6 @@ export namespace google {
                     /** RecurringAudienceList webhookNotification. */
                     public webhookNotification?: (google.analytics.data.v1alpha.IWebhookNotification|null);
 
-                    /** RecurringAudienceList _activeDaysRemaining. */
-                    public _activeDaysRemaining?: "activeDaysRemaining";
-
-                    /** RecurringAudienceList _webhookNotification. */
-                    public _webhookNotification?: "webhookNotification";
-
                     /**
                      * Creates a new RecurringAudienceList instance using the specified properties.
                      * @param [properties] Properties to set
@@ -5098,12 +5116,6 @@ export namespace google {
 
                     /** WebhookNotification channelToken. */
                     public channelToken?: (string|null);
-
-                    /** WebhookNotification _uri. */
-                    public _uri?: "uri";
-
-                    /** WebhookNotification _channelToken. */
-                    public _channelToken?: "channelToken";
 
                     /**
                      * Creates a new WebhookNotification instance using the specified properties.
@@ -5414,9 +5426,6 @@ export namespace google {
                     /** ListRecurringAudienceListsResponse nextPageToken. */
                     public nextPageToken?: (string|null);
 
-                    /** ListRecurringAudienceListsResponse _nextPageToken. */
-                    public _nextPageToken?: "nextPageToken";
-
                     /**
                      * Creates a new ListRecurringAudienceListsResponse instance using the specified properties.
                      * @param [properties] Properties to set
@@ -5489,6 +5498,218 @@ export namespace google {
 
                     /**
                      * Gets the default type url for ListRecurringAudienceListsResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a GetPropertyQuotasSnapshotRequest. */
+                interface IGetPropertyQuotasSnapshotRequest {
+
+                    /** GetPropertyQuotasSnapshotRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a GetPropertyQuotasSnapshotRequest. */
+                class GetPropertyQuotasSnapshotRequest implements IGetPropertyQuotasSnapshotRequest {
+
+                    /**
+                     * Constructs a new GetPropertyQuotasSnapshotRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.IGetPropertyQuotasSnapshotRequest);
+
+                    /** GetPropertyQuotasSnapshotRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new GetPropertyQuotasSnapshotRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetPropertyQuotasSnapshotRequest instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.IGetPropertyQuotasSnapshotRequest): google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest;
+
+                    /**
+                     * Encodes the specified GetPropertyQuotasSnapshotRequest message. Does not implicitly {@link google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest.verify|verify} messages.
+                     * @param message GetPropertyQuotasSnapshotRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.IGetPropertyQuotasSnapshotRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetPropertyQuotasSnapshotRequest message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest.verify|verify} messages.
+                     * @param message GetPropertyQuotasSnapshotRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IGetPropertyQuotasSnapshotRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetPropertyQuotasSnapshotRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetPropertyQuotasSnapshotRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest;
+
+                    /**
+                     * Decodes a GetPropertyQuotasSnapshotRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetPropertyQuotasSnapshotRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest;
+
+                    /**
+                     * Verifies a GetPropertyQuotasSnapshotRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetPropertyQuotasSnapshotRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetPropertyQuotasSnapshotRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest;
+
+                    /**
+                     * Creates a plain object from a GetPropertyQuotasSnapshotRequest message. Also converts values to other types if specified.
+                     * @param message GetPropertyQuotasSnapshotRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.GetPropertyQuotasSnapshotRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetPropertyQuotasSnapshotRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GetPropertyQuotasSnapshotRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a PropertyQuotasSnapshot. */
+                interface IPropertyQuotasSnapshot {
+
+                    /** PropertyQuotasSnapshot name */
+                    name?: (string|null);
+
+                    /** PropertyQuotasSnapshot corePropertyQuota */
+                    corePropertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+
+                    /** PropertyQuotasSnapshot realtimePropertyQuota */
+                    realtimePropertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+
+                    /** PropertyQuotasSnapshot funnelPropertyQuota */
+                    funnelPropertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+                }
+
+                /** Represents a PropertyQuotasSnapshot. */
+                class PropertyQuotasSnapshot implements IPropertyQuotasSnapshot {
+
+                    /**
+                     * Constructs a new PropertyQuotasSnapshot.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.IPropertyQuotasSnapshot);
+
+                    /** PropertyQuotasSnapshot name. */
+                    public name: string;
+
+                    /** PropertyQuotasSnapshot corePropertyQuota. */
+                    public corePropertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+
+                    /** PropertyQuotasSnapshot realtimePropertyQuota. */
+                    public realtimePropertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+
+                    /** PropertyQuotasSnapshot funnelPropertyQuota. */
+                    public funnelPropertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+
+                    /**
+                     * Creates a new PropertyQuotasSnapshot instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns PropertyQuotasSnapshot instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.IPropertyQuotasSnapshot): google.analytics.data.v1alpha.PropertyQuotasSnapshot;
+
+                    /**
+                     * Encodes the specified PropertyQuotasSnapshot message. Does not implicitly {@link google.analytics.data.v1alpha.PropertyQuotasSnapshot.verify|verify} messages.
+                     * @param message PropertyQuotasSnapshot message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.IPropertyQuotasSnapshot, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified PropertyQuotasSnapshot message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.PropertyQuotasSnapshot.verify|verify} messages.
+                     * @param message PropertyQuotasSnapshot message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IPropertyQuotasSnapshot, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a PropertyQuotasSnapshot message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns PropertyQuotasSnapshot
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.PropertyQuotasSnapshot;
+
+                    /**
+                     * Decodes a PropertyQuotasSnapshot message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns PropertyQuotasSnapshot
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.PropertyQuotasSnapshot;
+
+                    /**
+                     * Verifies a PropertyQuotasSnapshot message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a PropertyQuotasSnapshot message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns PropertyQuotasSnapshot
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.PropertyQuotasSnapshot;
+
+                    /**
+                     * Creates a plain object from a PropertyQuotasSnapshot message. Also converts values to other types if specified.
+                     * @param message PropertyQuotasSnapshot
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.PropertyQuotasSnapshot, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this PropertyQuotasSnapshot to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for PropertyQuotasSnapshot
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -5725,9 +5946,6 @@ export namespace google {
 
                     /** ListAudienceListsResponse nextPageToken. */
                     public nextPageToken?: (string|null);
-
-                    /** ListAudienceListsResponse _nextPageToken. */
-                    public _nextPageToken?: "nextPageToken";
 
                     /**
                      * Creates a new ListAudienceListsResponse instance using the specified properties.
@@ -5994,27 +6212,6 @@ export namespace google {
 
                     /** AudienceList webhookNotification. */
                     public webhookNotification?: (google.analytics.data.v1alpha.IWebhookNotification|null);
-
-                    /** AudienceList _state. */
-                    public _state?: "state";
-
-                    /** AudienceList _beginCreatingTime. */
-                    public _beginCreatingTime?: "beginCreatingTime";
-
-                    /** AudienceList _rowCount. */
-                    public _rowCount?: "rowCount";
-
-                    /** AudienceList _errorMessage. */
-                    public _errorMessage?: "errorMessage";
-
-                    /** AudienceList _percentageCompleted. */
-                    public _percentageCompleted?: "percentageCompleted";
-
-                    /** AudienceList _recurringAudienceList. */
-                    public _recurringAudienceList?: "recurringAudienceList";
-
-                    /** AudienceList _webhookNotification. */
-                    public _webhookNotification?: "webhookNotification";
 
                     /**
                      * Creates a new AudienceList instance using the specified properties.
@@ -6336,12 +6533,6 @@ export namespace google {
                     /** QueryAudienceListResponse rowCount. */
                     public rowCount?: (number|null);
 
-                    /** QueryAudienceListResponse _audienceList. */
-                    public _audienceList?: "audienceList";
-
-                    /** QueryAudienceListResponse _rowCount. */
-                    public _rowCount?: "rowCount";
-
                     /**
                      * Creates a new QueryAudienceListResponse instance using the specified properties.
                      * @param [properties] Properties to set
@@ -6565,18 +6756,6 @@ export namespace google {
 
                     /** SheetExportAudienceListResponse audienceList. */
                     public audienceList?: (google.analytics.data.v1alpha.IAudienceList|null);
-
-                    /** SheetExportAudienceListResponse _spreadsheetUri. */
-                    public _spreadsheetUri?: "spreadsheetUri";
-
-                    /** SheetExportAudienceListResponse _spreadsheetId. */
-                    public _spreadsheetId?: "spreadsheetId";
-
-                    /** SheetExportAudienceListResponse _rowCount. */
-                    public _rowCount?: "rowCount";
-
-                    /** SheetExportAudienceListResponse _audienceList. */
-                    public _audienceList?: "audienceList";
 
                     /**
                      * Creates a new SheetExportAudienceListResponse instance using the specified properties.
@@ -7375,6 +7554,9 @@ export namespace google {
 
                         /** ReportDefinition keepEmptyRows */
                         keepEmptyRows?: (boolean|null);
+
+                        /** ReportDefinition samplingLevel */
+                        samplingLevel?: (google.analytics.data.v1alpha.SamplingLevel|keyof typeof google.analytics.data.v1alpha.SamplingLevel|null);
                     }
 
                     /** Represents a ReportDefinition. */
@@ -7421,6 +7603,9 @@ export namespace google {
 
                         /** ReportDefinition keepEmptyRows. */
                         public keepEmptyRows: boolean;
+
+                        /** ReportDefinition samplingLevel. */
+                        public samplingLevel?: (google.analytics.data.v1alpha.SamplingLevel|keyof typeof google.analytics.data.v1alpha.SamplingLevel|null);
 
                         /**
                          * Creates a new ReportDefinition instance using the specified properties.
@@ -7548,21 +7733,6 @@ export namespace google {
 
                         /** ReportMetadata totalRowCount. */
                         public totalRowCount?: (number|null);
-
-                        /** ReportMetadata _state. */
-                        public _state?: "state";
-
-                        /** ReportMetadata _beginCreatingTime. */
-                        public _beginCreatingTime?: "beginCreatingTime";
-
-                        /** ReportMetadata _taskRowCount. */
-                        public _taskRowCount?: "taskRowCount";
-
-                        /** ReportMetadata _errorMessage. */
-                        public _errorMessage?: "errorMessage";
-
-                        /** ReportMetadata _totalRowCount. */
-                        public _totalRowCount?: "totalRowCount";
 
                         /**
                          * Creates a new ReportMetadata instance using the specified properties.
@@ -8326,9 +8496,6 @@ export namespace google {
 
                     /** ListReportTasksResponse nextPageToken. */
                     public nextPageToken?: (string|null);
-
-                    /** ListReportTasksResponse _nextPageToken. */
-                    public _nextPageToken?: "nextPageToken";
 
                     /**
                      * Creates a new ListReportTasksResponse instance using the specified properties.
@@ -9276,6 +9443,9 @@ export namespace google {
 
                     /** Filter betweenFilter */
                     betweenFilter?: (google.analytics.data.v1alpha.IBetweenFilter|null);
+
+                    /** Filter emptyFilter */
+                    emptyFilter?: (google.analytics.data.v1alpha.IEmptyFilter|null);
                 }
 
                 /** Represents a Filter. */
@@ -9302,8 +9472,11 @@ export namespace google {
                     /** Filter betweenFilter. */
                     public betweenFilter?: (google.analytics.data.v1alpha.IBetweenFilter|null);
 
+                    /** Filter emptyFilter. */
+                    public emptyFilter?: (google.analytics.data.v1alpha.IEmptyFilter|null);
+
                     /** Filter oneFilter. */
-                    public oneFilter?: ("stringFilter"|"inListFilter"|"numericFilter"|"betweenFilter");
+                    public oneFilter?: ("stringFilter"|"inListFilter"|"numericFilter"|"betweenFilter"|"emptyFilter");
 
                     /**
                      * Creates a new Filter instance using the specified properties.
@@ -10154,6 +10327,97 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of an EmptyFilter. */
+                interface IEmptyFilter {
+                }
+
+                /** Represents an EmptyFilter. */
+                class EmptyFilter implements IEmptyFilter {
+
+                    /**
+                     * Constructs a new EmptyFilter.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.IEmptyFilter);
+
+                    /**
+                     * Creates a new EmptyFilter instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns EmptyFilter instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.IEmptyFilter): google.analytics.data.v1alpha.EmptyFilter;
+
+                    /**
+                     * Encodes the specified EmptyFilter message. Does not implicitly {@link google.analytics.data.v1alpha.EmptyFilter.verify|verify} messages.
+                     * @param message EmptyFilter message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.IEmptyFilter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified EmptyFilter message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.EmptyFilter.verify|verify} messages.
+                     * @param message EmptyFilter message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IEmptyFilter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an EmptyFilter message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns EmptyFilter
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.EmptyFilter;
+
+                    /**
+                     * Decodes an EmptyFilter message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns EmptyFilter
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.EmptyFilter;
+
+                    /**
+                     * Verifies an EmptyFilter message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an EmptyFilter message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns EmptyFilter
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.EmptyFilter;
+
+                    /**
+                     * Creates a plain object from an EmptyFilter message. Also converts values to other types if specified.
+                     * @param message EmptyFilter
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.EmptyFilter, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this EmptyFilter to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for EmptyFilter
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a NumericValue. */
                 interface INumericValue {
 
@@ -10715,6 +10979,9 @@ export namespace google {
 
                     /** ResponseMetaData subjectToThresholding */
                     subjectToThresholding?: (boolean|null);
+
+                    /** ResponseMetaData samplingMetadatas */
+                    samplingMetadatas?: (google.analytics.data.v1alpha.ISamplingMetadata[]|null);
                 }
 
                 /** Represents a ResponseMetaData. */
@@ -10744,20 +11011,8 @@ export namespace google {
                     /** ResponseMetaData subjectToThresholding. */
                     public subjectToThresholding?: (boolean|null);
 
-                    /** ResponseMetaData _schemaRestrictionResponse. */
-                    public _schemaRestrictionResponse?: "schemaRestrictionResponse";
-
-                    /** ResponseMetaData _currencyCode. */
-                    public _currencyCode?: "currencyCode";
-
-                    /** ResponseMetaData _timeZone. */
-                    public _timeZone?: "timeZone";
-
-                    /** ResponseMetaData _emptyReason. */
-                    public _emptyReason?: "emptyReason";
-
-                    /** ResponseMetaData _subjectToThresholding. */
-                    public _subjectToThresholding?: "subjectToThresholding";
+                    /** ResponseMetaData samplingMetadatas. */
+                    public samplingMetadatas: google.analytics.data.v1alpha.ISamplingMetadata[];
 
                     /**
                      * Creates a new ResponseMetaData instance using the specified properties.
@@ -10962,9 +11217,6 @@ export namespace google {
 
                             /** ActiveMetricRestriction restrictedMetricTypes. */
                             public restrictedMetricTypes: google.analytics.data.v1alpha.RestrictedMetricType[];
-
-                            /** ActiveMetricRestriction _metricName. */
-                            public _metricName?: "metricName";
 
                             /**
                              * Creates a new ActiveMetricRestriction instance using the specified properties.
@@ -11804,9 +12056,6 @@ export namespace google {
                     /** FunnelBreakdown limit. */
                     public limit?: (number|Long|string|null);
 
-                    /** FunnelBreakdown _limit. */
-                    public _limit?: "limit";
-
                     /**
                      * Creates a new FunnelBreakdown instance using the specified properties.
                      * @param [properties] Properties to set
@@ -11909,9 +12158,6 @@ export namespace google {
 
                     /** FunnelNextAction limit. */
                     public limit?: (number|Long|string|null);
-
-                    /** FunnelNextAction _limit. */
-                    public _limit?: "limit";
 
                     /**
                      * Creates a new FunnelNextAction instance using the specified properties.
@@ -12130,9 +12376,6 @@ export namespace google {
 
                     /** FunnelStep filterExpression. */
                     public filterExpression?: (google.analytics.data.v1alpha.IFunnelFilterExpression|null);
-
-                    /** FunnelStep _withinDurationFromPriorStep. */
-                    public _withinDurationFromPriorStep?: "withinDurationFromPriorStep";
 
                     /**
                      * Creates a new FunnelStep instance using the specified properties.
@@ -14298,9 +14541,6 @@ export namespace google {
                     /** SegmentFilterScoping atAnyPointInTime. */
                     public atAnyPointInTime?: (boolean|null);
 
-                    /** SegmentFilterScoping _atAnyPointInTime. */
-                    public _atAnyPointInTime?: "atAnyPointInTime";
-
                     /**
                      * Creates a new SegmentFilterScoping instance using the specified properties.
                      * @param [properties] Properties to set
@@ -14403,12 +14643,6 @@ export namespace google {
 
                     /** SegmentEventFilter segmentParameterFilterExpression. */
                     public segmentParameterFilterExpression?: (google.analytics.data.v1alpha.ISegmentParameterFilterExpression|null);
-
-                    /** SegmentEventFilter _eventName. */
-                    public _eventName?: "eventName";
-
-                    /** SegmentEventFilter _segmentParameterFilterExpression. */
-                    public _segmentParameterFilterExpression?: "segmentParameterFilterExpression";
 
                     /**
                      * Creates a new SegmentEventFilter instance using the specified properties.
@@ -14861,9 +15095,6 @@ export namespace google {
                     /** SegmentParameterFilterScoping inAnyNDayPeriod. */
                     public inAnyNDayPeriod?: (number|Long|string|null);
 
-                    /** SegmentParameterFilterScoping _inAnyNDayPeriod. */
-                    public _inAnyNDayPeriod?: "inAnyNDayPeriod";
-
                     /**
                      * Creates a new SegmentParameterFilterScoping instance using the specified properties.
                      * @param [properties] Properties to set
@@ -15311,12 +15542,6 @@ export namespace google {
 
                     /** FunnelEventFilter funnelParameterFilterExpression. */
                     public funnelParameterFilterExpression?: (google.analytics.data.v1alpha.IFunnelParameterFilterExpression|null);
-
-                    /** FunnelEventFilter _eventName. */
-                    public _eventName?: "eventName";
-
-                    /** FunnelEventFilter _funnelParameterFilterExpression. */
-                    public _funnelParameterFilterExpression?: "funnelParameterFilterExpression";
 
                     /**
                      * Creates a new FunnelEventFilter instance using the specified properties.
@@ -15976,6 +16201,14 @@ export namespace google {
                     COST_DATA = 1,
                     REVENUE_DATA = 2
                 }
+
+                /** SamplingLevel enum. */
+                enum SamplingLevel {
+                    SAMPLING_LEVEL_UNSPECIFIED = 0,
+                    LOW = 1,
+                    MEDIUM = 2,
+                    UNSAMPLED = 3
+                }
             }
 
             /** Namespace v1beta. */
@@ -16477,6 +16710,9 @@ export namespace google {
 
                     /** Metadata metrics */
                     metrics?: (google.analytics.data.v1beta.IMetricMetadata[]|null);
+
+                    /** Metadata comparisons */
+                    comparisons?: (google.analytics.data.v1beta.IComparisonMetadata[]|null);
                 }
 
                 /** Represents a Metadata. */
@@ -16496,6 +16732,9 @@ export namespace google {
 
                     /** Metadata metrics. */
                     public metrics: google.analytics.data.v1beta.IMetricMetadata[];
+
+                    /** Metadata comparisons. */
+                    public comparisons: google.analytics.data.v1beta.IComparisonMetadata[];
 
                     /**
                      * Creates a new Metadata instance using the specified properties.
@@ -16619,6 +16858,9 @@ export namespace google {
 
                     /** RunReportRequest returnPropertyQuota */
                     returnPropertyQuota?: (boolean|null);
+
+                    /** RunReportRequest comparisons */
+                    comparisons?: (google.analytics.data.v1beta.IComparison[]|null);
                 }
 
                 /** Represents a RunReportRequest. */
@@ -16671,6 +16913,9 @@ export namespace google {
 
                     /** RunReportRequest returnPropertyQuota. */
                     public returnPropertyQuota: boolean;
+
+                    /** RunReportRequest comparisons. */
+                    public comparisons: google.analytics.data.v1beta.IComparison[];
 
                     /**
                      * Creates a new RunReportRequest instance using the specified properties.
@@ -16936,6 +17181,9 @@ export namespace google {
 
                     /** RunPivotReportRequest returnPropertyQuota */
                     returnPropertyQuota?: (boolean|null);
+
+                    /** RunPivotReportRequest comparisons */
+                    comparisons?: (google.analytics.data.v1beta.IComparison[]|null);
                 }
 
                 /** Represents a RunPivotReportRequest. */
@@ -16979,6 +17227,9 @@ export namespace google {
 
                     /** RunPivotReportRequest returnPropertyQuota. */
                     public returnPropertyQuota: boolean;
+
+                    /** RunPivotReportRequest comparisons. */
+                    public comparisons: google.analytics.data.v1beta.IComparison[];
 
                     /**
                      * Creates a new RunPivotReportRequest instance using the specified properties.
@@ -18233,9 +18484,6 @@ export namespace google {
                     /** ListAudienceExportsResponse nextPageToken. */
                     public nextPageToken?: (string|null);
 
-                    /** ListAudienceExportsResponse _nextPageToken. */
-                    public _nextPageToken?: "nextPageToken";
-
                     /**
                      * Creates a new ListAudienceExportsResponse instance using the specified properties.
                      * @param [properties] Properties to set
@@ -18489,21 +18737,6 @@ export namespace google {
 
                     /** AudienceExport percentageCompleted. */
                     public percentageCompleted?: (number|null);
-
-                    /** AudienceExport _state. */
-                    public _state?: "state";
-
-                    /** AudienceExport _beginCreatingTime. */
-                    public _beginCreatingTime?: "beginCreatingTime";
-
-                    /** AudienceExport _rowCount. */
-                    public _rowCount?: "rowCount";
-
-                    /** AudienceExport _errorMessage. */
-                    public _errorMessage?: "errorMessage";
-
-                    /** AudienceExport _percentageCompleted. */
-                    public _percentageCompleted?: "percentageCompleted";
 
                     /**
                      * Creates a new AudienceExport instance using the specified properties.
@@ -18824,12 +19057,6 @@ export namespace google {
 
                     /** QueryAudienceExportResponse rowCount. */
                     public rowCount?: (number|null);
-
-                    /** QueryAudienceExportResponse _audienceExport. */
-                    public _audienceExport?: "audienceExport";
-
-                    /** QueryAudienceExportResponse _rowCount. */
-                    public _rowCount?: "rowCount";
 
                     /**
                      * Creates a new QueryAudienceExportResponse instance using the specified properties.
@@ -19342,12 +19569,6 @@ export namespace google {
 
                     /** MinuteRange name. */
                     public name: string;
-
-                    /** MinuteRange _startMinutesAgo. */
-                    public _startMinutesAgo?: "startMinutesAgo";
-
-                    /** MinuteRange _endMinutesAgo. */
-                    public _endMinutesAgo?: "endMinutesAgo";
 
                     /**
                      * Creates a new MinuteRange instance using the specified properties.
@@ -19954,6 +20175,118 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a Comparison. */
+                interface IComparison {
+
+                    /** Comparison name */
+                    name?: (string|null);
+
+                    /** Comparison dimensionFilter */
+                    dimensionFilter?: (google.analytics.data.v1beta.IFilterExpression|null);
+
+                    /** Comparison comparison */
+                    comparison?: (string|null);
+                }
+
+                /** Represents a Comparison. */
+                class Comparison implements IComparison {
+
+                    /**
+                     * Constructs a new Comparison.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1beta.IComparison);
+
+                    /** Comparison name. */
+                    public name?: (string|null);
+
+                    /** Comparison dimensionFilter. */
+                    public dimensionFilter?: (google.analytics.data.v1beta.IFilterExpression|null);
+
+                    /** Comparison comparison. */
+                    public comparison?: (string|null);
+
+                    /** Comparison oneComparison. */
+                    public oneComparison?: ("dimensionFilter"|"comparison");
+
+                    /**
+                     * Creates a new Comparison instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Comparison instance
+                     */
+                    public static create(properties?: google.analytics.data.v1beta.IComparison): google.analytics.data.v1beta.Comparison;
+
+                    /**
+                     * Encodes the specified Comparison message. Does not implicitly {@link google.analytics.data.v1beta.Comparison.verify|verify} messages.
+                     * @param message Comparison message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1beta.IComparison, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Comparison message, length delimited. Does not implicitly {@link google.analytics.data.v1beta.Comparison.verify|verify} messages.
+                     * @param message Comparison message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1beta.IComparison, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Comparison message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Comparison
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1beta.Comparison;
+
+                    /**
+                     * Decodes a Comparison message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Comparison
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1beta.Comparison;
+
+                    /**
+                     * Verifies a Comparison message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Comparison message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Comparison
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1beta.Comparison;
+
+                    /**
+                     * Creates a plain object from a Comparison message. Also converts values to other types if specified.
+                     * @param message Comparison
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1beta.Comparison, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Comparison to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Comparison
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a FilterExpression. */
                 interface IFilterExpression {
 
@@ -20186,6 +20519,9 @@ export namespace google {
 
                     /** Filter betweenFilter */
                     betweenFilter?: (google.analytics.data.v1beta.Filter.IBetweenFilter|null);
+
+                    /** Filter emptyFilter */
+                    emptyFilter?: (google.analytics.data.v1beta.Filter.IEmptyFilter|null);
                 }
 
                 /** Represents a Filter. */
@@ -20212,8 +20548,11 @@ export namespace google {
                     /** Filter betweenFilter. */
                     public betweenFilter?: (google.analytics.data.v1beta.Filter.IBetweenFilter|null);
 
+                    /** Filter emptyFilter. */
+                    public emptyFilter?: (google.analytics.data.v1beta.Filter.IEmptyFilter|null);
+
                     /** Filter oneFilter. */
-                    public oneFilter?: ("stringFilter"|"inListFilter"|"numericFilter"|"betweenFilter");
+                    public oneFilter?: ("stringFilter"|"inListFilter"|"numericFilter"|"betweenFilter"|"emptyFilter");
 
                     /**
                      * Creates a new Filter instance using the specified properties.
@@ -20734,6 +21073,97 @@ export namespace google {
 
                         /**
                          * Gets the default type url for BetweenFilter
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an EmptyFilter. */
+                    interface IEmptyFilter {
+                    }
+
+                    /** Represents an EmptyFilter. */
+                    class EmptyFilter implements IEmptyFilter {
+
+                        /**
+                         * Constructs a new EmptyFilter.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.analytics.data.v1beta.Filter.IEmptyFilter);
+
+                        /**
+                         * Creates a new EmptyFilter instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns EmptyFilter instance
+                         */
+                        public static create(properties?: google.analytics.data.v1beta.Filter.IEmptyFilter): google.analytics.data.v1beta.Filter.EmptyFilter;
+
+                        /**
+                         * Encodes the specified EmptyFilter message. Does not implicitly {@link google.analytics.data.v1beta.Filter.EmptyFilter.verify|verify} messages.
+                         * @param message EmptyFilter message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.analytics.data.v1beta.Filter.IEmptyFilter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified EmptyFilter message, length delimited. Does not implicitly {@link google.analytics.data.v1beta.Filter.EmptyFilter.verify|verify} messages.
+                         * @param message EmptyFilter message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.analytics.data.v1beta.Filter.IEmptyFilter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an EmptyFilter message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns EmptyFilter
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1beta.Filter.EmptyFilter;
+
+                        /**
+                         * Decodes an EmptyFilter message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns EmptyFilter
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1beta.Filter.EmptyFilter;
+
+                        /**
+                         * Verifies an EmptyFilter message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an EmptyFilter message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns EmptyFilter
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.analytics.data.v1beta.Filter.EmptyFilter;
+
+                        /**
+                         * Creates a plain object from an EmptyFilter message. Also converts values to other types if specified.
+                         * @param message EmptyFilter
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.analytics.data.v1beta.Filter.EmptyFilter, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this EmptyFilter to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for EmptyFilter
                          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns The default type url
                          */
@@ -21893,21 +22323,6 @@ export namespace google {
                     /** ResponseMetaData samplingMetadatas. */
                     public samplingMetadatas: google.analytics.data.v1beta.ISamplingMetadata[];
 
-                    /** ResponseMetaData _schemaRestrictionResponse. */
-                    public _schemaRestrictionResponse?: "schemaRestrictionResponse";
-
-                    /** ResponseMetaData _currencyCode. */
-                    public _currencyCode?: "currencyCode";
-
-                    /** ResponseMetaData _timeZone. */
-                    public _timeZone?: "timeZone";
-
-                    /** ResponseMetaData _emptyReason. */
-                    public _emptyReason?: "emptyReason";
-
-                    /** ResponseMetaData _subjectToThresholding. */
-                    public _subjectToThresholding?: "subjectToThresholding";
-
                     /**
                      * Creates a new ResponseMetaData instance using the specified properties.
                      * @param [properties] Properties to set
@@ -22111,9 +22526,6 @@ export namespace google {
 
                             /** ActiveMetricRestriction restrictedMetricTypes. */
                             public restrictedMetricTypes: google.analytics.data.v1beta.RestrictedMetricType[];
-
-                            /** ActiveMetricRestriction _metricName. */
-                            public _metricName?: "metricName";
 
                             /**
                              * Creates a new ActiveMetricRestriction instance using the specified properties.
@@ -23259,12 +23671,6 @@ export namespace google {
                     /** QuotaStatus remaining. */
                     public remaining?: (number|null);
 
-                    /** QuotaStatus _consumed. */
-                    public _consumed?: "consumed";
-
-                    /** QuotaStatus _remaining. */
-                    public _remaining?: "remaining";
-
                     /**
                      * Creates a new QuotaStatus instance using the specified properties.
                      * @param [properties] Properties to set
@@ -23625,6 +24031,115 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a ComparisonMetadata. */
+                interface IComparisonMetadata {
+
+                    /** ComparisonMetadata apiName */
+                    apiName?: (string|null);
+
+                    /** ComparisonMetadata uiName */
+                    uiName?: (string|null);
+
+                    /** ComparisonMetadata description */
+                    description?: (string|null);
+                }
+
+                /** Represents a ComparisonMetadata. */
+                class ComparisonMetadata implements IComparisonMetadata {
+
+                    /**
+                     * Constructs a new ComparisonMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1beta.IComparisonMetadata);
+
+                    /** ComparisonMetadata apiName. */
+                    public apiName: string;
+
+                    /** ComparisonMetadata uiName. */
+                    public uiName: string;
+
+                    /** ComparisonMetadata description. */
+                    public description: string;
+
+                    /**
+                     * Creates a new ComparisonMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ComparisonMetadata instance
+                     */
+                    public static create(properties?: google.analytics.data.v1beta.IComparisonMetadata): google.analytics.data.v1beta.ComparisonMetadata;
+
+                    /**
+                     * Encodes the specified ComparisonMetadata message. Does not implicitly {@link google.analytics.data.v1beta.ComparisonMetadata.verify|verify} messages.
+                     * @param message ComparisonMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1beta.IComparisonMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ComparisonMetadata message, length delimited. Does not implicitly {@link google.analytics.data.v1beta.ComparisonMetadata.verify|verify} messages.
+                     * @param message ComparisonMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1beta.IComparisonMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ComparisonMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ComparisonMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1beta.ComparisonMetadata;
+
+                    /**
+                     * Decodes a ComparisonMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ComparisonMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1beta.ComparisonMetadata;
+
+                    /**
+                     * Verifies a ComparisonMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ComparisonMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ComparisonMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1beta.ComparisonMetadata;
+
+                    /**
+                     * Creates a plain object from a ComparisonMetadata message. Also converts values to other types if specified.
+                     * @param message ComparisonMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1beta.ComparisonMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ComparisonMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ComparisonMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a DimensionCompatibility. */
                 interface IDimensionCompatibility {
 
@@ -23649,12 +24164,6 @@ export namespace google {
 
                     /** DimensionCompatibility compatibility. */
                     public compatibility?: (google.analytics.data.v1beta.Compatibility|keyof typeof google.analytics.data.v1beta.Compatibility|null);
-
-                    /** DimensionCompatibility _dimensionMetadata. */
-                    public _dimensionMetadata?: "dimensionMetadata";
-
-                    /** DimensionCompatibility _compatibility. */
-                    public _compatibility?: "compatibility";
 
                     /**
                      * Creates a new DimensionCompatibility instance using the specified properties.
@@ -23758,12 +24267,6 @@ export namespace google {
 
                     /** MetricCompatibility compatibility. */
                     public compatibility?: (google.analytics.data.v1beta.Compatibility|keyof typeof google.analytics.data.v1beta.Compatibility|null);
-
-                    /** MetricCompatibility _metricMetadata. */
-                    public _metricMetadata?: "metricMetadata";
-
-                    /** MetricCompatibility _compatibility. */
-                    public _compatibility?: "compatibility";
 
                     /**
                      * Creates a new MetricCompatibility instance using the specified properties.
@@ -24541,6 +25044,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -24581,6 +25087,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
