@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,17 +16,12 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  DiscussServiceClient,
-  FileServiceClient,
-  GenerativeServiceClient,
-  ModelServiceClient,
-  PermissionServiceClient,
-  RetrieverServiceClient,
-  TextServiceClient,
-} from '@google-ai/generativelanguage';
+import {CacheServiceClient, DiscussServiceClient, FileServiceClient, GenerativeServiceClient, ModelServiceClient, PermissionServiceClient, PredictionServiceClient, RetrieverServiceClient, TextServiceClient} from '@google-ai/generativelanguage';
 
 // check that the client class type name can be used
+function doStuffWithCacheServiceClient(client: CacheServiceClient) {
+  client.close();
+}
 function doStuffWithDiscussServiceClient(client: DiscussServiceClient) {
   client.close();
 }
@@ -42,6 +37,9 @@ function doStuffWithModelServiceClient(client: ModelServiceClient) {
 function doStuffWithPermissionServiceClient(client: PermissionServiceClient) {
   client.close();
 }
+function doStuffWithPredictionServiceClient(client: PredictionServiceClient) {
+  client.close();
+}
 function doStuffWithRetrieverServiceClient(client: RetrieverServiceClient) {
   client.close();
 }
@@ -50,6 +48,9 @@ function doStuffWithTextServiceClient(client: TextServiceClient) {
 }
 
 function main() {
+  // check that the client instance can be created
+  const cacheServiceClient = new CacheServiceClient();
+  doStuffWithCacheServiceClient(cacheServiceClient);
   // check that the client instance can be created
   const discussServiceClient = new DiscussServiceClient();
   doStuffWithDiscussServiceClient(discussServiceClient);
@@ -65,6 +66,9 @@ function main() {
   // check that the client instance can be created
   const permissionServiceClient = new PermissionServiceClient();
   doStuffWithPermissionServiceClient(permissionServiceClient);
+  // check that the client instance can be created
+  const predictionServiceClient = new PredictionServiceClient();
+  doStuffWithPredictionServiceClient(predictionServiceClient);
   // check that the client instance can be created
   const retrieverServiceClient = new RetrieverServiceClient();
   doStuffWithRetrieverServiceClient(retrieverServiceClient);

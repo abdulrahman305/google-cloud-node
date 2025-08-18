@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -105,7 +105,8 @@ export namespace google {
                     TOKEN_TYPE_UNSPECIFIED = 0,
                     TOKEN_TYPE_OIDC = 1,
                     TOKEN_TYPE_PKI = 2,
-                    TOKEN_TYPE_LIMITED_AWS = 3
+                    TOKEN_TYPE_LIMITED_AWS = 3,
+                    TOKEN_TYPE_AWS_PRINCIPALTAGS = 4
                 }
 
                 /** Properties of a Challenge. */
@@ -335,6 +336,12 @@ export namespace google {
                 /** Properties of a VerifyAttestationRequest. */
                 interface IVerifyAttestationRequest {
 
+                    /** VerifyAttestationRequest tdCcel */
+                    tdCcel?: (google.cloud.confidentialcomputing.v1.ITdxCcelAttestation|null);
+
+                    /** VerifyAttestationRequest sevSnpAttestation */
+                    sevSnpAttestation?: (google.cloud.confidentialcomputing.v1.ISevSnpAttestation|null);
+
                     /** VerifyAttestationRequest challenge */
                     challenge?: (string|null);
 
@@ -349,6 +356,9 @@ export namespace google {
 
                     /** VerifyAttestationRequest tokenOptions */
                     tokenOptions?: (google.cloud.confidentialcomputing.v1.ITokenOptions|null);
+
+                    /** VerifyAttestationRequest attester */
+                    attester?: (string|null);
                 }
 
                 /** Represents a VerifyAttestationRequest. */
@@ -359,6 +369,12 @@ export namespace google {
                      * @param [properties] Properties to set
                      */
                     constructor(properties?: google.cloud.confidentialcomputing.v1.IVerifyAttestationRequest);
+
+                    /** VerifyAttestationRequest tdCcel. */
+                    public tdCcel?: (google.cloud.confidentialcomputing.v1.ITdxCcelAttestation|null);
+
+                    /** VerifyAttestationRequest sevSnpAttestation. */
+                    public sevSnpAttestation?: (google.cloud.confidentialcomputing.v1.ISevSnpAttestation|null);
 
                     /** VerifyAttestationRequest challenge. */
                     public challenge: string;
@@ -374,6 +390,12 @@ export namespace google {
 
                     /** VerifyAttestationRequest tokenOptions. */
                     public tokenOptions?: (google.cloud.confidentialcomputing.v1.ITokenOptions|null);
+
+                    /** VerifyAttestationRequest attester. */
+                    public attester: string;
+
+                    /** VerifyAttestationRequest teeAttestation. */
+                    public teeAttestation?: ("tdCcel"|"sevSnpAttestation");
 
                     /**
                      * Creates a new VerifyAttestationRequest instance using the specified properties.
@@ -447,6 +469,224 @@ export namespace google {
 
                     /**
                      * Gets the default type url for VerifyAttestationRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a TdxCcelAttestation. */
+                interface ITdxCcelAttestation {
+
+                    /** TdxCcelAttestation ccelAcpiTable */
+                    ccelAcpiTable?: (Uint8Array|Buffer|string|null);
+
+                    /** TdxCcelAttestation ccelData */
+                    ccelData?: (Uint8Array|Buffer|string|null);
+
+                    /** TdxCcelAttestation canonicalEventLog */
+                    canonicalEventLog?: (Uint8Array|Buffer|string|null);
+
+                    /** TdxCcelAttestation tdQuote */
+                    tdQuote?: (Uint8Array|Buffer|string|null);
+                }
+
+                /** Represents a TdxCcelAttestation. */
+                class TdxCcelAttestation implements ITdxCcelAttestation {
+
+                    /**
+                     * Constructs a new TdxCcelAttestation.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.confidentialcomputing.v1.ITdxCcelAttestation);
+
+                    /** TdxCcelAttestation ccelAcpiTable. */
+                    public ccelAcpiTable: (Uint8Array|Buffer|string);
+
+                    /** TdxCcelAttestation ccelData. */
+                    public ccelData: (Uint8Array|Buffer|string);
+
+                    /** TdxCcelAttestation canonicalEventLog. */
+                    public canonicalEventLog: (Uint8Array|Buffer|string);
+
+                    /** TdxCcelAttestation tdQuote. */
+                    public tdQuote: (Uint8Array|Buffer|string);
+
+                    /**
+                     * Creates a new TdxCcelAttestation instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns TdxCcelAttestation instance
+                     */
+                    public static create(properties?: google.cloud.confidentialcomputing.v1.ITdxCcelAttestation): google.cloud.confidentialcomputing.v1.TdxCcelAttestation;
+
+                    /**
+                     * Encodes the specified TdxCcelAttestation message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TdxCcelAttestation.verify|verify} messages.
+                     * @param message TdxCcelAttestation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.confidentialcomputing.v1.ITdxCcelAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified TdxCcelAttestation message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TdxCcelAttestation.verify|verify} messages.
+                     * @param message TdxCcelAttestation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.confidentialcomputing.v1.ITdxCcelAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a TdxCcelAttestation message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns TdxCcelAttestation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.confidentialcomputing.v1.TdxCcelAttestation;
+
+                    /**
+                     * Decodes a TdxCcelAttestation message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns TdxCcelAttestation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.confidentialcomputing.v1.TdxCcelAttestation;
+
+                    /**
+                     * Verifies a TdxCcelAttestation message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a TdxCcelAttestation message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns TdxCcelAttestation
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.confidentialcomputing.v1.TdxCcelAttestation;
+
+                    /**
+                     * Creates a plain object from a TdxCcelAttestation message. Also converts values to other types if specified.
+                     * @param message TdxCcelAttestation
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.confidentialcomputing.v1.TdxCcelAttestation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this TdxCcelAttestation to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for TdxCcelAttestation
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SevSnpAttestation. */
+                interface ISevSnpAttestation {
+
+                    /** SevSnpAttestation report */
+                    report?: (Uint8Array|Buffer|string|null);
+
+                    /** SevSnpAttestation auxBlob */
+                    auxBlob?: (Uint8Array|Buffer|string|null);
+                }
+
+                /** Represents a SevSnpAttestation. */
+                class SevSnpAttestation implements ISevSnpAttestation {
+
+                    /**
+                     * Constructs a new SevSnpAttestation.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.confidentialcomputing.v1.ISevSnpAttestation);
+
+                    /** SevSnpAttestation report. */
+                    public report: (Uint8Array|Buffer|string);
+
+                    /** SevSnpAttestation auxBlob. */
+                    public auxBlob: (Uint8Array|Buffer|string);
+
+                    /**
+                     * Creates a new SevSnpAttestation instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SevSnpAttestation instance
+                     */
+                    public static create(properties?: google.cloud.confidentialcomputing.v1.ISevSnpAttestation): google.cloud.confidentialcomputing.v1.SevSnpAttestation;
+
+                    /**
+                     * Encodes the specified SevSnpAttestation message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.SevSnpAttestation.verify|verify} messages.
+                     * @param message SevSnpAttestation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.confidentialcomputing.v1.ISevSnpAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SevSnpAttestation message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.SevSnpAttestation.verify|verify} messages.
+                     * @param message SevSnpAttestation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.confidentialcomputing.v1.ISevSnpAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SevSnpAttestation message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SevSnpAttestation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.confidentialcomputing.v1.SevSnpAttestation;
+
+                    /**
+                     * Decodes a SevSnpAttestation message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SevSnpAttestation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.confidentialcomputing.v1.SevSnpAttestation;
+
+                    /**
+                     * Verifies a SevSnpAttestation message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SevSnpAttestation message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SevSnpAttestation
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.confidentialcomputing.v1.SevSnpAttestation;
+
+                    /**
+                     * Creates a plain object from a SevSnpAttestation message. Also converts values to other types if specified.
+                     * @param message SevSnpAttestation
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.confidentialcomputing.v1.SevSnpAttestation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SevSnpAttestation to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SevSnpAttestation
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -656,6 +896,9 @@ export namespace google {
                 /** Properties of a TokenOptions. */
                 interface ITokenOptions {
 
+                    /** TokenOptions awsPrincipalTagsOptions */
+                    awsPrincipalTagsOptions?: (google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions|null);
+
                     /** TokenOptions audience */
                     audience?: (string|null);
 
@@ -675,6 +918,9 @@ export namespace google {
                      */
                     constructor(properties?: google.cloud.confidentialcomputing.v1.ITokenOptions);
 
+                    /** TokenOptions awsPrincipalTagsOptions. */
+                    public awsPrincipalTagsOptions?: (google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions|null);
+
                     /** TokenOptions audience. */
                     public audience: string;
 
@@ -683,6 +929,9 @@ export namespace google {
 
                     /** TokenOptions tokenType. */
                     public tokenType: (google.cloud.confidentialcomputing.v1.TokenType|keyof typeof google.cloud.confidentialcomputing.v1.TokenType);
+
+                    /** TokenOptions tokenTypeOptions. */
+                    public tokenTypeOptions?: "awsPrincipalTagsOptions";
 
                     /**
                      * Creates a new TokenOptions instance using the specified properties.
@@ -762,6 +1011,306 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                namespace TokenOptions {
+
+                    /** Properties of an AwsPrincipalTagsOptions. */
+                    interface IAwsPrincipalTagsOptions {
+
+                        /** AwsPrincipalTagsOptions allowedPrincipalTags */
+                        allowedPrincipalTags?: (google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags|null);
+                    }
+
+                    /** Represents an AwsPrincipalTagsOptions. */
+                    class AwsPrincipalTagsOptions implements IAwsPrincipalTagsOptions {
+
+                        /**
+                         * Constructs a new AwsPrincipalTagsOptions.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions);
+
+                        /** AwsPrincipalTagsOptions allowedPrincipalTags. */
+                        public allowedPrincipalTags?: (google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags|null);
+
+                        /**
+                         * Creates a new AwsPrincipalTagsOptions instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsPrincipalTagsOptions instance
+                         */
+                        public static create(properties?: google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions;
+
+                        /**
+                         * Encodes the specified AwsPrincipalTagsOptions message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.verify|verify} messages.
+                         * @param message AwsPrincipalTagsOptions message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsPrincipalTagsOptions message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.verify|verify} messages.
+                         * @param message AwsPrincipalTagsOptions message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsPrincipalTagsOptions message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsPrincipalTagsOptions
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions;
+
+                        /**
+                         * Decodes an AwsPrincipalTagsOptions message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsPrincipalTagsOptions
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions;
+
+                        /**
+                         * Verifies an AwsPrincipalTagsOptions message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsPrincipalTagsOptions message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsPrincipalTagsOptions
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions;
+
+                        /**
+                         * Creates a plain object from an AwsPrincipalTagsOptions message. Also converts values to other types if specified.
+                         * @param message AwsPrincipalTagsOptions
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsPrincipalTagsOptions to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsPrincipalTagsOptions
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace AwsPrincipalTagsOptions {
+
+                        /** Properties of an AllowedPrincipalTags. */
+                        interface IAllowedPrincipalTags {
+
+                            /** AllowedPrincipalTags containerImageSignatures */
+                            containerImageSignatures?: (google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures|null);
+                        }
+
+                        /** Represents an AllowedPrincipalTags. */
+                        class AllowedPrincipalTags implements IAllowedPrincipalTags {
+
+                            /**
+                             * Constructs a new AllowedPrincipalTags.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags);
+
+                            /** AllowedPrincipalTags containerImageSignatures. */
+                            public containerImageSignatures?: (google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures|null);
+
+                            /**
+                             * Creates a new AllowedPrincipalTags instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns AllowedPrincipalTags instance
+                             */
+                            public static create(properties?: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags;
+
+                            /**
+                             * Encodes the specified AllowedPrincipalTags message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.verify|verify} messages.
+                             * @param message AllowedPrincipalTags message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified AllowedPrincipalTags message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.verify|verify} messages.
+                             * @param message AllowedPrincipalTags message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes an AllowedPrincipalTags message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns AllowedPrincipalTags
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags;
+
+                            /**
+                             * Decodes an AllowedPrincipalTags message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns AllowedPrincipalTags
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags;
+
+                            /**
+                             * Verifies an AllowedPrincipalTags message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates an AllowedPrincipalTags message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns AllowedPrincipalTags
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags;
+
+                            /**
+                             * Creates a plain object from an AllowedPrincipalTags message. Also converts values to other types if specified.
+                             * @param message AllowedPrincipalTags
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this AllowedPrincipalTags to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for AllowedPrincipalTags
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        namespace AllowedPrincipalTags {
+
+                            /** Properties of a ContainerImageSignatures. */
+                            interface IContainerImageSignatures {
+
+                                /** ContainerImageSignatures keyIds */
+                                keyIds?: (string[]|null);
+                            }
+
+                            /** Represents a ContainerImageSignatures. */
+                            class ContainerImageSignatures implements IContainerImageSignatures {
+
+                                /**
+                                 * Constructs a new ContainerImageSignatures.
+                                 * @param [properties] Properties to set
+                                 */
+                                constructor(properties?: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures);
+
+                                /** ContainerImageSignatures keyIds. */
+                                public keyIds: string[];
+
+                                /**
+                                 * Creates a new ContainerImageSignatures instance using the specified properties.
+                                 * @param [properties] Properties to set
+                                 * @returns ContainerImageSignatures instance
+                                 */
+                                public static create(properties?: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures;
+
+                                /**
+                                 * Encodes the specified ContainerImageSignatures message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.verify|verify} messages.
+                                 * @param message ContainerImageSignatures message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encode(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Encodes the specified ContainerImageSignatures message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.verify|verify} messages.
+                                 * @param message ContainerImageSignatures message or plain object to encode
+                                 * @param [writer] Writer to encode to
+                                 * @returns Writer
+                                 */
+                                public static encodeDelimited(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                                /**
+                                 * Decodes a ContainerImageSignatures message from the specified reader or buffer.
+                                 * @param reader Reader or buffer to decode from
+                                 * @param [length] Message length if known beforehand
+                                 * @returns ContainerImageSignatures
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures;
+
+                                /**
+                                 * Decodes a ContainerImageSignatures message from the specified reader or buffer, length delimited.
+                                 * @param reader Reader or buffer to decode from
+                                 * @returns ContainerImageSignatures
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures;
+
+                                /**
+                                 * Verifies a ContainerImageSignatures message.
+                                 * @param message Plain object to verify
+                                 * @returns `null` if valid, otherwise the reason why it is not
+                                 */
+                                public static verify(message: { [k: string]: any }): (string|null);
+
+                                /**
+                                 * Creates a ContainerImageSignatures message from a plain object. Also converts values to their respective internal types.
+                                 * @param object Plain object
+                                 * @returns ContainerImageSignatures
+                                 */
+                                public static fromObject(object: { [k: string]: any }): google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures;
+
+                                /**
+                                 * Creates a plain object from a ContainerImageSignatures message. Also converts values to other types if specified.
+                                 * @param message ContainerImageSignatures
+                                 * @param [options] Conversion options
+                                 * @returns Plain object
+                                 */
+                                public static toObject(message: google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                                /**
+                                 * Converts this ContainerImageSignatures to JSON.
+                                 * @returns JSON object
+                                 */
+                                public toJSON(): { [k: string]: any };
+
+                                /**
+                                 * Gets the default type url for ContainerImageSignatures
+                                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns The default type url
+                                 */
+                                public static getTypeUrl(typeUrlPrefix?: string): string;
+                            }
+                        }
+                    }
+                }
+
                 /** Properties of a TpmAttestation. */
                 interface ITpmAttestation {
 
@@ -769,13 +1318,13 @@ export namespace google {
                     quotes?: (google.cloud.confidentialcomputing.v1.TpmAttestation.IQuote[]|null);
 
                     /** TpmAttestation tcgEventLog */
-                    tcgEventLog?: (Uint8Array|string|null);
+                    tcgEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation canonicalEventLog */
-                    canonicalEventLog?: (Uint8Array|string|null);
+                    canonicalEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation akCert */
-                    akCert?: (Uint8Array|string|null);
+                    akCert?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation certChain */
                     certChain?: (Uint8Array[]|null);
@@ -794,13 +1343,13 @@ export namespace google {
                     public quotes: google.cloud.confidentialcomputing.v1.TpmAttestation.IQuote[];
 
                     /** TpmAttestation tcgEventLog. */
-                    public tcgEventLog: (Uint8Array|string);
+                    public tcgEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation canonicalEventLog. */
-                    public canonicalEventLog: (Uint8Array|string);
+                    public canonicalEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation akCert. */
-                    public akCert: (Uint8Array|string);
+                    public akCert: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation certChain. */
                     public certChain: Uint8Array[];
@@ -895,10 +1444,10 @@ export namespace google {
                         pcrValues?: ({ [k: string]: Uint8Array }|null);
 
                         /** Quote rawQuote */
-                        rawQuote?: (Uint8Array|string|null);
+                        rawQuote?: (Uint8Array|Buffer|string|null);
 
                         /** Quote rawSignature */
-                        rawSignature?: (Uint8Array|string|null);
+                        rawSignature?: (Uint8Array|Buffer|string|null);
                     }
 
                     /** Represents a Quote. */
@@ -917,10 +1466,10 @@ export namespace google {
                         public pcrValues: { [k: string]: Uint8Array };
 
                         /** Quote rawQuote. */
-                        public rawQuote: (Uint8Array|string);
+                        public rawQuote: (Uint8Array|Buffer|string);
 
                         /** Quote rawSignature. */
-                        public rawSignature: (Uint8Array|string);
+                        public rawSignature: (Uint8Array|Buffer|string);
 
                         /**
                          * Creates a new Quote instance using the specified properties.
@@ -1199,13 +1748,13 @@ export namespace google {
                 interface IContainerImageSignature {
 
                     /** ContainerImageSignature payload */
-                    payload?: (Uint8Array|string|null);
+                    payload?: (Uint8Array|Buffer|string|null);
 
                     /** ContainerImageSignature signature */
-                    signature?: (Uint8Array|string|null);
+                    signature?: (Uint8Array|Buffer|string|null);
 
                     /** ContainerImageSignature publicKey */
-                    publicKey?: (Uint8Array|string|null);
+                    publicKey?: (Uint8Array|Buffer|string|null);
 
                     /** ContainerImageSignature sigAlg */
                     sigAlg?: (google.cloud.confidentialcomputing.v1.SigningAlgorithm|keyof typeof google.cloud.confidentialcomputing.v1.SigningAlgorithm|null);
@@ -1221,13 +1770,13 @@ export namespace google {
                     constructor(properties?: google.cloud.confidentialcomputing.v1.IContainerImageSignature);
 
                     /** ContainerImageSignature payload. */
-                    public payload: (Uint8Array|string);
+                    public payload: (Uint8Array|Buffer|string);
 
                     /** ContainerImageSignature signature. */
-                    public signature: (Uint8Array|string);
+                    public signature: (Uint8Array|Buffer|string);
 
                     /** ContainerImageSignature publicKey. */
-                    public publicKey: (Uint8Array|string);
+                    public publicKey: (Uint8Array|Buffer|string);
 
                     /** ContainerImageSignature sigAlg. */
                     public sigAlg: (google.cloud.confidentialcomputing.v1.SigningAlgorithm|keyof typeof google.cloud.confidentialcomputing.v1.SigningAlgorithm);
@@ -1396,7 +1945,7 @@ export namespace google {
                     used?: (boolean|null);
 
                     /** Challenge nonce */
-                    nonce?: (Uint8Array|string|null);
+                    nonce?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a Challenge. */
@@ -1421,7 +1970,7 @@ export namespace google {
                     public used: boolean;
 
                     /** Challenge nonce. */
-                    public nonce: (Uint8Array|string);
+                    public nonce: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new Challenge instance using the specified properties.
@@ -1717,7 +2266,7 @@ export namespace google {
                 interface IVerifyAttestationResponse {
 
                     /** VerifyAttestationResponse claimsToken */
-                    claimsToken?: (Uint8Array|string|null);
+                    claimsToken?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a VerifyAttestationResponse. */
@@ -1730,7 +2279,7 @@ export namespace google {
                     constructor(properties?: google.cloud.confidentialcomputing.v1alpha1.IVerifyAttestationResponse);
 
                     /** VerifyAttestationResponse claimsToken. */
-                    public claimsToken: (Uint8Array|string);
+                    public claimsToken: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new VerifyAttestationResponse instance using the specified properties.
@@ -1914,13 +2463,13 @@ export namespace google {
                     quotes?: (google.cloud.confidentialcomputing.v1alpha1.TpmAttestation.IQuote[]|null);
 
                     /** TpmAttestation tcgEventLog */
-                    tcgEventLog?: (Uint8Array|string|null);
+                    tcgEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation canonicalEventLog */
-                    canonicalEventLog?: (Uint8Array|string|null);
+                    canonicalEventLog?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation akCert */
-                    akCert?: (Uint8Array|string|null);
+                    akCert?: (Uint8Array|Buffer|string|null);
 
                     /** TpmAttestation certChain */
                     certChain?: (Uint8Array[]|null);
@@ -1939,13 +2488,13 @@ export namespace google {
                     public quotes: google.cloud.confidentialcomputing.v1alpha1.TpmAttestation.IQuote[];
 
                     /** TpmAttestation tcgEventLog. */
-                    public tcgEventLog: (Uint8Array|string);
+                    public tcgEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation canonicalEventLog. */
-                    public canonicalEventLog: (Uint8Array|string);
+                    public canonicalEventLog: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation akCert. */
-                    public akCert: (Uint8Array|string);
+                    public akCert: (Uint8Array|Buffer|string);
 
                     /** TpmAttestation certChain. */
                     public certChain: Uint8Array[];
@@ -2040,10 +2589,10 @@ export namespace google {
                         pcrValues?: ({ [k: string]: Uint8Array }|null);
 
                         /** Quote rawQuote */
-                        rawQuote?: (Uint8Array|string|null);
+                        rawQuote?: (Uint8Array|Buffer|string|null);
 
                         /** Quote rawSignature */
-                        rawSignature?: (Uint8Array|string|null);
+                        rawSignature?: (Uint8Array|Buffer|string|null);
                     }
 
                     /** Represents a Quote. */
@@ -2062,10 +2611,10 @@ export namespace google {
                         public pcrValues: { [k: string]: Uint8Array };
 
                         /** Quote rawQuote. */
-                        public rawQuote: (Uint8Array|string);
+                        public rawQuote: (Uint8Array|Buffer|string);
 
                         /** Quote rawSignature. */
-                        public rawSignature: (Uint8Array|string);
+                        public rawSignature: (Uint8Array|Buffer|string);
 
                         /**
                          * Creates a new Quote instance using the specified properties.
@@ -2804,6 +3353,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -2844,6 +3396,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -7062,6 +7617,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -7310,7 +7868,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -7341,7 +7899,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -8583,7 +9141,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -8599,7 +9157,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

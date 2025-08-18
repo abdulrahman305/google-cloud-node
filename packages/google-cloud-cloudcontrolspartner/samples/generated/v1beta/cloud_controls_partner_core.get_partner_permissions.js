@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ function main(name) {
    */
   /**
    *  Required. Name of the resource to get in the format:
-   *  organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+   *  `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
    */
   // const name = 'abc123'
 

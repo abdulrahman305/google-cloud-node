@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -856,6 +856,9 @@ export namespace google {
 
                     /** Customer correlationId */
                     correlationId?: (string|null);
+
+                    /** Customer customerAttestationState */
+                    customerAttestationState?: (google.cloud.channel.v1.Customer.CustomerAttestationState|keyof typeof google.cloud.channel.v1.Customer.CustomerAttestationState|null);
                 }
 
                 /** Represents a Customer. */
@@ -905,6 +908,9 @@ export namespace google {
 
                     /** Customer correlationId. */
                     public correlationId: string;
+
+                    /** Customer customerAttestationState. */
+                    public customerAttestationState: (google.cloud.channel.v1.Customer.CustomerAttestationState|keyof typeof google.cloud.channel.v1.Customer.CustomerAttestationState);
 
                     /**
                      * Creates a new Customer instance using the specified properties.
@@ -982,6 +988,16 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace Customer {
+
+                    /** CustomerAttestationState enum. */
+                    enum CustomerAttestationState {
+                        CUSTOMER_ATTESTATION_STATE_UNSPECIFIED = 0,
+                        EXEMPT = 1,
+                        NON_EXEMPT_AND_INFO_VERIFIED = 2
+                    }
                 }
 
                 /** Properties of a ContactInfo. */
@@ -7939,6 +7955,9 @@ export namespace google {
 
                     /** CheckCloudIdentityAccountsExistRequest domain */
                     domain?: (string|null);
+
+                    /** CheckCloudIdentityAccountsExistRequest primaryAdminEmail */
+                    primaryAdminEmail?: (string|null);
                 }
 
                 /** Represents a CheckCloudIdentityAccountsExistRequest. */
@@ -7955,6 +7974,9 @@ export namespace google {
 
                     /** CheckCloudIdentityAccountsExistRequest domain. */
                     public domain: string;
+
+                    /** CheckCloudIdentityAccountsExistRequest primaryAdminEmail. */
+                    public primaryAdminEmail: string;
 
                     /**
                      * Creates a new CheckCloudIdentityAccountsExistRequest instance using the specified properties.
@@ -8048,6 +8070,12 @@ export namespace google {
 
                     /** CloudIdentityCustomerAccount customerCloudIdentityId */
                     customerCloudIdentityId?: (string|null);
+
+                    /** CloudIdentityCustomerAccount customerType */
+                    customerType?: (google.cloud.channel.v1.CloudIdentityInfo.CustomerType|keyof typeof google.cloud.channel.v1.CloudIdentityInfo.CustomerType|null);
+
+                    /** CloudIdentityCustomerAccount channelPartnerCloudIdentityId */
+                    channelPartnerCloudIdentityId?: (string|null);
                 }
 
                 /** Represents a CloudIdentityCustomerAccount. */
@@ -8070,6 +8098,12 @@ export namespace google {
 
                     /** CloudIdentityCustomerAccount customerCloudIdentityId. */
                     public customerCloudIdentityId: string;
+
+                    /** CloudIdentityCustomerAccount customerType. */
+                    public customerType: (google.cloud.channel.v1.CloudIdentityInfo.CustomerType|keyof typeof google.cloud.channel.v1.CloudIdentityInfo.CustomerType);
+
+                    /** CloudIdentityCustomerAccount channelPartnerCloudIdentityId. */
+                    public channelPartnerCloudIdentityId: string;
 
                     /**
                      * Creates a new CloudIdentityCustomerAccount instance using the specified properties.
@@ -8873,6 +8907,9 @@ export namespace google {
                     /** ImportCustomerRequest cloudIdentityId */
                     cloudIdentityId?: (string|null);
 
+                    /** ImportCustomerRequest primaryAdminEmail */
+                    primaryAdminEmail?: (string|null);
+
                     /** ImportCustomerRequest parent */
                     parent?: (string|null);
 
@@ -8904,6 +8941,9 @@ export namespace google {
                     /** ImportCustomerRequest cloudIdentityId. */
                     public cloudIdentityId?: (string|null);
 
+                    /** ImportCustomerRequest primaryAdminEmail. */
+                    public primaryAdminEmail?: (string|null);
+
                     /** ImportCustomerRequest parent. */
                     public parent: string;
 
@@ -8920,7 +8960,7 @@ export namespace google {
                     public customer: string;
 
                     /** ImportCustomerRequest customerIdentity. */
-                    public customerIdentity?: ("domain"|"cloudIdentityId");
+                    public customerIdentity?: ("domain"|"cloudIdentityId"|"primaryAdminEmail");
 
                     /**
                      * Creates a new ImportCustomerRequest instance using the specified properties.
@@ -17955,6 +17995,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -17995,6 +18038,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -21948,6 +21994,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -22199,7 +22248,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -22230,7 +22279,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -23369,7 +23418,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -23385,7 +23434,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

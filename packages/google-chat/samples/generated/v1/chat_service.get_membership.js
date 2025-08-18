@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,13 +34,23 @@ function main(name) {
    *  authentication (https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
    *  you can optionally use `spaces/{space}/members/app`.
    *  Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
-   *  When authenticated as a
-   *  user (https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-   *  you can use the user's email as an alias for `{member}`. For example,
+   *  You can use the user's email as an alias for `{member}`. For example,
    *  `spaces/{space}/members/example@gmail.com` where `example@gmail.com` is the
    *  email of the Google Chat user.
    */
   // const name = 'abc123'
+  /**
+   *  Optional. When `true`, the method runs using the user's Google Workspace
+   *  administrator privileges.
+   *  The calling user must be a Google Workspace administrator with the
+   *  manage chat and spaces conversations
+   *  privilege (https://support.google.com/a/answer/13369245).
+   *  Requires the `chat.admin.memberships` or `chat.admin.memberships.readonly`
+   *  OAuth 2.0
+   *  scopes (https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+   *  Getting app memberships in a space isn't supported when using admin access.
+   */
+  // const useAdminAccess = true
 
   // Imports the Chat library
   const {ChatServiceClient} = require('@google-apps/chat').v1;

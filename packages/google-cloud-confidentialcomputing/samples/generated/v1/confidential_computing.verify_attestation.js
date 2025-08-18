@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,14 @@ function main(challenge, tpmAttestation) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
+   *  Optional. A TDX with CCEL and RTMR Attestation Quote.
+   */
+  // const tdCcel = {}
+  /**
+   *  Optional. An SEV-SNP Attestation Report.
+   */
+  // const sevSnpAttestation = {}
+  /**
    *  Required. The name of the Challenge whose nonce was used to generate the
    *  attestation, in the format `projects/* /locations/* /challenges/*`. The
    *  provided Challenge will be consumed, and cannot be used again.
@@ -53,6 +61,11 @@ function main(challenge, tpmAttestation) {
    *  the token output.
    */
   // const tokenOptions = {}
+  /**
+   *  Optional. An optional indicator of the attester, only applies to certain
+   *  products.
+   */
+  // const attester = 'abc123'
 
   // Imports the Confidentialcomputing library
   const {ConfidentialComputingClient} = require('@google-cloud/confidentialcomputing').v1;

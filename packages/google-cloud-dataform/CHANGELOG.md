@@ -1,5 +1,50 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v2.1.0...dataform-v2.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [2.1.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v2.0.1...dataform-v2.1.0) (2025-05-20)
+
+
+### Features
+
+* Add initial files for google.cloud.dataform.v1beta1 ([#6364](https://github.com/googleapis/google-cloud-node/issues/6364)) ([efa3877](https://github.com/googleapis/google-cloud-node/commit/efa38775edbbb8a078b79e61b924a0041b2a6f6a))
+
+## [2.0.1](https://github.com/googleapis/google-cloud-node/compare/dataform-v2.0.0...dataform-v2.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6184](https://github.com/googleapis/google-cloud-node/issues/6184)) ([2fcd202](https://github.com/googleapis/google-cloud-node/commit/2fcd2029c35e8fb2199d03ac6e61e2d821ddf72e))
+
+## [2.0.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v1.4.0...dataform-v2.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([e7409c8](https://github.com/googleapis/google-cloud-node/commit/e7409c87febcf33359a2d36ae4551f502b8a2f93))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [1.4.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v1.3.0...dataform-v1.4.0) (2025-02-28)
+
+
+### Features
+
+* Added new field `internal_metadata` to all resources to export all the metadata information that is used internally to serve the resource ([#6098](https://github.com/googleapis/google-cloud-node/issues/6098)) ([d1826b9](https://github.com/googleapis/google-cloud-node/commit/d1826b988780dab8ba4f3866e1ca35f89c99ff5b))
+
 ## [1.3.0](https://github.com/googleapis/google-cloud-node/compare/dataform-v1.2.0...dataform-v1.3.0) (2024-05-21)
 
 
@@ -243,31 +288,4 @@
 ### Bug Fixes
 
 * **deps:** Use google-gax v3.5.2 ([#25](https://github.com/googleapis/nodejs-dataform/issues/25)) ([9df841b](https://github.com/googleapis/nodejs-dataform/commit/9df841b7a8e573e777428e649f60de2076ada2c1))
-* Regenerated protos JS and TS definitions ([#29](https://github.com/googleapis/nodejs-dataform/issues/29)) ([cf713a7](https://github.com/googleapis/nodejs-dataform/commit/cf713a7d8b50323b33efbb0793fbe39c4faf5b89))
-
-## [0.2.0](https://github.com/googleapis/nodejs-dataform/compare/v0.1.0...v0.2.0) (2022-09-14)
-
-
-### Features
-
-* Release API version v1beta1 (no changes to v1alpha2) ([#11](https://github.com/googleapis/nodejs-dataform/issues/11)) ([1ff35a6](https://github.com/googleapis/nodejs-dataform/commit/1ff35a6b63f9d64ea5f7d78a0022c1fab9c95411))
-
-
-### Bug Fixes
-
-* Allow passing gax instance to client constructor ([#18](https://github.com/googleapis/nodejs-dataform/issues/18)) ([34e62f5](https://github.com/googleapis/nodejs-dataform/commit/34e62f559325cf314e6c017da5f46b845a49ecef))
-* Better support for fallback mode ([#13](https://github.com/googleapis/nodejs-dataform/issues/13)) ([f48d918](https://github.com/googleapis/nodejs-dataform/commit/f48d918863db5b1aeff084b562b087ce9b92e8ea))
-* Change import long to require ([#14](https://github.com/googleapis/nodejs-dataform/issues/14)) ([3790bfd](https://github.com/googleapis/nodejs-dataform/commit/3790bfd0881957c089e22e372af19e172ade31eb))
-* Do not import the whole google-gax from proto JS ([#1553](https://github.com/googleapis/nodejs-dataform/issues/1553)) ([#17](https://github.com/googleapis/nodejs-dataform/issues/17)) ([32373fd](https://github.com/googleapis/nodejs-dataform/commit/32373fd2c5b85df5517821d7105635bc3f7ec723))
-* Preserve default values in x-goog-request-params header ([#19](https://github.com/googleapis/nodejs-dataform/issues/19)) ([bbb3790](https://github.com/googleapis/nodejs-dataform/commit/bbb379042b001ed4fcc49423cfcee126dcff9270))
-* Remove pip install statements ([#1546](https://github.com/googleapis/nodejs-dataform/issues/1546)) ([#15](https://github.com/googleapis/nodejs-dataform/issues/15)) ([71f0add](https://github.com/googleapis/nodejs-dataform/commit/71f0add64a43424ee71c0bbe03f82bf78d98eb3c))
-* use google-gax v3.3.0 ([32373fd](https://github.com/googleapis/nodejs-dataform/commit/32373fd2c5b85df5517821d7105635bc3f7ec723))
-
-## 0.1.0 (2022-07-22)
-
-
-### Features
-
-* add initial samples and tests ([fee86a3](https://github.com/googleapis/nodejs-dataform/commit/fee86a37ea438da3285823db24ae52ddfbc4cca0))
-* add templated files from docker image ([3142f78](https://github.com/googleapis/nodejs-dataform/commit/3142f780f4ce5403208ef2c8d248f5c62a05507c))
-* initial stub of library ([5a68c4b](https://github.com/googleapis/nodejs-dataform/commit/5a68c4b37a9050d395b946cee40cb4ca255dd16c))
+* Regenerated protos JS and TS definitions ([#29](https://github.com/googleapis/nodejs-dataform/issues/29)) ([cf713a7](https://github.com/googleapis/nodejs-dataform/commit/cf713a7d8b50323b

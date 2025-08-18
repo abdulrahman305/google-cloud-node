@@ -1,7 +1,7 @@
 {
     "clientLibrary": {
         "name": "nodejs-datacatalog",
-        "version": "4.4.0",
+        "version": "5.2.0",
         "language": "TYPESCRIPT",
         "apis": [
             {
@@ -1564,6 +1564,134 @@
             }
         },
         {
+            "regionTag": "datacatalog_v1_generated_DataCatalog_SetConfig_async",
+            "title": "DataCatalog setConfig Sample",
+            "origin": "API_DEFINITION",
+            "description": " Sets the configuration related to the migration to Dataplex for an organization or project.",
+            "canonical": true,
+            "file": "data_catalog.set_config.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 61,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "SetConfig",
+                "fullName": "google.cloud.datacatalog.v1.DataCatalog.SetConfig",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    },
+                    {
+                        "name": "tag_template_migration",
+                        "type": ".google.cloud.datacatalog.v1.TagTemplateMigration"
+                    },
+                    {
+                        "name": "catalog_ui_experience",
+                        "type": ".google.cloud.datacatalog.v1.CatalogUIExperience"
+                    }
+                ],
+                "resultType": ".google.cloud.datacatalog.v1.MigrationConfig",
+                "client": {
+                    "shortName": "DataCatalogClient",
+                    "fullName": "google.cloud.datacatalog.v1.DataCatalogClient"
+                },
+                "method": {
+                    "shortName": "SetConfig",
+                    "fullName": "google.cloud.datacatalog.v1.DataCatalog.SetConfig",
+                    "service": {
+                        "shortName": "DataCatalog",
+                        "fullName": "google.cloud.datacatalog.v1.DataCatalog"
+                    }
+                }
+            }
+        },
+        {
+            "regionTag": "datacatalog_v1_generated_DataCatalog_RetrieveConfig_async",
+            "title": "DataCatalog retrieveConfig Sample",
+            "origin": "API_DEFINITION",
+            "description": " Retrieves the configuration related to the migration from Data Catalog to Dataplex for a specific organization, including all the projects under it which have a separate configuration set.",
+            "canonical": true,
+            "file": "data_catalog.retrieve_config.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 53,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "RetrieveConfig",
+                "fullName": "google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.cloud.datacatalog.v1.OrganizationConfig",
+                "client": {
+                    "shortName": "DataCatalogClient",
+                    "fullName": "google.cloud.datacatalog.v1.DataCatalogClient"
+                },
+                "method": {
+                    "shortName": "RetrieveConfig",
+                    "fullName": "google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig",
+                    "service": {
+                        "shortName": "DataCatalog",
+                        "fullName": "google.cloud.datacatalog.v1.DataCatalog"
+                    }
+                }
+            }
+        },
+        {
+            "regionTag": "datacatalog_v1_generated_DataCatalog_RetrieveEffectiveConfig_async",
+            "title": "DataCatalog retrieveEffectiveConfig Sample",
+            "origin": "API_DEFINITION",
+            "description": " Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
+            "canonical": true,
+            "file": "data_catalog.retrieve_effective_config.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 53,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "RetrieveEffectiveConfig",
+                "fullName": "google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.cloud.datacatalog.v1.MigrationConfig",
+                "client": {
+                    "shortName": "DataCatalogClient",
+                    "fullName": "google.cloud.datacatalog.v1.DataCatalogClient"
+                },
+                "method": {
+                    "shortName": "RetrieveEffectiveConfig",
+                    "fullName": "google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig",
+                    "service": {
+                        "shortName": "DataCatalog",
+                        "fullName": "google.cloud.datacatalog.v1.DataCatalog"
+                    }
+                }
+            }
+        },
+        {
             "regionTag": "datacatalog_v1_generated_PolicyTagManager_CreateTaxonomy_async",
             "title": "DataCatalog createTaxonomy Sample",
             "origin": "API_DEFINITION",
@@ -2086,194 +2214,4 @@
                     "fullName": "google.cloud.datacatalog.v1.PolicyTagManager.SetIamPolicy",
                     "service": {
                         "shortName": "PolicyTagManager",
-                        "fullName": "google.cloud.datacatalog.v1.PolicyTagManager"
-                    }
-                }
-            }
-        },
-        {
-            "regionTag": "datacatalog_v1_generated_PolicyTagManager_TestIamPermissions_async",
-            "title": "DataCatalog testIamPermissions Sample",
-            "origin": "API_DEFINITION",
-            "description": " Returns your permissions on a specified policy tag or taxonomy.",
-            "canonical": true,
-            "file": "policy_tag_manager.test_iam_permissions.js",
-            "language": "JAVASCRIPT",
-            "segments": [
-                {
-                    "start": 25,
-                    "end": 62,
-                    "type": "FULL"
-                }
-            ],
-            "clientMethod": {
-                "shortName": "TestIamPermissions",
-                "fullName": "google.cloud.datacatalog.v1.PolicyTagManager.TestIamPermissions",
-                "async": true,
-                "parameters": [
-                    {
-                        "name": "resource",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "permissions",
-                        "type": "TYPE_STRING[]"
-                    }
-                ],
-                "resultType": ".google.iam.v1.TestIamPermissionsResponse",
-                "client": {
-                    "shortName": "PolicyTagManagerClient",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerClient"
-                },
-                "method": {
-                    "shortName": "TestIamPermissions",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManager.TestIamPermissions",
-                    "service": {
-                        "shortName": "PolicyTagManager",
-                        "fullName": "google.cloud.datacatalog.v1.PolicyTagManager"
-                    }
-                }
-            }
-        },
-        {
-            "regionTag": "datacatalog_v1_generated_PolicyTagManagerSerialization_ReplaceTaxonomy_async",
-            "title": "DataCatalog replaceTaxonomy Sample",
-            "origin": "API_DEFINITION",
-            "description": " Replaces (updates) a taxonomy and all its policy tags. The taxonomy and its entire hierarchy of policy tags must be represented literally by `SerializedTaxonomy` and the nested `SerializedPolicyTag` messages. This operation automatically does the following: - Deletes the existing policy tags that are missing from the   `SerializedPolicyTag`. - Creates policy tags that don't have resource names. They are considered   new. - Updates policy tags with valid resources names accordingly.",
-            "canonical": true,
-            "file": "policy_tag_manager_serialization.replace_taxonomy.js",
-            "language": "JAVASCRIPT",
-            "segments": [
-                {
-                    "start": 25,
-                    "end": 58,
-                    "type": "FULL"
-                }
-            ],
-            "clientMethod": {
-                "shortName": "ReplaceTaxonomy",
-                "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy",
-                "async": true,
-                "parameters": [
-                    {
-                        "name": "name",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "serialized_taxonomy",
-                        "type": ".google.cloud.datacatalog.v1.SerializedTaxonomy"
-                    }
-                ],
-                "resultType": ".google.cloud.datacatalog.v1.Taxonomy",
-                "client": {
-                    "shortName": "PolicyTagManagerSerializationClient",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerializationClient"
-                },
-                "method": {
-                    "shortName": "ReplaceTaxonomy",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy",
-                    "service": {
-                        "shortName": "PolicyTagManagerSerialization",
-                        "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization"
-                    }
-                }
-            }
-        },
-        {
-            "regionTag": "datacatalog_v1_generated_PolicyTagManagerSerialization_ImportTaxonomies_async",
-            "title": "DataCatalog importTaxonomies Sample",
-            "origin": "API_DEFINITION",
-            "description": " Creates new taxonomies (including their policy tags) in a given project by importing from inlined or cross-regional sources. For a cross-regional source, new taxonomies are created by copying from a source in another region. For an inlined source, taxonomies and policy tags are created in bulk using nested protocol buffer structures.",
-            "canonical": true,
-            "file": "policy_tag_manager_serialization.import_taxonomies.js",
-            "language": "JAVASCRIPT",
-            "segments": [
-                {
-                    "start": 25,
-                    "end": 62,
-                    "type": "FULL"
-                }
-            ],
-            "clientMethod": {
-                "shortName": "ImportTaxonomies",
-                "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies",
-                "async": true,
-                "parameters": [
-                    {
-                        "name": "parent",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "inline_source",
-                        "type": ".google.cloud.datacatalog.v1.InlineSource"
-                    },
-                    {
-                        "name": "cross_regional_source",
-                        "type": ".google.cloud.datacatalog.v1.CrossRegionalSource"
-                    }
-                ],
-                "resultType": ".google.cloud.datacatalog.v1.ImportTaxonomiesResponse",
-                "client": {
-                    "shortName": "PolicyTagManagerSerializationClient",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerializationClient"
-                },
-                "method": {
-                    "shortName": "ImportTaxonomies",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies",
-                    "service": {
-                        "shortName": "PolicyTagManagerSerialization",
-                        "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization"
-                    }
-                }
-            }
-        },
-        {
-            "regionTag": "datacatalog_v1_generated_PolicyTagManagerSerialization_ExportTaxonomies_async",
-            "title": "DataCatalog exportTaxonomies Sample",
-            "origin": "API_DEFINITION",
-            "description": " Exports taxonomies in the requested type and returns them, including their policy tags. The requested taxonomies must belong to the same project. This method generates `SerializedTaxonomy` protocol buffers with nested policy tags that can be used as input for `ImportTaxonomies` calls.",
-            "canonical": true,
-            "file": "policy_tag_manager_serialization.export_taxonomies.js",
-            "language": "JAVASCRIPT",
-            "segments": [
-                {
-                    "start": 25,
-                    "end": 64,
-                    "type": "FULL"
-                }
-            ],
-            "clientMethod": {
-                "shortName": "ExportTaxonomies",
-                "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies",
-                "async": true,
-                "parameters": [
-                    {
-                        "name": "parent",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "taxonomies",
-                        "type": "TYPE_STRING[]"
-                    },
-                    {
-                        "name": "serialized_taxonomies",
-                        "type": "TYPE_BOOL"
-                    }
-                ],
-                "resultType": ".google.cloud.datacatalog.v1.ExportTaxonomiesResponse",
-                "client": {
-                    "shortName": "PolicyTagManagerSerializationClient",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerializationClient"
-                },
-                "method": {
-                    "shortName": "ExportTaxonomies",
-                    "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies",
-                    "service": {
-                        "shortName": "PolicyTagManagerSerialization",
-                        "fullName": "google.cloud.datacatalog.v1.PolicyTagManagerSerialization"
-                    }
-                }
-            }
-        }
-    ]
-}
+                        "fullName": "google.cloud.datacatalog.v1.Pol

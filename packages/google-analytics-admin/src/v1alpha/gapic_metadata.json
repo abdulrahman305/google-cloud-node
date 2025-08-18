@@ -160,6 +160,26 @@
                 "deleteConversionEvent"
               ]
             },
+            "CreateKeyEvent": {
+              "methods": [
+                "createKeyEvent"
+              ]
+            },
+            "UpdateKeyEvent": {
+              "methods": [
+                "updateKeyEvent"
+              ]
+            },
+            "GetKeyEvent": {
+              "methods": [
+                "getKeyEvent"
+              ]
+            },
+            "DeleteKeyEvent": {
+              "methods": [
+                "deleteKeyEvent"
+              ]
+            },
             "GetDisplayVideo360AdvertiserLink": {
               "methods": [
                 "getDisplayVideo360AdvertiserLink"
@@ -420,9 +440,24 @@
                 "fetchAutomatedGa4ConfigurationOptOut"
               ]
             },
+            "CreateBigQueryLink": {
+              "methods": [
+                "createBigQueryLink"
+              ]
+            },
             "GetBigQueryLink": {
               "methods": [
                 "getBigQueryLink"
+              ]
+            },
+            "DeleteBigQueryLink": {
+              "methods": [
+                "deleteBigQueryLink"
+              ]
+            },
+            "UpdateBigQueryLink": {
+              "methods": [
+                "updateBigQueryLink"
               ]
             },
             "GetEnhancedMeasurementSettings": {
@@ -490,6 +525,31 @@
                 "deleteEventCreateRule"
               ]
             },
+            "GetEventEditRule": {
+              "methods": [
+                "getEventEditRule"
+              ]
+            },
+            "CreateEventEditRule": {
+              "methods": [
+                "createEventEditRule"
+              ]
+            },
+            "UpdateEventEditRule": {
+              "methods": [
+                "updateEventEditRule"
+              ]
+            },
+            "DeleteEventEditRule": {
+              "methods": [
+                "deleteEventEditRule"
+              ]
+            },
+            "ReorderEventEditRules": {
+              "methods": [
+                "reorderEventEditRules"
+              ]
+            },
             "UpdateDataRedactionSettings": {
               "methods": [
                 "updateDataRedactionSettings"
@@ -540,9 +600,9 @@
                 "deleteRollupPropertySourceLink"
               ]
             },
-            "CreateSubproperty": {
+            "ProvisionSubproperty": {
               "methods": [
-                "createSubproperty"
+                "provisionSubproperty"
               ]
             },
             "CreateSubpropertyEventFilter": {
@@ -563,6 +623,41 @@
             "DeleteSubpropertyEventFilter": {
               "methods": [
                 "deleteSubpropertyEventFilter"
+              ]
+            },
+            "CreateReportingDataAnnotation": {
+              "methods": [
+                "createReportingDataAnnotation"
+              ]
+            },
+            "GetReportingDataAnnotation": {
+              "methods": [
+                "getReportingDataAnnotation"
+              ]
+            },
+            "UpdateReportingDataAnnotation": {
+              "methods": [
+                "updateReportingDataAnnotation"
+              ]
+            },
+            "DeleteReportingDataAnnotation": {
+              "methods": [
+                "deleteReportingDataAnnotation"
+              ]
+            },
+            "SubmitUserDeletion": {
+              "methods": [
+                "submitUserDeletion"
+              ]
+            },
+            "UpdateSubpropertySyncConfig": {
+              "methods": [
+                "updateSubpropertySyncConfig"
+              ]
+            },
+            "GetSubpropertySyncConfig": {
+              "methods": [
+                "getSubpropertySyncConfig"
               ]
             },
             "ListAccounts": {
@@ -626,6 +721,13 @@
                 "listConversionEvents",
                 "listConversionEventsStream",
                 "listConversionEventsAsync"
+              ]
+            },
+            "ListKeyEvents": {
+              "methods": [
+                "listKeyEvents",
+                "listKeyEventsStream",
+                "listKeyEventsAsync"
               ]
             },
             "ListDisplayVideo360AdvertiserLinks": {
@@ -719,6 +821,13 @@
                 "listEventCreateRulesAsync"
               ]
             },
+            "ListEventEditRules": {
+              "methods": [
+                "listEventEditRules",
+                "listEventEditRulesStream",
+                "listEventEditRulesAsync"
+              ]
+            },
             "ListCalculatedMetrics": {
               "methods": [
                 "listCalculatedMetrics",
@@ -738,6 +847,20 @@
                 "listSubpropertyEventFilters",
                 "listSubpropertyEventFiltersStream",
                 "listSubpropertyEventFiltersAsync"
+              ]
+            },
+            "ListReportingDataAnnotations": {
+              "methods": [
+                "listReportingDataAnnotations",
+                "listReportingDataAnnotationsStream",
+                "listReportingDataAnnotationsAsync"
+              ]
+            },
+            "ListSubpropertySyncConfigs": {
+              "methods": [
+                "listSubpropertySyncConfigs",
+                "listSubpropertySyncConfigsStream",
+                "listSubpropertySyncConfigsAsync"
               ]
             }
           }
@@ -895,6 +1018,26 @@
                 "deleteConversionEvent"
               ]
             },
+            "CreateKeyEvent": {
+              "methods": [
+                "createKeyEvent"
+              ]
+            },
+            "UpdateKeyEvent": {
+              "methods": [
+                "updateKeyEvent"
+              ]
+            },
+            "GetKeyEvent": {
+              "methods": [
+                "getKeyEvent"
+              ]
+            },
+            "DeleteKeyEvent": {
+              "methods": [
+                "deleteKeyEvent"
+              ]
+            },
             "GetDisplayVideo360AdvertiserLink": {
               "methods": [
                 "getDisplayVideo360AdvertiserLink"
@@ -1155,9 +1298,24 @@
                 "fetchAutomatedGa4ConfigurationOptOut"
               ]
             },
+            "CreateBigQueryLink": {
+              "methods": [
+                "createBigQueryLink"
+              ]
+            },
             "GetBigQueryLink": {
               "methods": [
                 "getBigQueryLink"
+              ]
+            },
+            "DeleteBigQueryLink": {
+              "methods": [
+                "deleteBigQueryLink"
+              ]
+            },
+            "UpdateBigQueryLink": {
+              "methods": [
+                "updateBigQueryLink"
               ]
             },
             "GetEnhancedMeasurementSettings": {
@@ -1225,6 +1383,31 @@
                 "deleteEventCreateRule"
               ]
             },
+            "GetEventEditRule": {
+              "methods": [
+                "getEventEditRule"
+              ]
+            },
+            "CreateEventEditRule": {
+              "methods": [
+                "createEventEditRule"
+              ]
+            },
+            "UpdateEventEditRule": {
+              "methods": [
+                "updateEventEditRule"
+              ]
+            },
+            "DeleteEventEditRule": {
+              "methods": [
+                "deleteEventEditRule"
+              ]
+            },
+            "ReorderEventEditRules": {
+              "methods": [
+                "reorderEventEditRules"
+              ]
+            },
             "UpdateDataRedactionSettings": {
               "methods": [
                 "updateDataRedactionSettings"
@@ -1275,9 +1458,9 @@
                 "deleteRollupPropertySourceLink"
               ]
             },
-            "CreateSubproperty": {
+            "ProvisionSubproperty": {
               "methods": [
-                "createSubproperty"
+                "provisionSubproperty"
               ]
             },
             "CreateSubpropertyEventFilter": {
@@ -1298,6 +1481,41 @@
             "DeleteSubpropertyEventFilter": {
               "methods": [
                 "deleteSubpropertyEventFilter"
+              ]
+            },
+            "CreateReportingDataAnnotation": {
+              "methods": [
+                "createReportingDataAnnotation"
+              ]
+            },
+            "GetReportingDataAnnotation": {
+              "methods": [
+                "getReportingDataAnnotation"
+              ]
+            },
+            "UpdateReportingDataAnnotation": {
+              "methods": [
+                "updateReportingDataAnnotation"
+              ]
+            },
+            "DeleteReportingDataAnnotation": {
+              "methods": [
+                "deleteReportingDataAnnotation"
+              ]
+            },
+            "SubmitUserDeletion": {
+              "methods": [
+                "submitUserDeletion"
+              ]
+            },
+            "UpdateSubpropertySyncConfig": {
+              "methods": [
+                "updateSubpropertySyncConfig"
+              ]
+            },
+            "GetSubpropertySyncConfig": {
+              "methods": [
+                "getSubpropertySyncConfig"
               ]
             },
             "ListAccounts": {
@@ -1361,6 +1579,13 @@
                 "listConversionEvents",
                 "listConversionEventsStream",
                 "listConversionEventsAsync"
+              ]
+            },
+            "ListKeyEvents": {
+              "methods": [
+                "listKeyEvents",
+                "listKeyEventsStream",
+                "listKeyEventsAsync"
               ]
             },
             "ListDisplayVideo360AdvertiserLinks": {
@@ -1454,6 +1679,13 @@
                 "listEventCreateRulesAsync"
               ]
             },
+            "ListEventEditRules": {
+              "methods": [
+                "listEventEditRules",
+                "listEventEditRulesStream",
+                "listEventEditRulesAsync"
+              ]
+            },
             "ListCalculatedMetrics": {
               "methods": [
                 "listCalculatedMetrics",
@@ -1473,6 +1705,20 @@
                 "listSubpropertyEventFilters",
                 "listSubpropertyEventFiltersStream",
                 "listSubpropertyEventFiltersAsync"
+              ]
+            },
+            "ListReportingDataAnnotations": {
+              "methods": [
+                "listReportingDataAnnotations",
+                "listReportingDataAnnotationsStream",
+                "listReportingDataAnnotationsAsync"
+              ]
+            },
+            "ListSubpropertySyncConfigs": {
+              "methods": [
+                "listSubpropertySyncConfigs",
+                "listSubpropertySyncConfigsStream",
+                "listSubpropertySyncConfigsAsync"
               ]
             }
           }

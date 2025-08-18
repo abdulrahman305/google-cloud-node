@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,9 +29,12 @@ function main(model, contents) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The name of the publisher model requested to serve the
-   *  prediction. Format:
+   *  Required. The fully qualified name of the publisher model or tuned model
+   *  endpoint to use.
+   *  Publisher model format:
    *  `projects/{project}/locations/{location}/publishers/* /models/*`
+   *  Tuned model endpoint format:
+   *  `projects/{project}/locations/{location}/endpoints/{endpoint}`
    */
   // const model = 'abc123'
   /**
@@ -48,6 +51,14 @@ function main(model, contents) {
    */
   // const systemInstruction = {}
   /**
+   *  Optional. The name of the cached content used as context to serve the
+   *  prediction. Note: only used in explicit caching, where users can have
+   *  control over caching (e.g. what content to cache) and enjoy guaranteed cost
+   *  savings. Format:
+   *  `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+   */
+  // const cachedContent = 'abc123'
+  /**
    *  Optional. A list of `Tools` the model may use to generate the next
    *  response.
    *  A `Tool` is a piece of code that enables the system to interact with
@@ -61,10 +72,24 @@ function main(model, contents) {
    */
   // const toolConfig = {}
   /**
+   *  Optional. The labels with user-defined metadata for the request. It is used
+   *  for billing and reporting only.
+   *  Label keys and values can be no longer than 63 characters
+   *  (Unicode codepoints) and can only contain lowercase letters, numeric
+   *  characters, underscores, and dashes. International characters are allowed.
+   *  Label values are optional. Label keys must start with a letter.
+   */
+  // const labels = [1,2,3,4]
+  /**
    *  Optional. Per request settings for blocking unsafe content.
    *  Enforced on GenerateContentResponse.candidates.
    */
   // const safetySettings = [1,2,3,4]
+  /**
+   *  Optional. Settings for prompt and response sanitization using the Model
+   *  Armor service. If supplied, safety_settings must not be supplied.
+   */
+  // const modelArmorConfig = {}
   /**
    *  Optional. Generation config.
    */
