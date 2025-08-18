@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,9 +32,13 @@ function main(name) {
    *  Required. Resource name of the membership to delete. Chat apps can delete
    *  human users' or their own memberships. Chat apps can't delete other apps'
    *  memberships.
-   *  When deleting a human membership, requires the `chat.memberships` scope and
-   *  `spaces/{space}/members/{member}` format. You can use the email as an
-   *  alias for `{member}`. For example,
+   *  When deleting a human membership, requires the `chat.memberships` scope
+   *  with user
+   *  authentication (https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+   *  or the `chat.memberships.app` scope with app
+   *  authentication (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+   *  and the `spaces/{space}/members/{member}` format.
+   *  You can use the email as an alias for `{member}`. For example,
    *  `spaces/{space}/members/example@gmail.com` where `example@gmail.com` is the
    *  email of the Google Chat user.
    *  When deleting an app membership, requires the `chat.memberships.app` scope
@@ -42,6 +46,17 @@ function main(name) {
    *  Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`.
    */
   // const name = 'abc123'
+  /**
+   *  Optional. When `true`, the method runs using the user's Google Workspace
+   *  administrator privileges.
+   *  The calling user must be a Google Workspace administrator with the
+   *  manage chat and spaces conversations
+   *  privilege (https://support.google.com/a/answer/13369245).
+   *  Requires the `chat.admin.memberships` OAuth 2.0
+   *  scope (https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+   *  Deleting app memberships in a space isn't supported using admin access.
+   */
+  // const useAdminAccess = true
 
   // Imports the Chat library
   const {ChatServiceClient} = require('@google-apps/chat').v1;

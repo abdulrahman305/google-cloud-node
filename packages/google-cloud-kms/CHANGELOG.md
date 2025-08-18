@@ -4,6 +4,46 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/kms?activeTab=versions
 
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/kms-v5.0.1...kms-v5.1.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6421](https://github.com/googleapis/google-cloud-node/issues/6421)) ([0cba45c](https://github.com/googleapis/google-cloud-node/commit/0cba45c3abc98d4f1ffdf75da3610e6e52267737))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/kms-v5.0.0...kms-v5.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6186](https://github.com/googleapis/google-cloud-node/issues/6186)) ([dcfc7b4](https://github.com/googleapis/google-cloud-node/commit/dcfc7b492a2ac3fb86b93ae1375bac1c5153d049))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/kms-v4.5.0...kms-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([#6140](https://github.com/googleapis/google-cloud-node/issues/6140)) ([2f96b1f](https://github.com/googleapis/google-cloud-node/commit/2f96b1f95dd6b7cb89871b56e5ea5aadf5454292))
+* Adding a state field for AutokeyConfig ([c8dd40a](https://github.com/googleapis/google-cloud-node/commit/c8dd40a36be6c1efe12b335af17136605ece7a46))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.5.0](https://github.com/googleapis/google-cloud-node/compare/kms-v4.4.0...kms-v4.5.0) (2024-06-21)
+
+
+### Features
+
+* [kms] support Key Access Justifications policy configuration ([#5479](https://github.com/googleapis/google-cloud-node/issues/5479)) ([a6a77c9](https://github.com/googleapis/google-cloud-node/commit/a6a77c9eda7428840ce2a01572ee2773b2760f36))
+
 ## [4.4.0](https://github.com/googleapis/google-cloud-node/compare/kms-v4.3.0...kms-v4.4.0) (2024-05-21)
 
 

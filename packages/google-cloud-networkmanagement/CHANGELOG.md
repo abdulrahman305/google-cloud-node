@@ -1,5 +1,164 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v5.0.0...network-management-v5.1.0) (2025-08-12)
+
+
+### Features
+
+* [networkmanagement] add `service_uri` field to CloudRunRevisionEndpoint ([#6590](https://github.com/googleapis/google-cloud-node/issues/6590)) ([ab4ac46](https://github.com/googleapis/google-cloud-node/commit/ab4ac467126ebc0891e01b035213438a2d2d22ce))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v4.3.0...network-management-v5.0.0) (2025-07-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Correct resource reference type for `parent` field in `data_chat_service.proto`
+* Remove field `restricted` within encryption enforcement config.
+
+### Features
+
+* A new field `semantic_search` is added to `message.google.cloud.dataplex.v1.SearchEntriesRequest` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add backdate duration ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `DeliverInfo.GoogleServiceType` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `Status` to message `InstanceInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `VpcFlowLogsConfig.CrossProjectMetadata` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `VpcFlowLogsConfig.TargetResourceState` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum value `AbortInfo.Cause.GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum value `RouteInfo.NextHopType.SECURE_WEB_PROXY_GATEWAY` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum values `NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS`, `TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED`, `NO_MATCHING_NAT64_GATEWAY`, `LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH`, and `NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION` to `DropInfo.Cause` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `google_service_type` to message `DeliverInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `policy_priority` to message `NetworkInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `running` to message `InstanceInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `service_uri` to message `Endpoint.CloudRunRevisionEndpoint` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add fields `cross_project_metadata`, `target_resource_state`, `network`, and `subnet` to message `VpcFlowLogsConfig` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add http additional_bindings ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add isolation support to prevent cross-region overflow by adding a new field "isolation_config" to message "ServiceLbPolicy" ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add message `Endpoint.SingleEdgeResponse` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add new field `restriction_mode` for encryption enforcement config in message Bucket ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add RDN sequence ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add rpc `VpcFlowLogsService.QueryOrgVpcFlowLogsConfigs` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add safebrowsing proto defs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add service `OrganizationVpcFlowLogsService` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add User Defined Access URLs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Adds tbs_certificate_digest to CertificateDescription ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Enable organization-level support for VPC Flow Logs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update Compute Engine v1 API to revision 20250626 ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update Compute Engine v1beta API to revision 20250626 ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update libraries and clients for Managed Kafka ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+
+
+### Bug Fixes
+
+* Correct resource reference type for `parent` field in `data_chat_service.proto` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Pagination response for Compute Subnetworks.ListUsable (39952d9) ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Remove field `restricted` within encryption enforcement config. ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+
+## [4.3.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v4.2.0...network-management-v4.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6422](https://github.com/googleapis/google-cloud-node/issues/6422)) ([1e17ea2](https://github.com/googleapis/google-cloud-node/commit/1e17ea2496a502905259010a6702e7cc68f9d1ba))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [4.2.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v4.1.0...network-management-v4.2.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6301](https://github.com/googleapis/google-cloud-node/issues/6301)) ([42754a7](https://github.com/googleapis/google-cloud-node/commit/42754a72b34a01d201341428b4a358ff781b0612))
+
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v4.0.1...network-management-v4.1.0) (2025-05-09)
+
+
+### Features
+
+* [networkmanagement] add messages and fields related to Direct VPC Egress ([#6245](https://github.com/googleapis/google-cloud-node/issues/6245)) ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+* Add enum types related to Abort ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+* Add enum types related to Drop ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+* Add enum types related to Firewall ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+* Add enum types related to Google Service ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+* Add messages and fields related to Route ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+* Add messages and fields related to Serverless External ([42630e4](https://github.com/googleapis/google-cloud-node/commit/42630e4ccd8cacb016451dfed78060c41ac879a5))
+
+## [4.0.1](https://github.com/googleapis/google-cloud-node/compare/network-management-v4.0.0...network-management-v4.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6186](https://github.com/googleapis/google-cloud-node/issues/6186)) ([dcfc7b4](https://github.com/googleapis/google-cloud-node/commit/dcfc7b492a2ac3fb86b93ae1375bac1c5153d049))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.11.1...network-management-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([#6140](https://github.com/googleapis/google-cloud-node/issues/6140)) ([2f96b1f](https://github.com/googleapis/google-cloud-node/commit/2f96b1f95dd6b7cb89871b56e5ea5aadf5454292))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [3.11.1](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.11.0...network-management-v3.11.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6013](https://github.com/googleapis/google-cloud-node/issues/6013)) ([cd3a2d4](https://github.com/googleapis/google-cloud-node/commit/cd3a2d44fc7a9b3798346162ba19df1c748fba58))
+
+## [3.11.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.10.0...network-management-v3.11.0) (2025-01-16)
+
+
+### Features
+
+* [networkmanagement] expose the new v1 vpcflowlogs api proto ([#5947](https://github.com/googleapis/google-cloud-node/issues/5947)) ([79de654](https://github.com/googleapis/google-cloud-node/commit/79de654a6f6ec0e304419cd0fd9411f0864fcbb3))
+
+## [3.10.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.9.0...network-management-v3.10.0) (2024-11-21)
+
+
+### Features
+
+* [networkmanagement] add round-trip mode ([#5814](https://github.com/googleapis/google-cloud-node/issues/5814)) ([9946273](https://github.com/googleapis/google-cloud-node/commit/994627330c440344fc3b2bbbcb6ee466e1cbc45c))
+
+## [3.9.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.8.0...network-management-v3.9.0) (2024-11-14)
+
+
+### Features
+
+* [networkmanagement] add DNS endpoint of Google Kubernetes Engine cluster control plane ([#5790](https://github.com/googleapis/google-cloud-node/issues/5790)) ([f0be12a](https://github.com/googleapis/google-cloud-node/commit/f0be12aad7540be57ed9f1a87ad62fa309e7a25b))
+* Add more detailed drop causes to corresponding enum ([f0be12a](https://github.com/googleapis/google-cloud-node/commit/f0be12aad7540be57ed9f1a87ad62fa309e7a25b))
+* Add more detailed drop causes to corresponding enum ([f0be12a](https://github.com/googleapis/google-cloud-node/commit/f0be12aad7540be57ed9f1a87ad62fa309e7a25b))
+
+## [3.8.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.7.0...network-management-v3.8.0) (2024-10-30)
+
+
+### Features
+
+* [networkmanagement] add messages and fields related to Redis Instances ([#5755](https://github.com/googleapis/google-cloud-node/issues/5755)) ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add fields related to advertised routes to the RouteInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add firewall policy URI to the FirewallInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add load balancer name to the ForwardingRuleInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add messages and fields related to Redis Clusters ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add more detailed abort and drop causes to corresponding enums ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add PSC network attachment URI to the InstanceInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add PSC target fields to the ForwardingRuleInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add region name field to the RouteInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add region name to the ForwardingRuleInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+* Add subnet URI and region name to the NetworkInfo proto ([312ba7f](https://github.com/googleapis/google-cloud-node/commit/312ba7fa3330b19e20f32ff6a7e6703185623a26))
+
+## [3.7.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.6.0...network-management-v3.7.0) (2024-08-19)
+
+
+### Features
+
+* [networkmanagement] expose the new vpcflowlogs api proto ([#5606](https://github.com/googleapis/google-cloud-node/issues/5606)) ([c18942b](https://github.com/googleapis/google-cloud-node/commit/c18942bff326cc28125d5c9b50b8d318b6ffefc8))
+
 ## [3.6.0](https://github.com/googleapis/google-cloud-node/compare/network-management-v3.5.0...network-management-v3.6.0) (2024-05-21)
 
 

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,14 +17,13 @@
 // ** All changes to this file may be overwritten. **
 
 import * as v1 from './v1';
+import * as v1alpha1 from './v1alpha1';
 import * as v1beta1 from './v1beta1';
 
-const PublicCertificateAuthorityServiceClient =
-  v1beta1.PublicCertificateAuthorityServiceClient;
-type PublicCertificateAuthorityServiceClient =
-  v1beta1.PublicCertificateAuthorityServiceClient;
+const PublicCertificateAuthorityServiceClient = v1beta1.PublicCertificateAuthorityServiceClient;
+type PublicCertificateAuthorityServiceClient = v1beta1.PublicCertificateAuthorityServiceClient;
 
-export {v1, v1beta1, PublicCertificateAuthorityServiceClient};
-export default {v1, v1beta1, PublicCertificateAuthorityServiceClient};
+export {v1, v1alpha1, v1beta1, PublicCertificateAuthorityServiceClient};
+export default {v1, v1alpha1, v1beta1, PublicCertificateAuthorityServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

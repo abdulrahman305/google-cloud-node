@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,17 +18,11 @@
 
 /* global window */
 import type * as gax from 'google-gax';
-import type {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  PaginationCallback,
-  GaxCall,
-} from 'google-gax';
+import type {Callback, CallOptions, Descriptors, ClientOptions, PaginationCallback, GaxCall} from 'google-gax';
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -56,6 +50,8 @@ export class RecommenderClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('recommender');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -90,7 +86,7 @@ export class RecommenderClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -107,41 +103,20 @@ export class RecommenderClient {
    *     const client = new RecommenderClient({fallback: true}, gax);
    *     ```
    */
-  constructor(
-    opts?: ClientOptions,
-    gaxInstance?: typeof gax | typeof gax.fallback
-  ) {
+  constructor(opts?: ClientOptions, gaxInstance?: typeof gax | typeof gax.fallback) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof RecommenderClient;
-    if (
-      opts?.universe_domain &&
-      opts?.universeDomain &&
-      opts?.universe_domain !== opts?.universeDomain
-    ) {
-      throw new Error(
-        'Please set either universe_domain or universeDomain, but not both.'
-      );
+    if (opts?.universe_domain && opts?.universeDomain && opts?.universe_domain !== opts?.universeDomain) {
+      throw new Error('Please set either universe_domain or universeDomain, but not both.');
     }
-    const universeDomainEnvVar =
-      typeof process === 'object' && typeof process.env === 'object'
-        ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN']
-        : undefined;
-    this._universeDomain =
-      opts?.universeDomain ??
-      opts?.universe_domain ??
-      universeDomainEnvVar ??
-      'googleapis.com';
+    const universeDomainEnvVar = (typeof process === 'object' && typeof process.env === 'object') ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN'] : undefined;
+    this._universeDomain = opts?.universeDomain ?? opts?.universe_domain ?? universeDomainEnvVar ?? 'googleapis.com';
     this._servicePath = 'recommender.' + this._universeDomain;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || this._servicePath;
-    this._providedCustomServicePath = !!(
-      opts?.servicePath || opts?.apiEndpoint
-    );
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || this._servicePath;
+    this._providedCustomServicePath = !!(opts?.servicePath || opts?.apiEndpoint);
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window?.fetch === 'function');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // Request numeric enum values if REST transport is used.
@@ -167,7 +142,7 @@ export class RecommenderClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set useJWTAccessWithScope on the auth object.
     this.auth.useJWTAccessWithScope = true;
@@ -181,7 +156,10 @@ export class RecommenderClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process === 'object' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -202,115 +180,88 @@ export class RecommenderClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this.pathTemplates = {
-      billingAccountLocationInsightTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}'
-        ),
-      billingAccountLocationInsightTypeConfigPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config'
-        ),
-      billingAccountLocationInsightTypeInsightPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
-        ),
-      billingAccountLocationRecommenderPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}'
-        ),
-      billingAccountLocationRecommenderConfigPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config'
-        ),
-      billingAccountLocationRecommenderRecommendationPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
-        ),
+      billingAccountLocationInsightTypePathTemplate: new this._gaxModule.PathTemplate(
+        'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}'
+      ),
+      billingAccountLocationInsightTypeConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config'
+      ),
+      billingAccountLocationInsightTypeInsightPathTemplate: new this._gaxModule.PathTemplate(
+        'billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
+      ),
+      billingAccountLocationRecommenderPathTemplate: new this._gaxModule.PathTemplate(
+        'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}'
+      ),
+      billingAccountLocationRecommenderConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config'
+      ),
+      billingAccountLocationRecommenderRecommendationPathTemplate: new this._gaxModule.PathTemplate(
+        'billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
+      ),
       folderLocationInsightTypePathTemplate: new this._gaxModule.PathTemplate(
         'folders/{folder}/locations/{location}/insightTypes/{insight_type}'
       ),
-      folderLocationInsightTypeInsightPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
-        ),
+      folderLocationInsightTypeInsightPathTemplate: new this._gaxModule.PathTemplate(
+        'folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
+      ),
       folderLocationRecommenderPathTemplate: new this._gaxModule.PathTemplate(
         'folders/{folder}/locations/{location}/recommenders/{recommender}'
       ),
-      folderLocationRecommenderRecommendationPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'folders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
-        ),
-      organizationLocationInsightTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'organizations/{organization}/locations/{location}/insightTypes/{insight_type}'
-        ),
-      organizationLocationInsightTypeConfigPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'organizations/{organization}/locations/{location}/insightTypes/{insight_type}/config'
-        ),
-      organizationLocationInsightTypeInsightPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'organizations/{organization}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
-        ),
-      organizationLocationRecommenderPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'organizations/{organization}/locations/{location}/recommenders/{recommender}'
-        ),
-      organizationLocationRecommenderConfigPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'organizations/{organization}/locations/{location}/recommenders/{recommender}/config'
-        ),
-      organizationLocationRecommenderRecommendationPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'organizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
-        ),
+      folderLocationRecommenderRecommendationPathTemplate: new this._gaxModule.PathTemplate(
+        'folders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
+      ),
+      organizationLocationInsightTypePathTemplate: new this._gaxModule.PathTemplate(
+        'organizations/{organization}/locations/{location}/insightTypes/{insight_type}'
+      ),
+      organizationLocationInsightTypeConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'organizations/{organization}/locations/{location}/insightTypes/{insight_type}/config'
+      ),
+      organizationLocationInsightTypeInsightPathTemplate: new this._gaxModule.PathTemplate(
+        'organizations/{organization}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
+      ),
+      organizationLocationRecommenderPathTemplate: new this._gaxModule.PathTemplate(
+        'organizations/{organization}/locations/{location}/recommenders/{recommender}'
+      ),
+      organizationLocationRecommenderConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'organizations/{organization}/locations/{location}/recommenders/{recommender}/config'
+      ),
+      organizationLocationRecommenderRecommendationPathTemplate: new this._gaxModule.PathTemplate(
+        'organizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
+      ),
       projectLocationInsightTypePathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/insightTypes/{insight_type}'
       ),
-      projectLocationInsightTypeConfigPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/insightTypes/{insight_type}/config'
-        ),
-      projectLocationInsightTypeInsightPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
-        ),
+      projectLocationInsightTypeConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/insightTypes/{insight_type}/config'
+      ),
+      projectLocationInsightTypeInsightPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}'
+      ),
       projectLocationRecommenderPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/recommenders/{recommender}'
       ),
-      projectLocationRecommenderConfigPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/recommenders/{recommender}/config'
-        ),
-      projectLocationRecommenderRecommendationPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
-        ),
+      projectLocationRecommenderConfigPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/recommenders/{recommender}/config'
+      ),
+      projectLocationRecommenderRecommendationPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}'
+      ),
     };
 
     // Some of the methods on this service return "paged" results,
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
     this.descriptors.page = {
-      listInsights: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'insights'
-      ),
-      listRecommendations: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'recommendations'
-      ),
+      listInsights:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'insights'),
+      listRecommendations:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'recommendations')
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.recommender.v1.Recommender',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.recommender.v1.Recommender', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -341,49 +292,32 @@ export class RecommenderClient {
     // Put together the "service stub" for
     // google.cloud.recommender.v1.Recommender.
     this.recommenderStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.recommender.v1.Recommender'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.recommender.v1.Recommender') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.recommender.v1.Recommender,
-      this._opts,
-      this._providedCustomServicePath
-    ) as Promise<{[method: string]: Function}>;
+        this._opts, this._providedCustomServicePath) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const recommenderStubMethods = [
-      'listInsights',
-      'getInsight',
-      'markInsightAccepted',
-      'listRecommendations',
-      'getRecommendation',
-      'markRecommendationDismissed',
-      'markRecommendationClaimed',
-      'markRecommendationSucceeded',
-      'markRecommendationFailed',
-      'getRecommenderConfig',
-      'updateRecommenderConfig',
-      'getInsightTypeConfig',
-      'updateInsightTypeConfig',
-    ];
+    const recommenderStubMethods =
+        ['listInsights', 'getInsight', 'markInsightAccepted', 'listRecommendations', 'getRecommendation', 'markRecommendationDismissed', 'markRecommendationClaimed', 'markRecommendationSucceeded', 'markRecommendationFailed', 'getRecommenderConfig', 'updateRecommenderConfig', 'getInsightTypeConfig', 'updateInsightTypeConfig'];
     for (const methodName of recommenderStubMethods) {
       const callPromise = this.recommenderStub.then(
-        stub =>
-          (...args: Array<{}>) => {
-            if (this._terminated) {
-              return Promise.reject('The client has already been closed.');
-            }
-            const func = stub[methodName];
-            return func.apply(stub, args);
-          },
-        (err: Error | null | undefined) => () => {
+        stub => (...args: Array<{}>) => {
+          if (this._terminated) {
+            return Promise.reject('The client has already been closed.');
+          }
+          const func = stub[methodName];
+          return func.apply(stub, args);
+        },
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.page[methodName] || undefined;
+      const descriptor =
+        this.descriptors.page[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -403,14 +337,8 @@ export class RecommenderClient {
    * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static servicePath is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static servicePath is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'recommender.googleapis.com';
   }
@@ -421,14 +349,8 @@ export class RecommenderClient {
    * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static apiEndpoint is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static apiEndpoint is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'recommender.googleapis.com';
   }
@@ -459,7 +381,9 @@ export class RecommenderClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -468,9 +392,8 @@ export class RecommenderClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -481,1410 +404,1385 @@ export class RecommenderClient {
   // -------------------
   // -- Service calls --
   // -------------------
-  /**
-   * Gets the requested insight. Requires the recommender.*.get IAM permission
-   * for the specified insight type.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the insight.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Insight|Insight}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.get_insight.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_GetInsight_async
-   */
+/**
+ * Gets the requested insight. Requires the recommender.*.get IAM permission
+ * for the specified insight type.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the insight.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Insight|Insight}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.get_insight.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_GetInsight_async
+ */
   getInsight(
-    request?: protos.google.cloud.recommender.v1.IGetInsightRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsight,
-      protos.google.cloud.recommender.v1.IGetInsightRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IGetInsightRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IGetInsightRequest|undefined, {}|undefined
+      ]>;
   getInsight(
-    request: protos.google.cloud.recommender.v1.IGetInsightRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsight,
-      protos.google.cloud.recommender.v1.IGetInsightRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getInsight(
-    request: protos.google.cloud.recommender.v1.IGetInsightRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsight,
-      protos.google.cloud.recommender.v1.IGetInsightRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getInsight(
-    request?: protos.google.cloud.recommender.v1.IGetInsightRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.recommender.v1.IGetInsightRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IInsight,
-          | protos.google.cloud.recommender.v1.IGetInsightRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IInsight,
-      protos.google.cloud.recommender.v1.IGetInsightRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsight,
-      protos.google.cloud.recommender.v1.IGetInsightRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.getInsight(request, options, callback);
-  }
-  /**
-   * Marks the Insight State as Accepted. Users can use this method to
-   * indicate to the Recommender API that they have applied some action based
-   * on the insight. This stops the insight content from being updated.
-   *
-   * MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
-   * the recommender.*.update IAM permission for the specified insight.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the insight.
-   * @param {number[]} [request.stateMetadata]
-   *   Optional. State properties user wish to include with this state.  Full
-   *   replace of the current state_metadata.
-   * @param {string} request.etag
-   *   Required. Fingerprint of the Insight. Provides optimistic locking.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Insight|Insight}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.mark_insight_accepted.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_MarkInsightAccepted_async
-   */
-  markInsightAccepted(
-    request?: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsight,
-      (
-        | protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
-  markInsightAccepted(
-    request: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsight,
-      | protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markInsightAccepted(
-    request: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsight,
-      | protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markInsightAccepted(
-    request?: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+          protos.google.cloud.recommender.v1.IGetInsightRequest|null|undefined,
+          {}|null|undefined>): void;
+  getInsight(
+      request: protos.google.cloud.recommender.v1.IGetInsightRequest,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IInsight,
-          | protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IInsight,
-      | protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsight,
-      (
-        | protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IGetInsightRequest|null|undefined,
+          {}|null|undefined>): void;
+  getInsight(
+      request?: protos.google.cloud.recommender.v1.IGetInsightRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IInsight,
+          protos.google.cloud.recommender.v1.IGetInsightRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IInsight,
+          protos.google.cloud.recommender.v1.IGetInsightRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IGetInsightRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getInsight request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IGetInsightRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getInsight response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getInsight(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IGetInsightRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getInsight response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.markInsightAccepted(request, options, callback);
   }
-  /**
-   * Gets the requested recommendation. Requires the recommender.*.get
-   * IAM permission for the specified recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the recommendation.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.get_recommendation.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_GetRecommendation_async
-   */
+/**
+ * Marks the Insight State as Accepted. Users can use this method to
+ * indicate to the Recommender API that they have applied some action based
+ * on the insight. This stops the insight content from being updated.
+ *
+ * MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
+ * the recommender.*.update IAM permission for the specified insight.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the insight.
+ * @param {number[]} [request.stateMetadata]
+ *   Optional. State properties user wish to include with this state.  Full
+ *   replace of the current state_metadata.
+ * @param {string} request.etag
+ *   Required. Fingerprint of the Insight. Provides optimistic locking.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Insight|Insight}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.mark_insight_accepted.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_MarkInsightAccepted_async
+ */
+  markInsightAccepted(
+      request?: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|undefined, {}|undefined
+      ]>;
+  markInsightAccepted(
+      request: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IInsight,
+          protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|null|undefined,
+          {}|null|undefined>): void;
+  markInsightAccepted(
+      request: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IInsight,
+          protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|null|undefined,
+          {}|null|undefined>): void;
+  markInsightAccepted(
+      request?: protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IInsight,
+          protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IInsight,
+          protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('markInsightAccepted request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('markInsightAccepted response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.markInsightAccepted(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IInsight,
+        protos.google.cloud.recommender.v1.IMarkInsightAcceptedRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('markInsightAccepted response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Gets the requested recommendation. Requires the recommender.*.get
+ * IAM permission for the specified recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the recommendation.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.get_recommendation.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_GetRecommendation_async
+ */
   getRecommendation(
-    request?: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      protos.google.cloud.recommender.v1.IGetRecommendationRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IGetRecommendationRequest|undefined, {}|undefined
+      ]>;
   getRecommendation(
-    request: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IGetRecommendationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IGetRecommendationRequest|null|undefined,
+          {}|null|undefined>): void;
   getRecommendation(
-    request: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IGetRecommendationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IGetRecommendationRequest|null|undefined,
+          {}|null|undefined>): void;
   getRecommendation(
-    request?: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request?: protos.google.cloud.recommender.v1.IGetRecommendationRequest,
+      optionsOrCallback?: CallOptions|Callback<
           protos.google.cloud.recommender.v1.IRecommendation,
-          | protos.google.cloud.recommender.v1.IGetRecommendationRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IGetRecommendationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      protos.google.cloud.recommender.v1.IGetRecommendationRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IGetRecommendationRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IGetRecommendationRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IGetRecommendationRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getRecommendation request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IGetRecommendationRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getRecommendation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getRecommendation(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IGetRecommendationRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getRecommendation response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getRecommendation(request, options, callback);
   }
-  /**
-   * Mark the Recommendation State as Dismissed. Users can use this method to
-   * indicate to the Recommender API that an ACTIVE recommendation has to
-   * be marked back as DISMISSED.
-   *
-   * MarkRecommendationDismissed can be applied to recommendations in ACTIVE
-   * state.
-   *
-   * Requires the recommender.*.update IAM permission for the specified
-   * recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the recommendation.
-   * @param {string} request.etag
-   *   Fingerprint of the Recommendation. Provides optimistic locking.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_dismissed.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_MarkRecommendationDismissed_async
-   */
+/**
+ * Mark the Recommendation State as Dismissed. Users can use this method to
+ * indicate to the Recommender API that an ACTIVE recommendation has to
+ * be marked back as DISMISSED.
+ *
+ * MarkRecommendationDismissed can be applied to recommendations in ACTIVE
+ * state.
+ *
+ * Requires the recommender.*.update IAM permission for the specified
+ * recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the recommendation.
+ * @param {string} request.etag
+ *   Fingerprint of the Recommendation. Provides optimistic locking.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_dismissed.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_MarkRecommendationDismissed_async
+ */
   markRecommendationDismissed(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|undefined, {}|undefined
+      ]>;
   markRecommendationDismissed(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|null|undefined,
+          {}|null|undefined>): void;
   markRecommendationDismissed(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|null|undefined,
+          {}|null|undefined>): void;
   markRecommendationDismissed(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest,
+      optionsOrCallback?: CallOptions|Callback<
           protos.google.cloud.recommender.v1.IRecommendation,
-          | protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('markRecommendationDismissed request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('markRecommendationDismissed response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.markRecommendationDismissed(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationDismissedRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('markRecommendationDismissed response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.markRecommendationDismissed(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Marks the Recommendation State as Claimed. Users can use this method to
-   * indicate to the Recommender API that they are starting to apply the
-   * recommendation themselves. This stops the recommendation content from being
-   * updated. Associated insights are frozen and placed in the ACCEPTED state.
-   *
-   * MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
-   * SUCCEEDED, FAILED, or ACTIVE state.
-   *
-   * Requires the recommender.*.update IAM permission for the specified
-   * recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the recommendation.
-   * @param {number[]} request.stateMetadata
-   *   State properties to include with this state. Overwrites any existing
-   *   `state_metadata`.
-   *   Keys must match the regex `/^{@link protos.a-z0-9_.-|a-z0-9}{0,62}$/`.
-   *   Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
-   * @param {string} request.etag
-   *   Required. Fingerprint of the Recommendation. Provides optimistic locking.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_claimed.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_MarkRecommendationClaimed_async
-   */
+/**
+ * Marks the Recommendation State as Claimed. Users can use this method to
+ * indicate to the Recommender API that they are starting to apply the
+ * recommendation themselves. This stops the recommendation content from being
+ * updated. Associated insights are frozen and placed in the ACCEPTED state.
+ *
+ * MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
+ * SUCCEEDED, FAILED, or ACTIVE state.
+ *
+ * Requires the recommender.*.update IAM permission for the specified
+ * recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the recommendation.
+ * @param {number[]} request.stateMetadata
+ *   State properties to include with this state. Overwrites any existing
+ *   `state_metadata`.
+ *   Keys must match the regex `/^{@link protos.a-z0-9_.-|a-z0-9}{0,62}$/`.
+ *   Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+ * @param {string} request.etag
+ *   Required. Fingerprint of the Recommendation. Provides optimistic locking.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_claimed.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_MarkRecommendationClaimed_async
+ */
   markRecommendationClaimed(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|undefined, {}|undefined
+      ]>;
   markRecommendationClaimed(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markRecommendationClaimed(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markRecommendationClaimed(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IRecommendation,
-          | protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|null|undefined,
+          {}|null|undefined>): void;
+  markRecommendationClaimed(
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|null|undefined,
+          {}|null|undefined>): void;
+  markRecommendationClaimed(
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('markRecommendationClaimed request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('markRecommendationClaimed response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.markRecommendationClaimed(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationClaimedRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('markRecommendationClaimed response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.markRecommendationClaimed(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Marks the Recommendation State as Succeeded. Users can use this method to
-   * indicate to the Recommender API that they have applied the recommendation
-   * themselves, and the operation was successful. This stops the recommendation
-   * content from being updated. Associated insights are frozen and placed in
-   * the ACCEPTED state.
-   *
-   * MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
-   * CLAIMED, SUCCEEDED, or FAILED state.
-   *
-   * Requires the recommender.*.update IAM permission for the specified
-   * recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the recommendation.
-   * @param {number[]} request.stateMetadata
-   *   State properties to include with this state. Overwrites any existing
-   *   `state_metadata`.
-   *   Keys must match the regex `/^{@link protos.a-z0-9_.-|a-z0-9}{0,62}$/`.
-   *   Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
-   * @param {string} request.etag
-   *   Required. Fingerprint of the Recommendation. Provides optimistic locking.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_succeeded.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_MarkRecommendationSucceeded_async
-   */
+/**
+ * Marks the Recommendation State as Succeeded. Users can use this method to
+ * indicate to the Recommender API that they have applied the recommendation
+ * themselves, and the operation was successful. This stops the recommendation
+ * content from being updated. Associated insights are frozen and placed in
+ * the ACCEPTED state.
+ *
+ * MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
+ * CLAIMED, SUCCEEDED, or FAILED state.
+ *
+ * Requires the recommender.*.update IAM permission for the specified
+ * recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the recommendation.
+ * @param {number[]} request.stateMetadata
+ *   State properties to include with this state. Overwrites any existing
+ *   `state_metadata`.
+ *   Keys must match the regex `/^{@link protos.a-z0-9_.-|a-z0-9}{0,62}$/`.
+ *   Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+ * @param {string} request.etag
+ *   Required. Fingerprint of the Recommendation. Provides optimistic locking.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_succeeded.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_MarkRecommendationSucceeded_async
+ */
   markRecommendationSucceeded(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|undefined, {}|undefined
+      ]>;
   markRecommendationSucceeded(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markRecommendationSucceeded(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markRecommendationSucceeded(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IRecommendation,
-          | protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|null|undefined,
+          {}|null|undefined>): void;
+  markRecommendationSucceeded(
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|null|undefined,
+          {}|null|undefined>): void;
+  markRecommendationSucceeded(
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('markRecommendationSucceeded request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('markRecommendationSucceeded response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.markRecommendationSucceeded(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationSucceededRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('markRecommendationSucceeded response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.markRecommendationSucceeded(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Marks the Recommendation State as Failed. Users can use this method to
-   * indicate to the Recommender API that they have applied the recommendation
-   * themselves, and the operation failed. This stops the recommendation content
-   * from being updated. Associated insights are frozen and placed in the
-   * ACCEPTED state.
-   *
-   * MarkRecommendationFailed can be applied to recommendations in ACTIVE,
-   * CLAIMED, SUCCEEDED, or FAILED state.
-   *
-   * Requires the recommender.*.update IAM permission for the specified
-   * recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the recommendation.
-   * @param {number[]} request.stateMetadata
-   *   State properties to include with this state. Overwrites any existing
-   *   `state_metadata`.
-   *   Keys must match the regex `/^{@link protos.a-z0-9_.-|a-z0-9}{0,62}$/`.
-   *   Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
-   * @param {string} request.etag
-   *   Required. Fingerprint of the Recommendation. Provides optimistic locking.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_failed.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_MarkRecommendationFailed_async
-   */
+/**
+ * Marks the Recommendation State as Failed. Users can use this method to
+ * indicate to the Recommender API that they have applied the recommendation
+ * themselves, and the operation failed. This stops the recommendation content
+ * from being updated. Associated insights are frozen and placed in the
+ * ACCEPTED state.
+ *
+ * MarkRecommendationFailed can be applied to recommendations in ACTIVE,
+ * CLAIMED, SUCCEEDED, or FAILED state.
+ *
+ * Requires the recommender.*.update IAM permission for the specified
+ * recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the recommendation.
+ * @param {number[]} request.stateMetadata
+ *   State properties to include with this state. Overwrites any existing
+ *   `state_metadata`.
+ *   Keys must match the regex `/^{@link protos.a-z0-9_.-|a-z0-9}{0,62}$/`.
+ *   Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+ * @param {string} request.etag
+ *   Required. Fingerprint of the Recommendation. Provides optimistic locking.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.mark_recommendation_failed.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_MarkRecommendationFailed_async
+ */
   markRecommendationFailed(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|undefined, {}|undefined
+      ]>;
   markRecommendationFailed(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markRecommendationFailed(
-    request: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  markRecommendationFailed(
-    request?: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IRecommendation,
-          | protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommendation,
-      | protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation,
-      (
-        | protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|null|undefined,
+          {}|null|undefined>): void;
+  markRecommendationFailed(
+      request: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|null|undefined,
+          {}|null|undefined>): void;
+  markRecommendationFailed(
+      request?: protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommendation,
+          protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('markRecommendationFailed request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('markRecommendationFailed response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.markRecommendationFailed(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommendation,
+        protos.google.cloud.recommender.v1.IMarkRecommendationFailedRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('markRecommendationFailed response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.markRecommendationFailed(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Gets the requested Recommender Config. There is only one instance of the
-   * config for each Recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the Recommendation Config to get.
-   *
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.RecommenderConfig|RecommenderConfig}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.get_recommender_config.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_GetRecommenderConfig_async
-   */
+/**
+ * Gets the requested Recommender Config. There is only one instance of the
+ * config for each Recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the Recommendation Config to get.
+ *
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.RecommenderConfig|RecommenderConfig}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.get_recommender_config.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_GetRecommenderConfig_async
+ */
   getRecommenderConfig(
-    request?: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      (
-        | protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|undefined, {}|undefined
+      ]>;
   getRecommenderConfig(
-    request: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      | protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getRecommenderConfig(
-    request: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      | protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getRecommenderConfig(
-    request?: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IRecommenderConfig,
-          | protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      | protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      (
-        | protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.getRecommenderConfig(request, options, callback);
-  }
-  /**
-   * Updates a Recommender Config. This will create a new revision of the
-   * config.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.recommender.v1.RecommenderConfig} request.recommenderConfig
-   *   Required. The RecommenderConfig to update.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   The list of fields to be updated.
-   * @param {boolean} request.validateOnly
-   *   If true, validate the request and preview the change, but do not actually
-   *   update it.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.RecommenderConfig|RecommenderConfig}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.update_recommender_config.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_UpdateRecommenderConfig_async
-   */
-  updateRecommenderConfig(
-    request?: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      (
-        | protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
-  updateRecommenderConfig(
-    request: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      | protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  updateRecommenderConfig(
-    request: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      | protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  updateRecommenderConfig(
-    request?: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+          protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  getRecommenderConfig(
+      request: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IRecommenderConfig,
-          | protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      | protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommenderConfig,
-      (
-        | protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  getRecommenderConfig(
+      request?: protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IRecommenderConfig,
+          protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommenderConfig,
+          protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        'recommender_config.name': request.recommenderConfig!.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getRecommenderConfig request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getRecommenderConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getRecommenderConfig(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IGetRecommenderConfigRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getRecommenderConfig response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.updateRecommenderConfig(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Gets the requested InsightTypeConfig. There is only one instance of the
-   * config for each InsightType.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the InsightTypeConfig to get.
-   *
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.InsightTypeConfig|InsightTypeConfig}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.get_insight_type_config.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_GetInsightTypeConfig_async
-   */
-  getInsightTypeConfig(
-    request?: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      (
-        | protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
-  getInsightTypeConfig(
-    request: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      | protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getInsightTypeConfig(
-    request: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      | protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getInsightTypeConfig(
-    request?: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
-          protos.google.cloud.recommender.v1.IInsightTypeConfig,
-          | protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      | protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      (
-        | protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+/**
+ * Updates a Recommender Config. This will create a new revision of the
+ * config.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.recommender.v1.RecommenderConfig} request.recommenderConfig
+ *   Required. The RecommenderConfig to update.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   The list of fields to be updated.
+ * @param {boolean} request.validateOnly
+ *   If true, validate the request and preview the change, but do not actually
+ *   update it.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.RecommenderConfig|RecommenderConfig}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.update_recommender_config.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_UpdateRecommenderConfig_async
+ */
+  updateRecommenderConfig(
+      request?: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|undefined, {}|undefined
+      ]>;
+  updateRecommenderConfig(
+      request: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommenderConfig,
+          protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  updateRecommenderConfig(
+      request: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IRecommenderConfig,
+          protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  updateRecommenderConfig(
+      request?: protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IRecommenderConfig,
+          protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IRecommenderConfig,
+          protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'recommender_config.name': request.recommenderConfig!.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('updateRecommenderConfig request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateRecommenderConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.updateRecommenderConfig(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IRecommenderConfig,
+        protos.google.cloud.recommender.v1.IUpdateRecommenderConfigRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('updateRecommenderConfig response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getInsightTypeConfig(request, options, callback);
   }
-  /**
-   * Updates an InsightTypeConfig change. This will create a new revision of the
-   * config.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.recommender.v1.InsightTypeConfig} request.insightTypeConfig
-   *   Required. The InsightTypeConfig to update.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   The list of fields to be updated.
-   * @param {boolean} request.validateOnly
-   *   If true, validate the request and preview the change, but do not actually
-   *   update it.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.InsightTypeConfig|InsightTypeConfig}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.update_insight_type_config.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_UpdateInsightTypeConfig_async
-   */
-  updateInsightTypeConfig(
-    request?: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      (
-        | protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
-  updateInsightTypeConfig(
-    request: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      | protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  updateInsightTypeConfig(
-    request: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
-    callback: Callback<
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      | protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  updateInsightTypeConfig(
-    request?: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+/**
+ * Gets the requested InsightTypeConfig. There is only one instance of the
+ * config for each InsightType.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the InsightTypeConfig to get.
+ *
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.InsightTypeConfig|InsightTypeConfig}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.get_insight_type_config.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_GetInsightTypeConfig_async
+ */
+  getInsightTypeConfig(
+      request?: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|undefined, {}|undefined
+      ]>;
+  getInsightTypeConfig(
+      request: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.recommender.v1.IInsightTypeConfig,
-          | protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      | protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsightTypeConfig,
-      (
-        | protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  getInsightTypeConfig(
+      request: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  getInsightTypeConfig(
+      request?: protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        'insight_type_config.name': request.insightTypeConfig!.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getInsightTypeConfig request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getInsightTypeConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getInsightTypeConfig(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IGetInsightTypeConfigRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getInsightTypeConfig response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.updateInsightTypeConfig(
-      request,
-      options,
-      callback
-    );
+  }
+/**
+ * Updates an InsightTypeConfig change. This will create a new revision of the
+ * config.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.recommender.v1.InsightTypeConfig} request.insightTypeConfig
+ *   Required. The InsightTypeConfig to update.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   The list of fields to be updated.
+ * @param {boolean} request.validateOnly
+ *   If true, validate the request and preview the change, but do not actually
+ *   update it.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.recommender.v1.InsightTypeConfig|InsightTypeConfig}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.update_insight_type_config.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_UpdateInsightTypeConfig_async
+ */
+  updateInsightTypeConfig(
+      request?: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|undefined, {}|undefined
+      ]>;
+  updateInsightTypeConfig(
+      request: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  updateInsightTypeConfig(
+      request: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
+      callback: Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>): void;
+  updateInsightTypeConfig(
+      request?: protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.recommender.v1.IInsightTypeConfig,
+          protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'insight_type_config.name': request.insightTypeConfig!.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('updateInsightTypeConfig request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateInsightTypeConfig response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.updateInsightTypeConfig(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.recommender.v1.IInsightTypeConfig,
+        protos.google.cloud.recommender.v1.IUpdateInsightTypeConfigRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('updateInsightTypeConfig response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 
-  /**
-   * Lists insights for the specified Cloud Resource. Requires the
-   * recommender.*.list IAM permission for the specified insight type.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The container resource on which to execute the request.
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   LOCATION here refers to GCP Locations:
-   *   https://cloud.google.com/about/locations/
-   *   INSIGHT_TYPE_ID refers to supported insight types:
-   *   https://cloud.google.com/recommender/docs/insights/insight-types.
-   * @param {number} [request.pageSize]
-   *   Optional. The maximum number of results to return from this request.
-   *   Non-positive values are ignored. If not specified, the server will
-   *   determine the number of results to return.
-   * @param {string} [request.pageToken]
-   *   Optional. If present, retrieves the next batch of results from the
-   *   preceding call to this method. `page_token` must be the value of
-   *   `next_page_token` from the previous response. The values of other method
-   *   parameters must be identical to those in the previous call.
-   * @param {string} [request.filter]
-   *   Optional. Filter expression to restrict the insights returned. Supported
-   *   filter fields:
-   *
-   *   * `stateInfo.state`
-   *
-   *   * `insightSubtype`
-   *
-   *   * `severity`
-   *
-   *   * `targetResources`
-   *
-   *   Examples:
-   *
-   *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
-   *
-   *   * `insightSubtype = PERMISSIONS_USAGE`
-   *
-   *   * `severity = CRITICAL OR severity = HIGH`
-   *
-   *   * `targetResources :
-   *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
-   *
-   *   * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
-   *
-   *   The max allowed filter length is 500 characters.
-   *
-   *   (These expressions are based on the filter language described at
-   *   https://google.aip.dev/160)
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of {@link protos.google.cloud.recommender.v1.Insight|Insight}.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *   Note that it can affect your quota.
-   *   We recommend using `listInsightsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+ /**
+ * Lists insights for the specified Cloud Resource. Requires the
+ * recommender.*.list IAM permission for the specified insight type.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The container resource on which to execute the request.
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   LOCATION here refers to GCP Locations:
+ *   https://cloud.google.com/about/locations/
+ *   INSIGHT_TYPE_ID refers to supported insight types:
+ *   https://cloud.google.com/recommender/docs/insights/insight-types.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of results to return from this request.
+ *   Non-positive values are ignored. If not specified, the server will
+ *   determine the number of results to return.
+ * @param {string} [request.pageToken]
+ *   Optional. If present, retrieves the next batch of results from the
+ *   preceding call to this method. `page_token` must be the value of
+ *   `next_page_token` from the previous response. The values of other method
+ *   parameters must be identical to those in the previous call.
+ * @param {string} [request.filter]
+ *   Optional. Filter expression to restrict the insights returned. Supported
+ *   filter fields:
+ *
+ *   * `stateInfo.state`
+ *
+ *   * `insightSubtype`
+ *
+ *   * `severity`
+ *
+ *   * `targetResources`
+ *
+ *   Examples:
+ *
+ *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+ *
+ *   * `insightSubtype = PERMISSIONS_USAGE`
+ *
+ *   * `severity = CRITICAL OR severity = HIGH`
+ *
+ *   * `targetResources :
+ *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+ *
+ *   * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+ *
+ *   The max allowed filter length is 500 characters.
+ *
+ *   (These expressions are based on the filter language described at
+ *   https://google.aip.dev/160)
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of {@link protos.google.cloud.recommender.v1.Insight|Insight}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listInsightsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listInsights(
-    request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsight[],
-      protos.google.cloud.recommender.v1.IListInsightsRequest | null,
-      protos.google.cloud.recommender.v1.IListInsightsResponse,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsight[],
+        protos.google.cloud.recommender.v1.IListInsightsRequest|null,
+        protos.google.cloud.recommender.v1.IListInsightsResponse
+      ]>;
   listInsights(
-    request: protos.google.cloud.recommender.v1.IListInsightsRequest,
-    options: CallOptions,
-    callback: PaginationCallback<
-      protos.google.cloud.recommender.v1.IListInsightsRequest,
-      | protos.google.cloud.recommender.v1.IListInsightsResponse
-      | null
-      | undefined,
-      protos.google.cloud.recommender.v1.IInsight
-    >
-  ): void;
-  listInsights(
-    request: protos.google.cloud.recommender.v1.IListInsightsRequest,
-    callback: PaginationCallback<
-      protos.google.cloud.recommender.v1.IListInsightsRequest,
-      | protos.google.cloud.recommender.v1.IListInsightsResponse
-      | null
-      | undefined,
-      protos.google.cloud.recommender.v1.IInsight
-    >
-  ): void;
-  listInsights(
-    request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | PaginationCallback<
+      request: protos.google.cloud.recommender.v1.IListInsightsRequest,
+      options: CallOptions,
+      callback: PaginationCallback<
           protos.google.cloud.recommender.v1.IListInsightsRequest,
-          | protos.google.cloud.recommender.v1.IListInsightsResponse
-          | null
-          | undefined,
-          protos.google.cloud.recommender.v1.IInsight
-        >,
-    callback?: PaginationCallback<
-      protos.google.cloud.recommender.v1.IListInsightsRequest,
-      | protos.google.cloud.recommender.v1.IListInsightsResponse
-      | null
-      | undefined,
-      protos.google.cloud.recommender.v1.IInsight
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IInsight[],
-      protos.google.cloud.recommender.v1.IListInsightsRequest | null,
-      protos.google.cloud.recommender.v1.IListInsightsResponse,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IListInsightsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IInsight>): void;
+  listInsights(
+      request: protos.google.cloud.recommender.v1.IListInsightsRequest,
+      callback: PaginationCallback<
+          protos.google.cloud.recommender.v1.IListInsightsRequest,
+          protos.google.cloud.recommender.v1.IListInsightsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IInsight>): void;
+  listInsights(
+      request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
+      optionsOrCallback?: CallOptions|PaginationCallback<
+          protos.google.cloud.recommender.v1.IListInsightsRequest,
+          protos.google.cloud.recommender.v1.IListInsightsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IInsight>,
+      callback?: PaginationCallback<
+          protos.google.cloud.recommender.v1.IListInsightsRequest,
+          protos.google.cloud.recommender.v1.IListInsightsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IInsight>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IInsight[],
+        protos.google.cloud.recommender.v1.IListInsightsRequest|null,
+        protos.google.cloud.recommender.v1.IListInsightsResponse
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.google.cloud.recommender.v1.IListInsightsRequest,
+      protos.google.cloud.recommender.v1.IListInsightsResponse|null|undefined,
+      protos.google.cloud.recommender.v1.IInsight>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listInsights values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listInsights request %j', request);
+    return this.innerApiCalls
+      .listInsights(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.google.cloud.recommender.v1.IInsight[],
+        protos.google.cloud.recommender.v1.IListInsightsRequest|null,
+        protos.google.cloud.recommender.v1.IListInsightsResponse
+      ]) => {
+        this._log.info('listInsights values %j', response);
+        return [response, input, output];
       });
-    this.initialize();
-    return this.innerApiCalls.listInsights(request, options, callback);
   }
 
-  /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The container resource on which to execute the request.
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   LOCATION here refers to GCP Locations:
-   *   https://cloud.google.com/about/locations/
-   *   INSIGHT_TYPE_ID refers to supported insight types:
-   *   https://cloud.google.com/recommender/docs/insights/insight-types.
-   * @param {number} [request.pageSize]
-   *   Optional. The maximum number of results to return from this request.
-   *   Non-positive values are ignored. If not specified, the server will
-   *   determine the number of results to return.
-   * @param {string} [request.pageToken]
-   *   Optional. If present, retrieves the next batch of results from the
-   *   preceding call to this method. `page_token` must be the value of
-   *   `next_page_token` from the previous response. The values of other method
-   *   parameters must be identical to those in the previous call.
-   * @param {string} [request.filter]
-   *   Optional. Filter expression to restrict the insights returned. Supported
-   *   filter fields:
-   *
-   *   * `stateInfo.state`
-   *
-   *   * `insightSubtype`
-   *
-   *   * `severity`
-   *
-   *   * `targetResources`
-   *
-   *   Examples:
-   *
-   *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
-   *
-   *   * `insightSubtype = PERMISSIONS_USAGE`
-   *
-   *   * `severity = CRITICAL OR severity = HIGH`
-   *
-   *   * `targetResources :
-   *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
-   *
-   *   * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
-   *
-   *   The max allowed filter length is 500 characters.
-   *
-   *   (These expressions are based on the filter language described at
-   *   https://google.aip.dev/160)
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing {@link protos.google.cloud.recommender.v1.Insight|Insight} on 'data' event.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed. Note that it can affect your quota.
-   *   We recommend using `listInsightsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+/**
+ * Equivalent to `listInsights`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The container resource on which to execute the request.
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   LOCATION here refers to GCP Locations:
+ *   https://cloud.google.com/about/locations/
+ *   INSIGHT_TYPE_ID refers to supported insight types:
+ *   https://cloud.google.com/recommender/docs/insights/insight-types.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of results to return from this request.
+ *   Non-positive values are ignored. If not specified, the server will
+ *   determine the number of results to return.
+ * @param {string} [request.pageToken]
+ *   Optional. If present, retrieves the next batch of results from the
+ *   preceding call to this method. `page_token` must be the value of
+ *   `next_page_token` from the previous response. The values of other method
+ *   parameters must be identical to those in the previous call.
+ * @param {string} [request.filter]
+ *   Optional. Filter expression to restrict the insights returned. Supported
+ *   filter fields:
+ *
+ *   * `stateInfo.state`
+ *
+ *   * `insightSubtype`
+ *
+ *   * `severity`
+ *
+ *   * `targetResources`
+ *
+ *   Examples:
+ *
+ *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+ *
+ *   * `insightSubtype = PERMISSIONS_USAGE`
+ *
+ *   * `severity = CRITICAL OR severity = HIGH`
+ *
+ *   * `targetResources :
+ *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+ *
+ *   * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+ *
+ *   The max allowed filter length is 500 characters.
+ *
+ *   (These expressions are based on the filter language described at
+ *   https://google.aip.dev/160)
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing {@link protos.google.cloud.recommender.v1.Insight|Insight} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listInsightsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listInsightsStream(
-    request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
-    options?: CallOptions
-  ): Transform {
+      request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
+      options?: CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listInsights'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listInsights stream %j', request);
     return this.descriptors.page.listInsights.createStream(
       this.innerApiCalls.listInsights as GaxCall,
       request,
@@ -1892,336 +1790,341 @@ export class RecommenderClient {
     );
   }
 
-  /**
-   * Equivalent to `listInsights`, but returns an iterable object.
-   *
-   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The container resource on which to execute the request.
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-   *
-   *   LOCATION here refers to GCP Locations:
-   *   https://cloud.google.com/about/locations/
-   *   INSIGHT_TYPE_ID refers to supported insight types:
-   *   https://cloud.google.com/recommender/docs/insights/insight-types.
-   * @param {number} [request.pageSize]
-   *   Optional. The maximum number of results to return from this request.
-   *   Non-positive values are ignored. If not specified, the server will
-   *   determine the number of results to return.
-   * @param {string} [request.pageToken]
-   *   Optional. If present, retrieves the next batch of results from the
-   *   preceding call to this method. `page_token` must be the value of
-   *   `next_page_token` from the previous response. The values of other method
-   *   parameters must be identical to those in the previous call.
-   * @param {string} [request.filter]
-   *   Optional. Filter expression to restrict the insights returned. Supported
-   *   filter fields:
-   *
-   *   * `stateInfo.state`
-   *
-   *   * `insightSubtype`
-   *
-   *   * `severity`
-   *
-   *   * `targetResources`
-   *
-   *   Examples:
-   *
-   *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
-   *
-   *   * `insightSubtype = PERMISSIONS_USAGE`
-   *
-   *   * `severity = CRITICAL OR severity = HIGH`
-   *
-   *   * `targetResources :
-   *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
-   *
-   *   * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
-   *
-   *   The max allowed filter length is 500 characters.
-   *
-   *   (These expressions are based on the filter language described at
-   *   https://google.aip.dev/160)
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Object}
-   *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
-   *   When you iterate the returned iterable, each element will be an object representing
-   *   {@link protos.google.cloud.recommender.v1.Insight|Insight}. The API will be called under the hood as needed, once per the page,
-   *   so you can stop the iteration when you don't need more results.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.list_insights.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_ListInsights_async
-   */
+/**
+ * Equivalent to `listInsights`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The container resource on which to execute the request.
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+ *
+ *   LOCATION here refers to GCP Locations:
+ *   https://cloud.google.com/about/locations/
+ *   INSIGHT_TYPE_ID refers to supported insight types:
+ *   https://cloud.google.com/recommender/docs/insights/insight-types.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of results to return from this request.
+ *   Non-positive values are ignored. If not specified, the server will
+ *   determine the number of results to return.
+ * @param {string} [request.pageToken]
+ *   Optional. If present, retrieves the next batch of results from the
+ *   preceding call to this method. `page_token` must be the value of
+ *   `next_page_token` from the previous response. The values of other method
+ *   parameters must be identical to those in the previous call.
+ * @param {string} [request.filter]
+ *   Optional. Filter expression to restrict the insights returned. Supported
+ *   filter fields:
+ *
+ *   * `stateInfo.state`
+ *
+ *   * `insightSubtype`
+ *
+ *   * `severity`
+ *
+ *   * `targetResources`
+ *
+ *   Examples:
+ *
+ *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+ *
+ *   * `insightSubtype = PERMISSIONS_USAGE`
+ *
+ *   * `severity = CRITICAL OR severity = HIGH`
+ *
+ *   * `targetResources :
+ *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+ *
+ *   * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+ *
+ *   The max allowed filter length is 500 characters.
+ *
+ *   (These expressions are based on the filter language described at
+ *   https://google.aip.dev/160)
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   {@link protos.google.cloud.recommender.v1.Insight|Insight}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.list_insights.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_ListInsights_async
+ */
   listInsightsAsync(
-    request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
-    options?: CallOptions
-  ): AsyncIterable<protos.google.cloud.recommender.v1.IInsight> {
+      request?: protos.google.cloud.recommender.v1.IListInsightsRequest,
+      options?: CallOptions):
+    AsyncIterable<protos.google.cloud.recommender.v1.IInsight>{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listInsights'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listInsights iterate %j', request);
     return this.descriptors.page.listInsights.asyncIterate(
       this.innerApiCalls['listInsights'] as GaxCall,
       request as {},
       callSettings
     ) as AsyncIterable<protos.google.cloud.recommender.v1.IInsight>;
   }
-  /**
-   * Lists recommendations for the specified Cloud Resource. Requires the
-   * recommender.*.list IAM permission for the specified recommender.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The container resource on which to execute the request.
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   LOCATION here refers to GCP Locations:
-   *   https://cloud.google.com/about/locations/
-   *   RECOMMENDER_ID refers to supported recommenders:
-   *   https://cloud.google.com/recommender/docs/recommenders.
-   * @param {number} [request.pageSize]
-   *   Optional. The maximum number of results to return from this request.
-   *   Non-positive values are ignored. If not specified, the server will
-   *   determine the number of results to return.
-   * @param {string} [request.pageToken]
-   *   Optional. If present, retrieves the next batch of results from the
-   *   preceding call to this method. `page_token` must be the value of
-   *   `next_page_token` from the previous response. The values of other method
-   *   parameters must be identical to those in the previous call.
-   * @param {string} request.filter
-   *   Filter expression to restrict the recommendations returned. Supported
-   *   filter fields:
-   *
-   *   * `state_info.state`
-   *
-   *   * `recommenderSubtype`
-   *
-   *   * `priority`
-   *
-   *   * `targetResources`
-   *
-   *   Examples:
-   *
-   *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
-   *
-   *   * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
-   *
-   *   * `priority = P1 OR priority = P2`
-   *
-   *   * `targetResources :
-   *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
-   *
-   *   * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
-   *
-   *   The max allowed filter length is 500 characters.
-   *
-   *   (These expressions are based on the filter language described at
-   *   https://google.aip.dev/160)
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *   Note that it can affect your quota.
-   *   We recommend using `listRecommendationsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+ /**
+ * Lists recommendations for the specified Cloud Resource. Requires the
+ * recommender.*.list IAM permission for the specified recommender.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The container resource on which to execute the request.
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   LOCATION here refers to GCP Locations:
+ *   https://cloud.google.com/about/locations/
+ *   RECOMMENDER_ID refers to supported recommenders:
+ *   https://cloud.google.com/recommender/docs/recommenders.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of results to return from this request.
+ *   Non-positive values are ignored. If not specified, the server will
+ *   determine the number of results to return.
+ * @param {string} [request.pageToken]
+ *   Optional. If present, retrieves the next batch of results from the
+ *   preceding call to this method. `page_token` must be the value of
+ *   `next_page_token` from the previous response. The values of other method
+ *   parameters must be identical to those in the previous call.
+ * @param {string} request.filter
+ *   Filter expression to restrict the recommendations returned. Supported
+ *   filter fields:
+ *
+ *   * `state_info.state`
+ *
+ *   * `recommenderSubtype`
+ *
+ *   * `priority`
+ *
+ *   * `targetResources`
+ *
+ *   Examples:
+ *
+ *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+ *
+ *   * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+ *
+ *   * `priority = P1 OR priority = P2`
+ *
+ *   * `targetResources :
+ *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+ *
+ *   * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+ *
+ *   The max allowed filter length is 500 characters.
+ *
+ *   (These expressions are based on the filter language described at
+ *   https://google.aip.dev/160)
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listRecommendationsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listRecommendations(
-    request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation[],
-      protos.google.cloud.recommender.v1.IListRecommendationsRequest | null,
-      protos.google.cloud.recommender.v1.IListRecommendationsResponse,
-    ]
-  >;
+      request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation[],
+        protos.google.cloud.recommender.v1.IListRecommendationsRequest|null,
+        protos.google.cloud.recommender.v1.IListRecommendationsResponse
+      ]>;
   listRecommendations(
-    request: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-    options: CallOptions,
-    callback: PaginationCallback<
-      protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-      | protos.google.cloud.recommender.v1.IListRecommendationsResponse
-      | null
-      | undefined,
-      protos.google.cloud.recommender.v1.IRecommendation
-    >
-  ): void;
-  listRecommendations(
-    request: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-    callback: PaginationCallback<
-      protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-      | protos.google.cloud.recommender.v1.IListRecommendationsResponse
-      | null
-      | undefined,
-      protos.google.cloud.recommender.v1.IRecommendation
-    >
-  ): void;
-  listRecommendations(
-    request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | PaginationCallback<
+      request: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      options: CallOptions,
+      callback: PaginationCallback<
           protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-          | protos.google.cloud.recommender.v1.IListRecommendationsResponse
-          | null
-          | undefined,
-          protos.google.cloud.recommender.v1.IRecommendation
-        >,
-    callback?: PaginationCallback<
-      protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-      | protos.google.cloud.recommender.v1.IListRecommendationsResponse
-      | null
-      | undefined,
-      protos.google.cloud.recommender.v1.IRecommendation
-    >
-  ): Promise<
-    [
-      protos.google.cloud.recommender.v1.IRecommendation[],
-      protos.google.cloud.recommender.v1.IListRecommendationsRequest | null,
-      protos.google.cloud.recommender.v1.IListRecommendationsResponse,
-    ]
-  > | void {
+          protos.google.cloud.recommender.v1.IListRecommendationsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IRecommendation>): void;
+  listRecommendations(
+      request: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      callback: PaginationCallback<
+          protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+          protos.google.cloud.recommender.v1.IListRecommendationsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IRecommendation>): void;
+  listRecommendations(
+      request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      optionsOrCallback?: CallOptions|PaginationCallback<
+          protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+          protos.google.cloud.recommender.v1.IListRecommendationsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IRecommendation>,
+      callback?: PaginationCallback<
+          protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+          protos.google.cloud.recommender.v1.IListRecommendationsResponse|null|undefined,
+          protos.google.cloud.recommender.v1.IRecommendation>):
+      Promise<[
+        protos.google.cloud.recommender.v1.IRecommendation[],
+        protos.google.cloud.recommender.v1.IListRecommendationsRequest|null,
+        protos.google.cloud.recommender.v1.IListRecommendationsResponse
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      protos.google.cloud.recommender.v1.IListRecommendationsResponse|null|undefined,
+      protos.google.cloud.recommender.v1.IRecommendation>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listRecommendations values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listRecommendations request %j', request);
+    return this.innerApiCalls
+      .listRecommendations(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.google.cloud.recommender.v1.IRecommendation[],
+        protos.google.cloud.recommender.v1.IListRecommendationsRequest|null,
+        protos.google.cloud.recommender.v1.IListRecommendationsResponse
+      ]) => {
+        this._log.info('listRecommendations values %j', response);
+        return [response, input, output];
       });
-    this.initialize();
-    return this.innerApiCalls.listRecommendations(request, options, callback);
   }
 
-  /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The container resource on which to execute the request.
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   LOCATION here refers to GCP Locations:
-   *   https://cloud.google.com/about/locations/
-   *   RECOMMENDER_ID refers to supported recommenders:
-   *   https://cloud.google.com/recommender/docs/recommenders.
-   * @param {number} [request.pageSize]
-   *   Optional. The maximum number of results to return from this request.
-   *   Non-positive values are ignored. If not specified, the server will
-   *   determine the number of results to return.
-   * @param {string} [request.pageToken]
-   *   Optional. If present, retrieves the next batch of results from the
-   *   preceding call to this method. `page_token` must be the value of
-   *   `next_page_token` from the previous response. The values of other method
-   *   parameters must be identical to those in the previous call.
-   * @param {string} request.filter
-   *   Filter expression to restrict the recommendations returned. Supported
-   *   filter fields:
-   *
-   *   * `state_info.state`
-   *
-   *   * `recommenderSubtype`
-   *
-   *   * `priority`
-   *
-   *   * `targetResources`
-   *
-   *   Examples:
-   *
-   *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
-   *
-   *   * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
-   *
-   *   * `priority = P1 OR priority = P2`
-   *
-   *   * `targetResources :
-   *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
-   *
-   *   * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
-   *
-   *   The max allowed filter length is 500 characters.
-   *
-   *   (These expressions are based on the filter language described at
-   *   https://google.aip.dev/160)
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation} on 'data' event.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed. Note that it can affect your quota.
-   *   We recommend using `listRecommendationsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+/**
+ * Equivalent to `listRecommendations`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The container resource on which to execute the request.
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   LOCATION here refers to GCP Locations:
+ *   https://cloud.google.com/about/locations/
+ *   RECOMMENDER_ID refers to supported recommenders:
+ *   https://cloud.google.com/recommender/docs/recommenders.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of results to return from this request.
+ *   Non-positive values are ignored. If not specified, the server will
+ *   determine the number of results to return.
+ * @param {string} [request.pageToken]
+ *   Optional. If present, retrieves the next batch of results from the
+ *   preceding call to this method. `page_token` must be the value of
+ *   `next_page_token` from the previous response. The values of other method
+ *   parameters must be identical to those in the previous call.
+ * @param {string} request.filter
+ *   Filter expression to restrict the recommendations returned. Supported
+ *   filter fields:
+ *
+ *   * `state_info.state`
+ *
+ *   * `recommenderSubtype`
+ *
+ *   * `priority`
+ *
+ *   * `targetResources`
+ *
+ *   Examples:
+ *
+ *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+ *
+ *   * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+ *
+ *   * `priority = P1 OR priority = P2`
+ *
+ *   * `targetResources :
+ *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+ *
+ *   * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+ *
+ *   The max allowed filter length is 500 characters.
+ *
+ *   (These expressions are based on the filter language described at
+ *   https://google.aip.dev/160)
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listRecommendationsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listRecommendationsStream(
-    request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-    options?: CallOptions
-  ): Transform {
+      request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      options?: CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listRecommendations'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listRecommendations stream %j', request);
     return this.descriptors.page.listRecommendations.createStream(
       this.innerApiCalls.listRecommendations as GaxCall,
       request,
@@ -2229,95 +2132,97 @@ export class RecommenderClient {
     );
   }
 
-  /**
-   * Equivalent to `listRecommendations`, but returns an iterable object.
-   *
-   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The container resource on which to execute the request.
-   *   Acceptable formats:
-   *
-   *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-   *
-   *   LOCATION here refers to GCP Locations:
-   *   https://cloud.google.com/about/locations/
-   *   RECOMMENDER_ID refers to supported recommenders:
-   *   https://cloud.google.com/recommender/docs/recommenders.
-   * @param {number} [request.pageSize]
-   *   Optional. The maximum number of results to return from this request.
-   *   Non-positive values are ignored. If not specified, the server will
-   *   determine the number of results to return.
-   * @param {string} [request.pageToken]
-   *   Optional. If present, retrieves the next batch of results from the
-   *   preceding call to this method. `page_token` must be the value of
-   *   `next_page_token` from the previous response. The values of other method
-   *   parameters must be identical to those in the previous call.
-   * @param {string} request.filter
-   *   Filter expression to restrict the recommendations returned. Supported
-   *   filter fields:
-   *
-   *   * `state_info.state`
-   *
-   *   * `recommenderSubtype`
-   *
-   *   * `priority`
-   *
-   *   * `targetResources`
-   *
-   *   Examples:
-   *
-   *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
-   *
-   *   * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
-   *
-   *   * `priority = P1 OR priority = P2`
-   *
-   *   * `targetResources :
-   *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
-   *
-   *   * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
-   *
-   *   The max allowed filter length is 500 characters.
-   *
-   *   (These expressions are based on the filter language described at
-   *   https://google.aip.dev/160)
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Object}
-   *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
-   *   When you iterate the returned iterable, each element will be an object representing
-   *   {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}. The API will be called under the hood as needed, once per the page,
-   *   so you can stop the iteration when you don't need more results.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/recommender.list_recommendations.js</caption>
-   * region_tag:recommender_v1_generated_Recommender_ListRecommendations_async
-   */
+/**
+ * Equivalent to `listRecommendations`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The container resource on which to execute the request.
+ *   Acceptable formats:
+ *
+ *   * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+ *
+ *   LOCATION here refers to GCP Locations:
+ *   https://cloud.google.com/about/locations/
+ *   RECOMMENDER_ID refers to supported recommenders:
+ *   https://cloud.google.com/recommender/docs/recommenders.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of results to return from this request.
+ *   Non-positive values are ignored. If not specified, the server will
+ *   determine the number of results to return.
+ * @param {string} [request.pageToken]
+ *   Optional. If present, retrieves the next batch of results from the
+ *   preceding call to this method. `page_token` must be the value of
+ *   `next_page_token` from the previous response. The values of other method
+ *   parameters must be identical to those in the previous call.
+ * @param {string} request.filter
+ *   Filter expression to restrict the recommendations returned. Supported
+ *   filter fields:
+ *
+ *   * `state_info.state`
+ *
+ *   * `recommenderSubtype`
+ *
+ *   * `priority`
+ *
+ *   * `targetResources`
+ *
+ *   Examples:
+ *
+ *   * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+ *
+ *   * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+ *
+ *   * `priority = P1 OR priority = P2`
+ *
+ *   * `targetResources :
+ *   //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+ *
+ *   * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+ *
+ *   The max allowed filter length is 500 characters.
+ *
+ *   (These expressions are based on the filter language described at
+ *   https://google.aip.dev/160)
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   {@link protos.google.cloud.recommender.v1.Recommendation|Recommendation}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/recommender.list_recommendations.js</caption>
+ * region_tag:recommender_v1_generated_Recommender_ListRecommendations_async
+ */
   listRecommendationsAsync(
-    request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
-    options?: CallOptions
-  ): AsyncIterable<protos.google.cloud.recommender.v1.IRecommendation> {
+      request?: protos.google.cloud.recommender.v1.IListRecommendationsRequest,
+      options?: CallOptions):
+    AsyncIterable<protos.google.cloud.recommender.v1.IRecommendation>{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listRecommendations'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listRecommendations iterate %j', request);
     return this.descriptors.page.listRecommendations.asyncIterate(
       this.innerApiCalls['listRecommendations'] as GaxCall,
       request as {},
@@ -2336,18 +2241,12 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  billingAccountLocationInsightTypePath(
-    billingAccount: string,
-    location: string,
-    insightType: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.render(
-      {
-        billing_account: billingAccount,
-        location: location,
-        insight_type: insightType,
-      }
-    );
+  billingAccountLocationInsightTypePath(billingAccount:string,location:string,insightType:string) {
+    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.render({
+      billing_account: billingAccount,
+      location: location,
+      insight_type: insightType,
+    });
   }
 
   /**
@@ -2357,12 +2256,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type resource.
    * @returns {string} A string representing the billing_account.
    */
-  matchBillingAccountFromBillingAccountLocationInsightTypeName(
-    billingAccountLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.match(
-      billingAccountLocationInsightTypeName
-    ).billing_account;
+  matchBillingAccountFromBillingAccountLocationInsightTypeName(billingAccountLocationInsightTypeName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.match(billingAccountLocationInsightTypeName).billing_account;
   }
 
   /**
@@ -2372,12 +2267,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromBillingAccountLocationInsightTypeName(
-    billingAccountLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.match(
-      billingAccountLocationInsightTypeName
-    ).location;
+  matchLocationFromBillingAccountLocationInsightTypeName(billingAccountLocationInsightTypeName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.match(billingAccountLocationInsightTypeName).location;
   }
 
   /**
@@ -2387,12 +2278,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromBillingAccountLocationInsightTypeName(
-    billingAccountLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.match(
-      billingAccountLocationInsightTypeName
-    ).insight_type;
+  matchInsightTypeFromBillingAccountLocationInsightTypeName(billingAccountLocationInsightTypeName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypePathTemplate.match(billingAccountLocationInsightTypeName).insight_type;
   }
 
   /**
@@ -2403,18 +2290,12 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  billingAccountLocationInsightTypeConfigPath(
-    billingAccount: string,
-    location: string,
-    insightType: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.render(
-      {
-        billing_account: billingAccount,
-        location: location,
-        insight_type: insightType,
-      }
-    );
+  billingAccountLocationInsightTypeConfigPath(billingAccount:string,location:string,insightType:string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.render({
+      billing_account: billingAccount,
+      location: location,
+      insight_type: insightType,
+    });
   }
 
   /**
@@ -2424,12 +2305,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_config resource.
    * @returns {string} A string representing the billing_account.
    */
-  matchBillingAccountFromBillingAccountLocationInsightTypeConfigName(
-    billingAccountLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.match(
-      billingAccountLocationInsightTypeConfigName
-    ).billing_account;
+  matchBillingAccountFromBillingAccountLocationInsightTypeConfigName(billingAccountLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.match(billingAccountLocationInsightTypeConfigName).billing_account;
   }
 
   /**
@@ -2439,12 +2316,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_config resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromBillingAccountLocationInsightTypeConfigName(
-    billingAccountLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.match(
-      billingAccountLocationInsightTypeConfigName
-    ).location;
+  matchLocationFromBillingAccountLocationInsightTypeConfigName(billingAccountLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.match(billingAccountLocationInsightTypeConfigName).location;
   }
 
   /**
@@ -2454,12 +2327,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_config resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromBillingAccountLocationInsightTypeConfigName(
-    billingAccountLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.match(
-      billingAccountLocationInsightTypeConfigName
-    ).insight_type;
+  matchInsightTypeFromBillingAccountLocationInsightTypeConfigName(billingAccountLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeConfigPathTemplate.match(billingAccountLocationInsightTypeConfigName).insight_type;
   }
 
   /**
@@ -2471,20 +2340,13 @@ export class RecommenderClient {
    * @param {string} insight
    * @returns {string} Resource name string.
    */
-  billingAccountLocationInsightTypeInsightPath(
-    billingAccount: string,
-    location: string,
-    insightType: string,
-    insight: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.render(
-      {
-        billing_account: billingAccount,
-        location: location,
-        insight_type: insightType,
-        insight: insight,
-      }
-    );
+  billingAccountLocationInsightTypeInsightPath(billingAccount:string,location:string,insightType:string,insight:string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.render({
+      billing_account: billingAccount,
+      location: location,
+      insight_type: insightType,
+      insight: insight,
+    });
   }
 
   /**
@@ -2494,12 +2356,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_insight resource.
    * @returns {string} A string representing the billing_account.
    */
-  matchBillingAccountFromBillingAccountLocationInsightTypeInsightName(
-    billingAccountLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(
-      billingAccountLocationInsightTypeInsightName
-    ).billing_account;
+  matchBillingAccountFromBillingAccountLocationInsightTypeInsightName(billingAccountLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(billingAccountLocationInsightTypeInsightName).billing_account;
   }
 
   /**
@@ -2509,12 +2367,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_insight resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromBillingAccountLocationInsightTypeInsightName(
-    billingAccountLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(
-      billingAccountLocationInsightTypeInsightName
-    ).location;
+  matchLocationFromBillingAccountLocationInsightTypeInsightName(billingAccountLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(billingAccountLocationInsightTypeInsightName).location;
   }
 
   /**
@@ -2524,12 +2378,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_insight resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromBillingAccountLocationInsightTypeInsightName(
-    billingAccountLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(
-      billingAccountLocationInsightTypeInsightName
-    ).insight_type;
+  matchInsightTypeFromBillingAccountLocationInsightTypeInsightName(billingAccountLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(billingAccountLocationInsightTypeInsightName).insight_type;
   }
 
   /**
@@ -2539,12 +2389,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_insight_type_insight resource.
    * @returns {string} A string representing the insight.
    */
-  matchInsightFromBillingAccountLocationInsightTypeInsightName(
-    billingAccountLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(
-      billingAccountLocationInsightTypeInsightName
-    ).insight;
+  matchInsightFromBillingAccountLocationInsightTypeInsightName(billingAccountLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.billingAccountLocationInsightTypeInsightPathTemplate.match(billingAccountLocationInsightTypeInsightName).insight;
   }
 
   /**
@@ -2555,18 +2401,12 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  billingAccountLocationRecommenderPath(
-    billingAccount: string,
-    location: string,
-    recommender: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.render(
-      {
-        billing_account: billingAccount,
-        location: location,
-        recommender: recommender,
-      }
-    );
+  billingAccountLocationRecommenderPath(billingAccount:string,location:string,recommender:string) {
+    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.render({
+      billing_account: billingAccount,
+      location: location,
+      recommender: recommender,
+    });
   }
 
   /**
@@ -2576,12 +2416,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender resource.
    * @returns {string} A string representing the billing_account.
    */
-  matchBillingAccountFromBillingAccountLocationRecommenderName(
-    billingAccountLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.match(
-      billingAccountLocationRecommenderName
-    ).billing_account;
+  matchBillingAccountFromBillingAccountLocationRecommenderName(billingAccountLocationRecommenderName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.match(billingAccountLocationRecommenderName).billing_account;
   }
 
   /**
@@ -2591,12 +2427,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromBillingAccountLocationRecommenderName(
-    billingAccountLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.match(
-      billingAccountLocationRecommenderName
-    ).location;
+  matchLocationFromBillingAccountLocationRecommenderName(billingAccountLocationRecommenderName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.match(billingAccountLocationRecommenderName).location;
   }
 
   /**
@@ -2606,12 +2438,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromBillingAccountLocationRecommenderName(
-    billingAccountLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.match(
-      billingAccountLocationRecommenderName
-    ).recommender;
+  matchRecommenderFromBillingAccountLocationRecommenderName(billingAccountLocationRecommenderName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderPathTemplate.match(billingAccountLocationRecommenderName).recommender;
   }
 
   /**
@@ -2622,18 +2450,12 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  billingAccountLocationRecommenderConfigPath(
-    billingAccount: string,
-    location: string,
-    recommender: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.render(
-      {
-        billing_account: billingAccount,
-        location: location,
-        recommender: recommender,
-      }
-    );
+  billingAccountLocationRecommenderConfigPath(billingAccount:string,location:string,recommender:string) {
+    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.render({
+      billing_account: billingAccount,
+      location: location,
+      recommender: recommender,
+    });
   }
 
   /**
@@ -2643,12 +2465,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_config resource.
    * @returns {string} A string representing the billing_account.
    */
-  matchBillingAccountFromBillingAccountLocationRecommenderConfigName(
-    billingAccountLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.match(
-      billingAccountLocationRecommenderConfigName
-    ).billing_account;
+  matchBillingAccountFromBillingAccountLocationRecommenderConfigName(billingAccountLocationRecommenderConfigName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.match(billingAccountLocationRecommenderConfigName).billing_account;
   }
 
   /**
@@ -2658,12 +2476,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_config resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromBillingAccountLocationRecommenderConfigName(
-    billingAccountLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.match(
-      billingAccountLocationRecommenderConfigName
-    ).location;
+  matchLocationFromBillingAccountLocationRecommenderConfigName(billingAccountLocationRecommenderConfigName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.match(billingAccountLocationRecommenderConfigName).location;
   }
 
   /**
@@ -2673,12 +2487,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_config resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromBillingAccountLocationRecommenderConfigName(
-    billingAccountLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.match(
-      billingAccountLocationRecommenderConfigName
-    ).recommender;
+  matchRecommenderFromBillingAccountLocationRecommenderConfigName(billingAccountLocationRecommenderConfigName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderConfigPathTemplate.match(billingAccountLocationRecommenderConfigName).recommender;
   }
 
   /**
@@ -2690,20 +2500,13 @@ export class RecommenderClient {
    * @param {string} recommendation
    * @returns {string} Resource name string.
    */
-  billingAccountLocationRecommenderRecommendationPath(
-    billingAccount: string,
-    location: string,
-    recommender: string,
-    recommendation: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.render(
-      {
-        billing_account: billingAccount,
-        location: location,
-        recommender: recommender,
-        recommendation: recommendation,
-      }
-    );
+  billingAccountLocationRecommenderRecommendationPath(billingAccount:string,location:string,recommender:string,recommendation:string) {
+    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.render({
+      billing_account: billingAccount,
+      location: location,
+      recommender: recommender,
+      recommendation: recommendation,
+    });
   }
 
   /**
@@ -2713,12 +2516,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_recommendation resource.
    * @returns {string} A string representing the billing_account.
    */
-  matchBillingAccountFromBillingAccountLocationRecommenderRecommendationName(
-    billingAccountLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(
-      billingAccountLocationRecommenderRecommendationName
-    ).billing_account;
+  matchBillingAccountFromBillingAccountLocationRecommenderRecommendationName(billingAccountLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(billingAccountLocationRecommenderRecommendationName).billing_account;
   }
 
   /**
@@ -2728,12 +2527,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_recommendation resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromBillingAccountLocationRecommenderRecommendationName(
-    billingAccountLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(
-      billingAccountLocationRecommenderRecommendationName
-    ).location;
+  matchLocationFromBillingAccountLocationRecommenderRecommendationName(billingAccountLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(billingAccountLocationRecommenderRecommendationName).location;
   }
 
   /**
@@ -2743,12 +2538,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromBillingAccountLocationRecommenderRecommendationName(
-    billingAccountLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(
-      billingAccountLocationRecommenderRecommendationName
-    ).recommender;
+  matchRecommenderFromBillingAccountLocationRecommenderRecommendationName(billingAccountLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(billingAccountLocationRecommenderRecommendationName).recommender;
   }
 
   /**
@@ -2758,12 +2549,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing billing_account_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommendation.
    */
-  matchRecommendationFromBillingAccountLocationRecommenderRecommendationName(
-    billingAccountLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(
-      billingAccountLocationRecommenderRecommendationName
-    ).recommendation;
+  matchRecommendationFromBillingAccountLocationRecommenderRecommendationName(billingAccountLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.billingAccountLocationRecommenderRecommendationPathTemplate.match(billingAccountLocationRecommenderRecommendationName).recommendation;
   }
 
   /**
@@ -2774,11 +2561,7 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  folderLocationInsightTypePath(
-    folder: string,
-    location: string,
-    insightType: string
-  ) {
+  folderLocationInsightTypePath(folder:string,location:string,insightType:string) {
     return this.pathTemplates.folderLocationInsightTypePathTemplate.render({
       folder: folder,
       location: location,
@@ -2793,12 +2576,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type resource.
    * @returns {string} A string representing the folder.
    */
-  matchFolderFromFolderLocationInsightTypeName(
-    folderLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypePathTemplate.match(
-      folderLocationInsightTypeName
-    ).folder;
+  matchFolderFromFolderLocationInsightTypeName(folderLocationInsightTypeName: string) {
+    return this.pathTemplates.folderLocationInsightTypePathTemplate.match(folderLocationInsightTypeName).folder;
   }
 
   /**
@@ -2808,12 +2587,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromFolderLocationInsightTypeName(
-    folderLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypePathTemplate.match(
-      folderLocationInsightTypeName
-    ).location;
+  matchLocationFromFolderLocationInsightTypeName(folderLocationInsightTypeName: string) {
+    return this.pathTemplates.folderLocationInsightTypePathTemplate.match(folderLocationInsightTypeName).location;
   }
 
   /**
@@ -2823,12 +2598,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromFolderLocationInsightTypeName(
-    folderLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypePathTemplate.match(
-      folderLocationInsightTypeName
-    ).insight_type;
+  matchInsightTypeFromFolderLocationInsightTypeName(folderLocationInsightTypeName: string) {
+    return this.pathTemplates.folderLocationInsightTypePathTemplate.match(folderLocationInsightTypeName).insight_type;
   }
 
   /**
@@ -2840,20 +2611,13 @@ export class RecommenderClient {
    * @param {string} insight
    * @returns {string} Resource name string.
    */
-  folderLocationInsightTypeInsightPath(
-    folder: string,
-    location: string,
-    insightType: string,
-    insight: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.render(
-      {
-        folder: folder,
-        location: location,
-        insight_type: insightType,
-        insight: insight,
-      }
-    );
+  folderLocationInsightTypeInsightPath(folder:string,location:string,insightType:string,insight:string) {
+    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.render({
+      folder: folder,
+      location: location,
+      insight_type: insightType,
+      insight: insight,
+    });
   }
 
   /**
@@ -2863,12 +2627,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type_insight resource.
    * @returns {string} A string representing the folder.
    */
-  matchFolderFromFolderLocationInsightTypeInsightName(
-    folderLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(
-      folderLocationInsightTypeInsightName
-    ).folder;
+  matchFolderFromFolderLocationInsightTypeInsightName(folderLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(folderLocationInsightTypeInsightName).folder;
   }
 
   /**
@@ -2878,12 +2638,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type_insight resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromFolderLocationInsightTypeInsightName(
-    folderLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(
-      folderLocationInsightTypeInsightName
-    ).location;
+  matchLocationFromFolderLocationInsightTypeInsightName(folderLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(folderLocationInsightTypeInsightName).location;
   }
 
   /**
@@ -2893,12 +2649,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type_insight resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromFolderLocationInsightTypeInsightName(
-    folderLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(
-      folderLocationInsightTypeInsightName
-    ).insight_type;
+  matchInsightTypeFromFolderLocationInsightTypeInsightName(folderLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(folderLocationInsightTypeInsightName).insight_type;
   }
 
   /**
@@ -2908,12 +2660,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_insight_type_insight resource.
    * @returns {string} A string representing the insight.
    */
-  matchInsightFromFolderLocationInsightTypeInsightName(
-    folderLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(
-      folderLocationInsightTypeInsightName
-    ).insight;
+  matchInsightFromFolderLocationInsightTypeInsightName(folderLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.folderLocationInsightTypeInsightPathTemplate.match(folderLocationInsightTypeInsightName).insight;
   }
 
   /**
@@ -2924,11 +2672,7 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  folderLocationRecommenderPath(
-    folder: string,
-    location: string,
-    recommender: string
-  ) {
+  folderLocationRecommenderPath(folder:string,location:string,recommender:string) {
     return this.pathTemplates.folderLocationRecommenderPathTemplate.render({
       folder: folder,
       location: location,
@@ -2943,12 +2687,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender resource.
    * @returns {string} A string representing the folder.
    */
-  matchFolderFromFolderLocationRecommenderName(
-    folderLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderPathTemplate.match(
-      folderLocationRecommenderName
-    ).folder;
+  matchFolderFromFolderLocationRecommenderName(folderLocationRecommenderName: string) {
+    return this.pathTemplates.folderLocationRecommenderPathTemplate.match(folderLocationRecommenderName).folder;
   }
 
   /**
@@ -2958,12 +2698,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromFolderLocationRecommenderName(
-    folderLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderPathTemplate.match(
-      folderLocationRecommenderName
-    ).location;
+  matchLocationFromFolderLocationRecommenderName(folderLocationRecommenderName: string) {
+    return this.pathTemplates.folderLocationRecommenderPathTemplate.match(folderLocationRecommenderName).location;
   }
 
   /**
@@ -2973,12 +2709,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromFolderLocationRecommenderName(
-    folderLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderPathTemplate.match(
-      folderLocationRecommenderName
-    ).recommender;
+  matchRecommenderFromFolderLocationRecommenderName(folderLocationRecommenderName: string) {
+    return this.pathTemplates.folderLocationRecommenderPathTemplate.match(folderLocationRecommenderName).recommender;
   }
 
   /**
@@ -2990,20 +2722,13 @@ export class RecommenderClient {
    * @param {string} recommendation
    * @returns {string} Resource name string.
    */
-  folderLocationRecommenderRecommendationPath(
-    folder: string,
-    location: string,
-    recommender: string,
-    recommendation: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.render(
-      {
-        folder: folder,
-        location: location,
-        recommender: recommender,
-        recommendation: recommendation,
-      }
-    );
+  folderLocationRecommenderRecommendationPath(folder:string,location:string,recommender:string,recommendation:string) {
+    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.render({
+      folder: folder,
+      location: location,
+      recommender: recommender,
+      recommendation: recommendation,
+    });
   }
 
   /**
@@ -3013,12 +2738,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender_recommendation resource.
    * @returns {string} A string representing the folder.
    */
-  matchFolderFromFolderLocationRecommenderRecommendationName(
-    folderLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(
-      folderLocationRecommenderRecommendationName
-    ).folder;
+  matchFolderFromFolderLocationRecommenderRecommendationName(folderLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(folderLocationRecommenderRecommendationName).folder;
   }
 
   /**
@@ -3028,12 +2749,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender_recommendation resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromFolderLocationRecommenderRecommendationName(
-    folderLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(
-      folderLocationRecommenderRecommendationName
-    ).location;
+  matchLocationFromFolderLocationRecommenderRecommendationName(folderLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(folderLocationRecommenderRecommendationName).location;
   }
 
   /**
@@ -3043,12 +2760,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromFolderLocationRecommenderRecommendationName(
-    folderLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(
-      folderLocationRecommenderRecommendationName
-    ).recommender;
+  matchRecommenderFromFolderLocationRecommenderRecommendationName(folderLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(folderLocationRecommenderRecommendationName).recommender;
   }
 
   /**
@@ -3058,12 +2771,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing folder_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommendation.
    */
-  matchRecommendationFromFolderLocationRecommenderRecommendationName(
-    folderLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(
-      folderLocationRecommenderRecommendationName
-    ).recommendation;
+  matchRecommendationFromFolderLocationRecommenderRecommendationName(folderLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.folderLocationRecommenderRecommendationPathTemplate.match(folderLocationRecommenderRecommendationName).recommendation;
   }
 
   /**
@@ -3074,18 +2783,12 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  organizationLocationInsightTypePath(
-    organization: string,
-    location: string,
-    insightType: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypePathTemplate.render(
-      {
-        organization: organization,
-        location: location,
-        insight_type: insightType,
-      }
-    );
+  organizationLocationInsightTypePath(organization:string,location:string,insightType:string) {
+    return this.pathTemplates.organizationLocationInsightTypePathTemplate.render({
+      organization: organization,
+      location: location,
+      insight_type: insightType,
+    });
   }
 
   /**
@@ -3095,12 +2798,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type resource.
    * @returns {string} A string representing the organization.
    */
-  matchOrganizationFromOrganizationLocationInsightTypeName(
-    organizationLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypePathTemplate.match(
-      organizationLocationInsightTypeName
-    ).organization;
+  matchOrganizationFromOrganizationLocationInsightTypeName(organizationLocationInsightTypeName: string) {
+    return this.pathTemplates.organizationLocationInsightTypePathTemplate.match(organizationLocationInsightTypeName).organization;
   }
 
   /**
@@ -3110,12 +2809,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromOrganizationLocationInsightTypeName(
-    organizationLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypePathTemplate.match(
-      organizationLocationInsightTypeName
-    ).location;
+  matchLocationFromOrganizationLocationInsightTypeName(organizationLocationInsightTypeName: string) {
+    return this.pathTemplates.organizationLocationInsightTypePathTemplate.match(organizationLocationInsightTypeName).location;
   }
 
   /**
@@ -3125,12 +2820,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromOrganizationLocationInsightTypeName(
-    organizationLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypePathTemplate.match(
-      organizationLocationInsightTypeName
-    ).insight_type;
+  matchInsightTypeFromOrganizationLocationInsightTypeName(organizationLocationInsightTypeName: string) {
+    return this.pathTemplates.organizationLocationInsightTypePathTemplate.match(organizationLocationInsightTypeName).insight_type;
   }
 
   /**
@@ -3141,18 +2832,12 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  organizationLocationInsightTypeConfigPath(
-    organization: string,
-    location: string,
-    insightType: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.render(
-      {
-        organization: organization,
-        location: location,
-        insight_type: insightType,
-      }
-    );
+  organizationLocationInsightTypeConfigPath(organization:string,location:string,insightType:string) {
+    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.render({
+      organization: organization,
+      location: location,
+      insight_type: insightType,
+    });
   }
 
   /**
@@ -3162,12 +2847,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_config resource.
    * @returns {string} A string representing the organization.
    */
-  matchOrganizationFromOrganizationLocationInsightTypeConfigName(
-    organizationLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.match(
-      organizationLocationInsightTypeConfigName
-    ).organization;
+  matchOrganizationFromOrganizationLocationInsightTypeConfigName(organizationLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.match(organizationLocationInsightTypeConfigName).organization;
   }
 
   /**
@@ -3177,12 +2858,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_config resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromOrganizationLocationInsightTypeConfigName(
-    organizationLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.match(
-      organizationLocationInsightTypeConfigName
-    ).location;
+  matchLocationFromOrganizationLocationInsightTypeConfigName(organizationLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.match(organizationLocationInsightTypeConfigName).location;
   }
 
   /**
@@ -3192,12 +2869,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_config resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromOrganizationLocationInsightTypeConfigName(
-    organizationLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.match(
-      organizationLocationInsightTypeConfigName
-    ).insight_type;
+  matchInsightTypeFromOrganizationLocationInsightTypeConfigName(organizationLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeConfigPathTemplate.match(organizationLocationInsightTypeConfigName).insight_type;
   }
 
   /**
@@ -3209,20 +2882,13 @@ export class RecommenderClient {
    * @param {string} insight
    * @returns {string} Resource name string.
    */
-  organizationLocationInsightTypeInsightPath(
-    organization: string,
-    location: string,
-    insightType: string,
-    insight: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.render(
-      {
-        organization: organization,
-        location: location,
-        insight_type: insightType,
-        insight: insight,
-      }
-    );
+  organizationLocationInsightTypeInsightPath(organization:string,location:string,insightType:string,insight:string) {
+    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.render({
+      organization: organization,
+      location: location,
+      insight_type: insightType,
+      insight: insight,
+    });
   }
 
   /**
@@ -3232,12 +2898,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_insight resource.
    * @returns {string} A string representing the organization.
    */
-  matchOrganizationFromOrganizationLocationInsightTypeInsightName(
-    organizationLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(
-      organizationLocationInsightTypeInsightName
-    ).organization;
+  matchOrganizationFromOrganizationLocationInsightTypeInsightName(organizationLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(organizationLocationInsightTypeInsightName).organization;
   }
 
   /**
@@ -3247,12 +2909,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_insight resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromOrganizationLocationInsightTypeInsightName(
-    organizationLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(
-      organizationLocationInsightTypeInsightName
-    ).location;
+  matchLocationFromOrganizationLocationInsightTypeInsightName(organizationLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(organizationLocationInsightTypeInsightName).location;
   }
 
   /**
@@ -3262,12 +2920,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_insight resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromOrganizationLocationInsightTypeInsightName(
-    organizationLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(
-      organizationLocationInsightTypeInsightName
-    ).insight_type;
+  matchInsightTypeFromOrganizationLocationInsightTypeInsightName(organizationLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(organizationLocationInsightTypeInsightName).insight_type;
   }
 
   /**
@@ -3277,12 +2931,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_insight_type_insight resource.
    * @returns {string} A string representing the insight.
    */
-  matchInsightFromOrganizationLocationInsightTypeInsightName(
-    organizationLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(
-      organizationLocationInsightTypeInsightName
-    ).insight;
+  matchInsightFromOrganizationLocationInsightTypeInsightName(organizationLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.organizationLocationInsightTypeInsightPathTemplate.match(organizationLocationInsightTypeInsightName).insight;
   }
 
   /**
@@ -3293,18 +2943,12 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  organizationLocationRecommenderPath(
-    organization: string,
-    location: string,
-    recommender: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderPathTemplate.render(
-      {
-        organization: organization,
-        location: location,
-        recommender: recommender,
-      }
-    );
+  organizationLocationRecommenderPath(organization:string,location:string,recommender:string) {
+    return this.pathTemplates.organizationLocationRecommenderPathTemplate.render({
+      organization: organization,
+      location: location,
+      recommender: recommender,
+    });
   }
 
   /**
@@ -3314,12 +2958,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender resource.
    * @returns {string} A string representing the organization.
    */
-  matchOrganizationFromOrganizationLocationRecommenderName(
-    organizationLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderPathTemplate.match(
-      organizationLocationRecommenderName
-    ).organization;
+  matchOrganizationFromOrganizationLocationRecommenderName(organizationLocationRecommenderName: string) {
+    return this.pathTemplates.organizationLocationRecommenderPathTemplate.match(organizationLocationRecommenderName).organization;
   }
 
   /**
@@ -3329,12 +2969,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromOrganizationLocationRecommenderName(
-    organizationLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderPathTemplate.match(
-      organizationLocationRecommenderName
-    ).location;
+  matchLocationFromOrganizationLocationRecommenderName(organizationLocationRecommenderName: string) {
+    return this.pathTemplates.organizationLocationRecommenderPathTemplate.match(organizationLocationRecommenderName).location;
   }
 
   /**
@@ -3344,12 +2980,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromOrganizationLocationRecommenderName(
-    organizationLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderPathTemplate.match(
-      organizationLocationRecommenderName
-    ).recommender;
+  matchRecommenderFromOrganizationLocationRecommenderName(organizationLocationRecommenderName: string) {
+    return this.pathTemplates.organizationLocationRecommenderPathTemplate.match(organizationLocationRecommenderName).recommender;
   }
 
   /**
@@ -3360,18 +2992,12 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  organizationLocationRecommenderConfigPath(
-    organization: string,
-    location: string,
-    recommender: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.render(
-      {
-        organization: organization,
-        location: location,
-        recommender: recommender,
-      }
-    );
+  organizationLocationRecommenderConfigPath(organization:string,location:string,recommender:string) {
+    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.render({
+      organization: organization,
+      location: location,
+      recommender: recommender,
+    });
   }
 
   /**
@@ -3381,12 +3007,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_config resource.
    * @returns {string} A string representing the organization.
    */
-  matchOrganizationFromOrganizationLocationRecommenderConfigName(
-    organizationLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.match(
-      organizationLocationRecommenderConfigName
-    ).organization;
+  matchOrganizationFromOrganizationLocationRecommenderConfigName(organizationLocationRecommenderConfigName: string) {
+    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.match(organizationLocationRecommenderConfigName).organization;
   }
 
   /**
@@ -3396,12 +3018,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_config resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromOrganizationLocationRecommenderConfigName(
-    organizationLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.match(
-      organizationLocationRecommenderConfigName
-    ).location;
+  matchLocationFromOrganizationLocationRecommenderConfigName(organizationLocationRecommenderConfigName: string) {
+    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.match(organizationLocationRecommenderConfigName).location;
   }
 
   /**
@@ -3411,12 +3029,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_config resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromOrganizationLocationRecommenderConfigName(
-    organizationLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.match(
-      organizationLocationRecommenderConfigName
-    ).recommender;
+  matchRecommenderFromOrganizationLocationRecommenderConfigName(organizationLocationRecommenderConfigName: string) {
+    return this.pathTemplates.organizationLocationRecommenderConfigPathTemplate.match(organizationLocationRecommenderConfigName).recommender;
   }
 
   /**
@@ -3428,20 +3042,13 @@ export class RecommenderClient {
    * @param {string} recommendation
    * @returns {string} Resource name string.
    */
-  organizationLocationRecommenderRecommendationPath(
-    organization: string,
-    location: string,
-    recommender: string,
-    recommendation: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.render(
-      {
-        organization: organization,
-        location: location,
-        recommender: recommender,
-        recommendation: recommendation,
-      }
-    );
+  organizationLocationRecommenderRecommendationPath(organization:string,location:string,recommender:string,recommendation:string) {
+    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.render({
+      organization: organization,
+      location: location,
+      recommender: recommender,
+      recommendation: recommendation,
+    });
   }
 
   /**
@@ -3451,12 +3058,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_recommendation resource.
    * @returns {string} A string representing the organization.
    */
-  matchOrganizationFromOrganizationLocationRecommenderRecommendationName(
-    organizationLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(
-      organizationLocationRecommenderRecommendationName
-    ).organization;
+  matchOrganizationFromOrganizationLocationRecommenderRecommendationName(organizationLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(organizationLocationRecommenderRecommendationName).organization;
   }
 
   /**
@@ -3466,12 +3069,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_recommendation resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromOrganizationLocationRecommenderRecommendationName(
-    organizationLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(
-      organizationLocationRecommenderRecommendationName
-    ).location;
+  matchLocationFromOrganizationLocationRecommenderRecommendationName(organizationLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(organizationLocationRecommenderRecommendationName).location;
   }
 
   /**
@@ -3481,12 +3080,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromOrganizationLocationRecommenderRecommendationName(
-    organizationLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(
-      organizationLocationRecommenderRecommendationName
-    ).recommender;
+  matchRecommenderFromOrganizationLocationRecommenderRecommendationName(organizationLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(organizationLocationRecommenderRecommendationName).recommender;
   }
 
   /**
@@ -3496,12 +3091,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing organization_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommendation.
    */
-  matchRecommendationFromOrganizationLocationRecommenderRecommendationName(
-    organizationLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(
-      organizationLocationRecommenderRecommendationName
-    ).recommendation;
+  matchRecommendationFromOrganizationLocationRecommenderRecommendationName(organizationLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.organizationLocationRecommenderRecommendationPathTemplate.match(organizationLocationRecommenderRecommendationName).recommendation;
   }
 
   /**
@@ -3512,11 +3103,7 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  projectLocationInsightTypePath(
-    project: string,
-    location: string,
-    insightType: string
-  ) {
+  projectLocationInsightTypePath(project:string,location:string,insightType:string) {
     return this.pathTemplates.projectLocationInsightTypePathTemplate.render({
       project: project,
       location: location,
@@ -3531,12 +3118,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationInsightTypeName(
-    projectLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypePathTemplate.match(
-      projectLocationInsightTypeName
-    ).project;
+  matchProjectFromProjectLocationInsightTypeName(projectLocationInsightTypeName: string) {
+    return this.pathTemplates.projectLocationInsightTypePathTemplate.match(projectLocationInsightTypeName).project;
   }
 
   /**
@@ -3546,12 +3129,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationInsightTypeName(
-    projectLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypePathTemplate.match(
-      projectLocationInsightTypeName
-    ).location;
+  matchLocationFromProjectLocationInsightTypeName(projectLocationInsightTypeName: string) {
+    return this.pathTemplates.projectLocationInsightTypePathTemplate.match(projectLocationInsightTypeName).location;
   }
 
   /**
@@ -3561,12 +3140,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromProjectLocationInsightTypeName(
-    projectLocationInsightTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypePathTemplate.match(
-      projectLocationInsightTypeName
-    ).insight_type;
+  matchInsightTypeFromProjectLocationInsightTypeName(projectLocationInsightTypeName: string) {
+    return this.pathTemplates.projectLocationInsightTypePathTemplate.match(projectLocationInsightTypeName).insight_type;
   }
 
   /**
@@ -3577,18 +3152,12 @@ export class RecommenderClient {
    * @param {string} insight_type
    * @returns {string} Resource name string.
    */
-  projectLocationInsightTypeConfigPath(
-    project: string,
-    location: string,
-    insightType: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        insight_type: insightType,
-      }
-    );
+  projectLocationInsightTypeConfigPath(project:string,location:string,insightType:string) {
+    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.render({
+      project: project,
+      location: location,
+      insight_type: insightType,
+    });
   }
 
   /**
@@ -3598,12 +3167,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_config resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationInsightTypeConfigName(
-    projectLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.match(
-      projectLocationInsightTypeConfigName
-    ).project;
+  matchProjectFromProjectLocationInsightTypeConfigName(projectLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.match(projectLocationInsightTypeConfigName).project;
   }
 
   /**
@@ -3613,12 +3178,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_config resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationInsightTypeConfigName(
-    projectLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.match(
-      projectLocationInsightTypeConfigName
-    ).location;
+  matchLocationFromProjectLocationInsightTypeConfigName(projectLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.match(projectLocationInsightTypeConfigName).location;
   }
 
   /**
@@ -3628,12 +3189,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_config resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromProjectLocationInsightTypeConfigName(
-    projectLocationInsightTypeConfigName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.match(
-      projectLocationInsightTypeConfigName
-    ).insight_type;
+  matchInsightTypeFromProjectLocationInsightTypeConfigName(projectLocationInsightTypeConfigName: string) {
+    return this.pathTemplates.projectLocationInsightTypeConfigPathTemplate.match(projectLocationInsightTypeConfigName).insight_type;
   }
 
   /**
@@ -3645,20 +3202,13 @@ export class RecommenderClient {
    * @param {string} insight
    * @returns {string} Resource name string.
    */
-  projectLocationInsightTypeInsightPath(
-    project: string,
-    location: string,
-    insightType: string,
-    insight: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        insight_type: insightType,
-        insight: insight,
-      }
-    );
+  projectLocationInsightTypeInsightPath(project:string,location:string,insightType:string,insight:string) {
+    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.render({
+      project: project,
+      location: location,
+      insight_type: insightType,
+      insight: insight,
+    });
   }
 
   /**
@@ -3668,12 +3218,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_insight resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationInsightTypeInsightName(
-    projectLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(
-      projectLocationInsightTypeInsightName
-    ).project;
+  matchProjectFromProjectLocationInsightTypeInsightName(projectLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(projectLocationInsightTypeInsightName).project;
   }
 
   /**
@@ -3683,12 +3229,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_insight resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationInsightTypeInsightName(
-    projectLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(
-      projectLocationInsightTypeInsightName
-    ).location;
+  matchLocationFromProjectLocationInsightTypeInsightName(projectLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(projectLocationInsightTypeInsightName).location;
   }
 
   /**
@@ -3698,12 +3240,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_insight resource.
    * @returns {string} A string representing the insight_type.
    */
-  matchInsightTypeFromProjectLocationInsightTypeInsightName(
-    projectLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(
-      projectLocationInsightTypeInsightName
-    ).insight_type;
+  matchInsightTypeFromProjectLocationInsightTypeInsightName(projectLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(projectLocationInsightTypeInsightName).insight_type;
   }
 
   /**
@@ -3713,12 +3251,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_insight_type_insight resource.
    * @returns {string} A string representing the insight.
    */
-  matchInsightFromProjectLocationInsightTypeInsightName(
-    projectLocationInsightTypeInsightName: string
-  ) {
-    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(
-      projectLocationInsightTypeInsightName
-    ).insight;
+  matchInsightFromProjectLocationInsightTypeInsightName(projectLocationInsightTypeInsightName: string) {
+    return this.pathTemplates.projectLocationInsightTypeInsightPathTemplate.match(projectLocationInsightTypeInsightName).insight;
   }
 
   /**
@@ -3729,11 +3263,7 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  projectLocationRecommenderPath(
-    project: string,
-    location: string,
-    recommender: string
-  ) {
+  projectLocationRecommenderPath(project:string,location:string,recommender:string) {
     return this.pathTemplates.projectLocationRecommenderPathTemplate.render({
       project: project,
       location: location,
@@ -3748,12 +3278,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationRecommenderName(
-    projectLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderPathTemplate.match(
-      projectLocationRecommenderName
-    ).project;
+  matchProjectFromProjectLocationRecommenderName(projectLocationRecommenderName: string) {
+    return this.pathTemplates.projectLocationRecommenderPathTemplate.match(projectLocationRecommenderName).project;
   }
 
   /**
@@ -3763,12 +3289,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationRecommenderName(
-    projectLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderPathTemplate.match(
-      projectLocationRecommenderName
-    ).location;
+  matchLocationFromProjectLocationRecommenderName(projectLocationRecommenderName: string) {
+    return this.pathTemplates.projectLocationRecommenderPathTemplate.match(projectLocationRecommenderName).location;
   }
 
   /**
@@ -3778,12 +3300,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromProjectLocationRecommenderName(
-    projectLocationRecommenderName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderPathTemplate.match(
-      projectLocationRecommenderName
-    ).recommender;
+  matchRecommenderFromProjectLocationRecommenderName(projectLocationRecommenderName: string) {
+    return this.pathTemplates.projectLocationRecommenderPathTemplate.match(projectLocationRecommenderName).recommender;
   }
 
   /**
@@ -3794,18 +3312,12 @@ export class RecommenderClient {
    * @param {string} recommender
    * @returns {string} Resource name string.
    */
-  projectLocationRecommenderConfigPath(
-    project: string,
-    location: string,
-    recommender: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        recommender: recommender,
-      }
-    );
+  projectLocationRecommenderConfigPath(project:string,location:string,recommender:string) {
+    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.render({
+      project: project,
+      location: location,
+      recommender: recommender,
+    });
   }
 
   /**
@@ -3815,12 +3327,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_config resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationRecommenderConfigName(
-    projectLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.match(
-      projectLocationRecommenderConfigName
-    ).project;
+  matchProjectFromProjectLocationRecommenderConfigName(projectLocationRecommenderConfigName: string) {
+    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.match(projectLocationRecommenderConfigName).project;
   }
 
   /**
@@ -3830,12 +3338,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_config resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationRecommenderConfigName(
-    projectLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.match(
-      projectLocationRecommenderConfigName
-    ).location;
+  matchLocationFromProjectLocationRecommenderConfigName(projectLocationRecommenderConfigName: string) {
+    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.match(projectLocationRecommenderConfigName).location;
   }
 
   /**
@@ -3845,12 +3349,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_config resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromProjectLocationRecommenderConfigName(
-    projectLocationRecommenderConfigName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.match(
-      projectLocationRecommenderConfigName
-    ).recommender;
+  matchRecommenderFromProjectLocationRecommenderConfigName(projectLocationRecommenderConfigName: string) {
+    return this.pathTemplates.projectLocationRecommenderConfigPathTemplate.match(projectLocationRecommenderConfigName).recommender;
   }
 
   /**
@@ -3862,20 +3362,13 @@ export class RecommenderClient {
    * @param {string} recommendation
    * @returns {string} Resource name string.
    */
-  projectLocationRecommenderRecommendationPath(
-    project: string,
-    location: string,
-    recommender: string,
-    recommendation: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        recommender: recommender,
-        recommendation: recommendation,
-      }
-    );
+  projectLocationRecommenderRecommendationPath(project:string,location:string,recommender:string,recommendation:string) {
+    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.render({
+      project: project,
+      location: location,
+      recommender: recommender,
+      recommendation: recommendation,
+    });
   }
 
   /**
@@ -3885,12 +3378,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_recommendation resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationRecommenderRecommendationName(
-    projectLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(
-      projectLocationRecommenderRecommendationName
-    ).project;
+  matchProjectFromProjectLocationRecommenderRecommendationName(projectLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(projectLocationRecommenderRecommendationName).project;
   }
 
   /**
@@ -3900,12 +3389,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_recommendation resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationRecommenderRecommendationName(
-    projectLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(
-      projectLocationRecommenderRecommendationName
-    ).location;
+  matchLocationFromProjectLocationRecommenderRecommendationName(projectLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(projectLocationRecommenderRecommendationName).location;
   }
 
   /**
@@ -3915,12 +3400,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommender.
    */
-  matchRecommenderFromProjectLocationRecommenderRecommendationName(
-    projectLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(
-      projectLocationRecommenderRecommendationName
-    ).recommender;
+  matchRecommenderFromProjectLocationRecommenderRecommendationName(projectLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(projectLocationRecommenderRecommendationName).recommender;
   }
 
   /**
@@ -3930,12 +3411,8 @@ export class RecommenderClient {
    *   A fully-qualified path representing project_location_recommender_recommendation resource.
    * @returns {string} A string representing the recommendation.
    */
-  matchRecommendationFromProjectLocationRecommenderRecommendationName(
-    projectLocationRecommenderRecommendationName: string
-  ) {
-    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(
-      projectLocationRecommenderRecommendationName
-    ).recommendation;
+  matchRecommendationFromProjectLocationRecommenderRecommendationName(projectLocationRecommenderRecommendationName: string) {
+    return this.pathTemplates.projectLocationRecommenderRecommendationPathTemplate.match(projectLocationRecommenderRecommendationName).recommendation;
   }
 
   /**
@@ -3947,6 +3424,7 @@ export class RecommenderClient {
   close(): Promise<void> {
     if (this.recommenderStub && !this._terminated) {
       return this.recommenderStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

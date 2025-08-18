@@ -20,6 +20,11 @@
                 "getRepository"
               ]
             },
+            "GetHook": {
+              "methods": [
+                "getHook"
+              ]
+            },
             "GetIamPolicyRepo": {
               "methods": [
                 "getIamPolicyRepo"
@@ -33,6 +38,36 @@
             "TestIamPermissionsRepo": {
               "methods": [
                 "testIamPermissionsRepo"
+              ]
+            },
+            "GetBranchRule": {
+              "methods": [
+                "getBranchRule"
+              ]
+            },
+            "GetPullRequest": {
+              "methods": [
+                "getPullRequest"
+              ]
+            },
+            "FetchBlob": {
+              "methods": [
+                "fetchBlob"
+              ]
+            },
+            "GetIssue": {
+              "methods": [
+                "getIssue"
+              ]
+            },
+            "GetPullRequestComment": {
+              "methods": [
+                "getPullRequestComment"
+              ]
+            },
+            "GetIssueComment": {
+              "methods": [
+                "getIssueComment"
               ]
             },
             "CreateInstance": {
@@ -50,9 +85,139 @@
                 "createRepository"
               ]
             },
+            "UpdateRepository": {
+              "methods": [
+                "updateRepository"
+              ]
+            },
             "DeleteRepository": {
               "methods": [
                 "deleteRepository"
+              ]
+            },
+            "CreateHook": {
+              "methods": [
+                "createHook"
+              ]
+            },
+            "UpdateHook": {
+              "methods": [
+                "updateHook"
+              ]
+            },
+            "DeleteHook": {
+              "methods": [
+                "deleteHook"
+              ]
+            },
+            "CreateBranchRule": {
+              "methods": [
+                "createBranchRule"
+              ]
+            },
+            "UpdateBranchRule": {
+              "methods": [
+                "updateBranchRule"
+              ]
+            },
+            "DeleteBranchRule": {
+              "methods": [
+                "deleteBranchRule"
+              ]
+            },
+            "CreatePullRequest": {
+              "methods": [
+                "createPullRequest"
+              ]
+            },
+            "UpdatePullRequest": {
+              "methods": [
+                "updatePullRequest"
+              ]
+            },
+            "MergePullRequest": {
+              "methods": [
+                "mergePullRequest"
+              ]
+            },
+            "OpenPullRequest": {
+              "methods": [
+                "openPullRequest"
+              ]
+            },
+            "ClosePullRequest": {
+              "methods": [
+                "closePullRequest"
+              ]
+            },
+            "CreateIssue": {
+              "methods": [
+                "createIssue"
+              ]
+            },
+            "UpdateIssue": {
+              "methods": [
+                "updateIssue"
+              ]
+            },
+            "DeleteIssue": {
+              "methods": [
+                "deleteIssue"
+              ]
+            },
+            "OpenIssue": {
+              "methods": [
+                "openIssue"
+              ]
+            },
+            "CloseIssue": {
+              "methods": [
+                "closeIssue"
+              ]
+            },
+            "CreatePullRequestComment": {
+              "methods": [
+                "createPullRequestComment"
+              ]
+            },
+            "UpdatePullRequestComment": {
+              "methods": [
+                "updatePullRequestComment"
+              ]
+            },
+            "DeletePullRequestComment": {
+              "methods": [
+                "deletePullRequestComment"
+              ]
+            },
+            "BatchCreatePullRequestComments": {
+              "methods": [
+                "batchCreatePullRequestComments"
+              ]
+            },
+            "ResolvePullRequestComments": {
+              "methods": [
+                "resolvePullRequestComments"
+              ]
+            },
+            "UnresolvePullRequestComments": {
+              "methods": [
+                "unresolvePullRequestComments"
+              ]
+            },
+            "CreateIssueComment": {
+              "methods": [
+                "createIssueComment"
+              ]
+            },
+            "UpdateIssueComment": {
+              "methods": [
+                "updateIssueComment"
+              ]
+            },
+            "DeleteIssueComment": {
+              "methods": [
+                "deleteIssueComment"
               ]
             },
             "ListInstances": {
@@ -67,6 +232,62 @@
                 "listRepositories",
                 "listRepositoriesStream",
                 "listRepositoriesAsync"
+              ]
+            },
+            "ListHooks": {
+              "methods": [
+                "listHooks",
+                "listHooksStream",
+                "listHooksAsync"
+              ]
+            },
+            "ListBranchRules": {
+              "methods": [
+                "listBranchRules",
+                "listBranchRulesStream",
+                "listBranchRulesAsync"
+              ]
+            },
+            "ListPullRequests": {
+              "methods": [
+                "listPullRequests",
+                "listPullRequestsStream",
+                "listPullRequestsAsync"
+              ]
+            },
+            "ListPullRequestFileDiffs": {
+              "methods": [
+                "listPullRequestFileDiffs",
+                "listPullRequestFileDiffsStream",
+                "listPullRequestFileDiffsAsync"
+              ]
+            },
+            "FetchTree": {
+              "methods": [
+                "fetchTree",
+                "fetchTreeStream",
+                "fetchTreeAsync"
+              ]
+            },
+            "ListIssues": {
+              "methods": [
+                "listIssues",
+                "listIssuesStream",
+                "listIssuesAsync"
+              ]
+            },
+            "ListPullRequestComments": {
+              "methods": [
+                "listPullRequestComments",
+                "listPullRequestCommentsStream",
+                "listPullRequestCommentsAsync"
+              ]
+            },
+            "ListIssueComments": {
+              "methods": [
+                "listIssueComments",
+                "listIssueCommentsStream",
+                "listIssueCommentsAsync"
               ]
             }
           }
@@ -84,6 +305,11 @@
                 "getRepository"
               ]
             },
+            "GetHook": {
+              "methods": [
+                "getHook"
+              ]
+            },
             "GetIamPolicyRepo": {
               "methods": [
                 "getIamPolicyRepo"
@@ -97,6 +323,36 @@
             "TestIamPermissionsRepo": {
               "methods": [
                 "testIamPermissionsRepo"
+              ]
+            },
+            "GetBranchRule": {
+              "methods": [
+                "getBranchRule"
+              ]
+            },
+            "GetPullRequest": {
+              "methods": [
+                "getPullRequest"
+              ]
+            },
+            "FetchBlob": {
+              "methods": [
+                "fetchBlob"
+              ]
+            },
+            "GetIssue": {
+              "methods": [
+                "getIssue"
+              ]
+            },
+            "GetPullRequestComment": {
+              "methods": [
+                "getPullRequestComment"
+              ]
+            },
+            "GetIssueComment": {
+              "methods": [
+                "getIssueComment"
               ]
             },
             "CreateInstance": {
@@ -114,9 +370,139 @@
                 "createRepository"
               ]
             },
+            "UpdateRepository": {
+              "methods": [
+                "updateRepository"
+              ]
+            },
             "DeleteRepository": {
               "methods": [
                 "deleteRepository"
+              ]
+            },
+            "CreateHook": {
+              "methods": [
+                "createHook"
+              ]
+            },
+            "UpdateHook": {
+              "methods": [
+                "updateHook"
+              ]
+            },
+            "DeleteHook": {
+              "methods": [
+                "deleteHook"
+              ]
+            },
+            "CreateBranchRule": {
+              "methods": [
+                "createBranchRule"
+              ]
+            },
+            "UpdateBranchRule": {
+              "methods": [
+                "updateBranchRule"
+              ]
+            },
+            "DeleteBranchRule": {
+              "methods": [
+                "deleteBranchRule"
+              ]
+            },
+            "CreatePullRequest": {
+              "methods": [
+                "createPullRequest"
+              ]
+            },
+            "UpdatePullRequest": {
+              "methods": [
+                "updatePullRequest"
+              ]
+            },
+            "MergePullRequest": {
+              "methods": [
+                "mergePullRequest"
+              ]
+            },
+            "OpenPullRequest": {
+              "methods": [
+                "openPullRequest"
+              ]
+            },
+            "ClosePullRequest": {
+              "methods": [
+                "closePullRequest"
+              ]
+            },
+            "CreateIssue": {
+              "methods": [
+                "createIssue"
+              ]
+            },
+            "UpdateIssue": {
+              "methods": [
+                "updateIssue"
+              ]
+            },
+            "DeleteIssue": {
+              "methods": [
+                "deleteIssue"
+              ]
+            },
+            "OpenIssue": {
+              "methods": [
+                "openIssue"
+              ]
+            },
+            "CloseIssue": {
+              "methods": [
+                "closeIssue"
+              ]
+            },
+            "CreatePullRequestComment": {
+              "methods": [
+                "createPullRequestComment"
+              ]
+            },
+            "UpdatePullRequestComment": {
+              "methods": [
+                "updatePullRequestComment"
+              ]
+            },
+            "DeletePullRequestComment": {
+              "methods": [
+                "deletePullRequestComment"
+              ]
+            },
+            "BatchCreatePullRequestComments": {
+              "methods": [
+                "batchCreatePullRequestComments"
+              ]
+            },
+            "ResolvePullRequestComments": {
+              "methods": [
+                "resolvePullRequestComments"
+              ]
+            },
+            "UnresolvePullRequestComments": {
+              "methods": [
+                "unresolvePullRequestComments"
+              ]
+            },
+            "CreateIssueComment": {
+              "methods": [
+                "createIssueComment"
+              ]
+            },
+            "UpdateIssueComment": {
+              "methods": [
+                "updateIssueComment"
+              ]
+            },
+            "DeleteIssueComment": {
+              "methods": [
+                "deleteIssueComment"
               ]
             },
             "ListInstances": {
@@ -131,6 +517,62 @@
                 "listRepositories",
                 "listRepositoriesStream",
                 "listRepositoriesAsync"
+              ]
+            },
+            "ListHooks": {
+              "methods": [
+                "listHooks",
+                "listHooksStream",
+                "listHooksAsync"
+              ]
+            },
+            "ListBranchRules": {
+              "methods": [
+                "listBranchRules",
+                "listBranchRulesStream",
+                "listBranchRulesAsync"
+              ]
+            },
+            "ListPullRequests": {
+              "methods": [
+                "listPullRequests",
+                "listPullRequestsStream",
+                "listPullRequestsAsync"
+              ]
+            },
+            "ListPullRequestFileDiffs": {
+              "methods": [
+                "listPullRequestFileDiffs",
+                "listPullRequestFileDiffsStream",
+                "listPullRequestFileDiffsAsync"
+              ]
+            },
+            "FetchTree": {
+              "methods": [
+                "fetchTree",
+                "fetchTreeStream",
+                "fetchTreeAsync"
+              ]
+            },
+            "ListIssues": {
+              "methods": [
+                "listIssues",
+                "listIssuesStream",
+                "listIssuesAsync"
+              ]
+            },
+            "ListPullRequestComments": {
+              "methods": [
+                "listPullRequestComments",
+                "listPullRequestCommentsStream",
+                "listPullRequestCommentsAsync"
+              ]
+            },
+            "ListIssueComments": {
+              "methods": [
+                "listIssueComments",
+                "listIssueCommentsStream",
+                "listIssueCommentsAsync"
               ]
             }
           }

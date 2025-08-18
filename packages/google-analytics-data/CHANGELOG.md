@@ -1,5 +1,85 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/data-v5.1.0...data-v5.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6417](https://github.com/googleapis/google-cloud-node/issues/6417)) ([0d6d584](https://github.com/googleapis/google-cloud-node/commit/0d6d584a0c5c8f9f96daf3ede46f9440758e0f35))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google-auth-library to v10 ([#6409](https://github.com/googleapis/google-cloud-node/issues/6409)) ([152edb5](https://github.com/googleapis/google-cloud-node/commit/152edb50d2db399560d5014f9b61797603b5a4b1))
+* **deps:** Update dependency google-gax to v5 ([#6414](https://github.com/googleapis/google-cloud-node/issues/6414)) ([dca6154](https://github.com/googleapis/google-cloud-node/commit/dca61547fedb1e712389ffd6dce00ec4395865ed))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/data-v5.0.0...data-v5.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.12.1...data-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics, update templates to gax 5  ([54a73fe](https://github.com/googleapis/google-cloud-node/commit/54a73fe74eab0675c006f24d5f1e4574c44d829b))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.12.1](https://github.com/googleapis/google-cloud-node/compare/data-v4.12.0...data-v4.12.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6011](https://github.com/googleapis/google-cloud-node/issues/6011)) ([ee865ff](https://github.com/googleapis/google-cloud-node/commit/ee865ff34a696fbd657e4cfb6cc4be2f6651f77a))
+
+## [4.12.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.11.0...data-v4.12.0) (2024-12-18)
+
+
+### Features
+
+* [analytics-data] add the `EmptyFilter` type to the Data API v1alpha ([#5845](https://github.com/googleapis/google-cloud-node/issues/5845)) ([1bcd241](https://github.com/googleapis/google-cloud-node/commit/1bcd2412bd72ce3c3d9b03128c44138964c8a0e6))
+
+## [4.11.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.10.0...data-v4.11.0) (2024-11-21)
+
+
+### Features
+
+* [analytics-data] add `EmptyFilter` type to the Data API v1beta ([#5831](https://github.com/googleapis/google-cloud-node/issues/5831)) ([ced8054](https://github.com/googleapis/google-cloud-node/commit/ced80544ee74321deb881ee42dc5c2db05fbd0a4))
+
+## [4.10.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.9.0...data-v4.10.0) (2024-10-30)
+
+
+### Features
+
+* [analytics-data] add `SamplingLevel` type to Data API v1alpha ([#5759](https://github.com/googleapis/google-cloud-node/issues/5759)) ([96bb1b5](https://github.com/googleapis/google-cloud-node/commit/96bb1b51a7d1481cb16d2d9ca6bc984b3258688d))
+
+## [4.9.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.8.0...data-v4.9.0) (2024-09-24)
+
+
+### Features
+
+* [analytics-data] add `GetPropertyQuotasSnapshot` method to the Data API v1alpha ([#5692](https://github.com/googleapis/google-cloud-node/issues/5692)) ([a143a79](https://github.com/googleapis/google-cloud-node/commit/a143a7926ab91dce75a2db2d831d498d3f3524d8))
+
+## [4.8.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.7.0...data-v4.8.0) (2024-08-09)
+
+
+### Features
+
+* [analytics-data] add the `comparisons` field to the `Metadata` resource ([#5600](https://github.com/googleapis/google-cloud-node/issues/5600)) ([e77b934](https://github.com/googleapis/google-cloud-node/commit/e77b9348a198e3a3e60e71474ac3320273d17f6e))
+
 ## [4.7.0](https://github.com/googleapis/google-cloud-node/compare/data-v4.6.0...data-v4.7.0) (2024-05-21)
 
 

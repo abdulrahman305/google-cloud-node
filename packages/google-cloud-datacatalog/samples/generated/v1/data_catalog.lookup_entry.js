@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ function main() {
    *  * `bigquery.dataset.{PROJECT_ID}.{DATASET_ID}`
    *  * `datacatalog.entry.{PROJECT_ID}.{LOCATION_ID}.{ENTRY_GROUP_ID}.{ENTRY_ID}`
    *  Identifiers (`*_ID`) should comply with the
-   *  Lexical structure in Standard SQL 
+   *  Lexical structure in GoogleSQL 
    *  (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
    */
   // const sqlResource = 'abc123'

@@ -10,7 +10,6 @@
                   "nested": {
                     "v1": {
                       "options": {
-                        "cc_enable_arenas": true,
                         "csharp_namespace": "Google.Cloud.Security.PublicCA.V1",
                         "go_package": "cloud.google.com/go/security/publicca/apiv1/publiccapb;publiccapb",
                         "java_multiple_files": true,
@@ -67,6 +66,95 @@
                                 {
                                   "(google.api.http)": {
                                     "post": "/v1/{parent=projects/*/locations/*}/externalAccountKeys",
+                                    "body": "external_account_key"
+                                  }
+                                },
+                                {
+                                  "(google.api.method_signature)": "parent,external_account_key"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "CreateExternalAccountKeyRequest": {
+                          "fields": {
+                            "parent": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED",
+                                "(google.api.resource_reference).child_type": "publicca.googleapis.com/ExternalAccountKey"
+                              }
+                            },
+                            "externalAccountKey": {
+                              "type": "ExternalAccountKey",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "v1alpha1": {
+                      "options": {
+                        "csharp_namespace": "Google.Cloud.Security.PublicCA.V1Alpha1",
+                        "go_package": "cloud.google.com/go/security/publicca/apiv1alpha1/publiccapb;publiccapb",
+                        "java_multiple_files": true,
+                        "java_outer_classname": "ServiceProto",
+                        "java_package": "com.google.cloud.security.publicca.v1alpha1",
+                        "php_namespace": "Google\\Cloud\\Security\\PublicCA\\V1alpha1",
+                        "ruby_package": "Google::Cloud::Security::PublicCA::V1alpha1"
+                      },
+                      "nested": {
+                        "ExternalAccountKey": {
+                          "options": {
+                            "(google.api.resource).type": "publicca.googleapis.com/ExternalAccountKey",
+                            "(google.api.resource).pattern": "projects/{project}/locations/{location}/externalAccountKeys/{external_account_key}"
+                          },
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "keyId": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "b64MacKey": {
+                              "type": "bytes",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            }
+                          }
+                        },
+                        "PublicCertificateAuthorityService": {
+                          "options": {
+                            "(google.api.default_host)": "publicca.googleapis.com",
+                            "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
+                          },
+                          "methods": {
+                            "CreateExternalAccountKey": {
+                              "requestType": "CreateExternalAccountKeyRequest",
+                              "responseType": "ExternalAccountKey",
+                              "options": {
+                                "(google.api.http).post": "/v1alpha1/{parent=projects/*/locations/*}/externalAccountKeys",
+                                "(google.api.http).body": "external_account_key",
+                                "(google.api.method_signature)": "parent,external_account_key"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "post": "/v1alpha1/{parent=projects/*/locations/*}/externalAccountKeys",
                                     "body": "external_account_key"
                                   }
                                 },
@@ -208,7 +296,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -403,6 +494,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -511,6 +607,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -696,6 +796,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -705,6 +806,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -720,6 +822,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -737,18 +840,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -789,6 +886,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -871,6 +969,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -944,6 +1043,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1023,6 +1123,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1035,6 +1136,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1076,6 +1178,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1092,6 +1195,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1109,6 +1213,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1143,6 +1248,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -1284,6 +1390,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -1357,6 +1464,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -1418,10 +1526,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -1505,6 +1610,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -1524,6 +1630,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -1567,6 +1674,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -1600,6 +1708,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -1626,6 +1735,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -1668,6 +1778,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -1717,6 +1828,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -1789,8 +1901,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -1846,6 +1970,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -1877,6 +2002,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -1890,12 +2016,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -1915,6 +2047,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -1928,7 +2061,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

@@ -5,6 +5,74 @@
   "protoPackage": "google.ai.generativelanguage.v1beta",
   "libraryPackage": "@google-ai/generativelanguage",
   "services": {
+    "CacheService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "CacheServiceClient",
+          "rpcs": {
+            "CreateCachedContent": {
+              "methods": [
+                "createCachedContent"
+              ]
+            },
+            "GetCachedContent": {
+              "methods": [
+                "getCachedContent"
+              ]
+            },
+            "UpdateCachedContent": {
+              "methods": [
+                "updateCachedContent"
+              ]
+            },
+            "DeleteCachedContent": {
+              "methods": [
+                "deleteCachedContent"
+              ]
+            },
+            "ListCachedContents": {
+              "methods": [
+                "listCachedContents",
+                "listCachedContentsStream",
+                "listCachedContentsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "CacheServiceClient",
+          "rpcs": {
+            "CreateCachedContent": {
+              "methods": [
+                "createCachedContent"
+              ]
+            },
+            "GetCachedContent": {
+              "methods": [
+                "getCachedContent"
+              ]
+            },
+            "UpdateCachedContent": {
+              "methods": [
+                "updateCachedContent"
+              ]
+            },
+            "DeleteCachedContent": {
+              "methods": [
+                "deleteCachedContent"
+              ]
+            },
+            "ListCachedContents": {
+              "methods": [
+                "listCachedContents",
+                "listCachedContentsStream",
+                "listCachedContentsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "DiscussService": {
       "clients": {
         "grpc": {
@@ -59,6 +127,11 @@
                 "deleteFile"
               ]
             },
+            "DownloadFile": {
+              "methods": [
+                "downloadFile"
+              ]
+            },
             "ListFiles": {
               "methods": [
                 "listFiles",
@@ -84,6 +157,11 @@
             "DeleteFile": {
               "methods": [
                 "deleteFile"
+              ]
+            },
+            "DownloadFile": {
+              "methods": [
+                "downloadFile"
               ]
             },
             "ListFiles": {
@@ -130,6 +208,11 @@
             "StreamGenerateContent": {
               "methods": [
                 "streamGenerateContent"
+              ]
+            },
+            "BidiGenerateContent": {
+              "methods": [
+                "bidiGenerateContent"
               ]
             }
           }
@@ -330,6 +413,40 @@
                 "listPermissions",
                 "listPermissionsStream",
                 "listPermissionsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "PredictionService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "PredictionServiceClient",
+          "rpcs": {
+            "Predict": {
+              "methods": [
+                "predict"
+              ]
+            },
+            "PredictLongRunning": {
+              "methods": [
+                "predictLongRunning"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "PredictionServiceClient",
+          "rpcs": {
+            "Predict": {
+              "methods": [
+                "predict"
+              ]
+            },
+            "PredictLongRunning": {
+              "methods": [
+                "predictLongRunning"
               ]
             }
           }

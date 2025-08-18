@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ function main(model, content) {
    */
   // const content = {}
   /**
-   *  Optional. Optional task type for which the embeddings will be used. Can
-   *  only be set for `models/embedding-001`.
+   *  Optional. Optional task type for which the embeddings will be used. Not
+   *  supported on earlier models (`models/embedding-001`).
    */
   // const taskType = {}
   /**
@@ -55,8 +55,8 @@ function main(model, content) {
   /**
    *  Optional. Optional reduced dimension for the output embedding. If set,
    *  excessive values in the output embedding are truncated from the end.
-   *  Supported by newer models since 2024, and the earlier model
-   *  (`models/embedding-001`) cannot specify this value.
+   *  Supported by newer models since 2024 only. You cannot set this value if
+   *  using the earlier model (`models/embedding-001`).
    */
   // const outputDimensionality = 1234
 

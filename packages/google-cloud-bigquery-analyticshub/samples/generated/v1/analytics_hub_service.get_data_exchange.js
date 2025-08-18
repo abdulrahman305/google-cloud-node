@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ function main(name) {
    */
   /**
    *  Required. The resource name of the data exchange.
-   *  e.g. `projects/myproject/locations/US/dataExchanges/123`.
+   *  e.g. `projects/myproject/locations/us/dataExchanges/123`.
    */
   // const name = 'abc123'
 

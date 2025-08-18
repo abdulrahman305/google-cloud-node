@@ -18,6 +18,18 @@
   * [Policies.list_applicable_policies](#policies.list_applicable_policies)
   * [Policies.list_policies](#policies.list_policies)
   * [Policies.update_policy](#policies.update_policy)
+  * [Policy_bindings.create_policy_binding](#policy_bindings.create_policy_binding)
+  * [Policy_bindings.delete_policy_binding](#policy_bindings.delete_policy_binding)
+  * [Policy_bindings.get_policy_binding](#policy_bindings.get_policy_binding)
+  * [Policy_bindings.list_policy_bindings](#policy_bindings.list_policy_bindings)
+  * [Policy_bindings.search_target_policy_bindings](#policy_bindings.search_target_policy_bindings)
+  * [Policy_bindings.update_policy_binding](#policy_bindings.update_policy_binding)
+  * [Principal_access_boundary_policies.create_principal_access_boundary_policy](#principal_access_boundary_policies.create_principal_access_boundary_policy)
+  * [Principal_access_boundary_policies.delete_principal_access_boundary_policy](#principal_access_boundary_policies.delete_principal_access_boundary_policy)
+  * [Principal_access_boundary_policies.get_principal_access_boundary_policy](#principal_access_boundary_policies.get_principal_access_boundary_policy)
+  * [Principal_access_boundary_policies.list_principal_access_boundary_policies](#principal_access_boundary_policies.list_principal_access_boundary_policies)
+  * [Principal_access_boundary_policies.search_principal_access_boundary_policy_bindings](#principal_access_boundary_policies.search_principal_access_boundary_policy_bindings)
+  * [Principal_access_boundary_policies.update_principal_access_boundary_policy](#principal_access_boundary_policies.update_principal_access_boundary_policy)
   * [Quickstart](#quickstart)
 
 ## Before you begin
@@ -137,22 +149,64 @@ __Usage:__
 
 
 
-### Quickstart
+### Policy_bindings.create_policy_binding
 
-View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-iam/samples/quickstart.js).
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-iam/samples/generated/v3/policy_bindings.create_policy_binding.js).
 
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-iam/samples/quickstart.js,samples/README.md)
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-iam/samples/generated/v3/policy_bindings.create_policy_binding.js,samples/README.md)
 
 __Usage:__
 
 
-`node packages/google-iam/samples/quickstart.js`
+`node packages/google-iam/samples/generated/v3/policy_bindings.create_policy_binding.js`
+
+
+-----
 
 
 
 
+### Policy_bindings.delete_policy_binding
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-iam/samples/generated/v3/policy_bindings.delete_policy_binding.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-iam/samples/generated/v3/policy_bindings.delete_policy_binding.js,samples/README.md)
+
+__Usage:__
 
 
-[shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
-[shell_link]: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=samples/README.md
-[product-docs]: cloud.google.com/iam/
+`node packages/google-iam/samples/generated/v3/policy_bindings.delete_policy_binding.js`
+
+
+-----
+
+
+
+
+### Policy_bindings.get_policy_binding
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-iam/samples/generated/v3/policy_bindings.get_policy_binding.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-iam/samples/generated/v3/policy_bindings.get_policy_binding.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-iam/samples/generated/v3/policy_bindings.get_policy_binding.js`
+
+
+-----
+
+
+
+
+### Policy_bindings.list_policy_bindings
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-iam/samples/generated/v3/policy_bindings.list_policy_bindings.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-iam/samples/generated/v3/policy_bindings.list_policy_bindings.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-iam/samples/generated/v3/po

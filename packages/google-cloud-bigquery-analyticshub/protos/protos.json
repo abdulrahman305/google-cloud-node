@@ -13,12 +13,12 @@
                         "csharp_namespace": "Google.Cloud.BigQuery.AnalyticsHub.V1",
                         "go_package": "cloud.google.com/go/bigquery/analyticshub/apiv1/analyticshubpb;analyticshubpb",
                         "java_multiple_files": true,
-                        "java_outer_classname": "AnalyticsHubProto",
+                        "java_outer_classname": "PubsubProto",
                         "java_package": "com.google.cloud.bigquery.analyticshub.v1",
                         "php_namespace": "Google\\Cloud\\BigQuery\\AnalyticsHub\\V1",
                         "ruby_package": "Google::Cloud::Bigquery::AnalyticsHub::V1",
-                        "(google.api.resource_definition).type": "bigquery.googleapis.com/Table",
-                        "(google.api.resource_definition).pattern": "projects/{project}/datasets/{dataset}/tables/{table}"
+                        "(google.api.resource_definition).type": "cloudcommerceconsumerprocurement.googleapis.com/Order",
+                        "(google.api.resource_definition).pattern": "projects/{project}/orders/{order}"
                       },
                       "nested": {
                         "AnalyticsHubService": {
@@ -493,10 +493,36 @@
                             }
                           }
                         },
+                        "DiscoveryType": {
+                          "values": {
+                            "DISCOVERY_TYPE_UNSPECIFIED": 0,
+                            "DISCOVERY_TYPE_PRIVATE": 1,
+                            "DISCOVERY_TYPE_PUBLIC": 2
+                          }
+                        },
+                        "SharedResourceType": {
+                          "values": {
+                            "SHARED_RESOURCE_TYPE_UNSPECIFIED": 0,
+                            "BIGQUERY_DATASET": 1,
+                            "PUBSUB_TOPIC": 2
+                          }
+                        },
                         "DataExchange": {
                           "options": {
                             "(google.api.resource).type": "analyticshub.googleapis.com/DataExchange",
                             "(google.api.resource).pattern": "projects/{project}/locations/{location}/dataExchanges/{data_exchange}"
+                          },
+                          "oneofs": {
+                            "_discoveryType": {
+                              "oneof": [
+                                "discoveryType"
+                              ]
+                            },
+                            "_logLinkedDatasetQueryUserEmail": {
+                              "oneof": [
+                                "logLinkedDatasetQueryUserEmail"
+                              ]
+                            }
                           },
                           "fields": {
                             "name": {
@@ -553,6 +579,22 @@
                               "id": 8,
                               "options": {
                                 "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "discoveryType": {
+                              "type": "DiscoveryType",
+                              "id": 9,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
+                            },
+                            "logLinkedDatasetQueryUserEmail": {
+                              "type": "bool",
+                              "id": 10,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
                               }
                             }
                           }
@@ -708,6 +750,17 @@
                             }
                           }
                         },
+                        "DestinationPubSubSubscription": {
+                          "fields": {
+                            "pubsubSubscription": {
+                              "type": "PubSubSubscription",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        },
                         "Listing": {
                           "options": {
                             "(google.api.resource).type": "analyticshub.googleapis.com/Listing",
@@ -716,17 +769,39 @@
                           "oneofs": {
                             "source": {
                               "oneof": [
-                                "bigqueryDataset"
+                                "bigqueryDataset",
+                                "pubsubTopic"
+                              ]
+                            },
+                            "_discoveryType": {
+                              "oneof": [
+                                "discoveryType"
+                              ]
+                            },
+                            "_commercialInfo": {
+                              "oneof": [
+                                "commercialInfo"
+                              ]
+                            },
+                            "_logLinkedDatasetQueryUserEmail": {
+                              "oneof": [
+                                "logLinkedDatasetQueryUserEmail"
+                              ]
+                            },
+                            "_allowOnlyMetadataSharing": {
+                              "oneof": [
+                                "allowOnlyMetadataSharing"
                               ]
                             }
                           },
                           "fields": {
                             "bigqueryDataset": {
                               "type": "BigQueryDatasetSource",
-                              "id": 6,
-                              "options": {
-                                "(google.api.field_behavior)": "REQUIRED"
-                              }
+                              "id": 6
+                            },
+                            "pubsubTopic": {
+                              "type": "PubSubTopicSource",
+                              "id": 16
                             },
                             "name": {
                               "type": "string",
@@ -812,6 +887,45 @@
                               "options": {
                                 "(google.api.field_behavior)": "OPTIONAL"
                               }
+                            },
+                            "discoveryType": {
+                              "type": "DiscoveryType",
+                              "id": 14,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
+                            },
+                            "resourceType": {
+                              "type": "SharedResourceType",
+                              "id": 15,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "commercialInfo": {
+                              "type": "CommercialInfo",
+                              "id": 17,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY",
+                                "proto3_optional": true
+                              }
+                            },
+                            "logLinkedDatasetQueryUserEmail": {
+                              "type": "bool",
+                              "id": 18,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
+                            },
+                            "allowOnlyMetadataSharing": {
+                              "type": "bool",
+                              "id": 19,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
                             }
                           },
                           "nested": {
@@ -821,6 +935,7 @@
                                   "type": "string",
                                   "id": 1,
                                   "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL",
                                     "(google.api.resource_reference).type": "bigquery.googleapis.com/Dataset"
                                   }
                                 },
@@ -831,6 +946,13 @@
                                   "options": {
                                     "(google.api.field_behavior)": "OPTIONAL"
                                   }
+                                },
+                                "restrictedExportPolicy": {
+                                  "type": "RestrictedExportPolicy",
+                                  "id": 3,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 }
                               },
                               "nested": {
@@ -838,7 +960,8 @@
                                   "oneofs": {
                                     "resource": {
                                       "oneof": [
-                                        "table"
+                                        "table",
+                                        "routine"
                                       ]
                                     }
                                   },
@@ -850,7 +973,60 @@
                                         "(google.api.field_behavior)": "OPTIONAL",
                                         "(google.api.resource_reference).type": "bigquery.googleapis.com/Table"
                                       }
+                                    },
+                                    "routine": {
+                                      "type": "string",
+                                      "id": 2,
+                                      "options": {
+                                        "(google.api.field_behavior)": "OPTIONAL",
+                                        "(google.api.resource_reference).type": "bigquery.googleapis.com/Routine"
+                                      }
                                     }
+                                  }
+                                },
+                                "RestrictedExportPolicy": {
+                                  "fields": {
+                                    "enabled": {
+                                      "type": "google.protobuf.BoolValue",
+                                      "id": 1,
+                                      "options": {
+                                        "(google.api.field_behavior)": "OPTIONAL"
+                                      }
+                                    },
+                                    "restrictDirectTableAccess": {
+                                      "type": "google.protobuf.BoolValue",
+                                      "id": 2,
+                                      "options": {
+                                        "(google.api.field_behavior)": "OPTIONAL"
+                                      }
+                                    },
+                                    "restrictQueryResult": {
+                                      "type": "google.protobuf.BoolValue",
+                                      "id": 3,
+                                      "options": {
+                                        "(google.api.field_behavior)": "OPTIONAL"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "PubSubTopicSource": {
+                              "fields": {
+                                "topic": {
+                                  "type": "string",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "REQUIRED",
+                                    "(google.api.resource_reference).type": "pubsub.googleapis.com/Topic"
+                                  }
+                                },
+                                "dataAffinityRegions": {
+                                  "rule": "repeated",
+                                  "type": "string",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
                                   }
                                 }
                               }
@@ -876,6 +1052,69 @@
                                   "id": 2,
                                   "options": {
                                     "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                }
+                              }
+                            },
+                            "CommercialInfo": {
+                              "oneofs": {
+                                "_cloudMarketplace": {
+                                  "oneof": [
+                                    "cloudMarketplace"
+                                  ]
+                                }
+                              },
+                              "fields": {
+                                "cloudMarketplace": {
+                                  "type": "GoogleCloudMarketplaceInfo",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY",
+                                    "proto3_optional": true
+                                  }
+                                }
+                              },
+                              "nested": {
+                                "GoogleCloudMarketplaceInfo": {
+                                  "oneofs": {
+                                    "_service": {
+                                      "oneof": [
+                                        "service"
+                                      ]
+                                    },
+                                    "_commercialState": {
+                                      "oneof": [
+                                        "commercialState"
+                                      ]
+                                    }
+                                  },
+                                  "fields": {
+                                    "service": {
+                                      "type": "string",
+                                      "id": 1,
+                                      "options": {
+                                        "(google.api.field_behavior)": "OUTPUT_ONLY",
+                                        "(google.api.resource_reference).type": "servicemanagement.googleapis.com/ManagedService",
+                                        "proto3_optional": true
+                                      }
+                                    },
+                                    "commercialState": {
+                                      "type": "CommercialState",
+                                      "id": 3,
+                                      "options": {
+                                        "(google.api.field_behavior)": "OUTPUT_ONLY",
+                                        "proto3_optional": true
+                                      }
+                                    }
+                                  },
+                                  "nested": {
+                                    "CommercialState": {
+                                      "values": {
+                                        "COMMERCIAL_STATE_UNSPECIFIED": 0,
+                                        "ONBOARDING": 1,
+                                        "ACTIVE": 2
+                                      }
+                                    }
                                   }
                                 }
                               }
@@ -922,6 +1161,11 @@
                               "oneof": [
                                 "listing",
                                 "dataExchange"
+                              ]
+                            },
+                            "_logLinkedDatasetQueryUserEmail": {
+                              "oneof": [
+                                "logLinkedDatasetQueryUserEmail"
                               ]
                             }
                           },
@@ -996,6 +1240,43 @@
                               "options": {
                                 "(google.api.field_behavior)": "OUTPUT_ONLY"
                               }
+                            },
+                            "linkedResources": {
+                              "rule": "repeated",
+                              "type": "LinkedResource",
+                              "id": 11,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "resourceType": {
+                              "type": "SharedResourceType",
+                              "id": 12,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "commercialInfo": {
+                              "type": "CommercialInfo",
+                              "id": 13,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "logLinkedDatasetQueryUserEmail": {
+                              "type": "bool",
+                              "id": 14,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY",
+                                "proto3_optional": true
+                              }
+                            },
+                            "destinationDataset": {
+                              "type": "DestinationDataset",
+                              "id": 15,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             }
                           },
                           "nested": {
@@ -1003,7 +1284,8 @@
                               "oneofs": {
                                 "reference": {
                                   "oneof": [
-                                    "linkedDataset"
+                                    "linkedDataset",
+                                    "linkedPubsubSubscription"
                                   ]
                                 }
                               },
@@ -1013,6 +1295,44 @@
                                   "id": 1,
                                   "options": {
                                     "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                },
+                                "linkedPubsubSubscription": {
+                                  "type": "string",
+                                  "id": 3,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                },
+                                "listing": {
+                                  "type": "string",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                }
+                              }
+                            },
+                            "CommercialInfo": {
+                              "fields": {
+                                "cloudMarketplace": {
+                                  "type": "GoogleCloudMarketplaceInfo",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                }
+                              },
+                              "nested": {
+                                "GoogleCloudMarketplaceInfo": {
+                                  "fields": {
+                                    "order": {
+                                      "type": "string",
+                                      "id": 1,
+                                      "options": {
+                                        "(google.api.resource_reference).type": "cloudcommerceconsumerprocurement.googleapis.com/Order"
+                                      }
+                                    }
                                   }
                                 }
                               }
@@ -1258,6 +1578,13 @@
                                 "(google.api.field_behavior)": "REQUIRED",
                                 "(google.api.resource_reference).type": "analyticshub.googleapis.com/Listing"
                               }
+                            },
+                            "deleteCommercial": {
+                              "type": "bool",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             }
                           }
                         },
@@ -1265,14 +1592,25 @@
                           "oneofs": {
                             "destination": {
                               "oneof": [
-                                "destinationDataset"
+                                "destinationDataset",
+                                "destinationPubsubSubscription"
                               ]
                             }
                           },
                           "fields": {
                             "destinationDataset": {
                               "type": "DestinationDataset",
-                              "id": 3
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "INPUT_ONLY"
+                              }
+                            },
+                            "destinationPubsubSubscription": {
+                              "type": "DestinationPubSubSubscription",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "INPUT_ONLY"
+                              }
                             },
                             "name": {
                               "type": "string",
@@ -1308,6 +1646,13 @@
                               "options": {
                                 "(google.api.field_behavior)": "REQUIRED",
                                 "(google.api.resource_reference).type": "locations.googleapis.com/Location"
+                              }
+                            },
+                            "destinationDataset": {
+                              "type": "DestinationDataset",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
                               }
                             },
                             "subscription": {
@@ -1446,6 +1791,13 @@
                                 "(google.api.field_behavior)": "REQUIRED",
                                 "(google.api.resource_reference).type": "analyticshub.googleapis.com/Subscription"
                               }
+                            },
+                            "revokeCommercial": {
+                              "type": "bool",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             }
                           }
                         },
@@ -1513,6 +1865,460 @@
                               "id": 7,
                               "options": {
                                 "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            }
+                          }
+                        },
+                        "PubSubSubscription": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "pushConfig": {
+                              "type": "PushConfig",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "bigqueryConfig": {
+                              "type": "BigQueryConfig",
+                              "id": 18,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "cloudStorageConfig": {
+                              "type": "CloudStorageConfig",
+                              "id": 22,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "ackDeadlineSeconds": {
+                              "type": "int32",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "retainAckedMessages": {
+                              "type": "bool",
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "messageRetentionDuration": {
+                              "type": "google.protobuf.Duration",
+                              "id": 8,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "labels": {
+                              "keyType": "string",
+                              "type": "string",
+                              "id": 9,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "enableMessageOrdering": {
+                              "type": "bool",
+                              "id": 10,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "expirationPolicy": {
+                              "type": "ExpirationPolicy",
+                              "id": 11,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "filter": {
+                              "type": "string",
+                              "id": 12,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "deadLetterPolicy": {
+                              "type": "DeadLetterPolicy",
+                              "id": 13,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "retryPolicy": {
+                              "type": "RetryPolicy",
+                              "id": 14,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "detached": {
+                              "type": "bool",
+                              "id": 15,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "enableExactlyOnceDelivery": {
+                              "type": "bool",
+                              "id": 16,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "messageTransforms": {
+                              "rule": "repeated",
+                              "type": "MessageTransform",
+                              "id": 25,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "RetryPolicy": {
+                          "fields": {
+                            "minimumBackoff": {
+                              "type": "google.protobuf.Duration",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "maximumBackoff": {
+                              "type": "google.protobuf.Duration",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "DeadLetterPolicy": {
+                          "fields": {
+                            "deadLetterTopic": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "maxDeliveryAttempts": {
+                              "type": "int32",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "ExpirationPolicy": {
+                          "fields": {
+                            "ttl": {
+                              "type": "google.protobuf.Duration",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "PushConfig": {
+                          "oneofs": {
+                            "authenticationMethod": {
+                              "oneof": [
+                                "oidcToken"
+                              ]
+                            },
+                            "wrapper": {
+                              "oneof": [
+                                "pubsubWrapper",
+                                "noWrapper"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "oidcToken": {
+                              "type": "OidcToken",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "pubsubWrapper": {
+                              "type": "PubsubWrapper",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "noWrapper": {
+                              "type": "NoWrapper",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "pushEndpoint": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "attributes": {
+                              "keyType": "string",
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "OidcToken": {
+                              "fields": {
+                                "serviceAccountEmail": {
+                                  "type": "string",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
+                                "audience": {
+                                  "type": "string",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                }
+                              }
+                            },
+                            "PubsubWrapper": {
+                              "fields": {}
+                            },
+                            "NoWrapper": {
+                              "fields": {
+                                "writeMetadata": {
+                                  "type": "bool",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "BigQueryConfig": {
+                          "fields": {
+                            "table": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "useTopicSchema": {
+                              "type": "bool",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "writeMetadata": {
+                              "type": "bool",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "dropUnknownFields": {
+                              "type": "bool",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "useTableSchema": {
+                              "type": "bool",
+                              "id": 6,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "serviceAccountEmail": {
+                              "type": "string",
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "CloudStorageConfig": {
+                          "oneofs": {
+                            "outputFormat": {
+                              "oneof": [
+                                "textConfig",
+                                "avroConfig"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "textConfig": {
+                              "type": "TextConfig",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "avroConfig": {
+                              "type": "AvroConfig",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "bucket": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "filenamePrefix": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "filenameSuffix": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "filenameDatetimeFormat": {
+                              "type": "string",
+                              "id": 10,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "maxDuration": {
+                              "type": "google.protobuf.Duration",
+                              "id": 6,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "maxBytes": {
+                              "type": "int64",
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "maxMessages": {
+                              "type": "int64",
+                              "id": 8,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "serviceAccountEmail": {
+                              "type": "string",
+                              "id": 11,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "TextConfig": {
+                              "fields": {}
+                            },
+                            "AvroConfig": {
+                              "fields": {
+                                "writeMetadata": {
+                                  "type": "bool",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
+                                "useTopicSchema": {
+                                  "type": "bool",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "MessageTransform": {
+                          "oneofs": {
+                            "transform": {
+                              "oneof": [
+                                "javascriptUdf"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "javascriptUdf": {
+                              "type": "JavaScriptUDF",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "enabled": {
+                              "type": "bool",
+                              "id": 3,
+                              "options": {
+                                "deprecated": true,
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "disabled": {
+                              "type": "bool",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "JavaScriptUDF": {
+                          "fields": {
+                            "functionName": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "code": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
                               }
                             }
                           }
@@ -1638,6 +2444,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -1746,6 +2557,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -1921,7 +2736,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -2027,6 +2845,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -2036,6 +2855,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -2051,6 +2871,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2068,18 +2889,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -2120,6 +2935,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2202,6 +3018,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -2275,6 +3092,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2354,6 +3172,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2366,6 +3185,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2407,6 +3227,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2423,6 +3244,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2440,6 +3262,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2474,6 +3297,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -2615,6 +3439,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -2688,6 +3513,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -2749,10 +3575,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -2836,6 +3659,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2855,6 +3679,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -2898,6 +3723,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -2931,6 +3757,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2957,6 +3784,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -2999,6 +3827,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -3048,6 +3877,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -3120,8 +3950,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -3177,6 +4019,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -3208,6 +4051,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -3221,12 +4065,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -3246,6 +4096,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -3259,7 +4110,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

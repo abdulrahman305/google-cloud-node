@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -392,6 +392,105 @@
                          * @instance
                          * @param {google.cloud.recaptchaenterprise.v1.IMigrateKeyRequest} request MigrateKeyRequest message or plain object
                          * @returns {Promise<google.cloud.recaptchaenterprise.v1.Key>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|addIpOverride}.
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @typedef AddIpOverrideCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse} [response] AddIpOverrideResponse
+                         */
+    
+                        /**
+                         * Calls AddIpOverride.
+                         * @function addIpOverride
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @instance
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest} request AddIpOverrideRequest message or plain object
+                         * @param {google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService.AddIpOverrideCallback} callback Node-style callback called with the error, if any, and AddIpOverrideResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(RecaptchaEnterpriseService.prototype.addIpOverride = function addIpOverride(request, callback) {
+                            return this.rpcCall(addIpOverride, $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest, $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse, request, callback);
+                        }, "name", { value: "AddIpOverride" });
+    
+                        /**
+                         * Calls AddIpOverride.
+                         * @function addIpOverride
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @instance
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest} request AddIpOverrideRequest message or plain object
+                         * @returns {Promise<google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|removeIpOverride}.
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @typedef RemoveIpOverrideCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse} [response] RemoveIpOverrideResponse
+                         */
+    
+                        /**
+                         * Calls RemoveIpOverride.
+                         * @function removeIpOverride
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @instance
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest} request RemoveIpOverrideRequest message or plain object
+                         * @param {google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService.RemoveIpOverrideCallback} callback Node-style callback called with the error, if any, and RemoveIpOverrideResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(RecaptchaEnterpriseService.prototype.removeIpOverride = function removeIpOverride(request, callback) {
+                            return this.rpcCall(removeIpOverride, $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest, $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse, request, callback);
+                        }, "name", { value: "RemoveIpOverride" });
+    
+                        /**
+                         * Calls RemoveIpOverride.
+                         * @function removeIpOverride
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @instance
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest} request RemoveIpOverrideRequest message or plain object
+                         * @returns {Promise<google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|listIpOverrides}.
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @typedef ListIpOverridesCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse} [response] ListIpOverridesResponse
+                         */
+    
+                        /**
+                         * Calls ListIpOverrides.
+                         * @function listIpOverrides
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @instance
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest} request ListIpOverridesRequest message or plain object
+                         * @param {google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService.ListIpOverridesCallback} callback Node-style callback called with the error, if any, and ListIpOverridesResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(RecaptchaEnterpriseService.prototype.listIpOverrides = function listIpOverrides(request, callback) {
+                            return this.rpcCall(listIpOverrides, $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest, $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse, request, callback);
+                        }, "name", { value: "ListIpOverrides" });
+    
+                        /**
+                         * Calls ListIpOverrides.
+                         * @function listIpOverrides
+                         * @memberof google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService
+                         * @instance
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest} request ListIpOverridesRequest message or plain object
+                         * @returns {Promise<google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse>} Promise
                          * @variation 2
                          */
     
@@ -824,12 +923,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateAssessmentRequest.decode = function decode(reader, length) {
+                        CreateAssessmentRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.CreateAssessmentRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -1078,12 +1179,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransactionEvent.decode = function decode(reader, length) {
+                        TransactionEvent.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TransactionEvent();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.eventType = reader.int32();
@@ -1535,12 +1638,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AnnotateAssessmentRequest.decode = function decode(reader, length) {
+                        AnnotateAssessmentRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2000,12 +2105,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AnnotateAssessmentResponse.decode = function decode(reader, length) {
+                        AnnotateAssessmentResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -2233,12 +2340,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        EndpointVerificationInfo.decode = function decode(reader, length) {
+                        EndpointVerificationInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.emailAddress = reader.string();
@@ -2524,12 +2633,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AccountVerificationInfo.decode = function decode(reader, length) {
+                        AccountVerificationInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.endpoints && message.endpoints.length))
@@ -2908,12 +3019,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PrivatePasswordLeakVerification.decode = function decode(reader, length) {
+                        PrivatePasswordLeakVerification.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.lookupHashPrefix = reader.bytes();
@@ -3124,6 +3237,8 @@
                          * @property {google.cloud.recaptchaenterprise.v1.IFirewallPolicyAssessment|null} [firewallPolicyAssessment] Assessment firewallPolicyAssessment
                          * @property {google.cloud.recaptchaenterprise.v1.IFraudPreventionAssessment|null} [fraudPreventionAssessment] Assessment fraudPreventionAssessment
                          * @property {google.cloud.recaptchaenterprise.v1.IFraudSignals|null} [fraudSignals] Assessment fraudSignals
+                         * @property {google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment|null} [phoneFraudAssessment] Assessment phoneFraudAssessment
+                         * @property {google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment|null} [assessmentEnvironment] Assessment assessmentEnvironment
                          */
     
                         /**
@@ -3222,6 +3337,22 @@
                         Assessment.prototype.fraudSignals = null;
     
                         /**
+                         * Assessment phoneFraudAssessment.
+                         * @member {google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment|null|undefined} phoneFraudAssessment
+                         * @memberof google.cloud.recaptchaenterprise.v1.Assessment
+                         * @instance
+                         */
+                        Assessment.prototype.phoneFraudAssessment = null;
+    
+                        /**
+                         * Assessment assessmentEnvironment.
+                         * @member {google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment|null|undefined} assessmentEnvironment
+                         * @memberof google.cloud.recaptchaenterprise.v1.Assessment
+                         * @instance
+                         */
+                        Assessment.prototype.assessmentEnvironment = null;
+    
+                        /**
                          * Creates a new Assessment instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.recaptchaenterprise.v1.Assessment
@@ -3263,8 +3394,12 @@
                                 $root.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment.encode(message.firewallPolicyAssessment, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                             if (message.fraudPreventionAssessment != null && Object.hasOwnProperty.call(message, "fraudPreventionAssessment"))
                                 $root.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.encode(message.fraudPreventionAssessment, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                            if (message.phoneFraudAssessment != null && Object.hasOwnProperty.call(message, "phoneFraudAssessment"))
+                                $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.encode(message.phoneFraudAssessment, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                             if (message.fraudSignals != null && Object.hasOwnProperty.call(message, "fraudSignals"))
                                 $root.google.cloud.recaptchaenterprise.v1.FraudSignals.encode(message.fraudSignals, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                            if (message.assessmentEnvironment != null && Object.hasOwnProperty.call(message, "assessmentEnvironment"))
+                                $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.encode(message.assessmentEnvironment, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
                             return writer;
                         };
     
@@ -3292,12 +3427,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Assessment.decode = function decode(reader, length) {
+                        Assessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.Assessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3337,6 +3474,14 @@
                                     }
                                 case 13: {
                                         message.fraudSignals = $root.google.cloud.recaptchaenterprise.v1.FraudSignals.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 12: {
+                                        message.phoneFraudAssessment = $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 14: {
+                                        message.assessmentEnvironment = $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -3422,6 +3567,16 @@
                                 if (error)
                                     return "fraudSignals." + error;
                             }
+                            if (message.phoneFraudAssessment != null && message.hasOwnProperty("phoneFraudAssessment")) {
+                                var error = $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.verify(message.phoneFraudAssessment);
+                                if (error)
+                                    return "phoneFraudAssessment." + error;
+                            }
+                            if (message.assessmentEnvironment != null && message.hasOwnProperty("assessmentEnvironment")) {
+                                var error = $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.verify(message.assessmentEnvironment);
+                                if (error)
+                                    return "assessmentEnvironment." + error;
+                            }
                             return null;
                         };
     
@@ -3484,6 +3639,16 @@
                                     throw TypeError(".google.cloud.recaptchaenterprise.v1.Assessment.fraudSignals: object expected");
                                 message.fraudSignals = $root.google.cloud.recaptchaenterprise.v1.FraudSignals.fromObject(object.fraudSignals);
                             }
+                            if (object.phoneFraudAssessment != null) {
+                                if (typeof object.phoneFraudAssessment !== "object")
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.Assessment.phoneFraudAssessment: object expected");
+                                message.phoneFraudAssessment = $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.fromObject(object.phoneFraudAssessment);
+                            }
+                            if (object.assessmentEnvironment != null) {
+                                if (typeof object.assessmentEnvironment !== "object")
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.Assessment.assessmentEnvironment: object expected");
+                                message.assessmentEnvironment = $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.fromObject(object.assessmentEnvironment);
+                            }
                             return message;
                         };
     
@@ -3510,7 +3675,9 @@
                                 object.privatePasswordLeakVerification = null;
                                 object.firewallPolicyAssessment = null;
                                 object.fraudPreventionAssessment = null;
+                                object.phoneFraudAssessment = null;
                                 object.fraudSignals = null;
+                                object.assessmentEnvironment = null;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -3530,8 +3697,12 @@
                                 object.firewallPolicyAssessment = $root.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment.toObject(message.firewallPolicyAssessment, options);
                             if (message.fraudPreventionAssessment != null && message.hasOwnProperty("fraudPreventionAssessment"))
                                 object.fraudPreventionAssessment = $root.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.toObject(message.fraudPreventionAssessment, options);
+                            if (message.phoneFraudAssessment != null && message.hasOwnProperty("phoneFraudAssessment"))
+                                object.phoneFraudAssessment = $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.toObject(message.phoneFraudAssessment, options);
                             if (message.fraudSignals != null && message.hasOwnProperty("fraudSignals"))
                                 object.fraudSignals = $root.google.cloud.recaptchaenterprise.v1.FraudSignals.toObject(message.fraudSignals, options);
+                            if (message.assessmentEnvironment != null && message.hasOwnProperty("assessmentEnvironment"))
+                                object.assessmentEnvironment = $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.toObject(message.assessmentEnvironment, options);
                             return object;
                         };
     
@@ -3580,6 +3751,7 @@
                          * @property {string|null} [requestedUri] Event requestedUri
                          * @property {boolean|null} [wafTokenAssessment] Event wafTokenAssessment
                          * @property {string|null} [ja3] Event ja3
+                         * @property {string|null} [ja4] Event ja4
                          * @property {Array.<string>|null} [headers] Event headers
                          * @property {boolean|null} [firewallPolicyEvaluation] Event firewallPolicyEvaluation
                          * @property {google.cloud.recaptchaenterprise.v1.ITransactionData|null} [transactionData] Event transactionData
@@ -3684,6 +3856,14 @@
                         Event.prototype.ja3 = "";
     
                         /**
+                         * Event ja4.
+                         * @member {string} ja4
+                         * @memberof google.cloud.recaptchaenterprise.v1.Event
+                         * @instance
+                         */
+                        Event.prototype.ja4 = "";
+    
+                        /**
                          * Event headers.
                          * @member {Array.<string>} headers
                          * @memberof google.cloud.recaptchaenterprise.v1.Event
@@ -3778,6 +3958,8 @@
                                 $root.google.cloud.recaptchaenterprise.v1.UserInfo.encode(message.userInfo, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                             if (message.fraudPrevention != null && Object.hasOwnProperty.call(message, "fraudPrevention"))
                                 writer.uint32(/* id 17, wireType 0 =*/136).int32(message.fraudPrevention);
+                            if (message.ja4 != null && Object.hasOwnProperty.call(message, "ja4"))
+                                writer.uint32(/* id 18, wireType 2 =*/146).string(message.ja4);
                             return writer;
                         };
     
@@ -3805,12 +3987,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Event.decode = function decode(reader, length) {
+                        Event.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.Event();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.token = reader.string();
@@ -3850,6 +4034,10 @@
                                     }
                                 case 10: {
                                         message.ja3 = reader.string();
+                                        break;
+                                    }
+                                case 18: {
+                                        message.ja4 = reader.string();
                                         break;
                                     }
                                 case 11: {
@@ -3939,6 +4127,9 @@
                             if (message.ja3 != null && message.hasOwnProperty("ja3"))
                                 if (!$util.isString(message.ja3))
                                     return "ja3: string expected";
+                            if (message.ja4 != null && message.hasOwnProperty("ja4"))
+                                if (!$util.isString(message.ja4))
+                                    return "ja4: string expected";
                             if (message.headers != null && message.hasOwnProperty("headers")) {
                                 if (!Array.isArray(message.headers))
                                     return "headers: array expected";
@@ -4006,6 +4197,8 @@
                                 message.wafTokenAssessment = Boolean(object.wafTokenAssessment);
                             if (object.ja3 != null)
                                 message.ja3 = String(object.ja3);
+                            if (object.ja4 != null)
+                                message.ja4 = String(object.ja4);
                             if (object.headers) {
                                 if (!Array.isArray(object.headers))
                                     throw TypeError(".google.cloud.recaptchaenterprise.v1.Event.headers: array expected");
@@ -4084,6 +4277,7 @@
                                 object.express = false;
                                 object.userInfo = null;
                                 object.fraudPrevention = options.enums === String ? "FRAUD_PREVENTION_UNSPECIFIED" : 0;
+                                object.ja4 = "";
                             }
                             if (message.token != null && message.hasOwnProperty("token"))
                                 object.token = message.token;
@@ -4118,6 +4312,8 @@
                                 object.userInfo = $root.google.cloud.recaptchaenterprise.v1.UserInfo.toObject(message.userInfo, options);
                             if (message.fraudPrevention != null && message.hasOwnProperty("fraudPrevention"))
                                 object.fraudPrevention = options.enums === String ? $root.google.cloud.recaptchaenterprise.v1.Event.FraudPrevention[message.fraudPrevention] === undefined ? message.fraudPrevention : $root.google.cloud.recaptchaenterprise.v1.Event.FraudPrevention[message.fraudPrevention] : message.fraudPrevention;
+                            if (message.ja4 != null && message.hasOwnProperty("ja4"))
+                                object.ja4 = message.ja4;
                             return object;
                         };
     
@@ -4311,12 +4507,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * TransactionData _transactionId.
-                         * @member {"transactionId"|undefined} _transactionId
-                         * @memberof google.cloud.recaptchaenterprise.v1.TransactionData
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransactionData.prototype, "_transactionId", {
                             get: $util.oneOfGetter($oneOfFields = ["transactionId"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -4401,12 +4592,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransactionData.decode = function decode(reader, length) {
+                        TransactionData.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TransactionData();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 11: {
                                         message.transactionId = reader.string();
@@ -4868,12 +5061,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Address.decode = function decode(reader, length) {
+                            Address.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TransactionData.Address();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.recipient = reader.string();
@@ -5202,12 +5397,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            User.decode = function decode(reader, length) {
+                            User.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TransactionData.User();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 6: {
                                             message.accountId = reader.string();
@@ -5513,12 +5710,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Item.decode = function decode(reader, length) {
+                            Item.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TransactionData.Item();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -5800,12 +5999,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GatewayInfo.decode = function decode(reader, length) {
+                            GatewayInfo.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TransactionData.GatewayInfo();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -6067,12 +6268,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UserInfo.decode = function decode(reader, length) {
+                        UserInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.UserInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.createAccountTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -6356,12 +6559,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UserId.decode = function decode(reader, length) {
+                        UserId.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.UserId();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.email = reader.string();
@@ -6523,6 +6728,7 @@
                          * @property {number|null} [score] RiskAnalysis score
                          * @property {Array.<google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason>|null} [reasons] RiskAnalysis reasons
                          * @property {Array.<string>|null} [extendedVerdictReasons] RiskAnalysis extendedVerdictReasons
+                         * @property {google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge|null} [challenge] RiskAnalysis challenge
                          */
     
                         /**
@@ -6567,6 +6773,14 @@
                         RiskAnalysis.prototype.extendedVerdictReasons = $util.emptyArray;
     
                         /**
+                         * RiskAnalysis challenge.
+                         * @member {google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge} challenge
+                         * @memberof google.cloud.recaptchaenterprise.v1.RiskAnalysis
+                         * @instance
+                         */
+                        RiskAnalysis.prototype.challenge = 0;
+    
+                        /**
                          * Creates a new RiskAnalysis instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.recaptchaenterprise.v1.RiskAnalysis
@@ -6601,6 +6815,8 @@
                             if (message.extendedVerdictReasons != null && message.extendedVerdictReasons.length)
                                 for (var i = 0; i < message.extendedVerdictReasons.length; ++i)
                                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.extendedVerdictReasons[i]);
+                            if (message.challenge != null && Object.hasOwnProperty.call(message, "challenge"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.challenge);
                             return writer;
                         };
     
@@ -6628,12 +6844,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RiskAnalysis.decode = function decode(reader, length) {
+                        RiskAnalysis.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RiskAnalysis();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.score = reader.float();
@@ -6654,6 +6872,10 @@
                                         if (!(message.extendedVerdictReasons && message.extendedVerdictReasons.length))
                                             message.extendedVerdictReasons = [];
                                         message.extendedVerdictReasons.push(reader.string());
+                                        break;
+                                    }
+                                case 4: {
+                                        message.challenge = reader.int32();
                                         break;
                                     }
                                 default:
@@ -6719,6 +6941,16 @@
                                     if (!$util.isString(message.extendedVerdictReasons[i]))
                                         return "extendedVerdictReasons: string[] expected";
                             }
+                            if (message.challenge != null && message.hasOwnProperty("challenge"))
+                                switch (message.challenge) {
+                                default:
+                                    return "challenge: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                    break;
+                                }
                             return null;
                         };
     
@@ -6788,6 +7020,30 @@
                                 for (var i = 0; i < object.extendedVerdictReasons.length; ++i)
                                     message.extendedVerdictReasons[i] = String(object.extendedVerdictReasons[i]);
                             }
+                            switch (object.challenge) {
+                            default:
+                                if (typeof object.challenge === "number") {
+                                    message.challenge = object.challenge;
+                                    break;
+                                }
+                                break;
+                            case "CHALLENGE_UNSPECIFIED":
+                            case 0:
+                                message.challenge = 0;
+                                break;
+                            case "NOCAPTCHA":
+                            case 1:
+                                message.challenge = 1;
+                                break;
+                            case "PASSED":
+                            case 2:
+                                message.challenge = 2;
+                                break;
+                            case "FAILED":
+                            case 3:
+                                message.challenge = 3;
+                                break;
+                            }
                             return message;
                         };
     
@@ -6808,8 +7064,10 @@
                                 object.reasons = [];
                                 object.extendedVerdictReasons = [];
                             }
-                            if (options.defaults)
+                            if (options.defaults) {
                                 object.score = 0;
+                                object.challenge = options.enums === String ? "CHALLENGE_UNSPECIFIED" : 0;
+                            }
                             if (message.score != null && message.hasOwnProperty("score"))
                                 object.score = options.json && !isFinite(message.score) ? String(message.score) : message.score;
                             if (message.reasons && message.reasons.length) {
@@ -6822,6 +7080,8 @@
                                 for (var j = 0; j < message.extendedVerdictReasons.length; ++j)
                                     object.extendedVerdictReasons[j] = message.extendedVerdictReasons[j];
                             }
+                            if (message.challenge != null && message.hasOwnProperty("challenge"))
+                                object.challenge = options.enums === String ? $root.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge[message.challenge] === undefined ? message.challenge : $root.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge[message.challenge] : message.challenge;
                             return object;
                         };
     
@@ -6874,6 +7134,24 @@
                             values[valuesById[5] = "LOW_CONFIDENCE_SCORE"] = 5;
                             values[valuesById[6] = "SUSPECTED_CARDING"] = 6;
                             values[valuesById[7] = "SUSPECTED_CHARGEBACK"] = 7;
+                            return values;
+                        })();
+    
+                        /**
+                         * Challenge enum.
+                         * @name google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge
+                         * @enum {number}
+                         * @property {number} CHALLENGE_UNSPECIFIED=0 CHALLENGE_UNSPECIFIED value
+                         * @property {number} NOCAPTCHA=1 NOCAPTCHA value
+                         * @property {number} PASSED=2 PASSED value
+                         * @property {number} FAILED=3 FAILED value
+                         */
+                        RiskAnalysis.Challenge = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "CHALLENGE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "NOCAPTCHA"] = 1;
+                            values[valuesById[2] = "PASSED"] = 2;
+                            values[valuesById[3] = "FAILED"] = 3;
                             return values;
                         })();
     
@@ -7031,12 +7309,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TokenProperties.decode = function decode(reader, length) {
+                        TokenProperties.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TokenProperties();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.valid = reader.bool();
@@ -7413,12 +7693,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FraudPreventionAssessment.decode = function decode(reader, length) {
+                        FraudPreventionAssessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.transactionRisk = reader.float();
@@ -7665,12 +7947,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            StolenInstrumentVerdict.decode = function decode(reader, length) {
+                            StolenInstrumentVerdict.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.risk = reader.float();
@@ -7868,12 +8152,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CardTestingVerdict.decode = function decode(reader, length) {
+                            CardTestingVerdict.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.risk = reader.float();
@@ -8071,12 +8357,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            BehavioralTrustVerdict.decode = function decode(reader, length) {
+                            BehavioralTrustVerdict.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.trust = reader.float();
@@ -8288,12 +8576,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FraudSignals.decode = function decode(reader, length) {
+                        FraudSignals.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudSignals();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.userSignals = $root.google.cloud.recaptchaenterprise.v1.FraudSignals.UserSignals.decode(reader, reader.uint32());
@@ -8522,12 +8812,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            UserSignals.decode = function decode(reader, length) {
+                            UserSignals.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudSignals.UserSignals();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.activeDaysLowerBound = reader.int32();
@@ -8743,12 +9035,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CardSignals.decode = function decode(reader, length) {
+                            CardSignals.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FraudSignals.CardSignals();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.cardLabels && message.cardLabels.length))
@@ -8930,6 +9224,502 @@
                         return FraudSignals;
                     })();
     
+                    v1.SmsTollFraudVerdict = (function() {
+    
+                        /**
+                         * Properties of a SmsTollFraudVerdict.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface ISmsTollFraudVerdict
+                         * @property {number|null} [risk] SmsTollFraudVerdict risk
+                         * @property {Array.<google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason>|null} [reasons] SmsTollFraudVerdict reasons
+                         */
+    
+                        /**
+                         * Constructs a new SmsTollFraudVerdict.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents a SmsTollFraudVerdict.
+                         * @implements ISmsTollFraudVerdict
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict=} [properties] Properties to set
+                         */
+                        function SmsTollFraudVerdict(properties) {
+                            this.reasons = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * SmsTollFraudVerdict risk.
+                         * @member {number} risk
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @instance
+                         */
+                        SmsTollFraudVerdict.prototype.risk = 0;
+    
+                        /**
+                         * SmsTollFraudVerdict reasons.
+                         * @member {Array.<google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason>} reasons
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @instance
+                         */
+                        SmsTollFraudVerdict.prototype.reasons = $util.emptyArray;
+    
+                        /**
+                         * Creates a new SmsTollFraudVerdict instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict} SmsTollFraudVerdict instance
+                         */
+                        SmsTollFraudVerdict.create = function create(properties) {
+                            return new SmsTollFraudVerdict(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified SmsTollFraudVerdict message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict} message SmsTollFraudVerdict message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SmsTollFraudVerdict.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.risk != null && Object.hasOwnProperty.call(message, "risk"))
+                                writer.uint32(/* id 1, wireType 5 =*/13).float(message.risk);
+                            if (message.reasons != null && message.reasons.length) {
+                                writer.uint32(/* id 2, wireType 2 =*/18).fork();
+                                for (var i = 0; i < message.reasons.length; ++i)
+                                    writer.int32(message.reasons[i]);
+                                writer.ldelim();
+                            }
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified SmsTollFraudVerdict message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict} message SmsTollFraudVerdict message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SmsTollFraudVerdict.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a SmsTollFraudVerdict message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict} SmsTollFraudVerdict
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SmsTollFraudVerdict.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.risk = reader.float();
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.reasons && message.reasons.length))
+                                            message.reasons = [];
+                                        if ((tag & 7) === 2) {
+                                            var end2 = reader.uint32() + reader.pos;
+                                            while (reader.pos < end2)
+                                                message.reasons.push(reader.int32());
+                                        } else
+                                            message.reasons.push(reader.int32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a SmsTollFraudVerdict message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict} SmsTollFraudVerdict
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SmsTollFraudVerdict.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a SmsTollFraudVerdict message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        SmsTollFraudVerdict.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.risk != null && message.hasOwnProperty("risk"))
+                                if (typeof message.risk !== "number")
+                                    return "risk: number expected";
+                            if (message.reasons != null && message.hasOwnProperty("reasons")) {
+                                if (!Array.isArray(message.reasons))
+                                    return "reasons: array expected";
+                                for (var i = 0; i < message.reasons.length; ++i)
+                                    switch (message.reasons[i]) {
+                                    default:
+                                        return "reasons: enum value[] expected";
+                                    case 0:
+                                    case 1:
+                                        break;
+                                    }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a SmsTollFraudVerdict message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict} SmsTollFraudVerdict
+                         */
+                        SmsTollFraudVerdict.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict();
+                            if (object.risk != null)
+                                message.risk = Number(object.risk);
+                            if (object.reasons) {
+                                if (!Array.isArray(object.reasons))
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.reasons: array expected");
+                                message.reasons = [];
+                                for (var i = 0; i < object.reasons.length; ++i)
+                                    switch (object.reasons[i]) {
+                                    default:
+                                        if (typeof object.reasons[i] === "number") {
+                                            message.reasons[i] = object.reasons[i];
+                                            break;
+                                        }
+                                    case "SMS_TOLL_FRAUD_REASON_UNSPECIFIED":
+                                    case 0:
+                                        message.reasons[i] = 0;
+                                        break;
+                                    case "INVALID_PHONE_NUMBER":
+                                    case 1:
+                                        message.reasons[i] = 1;
+                                        break;
+                                    }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a SmsTollFraudVerdict message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict} message SmsTollFraudVerdict
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        SmsTollFraudVerdict.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.reasons = [];
+                            if (options.defaults)
+                                object.risk = 0;
+                            if (message.risk != null && message.hasOwnProperty("risk"))
+                                object.risk = options.json && !isFinite(message.risk) ? String(message.risk) : message.risk;
+                            if (message.reasons && message.reasons.length) {
+                                object.reasons = [];
+                                for (var j = 0; j < message.reasons.length; ++j)
+                                    object.reasons[j] = options.enums === String ? $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason[message.reasons[j]] === undefined ? message.reasons[j] : $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason[message.reasons[j]] : message.reasons[j];
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this SmsTollFraudVerdict to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        SmsTollFraudVerdict.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for SmsTollFraudVerdict
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        SmsTollFraudVerdict.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict";
+                        };
+    
+                        /**
+                         * SmsTollFraudReason enum.
+                         * @name google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason
+                         * @enum {number}
+                         * @property {number} SMS_TOLL_FRAUD_REASON_UNSPECIFIED=0 SMS_TOLL_FRAUD_REASON_UNSPECIFIED value
+                         * @property {number} INVALID_PHONE_NUMBER=1 INVALID_PHONE_NUMBER value
+                         */
+                        SmsTollFraudVerdict.SmsTollFraudReason = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "SMS_TOLL_FRAUD_REASON_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "INVALID_PHONE_NUMBER"] = 1;
+                            return values;
+                        })();
+    
+                        return SmsTollFraudVerdict;
+                    })();
+    
+                    v1.PhoneFraudAssessment = (function() {
+    
+                        /**
+                         * Properties of a PhoneFraudAssessment.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IPhoneFraudAssessment
+                         * @property {google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict|null} [smsTollFraudVerdict] PhoneFraudAssessment smsTollFraudVerdict
+                         */
+    
+                        /**
+                         * Constructs a new PhoneFraudAssessment.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents a PhoneFraudAssessment.
+                         * @implements IPhoneFraudAssessment
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment=} [properties] Properties to set
+                         */
+                        function PhoneFraudAssessment(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * PhoneFraudAssessment smsTollFraudVerdict.
+                         * @member {google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict|null|undefined} smsTollFraudVerdict
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @instance
+                         */
+                        PhoneFraudAssessment.prototype.smsTollFraudVerdict = null;
+    
+                        /**
+                         * Creates a new PhoneFraudAssessment instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment} PhoneFraudAssessment instance
+                         */
+                        PhoneFraudAssessment.create = function create(properties) {
+                            return new PhoneFraudAssessment(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified PhoneFraudAssessment message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment} message PhoneFraudAssessment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PhoneFraudAssessment.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.smsTollFraudVerdict != null && Object.hasOwnProperty.call(message, "smsTollFraudVerdict"))
+                                $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.encode(message.smsTollFraudVerdict, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified PhoneFraudAssessment message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment} message PhoneFraudAssessment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PhoneFraudAssessment.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a PhoneFraudAssessment message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment} PhoneFraudAssessment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PhoneFraudAssessment.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.smsTollFraudVerdict = $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a PhoneFraudAssessment message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment} PhoneFraudAssessment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PhoneFraudAssessment.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a PhoneFraudAssessment message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        PhoneFraudAssessment.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.smsTollFraudVerdict != null && message.hasOwnProperty("smsTollFraudVerdict")) {
+                                var error = $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.verify(message.smsTollFraudVerdict);
+                                if (error)
+                                    return "smsTollFraudVerdict." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a PhoneFraudAssessment message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment} PhoneFraudAssessment
+                         */
+                        PhoneFraudAssessment.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment();
+                            if (object.smsTollFraudVerdict != null) {
+                                if (typeof object.smsTollFraudVerdict !== "object")
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.smsTollFraudVerdict: object expected");
+                                message.smsTollFraudVerdict = $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.fromObject(object.smsTollFraudVerdict);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a PhoneFraudAssessment message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment} message PhoneFraudAssessment
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        PhoneFraudAssessment.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.smsTollFraudVerdict = null;
+                            if (message.smsTollFraudVerdict != null && message.hasOwnProperty("smsTollFraudVerdict"))
+                                object.smsTollFraudVerdict = $root.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.toObject(message.smsTollFraudVerdict, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this PhoneFraudAssessment to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        PhoneFraudAssessment.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for PhoneFraudAssessment
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        PhoneFraudAssessment.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment";
+                        };
+    
+                        return PhoneFraudAssessment;
+                    })();
+    
                     v1.AccountDefenderAssessment = (function() {
     
                         /**
@@ -9020,12 +9810,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AccountDefenderAssessment.decode = function decode(reader, length) {
+                        AccountDefenderAssessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.labels && message.labels.length))
@@ -9307,12 +10099,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateKeyRequest.decode = function decode(reader, length) {
+                        CreateKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.CreateKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -9550,12 +10344,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKeysRequest.decode = function decode(reader, length) {
+                        ListKeysRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListKeysRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -9791,12 +10587,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListKeysResponse.decode = function decode(reader, length) {
+                        ListKeysResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListKeysResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.keys && message.keys.length))
@@ -10026,12 +10824,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RetrieveLegacySecretKeyRequest.decode = function decode(reader, length) {
+                        RetrieveLegacySecretKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RetrieveLegacySecretKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.key = reader.string();
@@ -10229,12 +11029,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetKeyRequest.decode = function decode(reader, length) {
+                        GetKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.GetKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10443,12 +11245,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateKeyRequest.decode = function decode(reader, length) {
+                        UpdateKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.UpdateKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.key = $root.google.cloud.recaptchaenterprise.v1.Key.decode(reader, reader.uint32());
@@ -10669,12 +11473,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteKeyRequest.decode = function decode(reader, length) {
+                        DeleteKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.DeleteKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10883,12 +11689,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateFirewallPolicyRequest.decode = function decode(reader, length) {
+                        CreateFirewallPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.CreateFirewallPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11126,12 +11934,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListFirewallPoliciesRequest.decode = function decode(reader, length) {
+                        ListFirewallPoliciesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListFirewallPoliciesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11367,12 +12177,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListFirewallPoliciesResponse.decode = function decode(reader, length) {
+                        ListFirewallPoliciesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListFirewallPoliciesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.firewallPolicies && message.firewallPolicies.length))
@@ -11602,12 +12414,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetFirewallPolicyRequest.decode = function decode(reader, length) {
+                        GetFirewallPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.GetFirewallPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -11816,12 +12630,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateFirewallPolicyRequest.decode = function decode(reader, length) {
+                        UpdateFirewallPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.UpdateFirewallPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.firewallPolicy = $root.google.cloud.recaptchaenterprise.v1.FirewallPolicy.decode(reader, reader.uint32());
@@ -12042,12 +12858,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteFirewallPolicyRequest.decode = function decode(reader, length) {
+                        DeleteFirewallPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.DeleteFirewallPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12258,12 +13076,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ReorderFirewallPoliciesRequest.decode = function decode(reader, length) {
+                        ReorderFirewallPoliciesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ReorderFirewallPoliciesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -12477,12 +13297,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ReorderFirewallPoliciesResponse.decode = function decode(reader, length) {
+                        ReorderFirewallPoliciesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ReorderFirewallPoliciesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -12674,12 +13496,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MigrateKeyRequest.decode = function decode(reader, length) {
+                        MigrateKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.MigrateKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12890,12 +13714,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetMetricsRequest.decode = function decode(reader, length) {
+                        GetMetricsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.GetMetricsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -13130,12 +13956,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Metrics.decode = function decode(reader, length) {
+                        Metrics.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.Metrics();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 4: {
                                         message.name = reader.string();
@@ -13415,12 +14243,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RetrieveLegacySecretKeyResponse.decode = function decode(reader, length) {
+                        RetrieveLegacySecretKeyResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RetrieveLegacySecretKeyResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.legacySecretKey = reader.string();
@@ -13544,6 +14374,7 @@
                          * @property {google.cloud.recaptchaenterprise.v1.IWebKeySettings|null} [webSettings] Key webSettings
                          * @property {google.cloud.recaptchaenterprise.v1.IAndroidKeySettings|null} [androidSettings] Key androidSettings
                          * @property {google.cloud.recaptchaenterprise.v1.IIOSKeySettings|null} [iosSettings] Key iosSettings
+                         * @property {google.cloud.recaptchaenterprise.v1.IExpressKeySettings|null} [expressSettings] Key expressSettings
                          * @property {Object.<string,string>|null} [labels] Key labels
                          * @property {google.protobuf.ITimestamp|null} [createTime] Key createTime
                          * @property {google.cloud.recaptchaenterprise.v1.ITestingOptions|null} [testingOptions] Key testingOptions
@@ -13607,6 +14438,14 @@
                         Key.prototype.iosSettings = null;
     
                         /**
+                         * Key expressSettings.
+                         * @member {google.cloud.recaptchaenterprise.v1.IExpressKeySettings|null|undefined} expressSettings
+                         * @memberof google.cloud.recaptchaenterprise.v1.Key
+                         * @instance
+                         */
+                        Key.prototype.expressSettings = null;
+    
+                        /**
                          * Key labels.
                          * @member {Object.<string,string>} labels
                          * @memberof google.cloud.recaptchaenterprise.v1.Key
@@ -13643,12 +14482,12 @@
     
                         /**
                          * Key platformSettings.
-                         * @member {"webSettings"|"androidSettings"|"iosSettings"|undefined} platformSettings
+                         * @member {"webSettings"|"androidSettings"|"iosSettings"|"expressSettings"|undefined} platformSettings
                          * @memberof google.cloud.recaptchaenterprise.v1.Key
                          * @instance
                          */
                         Object.defineProperty(Key.prototype, "platformSettings", {
-                            get: $util.oneOfGetter($oneOfFields = ["webSettings", "androidSettings", "iosSettings"]),
+                            get: $util.oneOfGetter($oneOfFields = ["webSettings", "androidSettings", "iosSettings", "expressSettings"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
@@ -13695,6 +14534,8 @@
                                 $root.google.cloud.recaptchaenterprise.v1.TestingOptions.encode(message.testingOptions, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                             if (message.wafSettings != null && Object.hasOwnProperty.call(message, "wafSettings"))
                                 $root.google.cloud.recaptchaenterprise.v1.WafSettings.encode(message.wafSettings, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            if (message.expressSettings != null && Object.hasOwnProperty.call(message, "expressSettings"))
+                                $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings.encode(message.expressSettings, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                             return writer;
                         };
     
@@ -13722,12 +14563,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Key.decode = function decode(reader, length) {
+                        Key.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.Key(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -13747,6 +14590,10 @@
                                     }
                                 case 5: {
                                         message.iosSettings = $root.google.cloud.recaptchaenterprise.v1.IOSKeySettings.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 11: {
+                                        message.expressSettings = $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings.decode(reader, reader.uint32());
                                         break;
                                     }
                                 case 6: {
@@ -13854,6 +14701,16 @@
                                         return "iosSettings." + error;
                                 }
                             }
+                            if (message.expressSettings != null && message.hasOwnProperty("expressSettings")) {
+                                if (properties.platformSettings === 1)
+                                    return "platformSettings: multiple values";
+                                properties.platformSettings = 1;
+                                {
+                                    var error = $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings.verify(message.expressSettings);
+                                    if (error)
+                                        return "expressSettings." + error;
+                                }
+                            }
                             if (message.labels != null && message.hasOwnProperty("labels")) {
                                 if (!$util.isObject(message.labels))
                                     return "labels: object expected";
@@ -13910,6 +14767,11 @@
                                 if (typeof object.iosSettings !== "object")
                                     throw TypeError(".google.cloud.recaptchaenterprise.v1.Key.iosSettings: object expected");
                                 message.iosSettings = $root.google.cloud.recaptchaenterprise.v1.IOSKeySettings.fromObject(object.iosSettings);
+                            }
+                            if (object.expressSettings != null) {
+                                if (typeof object.expressSettings !== "object")
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.Key.expressSettings: object expected");
+                                message.expressSettings = $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings.fromObject(object.expressSettings);
                             }
                             if (object.labels) {
                                 if (typeof object.labels !== "object")
@@ -13989,6 +14851,11 @@
                                 object.testingOptions = $root.google.cloud.recaptchaenterprise.v1.TestingOptions.toObject(message.testingOptions, options);
                             if (message.wafSettings != null && message.hasOwnProperty("wafSettings"))
                                 object.wafSettings = $root.google.cloud.recaptchaenterprise.v1.WafSettings.toObject(message.wafSettings, options);
+                            if (message.expressSettings != null && message.hasOwnProperty("expressSettings")) {
+                                object.expressSettings = $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings.toObject(message.expressSettings, options);
+                                if (options.oneofs)
+                                    object.platformSettings = "expressSettings";
+                            }
                             return object;
                         };
     
@@ -14117,12 +14984,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TestingOptions.decode = function decode(reader, length) {
+                        TestingOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.TestingOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.testingScore = reader.float();
@@ -14419,12 +15288,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        WebKeySettings.decode = function decode(reader, length) {
+                        WebKeySettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.WebKeySettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 3: {
                                         message.allowAllDomains = reader.bool();
@@ -14804,12 +15675,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AndroidKeySettings.decode = function decode(reader, length) {
+                        AndroidKeySettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AndroidKeySettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.allowAllPackageNames = reader.bool();
@@ -15071,12 +15944,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        IOSKeySettings.decode = function decode(reader, length) {
+                        IOSKeySettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.IOSKeySettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.allowAllBundleIds = reader.bool();
@@ -15234,6 +16109,183 @@
                         return IOSKeySettings;
                     })();
     
+                    v1.ExpressKeySettings = (function() {
+    
+                        /**
+                         * Properties of an ExpressKeySettings.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IExpressKeySettings
+                         */
+    
+                        /**
+                         * Constructs a new ExpressKeySettings.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents an ExpressKeySettings.
+                         * @implements IExpressKeySettings
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IExpressKeySettings=} [properties] Properties to set
+                         */
+                        function ExpressKeySettings(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Creates a new ExpressKeySettings instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IExpressKeySettings=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.ExpressKeySettings} ExpressKeySettings instance
+                         */
+                        ExpressKeySettings.create = function create(properties) {
+                            return new ExpressKeySettings(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ExpressKeySettings message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ExpressKeySettings.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IExpressKeySettings} message ExpressKeySettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ExpressKeySettings.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ExpressKeySettings message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ExpressKeySettings.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IExpressKeySettings} message ExpressKeySettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ExpressKeySettings.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an ExpressKeySettings message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.ExpressKeySettings} ExpressKeySettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ExpressKeySettings.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an ExpressKeySettings message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.ExpressKeySettings} ExpressKeySettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ExpressKeySettings.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an ExpressKeySettings message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ExpressKeySettings.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an ExpressKeySettings message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.ExpressKeySettings} ExpressKeySettings
+                         */
+                        ExpressKeySettings.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings)
+                                return object;
+                            return new $root.google.cloud.recaptchaenterprise.v1.ExpressKeySettings();
+                        };
+    
+                        /**
+                         * Creates a plain object from an ExpressKeySettings message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.ExpressKeySettings} message ExpressKeySettings
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ExpressKeySettings.toObject = function toObject() {
+                            return {};
+                        };
+    
+                        /**
+                         * Converts this ExpressKeySettings to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ExpressKeySettings.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ExpressKeySettings
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.ExpressKeySettings
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ExpressKeySettings.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.ExpressKeySettings";
+                        };
+    
+                        return ExpressKeySettings;
+                    })();
+    
                     v1.AppleDeveloperId = (function() {
     
                         /**
@@ -15341,12 +16393,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AppleDeveloperId.decode = function decode(reader, length) {
+                        AppleDeveloperId.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AppleDeveloperId();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateKey = reader.string();
@@ -15571,12 +16625,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ScoreDistribution.decode = function decode(reader, length) {
+                        ScoreDistribution.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ScoreDistribution(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (message.scoreBuckets === $util.emptyObject)
@@ -15835,12 +16891,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ScoreMetrics.decode = function decode(reader, length) {
+                        ScoreMetrics.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ScoreMetrics(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.overallMetrics = $root.google.cloud.recaptchaenterprise.v1.ScoreDistribution.decode(reader, reader.uint32());
@@ -16127,12 +17185,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ChallengeMetrics.decode = function decode(reader, length) {
+                        ChallengeMetrics.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ChallengeMetrics();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.pageloadCount = reader.int64();
@@ -16434,12 +17494,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FirewallPolicyAssessment.decode = function decode(reader, length) {
+                        FirewallPolicyAssessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 5: {
                                         message.error = $root.google.rpc.Status.decode(reader, reader.uint32());
@@ -16729,12 +17791,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FirewallAction.decode = function decode(reader, length) {
+                        FirewallAction.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.allow = $root.google.cloud.recaptchaenterprise.v1.FirewallAction.AllowAction.decode(reader, reader.uint32());
@@ -17048,12 +18112,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            AllowAction.decode = function decode(reader, length) {
+                            AllowAction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction.AllowAction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -17223,12 +18289,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            BlockAction.decode = function decode(reader, length) {
+                            BlockAction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction.BlockAction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -17398,12 +18466,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            IncludeRecaptchaScriptAction.decode = function decode(reader, length) {
+                            IncludeRecaptchaScriptAction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction.IncludeRecaptchaScriptAction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -17573,12 +18643,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RedirectAction.decode = function decode(reader, length) {
+                            RedirectAction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction.RedirectAction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -17759,12 +18831,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SubstituteAction.decode = function decode(reader, length) {
+                            SubstituteAction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction.SubstituteAction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.path = reader.string();
@@ -17973,12 +19047,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SetHeaderAction.decode = function decode(reader, length) {
+                            SetHeaderAction.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallAction.SetHeaderAction();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.key = reader.string();
@@ -18238,12 +19314,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FirewallPolicy.decode = function decode(reader, length) {
+                        FirewallPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.FirewallPolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -18532,12 +19610,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListRelatedAccountGroupMembershipsRequest.decode = function decode(reader, length) {
+                        ListRelatedAccountGroupMembershipsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListRelatedAccountGroupMembershipsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -18773,12 +19853,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListRelatedAccountGroupMembershipsResponse.decode = function decode(reader, length) {
+                        ListRelatedAccountGroupMembershipsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListRelatedAccountGroupMembershipsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.relatedAccountGroupMemberships && message.relatedAccountGroupMemberships.length))
@@ -19030,12 +20112,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListRelatedAccountGroupsRequest.decode = function decode(reader, length) {
+                        ListRelatedAccountGroupsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListRelatedAccountGroupsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -19271,12 +20355,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListRelatedAccountGroupsResponse.decode = function decode(reader, length) {
+                        ListRelatedAccountGroupsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListRelatedAccountGroupsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.relatedAccountGroups && message.relatedAccountGroups.length))
@@ -19550,12 +20636,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchRelatedAccountGroupMembershipsRequest.decode = function decode(reader, length) {
+                        SearchRelatedAccountGroupMembershipsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.SearchRelatedAccountGroupMembershipsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.project = reader.string();
@@ -19824,12 +20912,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SearchRelatedAccountGroupMembershipsResponse.decode = function decode(reader, length) {
+                        SearchRelatedAccountGroupMembershipsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.SearchRelatedAccountGroupMembershipsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.relatedAccountGroupMemberships && message.relatedAccountGroupMemberships.length))
@@ -19974,6 +21064,1330 @@
                         return SearchRelatedAccountGroupMembershipsResponse;
                     })();
     
+                    v1.AddIpOverrideRequest = (function() {
+    
+                        /**
+                         * Properties of an AddIpOverrideRequest.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IAddIpOverrideRequest
+                         * @property {string|null} [name] AddIpOverrideRequest name
+                         * @property {google.cloud.recaptchaenterprise.v1.IIpOverrideData|null} [ipOverrideData] AddIpOverrideRequest ipOverrideData
+                         */
+    
+                        /**
+                         * Constructs a new AddIpOverrideRequest.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents an AddIpOverrideRequest.
+                         * @implements IAddIpOverrideRequest
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest=} [properties] Properties to set
+                         */
+                        function AddIpOverrideRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * AddIpOverrideRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @instance
+                         */
+                        AddIpOverrideRequest.prototype.name = "";
+    
+                        /**
+                         * AddIpOverrideRequest ipOverrideData.
+                         * @member {google.cloud.recaptchaenterprise.v1.IIpOverrideData|null|undefined} ipOverrideData
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @instance
+                         */
+                        AddIpOverrideRequest.prototype.ipOverrideData = null;
+    
+                        /**
+                         * Creates a new AddIpOverrideRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest} AddIpOverrideRequest instance
+                         */
+                        AddIpOverrideRequest.create = function create(properties) {
+                            return new AddIpOverrideRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified AddIpOverrideRequest message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest} message AddIpOverrideRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AddIpOverrideRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.ipOverrideData != null && Object.hasOwnProperty.call(message, "ipOverrideData"))
+                                $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.encode(message.ipOverrideData, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified AddIpOverrideRequest message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest} message AddIpOverrideRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AddIpOverrideRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an AddIpOverrideRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest} AddIpOverrideRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AddIpOverrideRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.ipOverrideData = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an AddIpOverrideRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest} AddIpOverrideRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AddIpOverrideRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an AddIpOverrideRequest message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        AddIpOverrideRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.ipOverrideData != null && message.hasOwnProperty("ipOverrideData")) {
+                                var error = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.verify(message.ipOverrideData);
+                                if (error)
+                                    return "ipOverrideData." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an AddIpOverrideRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest} AddIpOverrideRequest
+                         */
+                        AddIpOverrideRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.ipOverrideData != null) {
+                                if (typeof object.ipOverrideData !== "object")
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest.ipOverrideData: object expected");
+                                message.ipOverrideData = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.fromObject(object.ipOverrideData);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an AddIpOverrideRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest} message AddIpOverrideRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        AddIpOverrideRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.ipOverrideData = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.ipOverrideData != null && message.hasOwnProperty("ipOverrideData"))
+                                object.ipOverrideData = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.toObject(message.ipOverrideData, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this AddIpOverrideRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        AddIpOverrideRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for AddIpOverrideRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        AddIpOverrideRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest";
+                        };
+    
+                        return AddIpOverrideRequest;
+                    })();
+    
+                    v1.AddIpOverrideResponse = (function() {
+    
+                        /**
+                         * Properties of an AddIpOverrideResponse.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IAddIpOverrideResponse
+                         */
+    
+                        /**
+                         * Constructs a new AddIpOverrideResponse.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents an AddIpOverrideResponse.
+                         * @implements IAddIpOverrideResponse
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse=} [properties] Properties to set
+                         */
+                        function AddIpOverrideResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Creates a new AddIpOverrideResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse} AddIpOverrideResponse instance
+                         */
+                        AddIpOverrideResponse.create = function create(properties) {
+                            return new AddIpOverrideResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified AddIpOverrideResponse message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse} message AddIpOverrideResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AddIpOverrideResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified AddIpOverrideResponse message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse} message AddIpOverrideResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AddIpOverrideResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an AddIpOverrideResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse} AddIpOverrideResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AddIpOverrideResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an AddIpOverrideResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse} AddIpOverrideResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AddIpOverrideResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an AddIpOverrideResponse message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        AddIpOverrideResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an AddIpOverrideResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse} AddIpOverrideResponse
+                         */
+                        AddIpOverrideResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse)
+                                return object;
+                            return new $root.google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse();
+                        };
+    
+                        /**
+                         * Creates a plain object from an AddIpOverrideResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse} message AddIpOverrideResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        AddIpOverrideResponse.toObject = function toObject() {
+                            return {};
+                        };
+    
+                        /**
+                         * Converts this AddIpOverrideResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        AddIpOverrideResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for AddIpOverrideResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        AddIpOverrideResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse";
+                        };
+    
+                        return AddIpOverrideResponse;
+                    })();
+    
+                    v1.RemoveIpOverrideRequest = (function() {
+    
+                        /**
+                         * Properties of a RemoveIpOverrideRequest.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IRemoveIpOverrideRequest
+                         * @property {string|null} [name] RemoveIpOverrideRequest name
+                         * @property {google.cloud.recaptchaenterprise.v1.IIpOverrideData|null} [ipOverrideData] RemoveIpOverrideRequest ipOverrideData
+                         */
+    
+                        /**
+                         * Constructs a new RemoveIpOverrideRequest.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents a RemoveIpOverrideRequest.
+                         * @implements IRemoveIpOverrideRequest
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest=} [properties] Properties to set
+                         */
+                        function RemoveIpOverrideRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * RemoveIpOverrideRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @instance
+                         */
+                        RemoveIpOverrideRequest.prototype.name = "";
+    
+                        /**
+                         * RemoveIpOverrideRequest ipOverrideData.
+                         * @member {google.cloud.recaptchaenterprise.v1.IIpOverrideData|null|undefined} ipOverrideData
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @instance
+                         */
+                        RemoveIpOverrideRequest.prototype.ipOverrideData = null;
+    
+                        /**
+                         * Creates a new RemoveIpOverrideRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest} RemoveIpOverrideRequest instance
+                         */
+                        RemoveIpOverrideRequest.create = function create(properties) {
+                            return new RemoveIpOverrideRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified RemoveIpOverrideRequest message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest} message RemoveIpOverrideRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RemoveIpOverrideRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.ipOverrideData != null && Object.hasOwnProperty.call(message, "ipOverrideData"))
+                                $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.encode(message.ipOverrideData, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified RemoveIpOverrideRequest message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest} message RemoveIpOverrideRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RemoveIpOverrideRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a RemoveIpOverrideRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest} RemoveIpOverrideRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RemoveIpOverrideRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.ipOverrideData = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a RemoveIpOverrideRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest} RemoveIpOverrideRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RemoveIpOverrideRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a RemoveIpOverrideRequest message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        RemoveIpOverrideRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.ipOverrideData != null && message.hasOwnProperty("ipOverrideData")) {
+                                var error = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.verify(message.ipOverrideData);
+                                if (error)
+                                    return "ipOverrideData." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a RemoveIpOverrideRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest} RemoveIpOverrideRequest
+                         */
+                        RemoveIpOverrideRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.ipOverrideData != null) {
+                                if (typeof object.ipOverrideData !== "object")
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest.ipOverrideData: object expected");
+                                message.ipOverrideData = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.fromObject(object.ipOverrideData);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a RemoveIpOverrideRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest} message RemoveIpOverrideRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        RemoveIpOverrideRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.ipOverrideData = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.ipOverrideData != null && message.hasOwnProperty("ipOverrideData"))
+                                object.ipOverrideData = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.toObject(message.ipOverrideData, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this RemoveIpOverrideRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        RemoveIpOverrideRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for RemoveIpOverrideRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        RemoveIpOverrideRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest";
+                        };
+    
+                        return RemoveIpOverrideRequest;
+                    })();
+    
+                    v1.RemoveIpOverrideResponse = (function() {
+    
+                        /**
+                         * Properties of a RemoveIpOverrideResponse.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IRemoveIpOverrideResponse
+                         */
+    
+                        /**
+                         * Constructs a new RemoveIpOverrideResponse.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents a RemoveIpOverrideResponse.
+                         * @implements IRemoveIpOverrideResponse
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse=} [properties] Properties to set
+                         */
+                        function RemoveIpOverrideResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Creates a new RemoveIpOverrideResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse} RemoveIpOverrideResponse instance
+                         */
+                        RemoveIpOverrideResponse.create = function create(properties) {
+                            return new RemoveIpOverrideResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified RemoveIpOverrideResponse message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse} message RemoveIpOverrideResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RemoveIpOverrideResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified RemoveIpOverrideResponse message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse} message RemoveIpOverrideResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RemoveIpOverrideResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a RemoveIpOverrideResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse} RemoveIpOverrideResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RemoveIpOverrideResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a RemoveIpOverrideResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse} RemoveIpOverrideResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RemoveIpOverrideResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a RemoveIpOverrideResponse message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        RemoveIpOverrideResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a RemoveIpOverrideResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse} RemoveIpOverrideResponse
+                         */
+                        RemoveIpOverrideResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse)
+                                return object;
+                            return new $root.google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse();
+                        };
+    
+                        /**
+                         * Creates a plain object from a RemoveIpOverrideResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse} message RemoveIpOverrideResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        RemoveIpOverrideResponse.toObject = function toObject() {
+                            return {};
+                        };
+    
+                        /**
+                         * Converts this RemoveIpOverrideResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        RemoveIpOverrideResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for RemoveIpOverrideResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        RemoveIpOverrideResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse";
+                        };
+    
+                        return RemoveIpOverrideResponse;
+                    })();
+    
+                    v1.ListIpOverridesRequest = (function() {
+    
+                        /**
+                         * Properties of a ListIpOverridesRequest.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IListIpOverridesRequest
+                         * @property {string|null} [parent] ListIpOverridesRequest parent
+                         * @property {number|null} [pageSize] ListIpOverridesRequest pageSize
+                         * @property {string|null} [pageToken] ListIpOverridesRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListIpOverridesRequest.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents a ListIpOverridesRequest.
+                         * @implements IListIpOverridesRequest
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest=} [properties] Properties to set
+                         */
+                        function ListIpOverridesRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListIpOverridesRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @instance
+                         */
+                        ListIpOverridesRequest.prototype.parent = "";
+    
+                        /**
+                         * ListIpOverridesRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @instance
+                         */
+                        ListIpOverridesRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListIpOverridesRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @instance
+                         */
+                        ListIpOverridesRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ListIpOverridesRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest} ListIpOverridesRequest instance
+                         */
+                        ListIpOverridesRequest.create = function create(properties) {
+                            return new ListIpOverridesRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListIpOverridesRequest message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest} message ListIpOverridesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListIpOverridesRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListIpOverridesRequest message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest} message ListIpOverridesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListIpOverridesRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListIpOverridesRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest} ListIpOverridesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListIpOverridesRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.parent = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.pageSize = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.pageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListIpOverridesRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest} ListIpOverridesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListIpOverridesRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListIpOverridesRequest message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListIpOverridesRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListIpOverridesRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest} ListIpOverridesRequest
+                         */
+                        ListIpOverridesRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListIpOverridesRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest} message ListIpOverridesRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListIpOverridesRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListIpOverridesRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListIpOverridesRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListIpOverridesRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListIpOverridesRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest";
+                        };
+    
+                        return ListIpOverridesRequest;
+                    })();
+    
+                    v1.ListIpOverridesResponse = (function() {
+    
+                        /**
+                         * Properties of a ListIpOverridesResponse.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IListIpOverridesResponse
+                         * @property {Array.<google.cloud.recaptchaenterprise.v1.IIpOverrideData>|null} [ipOverrides] ListIpOverridesResponse ipOverrides
+                         * @property {string|null} [nextPageToken] ListIpOverridesResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListIpOverridesResponse.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents a ListIpOverridesResponse.
+                         * @implements IListIpOverridesResponse
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse=} [properties] Properties to set
+                         */
+                        function ListIpOverridesResponse(properties) {
+                            this.ipOverrides = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListIpOverridesResponse ipOverrides.
+                         * @member {Array.<google.cloud.recaptchaenterprise.v1.IIpOverrideData>} ipOverrides
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @instance
+                         */
+                        ListIpOverridesResponse.prototype.ipOverrides = $util.emptyArray;
+    
+                        /**
+                         * ListIpOverridesResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @instance
+                         */
+                        ListIpOverridesResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListIpOverridesResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse} ListIpOverridesResponse instance
+                         */
+                        ListIpOverridesResponse.create = function create(properties) {
+                            return new ListIpOverridesResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListIpOverridesResponse message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse} message ListIpOverridesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListIpOverridesResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.ipOverrides != null && message.ipOverrides.length)
+                                for (var i = 0; i < message.ipOverrides.length; ++i)
+                                    $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.encode(message.ipOverrides[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListIpOverridesResponse message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse} message ListIpOverridesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListIpOverridesResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListIpOverridesResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse} ListIpOverridesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListIpOverridesResponse.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.ipOverrides && message.ipOverrides.length))
+                                            message.ipOverrides = [];
+                                        message.ipOverrides.push($root.google.cloud.recaptchaenterprise.v1.IpOverrideData.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 2: {
+                                        message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListIpOverridesResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse} ListIpOverridesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListIpOverridesResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListIpOverridesResponse message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListIpOverridesResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.ipOverrides != null && message.hasOwnProperty("ipOverrides")) {
+                                if (!Array.isArray(message.ipOverrides))
+                                    return "ipOverrides: array expected";
+                                for (var i = 0; i < message.ipOverrides.length; ++i) {
+                                    var error = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.verify(message.ipOverrides[i]);
+                                    if (error)
+                                        return "ipOverrides." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListIpOverridesResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse} ListIpOverridesResponse
+                         */
+                        ListIpOverridesResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse();
+                            if (object.ipOverrides) {
+                                if (!Array.isArray(object.ipOverrides))
+                                    throw TypeError(".google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse.ipOverrides: array expected");
+                                message.ipOverrides = [];
+                                for (var i = 0; i < object.ipOverrides.length; ++i) {
+                                    if (typeof object.ipOverrides[i] !== "object")
+                                        throw TypeError(".google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse.ipOverrides: object expected");
+                                    message.ipOverrides[i] = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.fromObject(object.ipOverrides[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListIpOverridesResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse} message ListIpOverridesResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListIpOverridesResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.ipOverrides = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.ipOverrides && message.ipOverrides.length) {
+                                object.ipOverrides = [];
+                                for (var j = 0; j < message.ipOverrides.length; ++j)
+                                    object.ipOverrides[j] = $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.toObject(message.ipOverrides[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListIpOverridesResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListIpOverridesResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ListIpOverridesResponse
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ListIpOverridesResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse";
+                        };
+    
+                        return ListIpOverridesResponse;
+                    })();
+    
                     v1.RelatedAccountGroupMembership = (function() {
     
                         /**
@@ -20081,12 +22495,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RelatedAccountGroupMembership.decode = function decode(reader, length) {
+                        RelatedAccountGroupMembership.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RelatedAccountGroupMembership();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20318,12 +22734,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RelatedAccountGroup.decode = function decode(reader, length) {
+                        RelatedAccountGroup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.RelatedAccountGroup();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20532,12 +22950,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        WafSettings.decode = function decode(reader, length) {
+                        WafSettings.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.WafSettings();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.wafService = reader.int32();
@@ -20590,6 +23010,7 @@
                                 case 1:
                                 case 3:
                                 case 4:
+                                case 5:
                                     break;
                                 }
                             if (message.wafFeature != null && message.hasOwnProperty("wafFeature"))
@@ -20640,6 +23061,10 @@
                             case "CLOUDFLARE":
                             case 4:
                                 message.wafService = 4;
+                                break;
+                            case "AKAMAI":
+                            case 5:
+                                message.wafService = 5;
                                 break;
                             }
                             switch (object.wafFeature) {
@@ -20751,6 +23176,7 @@
                          * @property {number} CA=1 CA value
                          * @property {number} FASTLY=3 FASTLY value
                          * @property {number} CLOUDFLARE=4 CLOUDFLARE value
+                         * @property {number} AKAMAI=5 AKAMAI value
                          */
                         WafSettings.WafService = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
@@ -20758,10 +23184,502 @@
                             values[valuesById[1] = "CA"] = 1;
                             values[valuesById[3] = "FASTLY"] = 3;
                             values[valuesById[4] = "CLOUDFLARE"] = 4;
+                            values[valuesById[5] = "AKAMAI"] = 5;
                             return values;
                         })();
     
                         return WafSettings;
+                    })();
+    
+                    v1.AssessmentEnvironment = (function() {
+    
+                        /**
+                         * Properties of an AssessmentEnvironment.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IAssessmentEnvironment
+                         * @property {string|null} [client] AssessmentEnvironment client
+                         * @property {string|null} [version] AssessmentEnvironment version
+                         */
+    
+                        /**
+                         * Constructs a new AssessmentEnvironment.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents an AssessmentEnvironment.
+                         * @implements IAssessmentEnvironment
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment=} [properties] Properties to set
+                         */
+                        function AssessmentEnvironment(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * AssessmentEnvironment client.
+                         * @member {string} client
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @instance
+                         */
+                        AssessmentEnvironment.prototype.client = "";
+    
+                        /**
+                         * AssessmentEnvironment version.
+                         * @member {string} version
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @instance
+                         */
+                        AssessmentEnvironment.prototype.version = "";
+    
+                        /**
+                         * Creates a new AssessmentEnvironment instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.AssessmentEnvironment} AssessmentEnvironment instance
+                         */
+                        AssessmentEnvironment.create = function create(properties) {
+                            return new AssessmentEnvironment(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified AssessmentEnvironment message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment} message AssessmentEnvironment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AssessmentEnvironment.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.client != null && Object.hasOwnProperty.call(message, "client"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.client);
+                            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.version);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified AssessmentEnvironment message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment} message AssessmentEnvironment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AssessmentEnvironment.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an AssessmentEnvironment message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.AssessmentEnvironment} AssessmentEnvironment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AssessmentEnvironment.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.client = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.version = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an AssessmentEnvironment message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.AssessmentEnvironment} AssessmentEnvironment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AssessmentEnvironment.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an AssessmentEnvironment message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        AssessmentEnvironment.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.client != null && message.hasOwnProperty("client"))
+                                if (!$util.isString(message.client))
+                                    return "client: string expected";
+                            if (message.version != null && message.hasOwnProperty("version"))
+                                if (!$util.isString(message.version))
+                                    return "version: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an AssessmentEnvironment message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.AssessmentEnvironment} AssessmentEnvironment
+                         */
+                        AssessmentEnvironment.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment();
+                            if (object.client != null)
+                                message.client = String(object.client);
+                            if (object.version != null)
+                                message.version = String(object.version);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an AssessmentEnvironment message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.AssessmentEnvironment} message AssessmentEnvironment
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        AssessmentEnvironment.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.client = "";
+                                object.version = "";
+                            }
+                            if (message.client != null && message.hasOwnProperty("client"))
+                                object.client = message.client;
+                            if (message.version != null && message.hasOwnProperty("version"))
+                                object.version = message.version;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this AssessmentEnvironment to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        AssessmentEnvironment.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for AssessmentEnvironment
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.AssessmentEnvironment
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        AssessmentEnvironment.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.AssessmentEnvironment";
+                        };
+    
+                        return AssessmentEnvironment;
+                    })();
+    
+                    v1.IpOverrideData = (function() {
+    
+                        /**
+                         * Properties of an IpOverrideData.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @interface IIpOverrideData
+                         * @property {string|null} [ip] IpOverrideData ip
+                         * @property {google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType|null} [overrideType] IpOverrideData overrideType
+                         */
+    
+                        /**
+                         * Constructs a new IpOverrideData.
+                         * @memberof google.cloud.recaptchaenterprise.v1
+                         * @classdesc Represents an IpOverrideData.
+                         * @implements IIpOverrideData
+                         * @constructor
+                         * @param {google.cloud.recaptchaenterprise.v1.IIpOverrideData=} [properties] Properties to set
+                         */
+                        function IpOverrideData(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * IpOverrideData ip.
+                         * @member {string} ip
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @instance
+                         */
+                        IpOverrideData.prototype.ip = "";
+    
+                        /**
+                         * IpOverrideData overrideType.
+                         * @member {google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType} overrideType
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @instance
+                         */
+                        IpOverrideData.prototype.overrideType = 0;
+    
+                        /**
+                         * Creates a new IpOverrideData instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IIpOverrideData=} [properties] Properties to set
+                         * @returns {google.cloud.recaptchaenterprise.v1.IpOverrideData} IpOverrideData instance
+                         */
+                        IpOverrideData.create = function create(properties) {
+                            return new IpOverrideData(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified IpOverrideData message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.IpOverrideData.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IIpOverrideData} message IpOverrideData message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        IpOverrideData.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.ip != null && Object.hasOwnProperty.call(message, "ip"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.ip);
+                            if (message.overrideType != null && Object.hasOwnProperty.call(message, "overrideType"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.overrideType);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified IpOverrideData message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.IpOverrideData.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IIpOverrideData} message IpOverrideData message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        IpOverrideData.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an IpOverrideData message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.recaptchaenterprise.v1.IpOverrideData} IpOverrideData
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        IpOverrideData.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1.IpOverrideData();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.ip = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.overrideType = reader.int32();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an IpOverrideData message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.recaptchaenterprise.v1.IpOverrideData} IpOverrideData
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        IpOverrideData.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an IpOverrideData message.
+                         * @function verify
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        IpOverrideData.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.ip != null && message.hasOwnProperty("ip"))
+                                if (!$util.isString(message.ip))
+                                    return "ip: string expected";
+                            if (message.overrideType != null && message.hasOwnProperty("overrideType"))
+                                switch (message.overrideType) {
+                                default:
+                                    return "overrideType: enum value expected";
+                                case 0:
+                                case 1:
+                                    break;
+                                }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an IpOverrideData message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.recaptchaenterprise.v1.IpOverrideData} IpOverrideData
+                         */
+                        IpOverrideData.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.recaptchaenterprise.v1.IpOverrideData)
+                                return object;
+                            var message = new $root.google.cloud.recaptchaenterprise.v1.IpOverrideData();
+                            if (object.ip != null)
+                                message.ip = String(object.ip);
+                            switch (object.overrideType) {
+                            default:
+                                if (typeof object.overrideType === "number") {
+                                    message.overrideType = object.overrideType;
+                                    break;
+                                }
+                                break;
+                            case "OVERRIDE_TYPE_UNSPECIFIED":
+                            case 0:
+                                message.overrideType = 0;
+                                break;
+                            case "ALLOW":
+                            case 1:
+                                message.overrideType = 1;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an IpOverrideData message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {google.cloud.recaptchaenterprise.v1.IpOverrideData} message IpOverrideData
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        IpOverrideData.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.ip = "";
+                                object.overrideType = options.enums === String ? "OVERRIDE_TYPE_UNSPECIFIED" : 0;
+                            }
+                            if (message.ip != null && message.hasOwnProperty("ip"))
+                                object.ip = message.ip;
+                            if (message.overrideType != null && message.hasOwnProperty("overrideType"))
+                                object.overrideType = options.enums === String ? $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType[message.overrideType] === undefined ? message.overrideType : $root.google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType[message.overrideType] : message.overrideType;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this IpOverrideData to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        IpOverrideData.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for IpOverrideData
+                         * @function getTypeUrl
+                         * @memberof google.cloud.recaptchaenterprise.v1.IpOverrideData
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        IpOverrideData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.recaptchaenterprise.v1.IpOverrideData";
+                        };
+    
+                        /**
+                         * OverrideType enum.
+                         * @name google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType
+                         * @enum {number}
+                         * @property {number} OVERRIDE_TYPE_UNSPECIFIED=0 OVERRIDE_TYPE_UNSPECIFIED value
+                         * @property {number} ALLOW=1 ALLOW value
+                         */
+                        IpOverrideData.OverrideType = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "OVERRIDE_TYPE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "ALLOW"] = 1;
+                            return values;
+                        })();
+    
+                        return IpOverrideData;
                     })();
     
                     return v1;
@@ -20973,12 +23891,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateAssessmentRequest.decode = function decode(reader, length) {
+                        CreateAssessmentRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.CreateAssessmentRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -21227,12 +24147,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransactionEvent.decode = function decode(reader, length) {
+                        TransactionEvent.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TransactionEvent();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.eventType = reader.int32();
@@ -21673,12 +24595,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AnnotateAssessmentRequest.decode = function decode(reader, length) {
+                        AnnotateAssessmentRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.AnnotateAssessmentRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -22126,12 +25050,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AnnotateAssessmentResponse.decode = function decode(reader, length) {
+                        AnnotateAssessmentResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.AnnotateAssessmentResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 default:
                                     reader.skipType(tag & 7);
@@ -22334,12 +25260,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PasswordLeakVerification.decode = function decode(reader, length) {
+                        PasswordLeakVerification.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.PasswordLeakVerification();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.hashedUserCredentials = reader.bytes();
@@ -22653,12 +25581,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Assessment.decode = function decode(reader, length) {
+                        Assessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.Assessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -23138,12 +26068,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Event.decode = function decode(reader, length) {
+                        Event.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.Event();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.token = reader.string();
@@ -23540,12 +26472,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * TransactionData _transactionId.
-                         * @member {"transactionId"|undefined} _transactionId
-                         * @memberof google.cloud.recaptchaenterprise.v1beta1.TransactionData
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(TransactionData.prototype, "_transactionId", {
                             get: $util.oneOfGetter($oneOfFields = ["transactionId"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -23630,12 +26557,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransactionData.decode = function decode(reader, length) {
+                        TransactionData.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TransactionData();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 11: {
                                         message.transactionId = reader.string();
@@ -24097,12 +27026,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Address.decode = function decode(reader, length) {
+                            Address.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TransactionData.Address();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.recipient = reader.string();
@@ -24431,12 +27362,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            User.decode = function decode(reader, length) {
+                            User.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TransactionData.User();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 6: {
                                             message.accountId = reader.string();
@@ -24742,12 +27675,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Item.decode = function decode(reader, length) {
+                            Item.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TransactionData.Item();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -25029,12 +27964,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            GatewayInfo.decode = function decode(reader, length) {
+                            GatewayInfo.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TransactionData.GatewayInfo();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.name = reader.string();
@@ -25316,12 +28253,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TokenProperties.decode = function decode(reader, length) {
+                        TokenProperties.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.TokenProperties();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.valid = reader.bool();
@@ -25681,12 +28620,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FraudPreventionAssessment.decode = function decode(reader, length) {
+                        FraudPreventionAssessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.FraudPreventionAssessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.transactionRisk = reader.float();
@@ -25933,12 +28874,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            StolenInstrumentVerdict.decode = function decode(reader, length) {
+                            StolenInstrumentVerdict.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.FraudPreventionAssessment.StolenInstrumentVerdict();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.risk = reader.float();
@@ -26136,12 +29079,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            CardTestingVerdict.decode = function decode(reader, length) {
+                            CardTestingVerdict.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.FraudPreventionAssessment.CardTestingVerdict();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.risk = reader.float();
@@ -26339,12 +29284,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            BehavioralTrustVerdict.decode = function decode(reader, length) {
+                            BehavioralTrustVerdict.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.FraudPreventionAssessment.BehavioralTrustVerdict();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.trust = reader.float();
@@ -26550,12 +29497,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        AccountDefenderAssessment.decode = function decode(reader, length) {
+                        AccountDefenderAssessment.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.recaptchaenterprise.v1beta1.AccountDefenderAssessment();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.labels && message.labels.length))
@@ -26857,12 +29806,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -27207,12 +30158,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -27591,12 +30544,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -27823,12 +30778,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -28192,12 +31149,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -28536,6 +31495,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -28637,6 +31597,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -28683,6 +31651,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -28710,12 +31680,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -28761,6 +31733,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -28855,6 +31831,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -28949,6 +31928,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -28978,6 +31959,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -29008,6 +31990,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -29149,12 +32133,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -29416,12 +32402,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -29624,12 +32612,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -29832,12 +32822,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30040,12 +33032,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30313,12 +33307,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30692,12 +33688,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -30900,12 +33898,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -31132,12 +34132,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -31410,12 +34412,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -31764,12 +34768,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldInfo.decode = function decode(reader, length) {
+                FieldInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.FieldInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.format = reader.int32();
@@ -32094,12 +35100,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -32489,12 +35497,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -32719,12 +35729,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -33119,12 +36131,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -33786,12 +36800,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -34271,12 +37287,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -34515,12 +37533,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -34771,12 +37791,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -35116,12 +38138,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -35495,12 +38519,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -36020,12 +39046,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -36291,12 +39319,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -36610,12 +39640,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -36851,12 +39883,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37108,12 +40142,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37416,12 +40452,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37920,12 +40958,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -38540,12 +41580,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -38997,12 +42039,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     if (message[".google.api.fieldInfo"] != null && Object.hasOwnProperty.call(message, ".google.api.fieldInfo"))
@@ -39034,12 +42073,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -39782,12 +42823,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -40078,12 +43121,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -40364,12 +43409,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -40676,12 +43723,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -40867,6 +43916,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -40926,6 +43976,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -40960,6 +44018,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -40987,12 +44047,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -41014,6 +44076,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -41074,6 +44140,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -41110,6 +44179,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -41133,6 +44204,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -41147,6 +44219,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -41323,12 +44397,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -41740,12 +44816,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -42079,12 +45157,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -42355,12 +45435,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -42890,12 +45972,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -43274,12 +46358,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -43564,12 +46650,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -43839,12 +46927,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -44150,12 +47240,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -44418,12 +47510,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -44744,12 +47838,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -44963,12 +48059,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -45151,12 +48249,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -45379,12 +48479,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -45620,12 +48722,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -45881,12 +48985,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

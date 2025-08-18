@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ function main(names) {
   // const parent = 'abc123'
   /**
    *  Required. The names of the versions to delete.
-   *  A maximum of 10000 versions can be deleted in a batch.
+   *  The maximum number of versions deleted per batch is determined by the
+   *  service and is dependent on the available resources in the region.
    */
   // const names = ['abc','def']
   /**

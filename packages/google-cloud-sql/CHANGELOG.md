@@ -1,5 +1,85 @@
 # Changelog
 
+## [0.21.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.20.1...sql-v0.21.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6423](https://github.com/googleapis/google-cloud-node/issues/6423)) ([df9184f](https://github.com/googleapis/google-cloud-node/commit/df9184fe9fb00013ef519f093c4de5fd54ec2ce9))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [0.20.1](https://github.com/googleapis/google-cloud-node/compare/sql-v0.20.0...sql-v0.20.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6188](https://github.com/googleapis/google-cloud-node/issues/6188)) ([a73cdbf](https://github.com/googleapis/google-cloud-node/commit/a73cdbfe33d5ba9952f0c87cb9d5d12ee8753dd2))
+
+## [0.20.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.19.1...sql-v0.20.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [0.19.1](https://github.com/googleapis/google-cloud-node/compare/sql-v0.19.0...sql-v0.19.1) (2025-02-28)
+
+
+### Bug Fixes
+
+* [sql] use `json_name` annotations where needed ([#6054](https://github.com/googleapis/google-cloud-node/issues/6054)) ([cf32c0c](https://github.com/googleapis/google-cloud-node/commit/cf32c0c003923c9d9ed64e0ab90afe6fde23f209))
+
+## [0.19.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.18.0...sql-v0.19.0) (2024-08-29)
+
+
+### Features
+
+* [sql] A new field `max_chargeable_bytes` is added to message `.google.cloud.sql.v1.BackupRun` ([#5631](https://github.com/googleapis/google-cloud-node/issues/5631)) ([a2328d8](https://github.com/googleapis/google-cloud-node/commit/a2328d88189081ce1d3342470d1ffcedfc0c78be))
+
+## [0.18.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.17.0...sql-v0.18.0) (2024-08-19)
+
+
+### Features
+
+* [sql] add Postgres Import/Export config messages ([#5572](https://github.com/googleapis/google-cloud-node/issues/5572)) ([4e3953a](https://github.com/googleapis/google-cloud-node/commit/4e3953ae94bb63568a27ea90f729b428a8c78b50))
+
+## [0.17.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.16.0...sql-v0.17.0) (2024-07-22)
+
+
+### Features
+
+* [sql] add EXTENSIONS_NOT_ENABLED_IN_REPLICA error type ([#5533](https://github.com/googleapis/google-cloud-node/issues/5533)) ([eafdb74](https://github.com/googleapis/google-cloud-node/commit/eafdb749a89fd01f17930e48c03aefc004be0a83))
+
+## [0.16.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.15.0...sql-v0.16.0) (2024-07-10)
+
+
+### Features
+
+* [sql] add Dataplex integration opt-in field ([#5518](https://github.com/googleapis/google-cloud-node/issues/5518)) ([6d8a33d](https://github.com/googleapis/google-cloud-node/commit/6d8a33d6caf2b9dbe4aa043d083cb76e989ed5a3))
+* [sql] add Dataplex integration opt-in field ([#5527](https://github.com/googleapis/google-cloud-node/issues/5527)) ([347ea87](https://github.com/googleapis/google-cloud-node/commit/347ea87f938abbf9abe37df7ffb32625ec142e1a))
+
+## [0.15.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.14.0...sql-v0.15.0) (2024-06-26)
+
+
+### Features
+
+* [sql] A new field `upgradable_database_versions` is added to message `.google.cloud.sql.v1beta4.DatabaseInstance` ([#5478](https://github.com/googleapis/google-cloud-node/issues/5478)) ([e0f0fd2](https://github.com/googleapis/google-cloud-node/commit/e0f0fd24a745bb3b072456aa012c37946f2084a4))
+
 ## [0.14.0](https://github.com/googleapis/google-cloud-node/compare/sql-v0.13.0...sql-v0.14.0) (2024-06-12)
 
 

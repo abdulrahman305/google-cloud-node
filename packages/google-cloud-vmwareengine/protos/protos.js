@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -2672,12 +2672,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPrivateCloudsRequest.decode = function decode(reader, length) {
+                        ListPrivateCloudsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPrivateCloudsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -2950,12 +2952,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPrivateCloudsResponse.decode = function decode(reader, length) {
+                        ListPrivateCloudsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPrivateCloudsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.privateClouds && message.privateClouds.length))
@@ -3212,12 +3216,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetPrivateCloudRequest.decode = function decode(reader, length) {
+                        GetPrivateCloudRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetPrivateCloudRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3459,12 +3465,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreatePrivateCloudRequest.decode = function decode(reader, length) {
+                        CreatePrivateCloudRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreatePrivateCloudRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -3738,12 +3746,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdatePrivateCloudRequest.decode = function decode(reader, length) {
+                        UpdatePrivateCloudRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdatePrivateCloudRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateCloud = $root.google.cloud.vmwareengine.v1.PrivateCloud.decode(reader, reader.uint32());
@@ -3953,12 +3963,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * DeletePrivateCloudRequest _delayHours.
-                         * @member {"delayHours"|undefined} _delayHours
-                         * @memberof google.cloud.vmwareengine.v1.DeletePrivateCloudRequest
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(DeletePrivateCloudRequest.prototype, "_delayHours", {
                             get: $util.oneOfGetter($oneOfFields = ["delayHours"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -4023,12 +4028,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeletePrivateCloudRequest.decode = function decode(reader, length) {
+                        DeletePrivateCloudRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeletePrivateCloudRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4279,12 +4286,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UndeletePrivateCloudRequest.decode = function decode(reader, length) {
+                        UndeletePrivateCloudRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UndeletePrivateCloudRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4539,12 +4548,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListClustersRequest.decode = function decode(reader, length) {
+                        ListClustersRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListClustersRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -4817,12 +4828,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListClustersResponse.decode = function decode(reader, length) {
+                        ListClustersResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListClustersResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.clusters && message.clusters.length))
@@ -5079,12 +5092,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetClusterRequest.decode = function decode(reader, length) {
+                        GetClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5326,12 +5341,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateClusterRequest.decode = function decode(reader, length) {
+                        CreateClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -5616,12 +5633,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateClusterRequest.decode = function decode(reader, length) {
+                        UpdateClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -5877,12 +5896,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteClusterRequest.decode = function decode(reader, length) {
+                        DeleteClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6115,12 +6136,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNodesRequest.decode = function decode(reader, length) {
+                        ListNodesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNodesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -6356,12 +6379,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNodesResponse.decode = function decode(reader, length) {
+                        ListNodesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNodesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.nodes && message.nodes.length))
@@ -6591,12 +6616,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetNodeRequest.decode = function decode(reader, length) {
+                        GetNodeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetNodeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6838,12 +6865,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListExternalAddressesRequest.decode = function decode(reader, length) {
+                        ListExternalAddressesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListExternalAddressesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -7116,12 +7145,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListExternalAddressesResponse.decode = function decode(reader, length) {
+                        ListExternalAddressesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListExternalAddressesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.externalAddresses && message.externalAddresses.length))
@@ -7400,12 +7431,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FetchNetworkPolicyExternalAddressesRequest.decode = function decode(reader, length) {
+                        FetchNetworkPolicyExternalAddressesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.FetchNetworkPolicyExternalAddressesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.networkPolicy = reader.string();
@@ -7641,12 +7674,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FetchNetworkPolicyExternalAddressesResponse.decode = function decode(reader, length) {
+                        FetchNetworkPolicyExternalAddressesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.FetchNetworkPolicyExternalAddressesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.externalAddresses && message.externalAddresses.length))
@@ -7876,12 +7911,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetExternalAddressRequest.decode = function decode(reader, length) {
+                        GetExternalAddressRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetExternalAddressRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8112,12 +8149,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateExternalAddressRequest.decode = function decode(reader, length) {
+                        CreateExternalAddressRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateExternalAddressRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -8379,12 +8418,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateExternalAddressRequest.decode = function decode(reader, length) {
+                        UpdateExternalAddressRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateExternalAddressRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -8628,12 +8669,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteExternalAddressRequest.decode = function decode(reader, length) {
+                        DeleteExternalAddressRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteExternalAddressRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8866,12 +8909,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSubnetsRequest.decode = function decode(reader, length) {
+                        ListSubnetsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListSubnetsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -9120,12 +9165,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSubnetsResponse.decode = function decode(reader, length) {
+                        ListSubnetsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListSubnetsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.subnets && message.subnets.length))
@@ -9382,12 +9429,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetSubnetRequest.decode = function decode(reader, length) {
+                        GetSubnetRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetSubnetRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -9596,12 +9645,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateSubnetRequest.decode = function decode(reader, length) {
+                        UpdateSubnetRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateSubnetRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -9866,12 +9917,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListExternalAccessRulesRequest.decode = function decode(reader, length) {
+                        ListExternalAccessRulesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListExternalAccessRulesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -10144,12 +10197,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListExternalAccessRulesResponse.decode = function decode(reader, length) {
+                        ListExternalAccessRulesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListExternalAccessRulesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.externalAccessRules && message.externalAccessRules.length))
@@ -10406,12 +10461,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetExternalAccessRuleRequest.decode = function decode(reader, length) {
+                        GetExternalAccessRuleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetExternalAccessRuleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10642,12 +10699,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateExternalAccessRuleRequest.decode = function decode(reader, length) {
+                        CreateExternalAccessRuleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateExternalAccessRuleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -10909,12 +10968,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateExternalAccessRuleRequest.decode = function decode(reader, length) {
+                        UpdateExternalAccessRuleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateExternalAccessRuleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -11158,12 +11219,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteExternalAccessRuleRequest.decode = function decode(reader, length) {
+                        DeleteExternalAccessRuleRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteExternalAccessRuleRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -11418,12 +11481,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListLoggingServersRequest.decode = function decode(reader, length) {
+                        ListLoggingServersRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListLoggingServersRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11696,12 +11761,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListLoggingServersResponse.decode = function decode(reader, length) {
+                        ListLoggingServersResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListLoggingServersResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.loggingServers && message.loggingServers.length))
@@ -11958,12 +12025,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetLoggingServerRequest.decode = function decode(reader, length) {
+                        GetLoggingServerRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetLoggingServerRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12194,12 +12263,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateLoggingServerRequest.decode = function decode(reader, length) {
+                        CreateLoggingServerRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateLoggingServerRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -12461,12 +12532,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateLoggingServerRequest.decode = function decode(reader, length) {
+                        UpdateLoggingServerRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateLoggingServerRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -12710,12 +12783,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteLoggingServerRequest.decode = function decode(reader, length) {
+                        DeleteLoggingServerRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteLoggingServerRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12992,12 +13067,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OperationMetadata.decode = function decode(reader, length) {
+                        OperationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.OperationMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -13311,12 +13388,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNodeTypesRequest.decode = function decode(reader, length) {
+                        ListNodeTypesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNodeTypesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -13577,12 +13656,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNodeTypesResponse.decode = function decode(reader, length) {
+                        ListNodeTypesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNodeTypesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.nodeTypes && message.nodeTypes.length))
@@ -13839,12 +13920,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetNodeTypeRequest.decode = function decode(reader, length) {
+                        GetNodeTypeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetNodeTypeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -14042,12 +14125,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ShowNsxCredentialsRequest.decode = function decode(reader, length) {
+                        ShowNsxCredentialsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ShowNsxCredentialsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateCloud = reader.string();
@@ -14256,12 +14341,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ShowVcenterCredentialsRequest.decode = function decode(reader, length) {
+                        ShowVcenterCredentialsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ShowVcenterCredentialsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateCloud = reader.string();
@@ -14483,12 +14570,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ResetNsxCredentialsRequest.decode = function decode(reader, length) {
+                        ResetNsxCredentialsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ResetNsxCredentialsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateCloud = reader.string();
@@ -14721,12 +14810,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ResetVcenterCredentialsRequest.decode = function decode(reader, length) {
+                        ResetVcenterCredentialsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ResetVcenterCredentialsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateCloud = reader.string();
@@ -14975,12 +15066,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListHcxActivationKeysResponse.decode = function decode(reader, length) {
+                        ListHcxActivationKeysResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListHcxActivationKeysResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.hcxActivationKeys && message.hcxActivationKeys.length))
@@ -15259,12 +15352,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListHcxActivationKeysRequest.decode = function decode(reader, length) {
+                        ListHcxActivationKeysRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListHcxActivationKeysRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -15487,12 +15582,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetHcxActivationKeyRequest.decode = function decode(reader, length) {
+                        GetHcxActivationKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetHcxActivationKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15723,12 +15820,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateHcxActivationKeyRequest.decode = function decode(reader, length) {
+                        CreateHcxActivationKeyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateHcxActivationKeyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -15968,12 +16067,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetDnsForwardingRequest.decode = function decode(reader, length) {
+                        GetDnsForwardingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetDnsForwardingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16193,12 +16294,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateDnsForwardingRequest.decode = function decode(reader, length) {
+                        UpdateDnsForwardingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateDnsForwardingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.dnsForwarding = $root.google.cloud.vmwareengine.v1.DnsForwarding.decode(reader, reader.uint32());
@@ -16464,12 +16567,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateNetworkPeeringRequest.decode = function decode(reader, length) {
+                        CreateNetworkPeeringRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateNetworkPeeringRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16720,12 +16825,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteNetworkPeeringRequest.decode = function decode(reader, length) {
+                        DeleteNetworkPeeringRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteNetworkPeeringRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16936,12 +17043,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetNetworkPeeringRequest.decode = function decode(reader, length) {
+                        GetNetworkPeeringRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetNetworkPeeringRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17183,12 +17292,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNetworkPeeringsRequest.decode = function decode(reader, length) {
+                        ListNetworkPeeringsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNetworkPeeringsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -17457,12 +17568,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateNetworkPeeringRequest.decode = function decode(reader, length) {
+                        UpdateNetworkPeeringRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateNetworkPeeringRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.networkPeering = $root.google.cloud.vmwareengine.v1.NetworkPeering.decode(reader, reader.uint32());
@@ -17721,12 +17834,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNetworkPeeringsResponse.decode = function decode(reader, length) {
+                        ListNetworkPeeringsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNetworkPeeringsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.networkPeerings && message.networkPeerings.length))
@@ -18016,12 +18131,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPeeringRoutesRequest.decode = function decode(reader, length) {
+                        ListPeeringRoutesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPeeringRoutesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -18269,12 +18386,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPeeringRoutesResponse.decode = function decode(reader, length) {
+                        ListPeeringRoutesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPeeringRoutesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.peeringRoutes && message.peeringRoutes.length))
@@ -18548,12 +18667,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNetworkPoliciesRequest.decode = function decode(reader, length) {
+                        ListNetworkPoliciesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNetworkPoliciesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -18826,12 +18947,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNetworkPoliciesResponse.decode = function decode(reader, length) {
+                        ListNetworkPoliciesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListNetworkPoliciesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.networkPolicies && message.networkPolicies.length))
@@ -19088,12 +19211,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetNetworkPolicyRequest.decode = function decode(reader, length) {
+                        GetNetworkPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetNetworkPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19313,12 +19438,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateNetworkPolicyRequest.decode = function decode(reader, length) {
+                        UpdateNetworkPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateNetworkPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.networkPolicy = $root.google.cloud.vmwareengine.v1.NetworkPolicy.decode(reader, reader.uint32());
@@ -19584,12 +19711,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateNetworkPolicyRequest.decode = function decode(reader, length) {
+                        CreateNetworkPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateNetworkPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -19840,12 +19969,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteNetworkPolicyRequest.decode = function decode(reader, length) {
+                        DeleteNetworkPolicyRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteNetworkPolicyRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20100,12 +20231,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListManagementDnsZoneBindingsRequest.decode = function decode(reader, length) {
+                        ListManagementDnsZoneBindingsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListManagementDnsZoneBindingsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -20378,12 +20511,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListManagementDnsZoneBindingsResponse.decode = function decode(reader, length) {
+                        ListManagementDnsZoneBindingsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListManagementDnsZoneBindingsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.managementDnsZoneBindings && message.managementDnsZoneBindings.length))
@@ -20640,12 +20775,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetManagementDnsZoneBindingRequest.decode = function decode(reader, length) {
+                        GetManagementDnsZoneBindingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetManagementDnsZoneBindingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20876,12 +21013,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateManagementDnsZoneBindingRequest.decode = function decode(reader, length) {
+                        CreateManagementDnsZoneBindingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateManagementDnsZoneBindingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -21143,12 +21282,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateManagementDnsZoneBindingRequest.decode = function decode(reader, length) {
+                        UpdateManagementDnsZoneBindingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateManagementDnsZoneBindingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -21392,12 +21533,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteManagementDnsZoneBindingRequest.decode = function decode(reader, length) {
+                        DeleteManagementDnsZoneBindingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteManagementDnsZoneBindingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -21619,12 +21762,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RepairManagementDnsZoneBindingRequest.decode = function decode(reader, length) {
+                        RepairManagementDnsZoneBindingRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.RepairManagementDnsZoneBindingRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -21868,12 +22013,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateVmwareEngineNetworkRequest.decode = function decode(reader, length) {
+                        CreateVmwareEngineNetworkRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreateVmwareEngineNetworkRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -22135,12 +22282,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateVmwareEngineNetworkRequest.decode = function decode(reader, length) {
+                        UpdateVmwareEngineNetworkRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdateVmwareEngineNetworkRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.vmwareEngineNetwork = $root.google.cloud.vmwareengine.v1.VmwareEngineNetwork.decode(reader, reader.uint32());
@@ -22395,12 +22544,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteVmwareEngineNetworkRequest.decode = function decode(reader, length) {
+                        DeleteVmwareEngineNetworkRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeleteVmwareEngineNetworkRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -22623,12 +22774,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetVmwareEngineNetworkRequest.decode = function decode(reader, length) {
+                        GetVmwareEngineNetworkRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetVmwareEngineNetworkRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -22870,12 +23023,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVmwareEngineNetworksRequest.decode = function decode(reader, length) {
+                        ListVmwareEngineNetworksRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListVmwareEngineNetworksRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -23148,12 +23303,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVmwareEngineNetworksResponse.decode = function decode(reader, length) {
+                        ListVmwareEngineNetworksResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListVmwareEngineNetworksResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.vmwareEngineNetworks && message.vmwareEngineNetworks.length))
@@ -23443,12 +23600,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreatePrivateConnectionRequest.decode = function decode(reader, length) {
+                        CreatePrivateConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.CreatePrivateConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -23688,12 +23847,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetPrivateConnectionRequest.decode = function decode(reader, length) {
+                        GetPrivateConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetPrivateConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -23935,12 +24096,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPrivateConnectionsRequest.decode = function decode(reader, length) {
+                        ListPrivateConnectionsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPrivateConnectionsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -24213,12 +24376,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPrivateConnectionsResponse.decode = function decode(reader, length) {
+                        ListPrivateConnectionsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPrivateConnectionsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.privateConnections && message.privateConnections.length))
@@ -24497,12 +24662,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdatePrivateConnectionRequest.decode = function decode(reader, length) {
+                        UpdatePrivateConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.UpdatePrivateConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.privateConnection = $root.google.cloud.vmwareengine.v1.PrivateConnection.decode(reader, reader.uint32());
@@ -24746,12 +24913,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeletePrivateConnectionRequest.decode = function decode(reader, length) {
+                        DeletePrivateConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DeletePrivateConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -24984,12 +25153,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPrivateConnectionPeeringRoutesRequest.decode = function decode(reader, length) {
+                        ListPrivateConnectionPeeringRoutesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPrivateConnectionPeeringRoutesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -25225,12 +25396,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListPrivateConnectionPeeringRoutesResponse.decode = function decode(reader, length) {
+                        ListPrivateConnectionPeeringRoutesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ListPrivateConnectionPeeringRoutesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.peeringRoutes && message.peeringRoutes.length))
@@ -25482,12 +25655,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GrantDnsBindPermissionRequest.decode = function decode(reader, length) {
+                        GrantDnsBindPermissionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GrantDnsBindPermissionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -25737,12 +25912,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RevokeDnsBindPermissionRequest.decode = function decode(reader, length) {
+                        RevokeDnsBindPermissionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.RevokeDnsBindPermissionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -25970,12 +26147,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetDnsBindPermissionRequest.decode = function decode(reader, length) {
+                        GetDnsBindPermissionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.GetDnsBindPermissionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -26217,12 +26396,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NetworkConfig.decode = function decode(reader, length) {
+                        NetworkConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.NetworkConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 4: {
                                         message.managementCidr = reader.string();
@@ -26480,12 +26661,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NodeTypeConfig.decode = function decode(reader, length) {
+                        NodeTypeConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.NodeTypeConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.nodeCount = reader.int32();
@@ -26707,12 +26890,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        StretchedClusterConfig.decode = function decode(reader, length) {
+                        StretchedClusterConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.StretchedClusterConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.preferredLocation = reader.string();
@@ -27066,12 +27251,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PrivateCloud.decode = function decode(reader, length) {
+                        PrivateCloud.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.PrivateCloud();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -27586,12 +27773,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ManagementCluster.decode = function decode(reader, length) {
+                            ManagementCluster.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.PrivateCloud.ManagementCluster(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.clusterId = reader.string();
@@ -27803,6 +27992,7 @@
                          * @property {google.protobuf.ITimestamp|null} [updateTime] Cluster updateTime
                          * @property {google.cloud.vmwareengine.v1.Cluster.State|null} [state] Cluster state
                          * @property {boolean|null} [management] Cluster management
+                         * @property {google.cloud.vmwareengine.v1.IAutoscalingSettings|null} [autoscalingSettings] Cluster autoscalingSettings
                          * @property {string|null} [uid] Cluster uid
                          * @property {Object.<string,google.cloud.vmwareengine.v1.INodeTypeConfig>|null} [nodeTypeConfigs] Cluster nodeTypeConfigs
                          * @property {google.cloud.vmwareengine.v1.IStretchedClusterConfig|null} [stretchedClusterConfig] Cluster stretchedClusterConfig
@@ -27863,6 +28053,14 @@
                          * @instance
                          */
                         Cluster.prototype.management = false;
+    
+                        /**
+                         * Cluster autoscalingSettings.
+                         * @member {google.cloud.vmwareengine.v1.IAutoscalingSettings|null|undefined} autoscalingSettings
+                         * @memberof google.cloud.vmwareengine.v1.Cluster
+                         * @instance
+                         */
+                        Cluster.prototype.autoscalingSettings = null;
     
                         /**
                          * Cluster uid.
@@ -27931,6 +28129,8 @@
                                 }
                             if (message.stretchedClusterConfig != null && Object.hasOwnProperty.call(message, "stretchedClusterConfig"))
                                 $root.google.cloud.vmwareengine.v1.StretchedClusterConfig.encode(message.stretchedClusterConfig, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+                            if (message.autoscalingSettings != null && Object.hasOwnProperty.call(message, "autoscalingSettings"))
+                                $root.google.cloud.vmwareengine.v1.AutoscalingSettings.encode(message.autoscalingSettings, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
                             return writer;
                         };
     
@@ -27958,12 +28158,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Cluster.decode = function decode(reader, length) {
+                        Cluster.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Cluster(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -27983,6 +28185,10 @@
                                     }
                                 case 7: {
                                         message.management = reader.bool();
+                                        break;
+                                    }
+                                case 18: {
+                                        message.autoscalingSettings = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.decode(reader, reader.uint32());
                                         break;
                                     }
                                 case 14: {
@@ -28079,6 +28285,11 @@
                             if (message.management != null && message.hasOwnProperty("management"))
                                 if (typeof message.management !== "boolean")
                                     return "management: boolean expected";
+                            if (message.autoscalingSettings != null && message.hasOwnProperty("autoscalingSettings")) {
+                                var error = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.verify(message.autoscalingSettings);
+                                if (error)
+                                    return "autoscalingSettings." + error;
+                            }
                             if (message.uid != null && message.hasOwnProperty("uid"))
                                 if (!$util.isString(message.uid))
                                     return "uid: string expected";
@@ -28158,6 +28369,11 @@
                             }
                             if (object.management != null)
                                 message.management = Boolean(object.management);
+                            if (object.autoscalingSettings != null) {
+                                if (typeof object.autoscalingSettings !== "object")
+                                    throw TypeError(".google.cloud.vmwareengine.v1.Cluster.autoscalingSettings: object expected");
+                                message.autoscalingSettings = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.fromObject(object.autoscalingSettings);
+                            }
                             if (object.uid != null)
                                 message.uid = String(object.uid);
                             if (object.nodeTypeConfigs) {
@@ -28201,6 +28417,7 @@
                                 object.management = false;
                                 object.uid = "";
                                 object.stretchedClusterConfig = null;
+                                object.autoscalingSettings = null;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -28222,6 +28439,8 @@
                             }
                             if (message.stretchedClusterConfig != null && message.hasOwnProperty("stretchedClusterConfig"))
                                 object.stretchedClusterConfig = $root.google.cloud.vmwareengine.v1.StretchedClusterConfig.toObject(message.stretchedClusterConfig, options);
+                            if (message.autoscalingSettings != null && message.hasOwnProperty("autoscalingSettings"))
+                                object.autoscalingSettings = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.toObject(message.autoscalingSettings, options);
                             return object;
                         };
     
@@ -28427,12 +28646,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Node.decode = function decode(reader, length) {
+                        Node.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Node();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -28848,12 +29069,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ExternalAddress.decode = function decode(reader, length) {
+                        ExternalAddress.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ExternalAddress();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -29255,12 +29478,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Subnet.decode = function decode(reader, length) {
+                        Subnet.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Subnet();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -29727,12 +29952,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ExternalAccessRule.decode = function decode(reader, length) {
+                        ExternalAccessRule.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ExternalAccessRule();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -30260,12 +30487,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            IpRange.decode = function decode(reader, length) {
+                            IpRange.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ExternalAccessRule.IpRange();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.ipAddress = reader.string();
@@ -30603,12 +30832,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LoggingServer.decode = function decode(reader, length) {
+                        LoggingServer.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.LoggingServer();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -30703,6 +30934,9 @@
                                 case 0:
                                 case 1:
                                 case 2:
+                                case 3:
+                                case 4:
+                                case 5:
                                     break;
                                 }
                             if (message.sourceType != null && message.hasOwnProperty("sourceType"))
@@ -30766,6 +31000,18 @@
                             case "TCP":
                             case 2:
                                 message.protocol = 2;
+                                break;
+                            case "TLS":
+                            case 3:
+                                message.protocol = 3;
+                                break;
+                            case "SSL":
+                            case 4:
+                                message.protocol = 4;
+                                break;
+                            case "RELP":
+                            case 5:
+                                message.protocol = 5;
                                 break;
                             }
                             switch (object.sourceType) {
@@ -30868,12 +31114,18 @@
                          * @property {number} PROTOCOL_UNSPECIFIED=0 PROTOCOL_UNSPECIFIED value
                          * @property {number} UDP=1 UDP value
                          * @property {number} TCP=2 TCP value
+                         * @property {number} TLS=3 TLS value
+                         * @property {number} SSL=4 SSL value
+                         * @property {number} RELP=5 RELP value
                          */
                         LoggingServer.Protocol = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
                             values[valuesById[0] = "PROTOCOL_UNSPECIFIED"] = 0;
                             values[valuesById[1] = "UDP"] = 1;
                             values[valuesById[2] = "TCP"] = 2;
+                            values[valuesById[3] = "TLS"] = 3;
+                            values[valuesById[4] = "SSL"] = 4;
+                            values[valuesById[5] = "RELP"] = 5;
                             return values;
                         })();
     
@@ -31103,12 +31355,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NodeType.decode = function decode(reader, length) {
+                        NodeType.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.NodeType();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -31565,12 +31819,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Credentials.decode = function decode(reader, length) {
+                        Credentials.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Credentials();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.username = reader.string();
@@ -31825,12 +32081,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HcxActivationKey.decode = function decode(reader, length) {
+                        HcxActivationKey.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.HcxActivationKey();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -32162,12 +32420,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Hcx.decode = function decode(reader, length) {
+                        Hcx.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Hcx();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.internalIp = reader.string();
@@ -32233,6 +32493,7 @@
                                 case 0:
                                 case 1:
                                 case 2:
+                                case 3:
                                     break;
                                 }
                             if (message.fqdn != null && message.hasOwnProperty("fqdn"))
@@ -32275,6 +32536,10 @@
                             case "CREATING":
                             case 2:
                                 message.state = 2;
+                                break;
+                            case "ACTIVATING":
+                            case 3:
+                                message.state = 3;
                                 break;
                             }
                             if (object.fqdn != null)
@@ -32345,12 +32610,14 @@
                          * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
                          * @property {number} ACTIVE=1 ACTIVE value
                          * @property {number} CREATING=2 CREATING value
+                         * @property {number} ACTIVATING=3 ACTIVATING value
                          */
                         Hcx.State = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
                             values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
                             values[valuesById[1] = "ACTIVE"] = 1;
                             values[valuesById[2] = "CREATING"] = 2;
+                            values[valuesById[3] = "ACTIVATING"] = 3;
                             return values;
                         })();
     
@@ -32475,12 +32742,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Nsx.decode = function decode(reader, length) {
+                        Nsx.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Nsx();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.internalIp = reader.string();
@@ -32788,12 +33057,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Vcenter.decode = function decode(reader, length) {
+                        Vcenter.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Vcenter();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.internalIp = reader.string();
@@ -32983,6 +33254,899 @@
                         return Vcenter;
                     })();
     
+                    v1.AutoscalingSettings = (function() {
+    
+                        /**
+                         * Properties of an AutoscalingSettings.
+                         * @memberof google.cloud.vmwareengine.v1
+                         * @interface IAutoscalingSettings
+                         * @property {Object.<string,google.cloud.vmwareengine.v1.AutoscalingSettings.IAutoscalingPolicy>|null} [autoscalingPolicies] AutoscalingSettings autoscalingPolicies
+                         * @property {number|null} [minClusterNodeCount] AutoscalingSettings minClusterNodeCount
+                         * @property {number|null} [maxClusterNodeCount] AutoscalingSettings maxClusterNodeCount
+                         * @property {google.protobuf.IDuration|null} [coolDownPeriod] AutoscalingSettings coolDownPeriod
+                         */
+    
+                        /**
+                         * Constructs a new AutoscalingSettings.
+                         * @memberof google.cloud.vmwareengine.v1
+                         * @classdesc Represents an AutoscalingSettings.
+                         * @implements IAutoscalingSettings
+                         * @constructor
+                         * @param {google.cloud.vmwareengine.v1.IAutoscalingSettings=} [properties] Properties to set
+                         */
+                        function AutoscalingSettings(properties) {
+                            this.autoscalingPolicies = {};
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * AutoscalingSettings autoscalingPolicies.
+                         * @member {Object.<string,google.cloud.vmwareengine.v1.AutoscalingSettings.IAutoscalingPolicy>} autoscalingPolicies
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @instance
+                         */
+                        AutoscalingSettings.prototype.autoscalingPolicies = $util.emptyObject;
+    
+                        /**
+                         * AutoscalingSettings minClusterNodeCount.
+                         * @member {number} minClusterNodeCount
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @instance
+                         */
+                        AutoscalingSettings.prototype.minClusterNodeCount = 0;
+    
+                        /**
+                         * AutoscalingSettings maxClusterNodeCount.
+                         * @member {number} maxClusterNodeCount
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @instance
+                         */
+                        AutoscalingSettings.prototype.maxClusterNodeCount = 0;
+    
+                        /**
+                         * AutoscalingSettings coolDownPeriod.
+                         * @member {google.protobuf.IDuration|null|undefined} coolDownPeriod
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @instance
+                         */
+                        AutoscalingSettings.prototype.coolDownPeriod = null;
+    
+                        /**
+                         * Creates a new AutoscalingSettings instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {google.cloud.vmwareengine.v1.IAutoscalingSettings=} [properties] Properties to set
+                         * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings} AutoscalingSettings instance
+                         */
+                        AutoscalingSettings.create = function create(properties) {
+                            return new AutoscalingSettings(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified AutoscalingSettings message. Does not implicitly {@link google.cloud.vmwareengine.v1.AutoscalingSettings.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {google.cloud.vmwareengine.v1.IAutoscalingSettings} message AutoscalingSettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AutoscalingSettings.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.autoscalingPolicies != null && Object.hasOwnProperty.call(message, "autoscalingPolicies"))
+                                for (var keys = Object.keys(message.autoscalingPolicies), i = 0; i < keys.length; ++i) {
+                                    writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                                    $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.encode(message.autoscalingPolicies[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                                }
+                            if (message.minClusterNodeCount != null && Object.hasOwnProperty.call(message, "minClusterNodeCount"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.minClusterNodeCount);
+                            if (message.maxClusterNodeCount != null && Object.hasOwnProperty.call(message, "maxClusterNodeCount"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.maxClusterNodeCount);
+                            if (message.coolDownPeriod != null && Object.hasOwnProperty.call(message, "coolDownPeriod"))
+                                $root.google.protobuf.Duration.encode(message.coolDownPeriod, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified AutoscalingSettings message, length delimited. Does not implicitly {@link google.cloud.vmwareengine.v1.AutoscalingSettings.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {google.cloud.vmwareengine.v1.IAutoscalingSettings} message AutoscalingSettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        AutoscalingSettings.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an AutoscalingSettings message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings} AutoscalingSettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AutoscalingSettings.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.AutoscalingSettings(), key, value;
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (message.autoscalingPolicies === $util.emptyObject)
+                                            message.autoscalingPolicies = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = null;
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.decode(reader, reader.uint32());
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.autoscalingPolicies[key] = value;
+                                        break;
+                                    }
+                                case 2: {
+                                        message.minClusterNodeCount = reader.int32();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.maxClusterNodeCount = reader.int32();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.coolDownPeriod = $root.google.protobuf.Duration.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an AutoscalingSettings message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings} AutoscalingSettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        AutoscalingSettings.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an AutoscalingSettings message.
+                         * @function verify
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        AutoscalingSettings.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.autoscalingPolicies != null && message.hasOwnProperty("autoscalingPolicies")) {
+                                if (!$util.isObject(message.autoscalingPolicies))
+                                    return "autoscalingPolicies: object expected";
+                                var key = Object.keys(message.autoscalingPolicies);
+                                for (var i = 0; i < key.length; ++i) {
+                                    var error = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.verify(message.autoscalingPolicies[key[i]]);
+                                    if (error)
+                                        return "autoscalingPolicies." + error;
+                                }
+                            }
+                            if (message.minClusterNodeCount != null && message.hasOwnProperty("minClusterNodeCount"))
+                                if (!$util.isInteger(message.minClusterNodeCount))
+                                    return "minClusterNodeCount: integer expected";
+                            if (message.maxClusterNodeCount != null && message.hasOwnProperty("maxClusterNodeCount"))
+                                if (!$util.isInteger(message.maxClusterNodeCount))
+                                    return "maxClusterNodeCount: integer expected";
+                            if (message.coolDownPeriod != null && message.hasOwnProperty("coolDownPeriod")) {
+                                var error = $root.google.protobuf.Duration.verify(message.coolDownPeriod);
+                                if (error)
+                                    return "coolDownPeriod." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an AutoscalingSettings message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings} AutoscalingSettings
+                         */
+                        AutoscalingSettings.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.vmwareengine.v1.AutoscalingSettings)
+                                return object;
+                            var message = new $root.google.cloud.vmwareengine.v1.AutoscalingSettings();
+                            if (object.autoscalingPolicies) {
+                                if (typeof object.autoscalingPolicies !== "object")
+                                    throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.autoscalingPolicies: object expected");
+                                message.autoscalingPolicies = {};
+                                for (var keys = Object.keys(object.autoscalingPolicies), i = 0; i < keys.length; ++i) {
+                                    if (typeof object.autoscalingPolicies[keys[i]] !== "object")
+                                        throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.autoscalingPolicies: object expected");
+                                    message.autoscalingPolicies[keys[i]] = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.fromObject(object.autoscalingPolicies[keys[i]]);
+                                }
+                            }
+                            if (object.minClusterNodeCount != null)
+                                message.minClusterNodeCount = object.minClusterNodeCount | 0;
+                            if (object.maxClusterNodeCount != null)
+                                message.maxClusterNodeCount = object.maxClusterNodeCount | 0;
+                            if (object.coolDownPeriod != null) {
+                                if (typeof object.coolDownPeriod !== "object")
+                                    throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.coolDownPeriod: object expected");
+                                message.coolDownPeriod = $root.google.protobuf.Duration.fromObject(object.coolDownPeriod);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an AutoscalingSettings message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {google.cloud.vmwareengine.v1.AutoscalingSettings} message AutoscalingSettings
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        AutoscalingSettings.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.objects || options.defaults)
+                                object.autoscalingPolicies = {};
+                            if (options.defaults) {
+                                object.minClusterNodeCount = 0;
+                                object.maxClusterNodeCount = 0;
+                                object.coolDownPeriod = null;
+                            }
+                            var keys2;
+                            if (message.autoscalingPolicies && (keys2 = Object.keys(message.autoscalingPolicies)).length) {
+                                object.autoscalingPolicies = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.autoscalingPolicies[keys2[j]] = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.toObject(message.autoscalingPolicies[keys2[j]], options);
+                            }
+                            if (message.minClusterNodeCount != null && message.hasOwnProperty("minClusterNodeCount"))
+                                object.minClusterNodeCount = message.minClusterNodeCount;
+                            if (message.maxClusterNodeCount != null && message.hasOwnProperty("maxClusterNodeCount"))
+                                object.maxClusterNodeCount = message.maxClusterNodeCount;
+                            if (message.coolDownPeriod != null && message.hasOwnProperty("coolDownPeriod"))
+                                object.coolDownPeriod = $root.google.protobuf.Duration.toObject(message.coolDownPeriod, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this AutoscalingSettings to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        AutoscalingSettings.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for AutoscalingSettings
+                         * @function getTypeUrl
+                         * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        AutoscalingSettings.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.vmwareengine.v1.AutoscalingSettings";
+                        };
+    
+                        AutoscalingSettings.Thresholds = (function() {
+    
+                            /**
+                             * Properties of a Thresholds.
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                             * @interface IThresholds
+                             * @property {number|null} [scaleOut] Thresholds scaleOut
+                             * @property {number|null} [scaleIn] Thresholds scaleIn
+                             */
+    
+                            /**
+                             * Constructs a new Thresholds.
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                             * @classdesc Represents a Thresholds.
+                             * @implements IThresholds
+                             * @constructor
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds=} [properties] Properties to set
+                             */
+                            function Thresholds(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * Thresholds scaleOut.
+                             * @member {number} scaleOut
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @instance
+                             */
+                            Thresholds.prototype.scaleOut = 0;
+    
+                            /**
+                             * Thresholds scaleIn.
+                             * @member {number} scaleIn
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @instance
+                             */
+                            Thresholds.prototype.scaleIn = 0;
+    
+                            /**
+                             * Creates a new Thresholds instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds=} [properties] Properties to set
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds} Thresholds instance
+                             */
+                            Thresholds.create = function create(properties) {
+                                return new Thresholds(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified Thresholds message. Does not implicitly {@link google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds} message Thresholds message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Thresholds.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.scaleOut != null && Object.hasOwnProperty.call(message, "scaleOut"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.scaleOut);
+                                if (message.scaleIn != null && Object.hasOwnProperty.call(message, "scaleIn"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scaleIn);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified Thresholds message, length delimited. Does not implicitly {@link google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds} message Thresholds message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Thresholds.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a Thresholds message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds} Thresholds
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Thresholds.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.scaleOut = reader.int32();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.scaleIn = reader.int32();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a Thresholds message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds} Thresholds
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Thresholds.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a Thresholds message.
+                             * @function verify
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            Thresholds.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.scaleOut != null && message.hasOwnProperty("scaleOut"))
+                                    if (!$util.isInteger(message.scaleOut))
+                                        return "scaleOut: integer expected";
+                                if (message.scaleIn != null && message.hasOwnProperty("scaleIn"))
+                                    if (!$util.isInteger(message.scaleIn))
+                                        return "scaleIn: integer expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a Thresholds message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds} Thresholds
+                             */
+                            Thresholds.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds)
+                                    return object;
+                                var message = new $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds();
+                                if (object.scaleOut != null)
+                                    message.scaleOut = object.scaleOut | 0;
+                                if (object.scaleIn != null)
+                                    message.scaleIn = object.scaleIn | 0;
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a Thresholds message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds} message Thresholds
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            Thresholds.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.scaleOut = 0;
+                                    object.scaleIn = 0;
+                                }
+                                if (message.scaleOut != null && message.hasOwnProperty("scaleOut"))
+                                    object.scaleOut = message.scaleOut;
+                                if (message.scaleIn != null && message.hasOwnProperty("scaleIn"))
+                                    object.scaleIn = message.scaleIn;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this Thresholds to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            Thresholds.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for Thresholds
+                             * @function getTypeUrl
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            Thresholds.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds";
+                            };
+    
+                            return Thresholds;
+                        })();
+    
+                        AutoscalingSettings.AutoscalingPolicy = (function() {
+    
+                            /**
+                             * Properties of an AutoscalingPolicy.
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                             * @interface IAutoscalingPolicy
+                             * @property {string|null} [nodeTypeId] AutoscalingPolicy nodeTypeId
+                             * @property {number|null} [scaleOutSize] AutoscalingPolicy scaleOutSize
+                             * @property {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null} [cpuThresholds] AutoscalingPolicy cpuThresholds
+                             * @property {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null} [grantedMemoryThresholds] AutoscalingPolicy grantedMemoryThresholds
+                             * @property {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null} [consumedMemoryThresholds] AutoscalingPolicy consumedMemoryThresholds
+                             * @property {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null} [storageThresholds] AutoscalingPolicy storageThresholds
+                             */
+    
+                            /**
+                             * Constructs a new AutoscalingPolicy.
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings
+                             * @classdesc Represents an AutoscalingPolicy.
+                             * @implements IAutoscalingPolicy
+                             * @constructor
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IAutoscalingPolicy=} [properties] Properties to set
+                             */
+                            function AutoscalingPolicy(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * AutoscalingPolicy nodeTypeId.
+                             * @member {string} nodeTypeId
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             */
+                            AutoscalingPolicy.prototype.nodeTypeId = "";
+    
+                            /**
+                             * AutoscalingPolicy scaleOutSize.
+                             * @member {number} scaleOutSize
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             */
+                            AutoscalingPolicy.prototype.scaleOutSize = 0;
+    
+                            /**
+                             * AutoscalingPolicy cpuThresholds.
+                             * @member {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null|undefined} cpuThresholds
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             */
+                            AutoscalingPolicy.prototype.cpuThresholds = null;
+    
+                            /**
+                             * AutoscalingPolicy grantedMemoryThresholds.
+                             * @member {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null|undefined} grantedMemoryThresholds
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             */
+                            AutoscalingPolicy.prototype.grantedMemoryThresholds = null;
+    
+                            /**
+                             * AutoscalingPolicy consumedMemoryThresholds.
+                             * @member {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null|undefined} consumedMemoryThresholds
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             */
+                            AutoscalingPolicy.prototype.consumedMemoryThresholds = null;
+    
+                            /**
+                             * AutoscalingPolicy storageThresholds.
+                             * @member {google.cloud.vmwareengine.v1.AutoscalingSettings.IThresholds|null|undefined} storageThresholds
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             */
+                            AutoscalingPolicy.prototype.storageThresholds = null;
+    
+                            /**
+                             * Creates a new AutoscalingPolicy instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IAutoscalingPolicy=} [properties] Properties to set
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy} AutoscalingPolicy instance
+                             */
+                            AutoscalingPolicy.create = function create(properties) {
+                                return new AutoscalingPolicy(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified AutoscalingPolicy message. Does not implicitly {@link google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IAutoscalingPolicy} message AutoscalingPolicy message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            AutoscalingPolicy.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.nodeTypeId != null && Object.hasOwnProperty.call(message, "nodeTypeId"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.nodeTypeId);
+                                if (message.scaleOutSize != null && Object.hasOwnProperty.call(message, "scaleOutSize"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scaleOutSize);
+                                if (message.cpuThresholds != null && Object.hasOwnProperty.call(message, "cpuThresholds"))
+                                    $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.encode(message.cpuThresholds, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                                if (message.grantedMemoryThresholds != null && Object.hasOwnProperty.call(message, "grantedMemoryThresholds"))
+                                    $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.encode(message.grantedMemoryThresholds, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+                                if (message.consumedMemoryThresholds != null && Object.hasOwnProperty.call(message, "consumedMemoryThresholds"))
+                                    $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.encode(message.consumedMemoryThresholds, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                                if (message.storageThresholds != null && Object.hasOwnProperty.call(message, "storageThresholds"))
+                                    $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.encode(message.storageThresholds, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified AutoscalingPolicy message, length delimited. Does not implicitly {@link google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.IAutoscalingPolicy} message AutoscalingPolicy message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            AutoscalingPolicy.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes an AutoscalingPolicy message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy} AutoscalingPolicy
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            AutoscalingPolicy.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.nodeTypeId = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.scaleOutSize = reader.int32();
+                                            break;
+                                        }
+                                    case 11: {
+                                            message.cpuThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 12: {
+                                            message.grantedMemoryThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 13: {
+                                            message.consumedMemoryThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 14: {
+                                            message.storageThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes an AutoscalingPolicy message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy} AutoscalingPolicy
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            AutoscalingPolicy.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies an AutoscalingPolicy message.
+                             * @function verify
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            AutoscalingPolicy.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.nodeTypeId != null && message.hasOwnProperty("nodeTypeId"))
+                                    if (!$util.isString(message.nodeTypeId))
+                                        return "nodeTypeId: string expected";
+                                if (message.scaleOutSize != null && message.hasOwnProperty("scaleOutSize"))
+                                    if (!$util.isInteger(message.scaleOutSize))
+                                        return "scaleOutSize: integer expected";
+                                if (message.cpuThresholds != null && message.hasOwnProperty("cpuThresholds")) {
+                                    var error = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.verify(message.cpuThresholds);
+                                    if (error)
+                                        return "cpuThresholds." + error;
+                                }
+                                if (message.grantedMemoryThresholds != null && message.hasOwnProperty("grantedMemoryThresholds")) {
+                                    var error = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.verify(message.grantedMemoryThresholds);
+                                    if (error)
+                                        return "grantedMemoryThresholds." + error;
+                                }
+                                if (message.consumedMemoryThresholds != null && message.hasOwnProperty("consumedMemoryThresholds")) {
+                                    var error = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.verify(message.consumedMemoryThresholds);
+                                    if (error)
+                                        return "consumedMemoryThresholds." + error;
+                                }
+                                if (message.storageThresholds != null && message.hasOwnProperty("storageThresholds")) {
+                                    var error = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.verify(message.storageThresholds);
+                                    if (error)
+                                        return "storageThresholds." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates an AutoscalingPolicy message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy} AutoscalingPolicy
+                             */
+                            AutoscalingPolicy.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy)
+                                    return object;
+                                var message = new $root.google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy();
+                                if (object.nodeTypeId != null)
+                                    message.nodeTypeId = String(object.nodeTypeId);
+                                if (object.scaleOutSize != null)
+                                    message.scaleOutSize = object.scaleOutSize | 0;
+                                if (object.cpuThresholds != null) {
+                                    if (typeof object.cpuThresholds !== "object")
+                                        throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.cpuThresholds: object expected");
+                                    message.cpuThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.fromObject(object.cpuThresholds);
+                                }
+                                if (object.grantedMemoryThresholds != null) {
+                                    if (typeof object.grantedMemoryThresholds !== "object")
+                                        throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.grantedMemoryThresholds: object expected");
+                                    message.grantedMemoryThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.fromObject(object.grantedMemoryThresholds);
+                                }
+                                if (object.consumedMemoryThresholds != null) {
+                                    if (typeof object.consumedMemoryThresholds !== "object")
+                                        throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.consumedMemoryThresholds: object expected");
+                                    message.consumedMemoryThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.fromObject(object.consumedMemoryThresholds);
+                                }
+                                if (object.storageThresholds != null) {
+                                    if (typeof object.storageThresholds !== "object")
+                                        throw TypeError(".google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy.storageThresholds: object expected");
+                                    message.storageThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.fromObject(object.storageThresholds);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from an AutoscalingPolicy message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy} message AutoscalingPolicy
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            AutoscalingPolicy.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.nodeTypeId = "";
+                                    object.scaleOutSize = 0;
+                                    object.cpuThresholds = null;
+                                    object.grantedMemoryThresholds = null;
+                                    object.consumedMemoryThresholds = null;
+                                    object.storageThresholds = null;
+                                }
+                                if (message.nodeTypeId != null && message.hasOwnProperty("nodeTypeId"))
+                                    object.nodeTypeId = message.nodeTypeId;
+                                if (message.scaleOutSize != null && message.hasOwnProperty("scaleOutSize"))
+                                    object.scaleOutSize = message.scaleOutSize;
+                                if (message.cpuThresholds != null && message.hasOwnProperty("cpuThresholds"))
+                                    object.cpuThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.toObject(message.cpuThresholds, options);
+                                if (message.grantedMemoryThresholds != null && message.hasOwnProperty("grantedMemoryThresholds"))
+                                    object.grantedMemoryThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.toObject(message.grantedMemoryThresholds, options);
+                                if (message.consumedMemoryThresholds != null && message.hasOwnProperty("consumedMemoryThresholds"))
+                                    object.consumedMemoryThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.toObject(message.consumedMemoryThresholds, options);
+                                if (message.storageThresholds != null && message.hasOwnProperty("storageThresholds"))
+                                    object.storageThresholds = $root.google.cloud.vmwareengine.v1.AutoscalingSettings.Thresholds.toObject(message.storageThresholds, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this AutoscalingPolicy to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            AutoscalingPolicy.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for AutoscalingPolicy
+                             * @function getTypeUrl
+                             * @memberof google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            AutoscalingPolicy.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.vmwareengine.v1.AutoscalingSettings.AutoscalingPolicy";
+                            };
+    
+                            return AutoscalingPolicy;
+                        })();
+    
+                        return AutoscalingSettings;
+                    })();
+    
                     v1.DnsForwarding = (function() {
     
                         /**
@@ -33103,12 +34267,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DnsForwarding.decode = function decode(reader, length) {
+                        DnsForwarding.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DnsForwarding();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -33383,12 +34549,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ForwardingRule.decode = function decode(reader, length) {
+                            ForwardingRule.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DnsForwarding.ForwardingRule();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.domain = reader.string();
@@ -33701,56 +34869,31 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * NetworkPeering _exportCustomRoutes.
-                         * @member {"exportCustomRoutes"|undefined} _exportCustomRoutes
-                         * @memberof google.cloud.vmwareengine.v1.NetworkPeering
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(NetworkPeering.prototype, "_exportCustomRoutes", {
                             get: $util.oneOfGetter($oneOfFields = ["exportCustomRoutes"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * NetworkPeering _importCustomRoutes.
-                         * @member {"importCustomRoutes"|undefined} _importCustomRoutes
-                         * @memberof google.cloud.vmwareengine.v1.NetworkPeering
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(NetworkPeering.prototype, "_importCustomRoutes", {
                             get: $util.oneOfGetter($oneOfFields = ["importCustomRoutes"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * NetworkPeering _exchangeSubnetRoutes.
-                         * @member {"exchangeSubnetRoutes"|undefined} _exchangeSubnetRoutes
-                         * @memberof google.cloud.vmwareengine.v1.NetworkPeering
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(NetworkPeering.prototype, "_exchangeSubnetRoutes", {
                             get: $util.oneOfGetter($oneOfFields = ["exchangeSubnetRoutes"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * NetworkPeering _exportCustomRoutesWithPublicIp.
-                         * @member {"exportCustomRoutesWithPublicIp"|undefined} _exportCustomRoutesWithPublicIp
-                         * @memberof google.cloud.vmwareengine.v1.NetworkPeering
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(NetworkPeering.prototype, "_exportCustomRoutesWithPublicIp", {
                             get: $util.oneOfGetter($oneOfFields = ["exportCustomRoutesWithPublicIp"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * NetworkPeering _importCustomRoutesWithPublicIp.
-                         * @member {"importCustomRoutesWithPublicIp"|undefined} _importCustomRoutesWithPublicIp
-                         * @memberof google.cloud.vmwareengine.v1.NetworkPeering
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(NetworkPeering.prototype, "_importCustomRoutesWithPublicIp", {
                             get: $util.oneOfGetter($oneOfFields = ["importCustomRoutesWithPublicIp"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -33839,12 +34982,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NetworkPeering.decode = function decode(reader, length) {
+                        NetworkPeering.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.NetworkPeering();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -34015,6 +35160,7 @@
                                 case 4:
                                 case 5:
                                 case 6:
+                                case 7:
                                     break;
                                 }
                             if (message.uid != null && message.hasOwnProperty("uid"))
@@ -34131,6 +35277,10 @@
                             case "DELL_POWERSCALE":
                             case 6:
                                 message.peerNetworkType = 6;
+                                break;
+                            case "GOOGLE_CLOUD_NETAPP_VOLUMES":
+                            case 7:
+                                message.peerNetworkType = 7;
                                 break;
                             }
                             if (object.uid != null)
@@ -34275,6 +35425,7 @@
                          * @property {number} NETAPP_CLOUD_VOLUMES=4 NETAPP_CLOUD_VOLUMES value
                          * @property {number} THIRD_PARTY_SERVICE=5 THIRD_PARTY_SERVICE value
                          * @property {number} DELL_POWERSCALE=6 DELL_POWERSCALE value
+                         * @property {number} GOOGLE_CLOUD_NETAPP_VOLUMES=7 GOOGLE_CLOUD_NETAPP_VOLUMES value
                          */
                         NetworkPeering.PeerNetworkType = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
@@ -34285,6 +35436,7 @@
                             values[valuesById[4] = "NETAPP_CLOUD_VOLUMES"] = 4;
                             values[valuesById[5] = "THIRD_PARTY_SERVICE"] = 5;
                             values[valuesById[6] = "DELL_POWERSCALE"] = 6;
+                            values[valuesById[7] = "GOOGLE_CLOUD_NETAPP_VOLUMES"] = 7;
                             return values;
                         })();
     
@@ -34431,12 +35583,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PeeringRoute.decode = function decode(reader, length) {
+                        PeeringRoute.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.PeeringRoute();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.destRange = reader.string();
@@ -34895,12 +36049,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NetworkPolicy.decode = function decode(reader, length) {
+                        NetworkPolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.NetworkPolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -35235,12 +36391,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            NetworkService.decode = function decode(reader, length) {
+                            NetworkService.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.NetworkPolicy.NetworkService();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.enabled = reader.bool();
@@ -35592,12 +36750,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ManagementDnsZoneBinding.decode = function decode(reader, length) {
+                        ManagementDnsZoneBinding.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.ManagementDnsZoneBinding();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -36052,12 +37212,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VmwareEngineNetwork.decode = function decode(reader, length) {
+                        VmwareEngineNetwork.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.VmwareEngineNetwork();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -36448,12 +37610,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            VpcNetwork.decode = function decode(reader, length) {
+                            VpcNetwork.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.VmwareEngineNetwork.VpcNetwork();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.type = reader.int32();
@@ -36882,12 +38046,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        PrivateConnection.decode = function decode(reader, length) {
+                        PrivateConnection.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.PrivateConnection();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -37447,12 +38613,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LocationMetadata.decode = function decode(reader, length) {
+                        LocationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.LocationMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.capabilities && message.capabilities.length))
@@ -37715,12 +38883,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DnsBindPermission.decode = function decode(reader, length) {
+                        DnsBindPermission.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.DnsBindPermission();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -37975,12 +39145,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Principal.decode = function decode(reader, length) {
+                        Principal.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.vmwareengine.v1.Principal();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.user = reader.string();
@@ -38124,2145 +39296,6 @@
             return cloud;
         })();
     
-        google.longrunning = (function() {
-    
-            /**
-             * Namespace longrunning.
-             * @memberof google
-             * @namespace
-             */
-            var longrunning = {};
-    
-            longrunning.Operations = (function() {
-    
-                /**
-                 * Constructs a new Operations service.
-                 * @memberof google.longrunning
-                 * @classdesc Represents an Operations
-                 * @extends $protobuf.rpc.Service
-                 * @constructor
-                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-                 */
-                function Operations(rpcImpl, requestDelimited, responseDelimited) {
-                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-                }
-    
-                (Operations.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Operations;
-    
-                /**
-                 * Creates new Operations service using the specified rpc implementation.
-                 * @function create
-                 * @memberof google.longrunning.Operations
-                 * @static
-                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-                 * @returns {Operations} RPC service. Useful where requests and/or responses are streamed.
-                 */
-                Operations.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-                    return new this(rpcImpl, requestDelimited, responseDelimited);
-                };
-    
-                /**
-                 * Callback as used by {@link google.longrunning.Operations|listOperations}.
-                 * @memberof google.longrunning.Operations
-                 * @typedef ListOperationsCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {google.longrunning.ListOperationsResponse} [response] ListOperationsResponse
-                 */
-    
-                /**
-                 * Calls ListOperations.
-                 * @function listOperations
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IListOperationsRequest} request ListOperationsRequest message or plain object
-                 * @param {google.longrunning.Operations.ListOperationsCallback} callback Node-style callback called with the error, if any, and ListOperationsResponse
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(Operations.prototype.listOperations = function listOperations(request, callback) {
-                    return this.rpcCall(listOperations, $root.google.longrunning.ListOperationsRequest, $root.google.longrunning.ListOperationsResponse, request, callback);
-                }, "name", { value: "ListOperations" });
-    
-                /**
-                 * Calls ListOperations.
-                 * @function listOperations
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IListOperationsRequest} request ListOperationsRequest message or plain object
-                 * @returns {Promise<google.longrunning.ListOperationsResponse>} Promise
-                 * @variation 2
-                 */
-    
-                /**
-                 * Callback as used by {@link google.longrunning.Operations|getOperation}.
-                 * @memberof google.longrunning.Operations
-                 * @typedef GetOperationCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {google.longrunning.Operation} [response] Operation
-                 */
-    
-                /**
-                 * Calls GetOperation.
-                 * @function getOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IGetOperationRequest} request GetOperationRequest message or plain object
-                 * @param {google.longrunning.Operations.GetOperationCallback} callback Node-style callback called with the error, if any, and Operation
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(Operations.prototype.getOperation = function getOperation(request, callback) {
-                    return this.rpcCall(getOperation, $root.google.longrunning.GetOperationRequest, $root.google.longrunning.Operation, request, callback);
-                }, "name", { value: "GetOperation" });
-    
-                /**
-                 * Calls GetOperation.
-                 * @function getOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IGetOperationRequest} request GetOperationRequest message or plain object
-                 * @returns {Promise<google.longrunning.Operation>} Promise
-                 * @variation 2
-                 */
-    
-                /**
-                 * Callback as used by {@link google.longrunning.Operations|deleteOperation}.
-                 * @memberof google.longrunning.Operations
-                 * @typedef DeleteOperationCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {google.protobuf.Empty} [response] Empty
-                 */
-    
-                /**
-                 * Calls DeleteOperation.
-                 * @function deleteOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IDeleteOperationRequest} request DeleteOperationRequest message or plain object
-                 * @param {google.longrunning.Operations.DeleteOperationCallback} callback Node-style callback called with the error, if any, and Empty
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(Operations.prototype.deleteOperation = function deleteOperation(request, callback) {
-                    return this.rpcCall(deleteOperation, $root.google.longrunning.DeleteOperationRequest, $root.google.protobuf.Empty, request, callback);
-                }, "name", { value: "DeleteOperation" });
-    
-                /**
-                 * Calls DeleteOperation.
-                 * @function deleteOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IDeleteOperationRequest} request DeleteOperationRequest message or plain object
-                 * @returns {Promise<google.protobuf.Empty>} Promise
-                 * @variation 2
-                 */
-    
-                /**
-                 * Callback as used by {@link google.longrunning.Operations|cancelOperation}.
-                 * @memberof google.longrunning.Operations
-                 * @typedef CancelOperationCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {google.protobuf.Empty} [response] Empty
-                 */
-    
-                /**
-                 * Calls CancelOperation.
-                 * @function cancelOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.ICancelOperationRequest} request CancelOperationRequest message or plain object
-                 * @param {google.longrunning.Operations.CancelOperationCallback} callback Node-style callback called with the error, if any, and Empty
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(Operations.prototype.cancelOperation = function cancelOperation(request, callback) {
-                    return this.rpcCall(cancelOperation, $root.google.longrunning.CancelOperationRequest, $root.google.protobuf.Empty, request, callback);
-                }, "name", { value: "CancelOperation" });
-    
-                /**
-                 * Calls CancelOperation.
-                 * @function cancelOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.ICancelOperationRequest} request CancelOperationRequest message or plain object
-                 * @returns {Promise<google.protobuf.Empty>} Promise
-                 * @variation 2
-                 */
-    
-                /**
-                 * Callback as used by {@link google.longrunning.Operations|waitOperation}.
-                 * @memberof google.longrunning.Operations
-                 * @typedef WaitOperationCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {google.longrunning.Operation} [response] Operation
-                 */
-    
-                /**
-                 * Calls WaitOperation.
-                 * @function waitOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IWaitOperationRequest} request WaitOperationRequest message or plain object
-                 * @param {google.longrunning.Operations.WaitOperationCallback} callback Node-style callback called with the error, if any, and Operation
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(Operations.prototype.waitOperation = function waitOperation(request, callback) {
-                    return this.rpcCall(waitOperation, $root.google.longrunning.WaitOperationRequest, $root.google.longrunning.Operation, request, callback);
-                }, "name", { value: "WaitOperation" });
-    
-                /**
-                 * Calls WaitOperation.
-                 * @function waitOperation
-                 * @memberof google.longrunning.Operations
-                 * @instance
-                 * @param {google.longrunning.IWaitOperationRequest} request WaitOperationRequest message or plain object
-                 * @returns {Promise<google.longrunning.Operation>} Promise
-                 * @variation 2
-                 */
-    
-                return Operations;
-            })();
-    
-            longrunning.Operation = (function() {
-    
-                /**
-                 * Properties of an Operation.
-                 * @memberof google.longrunning
-                 * @interface IOperation
-                 * @property {string|null} [name] Operation name
-                 * @property {google.protobuf.IAny|null} [metadata] Operation metadata
-                 * @property {boolean|null} [done] Operation done
-                 * @property {google.rpc.IStatus|null} [error] Operation error
-                 * @property {google.protobuf.IAny|null} [response] Operation response
-                 */
-    
-                /**
-                 * Constructs a new Operation.
-                 * @memberof google.longrunning
-                 * @classdesc Represents an Operation.
-                 * @implements IOperation
-                 * @constructor
-                 * @param {google.longrunning.IOperation=} [properties] Properties to set
-                 */
-                function Operation(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * Operation name.
-                 * @member {string} name
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 */
-                Operation.prototype.name = "";
-    
-                /**
-                 * Operation metadata.
-                 * @member {google.protobuf.IAny|null|undefined} metadata
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 */
-                Operation.prototype.metadata = null;
-    
-                /**
-                 * Operation done.
-                 * @member {boolean} done
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 */
-                Operation.prototype.done = false;
-    
-                /**
-                 * Operation error.
-                 * @member {google.rpc.IStatus|null|undefined} error
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 */
-                Operation.prototype.error = null;
-    
-                /**
-                 * Operation response.
-                 * @member {google.protobuf.IAny|null|undefined} response
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 */
-                Operation.prototype.response = null;
-    
-                // OneOf field names bound to virtual getters and setters
-                var $oneOfFields;
-    
-                /**
-                 * Operation result.
-                 * @member {"error"|"response"|undefined} result
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 */
-                Object.defineProperty(Operation.prototype, "result", {
-                    get: $util.oneOfGetter($oneOfFields = ["error", "response"]),
-                    set: $util.oneOfSetter($oneOfFields)
-                });
-    
-                /**
-                 * Creates a new Operation instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {google.longrunning.IOperation=} [properties] Properties to set
-                 * @returns {google.longrunning.Operation} Operation instance
-                 */
-                Operation.create = function create(properties) {
-                    return new Operation(properties);
-                };
-    
-                /**
-                 * Encodes the specified Operation message. Does not implicitly {@link google.longrunning.Operation.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {google.longrunning.IOperation} message Operation message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Operation.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                    if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
-                        $root.google.protobuf.Any.encode(message.metadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    if (message.done != null && Object.hasOwnProperty.call(message, "done"))
-                        writer.uint32(/* id 3, wireType 0 =*/24).bool(message.done);
-                    if (message.error != null && Object.hasOwnProperty.call(message, "error"))
-                        $root.google.rpc.Status.encode(message.error, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.response != null && Object.hasOwnProperty.call(message, "response"))
-                        $root.google.protobuf.Any.encode(message.response, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified Operation message, length delimited. Does not implicitly {@link google.longrunning.Operation.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {google.longrunning.IOperation} message Operation message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Operation.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes an Operation message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.Operation} Operation
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Operation.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.name = reader.string();
-                                break;
-                            }
-                        case 2: {
-                                message.metadata = $root.google.protobuf.Any.decode(reader, reader.uint32());
-                                break;
-                            }
-                        case 3: {
-                                message.done = reader.bool();
-                                break;
-                            }
-                        case 4: {
-                                message.error = $root.google.rpc.Status.decode(reader, reader.uint32());
-                                break;
-                            }
-                        case 5: {
-                                message.response = $root.google.protobuf.Any.decode(reader, reader.uint32());
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes an Operation message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.Operation} Operation
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Operation.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies an Operation message.
-                 * @function verify
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Operation.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    var properties = {};
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        if (!$util.isString(message.name))
-                            return "name: string expected";
-                    if (message.metadata != null && message.hasOwnProperty("metadata")) {
-                        var error = $root.google.protobuf.Any.verify(message.metadata);
-                        if (error)
-                            return "metadata." + error;
-                    }
-                    if (message.done != null && message.hasOwnProperty("done"))
-                        if (typeof message.done !== "boolean")
-                            return "done: boolean expected";
-                    if (message.error != null && message.hasOwnProperty("error")) {
-                        properties.result = 1;
-                        {
-                            var error = $root.google.rpc.Status.verify(message.error);
-                            if (error)
-                                return "error." + error;
-                        }
-                    }
-                    if (message.response != null && message.hasOwnProperty("response")) {
-                        if (properties.result === 1)
-                            return "result: multiple values";
-                        properties.result = 1;
-                        {
-                            var error = $root.google.protobuf.Any.verify(message.response);
-                            if (error)
-                                return "response." + error;
-                        }
-                    }
-                    return null;
-                };
-    
-                /**
-                 * Creates an Operation message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.Operation} Operation
-                 */
-                Operation.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.Operation)
-                        return object;
-                    var message = new $root.google.longrunning.Operation();
-                    if (object.name != null)
-                        message.name = String(object.name);
-                    if (object.metadata != null) {
-                        if (typeof object.metadata !== "object")
-                            throw TypeError(".google.longrunning.Operation.metadata: object expected");
-                        message.metadata = $root.google.protobuf.Any.fromObject(object.metadata);
-                    }
-                    if (object.done != null)
-                        message.done = Boolean(object.done);
-                    if (object.error != null) {
-                        if (typeof object.error !== "object")
-                            throw TypeError(".google.longrunning.Operation.error: object expected");
-                        message.error = $root.google.rpc.Status.fromObject(object.error);
-                    }
-                    if (object.response != null) {
-                        if (typeof object.response !== "object")
-                            throw TypeError(".google.longrunning.Operation.response: object expected");
-                        message.response = $root.google.protobuf.Any.fromObject(object.response);
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from an Operation message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {google.longrunning.Operation} message Operation
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Operation.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.name = "";
-                        object.metadata = null;
-                        object.done = false;
-                    }
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        object.name = message.name;
-                    if (message.metadata != null && message.hasOwnProperty("metadata"))
-                        object.metadata = $root.google.protobuf.Any.toObject(message.metadata, options);
-                    if (message.done != null && message.hasOwnProperty("done"))
-                        object.done = message.done;
-                    if (message.error != null && message.hasOwnProperty("error")) {
-                        object.error = $root.google.rpc.Status.toObject(message.error, options);
-                        if (options.oneofs)
-                            object.result = "error";
-                    }
-                    if (message.response != null && message.hasOwnProperty("response")) {
-                        object.response = $root.google.protobuf.Any.toObject(message.response, options);
-                        if (options.oneofs)
-                            object.result = "response";
-                    }
-                    return object;
-                };
-    
-                /**
-                 * Converts this Operation to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.Operation
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Operation.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for Operation
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.Operation
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                Operation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.Operation";
-                };
-    
-                return Operation;
-            })();
-    
-            longrunning.GetOperationRequest = (function() {
-    
-                /**
-                 * Properties of a GetOperationRequest.
-                 * @memberof google.longrunning
-                 * @interface IGetOperationRequest
-                 * @property {string|null} [name] GetOperationRequest name
-                 */
-    
-                /**
-                 * Constructs a new GetOperationRequest.
-                 * @memberof google.longrunning
-                 * @classdesc Represents a GetOperationRequest.
-                 * @implements IGetOperationRequest
-                 * @constructor
-                 * @param {google.longrunning.IGetOperationRequest=} [properties] Properties to set
-                 */
-                function GetOperationRequest(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * GetOperationRequest name.
-                 * @member {string} name
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @instance
-                 */
-                GetOperationRequest.prototype.name = "";
-    
-                /**
-                 * Creates a new GetOperationRequest instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {google.longrunning.IGetOperationRequest=} [properties] Properties to set
-                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest instance
-                 */
-                GetOperationRequest.create = function create(properties) {
-                    return new GetOperationRequest(properties);
-                };
-    
-                /**
-                 * Encodes the specified GetOperationRequest message. Does not implicitly {@link google.longrunning.GetOperationRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {google.longrunning.IGetOperationRequest} message GetOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                GetOperationRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified GetOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.GetOperationRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {google.longrunning.IGetOperationRequest} message GetOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                GetOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a GetOperationRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                GetOperationRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.name = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a GetOperationRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                GetOperationRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a GetOperationRequest message.
-                 * @function verify
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                GetOperationRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        if (!$util.isString(message.name))
-                            return "name: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a GetOperationRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest
-                 */
-                GetOperationRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.GetOperationRequest)
-                        return object;
-                    var message = new $root.google.longrunning.GetOperationRequest();
-                    if (object.name != null)
-                        message.name = String(object.name);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a GetOperationRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {google.longrunning.GetOperationRequest} message GetOperationRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                GetOperationRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults)
-                        object.name = "";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        object.name = message.name;
-                    return object;
-                };
-    
-                /**
-                 * Converts this GetOperationRequest to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                GetOperationRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for GetOperationRequest
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.GetOperationRequest
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                GetOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.GetOperationRequest";
-                };
-    
-                return GetOperationRequest;
-            })();
-    
-            longrunning.ListOperationsRequest = (function() {
-    
-                /**
-                 * Properties of a ListOperationsRequest.
-                 * @memberof google.longrunning
-                 * @interface IListOperationsRequest
-                 * @property {string|null} [name] ListOperationsRequest name
-                 * @property {string|null} [filter] ListOperationsRequest filter
-                 * @property {number|null} [pageSize] ListOperationsRequest pageSize
-                 * @property {string|null} [pageToken] ListOperationsRequest pageToken
-                 */
-    
-                /**
-                 * Constructs a new ListOperationsRequest.
-                 * @memberof google.longrunning
-                 * @classdesc Represents a ListOperationsRequest.
-                 * @implements IListOperationsRequest
-                 * @constructor
-                 * @param {google.longrunning.IListOperationsRequest=} [properties] Properties to set
-                 */
-                function ListOperationsRequest(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * ListOperationsRequest name.
-                 * @member {string} name
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @instance
-                 */
-                ListOperationsRequest.prototype.name = "";
-    
-                /**
-                 * ListOperationsRequest filter.
-                 * @member {string} filter
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @instance
-                 */
-                ListOperationsRequest.prototype.filter = "";
-    
-                /**
-                 * ListOperationsRequest pageSize.
-                 * @member {number} pageSize
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @instance
-                 */
-                ListOperationsRequest.prototype.pageSize = 0;
-    
-                /**
-                 * ListOperationsRequest pageToken.
-                 * @member {string} pageToken
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @instance
-                 */
-                ListOperationsRequest.prototype.pageToken = "";
-    
-                /**
-                 * Creates a new ListOperationsRequest instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {google.longrunning.IListOperationsRequest=} [properties] Properties to set
-                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest instance
-                 */
-                ListOperationsRequest.create = function create(properties) {
-                    return new ListOperationsRequest(properties);
-                };
-    
-                /**
-                 * Encodes the specified ListOperationsRequest message. Does not implicitly {@link google.longrunning.ListOperationsRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {google.longrunning.IListOperationsRequest} message ListOperationsRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ListOperationsRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.filter);
-                    if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
-                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
-                    if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
-                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
-                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified ListOperationsRequest message, length delimited. Does not implicitly {@link google.longrunning.ListOperationsRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {google.longrunning.IListOperationsRequest} message ListOperationsRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ListOperationsRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a ListOperationsRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ListOperationsRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 4: {
-                                message.name = reader.string();
-                                break;
-                            }
-                        case 1: {
-                                message.filter = reader.string();
-                                break;
-                            }
-                        case 2: {
-                                message.pageSize = reader.int32();
-                                break;
-                            }
-                        case 3: {
-                                message.pageToken = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a ListOperationsRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ListOperationsRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a ListOperationsRequest message.
-                 * @function verify
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ListOperationsRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        if (!$util.isString(message.name))
-                            return "name: string expected";
-                    if (message.filter != null && message.hasOwnProperty("filter"))
-                        if (!$util.isString(message.filter))
-                            return "filter: string expected";
-                    if (message.pageSize != null && message.hasOwnProperty("pageSize"))
-                        if (!$util.isInteger(message.pageSize))
-                            return "pageSize: integer expected";
-                    if (message.pageToken != null && message.hasOwnProperty("pageToken"))
-                        if (!$util.isString(message.pageToken))
-                            return "pageToken: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a ListOperationsRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest
-                 */
-                ListOperationsRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.ListOperationsRequest)
-                        return object;
-                    var message = new $root.google.longrunning.ListOperationsRequest();
-                    if (object.name != null)
-                        message.name = String(object.name);
-                    if (object.filter != null)
-                        message.filter = String(object.filter);
-                    if (object.pageSize != null)
-                        message.pageSize = object.pageSize | 0;
-                    if (object.pageToken != null)
-                        message.pageToken = String(object.pageToken);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a ListOperationsRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {google.longrunning.ListOperationsRequest} message ListOperationsRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ListOperationsRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.filter = "";
-                        object.pageSize = 0;
-                        object.pageToken = "";
-                        object.name = "";
-                    }
-                    if (message.filter != null && message.hasOwnProperty("filter"))
-                        object.filter = message.filter;
-                    if (message.pageSize != null && message.hasOwnProperty("pageSize"))
-                        object.pageSize = message.pageSize;
-                    if (message.pageToken != null && message.hasOwnProperty("pageToken"))
-                        object.pageToken = message.pageToken;
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        object.name = message.name;
-                    return object;
-                };
-    
-                /**
-                 * Converts this ListOperationsRequest to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ListOperationsRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for ListOperationsRequest
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.ListOperationsRequest
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                ListOperationsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.ListOperationsRequest";
-                };
-    
-                return ListOperationsRequest;
-            })();
-    
-            longrunning.ListOperationsResponse = (function() {
-    
-                /**
-                 * Properties of a ListOperationsResponse.
-                 * @memberof google.longrunning
-                 * @interface IListOperationsResponse
-                 * @property {Array.<google.longrunning.IOperation>|null} [operations] ListOperationsResponse operations
-                 * @property {string|null} [nextPageToken] ListOperationsResponse nextPageToken
-                 */
-    
-                /**
-                 * Constructs a new ListOperationsResponse.
-                 * @memberof google.longrunning
-                 * @classdesc Represents a ListOperationsResponse.
-                 * @implements IListOperationsResponse
-                 * @constructor
-                 * @param {google.longrunning.IListOperationsResponse=} [properties] Properties to set
-                 */
-                function ListOperationsResponse(properties) {
-                    this.operations = [];
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * ListOperationsResponse operations.
-                 * @member {Array.<google.longrunning.IOperation>} operations
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @instance
-                 */
-                ListOperationsResponse.prototype.operations = $util.emptyArray;
-    
-                /**
-                 * ListOperationsResponse nextPageToken.
-                 * @member {string} nextPageToken
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @instance
-                 */
-                ListOperationsResponse.prototype.nextPageToken = "";
-    
-                /**
-                 * Creates a new ListOperationsResponse instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {google.longrunning.IListOperationsResponse=} [properties] Properties to set
-                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse instance
-                 */
-                ListOperationsResponse.create = function create(properties) {
-                    return new ListOperationsResponse(properties);
-                };
-    
-                /**
-                 * Encodes the specified ListOperationsResponse message. Does not implicitly {@link google.longrunning.ListOperationsResponse.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {google.longrunning.IListOperationsResponse} message ListOperationsResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ListOperationsResponse.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.operations != null && message.operations.length)
-                        for (var i = 0; i < message.operations.length; ++i)
-                            $root.google.longrunning.Operation.encode(message.operations[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified ListOperationsResponse message, length delimited. Does not implicitly {@link google.longrunning.ListOperationsResponse.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {google.longrunning.IListOperationsResponse} message ListOperationsResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ListOperationsResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a ListOperationsResponse message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ListOperationsResponse.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                if (!(message.operations && message.operations.length))
-                                    message.operations = [];
-                                message.operations.push($root.google.longrunning.Operation.decode(reader, reader.uint32()));
-                                break;
-                            }
-                        case 2: {
-                                message.nextPageToken = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a ListOperationsResponse message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ListOperationsResponse.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a ListOperationsResponse message.
-                 * @function verify
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ListOperationsResponse.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.operations != null && message.hasOwnProperty("operations")) {
-                        if (!Array.isArray(message.operations))
-                            return "operations: array expected";
-                        for (var i = 0; i < message.operations.length; ++i) {
-                            var error = $root.google.longrunning.Operation.verify(message.operations[i]);
-                            if (error)
-                                return "operations." + error;
-                        }
-                    }
-                    if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
-                        if (!$util.isString(message.nextPageToken))
-                            return "nextPageToken: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a ListOperationsResponse message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse
-                 */
-                ListOperationsResponse.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.ListOperationsResponse)
-                        return object;
-                    var message = new $root.google.longrunning.ListOperationsResponse();
-                    if (object.operations) {
-                        if (!Array.isArray(object.operations))
-                            throw TypeError(".google.longrunning.ListOperationsResponse.operations: array expected");
-                        message.operations = [];
-                        for (var i = 0; i < object.operations.length; ++i) {
-                            if (typeof object.operations[i] !== "object")
-                                throw TypeError(".google.longrunning.ListOperationsResponse.operations: object expected");
-                            message.operations[i] = $root.google.longrunning.Operation.fromObject(object.operations[i]);
-                        }
-                    }
-                    if (object.nextPageToken != null)
-                        message.nextPageToken = String(object.nextPageToken);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a ListOperationsResponse message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {google.longrunning.ListOperationsResponse} message ListOperationsResponse
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ListOperationsResponse.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.arrays || options.defaults)
-                        object.operations = [];
-                    if (options.defaults)
-                        object.nextPageToken = "";
-                    if (message.operations && message.operations.length) {
-                        object.operations = [];
-                        for (var j = 0; j < message.operations.length; ++j)
-                            object.operations[j] = $root.google.longrunning.Operation.toObject(message.operations[j], options);
-                    }
-                    if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
-                        object.nextPageToken = message.nextPageToken;
-                    return object;
-                };
-    
-                /**
-                 * Converts this ListOperationsResponse to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ListOperationsResponse.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for ListOperationsResponse
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.ListOperationsResponse
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                ListOperationsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.ListOperationsResponse";
-                };
-    
-                return ListOperationsResponse;
-            })();
-    
-            longrunning.CancelOperationRequest = (function() {
-    
-                /**
-                 * Properties of a CancelOperationRequest.
-                 * @memberof google.longrunning
-                 * @interface ICancelOperationRequest
-                 * @property {string|null} [name] CancelOperationRequest name
-                 */
-    
-                /**
-                 * Constructs a new CancelOperationRequest.
-                 * @memberof google.longrunning
-                 * @classdesc Represents a CancelOperationRequest.
-                 * @implements ICancelOperationRequest
-                 * @constructor
-                 * @param {google.longrunning.ICancelOperationRequest=} [properties] Properties to set
-                 */
-                function CancelOperationRequest(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * CancelOperationRequest name.
-                 * @member {string} name
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @instance
-                 */
-                CancelOperationRequest.prototype.name = "";
-    
-                /**
-                 * Creates a new CancelOperationRequest instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {google.longrunning.ICancelOperationRequest=} [properties] Properties to set
-                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest instance
-                 */
-                CancelOperationRequest.create = function create(properties) {
-                    return new CancelOperationRequest(properties);
-                };
-    
-                /**
-                 * Encodes the specified CancelOperationRequest message. Does not implicitly {@link google.longrunning.CancelOperationRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {google.longrunning.ICancelOperationRequest} message CancelOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                CancelOperationRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified CancelOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.CancelOperationRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {google.longrunning.ICancelOperationRequest} message CancelOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                CancelOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a CancelOperationRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                CancelOperationRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.name = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a CancelOperationRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                CancelOperationRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a CancelOperationRequest message.
-                 * @function verify
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                CancelOperationRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        if (!$util.isString(message.name))
-                            return "name: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a CancelOperationRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest
-                 */
-                CancelOperationRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.CancelOperationRequest)
-                        return object;
-                    var message = new $root.google.longrunning.CancelOperationRequest();
-                    if (object.name != null)
-                        message.name = String(object.name);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a CancelOperationRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {google.longrunning.CancelOperationRequest} message CancelOperationRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                CancelOperationRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults)
-                        object.name = "";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        object.name = message.name;
-                    return object;
-                };
-    
-                /**
-                 * Converts this CancelOperationRequest to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                CancelOperationRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for CancelOperationRequest
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.CancelOperationRequest
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                CancelOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.CancelOperationRequest";
-                };
-    
-                return CancelOperationRequest;
-            })();
-    
-            longrunning.DeleteOperationRequest = (function() {
-    
-                /**
-                 * Properties of a DeleteOperationRequest.
-                 * @memberof google.longrunning
-                 * @interface IDeleteOperationRequest
-                 * @property {string|null} [name] DeleteOperationRequest name
-                 */
-    
-                /**
-                 * Constructs a new DeleteOperationRequest.
-                 * @memberof google.longrunning
-                 * @classdesc Represents a DeleteOperationRequest.
-                 * @implements IDeleteOperationRequest
-                 * @constructor
-                 * @param {google.longrunning.IDeleteOperationRequest=} [properties] Properties to set
-                 */
-                function DeleteOperationRequest(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * DeleteOperationRequest name.
-                 * @member {string} name
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @instance
-                 */
-                DeleteOperationRequest.prototype.name = "";
-    
-                /**
-                 * Creates a new DeleteOperationRequest instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {google.longrunning.IDeleteOperationRequest=} [properties] Properties to set
-                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest instance
-                 */
-                DeleteOperationRequest.create = function create(properties) {
-                    return new DeleteOperationRequest(properties);
-                };
-    
-                /**
-                 * Encodes the specified DeleteOperationRequest message. Does not implicitly {@link google.longrunning.DeleteOperationRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {google.longrunning.IDeleteOperationRequest} message DeleteOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                DeleteOperationRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified DeleteOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.DeleteOperationRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {google.longrunning.IDeleteOperationRequest} message DeleteOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                DeleteOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a DeleteOperationRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                DeleteOperationRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.name = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a DeleteOperationRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                DeleteOperationRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a DeleteOperationRequest message.
-                 * @function verify
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                DeleteOperationRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        if (!$util.isString(message.name))
-                            return "name: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a DeleteOperationRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest
-                 */
-                DeleteOperationRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.DeleteOperationRequest)
-                        return object;
-                    var message = new $root.google.longrunning.DeleteOperationRequest();
-                    if (object.name != null)
-                        message.name = String(object.name);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a DeleteOperationRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {google.longrunning.DeleteOperationRequest} message DeleteOperationRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                DeleteOperationRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults)
-                        object.name = "";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        object.name = message.name;
-                    return object;
-                };
-    
-                /**
-                 * Converts this DeleteOperationRequest to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                DeleteOperationRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for DeleteOperationRequest
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.DeleteOperationRequest
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                DeleteOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.DeleteOperationRequest";
-                };
-    
-                return DeleteOperationRequest;
-            })();
-    
-            longrunning.WaitOperationRequest = (function() {
-    
-                /**
-                 * Properties of a WaitOperationRequest.
-                 * @memberof google.longrunning
-                 * @interface IWaitOperationRequest
-                 * @property {string|null} [name] WaitOperationRequest name
-                 * @property {google.protobuf.IDuration|null} [timeout] WaitOperationRequest timeout
-                 */
-    
-                /**
-                 * Constructs a new WaitOperationRequest.
-                 * @memberof google.longrunning
-                 * @classdesc Represents a WaitOperationRequest.
-                 * @implements IWaitOperationRequest
-                 * @constructor
-                 * @param {google.longrunning.IWaitOperationRequest=} [properties] Properties to set
-                 */
-                function WaitOperationRequest(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * WaitOperationRequest name.
-                 * @member {string} name
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @instance
-                 */
-                WaitOperationRequest.prototype.name = "";
-    
-                /**
-                 * WaitOperationRequest timeout.
-                 * @member {google.protobuf.IDuration|null|undefined} timeout
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @instance
-                 */
-                WaitOperationRequest.prototype.timeout = null;
-    
-                /**
-                 * Creates a new WaitOperationRequest instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {google.longrunning.IWaitOperationRequest=} [properties] Properties to set
-                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest instance
-                 */
-                WaitOperationRequest.create = function create(properties) {
-                    return new WaitOperationRequest(properties);
-                };
-    
-                /**
-                 * Encodes the specified WaitOperationRequest message. Does not implicitly {@link google.longrunning.WaitOperationRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {google.longrunning.IWaitOperationRequest} message WaitOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                WaitOperationRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                    if (message.timeout != null && Object.hasOwnProperty.call(message, "timeout"))
-                        $root.google.protobuf.Duration.encode(message.timeout, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified WaitOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.WaitOperationRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {google.longrunning.IWaitOperationRequest} message WaitOperationRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                WaitOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a WaitOperationRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                WaitOperationRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.name = reader.string();
-                                break;
-                            }
-                        case 2: {
-                                message.timeout = $root.google.protobuf.Duration.decode(reader, reader.uint32());
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a WaitOperationRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                WaitOperationRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a WaitOperationRequest message.
-                 * @function verify
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                WaitOperationRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        if (!$util.isString(message.name))
-                            return "name: string expected";
-                    if (message.timeout != null && message.hasOwnProperty("timeout")) {
-                        var error = $root.google.protobuf.Duration.verify(message.timeout);
-                        if (error)
-                            return "timeout." + error;
-                    }
-                    return null;
-                };
-    
-                /**
-                 * Creates a WaitOperationRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest
-                 */
-                WaitOperationRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.WaitOperationRequest)
-                        return object;
-                    var message = new $root.google.longrunning.WaitOperationRequest();
-                    if (object.name != null)
-                        message.name = String(object.name);
-                    if (object.timeout != null) {
-                        if (typeof object.timeout !== "object")
-                            throw TypeError(".google.longrunning.WaitOperationRequest.timeout: object expected");
-                        message.timeout = $root.google.protobuf.Duration.fromObject(object.timeout);
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a WaitOperationRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {google.longrunning.WaitOperationRequest} message WaitOperationRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                WaitOperationRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.name = "";
-                        object.timeout = null;
-                    }
-                    if (message.name != null && message.hasOwnProperty("name"))
-                        object.name = message.name;
-                    if (message.timeout != null && message.hasOwnProperty("timeout"))
-                        object.timeout = $root.google.protobuf.Duration.toObject(message.timeout, options);
-                    return object;
-                };
-    
-                /**
-                 * Converts this WaitOperationRequest to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                WaitOperationRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for WaitOperationRequest
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.WaitOperationRequest
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                WaitOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.WaitOperationRequest";
-                };
-    
-                return WaitOperationRequest;
-            })();
-    
-            longrunning.OperationInfo = (function() {
-    
-                /**
-                 * Properties of an OperationInfo.
-                 * @memberof google.longrunning
-                 * @interface IOperationInfo
-                 * @property {string|null} [responseType] OperationInfo responseType
-                 * @property {string|null} [metadataType] OperationInfo metadataType
-                 */
-    
-                /**
-                 * Constructs a new OperationInfo.
-                 * @memberof google.longrunning
-                 * @classdesc Represents an OperationInfo.
-                 * @implements IOperationInfo
-                 * @constructor
-                 * @param {google.longrunning.IOperationInfo=} [properties] Properties to set
-                 */
-                function OperationInfo(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * OperationInfo responseType.
-                 * @member {string} responseType
-                 * @memberof google.longrunning.OperationInfo
-                 * @instance
-                 */
-                OperationInfo.prototype.responseType = "";
-    
-                /**
-                 * OperationInfo metadataType.
-                 * @member {string} metadataType
-                 * @memberof google.longrunning.OperationInfo
-                 * @instance
-                 */
-                OperationInfo.prototype.metadataType = "";
-    
-                /**
-                 * Creates a new OperationInfo instance using the specified properties.
-                 * @function create
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {google.longrunning.IOperationInfo=} [properties] Properties to set
-                 * @returns {google.longrunning.OperationInfo} OperationInfo instance
-                 */
-                OperationInfo.create = function create(properties) {
-                    return new OperationInfo(properties);
-                };
-    
-                /**
-                 * Encodes the specified OperationInfo message. Does not implicitly {@link google.longrunning.OperationInfo.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {google.longrunning.IOperationInfo} message OperationInfo message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                OperationInfo.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.responseType != null && Object.hasOwnProperty.call(message, "responseType"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.responseType);
-                    if (message.metadataType != null && Object.hasOwnProperty.call(message, "metadataType"))
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.metadataType);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified OperationInfo message, length delimited. Does not implicitly {@link google.longrunning.OperationInfo.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {google.longrunning.IOperationInfo} message OperationInfo message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                OperationInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes an OperationInfo message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.longrunning.OperationInfo} OperationInfo
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                OperationInfo.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.responseType = reader.string();
-                                break;
-                            }
-                        case 2: {
-                                message.metadataType = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes an OperationInfo message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.longrunning.OperationInfo} OperationInfo
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                OperationInfo.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies an OperationInfo message.
-                 * @function verify
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                OperationInfo.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.responseType != null && message.hasOwnProperty("responseType"))
-                        if (!$util.isString(message.responseType))
-                            return "responseType: string expected";
-                    if (message.metadataType != null && message.hasOwnProperty("metadataType"))
-                        if (!$util.isString(message.metadataType))
-                            return "metadataType: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates an OperationInfo message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.longrunning.OperationInfo} OperationInfo
-                 */
-                OperationInfo.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.longrunning.OperationInfo)
-                        return object;
-                    var message = new $root.google.longrunning.OperationInfo();
-                    if (object.responseType != null)
-                        message.responseType = String(object.responseType);
-                    if (object.metadataType != null)
-                        message.metadataType = String(object.metadataType);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from an OperationInfo message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {google.longrunning.OperationInfo} message OperationInfo
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                OperationInfo.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.responseType = "";
-                        object.metadataType = "";
-                    }
-                    if (message.responseType != null && message.hasOwnProperty("responseType"))
-                        object.responseType = message.responseType;
-                    if (message.metadataType != null && message.hasOwnProperty("metadataType"))
-                        object.metadataType = message.metadataType;
-                    return object;
-                };
-    
-                /**
-                 * Converts this OperationInfo to JSON.
-                 * @function toJSON
-                 * @memberof google.longrunning.OperationInfo
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                OperationInfo.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for OperationInfo
-                 * @function getTypeUrl
-                 * @memberof google.longrunning.OperationInfo
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                OperationInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.longrunning.OperationInfo";
-                };
-    
-                return OperationInfo;
-            })();
-    
-            return longrunning;
-        })();
-    
         google.api = (function() {
     
             /**
@@ -40370,12 +39403,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -40720,12 +39755,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -41104,12 +40141,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -41336,12 +40375,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -41705,12 +40746,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -42049,6 +41092,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -42150,6 +41194,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -42196,6 +41248,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -42223,12 +41277,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -42274,6 +41330,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -42368,6 +41428,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -42462,6 +41525,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -42491,6 +41556,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -42521,6 +41587,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -42662,12 +41730,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -42929,12 +41999,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -43137,12 +42209,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -43345,12 +42419,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -43553,12 +42629,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -43826,12 +42904,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -44205,12 +43285,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -44413,12 +43495,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -44645,12 +43729,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -44923,12 +44009,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -45277,12 +44365,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldInfo.decode = function decode(reader, length) {
+                FieldInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.FieldInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.format = reader.int32();
@@ -45607,12 +44697,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -46002,12 +45094,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -46232,12 +45326,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -46632,12 +45728,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47299,12 +46397,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -47784,12 +46884,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -48028,12 +47130,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -48284,12 +47388,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -48629,12 +47735,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -49008,12 +48116,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -49533,12 +48643,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -49804,12 +48916,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -50123,12 +49237,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -50364,12 +49480,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -50621,12 +49739,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -50929,12 +50049,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -51433,12 +50555,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -52053,12 +51177,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -52510,12 +51636,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     if (message[".google.api.fieldInfo"] != null && Object.hasOwnProperty.call(message, ".google.api.fieldInfo"))
@@ -52547,12 +51670,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -53295,12 +52420,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -53591,12 +52718,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -53877,12 +53006,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -54189,12 +53320,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -54380,6 +53513,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -54439,6 +53573,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -54473,6 +53615,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -54500,12 +53644,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -54527,6 +53673,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -54587,6 +53737,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -54623,6 +53776,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -54646,6 +53801,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -54660,6 +53816,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -54702,9 +53860,9 @@
                  * @property {google.protobuf.MethodOptions.IdempotencyLevel|null} [idempotencyLevel] MethodOptions idempotencyLevel
                  * @property {google.protobuf.IFeatureSet|null} [features] MethodOptions features
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] MethodOptions uninterpretedOption
-                 * @property {google.longrunning.IOperationInfo|null} [".google.longrunning.operationInfo"] MethodOptions .google.longrunning.operationInfo
                  * @property {google.api.IHttpRule|null} [".google.api.http"] MethodOptions .google.api.http
                  * @property {Array.<string>|null} [".google.api.methodSignature"] MethodOptions .google.api.methodSignature
+                 * @property {google.longrunning.IOperationInfo|null} [".google.longrunning.operationInfo"] MethodOptions .google.longrunning.operationInfo
                  */
     
                 /**
@@ -54757,14 +53915,6 @@
                 MethodOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
-                 * MethodOptions .google.longrunning.operationInfo.
-                 * @member {google.longrunning.IOperationInfo|null|undefined} .google.longrunning.operationInfo
-                 * @memberof google.protobuf.MethodOptions
-                 * @instance
-                 */
-                MethodOptions.prototype[".google.longrunning.operationInfo"] = null;
-    
-                /**
                  * MethodOptions .google.api.http.
                  * @member {google.api.IHttpRule|null|undefined} .google.api.http
                  * @memberof google.protobuf.MethodOptions
@@ -54779,6 +53929,14 @@
                  * @instance
                  */
                 MethodOptions.prototype[".google.api.methodSignature"] = $util.emptyArray;
+    
+                /**
+                 * MethodOptions .google.longrunning.operationInfo.
+                 * @member {google.longrunning.IOperationInfo|null|undefined} .google.longrunning.operationInfo
+                 * @memberof google.protobuf.MethodOptions
+                 * @instance
+                 */
+                MethodOptions.prototype[".google.longrunning.operationInfo"] = null;
     
                 /**
                  * Creates a new MethodOptions instance using the specified properties.
@@ -54847,12 +54005,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -54872,10 +54032,6 @@
                                 message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
                                 break;
                             }
-                        case 1049: {
-                                message[".google.longrunning.operationInfo"] = $root.google.longrunning.OperationInfo.decode(reader, reader.uint32());
-                                break;
-                            }
                         case 72295728: {
                                 message[".google.api.http"] = $root.google.api.HttpRule.decode(reader, reader.uint32());
                                 break;
@@ -54884,6 +54040,10 @@
                                 if (!(message[".google.api.methodSignature"] && message[".google.api.methodSignature"].length))
                                     message[".google.api.methodSignature"] = [];
                                 message[".google.api.methodSignature"].push(reader.string());
+                                break;
+                            }
+                        case 1049: {
+                                message[".google.longrunning.operationInfo"] = $root.google.longrunning.OperationInfo.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -54947,11 +54107,6 @@
                                 return "uninterpretedOption." + error;
                         }
                     }
-                    if (message[".google.longrunning.operationInfo"] != null && message.hasOwnProperty(".google.longrunning.operationInfo")) {
-                        var error = $root.google.longrunning.OperationInfo.verify(message[".google.longrunning.operationInfo"]);
-                        if (error)
-                            return ".google.longrunning.operationInfo." + error;
-                    }
                     if (message[".google.api.http"] != null && message.hasOwnProperty(".google.api.http")) {
                         var error = $root.google.api.HttpRule.verify(message[".google.api.http"]);
                         if (error)
@@ -54963,6 +54118,11 @@
                         for (var i = 0; i < message[".google.api.methodSignature"].length; ++i)
                             if (!$util.isString(message[".google.api.methodSignature"][i]))
                                 return ".google.api.methodSignature: string[] expected";
+                    }
+                    if (message[".google.longrunning.operationInfo"] != null && message.hasOwnProperty(".google.longrunning.operationInfo")) {
+                        var error = $root.google.longrunning.OperationInfo.verify(message[".google.longrunning.operationInfo"]);
+                        if (error)
+                            return ".google.longrunning.operationInfo." + error;
                     }
                     return null;
                 };
@@ -55016,11 +54176,6 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
-                    if (object[".google.longrunning.operationInfo"] != null) {
-                        if (typeof object[".google.longrunning.operationInfo"] !== "object")
-                            throw TypeError(".google.protobuf.MethodOptions..google.longrunning.operationInfo: object expected");
-                        message[".google.longrunning.operationInfo"] = $root.google.longrunning.OperationInfo.fromObject(object[".google.longrunning.operationInfo"]);
-                    }
                     if (object[".google.api.http"] != null) {
                         if (typeof object[".google.api.http"] !== "object")
                             throw TypeError(".google.protobuf.MethodOptions..google.api.http: object expected");
@@ -55032,6 +54187,11 @@
                         message[".google.api.methodSignature"] = [];
                         for (var i = 0; i < object[".google.api.methodSignature"].length; ++i)
                             message[".google.api.methodSignature"][i] = String(object[".google.api.methodSignature"][i]);
+                    }
+                    if (object[".google.longrunning.operationInfo"] != null) {
+                        if (typeof object[".google.longrunning.operationInfo"] !== "object")
+                            throw TypeError(".google.protobuf.MethodOptions..google.longrunning.operationInfo: object expected");
+                        message[".google.longrunning.operationInfo"] = $root.google.longrunning.OperationInfo.fromObject(object[".google.longrunning.operationInfo"]);
                     }
                     return message;
                 };
@@ -55281,12 +54441,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -55620,12 +54782,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -55896,12 +55060,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -56431,12 +55597,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -56815,12 +55983,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -57105,12 +56275,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -57380,12 +56552,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -57691,12 +56865,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -57959,12 +57135,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -58285,12 +57463,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -58430,6 +57610,249 @@
                 return Duration;
             })();
     
+            protobuf.Timestamp = (function() {
+    
+                /**
+                 * Properties of a Timestamp.
+                 * @memberof google.protobuf
+                 * @interface ITimestamp
+                 * @property {number|Long|null} [seconds] Timestamp seconds
+                 * @property {number|null} [nanos] Timestamp nanos
+                 */
+    
+                /**
+                 * Constructs a new Timestamp.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a Timestamp.
+                 * @implements ITimestamp
+                 * @constructor
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 */
+                function Timestamp(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Timestamp seconds.
+                 * @member {number|Long} seconds
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                /**
+                 * Timestamp nanos.
+                 * @member {number} nanos
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.nanos = 0;
+    
+                /**
+                 * Creates a new Timestamp instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 * @returns {google.protobuf.Timestamp} Timestamp instance
+                 */
+                Timestamp.create = function create(properties) {
+                    return new Timestamp(properties);
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.seconds = reader.int64();
+                                break;
+                            }
+                        case 2: {
+                                message.nanos = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Timestamp message.
+                 * @function verify
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Timestamp.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                            return "seconds: integer|Long expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 */
+                Timestamp.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Timestamp)
+                        return object;
+                    var message = new $root.google.protobuf.Timestamp();
+                    if (object.seconds != null)
+                        if ($util.Long)
+                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                        else if (typeof object.seconds === "string")
+                            message.seconds = parseInt(object.seconds, 10);
+                        else if (typeof object.seconds === "number")
+                            message.seconds = object.seconds;
+                        else if (typeof object.seconds === "object")
+                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.Timestamp} message Timestamp
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Timestamp.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.seconds = options.longs === String ? "0" : 0;
+                        object.nanos = 0;
+                    }
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (typeof message.seconds === "number")
+                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                        else
+                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Timestamp to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Timestamp.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Timestamp
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Timestamp";
+                };
+    
+                return Timestamp;
+            })();
+    
             protobuf.Any = (function() {
     
                 /**
@@ -58526,12 +57949,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -58740,12 +58165,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -58841,247 +58268,6 @@
                 return Empty;
             })();
     
-            protobuf.Timestamp = (function() {
-    
-                /**
-                 * Properties of a Timestamp.
-                 * @memberof google.protobuf
-                 * @interface ITimestamp
-                 * @property {number|Long|null} [seconds] Timestamp seconds
-                 * @property {number|null} [nanos] Timestamp nanos
-                 */
-    
-                /**
-                 * Constructs a new Timestamp.
-                 * @memberof google.protobuf
-                 * @classdesc Represents a Timestamp.
-                 * @implements ITimestamp
-                 * @constructor
-                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
-                 */
-                function Timestamp(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * Timestamp seconds.
-                 * @member {number|Long} seconds
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 */
-                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-    
-                /**
-                 * Timestamp nanos.
-                 * @member {number} nanos
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 */
-                Timestamp.prototype.nanos = 0;
-    
-                /**
-                 * Creates a new Timestamp instance using the specified properties.
-                 * @function create
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
-                 * @returns {google.protobuf.Timestamp} Timestamp instance
-                 */
-                Timestamp.create = function create(properties) {
-                    return new Timestamp(properties);
-                };
-    
-                /**
-                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Timestamp.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
-                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
-                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a Timestamp message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Timestamp.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.seconds = reader.int64();
-                                break;
-                            }
-                        case 2: {
-                                message.nanos = reader.int32();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Timestamp.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a Timestamp message.
-                 * @function verify
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Timestamp.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
-                            return "seconds: integer|Long expected";
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        if (!$util.isInteger(message.nanos))
-                            return "nanos: integer expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 */
-                Timestamp.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.protobuf.Timestamp)
-                        return object;
-                    var message = new $root.google.protobuf.Timestamp();
-                    if (object.seconds != null)
-                        if ($util.Long)
-                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
-                        else if (typeof object.seconds === "string")
-                            message.seconds = parseInt(object.seconds, 10);
-                        else if (typeof object.seconds === "number")
-                            message.seconds = object.seconds;
-                        else if (typeof object.seconds === "object")
-                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
-                    if (object.nanos != null)
-                        message.nanos = object.nanos | 0;
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.Timestamp} message Timestamp
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Timestamp.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        if ($util.Long) {
-                            var long = new $util.Long(0, 0, false);
-                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.seconds = options.longs === String ? "0" : 0;
-                        object.nanos = 0;
-                    }
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (typeof message.seconds === "number")
-                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
-                        else
-                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        object.nanos = message.nanos;
-                    return object;
-                };
-    
-                /**
-                 * Converts this Timestamp to JSON.
-                 * @function toJSON
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Timestamp.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for Timestamp
-                 * @function getTypeUrl
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.protobuf.Timestamp";
-                };
-    
-                return Timestamp;
-            })();
-    
             protobuf.FieldMask = (function() {
     
                 /**
@@ -59169,12 +58355,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -59304,6 +58492,2161 @@
             return protobuf;
         })();
     
+        google.longrunning = (function() {
+    
+            /**
+             * Namespace longrunning.
+             * @memberof google
+             * @namespace
+             */
+            var longrunning = {};
+    
+            longrunning.Operations = (function() {
+    
+                /**
+                 * Constructs a new Operations service.
+                 * @memberof google.longrunning
+                 * @classdesc Represents an Operations
+                 * @extends $protobuf.rpc.Service
+                 * @constructor
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 */
+                function Operations(rpcImpl, requestDelimited, responseDelimited) {
+                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                }
+    
+                (Operations.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Operations;
+    
+                /**
+                 * Creates new Operations service using the specified rpc implementation.
+                 * @function create
+                 * @memberof google.longrunning.Operations
+                 * @static
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 * @returns {Operations} RPC service. Useful where requests and/or responses are streamed.
+                 */
+                Operations.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                    return new this(rpcImpl, requestDelimited, responseDelimited);
+                };
+    
+                /**
+                 * Callback as used by {@link google.longrunning.Operations|listOperations}.
+                 * @memberof google.longrunning.Operations
+                 * @typedef ListOperationsCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {google.longrunning.ListOperationsResponse} [response] ListOperationsResponse
+                 */
+    
+                /**
+                 * Calls ListOperations.
+                 * @function listOperations
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IListOperationsRequest} request ListOperationsRequest message or plain object
+                 * @param {google.longrunning.Operations.ListOperationsCallback} callback Node-style callback called with the error, if any, and ListOperationsResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Operations.prototype.listOperations = function listOperations(request, callback) {
+                    return this.rpcCall(listOperations, $root.google.longrunning.ListOperationsRequest, $root.google.longrunning.ListOperationsResponse, request, callback);
+                }, "name", { value: "ListOperations" });
+    
+                /**
+                 * Calls ListOperations.
+                 * @function listOperations
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IListOperationsRequest} request ListOperationsRequest message or plain object
+                 * @returns {Promise<google.longrunning.ListOperationsResponse>} Promise
+                 * @variation 2
+                 */
+    
+                /**
+                 * Callback as used by {@link google.longrunning.Operations|getOperation}.
+                 * @memberof google.longrunning.Operations
+                 * @typedef GetOperationCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {google.longrunning.Operation} [response] Operation
+                 */
+    
+                /**
+                 * Calls GetOperation.
+                 * @function getOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IGetOperationRequest} request GetOperationRequest message or plain object
+                 * @param {google.longrunning.Operations.GetOperationCallback} callback Node-style callback called with the error, if any, and Operation
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Operations.prototype.getOperation = function getOperation(request, callback) {
+                    return this.rpcCall(getOperation, $root.google.longrunning.GetOperationRequest, $root.google.longrunning.Operation, request, callback);
+                }, "name", { value: "GetOperation" });
+    
+                /**
+                 * Calls GetOperation.
+                 * @function getOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IGetOperationRequest} request GetOperationRequest message or plain object
+                 * @returns {Promise<google.longrunning.Operation>} Promise
+                 * @variation 2
+                 */
+    
+                /**
+                 * Callback as used by {@link google.longrunning.Operations|deleteOperation}.
+                 * @memberof google.longrunning.Operations
+                 * @typedef DeleteOperationCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {google.protobuf.Empty} [response] Empty
+                 */
+    
+                /**
+                 * Calls DeleteOperation.
+                 * @function deleteOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IDeleteOperationRequest} request DeleteOperationRequest message or plain object
+                 * @param {google.longrunning.Operations.DeleteOperationCallback} callback Node-style callback called with the error, if any, and Empty
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Operations.prototype.deleteOperation = function deleteOperation(request, callback) {
+                    return this.rpcCall(deleteOperation, $root.google.longrunning.DeleteOperationRequest, $root.google.protobuf.Empty, request, callback);
+                }, "name", { value: "DeleteOperation" });
+    
+                /**
+                 * Calls DeleteOperation.
+                 * @function deleteOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IDeleteOperationRequest} request DeleteOperationRequest message or plain object
+                 * @returns {Promise<google.protobuf.Empty>} Promise
+                 * @variation 2
+                 */
+    
+                /**
+                 * Callback as used by {@link google.longrunning.Operations|cancelOperation}.
+                 * @memberof google.longrunning.Operations
+                 * @typedef CancelOperationCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {google.protobuf.Empty} [response] Empty
+                 */
+    
+                /**
+                 * Calls CancelOperation.
+                 * @function cancelOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.ICancelOperationRequest} request CancelOperationRequest message or plain object
+                 * @param {google.longrunning.Operations.CancelOperationCallback} callback Node-style callback called with the error, if any, and Empty
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Operations.prototype.cancelOperation = function cancelOperation(request, callback) {
+                    return this.rpcCall(cancelOperation, $root.google.longrunning.CancelOperationRequest, $root.google.protobuf.Empty, request, callback);
+                }, "name", { value: "CancelOperation" });
+    
+                /**
+                 * Calls CancelOperation.
+                 * @function cancelOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.ICancelOperationRequest} request CancelOperationRequest message or plain object
+                 * @returns {Promise<google.protobuf.Empty>} Promise
+                 * @variation 2
+                 */
+    
+                /**
+                 * Callback as used by {@link google.longrunning.Operations|waitOperation}.
+                 * @memberof google.longrunning.Operations
+                 * @typedef WaitOperationCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {google.longrunning.Operation} [response] Operation
+                 */
+    
+                /**
+                 * Calls WaitOperation.
+                 * @function waitOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IWaitOperationRequest} request WaitOperationRequest message or plain object
+                 * @param {google.longrunning.Operations.WaitOperationCallback} callback Node-style callback called with the error, if any, and Operation
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Operations.prototype.waitOperation = function waitOperation(request, callback) {
+                    return this.rpcCall(waitOperation, $root.google.longrunning.WaitOperationRequest, $root.google.longrunning.Operation, request, callback);
+                }, "name", { value: "WaitOperation" });
+    
+                /**
+                 * Calls WaitOperation.
+                 * @function waitOperation
+                 * @memberof google.longrunning.Operations
+                 * @instance
+                 * @param {google.longrunning.IWaitOperationRequest} request WaitOperationRequest message or plain object
+                 * @returns {Promise<google.longrunning.Operation>} Promise
+                 * @variation 2
+                 */
+    
+                return Operations;
+            })();
+    
+            longrunning.Operation = (function() {
+    
+                /**
+                 * Properties of an Operation.
+                 * @memberof google.longrunning
+                 * @interface IOperation
+                 * @property {string|null} [name] Operation name
+                 * @property {google.protobuf.IAny|null} [metadata] Operation metadata
+                 * @property {boolean|null} [done] Operation done
+                 * @property {google.rpc.IStatus|null} [error] Operation error
+                 * @property {google.protobuf.IAny|null} [response] Operation response
+                 */
+    
+                /**
+                 * Constructs a new Operation.
+                 * @memberof google.longrunning
+                 * @classdesc Represents an Operation.
+                 * @implements IOperation
+                 * @constructor
+                 * @param {google.longrunning.IOperation=} [properties] Properties to set
+                 */
+                function Operation(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Operation name.
+                 * @member {string} name
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 */
+                Operation.prototype.name = "";
+    
+                /**
+                 * Operation metadata.
+                 * @member {google.protobuf.IAny|null|undefined} metadata
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 */
+                Operation.prototype.metadata = null;
+    
+                /**
+                 * Operation done.
+                 * @member {boolean} done
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 */
+                Operation.prototype.done = false;
+    
+                /**
+                 * Operation error.
+                 * @member {google.rpc.IStatus|null|undefined} error
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 */
+                Operation.prototype.error = null;
+    
+                /**
+                 * Operation response.
+                 * @member {google.protobuf.IAny|null|undefined} response
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 */
+                Operation.prototype.response = null;
+    
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+    
+                /**
+                 * Operation result.
+                 * @member {"error"|"response"|undefined} result
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 */
+                Object.defineProperty(Operation.prototype, "result", {
+                    get: $util.oneOfGetter($oneOfFields = ["error", "response"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+    
+                /**
+                 * Creates a new Operation instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {google.longrunning.IOperation=} [properties] Properties to set
+                 * @returns {google.longrunning.Operation} Operation instance
+                 */
+                Operation.create = function create(properties) {
+                    return new Operation(properties);
+                };
+    
+                /**
+                 * Encodes the specified Operation message. Does not implicitly {@link google.longrunning.Operation.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {google.longrunning.IOperation} message Operation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Operation.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                    if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
+                        $root.google.protobuf.Any.encode(message.metadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    if (message.done != null && Object.hasOwnProperty.call(message, "done"))
+                        writer.uint32(/* id 3, wireType 0 =*/24).bool(message.done);
+                    if (message.error != null && Object.hasOwnProperty.call(message, "error"))
+                        $root.google.rpc.Status.encode(message.error, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    if (message.response != null && Object.hasOwnProperty.call(message, "response"))
+                        $root.google.protobuf.Any.encode(message.response, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Operation message, length delimited. Does not implicitly {@link google.longrunning.Operation.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {google.longrunning.IOperation} message Operation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Operation.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes an Operation message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.Operation} Operation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Operation.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.metadata = $root.google.protobuf.Any.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 3: {
+                                message.done = reader.bool();
+                                break;
+                            }
+                        case 4: {
+                                message.error = $root.google.rpc.Status.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 5: {
+                                message.response = $root.google.protobuf.Any.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes an Operation message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.Operation} Operation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Operation.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies an Operation message.
+                 * @function verify
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Operation.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    if (message.metadata != null && message.hasOwnProperty("metadata")) {
+                        var error = $root.google.protobuf.Any.verify(message.metadata);
+                        if (error)
+                            return "metadata." + error;
+                    }
+                    if (message.done != null && message.hasOwnProperty("done"))
+                        if (typeof message.done !== "boolean")
+                            return "done: boolean expected";
+                    if (message.error != null && message.hasOwnProperty("error")) {
+                        properties.result = 1;
+                        {
+                            var error = $root.google.rpc.Status.verify(message.error);
+                            if (error)
+                                return "error." + error;
+                        }
+                    }
+                    if (message.response != null && message.hasOwnProperty("response")) {
+                        if (properties.result === 1)
+                            return "result: multiple values";
+                        properties.result = 1;
+                        {
+                            var error = $root.google.protobuf.Any.verify(message.response);
+                            if (error)
+                                return "response." + error;
+                        }
+                    }
+                    return null;
+                };
+    
+                /**
+                 * Creates an Operation message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.Operation} Operation
+                 */
+                Operation.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.Operation)
+                        return object;
+                    var message = new $root.google.longrunning.Operation();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    if (object.metadata != null) {
+                        if (typeof object.metadata !== "object")
+                            throw TypeError(".google.longrunning.Operation.metadata: object expected");
+                        message.metadata = $root.google.protobuf.Any.fromObject(object.metadata);
+                    }
+                    if (object.done != null)
+                        message.done = Boolean(object.done);
+                    if (object.error != null) {
+                        if (typeof object.error !== "object")
+                            throw TypeError(".google.longrunning.Operation.error: object expected");
+                        message.error = $root.google.rpc.Status.fromObject(object.error);
+                    }
+                    if (object.response != null) {
+                        if (typeof object.response !== "object")
+                            throw TypeError(".google.longrunning.Operation.response: object expected");
+                        message.response = $root.google.protobuf.Any.fromObject(object.response);
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from an Operation message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {google.longrunning.Operation} message Operation
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Operation.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.name = "";
+                        object.metadata = null;
+                        object.done = false;
+                    }
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    if (message.metadata != null && message.hasOwnProperty("metadata"))
+                        object.metadata = $root.google.protobuf.Any.toObject(message.metadata, options);
+                    if (message.done != null && message.hasOwnProperty("done"))
+                        object.done = message.done;
+                    if (message.error != null && message.hasOwnProperty("error")) {
+                        object.error = $root.google.rpc.Status.toObject(message.error, options);
+                        if (options.oneofs)
+                            object.result = "error";
+                    }
+                    if (message.response != null && message.hasOwnProperty("response")) {
+                        object.response = $root.google.protobuf.Any.toObject(message.response, options);
+                        if (options.oneofs)
+                            object.result = "response";
+                    }
+                    return object;
+                };
+    
+                /**
+                 * Converts this Operation to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.Operation
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Operation.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Operation
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.Operation
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Operation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.Operation";
+                };
+    
+                return Operation;
+            })();
+    
+            longrunning.GetOperationRequest = (function() {
+    
+                /**
+                 * Properties of a GetOperationRequest.
+                 * @memberof google.longrunning
+                 * @interface IGetOperationRequest
+                 * @property {string|null} [name] GetOperationRequest name
+                 */
+    
+                /**
+                 * Constructs a new GetOperationRequest.
+                 * @memberof google.longrunning
+                 * @classdesc Represents a GetOperationRequest.
+                 * @implements IGetOperationRequest
+                 * @constructor
+                 * @param {google.longrunning.IGetOperationRequest=} [properties] Properties to set
+                 */
+                function GetOperationRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * GetOperationRequest name.
+                 * @member {string} name
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @instance
+                 */
+                GetOperationRequest.prototype.name = "";
+    
+                /**
+                 * Creates a new GetOperationRequest instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {google.longrunning.IGetOperationRequest=} [properties] Properties to set
+                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest instance
+                 */
+                GetOperationRequest.create = function create(properties) {
+                    return new GetOperationRequest(properties);
+                };
+    
+                /**
+                 * Encodes the specified GetOperationRequest message. Does not implicitly {@link google.longrunning.GetOperationRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {google.longrunning.IGetOperationRequest} message GetOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                GetOperationRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified GetOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.GetOperationRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {google.longrunning.IGetOperationRequest} message GetOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                GetOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a GetOperationRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                GetOperationRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a GetOperationRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                GetOperationRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a GetOperationRequest message.
+                 * @function verify
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                GetOperationRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a GetOperationRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.GetOperationRequest} GetOperationRequest
+                 */
+                GetOperationRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.GetOperationRequest)
+                        return object;
+                    var message = new $root.google.longrunning.GetOperationRequest();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a GetOperationRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {google.longrunning.GetOperationRequest} message GetOperationRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                GetOperationRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.name = "";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    return object;
+                };
+    
+                /**
+                 * Converts this GetOperationRequest to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                GetOperationRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for GetOperationRequest
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.GetOperationRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                GetOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.GetOperationRequest";
+                };
+    
+                return GetOperationRequest;
+            })();
+    
+            longrunning.ListOperationsRequest = (function() {
+    
+                /**
+                 * Properties of a ListOperationsRequest.
+                 * @memberof google.longrunning
+                 * @interface IListOperationsRequest
+                 * @property {string|null} [name] ListOperationsRequest name
+                 * @property {string|null} [filter] ListOperationsRequest filter
+                 * @property {number|null} [pageSize] ListOperationsRequest pageSize
+                 * @property {string|null} [pageToken] ListOperationsRequest pageToken
+                 */
+    
+                /**
+                 * Constructs a new ListOperationsRequest.
+                 * @memberof google.longrunning
+                 * @classdesc Represents a ListOperationsRequest.
+                 * @implements IListOperationsRequest
+                 * @constructor
+                 * @param {google.longrunning.IListOperationsRequest=} [properties] Properties to set
+                 */
+                function ListOperationsRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * ListOperationsRequest name.
+                 * @member {string} name
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @instance
+                 */
+                ListOperationsRequest.prototype.name = "";
+    
+                /**
+                 * ListOperationsRequest filter.
+                 * @member {string} filter
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @instance
+                 */
+                ListOperationsRequest.prototype.filter = "";
+    
+                /**
+                 * ListOperationsRequest pageSize.
+                 * @member {number} pageSize
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @instance
+                 */
+                ListOperationsRequest.prototype.pageSize = 0;
+    
+                /**
+                 * ListOperationsRequest pageToken.
+                 * @member {string} pageToken
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @instance
+                 */
+                ListOperationsRequest.prototype.pageToken = "";
+    
+                /**
+                 * Creates a new ListOperationsRequest instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {google.longrunning.IListOperationsRequest=} [properties] Properties to set
+                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest instance
+                 */
+                ListOperationsRequest.create = function create(properties) {
+                    return new ListOperationsRequest(properties);
+                };
+    
+                /**
+                 * Encodes the specified ListOperationsRequest message. Does not implicitly {@link google.longrunning.ListOperationsRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {google.longrunning.IListOperationsRequest} message ListOperationsRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ListOperationsRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.filter);
+                    if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                    if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified ListOperationsRequest message, length delimited. Does not implicitly {@link google.longrunning.ListOperationsRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {google.longrunning.IListOperationsRequest} message ListOperationsRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ListOperationsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a ListOperationsRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ListOperationsRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 4: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        case 1: {
+                                message.filter = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.pageSize = reader.int32();
+                                break;
+                            }
+                        case 3: {
+                                message.pageToken = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a ListOperationsRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ListOperationsRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a ListOperationsRequest message.
+                 * @function verify
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ListOperationsRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    if (message.filter != null && message.hasOwnProperty("filter"))
+                        if (!$util.isString(message.filter))
+                            return "filter: string expected";
+                    if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                        if (!$util.isInteger(message.pageSize))
+                            return "pageSize: integer expected";
+                    if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                        if (!$util.isString(message.pageToken))
+                            return "pageToken: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a ListOperationsRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.ListOperationsRequest} ListOperationsRequest
+                 */
+                ListOperationsRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.ListOperationsRequest)
+                        return object;
+                    var message = new $root.google.longrunning.ListOperationsRequest();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    if (object.filter != null)
+                        message.filter = String(object.filter);
+                    if (object.pageSize != null)
+                        message.pageSize = object.pageSize | 0;
+                    if (object.pageToken != null)
+                        message.pageToken = String(object.pageToken);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a ListOperationsRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {google.longrunning.ListOperationsRequest} message ListOperationsRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ListOperationsRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.filter = "";
+                        object.pageSize = 0;
+                        object.pageToken = "";
+                        object.name = "";
+                    }
+                    if (message.filter != null && message.hasOwnProperty("filter"))
+                        object.filter = message.filter;
+                    if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                        object.pageSize = message.pageSize;
+                    if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                        object.pageToken = message.pageToken;
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    return object;
+                };
+    
+                /**
+                 * Converts this ListOperationsRequest to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ListOperationsRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for ListOperationsRequest
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.ListOperationsRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                ListOperationsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.ListOperationsRequest";
+                };
+    
+                return ListOperationsRequest;
+            })();
+    
+            longrunning.ListOperationsResponse = (function() {
+    
+                /**
+                 * Properties of a ListOperationsResponse.
+                 * @memberof google.longrunning
+                 * @interface IListOperationsResponse
+                 * @property {Array.<google.longrunning.IOperation>|null} [operations] ListOperationsResponse operations
+                 * @property {string|null} [nextPageToken] ListOperationsResponse nextPageToken
+                 */
+    
+                /**
+                 * Constructs a new ListOperationsResponse.
+                 * @memberof google.longrunning
+                 * @classdesc Represents a ListOperationsResponse.
+                 * @implements IListOperationsResponse
+                 * @constructor
+                 * @param {google.longrunning.IListOperationsResponse=} [properties] Properties to set
+                 */
+                function ListOperationsResponse(properties) {
+                    this.operations = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * ListOperationsResponse operations.
+                 * @member {Array.<google.longrunning.IOperation>} operations
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @instance
+                 */
+                ListOperationsResponse.prototype.operations = $util.emptyArray;
+    
+                /**
+                 * ListOperationsResponse nextPageToken.
+                 * @member {string} nextPageToken
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @instance
+                 */
+                ListOperationsResponse.prototype.nextPageToken = "";
+    
+                /**
+                 * Creates a new ListOperationsResponse instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {google.longrunning.IListOperationsResponse=} [properties] Properties to set
+                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse instance
+                 */
+                ListOperationsResponse.create = function create(properties) {
+                    return new ListOperationsResponse(properties);
+                };
+    
+                /**
+                 * Encodes the specified ListOperationsResponse message. Does not implicitly {@link google.longrunning.ListOperationsResponse.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {google.longrunning.IListOperationsResponse} message ListOperationsResponse message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ListOperationsResponse.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.operations != null && message.operations.length)
+                        for (var i = 0; i < message.operations.length; ++i)
+                            $root.google.longrunning.Operation.encode(message.operations[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified ListOperationsResponse message, length delimited. Does not implicitly {@link google.longrunning.ListOperationsResponse.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {google.longrunning.IListOperationsResponse} message ListOperationsResponse message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ListOperationsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a ListOperationsResponse message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ListOperationsResponse.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                if (!(message.operations && message.operations.length))
+                                    message.operations = [];
+                                message.operations.push($root.google.longrunning.Operation.decode(reader, reader.uint32()));
+                                break;
+                            }
+                        case 2: {
+                                message.nextPageToken = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a ListOperationsResponse message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ListOperationsResponse.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a ListOperationsResponse message.
+                 * @function verify
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ListOperationsResponse.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.operations != null && message.hasOwnProperty("operations")) {
+                        if (!Array.isArray(message.operations))
+                            return "operations: array expected";
+                        for (var i = 0; i < message.operations.length; ++i) {
+                            var error = $root.google.longrunning.Operation.verify(message.operations[i]);
+                            if (error)
+                                return "operations." + error;
+                        }
+                    }
+                    if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                        if (!$util.isString(message.nextPageToken))
+                            return "nextPageToken: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a ListOperationsResponse message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.ListOperationsResponse} ListOperationsResponse
+                 */
+                ListOperationsResponse.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.ListOperationsResponse)
+                        return object;
+                    var message = new $root.google.longrunning.ListOperationsResponse();
+                    if (object.operations) {
+                        if (!Array.isArray(object.operations))
+                            throw TypeError(".google.longrunning.ListOperationsResponse.operations: array expected");
+                        message.operations = [];
+                        for (var i = 0; i < object.operations.length; ++i) {
+                            if (typeof object.operations[i] !== "object")
+                                throw TypeError(".google.longrunning.ListOperationsResponse.operations: object expected");
+                            message.operations[i] = $root.google.longrunning.Operation.fromObject(object.operations[i]);
+                        }
+                    }
+                    if (object.nextPageToken != null)
+                        message.nextPageToken = String(object.nextPageToken);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a ListOperationsResponse message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {google.longrunning.ListOperationsResponse} message ListOperationsResponse
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ListOperationsResponse.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.operations = [];
+                    if (options.defaults)
+                        object.nextPageToken = "";
+                    if (message.operations && message.operations.length) {
+                        object.operations = [];
+                        for (var j = 0; j < message.operations.length; ++j)
+                            object.operations[j] = $root.google.longrunning.Operation.toObject(message.operations[j], options);
+                    }
+                    if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                        object.nextPageToken = message.nextPageToken;
+                    return object;
+                };
+    
+                /**
+                 * Converts this ListOperationsResponse to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ListOperationsResponse.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for ListOperationsResponse
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.ListOperationsResponse
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                ListOperationsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.ListOperationsResponse";
+                };
+    
+                return ListOperationsResponse;
+            })();
+    
+            longrunning.CancelOperationRequest = (function() {
+    
+                /**
+                 * Properties of a CancelOperationRequest.
+                 * @memberof google.longrunning
+                 * @interface ICancelOperationRequest
+                 * @property {string|null} [name] CancelOperationRequest name
+                 */
+    
+                /**
+                 * Constructs a new CancelOperationRequest.
+                 * @memberof google.longrunning
+                 * @classdesc Represents a CancelOperationRequest.
+                 * @implements ICancelOperationRequest
+                 * @constructor
+                 * @param {google.longrunning.ICancelOperationRequest=} [properties] Properties to set
+                 */
+                function CancelOperationRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * CancelOperationRequest name.
+                 * @member {string} name
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @instance
+                 */
+                CancelOperationRequest.prototype.name = "";
+    
+                /**
+                 * Creates a new CancelOperationRequest instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {google.longrunning.ICancelOperationRequest=} [properties] Properties to set
+                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest instance
+                 */
+                CancelOperationRequest.create = function create(properties) {
+                    return new CancelOperationRequest(properties);
+                };
+    
+                /**
+                 * Encodes the specified CancelOperationRequest message. Does not implicitly {@link google.longrunning.CancelOperationRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {google.longrunning.ICancelOperationRequest} message CancelOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CancelOperationRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified CancelOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.CancelOperationRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {google.longrunning.ICancelOperationRequest} message CancelOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CancelOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a CancelOperationRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CancelOperationRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a CancelOperationRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CancelOperationRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a CancelOperationRequest message.
+                 * @function verify
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                CancelOperationRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a CancelOperationRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.CancelOperationRequest} CancelOperationRequest
+                 */
+                CancelOperationRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.CancelOperationRequest)
+                        return object;
+                    var message = new $root.google.longrunning.CancelOperationRequest();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a CancelOperationRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {google.longrunning.CancelOperationRequest} message CancelOperationRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                CancelOperationRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.name = "";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    return object;
+                };
+    
+                /**
+                 * Converts this CancelOperationRequest to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                CancelOperationRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for CancelOperationRequest
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.CancelOperationRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                CancelOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.CancelOperationRequest";
+                };
+    
+                return CancelOperationRequest;
+            })();
+    
+            longrunning.DeleteOperationRequest = (function() {
+    
+                /**
+                 * Properties of a DeleteOperationRequest.
+                 * @memberof google.longrunning
+                 * @interface IDeleteOperationRequest
+                 * @property {string|null} [name] DeleteOperationRequest name
+                 */
+    
+                /**
+                 * Constructs a new DeleteOperationRequest.
+                 * @memberof google.longrunning
+                 * @classdesc Represents a DeleteOperationRequest.
+                 * @implements IDeleteOperationRequest
+                 * @constructor
+                 * @param {google.longrunning.IDeleteOperationRequest=} [properties] Properties to set
+                 */
+                function DeleteOperationRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * DeleteOperationRequest name.
+                 * @member {string} name
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @instance
+                 */
+                DeleteOperationRequest.prototype.name = "";
+    
+                /**
+                 * Creates a new DeleteOperationRequest instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {google.longrunning.IDeleteOperationRequest=} [properties] Properties to set
+                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest instance
+                 */
+                DeleteOperationRequest.create = function create(properties) {
+                    return new DeleteOperationRequest(properties);
+                };
+    
+                /**
+                 * Encodes the specified DeleteOperationRequest message. Does not implicitly {@link google.longrunning.DeleteOperationRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {google.longrunning.IDeleteOperationRequest} message DeleteOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                DeleteOperationRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified DeleteOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.DeleteOperationRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {google.longrunning.IDeleteOperationRequest} message DeleteOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                DeleteOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a DeleteOperationRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a DeleteOperationRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                DeleteOperationRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a DeleteOperationRequest message.
+                 * @function verify
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                DeleteOperationRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a DeleteOperationRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.DeleteOperationRequest} DeleteOperationRequest
+                 */
+                DeleteOperationRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.DeleteOperationRequest)
+                        return object;
+                    var message = new $root.google.longrunning.DeleteOperationRequest();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a DeleteOperationRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {google.longrunning.DeleteOperationRequest} message DeleteOperationRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                DeleteOperationRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.name = "";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    return object;
+                };
+    
+                /**
+                 * Converts this DeleteOperationRequest to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                DeleteOperationRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for DeleteOperationRequest
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.DeleteOperationRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                DeleteOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.DeleteOperationRequest";
+                };
+    
+                return DeleteOperationRequest;
+            })();
+    
+            longrunning.WaitOperationRequest = (function() {
+    
+                /**
+                 * Properties of a WaitOperationRequest.
+                 * @memberof google.longrunning
+                 * @interface IWaitOperationRequest
+                 * @property {string|null} [name] WaitOperationRequest name
+                 * @property {google.protobuf.IDuration|null} [timeout] WaitOperationRequest timeout
+                 */
+    
+                /**
+                 * Constructs a new WaitOperationRequest.
+                 * @memberof google.longrunning
+                 * @classdesc Represents a WaitOperationRequest.
+                 * @implements IWaitOperationRequest
+                 * @constructor
+                 * @param {google.longrunning.IWaitOperationRequest=} [properties] Properties to set
+                 */
+                function WaitOperationRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * WaitOperationRequest name.
+                 * @member {string} name
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @instance
+                 */
+                WaitOperationRequest.prototype.name = "";
+    
+                /**
+                 * WaitOperationRequest timeout.
+                 * @member {google.protobuf.IDuration|null|undefined} timeout
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @instance
+                 */
+                WaitOperationRequest.prototype.timeout = null;
+    
+                /**
+                 * Creates a new WaitOperationRequest instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {google.longrunning.IWaitOperationRequest=} [properties] Properties to set
+                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest instance
+                 */
+                WaitOperationRequest.create = function create(properties) {
+                    return new WaitOperationRequest(properties);
+                };
+    
+                /**
+                 * Encodes the specified WaitOperationRequest message. Does not implicitly {@link google.longrunning.WaitOperationRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {google.longrunning.IWaitOperationRequest} message WaitOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                WaitOperationRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                    if (message.timeout != null && Object.hasOwnProperty.call(message, "timeout"))
+                        $root.google.protobuf.Duration.encode(message.timeout, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified WaitOperationRequest message, length delimited. Does not implicitly {@link google.longrunning.WaitOperationRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {google.longrunning.IWaitOperationRequest} message WaitOperationRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                WaitOperationRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a WaitOperationRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                WaitOperationRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.timeout = $root.google.protobuf.Duration.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a WaitOperationRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                WaitOperationRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a WaitOperationRequest message.
+                 * @function verify
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                WaitOperationRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    if (message.timeout != null && message.hasOwnProperty("timeout")) {
+                        var error = $root.google.protobuf.Duration.verify(message.timeout);
+                        if (error)
+                            return "timeout." + error;
+                    }
+                    return null;
+                };
+    
+                /**
+                 * Creates a WaitOperationRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.WaitOperationRequest} WaitOperationRequest
+                 */
+                WaitOperationRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.WaitOperationRequest)
+                        return object;
+                    var message = new $root.google.longrunning.WaitOperationRequest();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    if (object.timeout != null) {
+                        if (typeof object.timeout !== "object")
+                            throw TypeError(".google.longrunning.WaitOperationRequest.timeout: object expected");
+                        message.timeout = $root.google.protobuf.Duration.fromObject(object.timeout);
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a WaitOperationRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {google.longrunning.WaitOperationRequest} message WaitOperationRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                WaitOperationRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.name = "";
+                        object.timeout = null;
+                    }
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    if (message.timeout != null && message.hasOwnProperty("timeout"))
+                        object.timeout = $root.google.protobuf.Duration.toObject(message.timeout, options);
+                    return object;
+                };
+    
+                /**
+                 * Converts this WaitOperationRequest to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                WaitOperationRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for WaitOperationRequest
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.WaitOperationRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                WaitOperationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.WaitOperationRequest";
+                };
+    
+                return WaitOperationRequest;
+            })();
+    
+            longrunning.OperationInfo = (function() {
+    
+                /**
+                 * Properties of an OperationInfo.
+                 * @memberof google.longrunning
+                 * @interface IOperationInfo
+                 * @property {string|null} [responseType] OperationInfo responseType
+                 * @property {string|null} [metadataType] OperationInfo metadataType
+                 */
+    
+                /**
+                 * Constructs a new OperationInfo.
+                 * @memberof google.longrunning
+                 * @classdesc Represents an OperationInfo.
+                 * @implements IOperationInfo
+                 * @constructor
+                 * @param {google.longrunning.IOperationInfo=} [properties] Properties to set
+                 */
+                function OperationInfo(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * OperationInfo responseType.
+                 * @member {string} responseType
+                 * @memberof google.longrunning.OperationInfo
+                 * @instance
+                 */
+                OperationInfo.prototype.responseType = "";
+    
+                /**
+                 * OperationInfo metadataType.
+                 * @member {string} metadataType
+                 * @memberof google.longrunning.OperationInfo
+                 * @instance
+                 */
+                OperationInfo.prototype.metadataType = "";
+    
+                /**
+                 * Creates a new OperationInfo instance using the specified properties.
+                 * @function create
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {google.longrunning.IOperationInfo=} [properties] Properties to set
+                 * @returns {google.longrunning.OperationInfo} OperationInfo instance
+                 */
+                OperationInfo.create = function create(properties) {
+                    return new OperationInfo(properties);
+                };
+    
+                /**
+                 * Encodes the specified OperationInfo message. Does not implicitly {@link google.longrunning.OperationInfo.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {google.longrunning.IOperationInfo} message OperationInfo message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                OperationInfo.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.responseType != null && Object.hasOwnProperty.call(message, "responseType"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.responseType);
+                    if (message.metadataType != null && Object.hasOwnProperty.call(message, "metadataType"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.metadataType);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified OperationInfo message, length delimited. Does not implicitly {@link google.longrunning.OperationInfo.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {google.longrunning.IOperationInfo} message OperationInfo message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                OperationInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes an OperationInfo message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.longrunning.OperationInfo} OperationInfo
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                OperationInfo.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.responseType = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.metadataType = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes an OperationInfo message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.longrunning.OperationInfo} OperationInfo
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                OperationInfo.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies an OperationInfo message.
+                 * @function verify
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                OperationInfo.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.responseType != null && message.hasOwnProperty("responseType"))
+                        if (!$util.isString(message.responseType))
+                            return "responseType: string expected";
+                    if (message.metadataType != null && message.hasOwnProperty("metadataType"))
+                        if (!$util.isString(message.metadataType))
+                            return "metadataType: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates an OperationInfo message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.longrunning.OperationInfo} OperationInfo
+                 */
+                OperationInfo.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.longrunning.OperationInfo)
+                        return object;
+                    var message = new $root.google.longrunning.OperationInfo();
+                    if (object.responseType != null)
+                        message.responseType = String(object.responseType);
+                    if (object.metadataType != null)
+                        message.metadataType = String(object.metadataType);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from an OperationInfo message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {google.longrunning.OperationInfo} message OperationInfo
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                OperationInfo.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.responseType = "";
+                        object.metadataType = "";
+                    }
+                    if (message.responseType != null && message.hasOwnProperty("responseType"))
+                        object.responseType = message.responseType;
+                    if (message.metadataType != null && message.hasOwnProperty("metadataType"))
+                        object.metadataType = message.metadataType;
+                    return object;
+                };
+    
+                /**
+                 * Converts this OperationInfo to JSON.
+                 * @function toJSON
+                 * @memberof google.longrunning.OperationInfo
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                OperationInfo.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for OperationInfo
+                 * @function getTypeUrl
+                 * @memberof google.longrunning.OperationInfo
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                OperationInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.longrunning.OperationInfo";
+                };
+    
+                return OperationInfo;
+            })();
+    
+            return longrunning;
+        })();
+    
         google.rpc = (function() {
     
             /**
@@ -59422,12 +60765,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

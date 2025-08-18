@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,9 @@ function main() {
    *  * "description"
    *  * "file_shares"
    *  * "labels"
+   *  * "performance_config"
+   *  * "deletion_protection_enabled"
+   *  * "deletion_protection_reason"
    */
   // const updateMask = {}
   /**
