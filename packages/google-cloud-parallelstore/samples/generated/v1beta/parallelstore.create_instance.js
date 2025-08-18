@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,12 +31,11 @@ function main(parent, instanceId, instance) {
   /**
    *  Required. The instance's project and location, in the format
    *  `projects/{project}/locations/{location}`.
-   *  Locations map to Google Cloud zones, for example **us-west1-b**.
+   *  Locations map to Google Cloud zones; for example, `us-west1-b`.
    */
   // const parent = 'abc123'
   /**
-   *  Required. The logical name of the Parallelstore instance in the user
-   *  project with the following restrictions:
+   *  Required. The name of the Parallelstore instance.
    *  * Must contain only lowercase letters, numbers, and hyphens.
    *  * Must start with a letter.
    *  * Must be between 1-63 characters.
@@ -53,8 +52,8 @@ function main(parent, instanceId, instance) {
    *  request ID so that if you must retry your request, the server will know to
    *  ignore the request if it has already been completed. The server will
    *  guarantee that for at least 60 minutes since the first request.
-   *  For example, consider a situation where you make an initial request and t
-   *  he request times out. If you make the request again with the same request
+   *  For example, consider a situation where you make an initial request and
+   *  the request times out. If you make the request again with the same request
    *  ID, the server can check if original operation with the same request ID
    *  was received, and if so, will ignore the second request. This prevents
    *  clients from accidentally creating duplicate commitments.

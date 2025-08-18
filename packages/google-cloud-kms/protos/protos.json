@@ -12,7 +12,6 @@
                     "java_multiple_files": true,
                     "java_outer_classname": "KmsProto",
                     "java_package": "com.google.cloud.kms.v1",
-                    "cc_enable_arenas": true,
                     "csharp_namespace": "Google.Cloud.Kms.V1",
                     "php_namespace": "Google\\Cloud\\Kms\\V1",
                     "(google.api.resource_definition).type": "servicedirectory.googleapis.com/Service",
@@ -174,6 +173,20 @@
                             "(google.api.resource_reference).type": "locations.googleapis.com/Location"
                           }
                         },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
                         "filter": {
                           "type": "string",
                           "id": 4,
@@ -189,6 +202,10 @@
                           "rule": "repeated",
                           "type": "KeyHandle",
                           "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
                         }
                       }
                     },
@@ -306,6 +323,30 @@
                           "id": 2,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "state": {
+                          "type": "State",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "State": {
+                          "values": {
+                            "STATE_UNSPECIFIED": 0,
+                            "ACTIVE": 1,
+                            "KEY_PROJECT_DELETED": 2,
+                            "UNINITIALIZED": 3
                           }
                         }
                       }
@@ -704,7 +745,10 @@
                         "serviceResolvers": {
                           "rule": "repeated",
                           "type": "ServiceResolver",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "etag": {
                           "type": "string",
@@ -910,6 +954,13 @@
                           "options": {
                             "(google.api.field_behavior)": "IMMUTABLE",
                             "(google.api.resource_reference).type": "*"
+                          }
+                        },
+                        "keyAccessJustificationsPolicy": {
+                          "type": "KeyAccessJustificationsPolicy",
+                          "id": 17,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
                           }
                         }
                       },
@@ -1145,7 +1196,9 @@
                             "HMAC_SHA384": 34,
                             "HMAC_SHA512": 35,
                             "HMAC_SHA224": 36,
-                            "EXTERNAL_SYMMETRIC_ENCRYPTION": 18
+                            "EXTERNAL_SYMMETRIC_ENCRYPTION": 18,
+                            "PQ_SIGN_ML_DSA_65": 56,
+                            "PQ_SIGN_SLH_DSA_SHA2_128S": 57
                           }
                         },
                         "CryptoKeyVersionState": {
@@ -1168,6 +1221,18 @@
                             "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED": 0,
                             "FULL": 1
                           }
+                        }
+                      }
+                    },
+                    "ChecksummedData": {
+                      "fields": {
+                        "data": {
+                          "type": "bytes",
+                          "id": 3
+                        },
+                        "crc32cChecksum": {
+                          "type": "google.protobuf.Int64Value",
+                          "id": 2
                         }
                       }
                     },
@@ -1196,6 +1261,23 @@
                         "protectionLevel": {
                           "type": "ProtectionLevel",
                           "id": 5
+                        },
+                        "publicKeyFormat": {
+                          "type": "PublicKeyFormat",
+                          "id": 7
+                        },
+                        "publicKey": {
+                          "type": "ChecksummedData",
+                          "id": 8
+                        }
+                      },
+                      "nested": {
+                        "PublicKeyFormat": {
+                          "values": {
+                            "PUBLIC_KEY_FORMAT_UNSPECIFIED": 0,
+                            "PEM": 1,
+                            "NIST_PQC": 3
+                          }
                         }
                       }
                     },
@@ -1318,6 +1400,15 @@
                         }
                       }
                     },
+                    "KeyAccessJustificationsPolicy": {
+                      "fields": {
+                        "allowedAccessReasons": {
+                          "rule": "repeated",
+                          "type": "AccessReason",
+                          "id": 1
+                        }
+                      }
+                    },
                     "ProtectionLevel": {
                       "values": {
                         "PROTECTION_LEVEL_UNSPECIFIED": 0,
@@ -1325,6 +1416,22 @@
                         "HSM": 2,
                         "EXTERNAL": 3,
                         "EXTERNAL_VPC": 4
+                      }
+                    },
+                    "AccessReason": {
+                      "values": {
+                        "REASON_UNSPECIFIED": 0,
+                        "CUSTOMER_INITIATED_SUPPORT": 1,
+                        "GOOGLE_INITIATED_SERVICE": 2,
+                        "THIRD_PARTY_DATA_REQUEST": 3,
+                        "GOOGLE_INITIATED_REVIEW": 4,
+                        "CUSTOMER_INITIATED_ACCESS": 5,
+                        "GOOGLE_INITIATED_SYSTEM_OPERATION": 6,
+                        "REASON_NOT_EXPECTED": 7,
+                        "MODIFIED_CUSTOMER_INITIATED_ACCESS": 8,
+                        "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION": 9,
+                        "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT": 10,
+                        "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING": 11
                       }
                     },
                     "KeyManagementService": {
@@ -2145,6 +2252,13 @@
                           "options": {
                             "(google.api.field_behavior)": "REQUIRED",
                             "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKeyVersion"
+                          }
+                        },
+                        "publicKeyFormat": {
+                          "type": "PublicKey.PublicKeyFormat",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
                           }
                         }
                       }
@@ -3122,6 +3236,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -3230,6 +3349,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -3405,7 +3528,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -3511,6 +3637,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -3520,6 +3647,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -3535,6 +3663,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3552,18 +3681,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -3604,6 +3727,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3686,6 +3810,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -3759,6 +3884,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3838,6 +3964,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3850,6 +3977,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3891,6 +4019,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3907,6 +4036,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3924,6 +4054,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3958,6 +4089,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -4099,6 +4231,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -4172,6 +4305,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -4233,10 +4367,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -4320,6 +4451,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4339,6 +4471,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -4382,6 +4515,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4415,6 +4549,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4441,6 +4576,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4483,6 +4619,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -4532,6 +4669,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -4604,8 +4742,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -4661,6 +4811,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -4692,6 +4843,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -4705,12 +4857,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -4730,6 +4888,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -4743,7 +4902,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

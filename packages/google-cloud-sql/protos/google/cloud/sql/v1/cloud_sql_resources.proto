@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -349,6 +349,20 @@ message ExportContext {
       google.protobuf.Int32Value master_data = 1;
     }
 
+    // Options for exporting from a Cloud SQL for PostgreSQL instance.
+    message PostgresExportOptions {
+      // Optional. Use this option to include DROP <object> SQL statements.
+      // These statements are used to delete database objects before running the
+      // import operation.
+      google.protobuf.BoolValue clean = 1
+          [(google.api.field_behavior) = OPTIONAL];
+
+      // Optional. Option to include an IF EXISTS SQL statement with each DROP
+      // statement produced by clean.
+      google.protobuf.BoolValue if_exists = 2
+          [(google.api.field_behavior) = OPTIONAL];
+    }
+
     // Tables to export, or that were exported, from the specified database. If
     // you specify tables, specify one and only one database. For PostgreSQL
     // instances, you can specify only one table.
@@ -365,6 +379,10 @@ message ExportContext {
 
     // Optional. Whether or not the export should be parallel.
     google.protobuf.BoolValue parallel = 5
+        [(google.api.field_behavior) = OPTIONAL];
+
+    // Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
+    PostgresExportOptions postgres_export_options = 6
         [(google.api.field_behavior) = OPTIONAL];
   }
 
@@ -433,12 +451,28 @@ message ExportContext {
 // Database instance import context.
 message ImportContext {
   message SqlImportOptions {
+    message PostgresImportOptions {
+      // Optional. The --clean flag for the pg_restore utility. This flag
+      // applies only if you enabled Cloud SQL to import files in parallel.
+      google.protobuf.BoolValue clean = 1
+          [(google.api.field_behavior) = OPTIONAL];
+
+      // Optional. The --if-exists flag for the pg_restore utility. This flag
+      // applies only if you enabled Cloud SQL to import files in parallel.
+      google.protobuf.BoolValue if_exists = 2
+          [(google.api.field_behavior) = OPTIONAL];
+    }
+
     // Optional. The number of threads to use for parallel import.
     google.protobuf.Int32Value threads = 1
         [(google.api.field_behavior) = OPTIONAL];
 
     // Optional. Whether or not the import should be parallel.
     google.protobuf.BoolValue parallel = 2
+        [(google.api.field_behavior) = OPTIONAL];
+
+    // Optional. Options for importing from a Cloud SQL for PostgreSQL instance.
+    PostgresImportOptions postgres_import_options = 3
         [(google.api.field_behavior) = OPTIONAL];
   }
 
@@ -602,6 +636,19 @@ message IpConfiguration {
     TRUSTED_CLIENT_CERTIFICATE_REQUIRED = 3;
   }
 
+  // Various Certificate Authority (CA) modes for certificate signing.
+  enum CaMode {
+    // CA mode is unknown.
+    CA_MODE_UNSPECIFIED = 0;
+
+    // Google-managed self-signed internal CA.
+    GOOGLE_MANAGED_INTERNAL_CA = 1;
+
+    // Google-managed regional CA part of root CA hierarchy hosted on Google
+    // Cloud's Certificate Authority Service (CAS).
+    GOOGLE_MANAGED_CAS_CA = 2;
+  }
+
   // Whether the instance is assigned a public IP address or not.
   google.protobuf.BoolValue ipv4_enabled = 1;
 
@@ -665,6 +712,9 @@ message IpConfiguration {
 
   // PSC settings for this instance.
   optional PscConfig psc_config = 9;
+
+  // Specify what type of CA is used for the server certificate.
+  optional CaMode server_ca_mode = 10;
 }
 
 // PSC settings for a Cloud SQL instance.
@@ -707,15 +757,17 @@ message LocationPreference {
 // Maintenance window. This specifies when a Cloud SQL instance is
 // restarted for system maintenance purposes.
 message MaintenanceWindow {
-  // hour of day - 0 to 23.
+  // Hour of day - 0 to 23. Specify in the UTC time zone.
   google.protobuf.Int32Value hour = 1;
 
-  // day of week (1-7), starting on Monday.
+  // Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+  // `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+  // Returned in output as an integer, 1 to 7, where `1` equals Monday.
   google.protobuf.Int32Value day = 2;
 
-  // Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
-  // [Learn
-  // more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+  // Maintenance timing settings: `canary`, `stable`, or `week5`.
+  // For more information, see [About maintenance on Cloud SQL
+  // instances](https://cloud.google.com/sql/docs/mysql/maintenance).
   SqlUpdateTrack update_track = 3;
 
   // This is always `sql#maintenanceWindow`.
@@ -967,7 +1019,8 @@ message Operation {
     // Re-encrypts CMEK instances with latest key version.
     REENCRYPT = 38;
 
-    // Switches over to replica instance from primary.
+    // Switches the roles of the primary and replica pair. The target instance
+    // should be the replica.
     SWITCHOVER = 39;
 
     // Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
@@ -994,6 +1047,13 @@ message Operation {
     // Maintenance typically causes the instance to be unavailable for 1-3
     // minutes.
     SELF_SERVICE_MAINTENANCE = 46;
+
+    // Switches a primary instance to a replica. This operation runs as part of
+    // a switchover operation to the original primary instance.
+    SWITCHOVER_TO_REPLICA = 47;
+
+    // Updates the major version of a Cloud SQL instance.
+    MAJOR_VERSION_UPGRADE = 48;
   }
 
   // The status of an operation.
@@ -1327,8 +1387,8 @@ message Settings {
   // Server timezone, relevant only for Cloud SQL for SQL Server.
   string time_zone = 34;
 
-  // Specifies advance machine configuration for the instance
-  // relevant only for SQL Server.
+  // Specifies advanced machine configuration for the instances relevant only
+  // for SQL Server.
   AdvancedMachineFeatures advanced_machine_features = 35;
 
   // Configuration for data cache.
@@ -1339,6 +1399,12 @@ message Settings {
   // insights to the AI. The default value is false. This applies only to Cloud
   // SQL for PostgreSQL instances.
   google.protobuf.BoolValue enable_google_ml_integration = 40
+      [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. By default, Cloud SQL instances have schema extraction disabled
+  // for Dataplex. When this parameter is set to true, schema extraction for
+  // Dataplex on Cloud SQL instances is activated.
+  google.protobuf.BoolValue enable_dataplex_integration = 41
       [(google.api.field_behavior) = OPTIONAL];
 }
 
@@ -1503,6 +1569,9 @@ enum SqlDatabaseVersion {
   // The database version is PostgreSQL 15.
   POSTGRES_15 = 172;
 
+  // The database version is PostgreSQL 16.
+  POSTGRES_16 = 272;
+
   // The database version is MySQL 8.
   MYSQL_8_0 = 20;
 
@@ -1556,6 +1625,9 @@ enum SqlDatabaseVersion {
 
   // The database version is MySQL 8.4.
   MYSQL_8_4 = 398;
+
+  // The database version is MySQL 8.4 and the patch version is 0.
+  MYSQL_8_4_0 = 399;
 
   // The database version is SQL Server 2019 Standard.
   SQLSERVER_2019_STANDARD = 26;
@@ -1641,20 +1713,21 @@ enum SqlUpdateTrack {
   // This is an unknown maintenance timing preference.
   SQL_UPDATE_TRACK_UNSPECIFIED = 0;
 
-  // For instance update that requires a restart, this update track indicates
-  // your instance prefer to restart for new version early in maintenance
-  // window.
+  // For an instance with a scheduled maintenance window, this maintenance
+  // timing indicates that the maintenance update is scheduled 7 to 14 days
+  // after the notification is sent out. Also referred to as `Week 1` (Console)
+  // and `preview` (gcloud CLI).
   canary = 1;
 
-  // For instance update that requires a restart, this update track indicates
-  // your instance prefer to let Cloud SQL choose the timing of restart (within
-  // its Maintenance window, if applicable).
+  // For an instance with a scheduled maintenance window, this maintenance
+  // timing indicates that the maintenance update is scheduled 15 to 21 days
+  // after the notification is sent out. Also referred to as `Week 2` (Console)
+  // and `production` (gcloud CLI).
   stable = 2;
 
-  // For instance update that requires a restart, this update track indicates
-  // your instance prefer to let Cloud SQL choose the timing of restart (within
-  // its Maintenance window, if applicable) to be at least 5 weeks after the
-  // notification.
+  // For instance with a scheduled maintenance window, this maintenance
+  // timing indicates that the maintenance update is scheduled 35 to 42 days
+  // after the notification is sent out.
   week5 = 3;
 }
 

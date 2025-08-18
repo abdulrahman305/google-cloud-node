@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +16,13 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const procurement = require('@google-cloud/procurement');
 
 function main() {
-  const consumerProcurementServiceClient =
-    new procurement.ConsumerProcurementServiceClient();
+  const consumerProcurementServiceClient = new procurement.ConsumerProcurementServiceClient();
+  const licenseManagementServiceClient = new procurement.LicenseManagementServiceClient();
 }
 
 main();

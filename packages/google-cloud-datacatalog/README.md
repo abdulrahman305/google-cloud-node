@@ -44,7 +44,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 1.  [Select or create a Cloud Platform project][projects].
 1.  [Enable billing for your project][billing].
 1.  [Enable the Data Catalog API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
+1.  [Set up authentication][auth] so you can access the
     API from your local workstation.
 
 ### Installing the client library
@@ -57,155 +57,57 @@ npm install @google-cloud/datacatalog
 ### Using the client library
 
 ```javascript
-// Import the Google Cloud client library and create a client.
+/**
+ * This snippet has been automatically generated and should be regarded as a code template only.
+ * It will require modifications to work.
+ * It may require correct/in-range values for request initialization.
+ * TODO(developer): Uncomment these variables before running the sample.
+ */
+/**
+ *  Required. The name of the location that contains the entry groups to list.
+ *  Can be provided as a URL.
+ */
+// const parent = 'abc123'
+/**
+ *  Optional. The maximum number of items to return.
+ *  Default is 10. Maximum limit is 1000.
+ *  Throws an invalid argument if `page_size` is greater than 1000.
+ */
+// const pageSize = 1234
+/**
+ *  Optional. Pagination token that specifies the next page to return.
+ *  If empty, returns the first page.
+ */
+// const pageToken = 'abc123'
+
+
+// Imports the Datacatalog library
 const {DataCatalogClient} = require('@google-cloud/datacatalog').v1;
-const datacatalog = new DataCatalogClient();
 
-async function quickstart() {
-  // Common fields.
-  let request;
-  let responses;
 
-  /**
-   * TODO(developer): Uncomment the following lines before running the sample.
-   */
-  // const projectId = 'my_project'; // Google Cloud Platform project
-  // const datasetId = 'demo_dataset';
-  // const tableId = 'trips';
+// Instantiates a client
+const datacatalogClient = new DataCatalogClient();
 
-  // Currently, Data Catalog stores metadata in the
-  // us-central1 region.
-  const location = 'us-central1';
 
-  // Create Fields.
-  const fieldSource = {
-    displayName: 'Source of data asset',
-    type: {
-      primitiveType: 'STRING',
-    },
+async function callListEntryGroups() {
+  // Construct request
+  const request = {
+    parent,
   };
 
-  const fieldNumRows = {
-    displayName: 'Number of rows in data asset',
-    type: {
-      primitiveType: 'DOUBLE',
-    },
-  };
 
-  const fieldHasPII = {
-    displayName: 'Has PII',
-    type: {
-      primitiveType: 'BOOL',
-    },
-  };
-
-  const fieldPIIType = {
-    displayName: 'PII type',
-    type: {
-      enumType: {
-        allowedValues: [
-          {
-            displayName: 'EMAIL',
-          },
-          {
-            displayName: 'SOCIAL SECURITY NUMBER',
-          },
-          {
-            displayName: 'NONE',
-          },
-        ],
-      },
-    },
-  };
-
-  // Create Tag Template.
-  const tagTemplateId = 'demo_tag_template';
-
-  const tagTemplate = {
-    displayName: 'Demo Tag Template',
-    fields: {
-      source: fieldSource,
-      num_rows: fieldNumRows,
-      has_pii: fieldHasPII,
-      pii_type: fieldPIIType,
-    },
-  };
-
-  const tagTemplatePath = datacatalog.tagTemplatePath(
-    projectId,
-    location,
-    tagTemplateId
-  );
-
-  // Delete any pre-existing Template with the same name.
-  try {
-    request = {
-      name: tagTemplatePath,
-      force: true,
-    };
-    await datacatalog.deleteTagTemplate(request);
-    console.log(`Deleted template: ${tagTemplatePath}`);
-  } catch (error) {
-    console.log(`Cannot delete template: ${tagTemplatePath}`);
-  }
-
-  // Create the Tag Template request.
-  const locationPath = datacatalog.locationPath(projectId, location);
-
-  request = {
-    parent: locationPath,
-    tagTemplateId: tagTemplateId,
-    tagTemplate: tagTemplate,
-  };
-
-  // Execute the request.
-  responses = await datacatalog.createTagTemplate(request);
-  const createdTagTemplate = responses[0];
-  console.log(`Created template: ${createdTagTemplate.name}`);
-
-  // Lookup Data Catalog's Entry referring to the table.
-  responses = await datacatalog.lookupEntry({
-    linkedResource:
-      '//bigquery.googleapis.com/projects/' +
-      `${projectId}/datasets/${datasetId}/tables/${tableId}`,
+  // Run request
+  const result = await datacatalogClient.listEntryGroups(request, {
+    autopaginate: false,
+    maxResults: MAX_RESULTS,
   });
-  const entry = responses[0];
-  console.log(`Entry name: ${entry.name}`);
-  console.log(`Entry type: ${entry.type}`);
-  console.log(`Linked resource: ${entry.linkedResource}`);
 
-  // Attach a Tag to the table.
-  const tag = {
-    name: entry.name,
-    template: createdTagTemplate.name,
-    fields: {
-      source: {
-        stringValue: 'copied from tlc_yellow_trips_2017',
-      },
-      num_rows: {
-        doubleValue: 113496874,
-      },
-      has_pii: {
-        boolValue: false,
-      },
-      pii_type: {
-        enumValue: {
-          displayName: 'NONE',
-        },
-      },
-    },
-  };
 
-  request = {
-    parent: entry.name,
-    tag: tag,
-  };
-
-  // Create the Tag.
-  await datacatalog.createTag(request);
-  console.log(`Tag created for entry: ${entry.name}`);
+  console.log(result);
 }
-quickstart();
+
+
+callListEntryGroups();
 
 ```
 
@@ -241,7 +143,10 @@ Samples are in the [`samples/`](https://github.com/googleapis/google-cloud-node/
 | Data_catalog.reconcile_tags | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.reconcile_tags.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.reconcile_tags.js,packages/google-cloud-datacatalog/samples/README.md) |
 | Data_catalog.rename_tag_template_field | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.rename_tag_template_field.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.rename_tag_template_field.js,packages/google-cloud-datacatalog/samples/README.md) |
 | Data_catalog.rename_tag_template_field_enum_value | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.rename_tag_template_field_enum_value.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.rename_tag_template_field_enum_value.js,packages/google-cloud-datacatalog/samples/README.md) |
+| Data_catalog.retrieve_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.retrieve_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.retrieve_config.js,packages/google-cloud-datacatalog/samples/README.md) |
+| Data_catalog.retrieve_effective_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.retrieve_effective_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.retrieve_effective_config.js,packages/google-cloud-datacatalog/samples/README.md) |
 | Data_catalog.search_catalog | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.search_catalog.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.search_catalog.js,packages/google-cloud-datacatalog/samples/README.md) |
+| Data_catalog.set_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.set_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.set_config.js,packages/google-cloud-datacatalog/samples/README.md) |
 | Data_catalog.set_iam_policy | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.set_iam_policy.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.set_iam_policy.js,packages/google-cloud-datacatalog/samples/README.md) |
 | Data_catalog.star_entry | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.star_entry.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.star_entry.js,packages/google-cloud-datacatalog/samples/README.md) |
 | Data_catalog.test_iam_permissions | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.test_iam_permissions.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-datacatalog/samples/generated/v1/data_catalog.test_iam_permissions.js,packages/google-cloud-datacatalog/samples/README.md) |
@@ -380,4 +285,4 @@ See [LICENSE](https://github.com/googleapis/google-cloud-node/blob/main/LICENSE)
 [projects]: https://console.cloud.google.com/project
 [billing]: https://support.google.com/cloud/answer/6293499#enable-billing
 [enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=datacatalog.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+[auth]: https://cloud.google.com/docs/authentication/external/set-up-adc-local

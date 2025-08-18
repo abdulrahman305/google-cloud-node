@@ -96,6 +96,16 @@
               "methods": [
                 "purgeSuggestionDenyListEntries"
               ]
+            },
+            "ImportCompletionSuggestions": {
+              "methods": [
+                "importCompletionSuggestions"
+              ]
+            },
+            "PurgeCompletionSuggestions": {
+              "methods": [
+                "purgeCompletionSuggestions"
+              ]
             }
           }
         },
@@ -115,6 +125,16 @@
             "PurgeSuggestionDenyListEntries": {
               "methods": [
                 "purgeSuggestionDenyListEntries"
+              ]
+            },
+            "ImportCompletionSuggestions": {
+              "methods": [
+                "importCompletionSuggestions"
+              ]
+            },
+            "PurgeCompletionSuggestions": {
+              "methods": [
+                "purgeCompletionSuggestions"
               ]
             }
           }
@@ -459,6 +479,11 @@
                 "getProcessedDocument"
               ]
             },
+            "BatchGetDocumentsMetadata": {
+              "methods": [
+                "batchGetDocumentsMetadata"
+              ]
+            },
             "ImportDocuments": {
               "methods": [
                 "importDocuments"
@@ -504,6 +529,11 @@
             "GetProcessedDocument": {
               "methods": [
                 "getProcessedDocument"
+              ]
+            },
+            "BatchGetDocumentsMetadata": {
+              "methods": [
+                "batchGetDocumentsMetadata"
               ]
             },
             "ImportDocuments": {
@@ -649,6 +679,68 @@
         }
       }
     },
+    "EvaluationService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "EvaluationServiceClient",
+          "rpcs": {
+            "GetEvaluation": {
+              "methods": [
+                "getEvaluation"
+              ]
+            },
+            "CreateEvaluation": {
+              "methods": [
+                "createEvaluation"
+              ]
+            },
+            "ListEvaluations": {
+              "methods": [
+                "listEvaluations",
+                "listEvaluationsStream",
+                "listEvaluationsAsync"
+              ]
+            },
+            "ListEvaluationResults": {
+              "methods": [
+                "listEvaluationResults",
+                "listEvaluationResultsStream",
+                "listEvaluationResultsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "EvaluationServiceClient",
+          "rpcs": {
+            "GetEvaluation": {
+              "methods": [
+                "getEvaluation"
+              ]
+            },
+            "CreateEvaluation": {
+              "methods": [
+                "createEvaluation"
+              ]
+            },
+            "ListEvaluations": {
+              "methods": [
+                "listEvaluations",
+                "listEvaluationsStream",
+                "listEvaluationsAsync"
+              ]
+            },
+            "ListEvaluationResults": {
+              "methods": [
+                "listEvaluationResults",
+                "listEvaluationResultsStream",
+                "listEvaluationResultsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "GroundedGenerationService": {
       "clients": {
         "grpc": {
@@ -759,6 +851,152 @@
             "Recommend": {
               "methods": [
                 "recommend"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SampleQueryService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SampleQueryServiceClient",
+          "rpcs": {
+            "GetSampleQuery": {
+              "methods": [
+                "getSampleQuery"
+              ]
+            },
+            "CreateSampleQuery": {
+              "methods": [
+                "createSampleQuery"
+              ]
+            },
+            "UpdateSampleQuery": {
+              "methods": [
+                "updateSampleQuery"
+              ]
+            },
+            "DeleteSampleQuery": {
+              "methods": [
+                "deleteSampleQuery"
+              ]
+            },
+            "ImportSampleQueries": {
+              "methods": [
+                "importSampleQueries"
+              ]
+            },
+            "ListSampleQueries": {
+              "methods": [
+                "listSampleQueries",
+                "listSampleQueriesStream",
+                "listSampleQueriesAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SampleQueryServiceClient",
+          "rpcs": {
+            "GetSampleQuery": {
+              "methods": [
+                "getSampleQuery"
+              ]
+            },
+            "CreateSampleQuery": {
+              "methods": [
+                "createSampleQuery"
+              ]
+            },
+            "UpdateSampleQuery": {
+              "methods": [
+                "updateSampleQuery"
+              ]
+            },
+            "DeleteSampleQuery": {
+              "methods": [
+                "deleteSampleQuery"
+              ]
+            },
+            "ImportSampleQueries": {
+              "methods": [
+                "importSampleQueries"
+              ]
+            },
+            "ListSampleQueries": {
+              "methods": [
+                "listSampleQueries",
+                "listSampleQueriesStream",
+                "listSampleQueriesAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SampleQuerySetService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SampleQuerySetServiceClient",
+          "rpcs": {
+            "GetSampleQuerySet": {
+              "methods": [
+                "getSampleQuerySet"
+              ]
+            },
+            "CreateSampleQuerySet": {
+              "methods": [
+                "createSampleQuerySet"
+              ]
+            },
+            "UpdateSampleQuerySet": {
+              "methods": [
+                "updateSampleQuerySet"
+              ]
+            },
+            "DeleteSampleQuerySet": {
+              "methods": [
+                "deleteSampleQuerySet"
+              ]
+            },
+            "ListSampleQuerySets": {
+              "methods": [
+                "listSampleQuerySets",
+                "listSampleQuerySetsStream",
+                "listSampleQuerySetsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SampleQuerySetServiceClient",
+          "rpcs": {
+            "GetSampleQuerySet": {
+              "methods": [
+                "getSampleQuerySet"
+              ]
+            },
+            "CreateSampleQuerySet": {
+              "methods": [
+                "createSampleQuerySet"
+              ]
+            },
+            "UpdateSampleQuerySet": {
+              "methods": [
+                "updateSampleQuerySet"
+              ]
+            },
+            "DeleteSampleQuerySet": {
+              "methods": [
+                "deleteSampleQuerySet"
+              ]
+            },
+            "ListSampleQuerySets": {
+              "methods": [
+                "listSampleQuerySets",
+                "listSampleQuerySetsStream",
+                "listSampleQuerySetsAsync"
               ]
             }
           }
@@ -943,6 +1181,88 @@
         }
       }
     },
+    "SessionService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            },
+            "ListFiles": {
+              "methods": [
+                "listFiles",
+                "listFilesStream",
+                "listFilesAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            },
+            "ListFiles": {
+              "methods": [
+                "listFiles",
+                "listFilesStream",
+                "listFilesAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "SiteSearchEngineService": {
       "clients": {
         "grpc": {
@@ -956,6 +1276,11 @@
             "GetTargetSite": {
               "methods": [
                 "getTargetSite"
+              ]
+            },
+            "GetUriPatternDocumentData": {
+              "methods": [
+                "getUriPatternDocumentData"
               ]
             },
             "CreateTargetSite": {
@@ -996,6 +1321,11 @@
             "BatchVerifyTargetSites": {
               "methods": [
                 "batchVerifyTargetSites"
+              ]
+            },
+            "SetUriPatternDocumentData": {
+              "methods": [
+                "setUriPatternDocumentData"
               ]
             },
             "ListTargetSites": {
@@ -1027,6 +1357,11 @@
                 "getTargetSite"
               ]
             },
+            "GetUriPatternDocumentData": {
+              "methods": [
+                "getUriPatternDocumentData"
+              ]
+            },
             "CreateTargetSite": {
               "methods": [
                 "createTargetSite"
@@ -1065,6 +1400,11 @@
             "BatchVerifyTargetSites": {
               "methods": [
                 "batchVerifyTargetSites"
+              ]
+            },
+            "SetUriPatternDocumentData": {
+              "methods": [
+                "setUriPatternDocumentData"
               ]
             },
             "ListTargetSites": {

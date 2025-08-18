@@ -15,6 +15,11 @@
                 "completeQuery"
               ]
             },
+            "AdvancedCompleteQuery": {
+              "methods": [
+                "advancedCompleteQuery"
+              ]
+            },
             "ImportSuggestionDenyListEntries": {
               "methods": [
                 "importSuggestionDenyListEntries"
@@ -23,6 +28,16 @@
             "PurgeSuggestionDenyListEntries": {
               "methods": [
                 "purgeSuggestionDenyListEntries"
+              ]
+            },
+            "ImportCompletionSuggestions": {
+              "methods": [
+                "importCompletionSuggestions"
+              ]
+            },
+            "PurgeCompletionSuggestions": {
+              "methods": [
+                "purgeCompletionSuggestions"
               ]
             }
           }
@@ -35,6 +50,11 @@
                 "completeQuery"
               ]
             },
+            "AdvancedCompleteQuery": {
+              "methods": [
+                "advancedCompleteQuery"
+              ]
+            },
             "ImportSuggestionDenyListEntries": {
               "methods": [
                 "importSuggestionDenyListEntries"
@@ -43,6 +63,16 @@
             "PurgeSuggestionDenyListEntries": {
               "methods": [
                 "purgeSuggestionDenyListEntries"
+              ]
+            },
+            "ImportCompletionSuggestions": {
+              "methods": [
+                "importCompletionSuggestions"
+              ]
+            },
+            "PurgeCompletionSuggestions": {
+              "methods": [
+                "purgeCompletionSuggestions"
               ]
             }
           }
@@ -362,6 +392,11 @@
                 "deleteDocument"
               ]
             },
+            "BatchGetDocumentsMetadata": {
+              "methods": [
+                "batchGetDocumentsMetadata"
+              ]
+            },
             "ImportDocuments": {
               "methods": [
                 "importDocuments"
@@ -402,6 +437,11 @@
             "DeleteDocument": {
               "methods": [
                 "deleteDocument"
+              ]
+            },
+            "BatchGetDocumentsMetadata": {
+              "methods": [
+                "batchGetDocumentsMetadata"
               ]
             },
             "ImportDocuments": {
@@ -523,14 +563,86 @@
         }
       }
     },
+    "EvaluationService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "EvaluationServiceClient",
+          "rpcs": {
+            "GetEvaluation": {
+              "methods": [
+                "getEvaluation"
+              ]
+            },
+            "CreateEvaluation": {
+              "methods": [
+                "createEvaluation"
+              ]
+            },
+            "ListEvaluations": {
+              "methods": [
+                "listEvaluations",
+                "listEvaluationsStream",
+                "listEvaluationsAsync"
+              ]
+            },
+            "ListEvaluationResults": {
+              "methods": [
+                "listEvaluationResults",
+                "listEvaluationResultsStream",
+                "listEvaluationResultsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "EvaluationServiceClient",
+          "rpcs": {
+            "GetEvaluation": {
+              "methods": [
+                "getEvaluation"
+              ]
+            },
+            "CreateEvaluation": {
+              "methods": [
+                "createEvaluation"
+              ]
+            },
+            "ListEvaluations": {
+              "methods": [
+                "listEvaluations",
+                "listEvaluationsStream",
+                "listEvaluationsAsync"
+              ]
+            },
+            "ListEvaluationResults": {
+              "methods": [
+                "listEvaluationResults",
+                "listEvaluationResultsStream",
+                "listEvaluationResultsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "GroundedGenerationService": {
       "clients": {
         "grpc": {
           "libraryClient": "GroundedGenerationServiceClient",
           "rpcs": {
+            "GenerateGroundedContent": {
+              "methods": [
+                "generateGroundedContent"
+              ]
+            },
             "CheckGrounding": {
               "methods": [
                 "checkGrounding"
+              ]
+            },
+            "StreamGenerateGroundedContent": {
+              "methods": [
+                "streamGenerateGroundedContent"
               ]
             }
           }
@@ -538,6 +650,11 @@
         "grpc-fallback": {
           "libraryClient": "GroundedGenerationServiceClient",
           "rpcs": {
+            "GenerateGroundedContent": {
+              "methods": [
+                "generateGroundedContent"
+              ]
+            },
             "CheckGrounding": {
               "methods": [
                 "checkGrounding"
@@ -613,6 +730,152 @@
             "Recommend": {
               "methods": [
                 "recommend"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SampleQueryService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SampleQueryServiceClient",
+          "rpcs": {
+            "GetSampleQuery": {
+              "methods": [
+                "getSampleQuery"
+              ]
+            },
+            "CreateSampleQuery": {
+              "methods": [
+                "createSampleQuery"
+              ]
+            },
+            "UpdateSampleQuery": {
+              "methods": [
+                "updateSampleQuery"
+              ]
+            },
+            "DeleteSampleQuery": {
+              "methods": [
+                "deleteSampleQuery"
+              ]
+            },
+            "ImportSampleQueries": {
+              "methods": [
+                "importSampleQueries"
+              ]
+            },
+            "ListSampleQueries": {
+              "methods": [
+                "listSampleQueries",
+                "listSampleQueriesStream",
+                "listSampleQueriesAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SampleQueryServiceClient",
+          "rpcs": {
+            "GetSampleQuery": {
+              "methods": [
+                "getSampleQuery"
+              ]
+            },
+            "CreateSampleQuery": {
+              "methods": [
+                "createSampleQuery"
+              ]
+            },
+            "UpdateSampleQuery": {
+              "methods": [
+                "updateSampleQuery"
+              ]
+            },
+            "DeleteSampleQuery": {
+              "methods": [
+                "deleteSampleQuery"
+              ]
+            },
+            "ImportSampleQueries": {
+              "methods": [
+                "importSampleQueries"
+              ]
+            },
+            "ListSampleQueries": {
+              "methods": [
+                "listSampleQueries",
+                "listSampleQueriesStream",
+                "listSampleQueriesAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SampleQuerySetService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SampleQuerySetServiceClient",
+          "rpcs": {
+            "GetSampleQuerySet": {
+              "methods": [
+                "getSampleQuerySet"
+              ]
+            },
+            "CreateSampleQuerySet": {
+              "methods": [
+                "createSampleQuerySet"
+              ]
+            },
+            "UpdateSampleQuerySet": {
+              "methods": [
+                "updateSampleQuerySet"
+              ]
+            },
+            "DeleteSampleQuerySet": {
+              "methods": [
+                "deleteSampleQuerySet"
+              ]
+            },
+            "ListSampleQuerySets": {
+              "methods": [
+                "listSampleQuerySets",
+                "listSampleQuerySetsStream",
+                "listSampleQuerySetsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SampleQuerySetServiceClient",
+          "rpcs": {
+            "GetSampleQuerySet": {
+              "methods": [
+                "getSampleQuerySet"
+              ]
+            },
+            "CreateSampleQuerySet": {
+              "methods": [
+                "createSampleQuerySet"
+              ]
+            },
+            "UpdateSampleQuerySet": {
+              "methods": [
+                "updateSampleQuerySet"
+              ]
+            },
+            "DeleteSampleQuerySet": {
+              "methods": [
+                "deleteSampleQuerySet"
+              ]
+            },
+            "ListSampleQuerySets": {
+              "methods": [
+                "listSampleQuerySets",
+                "listSampleQuerySetsStream",
+                "listSampleQuerySetsAsync"
               ]
             }
           }
@@ -698,6 +961,13 @@
                 "searchStream",
                 "searchAsync"
               ]
+            },
+            "SearchLite": {
+              "methods": [
+                "searchLite",
+                "searchLiteStream",
+                "searchLiteAsync"
+              ]
             }
           }
         },
@@ -709,6 +979,13 @@
                 "search",
                 "searchStream",
                 "searchAsync"
+              ]
+            },
+            "SearchLite": {
+              "methods": [
+                "searchLite",
+                "searchLiteStream",
+                "searchLiteAsync"
               ]
             }
           }
@@ -797,6 +1074,74 @@
         }
       }
     },
+    "SessionService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "SessionServiceClient",
+          "rpcs": {
+            "CreateSession": {
+              "methods": [
+                "createSession"
+              ]
+            },
+            "DeleteSession": {
+              "methods": [
+                "deleteSession"
+              ]
+            },
+            "UpdateSession": {
+              "methods": [
+                "updateSession"
+              ]
+            },
+            "GetSession": {
+              "methods": [
+                "getSession"
+              ]
+            },
+            "ListSessions": {
+              "methods": [
+                "listSessions",
+                "listSessionsStream",
+                "listSessionsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "SiteSearchEngineService": {
       "clients": {
         "grpc": {
@@ -810,6 +1155,11 @@
             "GetTargetSite": {
               "methods": [
                 "getTargetSite"
+              ]
+            },
+            "FetchSitemaps": {
+              "methods": [
+                "fetchSitemaps"
               ]
             },
             "CreateTargetSite": {
@@ -830,6 +1180,16 @@
             "DeleteTargetSite": {
               "methods": [
                 "deleteTargetSite"
+              ]
+            },
+            "CreateSitemap": {
+              "methods": [
+                "createSitemap"
+              ]
+            },
+            "DeleteSitemap": {
+              "methods": [
+                "deleteSitemap"
               ]
             },
             "EnableAdvancedSiteSearch": {
@@ -881,6 +1241,11 @@
                 "getTargetSite"
               ]
             },
+            "FetchSitemaps": {
+              "methods": [
+                "fetchSitemaps"
+              ]
+            },
             "CreateTargetSite": {
               "methods": [
                 "createTargetSite"
@@ -899,6 +1264,16 @@
             "DeleteTargetSite": {
               "methods": [
                 "deleteTargetSite"
+              ]
+            },
+            "CreateSitemap": {
+              "methods": [
+                "createSitemap"
+              ]
+            },
+            "DeleteSitemap": {
+              "methods": [
+                "deleteSitemap"
               ]
             },
             "EnableAdvancedSiteSearch": {
@@ -954,6 +1329,11 @@
                 "collectUserEvent"
               ]
             },
+            "PurgeUserEvents": {
+              "methods": [
+                "purgeUserEvents"
+              ]
+            },
             "ImportUserEvents": {
               "methods": [
                 "importUserEvents"
@@ -972,6 +1352,11 @@
             "CollectUserEvent": {
               "methods": [
                 "collectUserEvent"
+              ]
+            },
+            "PurgeUserEvents": {
+              "methods": [
+                "purgeUserEvents"
               ]
             },
             "ImportUserEvents": {

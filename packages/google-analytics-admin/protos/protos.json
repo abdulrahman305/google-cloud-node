@@ -11,7 +11,9 @@
                     "go_package": "cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpb",
                     "java_multiple_files": true,
                     "java_outer_classname": "SubpropertyEventFilterProto",
-                    "java_package": "com.google.analytics.admin.v1alpha"
+                    "java_package": "com.google.analytics.admin.v1alpha",
+                    "(google.api.resource_definition).type": "marketingplatformadmin.googleapis.com/Organization",
+                    "(google.api.resource_definition).pattern": "organizations/{organization}"
                   },
                   "nested": {
                     "AccessDimension": {
@@ -977,11 +979,15 @@
                           "requestType": "CreateConversionEventRequest",
                           "responseType": "ConversionEvent",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1alpha/{parent=properties/*}/conversionEvents",
                             "(google.api.http).body": "conversion_event",
                             "(google.api.method_signature)": "parent,conversion_event"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1alpha/{parent=properties/*}/conversionEvents",
@@ -997,11 +1003,15 @@
                           "requestType": "UpdateConversionEventRequest",
                           "responseType": "ConversionEvent",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}",
                             "(google.api.http).body": "conversion_event",
                             "(google.api.method_signature)": "conversion_event,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}",
@@ -1017,10 +1027,14 @@
                           "requestType": "GetConversionEventRequest",
                           "responseType": "ConversionEvent",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1alpha/{name=properties/*/conversionEvents/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1alpha/{name=properties/*/conversionEvents/*}"
@@ -1035,10 +1049,14 @@
                           "requestType": "DeleteConversionEventRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1alpha/{name=properties/*/conversionEvents/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1alpha/{name=properties/*/conversionEvents/*}"
@@ -1053,13 +1071,111 @@
                           "requestType": "ListConversionEventsRequest",
                           "responseType": "ListConversionEventsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1alpha/{parent=properties/*}/conversionEvents",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
                             {
+                              "deprecated": true
+                            },
+                            {
                               "(google.api.http)": {
                                 "get": "/v1alpha/{parent=properties/*}/conversionEvents"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "CreateKeyEvent": {
+                          "requestType": "CreateKeyEventRequest",
+                          "responseType": "KeyEvent",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{parent=properties/*}/keyEvents",
+                            "(google.api.http).body": "key_event",
+                            "(google.api.method_signature)": "parent,key_event"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{parent=properties/*}/keyEvents",
+                                "body": "key_event"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,key_event"
+                            }
+                          ]
+                        },
+                        "UpdateKeyEvent": {
+                          "requestType": "UpdateKeyEventRequest",
+                          "responseType": "KeyEvent",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha/{key_event.name=properties/*/keyEvents/*}",
+                            "(google.api.http).body": "key_event",
+                            "(google.api.method_signature)": "key_event,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1alpha/{key_event.name=properties/*/keyEvents/*}",
+                                "body": "key_event"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "key_event,update_mask"
+                            }
+                          ]
+                        },
+                        "GetKeyEvent": {
+                          "requestType": "GetKeyEventRequest",
+                          "responseType": "KeyEvent",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{name=properties/*/keyEvents/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{name=properties/*/keyEvents/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "DeleteKeyEvent": {
+                          "requestType": "DeleteKeyEventRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha/{name=properties/*/keyEvents/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1alpha/{name=properties/*/keyEvents/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "ListKeyEvents": {
+                          "requestType": "ListKeyEventsRequest",
+                          "responseType": "ListKeyEventsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{parent=properties/*}/keyEvents",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{parent=properties/*}/keyEvents"
                               }
                             },
                             {
@@ -2259,6 +2375,26 @@
                             }
                           ]
                         },
+                        "CreateBigQueryLink": {
+                          "requestType": "CreateBigQueryLinkRequest",
+                          "responseType": "BigQueryLink",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{parent=properties/*}/bigQueryLinks",
+                            "(google.api.http).body": "bigquery_link",
+                            "(google.api.method_signature)": "parent,bigquery_link"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{parent=properties/*}/bigQueryLinks",
+                                "body": "bigquery_link"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,bigquery_link"
+                            }
+                          ]
+                        },
                         "GetBigQueryLink": {
                           "requestType": "GetBigQueryLinkRequest",
                           "responseType": "BigQueryLink",
@@ -2292,6 +2428,44 @@
                             },
                             {
                               "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "DeleteBigQueryLink": {
+                          "requestType": "DeleteBigQueryLinkRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha/{name=properties/*/bigQueryLinks/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1alpha/{name=properties/*/bigQueryLinks/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "UpdateBigQueryLink": {
+                          "requestType": "UpdateBigQueryLinkRequest",
+                          "responseType": "BigQueryLink",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha/{bigquery_link.name=properties/*/bigQueryLinks/*}",
+                            "(google.api.http).body": "bigquery_link",
+                            "(google.api.method_signature)": "bigquery_link,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1alpha/{bigquery_link.name=properties/*/bigQueryLinks/*}",
+                                "body": "bigquery_link"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "bigquery_link,update_mask"
                             }
                           ]
                         },
@@ -2563,6 +2737,116 @@
                             }
                           ]
                         },
+                        "GetEventEditRule": {
+                          "requestType": "GetEventEditRuleRequest",
+                          "responseType": "EventEditRule",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "ListEventEditRules": {
+                          "requestType": "ListEventEditRulesRequest",
+                          "responseType": "ListEventEditRulesResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "CreateEventEditRule": {
+                          "requestType": "CreateEventEditRuleRequest",
+                          "responseType": "EventEditRule",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules",
+                            "(google.api.http).body": "event_edit_rule",
+                            "(google.api.method_signature)": "parent,event_edit_rule"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules",
+                                "body": "event_edit_rule"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,event_edit_rule"
+                            }
+                          ]
+                        },
+                        "UpdateEventEditRule": {
+                          "requestType": "UpdateEventEditRuleRequest",
+                          "responseType": "EventEditRule",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha/{event_edit_rule.name=properties/*/dataStreams/*/eventEditRules/*}",
+                            "(google.api.http).body": "event_edit_rule",
+                            "(google.api.method_signature)": "event_edit_rule,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1alpha/{event_edit_rule.name=properties/*/dataStreams/*/eventEditRules/*}",
+                                "body": "event_edit_rule"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "event_edit_rule,update_mask"
+                            }
+                          ]
+                        },
+                        "DeleteEventEditRule": {
+                          "requestType": "DeleteEventEditRuleRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "ReorderEventEditRules": {
+                          "requestType": "ReorderEventEditRulesRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules:reorder",
+                            "(google.api.http).body": "*"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules:reorder",
+                                "body": "*"
+                              }
+                            }
+                          ]
+                        },
                         "UpdateDataRedactionSettings": {
                           "requestType": "UpdateDataRedactionSettingsRequest",
                           "responseType": "DataRedactionSettings",
@@ -2785,17 +3069,17 @@
                             }
                           ]
                         },
-                        "CreateSubproperty": {
-                          "requestType": "CreateSubpropertyRequest",
-                          "responseType": "CreateSubpropertyResponse",
+                        "ProvisionSubproperty": {
+                          "requestType": "ProvisionSubpropertyRequest",
+                          "responseType": "ProvisionSubpropertyResponse",
                           "options": {
-                            "(google.api.http).post": "/v1alpha/properties:createSubproperty",
+                            "(google.api.http).post": "/v1alpha/properties:provisionSubproperty",
                             "(google.api.http).body": "*"
                           },
                           "parsedOptions": [
                             {
                               "(google.api.http)": {
-                                "post": "/v1alpha/properties:createSubproperty",
+                                "post": "/v1alpha/properties:provisionSubproperty",
                                 "body": "*"
                               }
                             }
@@ -2888,6 +3172,176 @@
                             {
                               "(google.api.http)": {
                                 "delete": "/v1alpha/{name=properties/*/subpropertyEventFilters/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "CreateReportingDataAnnotation": {
+                          "requestType": "CreateReportingDataAnnotationRequest",
+                          "responseType": "ReportingDataAnnotation",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{parent=properties/*}/reportingDataAnnotations",
+                            "(google.api.http).body": "reporting_data_annotation",
+                            "(google.api.method_signature)": "parent,reporting_data_annotation"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{parent=properties/*}/reportingDataAnnotations",
+                                "body": "reporting_data_annotation"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,reporting_data_annotation"
+                            }
+                          ]
+                        },
+                        "GetReportingDataAnnotation": {
+                          "requestType": "GetReportingDataAnnotationRequest",
+                          "responseType": "ReportingDataAnnotation",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{name=properties/*/reportingDataAnnotations/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{name=properties/*/reportingDataAnnotations/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "ListReportingDataAnnotations": {
+                          "requestType": "ListReportingDataAnnotationsRequest",
+                          "responseType": "ListReportingDataAnnotationsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{parent=properties/*}/reportingDataAnnotations",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{parent=properties/*}/reportingDataAnnotations"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "UpdateReportingDataAnnotation": {
+                          "requestType": "UpdateReportingDataAnnotationRequest",
+                          "responseType": "ReportingDataAnnotation",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha/{reporting_data_annotation.name=properties/*/reportingDataAnnotations/*}",
+                            "(google.api.http).body": "reporting_data_annotation",
+                            "(google.api.method_signature)": "reporting_data_annotation,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1alpha/{reporting_data_annotation.name=properties/*/reportingDataAnnotations/*}",
+                                "body": "reporting_data_annotation"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "reporting_data_annotation,update_mask"
+                            }
+                          ]
+                        },
+                        "DeleteReportingDataAnnotation": {
+                          "requestType": "DeleteReportingDataAnnotationRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha/{name=properties/*/reportingDataAnnotations/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1alpha/{name=properties/*/reportingDataAnnotations/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "SubmitUserDeletion": {
+                          "requestType": "SubmitUserDeletionRequest",
+                          "responseType": "SubmitUserDeletionResponse",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{name=properties/*}:submitUserDeletion",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{name=properties/*}:submitUserDeletion",
+                                "body": "*"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "ListSubpropertySyncConfigs": {
+                          "requestType": "ListSubpropertySyncConfigsRequest",
+                          "responseType": "ListSubpropertySyncConfigsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{parent=properties/*}/subpropertySyncConfigs",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{parent=properties/*}/subpropertySyncConfigs"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "UpdateSubpropertySyncConfig": {
+                          "requestType": "UpdateSubpropertySyncConfigRequest",
+                          "responseType": "SubpropertySyncConfig",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}",
+                            "(google.api.http).body": "subproperty_sync_config",
+                            "(google.api.method_signature)": "subproperty_sync_config,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}",
+                                "body": "subproperty_sync_config"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "subproperty_sync_config,update_mask"
+                            }
+                          ]
+                        },
+                        "GetSubpropertySyncConfig": {
+                          "requestType": "GetSubpropertySyncConfigRequest",
+                          "responseType": "SubpropertySyncConfig",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha/{name=properties/*/subpropertySyncConfigs/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{name=properties/*/subpropertySyncConfigs/*}"
                               }
                             },
                             {
@@ -3773,6 +4227,100 @@
                         "conversionEvents": {
                           "rule": "repeated",
                           "type": "ConversionEvent",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "CreateKeyEventRequest": {
+                      "fields": {
+                        "keyEvent": {
+                          "type": "KeyEvent",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "parent": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        }
+                      }
+                    },
+                    "UpdateKeyEventRequest": {
+                      "fields": {
+                        "keyEvent": {
+                          "type": "KeyEvent",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "GetKeyEventRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteKeyEventRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        }
+                      }
+                    },
+                    "ListKeyEventsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListKeyEventsResponse": {
+                      "fields": {
+                        "keyEvents": {
+                          "rule": "repeated",
+                          "type": "KeyEvent",
                           "id": 1
                         },
                         "nextPageToken": {
@@ -5025,6 +5573,25 @@
                         }
                       }
                     },
+                    "CreateBigQueryLinkRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/BigQueryLink"
+                          }
+                        },
+                        "bigqueryLink": {
+                          "type": "BigQueryLink",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
                     "GetBigQueryLinkRequest": {
                       "fields": {
                         "name": {
@@ -5067,6 +5634,36 @@
                         "nextPageToken": {
                           "type": "string",
                           "id": 2
+                        }
+                      }
+                    },
+                    "UpdateBigQueryLinkRequest": {
+                      "fields": {
+                        "bigqueryLink": {
+                          "type": "BigQueryLink",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteBigQueryLinkRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/BigQueryLink"
+                          }
                         }
                       }
                     },
@@ -5370,6 +5967,126 @@
                         }
                       }
                     },
+                    "CreateEventEditRuleRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/EventEditRule"
+                          }
+                        },
+                        "eventEditRule": {
+                          "type": "EventEditRule",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "UpdateEventEditRuleRequest": {
+                      "fields": {
+                        "eventEditRule": {
+                          "type": "EventEditRule",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteEventEditRuleRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/EventEditRule"
+                          }
+                        }
+                      }
+                    },
+                    "GetEventEditRuleRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/EventEditRule"
+                          }
+                        }
+                      }
+                    },
+                    "ListEventEditRulesRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/EventEditRule"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "ListEventEditRulesResponse": {
+                      "fields": {
+                        "eventEditRules": {
+                          "rule": "repeated",
+                          "type": "EventEditRule",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "ReorderEventEditRulesRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/EventEditRule"
+                          }
+                        },
+                        "eventEditRules": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
                     "CreateRollupPropertyRequest": {
                       "fields": {
                         "rollupProperty": {
@@ -5484,16 +6201,8 @@
                         }
                       }
                     },
-                    "CreateSubpropertyRequest": {
+                    "ProvisionSubpropertyRequest": {
                       "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1,
-                          "options": {
-                            "(google.api.field_behavior)": "REQUIRED",
-                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/Property"
-                          }
-                        },
                         "subproperty": {
                           "type": "Property",
                           "id": 2,
@@ -5507,10 +6216,17 @@
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
+                        },
+                        "customDimensionAndMetricSynchronizationMode": {
+                          "type": "SubpropertySyncConfig.SynchronizationMode",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
-                    "CreateSubpropertyResponse": {
+                    "ProvisionSubpropertyResponse": {
                       "fields": {
                         "subproperty": {
                           "type": "Property",
@@ -5618,6 +6334,228 @@
                           "options": {
                             "(google.api.field_behavior)": "REQUIRED",
                             "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/SubpropertyEventFilter"
+                          }
+                        }
+                      }
+                    },
+                    "CreateReportingDataAnnotationRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/ReportingDataAnnotation"
+                          }
+                        },
+                        "reportingDataAnnotation": {
+                          "type": "ReportingDataAnnotation",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "GetReportingDataAnnotationRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/ReportingDataAnnotation"
+                          }
+                        }
+                      }
+                    },
+                    "ListReportingDataAnnotationsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/ReportingDataAnnotation"
+                          }
+                        },
+                        "filter": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "ListReportingDataAnnotationsResponse": {
+                      "fields": {
+                        "reportingDataAnnotations": {
+                          "rule": "repeated",
+                          "type": "ReportingDataAnnotation",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "UpdateReportingDataAnnotationRequest": {
+                      "fields": {
+                        "reportingDataAnnotation": {
+                          "type": "ReportingDataAnnotation",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteReportingDataAnnotationRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/ReportingDataAnnotation"
+                          }
+                        }
+                      }
+                    },
+                    "SubmitUserDeletionRequest": {
+                      "oneofs": {
+                        "user": {
+                          "oneof": [
+                            "userId",
+                            "clientId",
+                            "appInstanceId",
+                            "userProvidedData"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "userId": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "clientId": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "appInstanceId": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "userProvidedData": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/Property"
+                          }
+                        }
+                      }
+                    },
+                    "SubmitUserDeletionResponse": {
+                      "fields": {
+                        "deletionRequestTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "GetSubpropertySyncConfigRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/SubpropertySyncConfig"
+                          }
+                        }
+                      }
+                    },
+                    "ListSubpropertySyncConfigsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/SubpropertySyncConfig"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "ListSubpropertySyncConfigsResponse": {
+                      "fields": {
+                        "subpropertySyncConfigs": {
+                          "rule": "repeated",
+                          "type": "SubpropertySyncConfig",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "UpdateSubpropertySyncConfigRequest": {
+                      "fields": {
+                        "subpropertySyncConfig": {
+                          "type": "SubpropertySyncConfig",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
                           }
                         }
                       }
@@ -6070,6 +7008,13 @@
                           "options": {
                             "(google.api.field_behavior)": "UNORDERED_LIST"
                           }
+                        },
+                        "createTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 9,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       },
                       "nested": {
@@ -6249,6 +7194,13 @@
                           "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
+                        },
+                        "primary": {
+                          "type": "bool",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -6306,6 +7258,53 @@
                           "rule": "repeated",
                           "type": "ParameterMutation",
                           "id": 5
+                        }
+                      }
+                    },
+                    "EventEditRule": {
+                      "options": {
+                        "(google.api.resource).type": "analyticsadmin.googleapis.com/EventEditRule",
+                        "(google.api.resource).pattern": "properties/{property}/dataStreams/{data_stream}/eventEditRules/{event_edit_rule}",
+                        "(google.api.resource).plural": "eventEditRules",
+                        "(google.api.resource).singular": "eventEditRule"
+                      },
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "IDENTIFIER"
+                          }
+                        },
+                        "displayName": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "eventConditions": {
+                          "rule": "repeated",
+                          "type": "MatchingCondition",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "parameterMutations": {
+                          "rule": "repeated",
+                          "type": "ParameterMutation",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "processingOrder": {
+                          "type": "int64",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -6608,13 +7607,17 @@
                         "ATTRIBUTION_SETTINGS": 20,
                         "EXPANDED_DATA_SET": 21,
                         "CHANNEL_GROUP": 22,
+                        "BIGQUERY_LINK": 23,
                         "ENHANCED_MEASUREMENT_SETTINGS": 24,
                         "DATA_REDACTION_SETTINGS": 25,
                         "SKADNETWORK_CONVERSION_VALUE_SCHEMA": 26,
                         "ADSENSE_LINK": 27,
                         "AUDIENCE": 28,
                         "EVENT_CREATE_RULE": 29,
-                        "CALCULATED_METRIC": 31
+                        "KEY_EVENT": 30,
+                        "CALCULATED_METRIC": 31,
+                        "REPORTING_DATA_ANNOTATION": 32,
+                        "SUBPROPERTY_SYNC_CONFIG": 33
                       }
                     },
                     "GoogleSignalsState": {
@@ -6708,6 +7711,14 @@
                           "id": 6,
                           "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "gmpOrganization": {
+                          "type": "string",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "(google.api.resource_reference).type": "marketingplatformadmin.googleapis.com/Organization"
                           }
                         }
                       }
@@ -7063,7 +8074,10 @@
                         },
                         "sharingWithGoogleAnySalesEnabled": {
                           "type": "bool",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "deprecated": true
+                          }
                         },
                         "sharingWithGoogleProductsEnabled": {
                           "type": "bool",
@@ -7378,7 +8392,10 @@
                                 "adsenseLink",
                                 "audience",
                                 "eventCreateRule",
-                                "calculatedMetric"
+                                "keyEvent",
+                                "calculatedMetric",
+                                "reportingDataAnnotation",
+                                "subpropertySyncConfig"
                               ]
                             }
                           },
@@ -7479,9 +8496,21 @@
                               "type": "EventCreateRule",
                               "id": 29
                             },
+                            "keyEvent": {
+                              "type": "KeyEvent",
+                              "id": 30
+                            },
                             "calculatedMetric": {
                               "type": "CalculatedMetric",
                               "id": 31
+                            },
+                            "reportingDataAnnotation": {
+                              "type": "ReportingDataAnnotation",
+                              "id": 32
+                            },
+                            "subpropertySyncConfig": {
+                              "type": "SubpropertySyncConfig",
+                              "id": 33
                             }
                           }
                         }
@@ -7778,6 +8807,92 @@
                         }
                       }
                     },
+                    "KeyEvent": {
+                      "options": {
+                        "(google.api.resource).type": "analyticsadmin.googleapis.com/KeyEvent",
+                        "(google.api.resource).pattern": "properties/{property}/keyEvents/{key_event}",
+                        "(google.api.resource).plural": "keyEvents",
+                        "(google.api.resource).singular": "keyEvent"
+                      },
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "eventName": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "IMMUTABLE"
+                          }
+                        },
+                        "createTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "deletable": {
+                          "type": "bool",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "custom": {
+                          "type": "bool",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "countingMethod": {
+                          "type": "CountingMethod",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "defaultValue": {
+                          "type": "DefaultValue",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "DefaultValue": {
+                          "fields": {
+                            "numericValue": {
+                              "type": "double",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "currencyCode": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        },
+                        "CountingMethod": {
+                          "values": {
+                            "COUNTING_METHOD_UNSPECIFIED": 0,
+                            "ONCE_PER_EVENT": 1,
+                            "ONCE_PER_SESSION": 2
+                          }
+                        }
+                      }
+                    },
                     "GoogleSignalsSettings": {
                       "options": {
                         "(google.api.resource).type": "analyticsadmin.googleapis.com/GoogleSignalsSettings",
@@ -8058,7 +9173,17 @@
                         },
                         "eventDataRetention": {
                           "type": "RetentionDuration",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "userDataRetention": {
+                          "type": "RetentionDuration",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "resetUserDataOnNewActivity": {
                           "type": "bool",
@@ -8237,6 +9362,13 @@
                           "rule": "repeated",
                           "type": "string",
                           "id": 8
+                        },
+                        "datasetLocation": {
+                          "type": "string",
+                          "id": 10,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         }
                       }
                     },
@@ -8386,6 +9518,139 @@
                           "id": 2,
                           "options": {
                             "(google.api.field_behavior)": "IMMUTABLE"
+                          }
+                        }
+                      }
+                    },
+                    "ReportingDataAnnotation": {
+                      "options": {
+                        "(google.api.resource).type": "analyticsadmin.googleapis.com/ReportingDataAnnotation",
+                        "(google.api.resource).pattern": "properties/{property}/reportingDataAnnotations/{reporting_data_annotation}",
+                        "(google.api.resource).plural": "reportingDataAnnotations",
+                        "(google.api.resource).singular": "reportingDataAnnotation"
+                      },
+                      "oneofs": {
+                        "target": {
+                          "oneof": [
+                            "annotationDate",
+                            "annotationDateRange"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "annotationDate": {
+                          "type": "google.type.Date",
+                          "id": 4
+                        },
+                        "annotationDateRange": {
+                          "type": "DateRange",
+                          "id": 5
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "title": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "color": {
+                          "type": "Color",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "systemGenerated": {
+                          "type": "bool",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "DateRange": {
+                          "fields": {
+                            "startDate": {
+                              "type": "google.type.Date",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "endDate": {
+                              "type": "google.type.Date",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        },
+                        "Color": {
+                          "values": {
+                            "COLOR_UNSPECIFIED": 0,
+                            "PURPLE": 1,
+                            "BROWN": 2,
+                            "BLUE": 3,
+                            "GREEN": 4,
+                            "RED": 5,
+                            "CYAN": 6,
+                            "ORANGE": 7
+                          }
+                        }
+                      }
+                    },
+                    "SubpropertySyncConfig": {
+                      "options": {
+                        "(google.api.resource).type": "analyticsadmin.googleapis.com/SubpropertySyncConfig",
+                        "(google.api.resource).pattern": "properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}",
+                        "(google.api.resource).plural": "subpropertySyncConfigs",
+                        "(google.api.resource).singular": "subpropertySyncConfig"
+                      },
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "applyToProperty": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "customDimensionAndMetricSyncMode": {
+                          "type": "SynchronizationMode",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "SynchronizationMode": {
+                          "values": {
+                            "SYNCHRONIZATION_MODE_UNSPECIFIED": 0,
+                            "NONE": 1,
+                            "ALL": 2
                           }
                         }
                       }
@@ -8565,10 +9830,12 @@
                 },
                 "v1beta": {
                   "options": {
-                    "go_package": "google.golang.org/genproto/googleapis/analytics/admin/v1beta;admin",
+                    "go_package": "cloud.google.com/go/analytics/admin/apiv1beta/adminpb;adminpb",
                     "java_multiple_files": true,
                     "java_outer_classname": "ResourcesProto",
-                    "java_package": "com.google.analytics.admin.v1beta"
+                    "java_package": "com.google.analytics.admin.v1beta",
+                    "(google.api.resource_definition).type": "marketingplatformadmin.googleapis.com/Organization",
+                    "(google.api.resource_definition).pattern": "organizations/{organization}"
                   },
                   "nested": {
                     "AccessDimension": {
@@ -9384,11 +10651,15 @@
                           "requestType": "CreateConversionEventRequest",
                           "responseType": "ConversionEvent",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).post": "/v1beta/{parent=properties/*}/conversionEvents",
                             "(google.api.http).body": "conversion_event",
                             "(google.api.method_signature)": "parent,conversion_event"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "post": "/v1beta/{parent=properties/*}/conversionEvents",
@@ -9404,11 +10675,15 @@
                           "requestType": "UpdateConversionEventRequest",
                           "responseType": "ConversionEvent",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).patch": "/v1beta/{conversion_event.name=properties/*/conversionEvents/*}",
                             "(google.api.http).body": "conversion_event",
                             "(google.api.method_signature)": "conversion_event,update_mask"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "patch": "/v1beta/{conversion_event.name=properties/*/conversionEvents/*}",
@@ -9424,10 +10699,14 @@
                           "requestType": "GetConversionEventRequest",
                           "responseType": "ConversionEvent",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta/{name=properties/*/conversionEvents/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta/{name=properties/*/conversionEvents/*}"
@@ -9442,10 +10721,14 @@
                           "requestType": "DeleteConversionEventRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).delete": "/v1beta/{name=properties/*/conversionEvents/*}",
                             "(google.api.method_signature)": "name"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "delete": "/v1beta/{name=properties/*/conversionEvents/*}"
@@ -9460,13 +10743,111 @@
                           "requestType": "ListConversionEventsRequest",
                           "responseType": "ListConversionEventsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta/{parent=properties/*}/conversionEvents",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
                             {
+                              "deprecated": true
+                            },
+                            {
                               "(google.api.http)": {
                                 "get": "/v1beta/{parent=properties/*}/conversionEvents"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
+                        "CreateKeyEvent": {
+                          "requestType": "CreateKeyEventRequest",
+                          "responseType": "KeyEvent",
+                          "options": {
+                            "(google.api.http).post": "/v1beta/{parent=properties/*}/keyEvents",
+                            "(google.api.http).body": "key_event",
+                            "(google.api.method_signature)": "parent,key_event"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1beta/{parent=properties/*}/keyEvents",
+                                "body": "key_event"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,key_event"
+                            }
+                          ]
+                        },
+                        "UpdateKeyEvent": {
+                          "requestType": "UpdateKeyEventRequest",
+                          "responseType": "KeyEvent",
+                          "options": {
+                            "(google.api.http).patch": "/v1beta/{key_event.name=properties/*/keyEvents/*}",
+                            "(google.api.http).body": "key_event",
+                            "(google.api.method_signature)": "key_event,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1beta/{key_event.name=properties/*/keyEvents/*}",
+                                "body": "key_event"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "key_event,update_mask"
+                            }
+                          ]
+                        },
+                        "GetKeyEvent": {
+                          "requestType": "GetKeyEventRequest",
+                          "responseType": "KeyEvent",
+                          "options": {
+                            "(google.api.http).get": "/v1beta/{name=properties/*/keyEvents/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1beta/{name=properties/*/keyEvents/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "DeleteKeyEvent": {
+                          "requestType": "DeleteKeyEventRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1beta/{name=properties/*/keyEvents/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1beta/{name=properties/*/keyEvents/*}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "ListKeyEvents": {
+                          "requestType": "ListKeyEventsRequest",
+                          "responseType": "ListKeyEventsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1beta/{parent=properties/*}/keyEvents",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1beta/{parent=properties/*}/keyEvents"
                               }
                             },
                             {
@@ -9871,6 +11252,20 @@
                         "returnEntityQuota": {
                           "type": "bool",
                           "id": 11
+                        },
+                        "includeAllUsers": {
+                          "type": "bool",
+                          "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "expandGroups": {
+                          "type": "bool",
+                          "id": 13,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -10556,6 +11951,100 @@
                         }
                       }
                     },
+                    "CreateKeyEventRequest": {
+                      "fields": {
+                        "keyEvent": {
+                          "type": "KeyEvent",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "parent": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        }
+                      }
+                    },
+                    "UpdateKeyEventRequest": {
+                      "fields": {
+                        "keyEvent": {
+                          "type": "KeyEvent",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "GetKeyEventRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteKeyEventRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        }
+                      }
+                    },
+                    "ListKeyEventsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "analyticsadmin.googleapis.com/KeyEvent"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListKeyEventsResponse": {
+                      "fields": {
+                        "keyEvents": {
+                          "rule": "repeated",
+                          "type": "KeyEvent",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
                     "CreateCustomDimensionRequest": {
                       "fields": {
                         "parent": {
@@ -10923,6 +12412,8 @@
                         "GOOGLE_SIGNALS_SETTINGS": 8,
                         "CONVERSION_EVENT": 9,
                         "MEASUREMENT_PROTOCOL_SECRET": 10,
+                        "CUSTOM_DIMENSION": 11,
+                        "CUSTOM_METRIC": 12,
                         "DATA_RETENTION_SETTINGS": 13,
                         "DISPLAY_VIDEO_360_ADVERTISER_LINK": 14,
                         "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL": 15,
@@ -10981,6 +12472,14 @@
                           "id": 6,
                           "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "gmpOrganization": {
+                          "type": "string",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "(google.api.resource_reference).type": "marketingplatformadmin.googleapis.com/Organization"
                           }
                         }
                       }
@@ -11512,6 +13011,13 @@
                         "(google.api.resource).type": "analyticsadmin.googleapis.com/ConversionEvent",
                         "(google.api.resource).pattern": "properties/{property}/conversionEvents/{conversion_event}"
                       },
+                      "oneofs": {
+                        "_defaultConversionValue": {
+                          "oneof": [
+                            "defaultConversionValue"
+                          ]
+                        }
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -11554,12 +13060,136 @@
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
+                        },
+                        "defaultConversionValue": {
+                          "type": "DefaultConversionValue",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
+                            "proto3_optional": true
+                          }
                         }
                       },
                       "nested": {
+                        "DefaultConversionValue": {
+                          "oneofs": {
+                            "_value": {
+                              "oneof": [
+                                "value"
+                              ]
+                            },
+                            "_currencyCode": {
+                              "oneof": [
+                                "currencyCode"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "value": {
+                              "type": "double",
+                              "id": 1,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "currencyCode": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            }
+                          }
+                        },
                         "ConversionCountingMethod": {
                           "values": {
                             "CONVERSION_COUNTING_METHOD_UNSPECIFIED": 0,
+                            "ONCE_PER_EVENT": 1,
+                            "ONCE_PER_SESSION": 2
+                          }
+                        }
+                      }
+                    },
+                    "KeyEvent": {
+                      "options": {
+                        "(google.api.resource).type": "analyticsadmin.googleapis.com/KeyEvent",
+                        "(google.api.resource).pattern": "properties/{property}/keyEvents/{key_event}",
+                        "(google.api.resource).plural": "keyEvents",
+                        "(google.api.resource).singular": "keyEvent"
+                      },
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "eventName": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "IMMUTABLE"
+                          }
+                        },
+                        "createTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "deletable": {
+                          "type": "bool",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "custom": {
+                          "type": "bool",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "countingMethod": {
+                          "type": "CountingMethod",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "defaultValue": {
+                          "type": "DefaultValue",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "DefaultValue": {
+                          "fields": {
+                            "numericValue": {
+                              "type": "double",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "currencyCode": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        },
+                        "CountingMethod": {
+                          "values": {
+                            "COUNTING_METHOD_UNSPECIFIED": 0,
                             "ONCE_PER_EVENT": 1,
                             "ONCE_PER_SESSION": 2
                           }
@@ -11729,7 +13359,17 @@
                         },
                         "eventDataRetention": {
                           "type": "RetentionDuration",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "userDataRetention": {
+                          "type": "RetentionDuration",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "resetUserDataOnNewActivity": {
                           "type": "bool",
@@ -11769,7 +13409,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -11964,6 +13607,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -12072,6 +13720,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -12257,6 +13909,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -12266,6 +13919,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -12281,6 +13935,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12298,18 +13953,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -12350,6 +13999,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12432,6 +14082,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -12505,6 +14156,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12584,6 +14236,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12596,6 +14249,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12637,6 +14291,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12653,6 +14308,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12670,6 +14326,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -12704,6 +14361,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -12845,6 +14503,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -12918,6 +14577,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -12979,10 +14639,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -13066,6 +14723,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -13085,6 +14743,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -13128,6 +14787,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -13161,6 +14821,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -13187,6 +14848,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -13229,6 +14891,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -13278,6 +14941,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -13350,8 +15014,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -13407,6 +15083,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -13438,6 +15115,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -13451,12 +15129,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -13476,6 +15160,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -13489,7 +15174,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -13625,6 +15313,34 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 1
+                }
+              }
+            }
+          }
+        },
+        "type": {
+          "options": {
+            "cc_enable_arenas": true,
+            "go_package": "google.golang.org/genproto/googleapis/type/date;date",
+            "java_multiple_files": true,
+            "java_outer_classname": "DateProto",
+            "java_package": "com.google.type",
+            "objc_class_prefix": "GTP"
+          },
+          "nested": {
+            "Date": {
+              "fields": {
+                "year": {
+                  "type": "int32",
+                  "id": 1
+                },
+                "month": {
+                  "type": "int32",
+                  "id": 2
+                },
+                "day": {
+                  "type": "int32",
+                  "id": 3
                 }
               }
             }

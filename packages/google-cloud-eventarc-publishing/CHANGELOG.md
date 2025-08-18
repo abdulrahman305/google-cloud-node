@@ -1,5 +1,51 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-cloud-node/compare/eventarc-publishing-v4.1.0...eventarc-publishing-v4.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6420](https://github.com/googleapis/google-cloud-node/issues/6420)) ([fe8d6cc](https://github.com/googleapis/google-cloud-node/commit/fe8d6cc157bea696790f2844fa7d410a481c79ed))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/eventarc-publishing-v4.0.1...eventarc-publishing-v4.1.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([b3bd921](https://github.com/googleapis/google-cloud-node/commit/b3bd921a30b15a632d8e8495b91723d314c23c71))
+
+## [4.0.1](https://github.com/googleapis/google-cloud-node/compare/eventarc-publishing-v4.0.0...eventarc-publishing-v4.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6185](https://github.com/googleapis/google-cloud-node/issues/6185)) ([ab30412](https://github.com/googleapis/google-cloud-node/commit/ab304122e3e825c9a76af7d6b0ef4ddc9aa6e906))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/eventarc-publishing-v3.4.0...eventarc-publishing-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([afcb5c0](https://github.com/googleapis/google-cloud-node/commit/afcb5c07e82bc8349b9677766cd880f69a97f77f))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [3.4.0](https://github.com/googleapis/google-cloud-node/compare/eventarc-publishing-v3.3.0...eventarc-publishing-v3.4.0) (2024-10-30)
+
+
+### Features
+
+* [eventarc-publishing,securitycentermanagement] Add GroundedGenerationService API ([#5778](https://github.com/googleapis/google-cloud-node/issues/5778)) ([fc49da8](https://github.com/googleapis/google-cloud-node/commit/fc49da87f341638232166e80adce38d8108461a9))
+
 ## [3.3.0](https://github.com/googleapis/google-cloud-node/compare/eventarc-publishing-v3.2.0...eventarc-publishing-v3.3.0) (2024-05-21)
 
 

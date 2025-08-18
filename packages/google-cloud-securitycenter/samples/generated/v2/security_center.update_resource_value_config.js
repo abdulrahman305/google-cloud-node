@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,9 @@ function main(resourceValueConfig) {
   /**
    *  The list of fields to be updated.
    *  If empty all mutable fields will be updated.
+   *  To update nested fields, include the top level field in the mask
+   *  For example, to update gcp_metadata.resource_type, include the
+   *  "gcp_metadata" field mask
    */
   // const updateMask = {}
 

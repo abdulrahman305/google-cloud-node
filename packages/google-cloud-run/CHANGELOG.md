@@ -1,5 +1,91 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-cloud-node/compare/run-v2.3.0...run-v3.0.0) (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.SubmitBuildRequest` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool`
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.BuildConfig` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool`
+
+### Features
+
+* Adding new resource tpye run.googleapis.com/WorkerPool. ([82026b2](https://github.com/googleapis/google-cloud-node/commit/82026b2792602640080619b123cf1108d128c08b))
+
+
+### Bug Fixes
+
+* [run] An existing resource_definition `cloudbuild.googleapis.com/WorkerPool` is removed ([#6581](https://github.com/googleapis/google-cloud-node/issues/6581)) ([82026b2](https://github.com/googleapis/google-cloud-node/commit/82026b2792602640080619b123cf1108d128c08b))
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.BuildConfig` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool` ([82026b2](https://github.com/googleapis/google-cloud-node/commit/82026b2792602640080619b123cf1108d128c08b))
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.SubmitBuildRequest` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool` ([82026b2](https://github.com/googleapis/google-cloud-node/commit/82026b2792602640080619b123cf1108d128c08b))
+
+## [2.3.0](https://github.com/googleapis/google-cloud-node/compare/run-v2.2.0...run-v2.3.0) (2025-07-22)
+
+
+### Features
+
+* [run] support GPU zonal redundancy setting for Cloud Run jobs ([#6499](https://github.com/googleapis/google-cloud-node/issues/6499)) ([2d56d45](https://github.com/googleapis/google-cloud-node/commit/2d56d45f0a0e8bc9be618875af71abf89ca79e9d))
+
+## [2.2.0](https://github.com/googleapis/google-cloud-node/compare/run-v2.1.0...run-v2.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6423](https://github.com/googleapis/google-cloud-node/issues/6423)) ([df9184f](https://github.com/googleapis/google-cloud-node/commit/df9184fe9fb00013ef519f093c4de5fd54ec2ce9))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [2.1.0](https://github.com/googleapis/google-cloud-node/compare/run-v2.0.1...run-v2.1.0) (2025-05-20)
+
+
+### Features
+
+* [run] support GPU zonal redundancy setting in Cloud Run services ([#6349](https://github.com/googleapis/google-cloud-node/issues/6349)) ([350da9c](https://github.com/googleapis/google-cloud-node/commit/350da9c145847f9aa376653b94e6aa7e0fcdd2cd))
+
+## [2.0.1](https://github.com/googleapis/google-cloud-node/compare/run-v2.0.0...run-v2.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6188](https://github.com/googleapis/google-cloud-node/issues/6188)) ([a73cdbf](https://github.com/googleapis/google-cloud-node/commit/a73cdbfe33d5ba9952f0c87cb9d5d12ee8753dd2))
+
+## [2.0.0](https://github.com/googleapis/google-cloud-node/compare/run-v1.5.1...run-v2.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([b99c5f8](https://github.com/googleapis/google-cloud-node/commit/b99c5f8269a8401c72e9c913971c7e90467209e2))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [1.5.1](https://github.com/googleapis/google-cloud-node/compare/run-v1.5.0...run-v1.5.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [run] finalize fixing typings for headers in generator ([#6016](https://github.com/googleapis/google-cloud-node/issues/6016)) ([34bda26](https://github.com/googleapis/google-cloud-node/commit/34bda26d89163c60fdb602b6e81bd8c263148709))
+
+## [1.5.0](https://github.com/googleapis/google-cloud-node/compare/run-v1.4.0...run-v1.5.0) (2024-11-21)
+
+
+### Features
+
+* [run]support manual instance count in Cloud Run for manual scaling feature ([#5821](https://github.com/googleapis/google-cloud-node/issues/5821)) ([a1ab492](https://github.com/googleapis/google-cloud-node/commit/a1ab492a1116d08b008f9fc88751972703725b02))
+
+## [1.4.0](https://github.com/googleapis/google-cloud-node/compare/run-v1.3.0...run-v1.4.0) (2024-07-22)
+
+
+### Features
+
+* [run]support update_mask in Cloud Run UpdateService ([#5532](https://github.com/googleapis/google-cloud-node/issues/5532)) ([62bc6bf](https://github.com/googleapis/google-cloud-node/commit/62bc6bf8546f247e346ca364560c130bfa0da0f1))
+
 ## [1.3.0](https://github.com/googleapis/google-cloud-node/compare/run-v1.2.0...run-v1.3.0) (2024-05-21)
 
 

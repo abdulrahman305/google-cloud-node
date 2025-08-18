@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -328,7 +328,7 @@ export namespace grafeas {
         interface IAttestationOccurrence {
 
             /** AttestationOccurrence serializedPayload */
-            serializedPayload?: (Uint8Array|string|null);
+            serializedPayload?: (Uint8Array|Buffer|string|null);
 
             /** AttestationOccurrence signatures */
             signatures?: (grafeas.v1.ISignature[]|null);
@@ -347,7 +347,7 @@ export namespace grafeas {
             constructor(properties?: grafeas.v1.IAttestationOccurrence);
 
             /** AttestationOccurrence serializedPayload. */
-            public serializedPayload: (Uint8Array|string);
+            public serializedPayload: (Uint8Array|Buffer|string);
 
             /** AttestationOccurrence signatures. */
             public signatures: grafeas.v1.ISignature[];
@@ -447,7 +447,8 @@ export namespace grafeas {
             COMPLIANCE = 9,
             DSSE_ATTESTATION = 10,
             VULNERABILITY_ASSESSMENT = 11,
-            SBOM_REFERENCE = 12
+            SBOM_REFERENCE = 12,
+            SECRET = 13
         }
 
         /** Properties of a RelatedUrl. */
@@ -557,7 +558,7 @@ export namespace grafeas {
         interface ISignature {
 
             /** Signature signature */
-            signature?: (Uint8Array|string|null);
+            signature?: (Uint8Array|Buffer|string|null);
 
             /** Signature publicKeyId */
             publicKeyId?: (string|null);
@@ -573,7 +574,7 @@ export namespace grafeas {
             constructor(properties?: grafeas.v1.ISignature);
 
             /** Signature signature. */
-            public signature: (Uint8Array|string);
+            public signature: (Uint8Array|Buffer|string);
 
             /** Signature publicKeyId. */
             public publicKeyId: string;
@@ -660,7 +661,7 @@ export namespace grafeas {
         interface IEnvelope {
 
             /** Envelope payload */
-            payload?: (Uint8Array|string|null);
+            payload?: (Uint8Array|Buffer|string|null);
 
             /** Envelope payloadType */
             payloadType?: (string|null);
@@ -679,7 +680,7 @@ export namespace grafeas {
             constructor(properties?: grafeas.v1.IEnvelope);
 
             /** Envelope payload. */
-            public payload: (Uint8Array|string);
+            public payload: (Uint8Array|Buffer|string);
 
             /** Envelope payloadType. */
             public payloadType: string;
@@ -769,7 +770,7 @@ export namespace grafeas {
         interface IEnvelopeSignature {
 
             /** EnvelopeSignature sig */
-            sig?: (Uint8Array|string|null);
+            sig?: (Uint8Array|Buffer|string|null);
 
             /** EnvelopeSignature keyid */
             keyid?: (string|null);
@@ -785,7 +786,7 @@ export namespace grafeas {
             constructor(properties?: grafeas.v1.IEnvelopeSignature);
 
             /** EnvelopeSignature sig. */
-            public sig: (Uint8Array|string);
+            public sig: (Uint8Array|Buffer|string);
 
             /** EnvelopeSignature keyid. */
             public keyid: string;
@@ -873,6 +874,9 @@ export namespace grafeas {
 
             /** FileLocation filePath */
             filePath?: (string|null);
+
+            /** FileLocation layerDetails */
+            layerDetails?: (grafeas.v1.ILayerDetails|null);
         }
 
         /** Represents a FileLocation. */
@@ -886,6 +890,9 @@ export namespace grafeas {
 
             /** FileLocation filePath. */
             public filePath: string;
+
+            /** FileLocation layerDetails. */
+            public layerDetails?: (grafeas.v1.ILayerDetails|null);
 
             /**
              * Creates a new FileLocation instance using the specified properties.
@@ -959,6 +966,236 @@ export namespace grafeas {
 
             /**
              * Gets the default type url for FileLocation
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a BaseImage. */
+        interface IBaseImage {
+
+            /** BaseImage name */
+            name?: (string|null);
+
+            /** BaseImage repository */
+            repository?: (string|null);
+
+            /** BaseImage layerCount */
+            layerCount?: (number|null);
+        }
+
+        /** Represents a BaseImage. */
+        class BaseImage implements IBaseImage {
+
+            /**
+             * Constructs a new BaseImage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: grafeas.v1.IBaseImage);
+
+            /** BaseImage name. */
+            public name: string;
+
+            /** BaseImage repository. */
+            public repository: string;
+
+            /** BaseImage layerCount. */
+            public layerCount: number;
+
+            /**
+             * Creates a new BaseImage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BaseImage instance
+             */
+            public static create(properties?: grafeas.v1.IBaseImage): grafeas.v1.BaseImage;
+
+            /**
+             * Encodes the specified BaseImage message. Does not implicitly {@link grafeas.v1.BaseImage.verify|verify} messages.
+             * @param message BaseImage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: grafeas.v1.IBaseImage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BaseImage message, length delimited. Does not implicitly {@link grafeas.v1.BaseImage.verify|verify} messages.
+             * @param message BaseImage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: grafeas.v1.IBaseImage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BaseImage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BaseImage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.BaseImage;
+
+            /**
+             * Decodes a BaseImage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BaseImage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.BaseImage;
+
+            /**
+             * Verifies a BaseImage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BaseImage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BaseImage
+             */
+            public static fromObject(object: { [k: string]: any }): grafeas.v1.BaseImage;
+
+            /**
+             * Creates a plain object from a BaseImage message. Also converts values to other types if specified.
+             * @param message BaseImage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: grafeas.v1.BaseImage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BaseImage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BaseImage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a LayerDetails. */
+        interface ILayerDetails {
+
+            /** LayerDetails index */
+            index?: (number|null);
+
+            /** LayerDetails diffId */
+            diffId?: (string|null);
+
+            /** LayerDetails chainId */
+            chainId?: (string|null);
+
+            /** LayerDetails command */
+            command?: (string|null);
+
+            /** LayerDetails baseImages */
+            baseImages?: (grafeas.v1.IBaseImage[]|null);
+        }
+
+        /** Represents a LayerDetails. */
+        class LayerDetails implements ILayerDetails {
+
+            /**
+             * Constructs a new LayerDetails.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: grafeas.v1.ILayerDetails);
+
+            /** LayerDetails index. */
+            public index: number;
+
+            /** LayerDetails diffId. */
+            public diffId: string;
+
+            /** LayerDetails chainId. */
+            public chainId: string;
+
+            /** LayerDetails command. */
+            public command: string;
+
+            /** LayerDetails baseImages. */
+            public baseImages: grafeas.v1.IBaseImage[];
+
+            /**
+             * Creates a new LayerDetails instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns LayerDetails instance
+             */
+            public static create(properties?: grafeas.v1.ILayerDetails): grafeas.v1.LayerDetails;
+
+            /**
+             * Encodes the specified LayerDetails message. Does not implicitly {@link grafeas.v1.LayerDetails.verify|verify} messages.
+             * @param message LayerDetails message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: grafeas.v1.ILayerDetails, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified LayerDetails message, length delimited. Does not implicitly {@link grafeas.v1.LayerDetails.verify|verify} messages.
+             * @param message LayerDetails message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: grafeas.v1.ILayerDetails, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a LayerDetails message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns LayerDetails
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.LayerDetails;
+
+            /**
+             * Decodes a LayerDetails message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns LayerDetails
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.LayerDetails;
+
+            /**
+             * Verifies a LayerDetails message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a LayerDetails message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns LayerDetails
+             */
+            public static fromObject(object: { [k: string]: any }): grafeas.v1.LayerDetails;
+
+            /**
+             * Creates a plain object from a LayerDetails message. Also converts values to other types if specified.
+             * @param message LayerDetails
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: grafeas.v1.LayerDetails, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this LayerDetails to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for LayerDetails
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -1075,7 +1312,7 @@ export namespace grafeas {
             algo?: (string|null);
 
             /** Digest digestBytes */
-            digestBytes?: (Uint8Array|string|null);
+            digestBytes?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a Digest. */
@@ -1091,7 +1328,7 @@ export namespace grafeas {
             public algo: string;
 
             /** Digest digestBytes. */
-            public digestBytes: (Uint8Array|string);
+            public digestBytes: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Digest instance using the specified properties.
@@ -2533,7 +2770,7 @@ export namespace grafeas {
                 digest?: ({ [k: string]: string }|null);
 
                 /** ResourceDescriptor content */
-                content?: (Uint8Array|string|null);
+                content?: (Uint8Array|Buffer|string|null);
 
                 /** ResourceDescriptor downloadLocation */
                 downloadLocation?: (string|null);
@@ -2564,7 +2801,7 @@ export namespace grafeas {
                 public digest: { [k: string]: string };
 
                 /** ResourceDescriptor content. */
-                public content: (Uint8Array|string);
+                public content: (Uint8Array|Buffer|string);
 
                 /** ResourceDescriptor downloadLocation. */
                 public downloadLocation: string;
@@ -4816,7 +5053,7 @@ export namespace grafeas {
             type?: (string|null);
 
             /** Hash value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a Hash. */
@@ -4832,7 +5069,7 @@ export namespace grafeas {
             public type: string;
 
             /** Hash value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Hash instance using the specified properties.
@@ -5944,7 +6181,7 @@ export namespace grafeas {
             cisBenchmark?: (grafeas.v1.ComplianceNote.ICisBenchmark|null);
 
             /** ComplianceNote scanInstructions */
-            scanInstructions?: (Uint8Array|string|null);
+            scanInstructions?: (Uint8Array|Buffer|string|null);
 
             /** ComplianceNote impact */
             impact?: (string|null);
@@ -5978,7 +6215,7 @@ export namespace grafeas {
             public cisBenchmark?: (grafeas.v1.ComplianceNote.ICisBenchmark|null);
 
             /** ComplianceNote scanInstructions. */
-            public scanInstructions: (Uint8Array|string);
+            public scanInstructions: (Uint8Array|Buffer|string);
 
             /** ComplianceNote impact. */
             public impact?: (string|null);
@@ -6290,6 +6527,9 @@ export namespace grafeas {
 
             /** ComplianceOccurrence nonComplianceReason */
             nonComplianceReason?: (string|null);
+
+            /** ComplianceOccurrence version */
+            version?: (grafeas.v1.IComplianceVersion|null);
         }
 
         /** Represents a ComplianceOccurrence. */
@@ -6306,6 +6546,9 @@ export namespace grafeas {
 
             /** ComplianceOccurrence nonComplianceReason. */
             public nonComplianceReason: string;
+
+            /** ComplianceOccurrence version. */
+            public version?: (grafeas.v1.IComplianceVersion|null);
 
             /**
              * Creates a new ComplianceOccurrence instance using the specified properties.
@@ -7297,6 +7540,9 @@ export namespace grafeas {
 
             /** DiscoveryOccurrence sbomStatus */
             sbomStatus?: (grafeas.v1.DiscoveryOccurrence.ISBOMStatus|null);
+
+            /** DiscoveryOccurrence vulnerabilityAttestation */
+            vulnerabilityAttestation?: (grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation|null);
         }
 
         /** Represents a DiscoveryOccurrence. */
@@ -7334,6 +7580,9 @@ export namespace grafeas {
 
             /** DiscoveryOccurrence sbomStatus. */
             public sbomStatus?: (grafeas.v1.DiscoveryOccurrence.ISBOMStatus|null);
+
+            /** DiscoveryOccurrence vulnerabilityAttestation. */
+            public vulnerabilityAttestation?: (grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation|null);
 
             /**
              * Creates a new DiscoveryOccurrence instance using the specified properties.
@@ -7640,6 +7889,125 @@ export namespace grafeas {
                     SBOM_STATE_UNSPECIFIED = 0,
                     PENDING = 1,
                     COMPLETE = 2
+                }
+            }
+
+            /** Properties of a VulnerabilityAttestation. */
+            interface IVulnerabilityAttestation {
+
+                /** VulnerabilityAttestation lastAttemptTime */
+                lastAttemptTime?: (google.protobuf.ITimestamp|null);
+
+                /** VulnerabilityAttestation state */
+                state?: (grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState|keyof typeof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState|null);
+
+                /** VulnerabilityAttestation error */
+                error?: (string|null);
+            }
+
+            /** Represents a VulnerabilityAttestation. */
+            class VulnerabilityAttestation implements IVulnerabilityAttestation {
+
+                /**
+                 * Constructs a new VulnerabilityAttestation.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation);
+
+                /** VulnerabilityAttestation lastAttemptTime. */
+                public lastAttemptTime?: (google.protobuf.ITimestamp|null);
+
+                /** VulnerabilityAttestation state. */
+                public state: (grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState|keyof typeof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState);
+
+                /** VulnerabilityAttestation error. */
+                public error: string;
+
+                /**
+                 * Creates a new VulnerabilityAttestation instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns VulnerabilityAttestation instance
+                 */
+                public static create(properties?: grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation): grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation;
+
+                /**
+                 * Encodes the specified VulnerabilityAttestation message. Does not implicitly {@link grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.verify|verify} messages.
+                 * @param message VulnerabilityAttestation message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified VulnerabilityAttestation message, length delimited. Does not implicitly {@link grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.verify|verify} messages.
+                 * @param message VulnerabilityAttestation message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a VulnerabilityAttestation message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns VulnerabilityAttestation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation;
+
+                /**
+                 * Decodes a VulnerabilityAttestation message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns VulnerabilityAttestation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation;
+
+                /**
+                 * Verifies a VulnerabilityAttestation message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a VulnerabilityAttestation message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns VulnerabilityAttestation
+                 */
+                public static fromObject(object: { [k: string]: any }): grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation;
+
+                /**
+                 * Creates a plain object from a VulnerabilityAttestation message. Also converts values to other types if specified.
+                 * @param message VulnerabilityAttestation
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this VulnerabilityAttestation to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for VulnerabilityAttestation
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace VulnerabilityAttestation {
+
+                /** VulnerabilityAttestationState enum. */
+                enum VulnerabilityAttestationState {
+                    VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED = 0,
+                    SUCCESS = 1,
+                    FAILURE = 2
                 }
             }
         }
@@ -8322,6 +8690,9 @@ export namespace grafeas {
             /** Occurrence sbomReference */
             sbomReference?: (grafeas.v1.ISBOMReferenceOccurrence|null);
 
+            /** Occurrence secret */
+            secret?: (grafeas.v1.ISecretOccurrence|null);
+
             /** Occurrence envelope */
             envelope?: (grafeas.v1.IEnvelope|null);
         }
@@ -8389,11 +8760,14 @@ export namespace grafeas {
             /** Occurrence sbomReference. */
             public sbomReference?: (grafeas.v1.ISBOMReferenceOccurrence|null);
 
+            /** Occurrence secret. */
+            public secret?: (grafeas.v1.ISecretOccurrence|null);
+
             /** Occurrence envelope. */
             public envelope?: (grafeas.v1.IEnvelope|null);
 
             /** Occurrence details. */
-            public details?: ("vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"sbomReference");
+            public details?: ("vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"sbomReference"|"secret");
 
             /**
              * Creates a new Occurrence instance using the specified properties.
@@ -8538,6 +8912,9 @@ export namespace grafeas {
 
             /** Note sbomReference */
             sbomReference?: (grafeas.v1.ISBOMReferenceNote|null);
+
+            /** Note secret */
+            secret?: (grafeas.v1.ISecretNote|null);
         }
 
         /** Represents a Note. */
@@ -8612,8 +8989,11 @@ export namespace grafeas {
             /** Note sbomReference. */
             public sbomReference?: (grafeas.v1.ISBOMReferenceNote|null);
 
+            /** Note secret. */
+            public secret?: (grafeas.v1.ISecretNote|null);
+
             /** Note type. */
-            public type?: ("vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"vulnerabilityAssessment"|"sbomReference");
+            public type?: ("vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"vulnerabilityAssessment"|"sbomReference"|"secret");
 
             /**
              * Creates a new Note instance using the specified properties.
@@ -12205,6 +12585,433 @@ export namespace grafeas {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a SecretNote. */
+        interface ISecretNote {
+        }
+
+        /** Represents a SecretNote. */
+        class SecretNote implements ISecretNote {
+
+            /**
+             * Constructs a new SecretNote.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: grafeas.v1.ISecretNote);
+
+            /**
+             * Creates a new SecretNote instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SecretNote instance
+             */
+            public static create(properties?: grafeas.v1.ISecretNote): grafeas.v1.SecretNote;
+
+            /**
+             * Encodes the specified SecretNote message. Does not implicitly {@link grafeas.v1.SecretNote.verify|verify} messages.
+             * @param message SecretNote message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: grafeas.v1.ISecretNote, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SecretNote message, length delimited. Does not implicitly {@link grafeas.v1.SecretNote.verify|verify} messages.
+             * @param message SecretNote message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: grafeas.v1.ISecretNote, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SecretNote message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SecretNote
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.SecretNote;
+
+            /**
+             * Decodes a SecretNote message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SecretNote
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.SecretNote;
+
+            /**
+             * Verifies a SecretNote message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SecretNote message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SecretNote
+             */
+            public static fromObject(object: { [k: string]: any }): grafeas.v1.SecretNote;
+
+            /**
+             * Creates a plain object from a SecretNote message. Also converts values to other types if specified.
+             * @param message SecretNote
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: grafeas.v1.SecretNote, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SecretNote to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SecretNote
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SecretOccurrence. */
+        interface ISecretOccurrence {
+
+            /** SecretOccurrence kind */
+            kind?: (grafeas.v1.SecretKind|keyof typeof grafeas.v1.SecretKind|null);
+
+            /** SecretOccurrence locations */
+            locations?: (grafeas.v1.ISecretLocation[]|null);
+
+            /** SecretOccurrence statuses */
+            statuses?: (grafeas.v1.ISecretStatus[]|null);
+        }
+
+        /** Represents a SecretOccurrence. */
+        class SecretOccurrence implements ISecretOccurrence {
+
+            /**
+             * Constructs a new SecretOccurrence.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: grafeas.v1.ISecretOccurrence);
+
+            /** SecretOccurrence kind. */
+            public kind: (grafeas.v1.SecretKind|keyof typeof grafeas.v1.SecretKind);
+
+            /** SecretOccurrence locations. */
+            public locations: grafeas.v1.ISecretLocation[];
+
+            /** SecretOccurrence statuses. */
+            public statuses: grafeas.v1.ISecretStatus[];
+
+            /**
+             * Creates a new SecretOccurrence instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SecretOccurrence instance
+             */
+            public static create(properties?: grafeas.v1.ISecretOccurrence): grafeas.v1.SecretOccurrence;
+
+            /**
+             * Encodes the specified SecretOccurrence message. Does not implicitly {@link grafeas.v1.SecretOccurrence.verify|verify} messages.
+             * @param message SecretOccurrence message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: grafeas.v1.ISecretOccurrence, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SecretOccurrence message, length delimited. Does not implicitly {@link grafeas.v1.SecretOccurrence.verify|verify} messages.
+             * @param message SecretOccurrence message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: grafeas.v1.ISecretOccurrence, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SecretOccurrence message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SecretOccurrence
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.SecretOccurrence;
+
+            /**
+             * Decodes a SecretOccurrence message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SecretOccurrence
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.SecretOccurrence;
+
+            /**
+             * Verifies a SecretOccurrence message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SecretOccurrence message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SecretOccurrence
+             */
+            public static fromObject(object: { [k: string]: any }): grafeas.v1.SecretOccurrence;
+
+            /**
+             * Creates a plain object from a SecretOccurrence message. Also converts values to other types if specified.
+             * @param message SecretOccurrence
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: grafeas.v1.SecretOccurrence, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SecretOccurrence to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SecretOccurrence
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SecretLocation. */
+        interface ISecretLocation {
+
+            /** SecretLocation fileLocation */
+            fileLocation?: (grafeas.v1.IFileLocation|null);
+        }
+
+        /** Represents a SecretLocation. */
+        class SecretLocation implements ISecretLocation {
+
+            /**
+             * Constructs a new SecretLocation.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: grafeas.v1.ISecretLocation);
+
+            /** SecretLocation fileLocation. */
+            public fileLocation?: (grafeas.v1.IFileLocation|null);
+
+            /** SecretLocation location. */
+            public location?: "fileLocation";
+
+            /**
+             * Creates a new SecretLocation instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SecretLocation instance
+             */
+            public static create(properties?: grafeas.v1.ISecretLocation): grafeas.v1.SecretLocation;
+
+            /**
+             * Encodes the specified SecretLocation message. Does not implicitly {@link grafeas.v1.SecretLocation.verify|verify} messages.
+             * @param message SecretLocation message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: grafeas.v1.ISecretLocation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SecretLocation message, length delimited. Does not implicitly {@link grafeas.v1.SecretLocation.verify|verify} messages.
+             * @param message SecretLocation message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: grafeas.v1.ISecretLocation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SecretLocation message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SecretLocation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.SecretLocation;
+
+            /**
+             * Decodes a SecretLocation message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SecretLocation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.SecretLocation;
+
+            /**
+             * Verifies a SecretLocation message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SecretLocation message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SecretLocation
+             */
+            public static fromObject(object: { [k: string]: any }): grafeas.v1.SecretLocation;
+
+            /**
+             * Creates a plain object from a SecretLocation message. Also converts values to other types if specified.
+             * @param message SecretLocation
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: grafeas.v1.SecretLocation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SecretLocation to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SecretLocation
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SecretStatus. */
+        interface ISecretStatus {
+
+            /** SecretStatus status */
+            status?: (grafeas.v1.SecretStatus.Status|keyof typeof grafeas.v1.SecretStatus.Status|null);
+
+            /** SecretStatus updateTime */
+            updateTime?: (google.protobuf.ITimestamp|null);
+
+            /** SecretStatus message */
+            message?: (string|null);
+        }
+
+        /** Represents a SecretStatus. */
+        class SecretStatus implements ISecretStatus {
+
+            /**
+             * Constructs a new SecretStatus.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: grafeas.v1.ISecretStatus);
+
+            /** SecretStatus status. */
+            public status: (grafeas.v1.SecretStatus.Status|keyof typeof grafeas.v1.SecretStatus.Status);
+
+            /** SecretStatus updateTime. */
+            public updateTime?: (google.protobuf.ITimestamp|null);
+
+            /** SecretStatus message. */
+            public message: string;
+
+            /**
+             * Creates a new SecretStatus instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SecretStatus instance
+             */
+            public static create(properties?: grafeas.v1.ISecretStatus): grafeas.v1.SecretStatus;
+
+            /**
+             * Encodes the specified SecretStatus message. Does not implicitly {@link grafeas.v1.SecretStatus.verify|verify} messages.
+             * @param message SecretStatus message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: grafeas.v1.ISecretStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SecretStatus message, length delimited. Does not implicitly {@link grafeas.v1.SecretStatus.verify|verify} messages.
+             * @param message SecretStatus message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: grafeas.v1.ISecretStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SecretStatus message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SecretStatus
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): grafeas.v1.SecretStatus;
+
+            /**
+             * Decodes a SecretStatus message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SecretStatus
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): grafeas.v1.SecretStatus;
+
+            /**
+             * Verifies a SecretStatus message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SecretStatus message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SecretStatus
+             */
+            public static fromObject(object: { [k: string]: any }): grafeas.v1.SecretStatus;
+
+            /**
+             * Creates a plain object from a SecretStatus message. Also converts values to other types if specified.
+             * @param message SecretStatus
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: grafeas.v1.SecretStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SecretStatus to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SecretStatus
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace SecretStatus {
+
+            /** Status enum. */
+            enum Status {
+                STATUS_UNSPECIFIED = 0,
+                UNKNOWN = 1,
+                VALID = 2,
+                INVALID = 3
+            }
+        }
+
+        /** SecretKind enum. */
+        enum SecretKind {
+            SECRET_KIND_UNSPECIFIED = 0,
+            SECRET_KIND_UNKNOWN = 1,
+            SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY = 2
+        }
+
         /** Properties of an UpgradeNote. */
         interface IUpgradeNote {
 
@@ -14785,7 +15592,7 @@ export namespace grafeas {
                 contentType?: (grafeas.v1beta1.attestation.GenericSignedAttestation.ContentType|keyof typeof grafeas.v1beta1.attestation.GenericSignedAttestation.ContentType|null);
 
                 /** GenericSignedAttestation serializedPayload */
-                serializedPayload?: (Uint8Array|string|null);
+                serializedPayload?: (Uint8Array|Buffer|string|null);
 
                 /** GenericSignedAttestation signatures */
                 signatures?: (grafeas.v1beta1.ISignature[]|null);
@@ -14804,7 +15611,7 @@ export namespace grafeas {
                 public contentType: (grafeas.v1beta1.attestation.GenericSignedAttestation.ContentType|keyof typeof grafeas.v1beta1.attestation.GenericSignedAttestation.ContentType);
 
                 /** GenericSignedAttestation serializedPayload. */
-                public serializedPayload: (Uint8Array|string);
+                public serializedPayload: (Uint8Array|Buffer|string);
 
                 /** GenericSignedAttestation signatures. */
                 public signatures: grafeas.v1beta1.ISignature[];
@@ -15416,7 +16223,7 @@ export namespace grafeas {
         interface ISignature {
 
             /** Signature signature */
-            signature?: (Uint8Array|string|null);
+            signature?: (Uint8Array|Buffer|string|null);
 
             /** Signature publicKeyId */
             publicKeyId?: (string|null);
@@ -15432,7 +16239,7 @@ export namespace grafeas {
             constructor(properties?: grafeas.v1beta1.ISignature);
 
             /** Signature signature. */
-            public signature: (Uint8Array|string);
+            public signature: (Uint8Array|Buffer|string);
 
             /** Signature publicKeyId. */
             public publicKeyId: string;
@@ -15628,7 +16435,7 @@ export namespace grafeas {
                 publicKey?: (string|null);
 
                 /** BuildSignature signature */
-                signature?: (Uint8Array|string|null);
+                signature?: (Uint8Array|Buffer|string|null);
 
                 /** BuildSignature keyId */
                 keyId?: (string|null);
@@ -15650,7 +16457,7 @@ export namespace grafeas {
                 public publicKey: string;
 
                 /** BuildSignature signature. */
-                public signature: (Uint8Array|string);
+                public signature: (Uint8Array|Buffer|string);
 
                 /** BuildSignature keyId. */
                 public keyId: string;
@@ -16241,7 +17048,7 @@ export namespace grafeas {
                 type?: (grafeas.v1beta1.provenance.Hash.HashType|keyof typeof grafeas.v1beta1.provenance.Hash.HashType|null);
 
                 /** Hash value */
-                value?: (Uint8Array|string|null);
+                value?: (Uint8Array|Buffer|string|null);
             }
 
             /** Represents a Hash. */
@@ -16257,7 +17064,7 @@ export namespace grafeas {
                 public type: (grafeas.v1beta1.provenance.Hash.HashType|keyof typeof grafeas.v1beta1.provenance.Hash.HashType);
 
                 /** Hash value. */
-                public value: (Uint8Array|string);
+                public value: (Uint8Array|Buffer|string);
 
                 /**
                  * Creates a new Hash instance using the specified properties.
@@ -23539,6 +24346,20 @@ export namespace google {
                      * @returns Promise
                      */
                     public getVulnerabilityOccurrencesSummary(request: google.devtools.containeranalysis.v1.IGetVulnerabilityOccurrencesSummaryRequest): Promise<google.devtools.containeranalysis.v1.VulnerabilityOccurrencesSummary>;
+
+                    /**
+                     * Calls ExportSBOM.
+                     * @param request ExportSBOMRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ExportSBOMResponse
+                     */
+                    public exportSBOM(request: google.devtools.containeranalysis.v1.IExportSBOMRequest, callback: google.devtools.containeranalysis.v1.ContainerAnalysis.ExportSBOMCallback): void;
+
+                    /**
+                     * Calls ExportSBOM.
+                     * @param request ExportSBOMRequest message or plain object
+                     * @returns Promise
+                     */
+                    public exportSBOM(request: google.devtools.containeranalysis.v1.IExportSBOMRequest): Promise<google.devtools.containeranalysis.v1.ExportSBOMResponse>;
                 }
 
                 namespace ContainerAnalysis {
@@ -23570,6 +24391,310 @@ export namespace google {
                      * @param [response] VulnerabilityOccurrencesSummary
                      */
                     type GetVulnerabilityOccurrencesSummaryCallback = (error: (Error|null), response?: google.devtools.containeranalysis.v1.VulnerabilityOccurrencesSummary) => void;
+
+                    /**
+                     * Callback as used by {@link google.devtools.containeranalysis.v1.ContainerAnalysis|exportSBOM}.
+                     * @param error Error, if any
+                     * @param [response] ExportSBOMResponse
+                     */
+                    type ExportSBOMCallback = (error: (Error|null), response?: google.devtools.containeranalysis.v1.ExportSBOMResponse) => void;
+                }
+
+                /** Properties of an ExportSBOMRequest. */
+                interface IExportSBOMRequest {
+
+                    /** ExportSBOMRequest name */
+                    name?: (string|null);
+
+                    /** ExportSBOMRequest cloudStorageLocation */
+                    cloudStorageLocation?: (google.devtools.containeranalysis.v1.ExportSBOMRequest.ICloudStorageLocation|null);
+                }
+
+                /** Represents an ExportSBOMRequest. */
+                class ExportSBOMRequest implements IExportSBOMRequest {
+
+                    /**
+                     * Constructs a new ExportSBOMRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.devtools.containeranalysis.v1.IExportSBOMRequest);
+
+                    /** ExportSBOMRequest name. */
+                    public name: string;
+
+                    /** ExportSBOMRequest cloudStorageLocation. */
+                    public cloudStorageLocation?: (google.devtools.containeranalysis.v1.ExportSBOMRequest.ICloudStorageLocation|null);
+
+                    /** ExportSBOMRequest target. */
+                    public target?: "cloudStorageLocation";
+
+                    /**
+                     * Creates a new ExportSBOMRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExportSBOMRequest instance
+                     */
+                    public static create(properties?: google.devtools.containeranalysis.v1.IExportSBOMRequest): google.devtools.containeranalysis.v1.ExportSBOMRequest;
+
+                    /**
+                     * Encodes the specified ExportSBOMRequest message. Does not implicitly {@link google.devtools.containeranalysis.v1.ExportSBOMRequest.verify|verify} messages.
+                     * @param message ExportSBOMRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.devtools.containeranalysis.v1.IExportSBOMRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExportSBOMRequest message, length delimited. Does not implicitly {@link google.devtools.containeranalysis.v1.ExportSBOMRequest.verify|verify} messages.
+                     * @param message ExportSBOMRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.devtools.containeranalysis.v1.IExportSBOMRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExportSBOMRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExportSBOMRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.devtools.containeranalysis.v1.ExportSBOMRequest;
+
+                    /**
+                     * Decodes an ExportSBOMRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExportSBOMRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.devtools.containeranalysis.v1.ExportSBOMRequest;
+
+                    /**
+                     * Verifies an ExportSBOMRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExportSBOMRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExportSBOMRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.devtools.containeranalysis.v1.ExportSBOMRequest;
+
+                    /**
+                     * Creates a plain object from an ExportSBOMRequest message. Also converts values to other types if specified.
+                     * @param message ExportSBOMRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.devtools.containeranalysis.v1.ExportSBOMRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExportSBOMRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExportSBOMRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace ExportSBOMRequest {
+
+                    /** Properties of a CloudStorageLocation. */
+                    interface ICloudStorageLocation {
+                    }
+
+                    /** Represents a CloudStorageLocation. */
+                    class CloudStorageLocation implements ICloudStorageLocation {
+
+                        /**
+                         * Constructs a new CloudStorageLocation.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.devtools.containeranalysis.v1.ExportSBOMRequest.ICloudStorageLocation);
+
+                        /**
+                         * Creates a new CloudStorageLocation instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns CloudStorageLocation instance
+                         */
+                        public static create(properties?: google.devtools.containeranalysis.v1.ExportSBOMRequest.ICloudStorageLocation): google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation;
+
+                        /**
+                         * Encodes the specified CloudStorageLocation message. Does not implicitly {@link google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation.verify|verify} messages.
+                         * @param message CloudStorageLocation message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.devtools.containeranalysis.v1.ExportSBOMRequest.ICloudStorageLocation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified CloudStorageLocation message, length delimited. Does not implicitly {@link google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation.verify|verify} messages.
+                         * @param message CloudStorageLocation message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.devtools.containeranalysis.v1.ExportSBOMRequest.ICloudStorageLocation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a CloudStorageLocation message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns CloudStorageLocation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation;
+
+                        /**
+                         * Decodes a CloudStorageLocation message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns CloudStorageLocation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation;
+
+                        /**
+                         * Verifies a CloudStorageLocation message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a CloudStorageLocation message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns CloudStorageLocation
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation;
+
+                        /**
+                         * Creates a plain object from a CloudStorageLocation message. Also converts values to other types if specified.
+                         * @param message CloudStorageLocation
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.devtools.containeranalysis.v1.ExportSBOMRequest.CloudStorageLocation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this CloudStorageLocation to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for CloudStorageLocation
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** Properties of an ExportSBOMResponse. */
+                interface IExportSBOMResponse {
+
+                    /** ExportSBOMResponse discoveryOccurrence */
+                    discoveryOccurrence?: (string|null);
+                }
+
+                /** Represents an ExportSBOMResponse. */
+                class ExportSBOMResponse implements IExportSBOMResponse {
+
+                    /**
+                     * Constructs a new ExportSBOMResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.devtools.containeranalysis.v1.IExportSBOMResponse);
+
+                    /** ExportSBOMResponse discoveryOccurrence. */
+                    public discoveryOccurrence: string;
+
+                    /**
+                     * Creates a new ExportSBOMResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExportSBOMResponse instance
+                     */
+                    public static create(properties?: google.devtools.containeranalysis.v1.IExportSBOMResponse): google.devtools.containeranalysis.v1.ExportSBOMResponse;
+
+                    /**
+                     * Encodes the specified ExportSBOMResponse message. Does not implicitly {@link google.devtools.containeranalysis.v1.ExportSBOMResponse.verify|verify} messages.
+                     * @param message ExportSBOMResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.devtools.containeranalysis.v1.IExportSBOMResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExportSBOMResponse message, length delimited. Does not implicitly {@link google.devtools.containeranalysis.v1.ExportSBOMResponse.verify|verify} messages.
+                     * @param message ExportSBOMResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.devtools.containeranalysis.v1.IExportSBOMResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExportSBOMResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExportSBOMResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.devtools.containeranalysis.v1.ExportSBOMResponse;
+
+                    /**
+                     * Decodes an ExportSBOMResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExportSBOMResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.devtools.containeranalysis.v1.ExportSBOMResponse;
+
+                    /**
+                     * Verifies an ExportSBOMResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExportSBOMResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExportSBOMResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.devtools.containeranalysis.v1.ExportSBOMResponse;
+
+                    /**
+                     * Creates a plain object from an ExportSBOMResponse message. Also converts values to other types if specified.
+                     * @param message ExportSBOMResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.devtools.containeranalysis.v1.ExportSBOMResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExportSBOMResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExportSBOMResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
                 /** Properties of a GetVulnerabilityOccurrencesSummaryRequest. */
@@ -25181,6 +26306,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -25221,6 +26349,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -29439,6 +30570,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -29687,7 +30821,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -29718,7 +30852,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -30954,7 +32088,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -30970,7 +32104,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -32189,7 +33323,7 @@ export namespace google {
                 auditConfigs?: (google.iam.v1.IAuditConfig[]|null);
 
                 /** Policy etag */
-                etag?: (Uint8Array|string|null);
+                etag?: (Uint8Array|Buffer|string|null);
             }
 
             /** Represents a Policy. */
@@ -32211,7 +33345,7 @@ export namespace google {
                 public auditConfigs: google.iam.v1.IAuditConfig[];
 
                 /** Policy etag. */
-                public etag: (Uint8Array|string);
+                public etag: (Uint8Array|Buffer|string);
 
                 /**
                  * Creates a new Policy instance using the specified properties.

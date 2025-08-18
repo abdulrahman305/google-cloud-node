@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,6 +49,12 @@ function main(parent) {
   // const pageToken = 'abc123'
   /**
    *  Filter to restrict results to specific workflows.
+   *  For details, see <a href="https://google.aip.dev/160"
+   *  class="external">AIP-160</a>.
+   *  For example, if you are using the Google APIs Explorer:
+   *  `state="SUCCEEDED"`
+   *  or
+   *  `createTime>"2023-08-01" AND state="FAILED"`
    */
   // const filter = 'abc123'
   /**

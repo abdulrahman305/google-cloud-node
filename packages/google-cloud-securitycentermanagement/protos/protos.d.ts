@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -2984,7 +2984,8 @@ export namespace google {
                         MISCONFIGURATION = 3,
                         OBSERVATION = 4,
                         SCC_ERROR = 5,
-                        POSTURE_VIOLATION = 6
+                        POSTURE_VIOLATION = 6,
+                        TOXIC_COMBINATION = 7
                     }
                 }
 
@@ -4889,12 +4890,6 @@ export namespace google {
                         /** CustomModuleValidationError end. */
                         public end?: (google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.IPosition|null);
 
-                        /** CustomModuleValidationError _start. */
-                        public _start?: "start";
-
-                        /** CustomModuleValidationError _end. */
-                        public _end?: "end";
-
                         /**
                          * Creates a new CustomModuleValidationError instance using the specified properties.
                          * @param [properties] Properties to set
@@ -5082,6 +5077,9 @@ export namespace google {
 
                     /** GetSecurityCenterServiceRequest name */
                     name?: (string|null);
+
+                    /** GetSecurityCenterServiceRequest showEligibleModulesOnly */
+                    showEligibleModulesOnly?: (boolean|null);
                 }
 
                 /** Represents a GetSecurityCenterServiceRequest. */
@@ -5095,6 +5093,9 @@ export namespace google {
 
                     /** GetSecurityCenterServiceRequest name. */
                     public name: string;
+
+                    /** GetSecurityCenterServiceRequest showEligibleModulesOnly. */
+                    public showEligibleModulesOnly: boolean;
 
                     /**
                      * Creates a new GetSecurityCenterServiceRequest instance using the specified properties.
@@ -5185,6 +5186,9 @@ export namespace google {
 
                     /** ListSecurityCenterServicesRequest pageToken */
                     pageToken?: (string|null);
+
+                    /** ListSecurityCenterServicesRequest showEligibleModulesOnly */
+                    showEligibleModulesOnly?: (boolean|null);
                 }
 
                 /** Represents a ListSecurityCenterServicesRequest. */
@@ -5204,6 +5208,9 @@ export namespace google {
 
                     /** ListSecurityCenterServicesRequest pageToken. */
                     public pageToken: string;
+
+                    /** ListSecurityCenterServicesRequest showEligibleModulesOnly. */
+                    public showEligibleModulesOnly: boolean;
 
                     /**
                      * Creates a new ListSecurityCenterServicesRequest instance using the specified properties.
@@ -6153,6 +6160,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -6193,6 +6203,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -10411,6 +10424,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -10659,7 +10675,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -10690,7 +10706,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -12449,7 +12465,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -12465,7 +12481,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -12565,7 +12581,7 @@ export namespace google {
                 auditConfigs?: (google.iam.v1.IAuditConfig[]|null);
 
                 /** Policy etag */
-                etag?: (Uint8Array|string|null);
+                etag?: (Uint8Array|Buffer|string|null);
             }
 
             /** Represents a Policy. */
@@ -12587,7 +12603,7 @@ export namespace google {
                 public auditConfigs: google.iam.v1.IAuditConfig[];
 
                 /** Policy etag. */
-                public etag: (Uint8Array|string);
+                public etag: (Uint8Array|Buffer|string);
 
                 /**
                  * Creates a new Policy instance using the specified properties.

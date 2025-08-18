@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,23 +31,7 @@ type RuleSetServiceClient = v1.RuleSetServiceClient;
 const SynonymSetServiceClient = v1.SynonymSetServiceClient;
 type SynonymSetServiceClient = v1.SynonymSetServiceClient;
 
-export {
-  v1,
-  DocumentLinkServiceClient,
-  DocumentSchemaServiceClient,
-  DocumentServiceClient,
-  PipelineServiceClient,
-  RuleSetServiceClient,
-  SynonymSetServiceClient,
-};
-export default {
-  v1,
-  DocumentLinkServiceClient,
-  DocumentSchemaServiceClient,
-  DocumentServiceClient,
-  PipelineServiceClient,
-  RuleSetServiceClient,
-  SynonymSetServiceClient,
-};
+export {v1, DocumentLinkServiceClient, DocumentSchemaServiceClient, DocumentServiceClient, PipelineServiceClient, RuleSetServiceClient, SynonymSetServiceClient};
+export default {v1, DocumentLinkServiceClient, DocumentSchemaServiceClient, DocumentServiceClient, PipelineServiceClient, RuleSetServiceClient, SynonymSetServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

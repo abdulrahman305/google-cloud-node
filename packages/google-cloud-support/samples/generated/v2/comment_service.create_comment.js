@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ function main(parent, comment) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The resource name of Case to which this comment should be added.
+   *  Required. The name of the case to which the comment should be added.
    */
   // const parent = 'abc123'
   /**
-   *  Required. The Comment object to be added to this Case.
+   *  Required. The comment to be added.
    */
   // const comment = {}
 

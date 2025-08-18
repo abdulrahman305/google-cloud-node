@@ -13,29 +13,38 @@
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
   * [Chat_service.complete_import_space](#chat_service.complete_import_space)
+  * [Chat_service.create_custom_emoji](#chat_service.create_custom_emoji)
   * [Chat_service.create_membership](#chat_service.create_membership)
   * [Chat_service.create_message](#chat_service.create_message)
   * [Chat_service.create_reaction](#chat_service.create_reaction)
   * [Chat_service.create_space](#chat_service.create_space)
+  * [Chat_service.delete_custom_emoji](#chat_service.delete_custom_emoji)
   * [Chat_service.delete_membership](#chat_service.delete_membership)
   * [Chat_service.delete_message](#chat_service.delete_message)
   * [Chat_service.delete_reaction](#chat_service.delete_reaction)
   * [Chat_service.delete_space](#chat_service.delete_space)
   * [Chat_service.find_direct_message](#chat_service.find_direct_message)
   * [Chat_service.get_attachment](#chat_service.get_attachment)
+  * [Chat_service.get_custom_emoji](#chat_service.get_custom_emoji)
   * [Chat_service.get_membership](#chat_service.get_membership)
   * [Chat_service.get_message](#chat_service.get_message)
   * [Chat_service.get_space](#chat_service.get_space)
+  * [Chat_service.get_space_event](#chat_service.get_space_event)
+  * [Chat_service.get_space_notification_setting](#chat_service.get_space_notification_setting)
   * [Chat_service.get_space_read_state](#chat_service.get_space_read_state)
   * [Chat_service.get_thread_read_state](#chat_service.get_thread_read_state)
+  * [Chat_service.list_custom_emojis](#chat_service.list_custom_emojis)
   * [Chat_service.list_memberships](#chat_service.list_memberships)
   * [Chat_service.list_messages](#chat_service.list_messages)
   * [Chat_service.list_reactions](#chat_service.list_reactions)
+  * [Chat_service.list_space_events](#chat_service.list_space_events)
   * [Chat_service.list_spaces](#chat_service.list_spaces)
+  * [Chat_service.search_spaces](#chat_service.search_spaces)
   * [Chat_service.set_up_space](#chat_service.set_up_space)
   * [Chat_service.update_membership](#chat_service.update_membership)
   * [Chat_service.update_message](#chat_service.update_message)
   * [Chat_service.update_space](#chat_service.update_space)
+  * [Chat_service.update_space_notification_setting](#chat_service.update_space_notification_setting)
   * [Chat_service.update_space_read_state](#chat_service.update_space_read_state)
   * [Chat_service.upload_attachment](#chat_service.upload_attachment)
   * [Quickstart](#quickstart)
@@ -65,6 +74,23 @@ __Usage:__
 
 
 `node packages/google-chat/samples/generated/v1/chat_service.complete_import_space.js`
+
+
+-----
+
+
+
+
+### Chat_service.create_custom_emoji
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.create_custom_emoji.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.create_custom_emoji.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.create_custom_emoji.js`
 
 
 -----
@@ -133,6 +159,23 @@ __Usage:__
 
 
 `node packages/google-chat/samples/generated/v1/chat_service.create_space.js`
+
+
+-----
+
+
+
+
+### Chat_service.delete_custom_emoji
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.delete_custom_emoji.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.delete_custom_emoji.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.delete_custom_emoji.js`
 
 
 -----
@@ -242,6 +285,23 @@ __Usage:__
 
 
 
+### Chat_service.get_custom_emoji
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.get_custom_emoji.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.get_custom_emoji.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.get_custom_emoji.js`
+
+
+-----
+
+
+
+
 ### Chat_service.get_membership
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.get_membership.js).
@@ -293,6 +353,40 @@ __Usage:__
 
 
 
+### Chat_service.get_space_event
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.get_space_event.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.get_space_event.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.get_space_event.js`
+
+
+-----
+
+
+
+
+### Chat_service.get_space_notification_setting
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.get_space_notification_setting.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.get_space_notification_setting.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.get_space_notification_setting.js`
+
+
+-----
+
+
+
+
 ### Chat_service.get_space_read_state
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.get_space_read_state.js).
@@ -320,6 +414,23 @@ __Usage:__
 
 
 `node packages/google-chat/samples/generated/v1/chat_service.get_thread_read_state.js`
+
+
+-----
+
+
+
+
+### Chat_service.list_custom_emojis
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.list_custom_emojis.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.list_custom_emojis.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.list_custom_emojis.js`
 
 
 -----
@@ -378,6 +489,23 @@ __Usage:__
 
 
 
+### Chat_service.list_space_events
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.list_space_events.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.list_space_events.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.list_space_events.js`
+
+
+-----
+
+
+
+
 ### Chat_service.list_spaces
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.list_spaces.js).
@@ -388,6 +516,23 @@ __Usage:__
 
 
 `node packages/google-chat/samples/generated/v1/chat_service.list_spaces.js`
+
+
+-----
+
+
+
+
+### Chat_service.search_spaces
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.search_spaces.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.search_spaces.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.search_spaces.js`
 
 
 -----
@@ -456,6 +601,23 @@ __Usage:__
 
 
 `node packages/google-chat/samples/generated/v1/chat_service.update_space.js`
+
+
+-----
+
+
+
+
+### Chat_service.update_space_notification_setting
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-chat/samples/generated/v1/chat_service.update_space_notification_setting.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-chat/samples/generated/v1/chat_service.update_space_notification_setting.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-chat/samples/generated/v1/chat_service.update_space_notification_setting.js`
 
 
 -----
