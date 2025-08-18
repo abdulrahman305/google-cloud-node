@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,22 +21,10 @@ import * as v1beta from './v1beta';
 
 const CloudControlsPartnerCoreClient = v1beta.CloudControlsPartnerCoreClient;
 type CloudControlsPartnerCoreClient = v1beta.CloudControlsPartnerCoreClient;
-const CloudControlsPartnerMonitoringClient =
-  v1beta.CloudControlsPartnerMonitoringClient;
-type CloudControlsPartnerMonitoringClient =
-  v1beta.CloudControlsPartnerMonitoringClient;
+const CloudControlsPartnerMonitoringClient = v1beta.CloudControlsPartnerMonitoringClient;
+type CloudControlsPartnerMonitoringClient = v1beta.CloudControlsPartnerMonitoringClient;
 
-export {
-  v1,
-  v1beta,
-  CloudControlsPartnerCoreClient,
-  CloudControlsPartnerMonitoringClient,
-};
-export default {
-  v1,
-  v1beta,
-  CloudControlsPartnerCoreClient,
-  CloudControlsPartnerMonitoringClient,
-};
+export {v1, v1beta, CloudControlsPartnerCoreClient, CloudControlsPartnerMonitoringClient};
+export default {v1, v1beta, CloudControlsPartnerCoreClient, CloudControlsPartnerMonitoringClient};
 import * as protos from '../protos/protos';
 export {protos};

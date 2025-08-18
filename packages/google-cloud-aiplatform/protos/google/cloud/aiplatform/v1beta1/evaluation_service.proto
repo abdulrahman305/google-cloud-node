@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,10 @@ import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
+import "google/cloud/aiplatform/v1beta1/content.proto";
+import "google/cloud/aiplatform/v1beta1/io.proto";
+import "google/cloud/aiplatform/v1beta1/operation.proto";
+import "google/longrunning/operations.proto";
 
 option csharp_namespace = "Google.Cloud.AIPlatform.V1Beta1";
 option go_package = "cloud.google.com/go/aiplatform/apiv1beta1/aiplatformpb;aiplatformpb";
@@ -43,6 +47,19 @@ service EvaluationService {
       body: "*"
     };
   }
+
+  // Evaluates a dataset based on a set of given metrics.
+  rpc EvaluateDataset(EvaluateDatasetRequest)
+      returns (google.longrunning.Operation) {
+    option (google.api.http) = {
+      post: "/v1beta1/{location=projects/*/locations/*}:evaluateDataset"
+      body: "*"
+    };
+    option (google.longrunning.operation_info) = {
+      response_type: "EvaluateDatasetResponse"
+      metadata_type: "EvaluateDatasetOperationMetadata"
+    };
+  }
 }
 
 // Pairwise prediction autorater preference.
@@ -58,6 +75,202 @@ enum PairwiseChoice {
 
   // Winner cannot be determined
   TIE = 3;
+}
+
+// Operation metadata for Dataset Evaluation.
+message EvaluateDatasetOperationMetadata {
+  // Generic operation metadata.
+  GenericOperationMetadata generic_metadata = 1;
+}
+
+// Response in LRO for EvaluationService.EvaluateDataset.
+message EvaluateDatasetResponse {
+  // Output only. Aggregation statistics derived from results of
+  // EvaluationService.EvaluateDataset.
+  AggregationOutput aggregation_output = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Output info for EvaluationService.EvaluateDataset.
+  OutputInfo output_info = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Describes the info for output of EvaluationService.EvaluateDataset.
+message OutputInfo {
+  // The output location into which evaluation output is written.
+  oneof output_location {
+    // Output only. The full path of the Cloud Storage directory created, into
+    // which the evaluation results and aggregation results are written.
+    string gcs_output_directory = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  }
+}
+
+// The aggregation result for the entire dataset and all metrics.
+message AggregationOutput {
+  // The dataset used for evaluation & aggregation.
+  EvaluationDataset dataset = 1;
+
+  // One AggregationResult per metric.
+  repeated AggregationResult aggregation_results = 2;
+}
+
+// The aggregation result for a single metric.
+message AggregationResult {
+  // The aggregation result.
+  oneof aggregation_result {
+    // Result for pointwise metric.
+    PointwiseMetricResult pointwise_metric_result = 5;
+
+    // Result for pairwise metric.
+    PairwiseMetricResult pairwise_metric_result = 6;
+
+    // Results for exact match metric.
+    ExactMatchMetricValue exact_match_metric_value = 7;
+
+    // Results for bleu metric.
+    BleuMetricValue bleu_metric_value = 8;
+
+    // Results for rouge metric.
+    RougeMetricValue rouge_metric_value = 9;
+  }
+
+  // Aggregation metric.
+  Metric.AggregationMetric aggregation_metric = 4;
+}
+
+// Request message for EvaluationService.EvaluateDataset.
+message EvaluateDatasetRequest {
+  // Required. The resource name of the Location to evaluate the dataset.
+  // Format: `projects/{project}/locations/{location}`
+  string location = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {
+      type: "locations.googleapis.com/Location"
+    }
+  ];
+
+  // Required. The dataset used for evaluation.
+  EvaluationDataset dataset = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. The metrics used for evaluation.
+  repeated Metric metrics = 3 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Config for evaluation output.
+  OutputConfig output_config = 4 [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. Autorater config used for evaluation. Currently only publisher
+  // Gemini models are supported. Format:
+  // `projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}.`
+  AutoraterConfig autorater_config = 5 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Config for evaluation output.
+message OutputConfig {
+  // The destination for evaluation output.
+  oneof destination {
+    // Cloud storage destination for evaluation output.
+    GcsDestination gcs_destination = 1;
+  }
+}
+
+// The metric used for dataset level evaluation.
+message Metric {
+  // The aggregation metrics supported by EvaluationService.EvaluateDataset.
+  enum AggregationMetric {
+    // Unspecified aggregation metric.
+    AGGREGATION_METRIC_UNSPECIFIED = 0;
+
+    // Average aggregation metric. Not supported for Pairwise metric.
+    AVERAGE = 1;
+
+    // Mode aggregation metric.
+    MODE = 2;
+
+    // Standard deviation aggregation metric. Not supported for pairwise metric.
+    STANDARD_DEVIATION = 3;
+
+    // Variance aggregation metric. Not supported for pairwise metric.
+    VARIANCE = 4;
+
+    // Minimum aggregation metric. Not supported for pairwise metric.
+    MINIMUM = 5;
+
+    // Maximum aggregation metric. Not supported for pairwise metric.
+    MAXIMUM = 6;
+
+    // Median aggregation metric. Not supported for pairwise metric.
+    MEDIAN = 7;
+
+    // 90th percentile aggregation metric. Not supported for pairwise metric.
+    PERCENTILE_P90 = 8;
+
+    // 95th percentile aggregation metric. Not supported for pairwise metric.
+    PERCENTILE_P95 = 9;
+
+    // 99th percentile aggregation metric. Not supported for pairwise metric.
+    PERCENTILE_P99 = 10;
+  }
+
+  // The metric spec used for evaluation.
+  oneof metric_spec {
+    // Spec for pointwise metric.
+    PointwiseMetricSpec pointwise_metric_spec = 2;
+
+    // Spec for pairwise metric.
+    PairwiseMetricSpec pairwise_metric_spec = 3;
+
+    // Spec for exact match metric.
+    ExactMatchSpec exact_match_spec = 4;
+
+    // Spec for bleu metric.
+    BleuSpec bleu_spec = 5;
+
+    // Spec for rouge metric.
+    RougeSpec rouge_spec = 6;
+  }
+
+  // Optional. The aggregation metrics to use.
+  repeated AggregationMetric aggregation_metrics = 1
+      [(google.api.field_behavior) = OPTIONAL];
+}
+
+// The dataset used for evaluation.
+message EvaluationDataset {
+  // The source of the dataset.
+  oneof source {
+    // Cloud storage source holds the dataset. Currently only one Cloud Storage
+    // file path is supported.
+    GcsSource gcs_source = 1;
+
+    // BigQuery source holds the dataset.
+    BigQuerySource bigquery_source = 2;
+  }
+}
+
+// The configs for autorater. This is applicable to both EvaluateInstances and
+// EvaluateDataset.
+message AutoraterConfig {
+  // Optional. Number of samples for each instance in the dataset.
+  // If not specified, the default is 4. Minimum value is 1, maximum value
+  // is 32.
+  optional int32 sampling_count = 1 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Default is true. Whether to flip the candidate and baseline
+  // responses. This is only applicable to the pairwise metric. If enabled, also
+  // provide PairwiseMetricSpec.candidate_response_field_name and
+  // PairwiseMetricSpec.baseline_response_field_name. When rendering
+  // PairwiseMetricSpec.metric_prompt_template, the candidate and baseline
+  // fields will be flipped for half of the samples to reduce bias.
+  optional bool flip_enabled = 2 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. The fully qualified name of the publisher model or tuned
+  // autorater endpoint to use.
+  //
+  // Publisher model format:
+  // `projects/{project}/locations/{location}/publishers/*/models/*`
+  //
+  // Tuned model endpoint format:
+  // `projects/{project}/locations/{location}/endpoints/{endpoint}`
+  string autorater_model = 3 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // Request message for EvaluationService.EvaluateInstances.
@@ -121,6 +334,12 @@ message EvaluateInstancesRequest {
     // metric.
     QuestionAnsweringCorrectnessInput question_answering_correctness_input = 18;
 
+    // Input for pointwise metric.
+    PointwiseMetricInput pointwise_metric_input = 28;
+
+    // Input for pairwise metric.
+    PairwiseMetricInput pairwise_metric_input = 29;
+
     // Tool call metric instances.
     // Input for tool call valid metric.
     ToolCallValidInput tool_call_valid_input = 19;
@@ -133,6 +352,35 @@ message EvaluateInstancesRequest {
 
     // Input for tool parameter key value match metric.
     ToolParameterKVMatchInput tool_parameter_kv_match_input = 22;
+
+    // Translation metrics.
+    // Input for Comet metric.
+    CometInput comet_input = 31;
+
+    // Input for Metricx metric.
+    MetricxInput metricx_input = 32;
+
+    // Input for trajectory exact match metric.
+    TrajectoryExactMatchInput trajectory_exact_match_input = 33;
+
+    // Input for trajectory in order match metric.
+    TrajectoryInOrderMatchInput trajectory_in_order_match_input = 34;
+
+    // Input for trajectory match any order metric.
+    TrajectoryAnyOrderMatchInput trajectory_any_order_match_input = 35;
+
+    // Input for trajectory precision metric.
+    TrajectoryPrecisionInput trajectory_precision_input = 37;
+
+    // Input for trajectory recall metric.
+    TrajectoryRecallInput trajectory_recall_input = 38;
+
+    // Input for trajectory single tool use metric.
+    TrajectorySingleToolUseInput trajectory_single_tool_use_input = 39;
+
+    // Rubric Based Instruction Following metric.
+    RubricBasedInstructionFollowingInput
+        rubric_based_instruction_following_input = 40;
   }
 
   // Required. The resource name of the Location to evaluate the instances.
@@ -143,6 +391,10 @@ message EvaluateInstancesRequest {
       type: "locations.googleapis.com/Location"
     }
   ];
+
+  // Optional. Autorater config used for evaluation.
+  AutoraterConfig autorater_config = 30
+      [(google.api.field_behavior) = OPTIONAL];
 }
 
 // Response message for EvaluationService.EvaluateInstances.
@@ -210,6 +462,13 @@ message EvaluateInstancesResponse {
     QuestionAnsweringCorrectnessResult question_answering_correctness_result =
         17;
 
+    // Generic metrics.
+    // Result for pointwise metric.
+    PointwiseMetricResult pointwise_metric_result = 27;
+
+    // Result for pairwise metric.
+    PairwiseMetricResult pairwise_metric_result = 28;
+
     // Tool call metrics.
     //  Results for tool call valid metric.
     ToolCallValidResults tool_call_valid_results = 18;
@@ -222,6 +481,35 @@ message EvaluateInstancesResponse {
 
     // Results for tool parameter key value match metric.
     ToolParameterKVMatchResults tool_parameter_kv_match_results = 21;
+
+    // Translation metrics.
+    // Result for Comet metric.
+    CometResult comet_result = 29;
+
+    // Result for Metricx metric.
+    MetricxResult metricx_result = 30;
+
+    // Result for trajectory exact match metric.
+    TrajectoryExactMatchResults trajectory_exact_match_results = 31;
+
+    // Result for trajectory in order match metric.
+    TrajectoryInOrderMatchResults trajectory_in_order_match_results = 32;
+
+    // Result for trajectory any order match metric.
+    TrajectoryAnyOrderMatchResults trajectory_any_order_match_results = 33;
+
+    // Result for trajectory precision metric.
+    TrajectoryPrecisionResults trajectory_precision_results = 35;
+
+    // Results for trajectory recall metric.
+    TrajectoryRecallResults trajectory_recall_results = 36;
+
+    // Results for trajectory single tool use metric.
+    TrajectorySingleToolUseResults trajectory_single_tool_use_results = 37;
+
+    // Result for rubric based instruction following metric.
+    RubricBasedInstructionFollowingResult
+        rubric_based_instruction_following_result = 38;
   }
 }
 
@@ -281,7 +569,10 @@ message BleuInstance {
 
 // Spec for bleu score metric - calculates the precision of n-grams in the
 // prediction as compared to reference - returns a score ranging between 0 to 1.
-message BleuSpec {}
+message BleuSpec {
+  // Optional. Whether to use_effective_order to compute bleu score.
+  bool use_effective_order = 1 [(google.api.field_behavior) = OPTIONAL];
+}
 
 // Results for bleu metric.
 message BleuResults {
@@ -954,6 +1245,155 @@ message QuestionAnsweringCorrectnessResult {
   optional float confidence = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
+// Input for pointwise metric.
+message PointwiseMetricInput {
+  // Required. Spec for pointwise metric.
+  PointwiseMetricSpec metric_spec = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Pointwise metric instance.
+  PointwiseMetricInstance instance = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Pointwise metric instance. Usually one instance corresponds to one row in an
+// evaluation dataset.
+message PointwiseMetricInstance {
+  // Instance for pointwise metric.
+  oneof instance {
+    // Instance specified as a json string. String key-value pairs are expected
+    // in the json_instance to render
+    // PointwiseMetricSpec.instance_prompt_template.
+    string json_instance = 1;
+
+    // Key-value contents for the mutlimodality input, including text, image,
+    // video, audio, and pdf, etc. The key is placeholder in metric prompt
+    // template, and the value is the multimodal content.
+    ContentMap content_map_instance = 2;
+  }
+}
+
+// Spec for pointwise metric.
+message PointwiseMetricSpec {
+  // Required. Metric prompt template for pointwise metric.
+  optional string metric_prompt_template = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. System instructions for pointwise metric.
+  optional string system_instruction = 2
+      [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. CustomOutputFormatConfig allows customization of metric output.
+  // By default, metrics return a score and explanation.
+  // When this config is set, the default output is replaced with either:
+  //  - The raw output string.
+  //  - A parsed output based on a user-defined schema.
+  // If a custom format is chosen, the `score` and `explanation` fields in the
+  // corresponding metric result will be empty.
+  CustomOutputFormatConfig custom_output_format_config = 3
+      [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Spec for custom output format configuration.
+message CustomOutputFormatConfig {
+  // Custom output format configuration.
+  oneof custom_output_format_config {
+    // Optional. Whether to return raw output.
+    bool return_raw_output = 1 [(google.api.field_behavior) = OPTIONAL];
+  }
+}
+
+// Spec for pointwise metric result.
+message PointwiseMetricResult {
+  // Output only. Pointwise metric score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Explanation for pointwise metric score.
+  string explanation = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Spec for custom output.
+  CustomOutput custom_output = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Spec for custom output.
+message CustomOutput {
+  // Custom output.
+  oneof custom_output {
+    // Output only. List of raw output strings.
+    RawOutput raw_outputs = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  }
+}
+
+// Raw output.
+message RawOutput {
+  // Output only. Raw output string.
+  repeated string raw_output = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Input for pairwise metric.
+message PairwiseMetricInput {
+  // Required. Spec for pairwise metric.
+  PairwiseMetricSpec metric_spec = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Pairwise metric instance.
+  PairwiseMetricInstance instance = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Pairwise metric instance. Usually one instance corresponds to one row in an
+// evaluation dataset.
+message PairwiseMetricInstance {
+  // Instance for pairwise metric.
+  oneof instance {
+    // Instance specified as a json string. String key-value pairs are expected
+    // in the json_instance to render
+    // PairwiseMetricSpec.instance_prompt_template.
+    string json_instance = 1;
+
+    // Key-value contents for the mutlimodality input, including text, image,
+    // video, audio, and pdf, etc. The key is placeholder in metric prompt
+    // template, and the value is the multimodal content.
+    ContentMap content_map_instance = 2;
+  }
+}
+
+// Spec for pairwise metric.
+message PairwiseMetricSpec {
+  // Required. Metric prompt template for pairwise metric.
+  optional string metric_prompt_template = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. The field name of the candidate response.
+  string candidate_response_field_name = 2
+      [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. The field name of the baseline response.
+  string baseline_response_field_name = 3
+      [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. System instructions for pairwise metric.
+  optional string system_instruction = 4
+      [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. CustomOutputFormatConfig allows customization of metric output.
+  // When this config is set, the default output is replaced with
+  // the raw output string.
+  // If a custom format is chosen, the `pairwise_choice` and `explanation`
+  // fields in the corresponding metric result will be empty.
+  CustomOutputFormatConfig custom_output_format_config = 5
+      [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Spec for pairwise metric result.
+message PairwiseMetricResult {
+  // Output only. Pairwise metric choice.
+  PairwiseChoice pairwise_choice = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Explanation for pairwise metric score.
+  string explanation = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Spec for custom output.
+  CustomOutput custom_output = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
 // Input for tool call valid metric.
 message ToolCallValidInput {
   // Required. Spec for tool call valid metric.
@@ -1074,7 +1514,7 @@ message ToolParameterKVMatchInput {
 
 // Spec for tool parameter key value match metric.
 message ToolParameterKVMatchSpec {
-  // Optional. Whether to use STRCIT string match on parameter values.
+  // Optional. Whether to use STRICT string match on parameter values.
   bool use_strict_string_match = 1 [(google.api.field_behavior) = OPTIONAL];
 }
 
@@ -1099,4 +1539,426 @@ message ToolParameterKVMatchResults {
 message ToolParameterKVMatchMetricValue {
   // Output only. Tool parameter key value match score.
   optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Input for Comet metric.
+message CometInput {
+  // Required. Spec for comet metric.
+  CometSpec metric_spec = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Comet instance.
+  CometInstance instance = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for Comet metric.
+message CometSpec {
+  // Comet version options.
+  enum CometVersion {
+    // Comet version unspecified.
+    COMET_VERSION_UNSPECIFIED = 0;
+
+    // Comet 22 for translation + source + reference
+    // (source-reference-combined).
+    COMET_22_SRC_REF = 2;
+  }
+
+  // Required. Which version to use for evaluation.
+  optional CometVersion version = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. Source language in BCP-47 format.
+  string source_language = 2 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Target language in BCP-47 format. Covers both prediction and
+  // reference.
+  string target_language = 3 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Spec for Comet instance - The fields used for evaluation are dependent on the
+// comet version.
+message CometInstance {
+  // Required. Output of the evaluated model.
+  optional string prediction = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. Ground truth used to compare against the prediction.
+  optional string reference = 2 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Source text in original language.
+  optional string source = 3 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Spec for Comet result - calculates the comet score for the given instance
+// using the version specified in the spec.
+message CometResult {
+  // Output only. Comet score. Range depends on version.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Input for MetricX metric.
+message MetricxInput {
+  // Required. Spec for Metricx metric.
+  MetricxSpec metric_spec = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Metricx instance.
+  MetricxInstance instance = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for MetricX metric.
+message MetricxSpec {
+  // MetricX Version options.
+  enum MetricxVersion {
+    // MetricX version unspecified.
+    METRICX_VERSION_UNSPECIFIED = 0;
+
+    // MetricX 2024 (2.6) for translation + reference (reference-based).
+    METRICX_24_REF = 1;
+
+    // MetricX 2024 (2.6) for translation + source (QE).
+    METRICX_24_SRC = 2;
+
+    // MetricX 2024 (2.6) for translation + source + reference
+    // (source-reference-combined).
+    METRICX_24_SRC_REF = 3;
+  }
+
+  // Required. Which version to use for evaluation.
+  optional MetricxVersion version = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. Source language in BCP-47 format.
+  string source_language = 2 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Target language in BCP-47 format. Covers both prediction and
+  // reference.
+  string target_language = 3 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Spec for MetricX instance - The fields used for evaluation are dependent on
+// the MetricX version.
+message MetricxInstance {
+  // Required. Output of the evaluated model.
+  optional string prediction = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. Ground truth used to compare against the prediction.
+  optional string reference = 2 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Source text in original language.
+  optional string source = 3 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Spec for MetricX result - calculates the MetricX score for the given instance
+// using the version specified in the spec.
+message MetricxResult {
+  // Output only. MetricX score. Range depends on version.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instance and metric spec for RubricBasedInstructionFollowing metric.
+message RubricBasedInstructionFollowingInput {
+  // Required. Spec for RubricBasedInstructionFollowing metric.
+  RubricBasedInstructionFollowingSpec metric_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Instance for RubricBasedInstructionFollowing metric.
+  RubricBasedInstructionFollowingInstance instance = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Instance for RubricBasedInstructionFollowing metric - one instance
+// corresponds to one row in an evaluation dataset.
+message RubricBasedInstructionFollowingInstance {
+  // Instance for RubricBasedInstructionFollowing metric.
+  oneof instance {
+    // Required. Instance specified as a json string. String key-value pairs are
+    // expected in the json_instance to render RubricBasedInstructionFollowing
+    // prompt templates.
+    string json_instance = 1 [(google.api.field_behavior) = REQUIRED];
+  }
+}
+
+// Spec for RubricBasedInstructionFollowing metric - returns rubrics
+// and verdicts corresponding to rubrics along with overall score.
+message RubricBasedInstructionFollowingSpec {}
+
+// Result for RubricBasedInstructionFollowing metric.
+message RubricBasedInstructionFollowingResult {
+  // Output only. Overall score for the instruction following.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. List of per rubric critique results.
+  repeated RubricCritiqueResult rubric_critique_results = 2
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Rubric critique result.
+message RubricCritiqueResult {
+  // Output only. Rubric to be evaluated.
+  string rubric = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Verdict for the rubric - true if the rubric is met, false
+  // otherwise.
+  bool verdict = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instances and metric spec for TrajectoryExactMatch metric.
+message TrajectoryExactMatchInput {
+  // Required. Spec for TrajectoryExactMatch metric.
+  TrajectoryExactMatchSpec metric_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Repeated TrajectoryExactMatch instance.
+  repeated TrajectoryExactMatchInstance instances = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectoryExactMatch metric - returns 1 if tool calls in the
+// reference trajectory exactly match the predicted trajectory, else 0.
+message TrajectoryExactMatchSpec {}
+
+// Spec for TrajectoryExactMatch instance.
+message TrajectoryExactMatchInstance {
+  // Required. Spec for predicted tool call trajectory.
+  optional Trajectory predicted_trajectory = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Spec for reference tool call trajectory.
+  optional Trajectory reference_trajectory = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Results for TrajectoryExactMatch metric.
+message TrajectoryExactMatchResults {
+  // Output only. TrajectoryExactMatch metric values.
+  repeated TrajectoryExactMatchMetricValue
+      trajectory_exact_match_metric_values = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// TrajectoryExactMatch metric value for an instance.
+message TrajectoryExactMatchMetricValue {
+  // Output only. TrajectoryExactMatch score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instances and metric spec for TrajectoryInOrderMatch metric.
+message TrajectoryInOrderMatchInput {
+  // Required. Spec for TrajectoryInOrderMatch metric.
+  TrajectoryInOrderMatchSpec metric_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Repeated TrajectoryInOrderMatch instance.
+  repeated TrajectoryInOrderMatchInstance instances = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectoryInOrderMatch metric - returns 1 if tool calls in the
+// reference trajectory appear in the predicted trajectory in the same order,
+// else 0.
+message TrajectoryInOrderMatchSpec {}
+
+// Spec for TrajectoryInOrderMatch instance.
+message TrajectoryInOrderMatchInstance {
+  // Required. Spec for predicted tool call trajectory.
+  optional Trajectory predicted_trajectory = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Spec for reference tool call trajectory.
+  optional Trajectory reference_trajectory = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Results for TrajectoryInOrderMatch metric.
+message TrajectoryInOrderMatchResults {
+  // Output only. TrajectoryInOrderMatch metric values.
+  repeated TrajectoryInOrderMatchMetricValue
+      trajectory_in_order_match_metric_values = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// TrajectoryInOrderMatch metric value for an instance.
+message TrajectoryInOrderMatchMetricValue {
+  // Output only. TrajectoryInOrderMatch score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instances and metric spec for TrajectoryAnyOrderMatch metric.
+message TrajectoryAnyOrderMatchInput {
+  // Required. Spec for TrajectoryAnyOrderMatch metric.
+  TrajectoryAnyOrderMatchSpec metric_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Repeated TrajectoryAnyOrderMatch instance.
+  repeated TrajectoryAnyOrderMatchInstance instances = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectoryAnyOrderMatch metric - returns 1 if all tool calls in the
+// reference trajectory appear in the predicted trajectory in any order, else
+// 0.
+message TrajectoryAnyOrderMatchSpec {}
+
+// Spec for TrajectoryAnyOrderMatch instance.
+message TrajectoryAnyOrderMatchInstance {
+  // Required. Spec for predicted tool call trajectory.
+  optional Trajectory predicted_trajectory = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Spec for reference tool call trajectory.
+  optional Trajectory reference_trajectory = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Results for TrajectoryAnyOrderMatch metric.
+message TrajectoryAnyOrderMatchResults {
+  // Output only. TrajectoryAnyOrderMatch metric values.
+  repeated TrajectoryAnyOrderMatchMetricValue
+      trajectory_any_order_match_metric_values = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// TrajectoryAnyOrderMatch metric value for an instance.
+message TrajectoryAnyOrderMatchMetricValue {
+  // Output only. TrajectoryAnyOrderMatch score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instances and metric spec for TrajectoryPrecision metric.
+message TrajectoryPrecisionInput {
+  // Required. Spec for TrajectoryPrecision metric.
+  TrajectoryPrecisionSpec metric_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Repeated TrajectoryPrecision instance.
+  repeated TrajectoryPrecisionInstance instances = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectoryPrecision metric - returns a float score based on average
+// precision of individual tool calls.
+message TrajectoryPrecisionSpec {}
+
+// Spec for TrajectoryPrecision instance.
+message TrajectoryPrecisionInstance {
+  // Required. Spec for predicted tool call trajectory.
+  optional Trajectory predicted_trajectory = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Spec for reference tool call trajectory.
+  optional Trajectory reference_trajectory = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Results for TrajectoryPrecision metric.
+message TrajectoryPrecisionResults {
+  // Output only. TrajectoryPrecision metric values.
+  repeated TrajectoryPrecisionMetricValue trajectory_precision_metric_values = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// TrajectoryPrecision metric value for an instance.
+message TrajectoryPrecisionMetricValue {
+  // Output only. TrajectoryPrecision score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instances and metric spec for TrajectoryRecall metric.
+message TrajectoryRecallInput {
+  // Required. Spec for TrajectoryRecall metric.
+  TrajectoryRecallSpec metric_spec = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Repeated TrajectoryRecall instance.
+  repeated TrajectoryRecallInstance instances = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectoryRecall metric - returns a float score based on average
+// recall of individual tool calls.
+message TrajectoryRecallSpec {}
+
+// Spec for TrajectoryRecall instance.
+message TrajectoryRecallInstance {
+  // Required. Spec for predicted tool call trajectory.
+  optional Trajectory predicted_trajectory = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Spec for reference tool call trajectory.
+  optional Trajectory reference_trajectory = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Results for TrajectoryRecall metric.
+message TrajectoryRecallResults {
+  // Output only. TrajectoryRecall metric values.
+  repeated TrajectoryRecallMetricValue trajectory_recall_metric_values = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// TrajectoryRecall metric value for an instance.
+message TrajectoryRecallMetricValue {
+  // Output only. TrajectoryRecall score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Instances and metric spec for TrajectorySingleToolUse metric.
+message TrajectorySingleToolUseInput {
+  // Required. Spec for TrajectorySingleToolUse metric.
+  TrajectorySingleToolUseSpec metric_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Required. Repeated TrajectorySingleToolUse instance.
+  repeated TrajectorySingleToolUseInstance instances = 2
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectorySingleToolUse metric - returns 1 if tool is present in the
+// predicted trajectory, else 0.
+message TrajectorySingleToolUseSpec {
+  // Required. Spec for tool name to be checked for in the predicted trajectory.
+  optional string tool_name = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for TrajectorySingleToolUse instance.
+message TrajectorySingleToolUseInstance {
+  // Required. Spec for predicted tool call trajectory.
+  optional Trajectory predicted_trajectory = 1
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+// Results for TrajectorySingleToolUse metric.
+message TrajectorySingleToolUseResults {
+  // Output only. TrajectorySingleToolUse metric values.
+  repeated TrajectorySingleToolUseMetricValue
+      trajectory_single_tool_use_metric_values = 1
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// TrajectorySingleToolUse metric value for an instance.
+message TrajectorySingleToolUseMetricValue {
+  // Output only. TrajectorySingleToolUse score.
+  optional float score = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Spec for trajectory.
+message Trajectory {
+  // Required. Tool calls in the trajectory.
+  repeated ToolCall tool_calls = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Spec for tool call.
+message ToolCall {
+  // Required. Spec for tool name
+  optional string tool_name = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Optional. Spec for tool input
+  optional string tool_input = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// Map of placeholder in metric prompt template to contents of model input.
+message ContentMap {
+  // Repeated Content type.
+  message Contents {
+    // Optional. Repeated contents.
+    repeated Content contents = 1 [(google.api.field_behavior) = OPTIONAL];
+  }
+
+  // Optional. Map of placeholder to contents.
+  map<string, Contents> values = 1 [(google.api.field_behavior) = OPTIONAL];
 }

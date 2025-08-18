@@ -27,6 +27,26 @@
         "ListPublisherModels": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
+        },
+        "Deploy": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "DeployPublisherModel": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "ExportPublisherModel": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "CheckPublisherModelEulaAcceptance": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "AcceptPublisherModelEula": {
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
         }
       }
     }

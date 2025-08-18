@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,14 +30,18 @@ function main(name, destination, subscription) {
    */
   /**
    *  Required. Resource name of the Data Exchange.
-   *  e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+   *  e.g. `projects/publisherproject/locations/us/dataExchanges/123`
    */
   // const name = 'abc123'
   /**
    *  Required. The parent resource path of the Subscription.
-   *  e.g. `projects/subscriberproject/locations/US`
+   *  e.g. `projects/subscriberproject/locations/us`
    */
   // const destination = 'abc123'
+  /**
+   *  Optional. BigQuery destination dataset to create for the subscriber.
+   */
+  // const destinationDataset = {}
   /**
    *  Required. Name of the subscription to create.
    *  e.g. `subscription1`

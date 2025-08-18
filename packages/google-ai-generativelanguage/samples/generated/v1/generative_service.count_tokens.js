@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,8 +41,14 @@ function main(model) {
    */
   // const contents = [1,2,3,4]
   /**
-   *  Optional. The overall input given to the model. CountTokens will count
-   *  prompt, function calling, etc.
+   *  Optional. The overall input given to the `Model`. This includes the prompt
+   *  as well as other model steering information like system
+   *  instructions (https://ai.google.dev/gemini-api/docs/system-instructions),
+   *  and/or function declarations for function
+   *  calling (https://ai.google.dev/gemini-api/docs/function-calling).
+   *  `Model`s/`Content`s and `generate_content_request`s are mutually
+   *  exclusive. You can either send `Model` + `Content`s or a
+   *  `generate_content_request`, but never both.
    */
   // const generateContentRequest = {}
 

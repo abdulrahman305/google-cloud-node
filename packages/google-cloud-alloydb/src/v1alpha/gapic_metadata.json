@@ -20,6 +20,11 @@
                 "getInstance"
               ]
             },
+            "ExecuteSql": {
+              "methods": [
+                "executeSql"
+              ]
+            },
             "GetBackup": {
               "methods": [
                 "getBackup"
@@ -65,6 +70,21 @@
                 "updateCluster"
               ]
             },
+            "ExportCluster": {
+              "methods": [
+                "exportCluster"
+              ]
+            },
+            "ImportCluster": {
+              "methods": [
+                "importCluster"
+              ]
+            },
+            "UpgradeCluster": {
+              "methods": [
+                "upgradeCluster"
+              ]
+            },
             "DeleteCluster": {
               "methods": [
                 "deleteCluster"
@@ -73,6 +93,11 @@
             "PromoteCluster": {
               "methods": [
                 "promoteCluster"
+              ]
+            },
+            "SwitchoverCluster": {
+              "methods": [
+                "switchoverCluster"
               ]
             },
             "RestoreCluster": {
@@ -197,6 +222,11 @@
                 "getInstance"
               ]
             },
+            "ExecuteSql": {
+              "methods": [
+                "executeSql"
+              ]
+            },
             "GetBackup": {
               "methods": [
                 "getBackup"
@@ -242,6 +272,21 @@
                 "updateCluster"
               ]
             },
+            "ExportCluster": {
+              "methods": [
+                "exportCluster"
+              ]
+            },
+            "ImportCluster": {
+              "methods": [
+                "importCluster"
+              ]
+            },
+            "UpgradeCluster": {
+              "methods": [
+                "upgradeCluster"
+              ]
+            },
             "DeleteCluster": {
               "methods": [
                 "deleteCluster"
@@ -250,6 +295,11 @@
             "PromoteCluster": {
               "methods": [
                 "promoteCluster"
+              ]
+            },
+            "SwitchoverCluster": {
+              "methods": [
+                "switchoverCluster"
               ]
             },
             "RestoreCluster": {
@@ -357,6 +407,30 @@
                 "listDatabases",
                 "listDatabasesStream",
                 "listDatabasesAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "AlloyDBCSQLAdmin": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "AlloyDBCSQLAdminClient",
+          "rpcs": {
+            "RestoreFromCloudSQL": {
+              "methods": [
+                "restoreFromCloudSQL"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "AlloyDBCSQLAdminClient",
+          "rpcs": {
+            "RestoreFromCloudSQL": {
+              "methods": [
+                "restoreFromCloudSQL"
               ]
             }
           }

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -74,4 +74,10 @@ message DeploymentResourcePool {
   // Output only. Timestamp when this DeploymentResourcePool was created.
   google.protobuf.Timestamp create_time = 4
       [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Reserved for future use.
+  bool satisfies_pzs = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Output only. Reserved for future use.
+  bool satisfies_pzi = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

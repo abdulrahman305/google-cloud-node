@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -142,6 +142,12 @@ message QuotaIncreaseEligibility {
 
     // The container is not linked with a valid billing account.
     NO_VALID_BILLING_ACCOUNT = 1;
+
+    // Quota increase is not supported for the quota.
+    NOT_SUPPORTED = 3;
+
+    // There is not enough usage history to determine the eligibility.
+    NOT_ENOUGH_USAGE_HISTORY = 4;
 
     // Other reasons.
     OTHER = 2;

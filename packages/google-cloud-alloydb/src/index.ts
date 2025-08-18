@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,8 +22,10 @@ import * as v1beta from './v1beta';
 
 const AlloyDBAdminClient = v1.AlloyDBAdminClient;
 type AlloyDBAdminClient = v1.AlloyDBAdminClient;
+const AlloyDBCSQLAdminClient = v1.AlloyDBCSQLAdminClient;
+type AlloyDBCSQLAdminClient = v1.AlloyDBCSQLAdminClient;
 
-export {v1, v1alpha, v1beta, AlloyDBAdminClient};
-export default {v1, v1alpha, v1beta, AlloyDBAdminClient};
+export {v1, v1alpha, v1beta, AlloyDBAdminClient, AlloyDBCSQLAdminClient};
+export default {v1, v1alpha, v1beta, AlloyDBAdminClient, AlloyDBCSQLAdminClient};
 import * as protos from '../protos/protos';
 export {protos};

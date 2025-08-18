@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ function main(resource) {
   /**
    *  Required. Resource name of the requested target. This resource may be
    *  either a Listing or a DataExchange. e.g.
-   *  projects/123/locations/US/dataExchanges/456 OR e.g.
-   *  projects/123/locations/US/dataExchanges/456/listings/789
+   *  projects/123/locations/us/dataExchanges/456 OR e.g.
+   *  projects/123/locations/us/dataExchanges/456/listings/789
    */
   // const resource = 'abc123'
   /**
