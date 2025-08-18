@@ -14,7 +14,7 @@
     "isolatedModules": false,
     "emitDeclarationOnly": true,
     "lib": [
-      "es2018",
+      "es2023",
       "dom"
     ]
   },
@@ -23,6 +23,10 @@
     "esm/src/**/*.ts",
     "esm/test/*.ts",
     "esm/test/**/*.ts",
-    "esm/system-test/*.ts"
+    "esm/src/**/*.json",
+    "esm/system-test/*.ts",
+    "esm/src/*.cjs",
+    "samples/**/*.json",
+    "protos/protos.json"
   ]
 }

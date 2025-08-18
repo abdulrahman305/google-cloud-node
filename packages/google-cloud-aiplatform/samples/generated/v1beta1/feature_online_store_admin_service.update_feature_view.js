@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -44,7 +44,14 @@ function main(featureView) {
    *  fields.
    *  Updatable fields:
    *    * `labels`
-   *    * `serviceAgentType`
+   *    * `service_agent_type`
+   *    * `big_query_source`
+   *    * `big_query_source.uri`
+   *    * `big_query_source.entity_id_columns`
+   *    * `feature_registry_source`
+   *    * `feature_registry_source.feature_groups`
+   *    * `sync_config`
+   *    * `sync_config.cron`
    */
   // const updateMask = {}
 

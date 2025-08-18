@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -1080,6 +1080,733 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AttackExposure. */
+                interface IAttackExposure {
+
+                    /** AttackExposure score */
+                    score?: (number|null);
+
+                    /** AttackExposure latestCalculationTime */
+                    latestCalculationTime?: (google.protobuf.ITimestamp|null);
+
+                    /** AttackExposure attackExposureResult */
+                    attackExposureResult?: (string|null);
+
+                    /** AttackExposure state */
+                    state?: (google.cloud.securitycenter.v1.AttackExposure.State|keyof typeof google.cloud.securitycenter.v1.AttackExposure.State|null);
+
+                    /** AttackExposure exposedHighValueResourcesCount */
+                    exposedHighValueResourcesCount?: (number|null);
+
+                    /** AttackExposure exposedMediumValueResourcesCount */
+                    exposedMediumValueResourcesCount?: (number|null);
+
+                    /** AttackExposure exposedLowValueResourcesCount */
+                    exposedLowValueResourcesCount?: (number|null);
+                }
+
+                /** Represents an AttackExposure. */
+                class AttackExposure implements IAttackExposure {
+
+                    /**
+                     * Constructs a new AttackExposure.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IAttackExposure);
+
+                    /** AttackExposure score. */
+                    public score: number;
+
+                    /** AttackExposure latestCalculationTime. */
+                    public latestCalculationTime?: (google.protobuf.ITimestamp|null);
+
+                    /** AttackExposure attackExposureResult. */
+                    public attackExposureResult: string;
+
+                    /** AttackExposure state. */
+                    public state: (google.cloud.securitycenter.v1.AttackExposure.State|keyof typeof google.cloud.securitycenter.v1.AttackExposure.State);
+
+                    /** AttackExposure exposedHighValueResourcesCount. */
+                    public exposedHighValueResourcesCount: number;
+
+                    /** AttackExposure exposedMediumValueResourcesCount. */
+                    public exposedMediumValueResourcesCount: number;
+
+                    /** AttackExposure exposedLowValueResourcesCount. */
+                    public exposedLowValueResourcesCount: number;
+
+                    /**
+                     * Creates a new AttackExposure instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AttackExposure instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IAttackExposure): google.cloud.securitycenter.v1.AttackExposure;
+
+                    /**
+                     * Encodes the specified AttackExposure message. Does not implicitly {@link google.cloud.securitycenter.v1.AttackExposure.verify|verify} messages.
+                     * @param message AttackExposure message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IAttackExposure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AttackExposure message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AttackExposure.verify|verify} messages.
+                     * @param message AttackExposure message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IAttackExposure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AttackExposure message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AttackExposure
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AttackExposure;
+
+                    /**
+                     * Decodes an AttackExposure message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AttackExposure
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AttackExposure;
+
+                    /**
+                     * Verifies an AttackExposure message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AttackExposure message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AttackExposure
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AttackExposure;
+
+                    /**
+                     * Creates a plain object from an AttackExposure message. Also converts values to other types if specified.
+                     * @param message AttackExposure
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.AttackExposure, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AttackExposure to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AttackExposure
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AttackExposure {
+
+                    /** State enum. */
+                    enum State {
+                        STATE_UNSPECIFIED = 0,
+                        CALCULATED = 1,
+                        NOT_CALCULATED = 2
+                    }
+                }
+
+                /** Properties of an AttackPath. */
+                interface IAttackPath {
+
+                    /** AttackPath name */
+                    name?: (string|null);
+
+                    /** AttackPath pathNodes */
+                    pathNodes?: (google.cloud.securitycenter.v1.AttackPath.IAttackPathNode[]|null);
+
+                    /** AttackPath edges */
+                    edges?: (google.cloud.securitycenter.v1.AttackPath.IAttackPathEdge[]|null);
+                }
+
+                /** Represents an AttackPath. */
+                class AttackPath implements IAttackPath {
+
+                    /**
+                     * Constructs a new AttackPath.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IAttackPath);
+
+                    /** AttackPath name. */
+                    public name: string;
+
+                    /** AttackPath pathNodes. */
+                    public pathNodes: google.cloud.securitycenter.v1.AttackPath.IAttackPathNode[];
+
+                    /** AttackPath edges. */
+                    public edges: google.cloud.securitycenter.v1.AttackPath.IAttackPathEdge[];
+
+                    /**
+                     * Creates a new AttackPath instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AttackPath instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IAttackPath): google.cloud.securitycenter.v1.AttackPath;
+
+                    /**
+                     * Encodes the specified AttackPath message. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.verify|verify} messages.
+                     * @param message AttackPath message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IAttackPath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AttackPath message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.verify|verify} messages.
+                     * @param message AttackPath message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IAttackPath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AttackPath message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AttackPath
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AttackPath;
+
+                    /**
+                     * Decodes an AttackPath message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AttackPath
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AttackPath;
+
+                    /**
+                     * Verifies an AttackPath message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AttackPath message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AttackPath
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AttackPath;
+
+                    /**
+                     * Creates a plain object from an AttackPath message. Also converts values to other types if specified.
+                     * @param message AttackPath
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.AttackPath, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AttackPath to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AttackPath
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AttackPath {
+
+                    /** Properties of an AttackPathNode. */
+                    interface IAttackPathNode {
+
+                        /** AttackPathNode resource */
+                        resource?: (string|null);
+
+                        /** AttackPathNode resourceType */
+                        resourceType?: (string|null);
+
+                        /** AttackPathNode displayName */
+                        displayName?: (string|null);
+
+                        /** AttackPathNode associatedFindings */
+                        associatedFindings?: (google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IPathNodeAssociatedFinding[]|null);
+
+                        /** AttackPathNode uuid */
+                        uuid?: (string|null);
+
+                        /** AttackPathNode attackSteps */
+                        attackSteps?: (google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IAttackStepNode[]|null);
+                    }
+
+                    /** Represents an AttackPathNode. */
+                    class AttackPathNode implements IAttackPathNode {
+
+                        /**
+                         * Constructs a new AttackPathNode.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AttackPath.IAttackPathNode);
+
+                        /** AttackPathNode resource. */
+                        public resource: string;
+
+                        /** AttackPathNode resourceType. */
+                        public resourceType: string;
+
+                        /** AttackPathNode displayName. */
+                        public displayName: string;
+
+                        /** AttackPathNode associatedFindings. */
+                        public associatedFindings: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IPathNodeAssociatedFinding[];
+
+                        /** AttackPathNode uuid. */
+                        public uuid: string;
+
+                        /** AttackPathNode attackSteps. */
+                        public attackSteps: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IAttackStepNode[];
+
+                        /**
+                         * Creates a new AttackPathNode instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AttackPathNode instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AttackPath.IAttackPathNode): google.cloud.securitycenter.v1.AttackPath.AttackPathNode;
+
+                        /**
+                         * Encodes the specified AttackPathNode message. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathNode.verify|verify} messages.
+                         * @param message AttackPathNode message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AttackPath.IAttackPathNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AttackPathNode message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathNode.verify|verify} messages.
+                         * @param message AttackPathNode message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AttackPath.IAttackPathNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AttackPathNode message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AttackPathNode
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AttackPath.AttackPathNode;
+
+                        /**
+                         * Decodes an AttackPathNode message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AttackPathNode
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AttackPath.AttackPathNode;
+
+                        /**
+                         * Verifies an AttackPathNode message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AttackPathNode message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AttackPathNode
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AttackPath.AttackPathNode;
+
+                        /**
+                         * Creates a plain object from an AttackPathNode message. Also converts values to other types if specified.
+                         * @param message AttackPathNode
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AttackPathNode to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AttackPathNode
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace AttackPathNode {
+
+                        /** Properties of a PathNodeAssociatedFinding. */
+                        interface IPathNodeAssociatedFinding {
+
+                            /** PathNodeAssociatedFinding canonicalFinding */
+                            canonicalFinding?: (string|null);
+
+                            /** PathNodeAssociatedFinding findingCategory */
+                            findingCategory?: (string|null);
+
+                            /** PathNodeAssociatedFinding name */
+                            name?: (string|null);
+                        }
+
+                        /** Represents a PathNodeAssociatedFinding. */
+                        class PathNodeAssociatedFinding implements IPathNodeAssociatedFinding {
+
+                            /**
+                             * Constructs a new PathNodeAssociatedFinding.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IPathNodeAssociatedFinding);
+
+                            /** PathNodeAssociatedFinding canonicalFinding. */
+                            public canonicalFinding: string;
+
+                            /** PathNodeAssociatedFinding findingCategory. */
+                            public findingCategory: string;
+
+                            /** PathNodeAssociatedFinding name. */
+                            public name: string;
+
+                            /**
+                             * Creates a new PathNodeAssociatedFinding instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns PathNodeAssociatedFinding instance
+                             */
+                            public static create(properties?: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IPathNodeAssociatedFinding): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding;
+
+                            /**
+                             * Encodes the specified PathNodeAssociatedFinding message. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding.verify|verify} messages.
+                             * @param message PathNodeAssociatedFinding message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IPathNodeAssociatedFinding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified PathNodeAssociatedFinding message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding.verify|verify} messages.
+                             * @param message PathNodeAssociatedFinding message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IPathNodeAssociatedFinding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a PathNodeAssociatedFinding message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns PathNodeAssociatedFinding
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding;
+
+                            /**
+                             * Decodes a PathNodeAssociatedFinding message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns PathNodeAssociatedFinding
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding;
+
+                            /**
+                             * Verifies a PathNodeAssociatedFinding message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a PathNodeAssociatedFinding message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns PathNodeAssociatedFinding
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding;
+
+                            /**
+                             * Creates a plain object from a PathNodeAssociatedFinding message. Also converts values to other types if specified.
+                             * @param message PathNodeAssociatedFinding
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.PathNodeAssociatedFinding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this PathNodeAssociatedFinding to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for PathNodeAssociatedFinding
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        /** NodeType enum. */
+                        enum NodeType {
+                            NODE_TYPE_UNSPECIFIED = 0,
+                            NODE_TYPE_AND = 1,
+                            NODE_TYPE_OR = 2,
+                            NODE_TYPE_DEFENSE = 3,
+                            NODE_TYPE_ATTACKER = 4
+                        }
+
+                        /** Properties of an AttackStepNode. */
+                        interface IAttackStepNode {
+
+                            /** AttackStepNode uuid */
+                            uuid?: (string|null);
+
+                            /** AttackStepNode type */
+                            type?: (google.cloud.securitycenter.v1.AttackPath.AttackPathNode.NodeType|keyof typeof google.cloud.securitycenter.v1.AttackPath.AttackPathNode.NodeType|null);
+
+                            /** AttackStepNode displayName */
+                            displayName?: (string|null);
+
+                            /** AttackStepNode labels */
+                            labels?: ({ [k: string]: string }|null);
+
+                            /** AttackStepNode description */
+                            description?: (string|null);
+                        }
+
+                        /** Represents an AttackStepNode. */
+                        class AttackStepNode implements IAttackStepNode {
+
+                            /**
+                             * Constructs a new AttackStepNode.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IAttackStepNode);
+
+                            /** AttackStepNode uuid. */
+                            public uuid: string;
+
+                            /** AttackStepNode type. */
+                            public type: (google.cloud.securitycenter.v1.AttackPath.AttackPathNode.NodeType|keyof typeof google.cloud.securitycenter.v1.AttackPath.AttackPathNode.NodeType);
+
+                            /** AttackStepNode displayName. */
+                            public displayName: string;
+
+                            /** AttackStepNode labels. */
+                            public labels: { [k: string]: string };
+
+                            /** AttackStepNode description. */
+                            public description: string;
+
+                            /**
+                             * Creates a new AttackStepNode instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns AttackStepNode instance
+                             */
+                            public static create(properties?: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IAttackStepNode): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode;
+
+                            /**
+                             * Encodes the specified AttackStepNode message. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode.verify|verify} messages.
+                             * @param message AttackStepNode message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IAttackStepNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified AttackStepNode message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode.verify|verify} messages.
+                             * @param message AttackStepNode message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.IAttackStepNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes an AttackStepNode message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns AttackStepNode
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode;
+
+                            /**
+                             * Decodes an AttackStepNode message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns AttackStepNode
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode;
+
+                            /**
+                             * Verifies an AttackStepNode message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates an AttackStepNode message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns AttackStepNode
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode;
+
+                            /**
+                             * Creates a plain object from an AttackStepNode message. Also converts values to other types if specified.
+                             * @param message AttackStepNode
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.securitycenter.v1.AttackPath.AttackPathNode.AttackStepNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this AttackStepNode to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for AttackStepNode
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+                    }
+
+                    /** Properties of an AttackPathEdge. */
+                    interface IAttackPathEdge {
+
+                        /** AttackPathEdge source */
+                        source?: (string|null);
+
+                        /** AttackPathEdge destination */
+                        destination?: (string|null);
+                    }
+
+                    /** Represents an AttackPathEdge. */
+                    class AttackPathEdge implements IAttackPathEdge {
+
+                        /**
+                         * Constructs a new AttackPathEdge.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AttackPath.IAttackPathEdge);
+
+                        /** AttackPathEdge source. */
+                        public source: string;
+
+                        /** AttackPathEdge destination. */
+                        public destination: string;
+
+                        /**
+                         * Creates a new AttackPathEdge instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AttackPathEdge instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AttackPath.IAttackPathEdge): google.cloud.securitycenter.v1.AttackPath.AttackPathEdge;
+
+                        /**
+                         * Encodes the specified AttackPathEdge message. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathEdge.verify|verify} messages.
+                         * @param message AttackPathEdge message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AttackPath.IAttackPathEdge, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AttackPathEdge message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AttackPath.AttackPathEdge.verify|verify} messages.
+                         * @param message AttackPathEdge message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AttackPath.IAttackPathEdge, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AttackPathEdge message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AttackPathEdge
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AttackPath.AttackPathEdge;
+
+                        /**
+                         * Decodes an AttackPathEdge message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AttackPathEdge
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AttackPath.AttackPathEdge;
+
+                        /**
+                         * Verifies an AttackPathEdge message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AttackPathEdge message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AttackPathEdge
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AttackPath.AttackPathEdge;
+
+                        /**
+                         * Creates a plain object from an AttackPathEdge message. Also converts values to other types if specified.
+                         * @param message AttackPathEdge
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AttackPath.AttackPathEdge, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AttackPathEdge to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AttackPathEdge
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
                 }
 
                 /** Properties of a BackupDisasterRecovery. */
@@ -2945,6 +3672,143 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of an EffectiveEventThreatDetectionCustomModule. */
+                interface IEffectiveEventThreatDetectionCustomModule {
+
+                    /** EffectiveEventThreatDetectionCustomModule name */
+                    name?: (string|null);
+
+                    /** EffectiveEventThreatDetectionCustomModule config */
+                    config?: (google.protobuf.IStruct|null);
+
+                    /** EffectiveEventThreatDetectionCustomModule enablementState */
+                    enablementState?: (google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.EnablementState|keyof typeof google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.EnablementState|null);
+
+                    /** EffectiveEventThreatDetectionCustomModule type */
+                    type?: (string|null);
+
+                    /** EffectiveEventThreatDetectionCustomModule displayName */
+                    displayName?: (string|null);
+
+                    /** EffectiveEventThreatDetectionCustomModule description */
+                    description?: (string|null);
+                }
+
+                /** Represents an EffectiveEventThreatDetectionCustomModule. */
+                class EffectiveEventThreatDetectionCustomModule implements IEffectiveEventThreatDetectionCustomModule {
+
+                    /**
+                     * Constructs a new EffectiveEventThreatDetectionCustomModule.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IEffectiveEventThreatDetectionCustomModule);
+
+                    /** EffectiveEventThreatDetectionCustomModule name. */
+                    public name: string;
+
+                    /** EffectiveEventThreatDetectionCustomModule config. */
+                    public config?: (google.protobuf.IStruct|null);
+
+                    /** EffectiveEventThreatDetectionCustomModule enablementState. */
+                    public enablementState: (google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.EnablementState|keyof typeof google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.EnablementState);
+
+                    /** EffectiveEventThreatDetectionCustomModule type. */
+                    public type: string;
+
+                    /** EffectiveEventThreatDetectionCustomModule displayName. */
+                    public displayName: string;
+
+                    /** EffectiveEventThreatDetectionCustomModule description. */
+                    public description: string;
+
+                    /**
+                     * Creates a new EffectiveEventThreatDetectionCustomModule instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns EffectiveEventThreatDetectionCustomModule instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IEffectiveEventThreatDetectionCustomModule): google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule;
+
+                    /**
+                     * Encodes the specified EffectiveEventThreatDetectionCustomModule message. Does not implicitly {@link google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.verify|verify} messages.
+                     * @param message EffectiveEventThreatDetectionCustomModule message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IEffectiveEventThreatDetectionCustomModule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified EffectiveEventThreatDetectionCustomModule message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.verify|verify} messages.
+                     * @param message EffectiveEventThreatDetectionCustomModule message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IEffectiveEventThreatDetectionCustomModule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an EffectiveEventThreatDetectionCustomModule message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns EffectiveEventThreatDetectionCustomModule
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule;
+
+                    /**
+                     * Decodes an EffectiveEventThreatDetectionCustomModule message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns EffectiveEventThreatDetectionCustomModule
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule;
+
+                    /**
+                     * Verifies an EffectiveEventThreatDetectionCustomModule message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an EffectiveEventThreatDetectionCustomModule message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns EffectiveEventThreatDetectionCustomModule
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule;
+
+                    /**
+                     * Creates a plain object from an EffectiveEventThreatDetectionCustomModule message. Also converts values to other types if specified.
+                     * @param message EffectiveEventThreatDetectionCustomModule
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this EffectiveEventThreatDetectionCustomModule to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for EffectiveEventThreatDetectionCustomModule
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace EffectiveEventThreatDetectionCustomModule {
+
+                    /** EnablementState enum. */
+                    enum EnablementState {
+                        ENABLEMENT_STATE_UNSPECIFIED = 0,
+                        ENABLED = 1,
+                        DISABLED = 2
+                    }
+                }
+
                 /** Properties of an EffectiveSecurityHealthAnalyticsCustomModule. */
                 interface IEffectiveSecurityHealthAnalyticsCustomModule {
 
@@ -3507,6 +4371,477 @@ export namespace google {
                         MEDIUM = 3,
                         LOW = 4
                     }
+                }
+
+                /** Properties of an EventThreatDetectionCustomModule. */
+                interface IEventThreatDetectionCustomModule {
+
+                    /** EventThreatDetectionCustomModule name */
+                    name?: (string|null);
+
+                    /** EventThreatDetectionCustomModule config */
+                    config?: (google.protobuf.IStruct|null);
+
+                    /** EventThreatDetectionCustomModule ancestorModule */
+                    ancestorModule?: (string|null);
+
+                    /** EventThreatDetectionCustomModule enablementState */
+                    enablementState?: (google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.EnablementState|keyof typeof google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.EnablementState|null);
+
+                    /** EventThreatDetectionCustomModule type */
+                    type?: (string|null);
+
+                    /** EventThreatDetectionCustomModule displayName */
+                    displayName?: (string|null);
+
+                    /** EventThreatDetectionCustomModule description */
+                    description?: (string|null);
+
+                    /** EventThreatDetectionCustomModule updateTime */
+                    updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** EventThreatDetectionCustomModule lastEditor */
+                    lastEditor?: (string|null);
+                }
+
+                /** Represents an EventThreatDetectionCustomModule. */
+                class EventThreatDetectionCustomModule implements IEventThreatDetectionCustomModule {
+
+                    /**
+                     * Constructs a new EventThreatDetectionCustomModule.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule);
+
+                    /** EventThreatDetectionCustomModule name. */
+                    public name: string;
+
+                    /** EventThreatDetectionCustomModule config. */
+                    public config?: (google.protobuf.IStruct|null);
+
+                    /** EventThreatDetectionCustomModule ancestorModule. */
+                    public ancestorModule: string;
+
+                    /** EventThreatDetectionCustomModule enablementState. */
+                    public enablementState: (google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.EnablementState|keyof typeof google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.EnablementState);
+
+                    /** EventThreatDetectionCustomModule type. */
+                    public type: string;
+
+                    /** EventThreatDetectionCustomModule displayName. */
+                    public displayName: string;
+
+                    /** EventThreatDetectionCustomModule description. */
+                    public description: string;
+
+                    /** EventThreatDetectionCustomModule updateTime. */
+                    public updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** EventThreatDetectionCustomModule lastEditor. */
+                    public lastEditor: string;
+
+                    /**
+                     * Creates a new EventThreatDetectionCustomModule instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns EventThreatDetectionCustomModule instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule): google.cloud.securitycenter.v1.EventThreatDetectionCustomModule;
+
+                    /**
+                     * Encodes the specified EventThreatDetectionCustomModule message. Does not implicitly {@link google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.verify|verify} messages.
+                     * @param message EventThreatDetectionCustomModule message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified EventThreatDetectionCustomModule message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.verify|verify} messages.
+                     * @param message EventThreatDetectionCustomModule message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an EventThreatDetectionCustomModule message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns EventThreatDetectionCustomModule
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.EventThreatDetectionCustomModule;
+
+                    /**
+                     * Decodes an EventThreatDetectionCustomModule message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns EventThreatDetectionCustomModule
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.EventThreatDetectionCustomModule;
+
+                    /**
+                     * Verifies an EventThreatDetectionCustomModule message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an EventThreatDetectionCustomModule message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns EventThreatDetectionCustomModule
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.EventThreatDetectionCustomModule;
+
+                    /**
+                     * Creates a plain object from an EventThreatDetectionCustomModule message. Also converts values to other types if specified.
+                     * @param message EventThreatDetectionCustomModule
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.EventThreatDetectionCustomModule, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this EventThreatDetectionCustomModule to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for EventThreatDetectionCustomModule
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace EventThreatDetectionCustomModule {
+
+                    /** EnablementState enum. */
+                    enum EnablementState {
+                        ENABLEMENT_STATE_UNSPECIFIED = 0,
+                        ENABLED = 1,
+                        DISABLED = 2,
+                        INHERITED = 3
+                    }
+                }
+
+                /** Properties of a CustomModuleValidationErrors. */
+                interface ICustomModuleValidationErrors {
+
+                    /** CustomModuleValidationErrors errors */
+                    errors?: (google.cloud.securitycenter.v1.ICustomModuleValidationError[]|null);
+                }
+
+                /** Represents a CustomModuleValidationErrors. */
+                class CustomModuleValidationErrors implements ICustomModuleValidationErrors {
+
+                    /**
+                     * Constructs a new CustomModuleValidationErrors.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.ICustomModuleValidationErrors);
+
+                    /** CustomModuleValidationErrors errors. */
+                    public errors: google.cloud.securitycenter.v1.ICustomModuleValidationError[];
+
+                    /**
+                     * Creates a new CustomModuleValidationErrors instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CustomModuleValidationErrors instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.ICustomModuleValidationErrors): google.cloud.securitycenter.v1.CustomModuleValidationErrors;
+
+                    /**
+                     * Encodes the specified CustomModuleValidationErrors message. Does not implicitly {@link google.cloud.securitycenter.v1.CustomModuleValidationErrors.verify|verify} messages.
+                     * @param message CustomModuleValidationErrors message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.ICustomModuleValidationErrors, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CustomModuleValidationErrors message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.CustomModuleValidationErrors.verify|verify} messages.
+                     * @param message CustomModuleValidationErrors message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.ICustomModuleValidationErrors, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CustomModuleValidationErrors message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CustomModuleValidationErrors
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.CustomModuleValidationErrors;
+
+                    /**
+                     * Decodes a CustomModuleValidationErrors message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CustomModuleValidationErrors
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.CustomModuleValidationErrors;
+
+                    /**
+                     * Verifies a CustomModuleValidationErrors message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CustomModuleValidationErrors message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CustomModuleValidationErrors
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.CustomModuleValidationErrors;
+
+                    /**
+                     * Creates a plain object from a CustomModuleValidationErrors message. Also converts values to other types if specified.
+                     * @param message CustomModuleValidationErrors
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.CustomModuleValidationErrors, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CustomModuleValidationErrors to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CustomModuleValidationErrors
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CustomModuleValidationError. */
+                interface ICustomModuleValidationError {
+
+                    /** CustomModuleValidationError description */
+                    description?: (string|null);
+
+                    /** CustomModuleValidationError fieldPath */
+                    fieldPath?: (string|null);
+
+                    /** CustomModuleValidationError start */
+                    start?: (google.cloud.securitycenter.v1.IPosition|null);
+
+                    /** CustomModuleValidationError end */
+                    end?: (google.cloud.securitycenter.v1.IPosition|null);
+                }
+
+                /** Represents a CustomModuleValidationError. */
+                class CustomModuleValidationError implements ICustomModuleValidationError {
+
+                    /**
+                     * Constructs a new CustomModuleValidationError.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.ICustomModuleValidationError);
+
+                    /** CustomModuleValidationError description. */
+                    public description: string;
+
+                    /** CustomModuleValidationError fieldPath. */
+                    public fieldPath: string;
+
+                    /** CustomModuleValidationError start. */
+                    public start?: (google.cloud.securitycenter.v1.IPosition|null);
+
+                    /** CustomModuleValidationError end. */
+                    public end?: (google.cloud.securitycenter.v1.IPosition|null);
+
+                    /**
+                     * Creates a new CustomModuleValidationError instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CustomModuleValidationError instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.ICustomModuleValidationError): google.cloud.securitycenter.v1.CustomModuleValidationError;
+
+                    /**
+                     * Encodes the specified CustomModuleValidationError message. Does not implicitly {@link google.cloud.securitycenter.v1.CustomModuleValidationError.verify|verify} messages.
+                     * @param message CustomModuleValidationError message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.ICustomModuleValidationError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CustomModuleValidationError message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.CustomModuleValidationError.verify|verify} messages.
+                     * @param message CustomModuleValidationError message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.ICustomModuleValidationError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CustomModuleValidationError message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CustomModuleValidationError
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.CustomModuleValidationError;
+
+                    /**
+                     * Decodes a CustomModuleValidationError message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CustomModuleValidationError
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.CustomModuleValidationError;
+
+                    /**
+                     * Verifies a CustomModuleValidationError message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CustomModuleValidationError message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CustomModuleValidationError
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.CustomModuleValidationError;
+
+                    /**
+                     * Creates a plain object from a CustomModuleValidationError message. Also converts values to other types if specified.
+                     * @param message CustomModuleValidationError
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.CustomModuleValidationError, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CustomModuleValidationError to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CustomModuleValidationError
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Position. */
+                interface IPosition {
+
+                    /** Position lineNumber */
+                    lineNumber?: (number|null);
+
+                    /** Position columnNumber */
+                    columnNumber?: (number|null);
+                }
+
+                /** Represents a Position. */
+                class Position implements IPosition {
+
+                    /**
+                     * Constructs a new Position.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IPosition);
+
+                    /** Position lineNumber. */
+                    public lineNumber: number;
+
+                    /** Position columnNumber. */
+                    public columnNumber: number;
+
+                    /**
+                     * Creates a new Position instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Position instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IPosition): google.cloud.securitycenter.v1.Position;
+
+                    /**
+                     * Encodes the specified Position message. Does not implicitly {@link google.cloud.securitycenter.v1.Position.verify|verify} messages.
+                     * @param message Position message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IPosition, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Position message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.Position.verify|verify} messages.
+                     * @param message Position message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IPosition, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Position message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Position
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.Position;
+
+                    /**
+                     * Decodes a Position message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Position
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.Position;
+
+                    /**
+                     * Verifies a Position message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Position message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Position
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.Position;
+
+                    /**
+                     * Creates a plain object from a Position message. Also converts values to other types if specified.
+                     * @param message Position
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.Position, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Position to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Position
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
                 /** Properties of an Exfiltration. */
@@ -4316,6 +5651,9 @@ export namespace google {
                     /** Finding muteInitiator */
                     muteInitiator?: (string|null);
 
+                    /** Finding muteInfo */
+                    muteInfo?: (google.cloud.securitycenter.v1.Finding.IMuteInfo|null);
+
                     /** Finding processes */
                     processes?: (google.cloud.securitycenter.v1.IProcess[]|null);
 
@@ -4352,6 +5690,9 @@ export namespace google {
                     /** Finding database */
                     database?: (google.cloud.securitycenter.v1.IDatabase|null);
 
+                    /** Finding attackExposure */
+                    attackExposure?: (google.cloud.securitycenter.v1.IAttackExposure|null);
+
                     /** Finding files */
                     files?: (google.cloud.securitycenter.v1.IFile[]|null);
 
@@ -4387,6 +5728,12 @@ export namespace google {
 
                     /** Finding notebook */
                     notebook?: (google.cloud.securitycenter.v1.INotebook|null);
+
+                    /** Finding toxicCombination */
+                    toxicCombination?: (google.cloud.securitycenter.v1.IToxicCombination|null);
+
+                    /** Finding groupMemberships */
+                    groupMemberships?: (google.cloud.securitycenter.v1.IGroupMembership[]|null);
                 }
 
                 /** Represents a Finding. */
@@ -4464,6 +5811,9 @@ export namespace google {
                     /** Finding muteInitiator. */
                     public muteInitiator: string;
 
+                    /** Finding muteInfo. */
+                    public muteInfo?: (google.cloud.securitycenter.v1.Finding.IMuteInfo|null);
+
                     /** Finding processes. */
                     public processes: google.cloud.securitycenter.v1.IProcess[];
 
@@ -4500,6 +5850,9 @@ export namespace google {
                     /** Finding database. */
                     public database?: (google.cloud.securitycenter.v1.IDatabase|null);
 
+                    /** Finding attackExposure. */
+                    public attackExposure?: (google.cloud.securitycenter.v1.IAttackExposure|null);
+
                     /** Finding files. */
                     public files: google.cloud.securitycenter.v1.IFile[];
 
@@ -4535,6 +5888,12 @@ export namespace google {
 
                     /** Finding notebook. */
                     public notebook?: (google.cloud.securitycenter.v1.INotebook|null);
+
+                    /** Finding toxicCombination. */
+                    public toxicCombination?: (google.cloud.securitycenter.v1.IToxicCombination|null);
+
+                    /** Finding groupMemberships. */
+                    public groupMemberships: google.cloud.securitycenter.v1.IGroupMembership[];
 
                     /**
                      * Creates a new Finding instance using the specified properties.
@@ -4648,7 +6007,432 @@ export namespace google {
                         MISCONFIGURATION = 3,
                         OBSERVATION = 4,
                         SCC_ERROR = 5,
-                        POSTURE_VIOLATION = 6
+                        POSTURE_VIOLATION = 6,
+                        TOXIC_COMBINATION = 7
+                    }
+
+                    /** Properties of a MuteInfo. */
+                    interface IMuteInfo {
+
+                        /** MuteInfo staticMute */
+                        staticMute?: (google.cloud.securitycenter.v1.Finding.MuteInfo.IStaticMute|null);
+
+                        /** MuteInfo dynamicMuteRecords */
+                        dynamicMuteRecords?: (google.cloud.securitycenter.v1.Finding.MuteInfo.IDynamicMuteRecord[]|null);
+                    }
+
+                    /** Represents a MuteInfo. */
+                    class MuteInfo implements IMuteInfo {
+
+                        /**
+                         * Constructs a new MuteInfo.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.Finding.IMuteInfo);
+
+                        /** MuteInfo staticMute. */
+                        public staticMute?: (google.cloud.securitycenter.v1.Finding.MuteInfo.IStaticMute|null);
+
+                        /** MuteInfo dynamicMuteRecords. */
+                        public dynamicMuteRecords: google.cloud.securitycenter.v1.Finding.MuteInfo.IDynamicMuteRecord[];
+
+                        /**
+                         * Creates a new MuteInfo instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns MuteInfo instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.Finding.IMuteInfo): google.cloud.securitycenter.v1.Finding.MuteInfo;
+
+                        /**
+                         * Encodes the specified MuteInfo message. Does not implicitly {@link google.cloud.securitycenter.v1.Finding.MuteInfo.verify|verify} messages.
+                         * @param message MuteInfo message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.Finding.IMuteInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified MuteInfo message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.Finding.MuteInfo.verify|verify} messages.
+                         * @param message MuteInfo message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.Finding.IMuteInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a MuteInfo message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns MuteInfo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.Finding.MuteInfo;
+
+                        /**
+                         * Decodes a MuteInfo message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns MuteInfo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.Finding.MuteInfo;
+
+                        /**
+                         * Verifies a MuteInfo message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a MuteInfo message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns MuteInfo
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.Finding.MuteInfo;
+
+                        /**
+                         * Creates a plain object from a MuteInfo message. Also converts values to other types if specified.
+                         * @param message MuteInfo
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.Finding.MuteInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this MuteInfo to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for MuteInfo
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace MuteInfo {
+
+                        /** Properties of a StaticMute. */
+                        interface IStaticMute {
+
+                            /** StaticMute state */
+                            state?: (google.cloud.securitycenter.v1.Finding.Mute|keyof typeof google.cloud.securitycenter.v1.Finding.Mute|null);
+
+                            /** StaticMute applyTime */
+                            applyTime?: (google.protobuf.ITimestamp|null);
+                        }
+
+                        /** Represents a StaticMute. */
+                        class StaticMute implements IStaticMute {
+
+                            /**
+                             * Constructs a new StaticMute.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.securitycenter.v1.Finding.MuteInfo.IStaticMute);
+
+                            /** StaticMute state. */
+                            public state: (google.cloud.securitycenter.v1.Finding.Mute|keyof typeof google.cloud.securitycenter.v1.Finding.Mute);
+
+                            /** StaticMute applyTime. */
+                            public applyTime?: (google.protobuf.ITimestamp|null);
+
+                            /**
+                             * Creates a new StaticMute instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns StaticMute instance
+                             */
+                            public static create(properties?: google.cloud.securitycenter.v1.Finding.MuteInfo.IStaticMute): google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Encodes the specified StaticMute message. Does not implicitly {@link google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute.verify|verify} messages.
+                             * @param message StaticMute message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.securitycenter.v1.Finding.MuteInfo.IStaticMute, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified StaticMute message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute.verify|verify} messages.
+                             * @param message StaticMute message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.securitycenter.v1.Finding.MuteInfo.IStaticMute, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a StaticMute message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns StaticMute
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Decodes a StaticMute message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns StaticMute
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Verifies a StaticMute message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a StaticMute message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns StaticMute
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Creates a plain object from a StaticMute message. Also converts values to other types if specified.
+                             * @param message StaticMute
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this StaticMute to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for StaticMute
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        /** Properties of a DynamicMuteRecord. */
+                        interface IDynamicMuteRecord {
+
+                            /** DynamicMuteRecord muteConfig */
+                            muteConfig?: (string|null);
+
+                            /** DynamicMuteRecord matchTime */
+                            matchTime?: (google.protobuf.ITimestamp|null);
+                        }
+
+                        /** Represents a DynamicMuteRecord. */
+                        class DynamicMuteRecord implements IDynamicMuteRecord {
+
+                            /**
+                             * Constructs a new DynamicMuteRecord.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.securitycenter.v1.Finding.MuteInfo.IDynamicMuteRecord);
+
+                            /** DynamicMuteRecord muteConfig. */
+                            public muteConfig: string;
+
+                            /** DynamicMuteRecord matchTime. */
+                            public matchTime?: (google.protobuf.ITimestamp|null);
+
+                            /**
+                             * Creates a new DynamicMuteRecord instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns DynamicMuteRecord instance
+                             */
+                            public static create(properties?: google.cloud.securitycenter.v1.Finding.MuteInfo.IDynamicMuteRecord): google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Encodes the specified DynamicMuteRecord message. Does not implicitly {@link google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord.verify|verify} messages.
+                             * @param message DynamicMuteRecord message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.securitycenter.v1.Finding.MuteInfo.IDynamicMuteRecord, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified DynamicMuteRecord message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord.verify|verify} messages.
+                             * @param message DynamicMuteRecord message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.securitycenter.v1.Finding.MuteInfo.IDynamicMuteRecord, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a DynamicMuteRecord message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns DynamicMuteRecord
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Decodes a DynamicMuteRecord message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns DynamicMuteRecord
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Verifies a DynamicMuteRecord message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a DynamicMuteRecord message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns DynamicMuteRecord
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Creates a plain object from a DynamicMuteRecord message. Also converts values to other types if specified.
+                             * @param message DynamicMuteRecord
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.securitycenter.v1.Finding.MuteInfo.DynamicMuteRecord, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this DynamicMuteRecord to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for DynamicMuteRecord
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+                    }
+                }
+
+                /** Properties of a GroupMembership. */
+                interface IGroupMembership {
+
+                    /** GroupMembership groupType */
+                    groupType?: (google.cloud.securitycenter.v1.GroupMembership.GroupType|keyof typeof google.cloud.securitycenter.v1.GroupMembership.GroupType|null);
+
+                    /** GroupMembership groupId */
+                    groupId?: (string|null);
+                }
+
+                /** Represents a GroupMembership. */
+                class GroupMembership implements IGroupMembership {
+
+                    /**
+                     * Constructs a new GroupMembership.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IGroupMembership);
+
+                    /** GroupMembership groupType. */
+                    public groupType: (google.cloud.securitycenter.v1.GroupMembership.GroupType|keyof typeof google.cloud.securitycenter.v1.GroupMembership.GroupType);
+
+                    /** GroupMembership groupId. */
+                    public groupId: string;
+
+                    /**
+                     * Creates a new GroupMembership instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GroupMembership instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IGroupMembership): google.cloud.securitycenter.v1.GroupMembership;
+
+                    /**
+                     * Encodes the specified GroupMembership message. Does not implicitly {@link google.cloud.securitycenter.v1.GroupMembership.verify|verify} messages.
+                     * @param message GroupMembership message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IGroupMembership, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GroupMembership message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.GroupMembership.verify|verify} messages.
+                     * @param message GroupMembership message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IGroupMembership, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GroupMembership message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GroupMembership
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.GroupMembership;
+
+                    /**
+                     * Decodes a GroupMembership message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GroupMembership
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.GroupMembership;
+
+                    /**
+                     * Verifies a GroupMembership message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GroupMembership message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GroupMembership
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.GroupMembership;
+
+                    /**
+                     * Creates a plain object from a GroupMembership message. Also converts values to other types if specified.
+                     * @param message GroupMembership
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.GroupMembership, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GroupMembership to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GroupMembership
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace GroupMembership {
+
+                    /** GroupType enum. */
+                    enum GroupType {
+                        GROUP_TYPE_UNSPECIFIED = 0,
+                        GROUP_TYPE_TOXIC_COMBINATION = 1
                     }
                 }
 
@@ -6986,8 +8770,11 @@ export namespace google {
                         PROCESS_DISCOVERY = 56,
                         COMMAND_AND_SCRIPTING_INTERPRETER = 6,
                         UNIX_SHELL = 7,
+                        PYTHON = 59,
+                        EXPLOITATION_FOR_PRIVILEGE_ESCALATION = 63,
                         PERMISSION_GROUPS_DISCOVERY = 18,
                         CLOUD_GROUPS = 19,
+                        INDICATOR_REMOVAL_FILE_DELETION = 64,
                         APPLICATION_LAYER_PROTOCOL = 45,
                         DNS = 46,
                         SOFTWARE_DEPLOYMENT_TOOLS = 47,
@@ -7035,7 +8822,10 @@ export namespace google {
                         OBTAIN_CAPABILITIES = 43,
                         ACTIVE_SCANNING = 1,
                         SCANNING_IP_BLOCKS = 2,
-                        CONTAINER_AND_RESOURCE_DISCOVERY = 57
+                        CONTAINER_ADMINISTRATION_COMMAND = 60,
+                        ESCAPE_TO_HOST = 61,
+                        CONTAINER_AND_RESOURCE_DISCOVERY = 57,
+                        STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES = 62
                     }
                 }
 
@@ -7756,6 +9546,109 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a ToxicCombination. */
+                interface IToxicCombination {
+
+                    /** ToxicCombination attackExposureScore */
+                    attackExposureScore?: (number|null);
+
+                    /** ToxicCombination relatedFindings */
+                    relatedFindings?: (string[]|null);
+                }
+
+                /** Represents a ToxicCombination. */
+                class ToxicCombination implements IToxicCombination {
+
+                    /**
+                     * Constructs a new ToxicCombination.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IToxicCombination);
+
+                    /** ToxicCombination attackExposureScore. */
+                    public attackExposureScore: number;
+
+                    /** ToxicCombination relatedFindings. */
+                    public relatedFindings: string[];
+
+                    /**
+                     * Creates a new ToxicCombination instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ToxicCombination instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IToxicCombination): google.cloud.securitycenter.v1.ToxicCombination;
+
+                    /**
+                     * Encodes the specified ToxicCombination message. Does not implicitly {@link google.cloud.securitycenter.v1.ToxicCombination.verify|verify} messages.
+                     * @param message ToxicCombination message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IToxicCombination, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ToxicCombination message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ToxicCombination.verify|verify} messages.
+                     * @param message ToxicCombination message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IToxicCombination, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ToxicCombination message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ToxicCombination
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ToxicCombination;
+
+                    /**
+                     * Decodes a ToxicCombination message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ToxicCombination
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ToxicCombination;
+
+                    /**
+                     * Verifies a ToxicCombination message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ToxicCombination message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ToxicCombination
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ToxicCombination;
+
+                    /**
+                     * Creates a plain object from a ToxicCombination message. Also converts values to other types if specified.
+                     * @param message ToxicCombination
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ToxicCombination, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ToxicCombination to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ToxicCombination
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a Vulnerability. */
                 interface IVulnerability {
 
@@ -7897,6 +9790,9 @@ export namespace google {
 
                     /** Cve zeroDay */
                     zeroDay?: (boolean|null);
+
+                    /** Cve exploitReleaseDate */
+                    exploitReleaseDate?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a Cve. */
@@ -7931,6 +9827,9 @@ export namespace google {
 
                     /** Cve zeroDay. */
                     public zeroDay: boolean;
+
+                    /** Cve exploitReleaseDate. */
+                    public exploitReleaseDate?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new Cve instance using the specified properties.
@@ -8576,6 +10475,12 @@ export namespace google {
 
                     /** MuteConfig mostRecentEditor */
                     mostRecentEditor?: (string|null);
+
+                    /** MuteConfig type */
+                    type?: (google.cloud.securitycenter.v1.MuteConfig.MuteConfigType|keyof typeof google.cloud.securitycenter.v1.MuteConfig.MuteConfigType|null);
+
+                    /** MuteConfig expiryTime */
+                    expiryTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a MuteConfig. */
@@ -8607,6 +10512,12 @@ export namespace google {
 
                     /** MuteConfig mostRecentEditor. */
                     public mostRecentEditor: string;
+
+                    /** MuteConfig type. */
+                    public type: (google.cloud.securitycenter.v1.MuteConfig.MuteConfigType|keyof typeof google.cloud.securitycenter.v1.MuteConfig.MuteConfigType);
+
+                    /** MuteConfig expiryTime. */
+                    public expiryTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new MuteConfig instance using the specified properties.
@@ -8684,6 +10595,16 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace MuteConfig {
+
+                    /** MuteConfigType enum. */
+                    enum MuteConfigType {
+                        MUTE_CONFIG_TYPE_UNSPECIFIED = 0,
+                        STATIC = 1,
+                        DYNAMIC = 2
+                    }
                 }
 
                 /** Properties of a NotificationConfig. */
@@ -9048,6 +10969,30 @@ export namespace google {
 
                     /** Resource folders */
                     folders?: (google.cloud.securitycenter.v1.IFolder[]|null);
+
+                    /** Resource cloudProvider */
+                    cloudProvider?: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider|null);
+
+                    /** Resource organization */
+                    organization?: (string|null);
+
+                    /** Resource service */
+                    service?: (string|null);
+
+                    /** Resource location */
+                    location?: (string|null);
+
+                    /** Resource awsMetadata */
+                    awsMetadata?: (google.cloud.securitycenter.v1.IAwsMetadata|null);
+
+                    /** Resource azureMetadata */
+                    azureMetadata?: (google.cloud.securitycenter.v1.IAzureMetadata|null);
+
+                    /** Resource resourcePath */
+                    resourcePath?: (google.cloud.securitycenter.v1.IResourcePath|null);
+
+                    /** Resource resourcePathString */
+                    resourcePathString?: (string|null);
                 }
 
                 /** Represents a Resource. */
@@ -9082,6 +11027,33 @@ export namespace google {
 
                     /** Resource folders. */
                     public folders: google.cloud.securitycenter.v1.IFolder[];
+
+                    /** Resource cloudProvider. */
+                    public cloudProvider: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider);
+
+                    /** Resource organization. */
+                    public organization: string;
+
+                    /** Resource service. */
+                    public service: string;
+
+                    /** Resource location. */
+                    public location: string;
+
+                    /** Resource awsMetadata. */
+                    public awsMetadata?: (google.cloud.securitycenter.v1.IAwsMetadata|null);
+
+                    /** Resource azureMetadata. */
+                    public azureMetadata?: (google.cloud.securitycenter.v1.IAzureMetadata|null);
+
+                    /** Resource resourcePath. */
+                    public resourcePath?: (google.cloud.securitycenter.v1.IResourcePath|null);
+
+                    /** Resource resourcePathString. */
+                    public resourcePathString: string;
+
+                    /** Resource cloudProviderMetadata. */
+                    public cloudProviderMetadata?: ("awsMetadata"|"azureMetadata");
 
                     /**
                      * Creates a new Resource instance using the specified properties.
@@ -9159,6 +11131,1067 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** CloudProvider enum. */
+                enum CloudProvider {
+                    CLOUD_PROVIDER_UNSPECIFIED = 0,
+                    GOOGLE_CLOUD_PLATFORM = 1,
+                    AMAZON_WEB_SERVICES = 2,
+                    MICROSOFT_AZURE = 3
+                }
+
+                /** Properties of an AwsMetadata. */
+                interface IAwsMetadata {
+
+                    /** AwsMetadata organization */
+                    organization?: (google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganization|null);
+
+                    /** AwsMetadata organizationalUnits */
+                    organizationalUnits?: (google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganizationalUnit[]|null);
+
+                    /** AwsMetadata account */
+                    account?: (google.cloud.securitycenter.v1.AwsMetadata.IAwsAccount|null);
+                }
+
+                /** Represents an AwsMetadata. */
+                class AwsMetadata implements IAwsMetadata {
+
+                    /**
+                     * Constructs a new AwsMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IAwsMetadata);
+
+                    /** AwsMetadata organization. */
+                    public organization?: (google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganization|null);
+
+                    /** AwsMetadata organizationalUnits. */
+                    public organizationalUnits: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganizationalUnit[];
+
+                    /** AwsMetadata account. */
+                    public account?: (google.cloud.securitycenter.v1.AwsMetadata.IAwsAccount|null);
+
+                    /**
+                     * Creates a new AwsMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AwsMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IAwsMetadata): google.cloud.securitycenter.v1.AwsMetadata;
+
+                    /**
+                     * Encodes the specified AwsMetadata message. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.verify|verify} messages.
+                     * @param message AwsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IAwsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AwsMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.verify|verify} messages.
+                     * @param message AwsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IAwsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AwsMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AwsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AwsMetadata;
+
+                    /**
+                     * Decodes an AwsMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AwsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AwsMetadata;
+
+                    /**
+                     * Verifies an AwsMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AwsMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AwsMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AwsMetadata;
+
+                    /**
+                     * Creates a plain object from an AwsMetadata message. Also converts values to other types if specified.
+                     * @param message AwsMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.AwsMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AwsMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AwsMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AwsMetadata {
+
+                    /** Properties of an AwsOrganization. */
+                    interface IAwsOrganization {
+
+                        /** AwsOrganization id */
+                        id?: (string|null);
+                    }
+
+                    /** Represents an AwsOrganization. */
+                    class AwsOrganization implements IAwsOrganization {
+
+                        /**
+                         * Constructs a new AwsOrganization.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganization);
+
+                        /** AwsOrganization id. */
+                        public id: string;
+
+                        /**
+                         * Creates a new AwsOrganization instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsOrganization instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganization): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Encodes the specified AwsOrganization message. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization.verify|verify} messages.
+                         * @param message AwsOrganization message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganization, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsOrganization message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization.verify|verify} messages.
+                         * @param message AwsOrganization message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganization, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsOrganization message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsOrganization
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Decodes an AwsOrganization message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsOrganization
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Verifies an AwsOrganization message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsOrganization message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsOrganization
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Creates a plain object from an AwsOrganization message. Also converts values to other types if specified.
+                         * @param message AwsOrganization
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AwsMetadata.AwsOrganization, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsOrganization to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsOrganization
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AwsOrganizationalUnit. */
+                    interface IAwsOrganizationalUnit {
+
+                        /** AwsOrganizationalUnit id */
+                        id?: (string|null);
+
+                        /** AwsOrganizationalUnit name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents an AwsOrganizationalUnit. */
+                    class AwsOrganizationalUnit implements IAwsOrganizationalUnit {
+
+                        /**
+                         * Constructs a new AwsOrganizationalUnit.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganizationalUnit);
+
+                        /** AwsOrganizationalUnit id. */
+                        public id: string;
+
+                        /** AwsOrganizationalUnit name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new AwsOrganizationalUnit instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsOrganizationalUnit instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganizationalUnit): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Encodes the specified AwsOrganizationalUnit message. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit.verify|verify} messages.
+                         * @param message AwsOrganizationalUnit message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganizationalUnit, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsOrganizationalUnit message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit.verify|verify} messages.
+                         * @param message AwsOrganizationalUnit message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AwsMetadata.IAwsOrganizationalUnit, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsOrganizationalUnit message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsOrganizationalUnit
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Decodes an AwsOrganizationalUnit message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsOrganizationalUnit
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Verifies an AwsOrganizationalUnit message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsOrganizationalUnit message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsOrganizationalUnit
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Creates a plain object from an AwsOrganizationalUnit message. Also converts values to other types if specified.
+                         * @param message AwsOrganizationalUnit
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsOrganizationalUnit to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsOrganizationalUnit
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AwsAccount. */
+                    interface IAwsAccount {
+
+                        /** AwsAccount id */
+                        id?: (string|null);
+
+                        /** AwsAccount name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents an AwsAccount. */
+                    class AwsAccount implements IAwsAccount {
+
+                        /**
+                         * Constructs a new AwsAccount.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AwsMetadata.IAwsAccount);
+
+                        /** AwsAccount id. */
+                        public id: string;
+
+                        /** AwsAccount name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new AwsAccount instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsAccount instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AwsMetadata.IAwsAccount): google.cloud.securitycenter.v1.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Encodes the specified AwsAccount message. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.AwsAccount.verify|verify} messages.
+                         * @param message AwsAccount message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AwsMetadata.IAwsAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsAccount message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AwsMetadata.AwsAccount.verify|verify} messages.
+                         * @param message AwsAccount message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AwsMetadata.IAwsAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsAccount message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsAccount
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Decodes an AwsAccount message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsAccount
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Verifies an AwsAccount message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsAccount message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsAccount
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Creates a plain object from an AwsAccount message. Also converts values to other types if specified.
+                         * @param message AwsAccount
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AwsMetadata.AwsAccount, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsAccount to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsAccount
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** Properties of an AzureMetadata. */
+                interface IAzureMetadata {
+
+                    /** AzureMetadata managementGroups */
+                    managementGroups?: (google.cloud.securitycenter.v1.AzureMetadata.IAzureManagementGroup[]|null);
+
+                    /** AzureMetadata subscription */
+                    subscription?: (google.cloud.securitycenter.v1.AzureMetadata.IAzureSubscription|null);
+
+                    /** AzureMetadata resourceGroup */
+                    resourceGroup?: (google.cloud.securitycenter.v1.AzureMetadata.IAzureResourceGroup|null);
+                }
+
+                /** Represents an AzureMetadata. */
+                class AzureMetadata implements IAzureMetadata {
+
+                    /**
+                     * Constructs a new AzureMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IAzureMetadata);
+
+                    /** AzureMetadata managementGroups. */
+                    public managementGroups: google.cloud.securitycenter.v1.AzureMetadata.IAzureManagementGroup[];
+
+                    /** AzureMetadata subscription. */
+                    public subscription?: (google.cloud.securitycenter.v1.AzureMetadata.IAzureSubscription|null);
+
+                    /** AzureMetadata resourceGroup. */
+                    public resourceGroup?: (google.cloud.securitycenter.v1.AzureMetadata.IAzureResourceGroup|null);
+
+                    /**
+                     * Creates a new AzureMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AzureMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IAzureMetadata): google.cloud.securitycenter.v1.AzureMetadata;
+
+                    /**
+                     * Encodes the specified AzureMetadata message. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.verify|verify} messages.
+                     * @param message AzureMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IAzureMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AzureMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.verify|verify} messages.
+                     * @param message AzureMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IAzureMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AzureMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AzureMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AzureMetadata;
+
+                    /**
+                     * Decodes an AzureMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AzureMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AzureMetadata;
+
+                    /**
+                     * Verifies an AzureMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AzureMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AzureMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AzureMetadata;
+
+                    /**
+                     * Creates a plain object from an AzureMetadata message. Also converts values to other types if specified.
+                     * @param message AzureMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.AzureMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AzureMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AzureMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AzureMetadata {
+
+                    /** Properties of an AzureManagementGroup. */
+                    interface IAzureManagementGroup {
+
+                        /** AzureManagementGroup id */
+                        id?: (string|null);
+
+                        /** AzureManagementGroup displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents an AzureManagementGroup. */
+                    class AzureManagementGroup implements IAzureManagementGroup {
+
+                        /**
+                         * Constructs a new AzureManagementGroup.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AzureMetadata.IAzureManagementGroup);
+
+                        /** AzureManagementGroup id. */
+                        public id: string;
+
+                        /** AzureManagementGroup displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new AzureManagementGroup instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureManagementGroup instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AzureMetadata.IAzureManagementGroup): google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Encodes the specified AzureManagementGroup message. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup.verify|verify} messages.
+                         * @param message AzureManagementGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AzureMetadata.IAzureManagementGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureManagementGroup message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup.verify|verify} messages.
+                         * @param message AzureManagementGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AzureMetadata.IAzureManagementGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureManagementGroup message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureManagementGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Decodes an AzureManagementGroup message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureManagementGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Verifies an AzureManagementGroup message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureManagementGroup message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureManagementGroup
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Creates a plain object from an AzureManagementGroup message. Also converts values to other types if specified.
+                         * @param message AzureManagementGroup
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AzureMetadata.AzureManagementGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureManagementGroup to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureManagementGroup
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AzureSubscription. */
+                    interface IAzureSubscription {
+
+                        /** AzureSubscription id */
+                        id?: (string|null);
+
+                        /** AzureSubscription displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents an AzureSubscription. */
+                    class AzureSubscription implements IAzureSubscription {
+
+                        /**
+                         * Constructs a new AzureSubscription.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AzureMetadata.IAzureSubscription);
+
+                        /** AzureSubscription id. */
+                        public id: string;
+
+                        /** AzureSubscription displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new AzureSubscription instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureSubscription instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AzureMetadata.IAzureSubscription): google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Encodes the specified AzureSubscription message. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription.verify|verify} messages.
+                         * @param message AzureSubscription message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AzureMetadata.IAzureSubscription, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureSubscription message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription.verify|verify} messages.
+                         * @param message AzureSubscription message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AzureMetadata.IAzureSubscription, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureSubscription message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureSubscription
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Decodes an AzureSubscription message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureSubscription
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Verifies an AzureSubscription message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureSubscription message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureSubscription
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Creates a plain object from an AzureSubscription message. Also converts values to other types if specified.
+                         * @param message AzureSubscription
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AzureMetadata.AzureSubscription, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureSubscription to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureSubscription
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AzureResourceGroup. */
+                    interface IAzureResourceGroup {
+
+                        /** AzureResourceGroup name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents an AzureResourceGroup. */
+                    class AzureResourceGroup implements IAzureResourceGroup {
+
+                        /**
+                         * Constructs a new AzureResourceGroup.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.AzureMetadata.IAzureResourceGroup);
+
+                        /** AzureResourceGroup name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new AzureResourceGroup instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureResourceGroup instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.AzureMetadata.IAzureResourceGroup): google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Encodes the specified AzureResourceGroup message. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup.verify|verify} messages.
+                         * @param message AzureResourceGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.AzureMetadata.IAzureResourceGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureResourceGroup message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup.verify|verify} messages.
+                         * @param message AzureResourceGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.AzureMetadata.IAzureResourceGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureResourceGroup message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureResourceGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Decodes an AzureResourceGroup message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureResourceGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Verifies an AzureResourceGroup message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureResourceGroup message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureResourceGroup
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Creates a plain object from an AzureResourceGroup message. Also converts values to other types if specified.
+                         * @param message AzureResourceGroup
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.AzureMetadata.AzureResourceGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureResourceGroup to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureResourceGroup
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** Properties of a ResourcePath. */
+                interface IResourcePath {
+
+                    /** ResourcePath nodes */
+                    nodes?: (google.cloud.securitycenter.v1.ResourcePath.IResourcePathNode[]|null);
+                }
+
+                /** Represents a ResourcePath. */
+                class ResourcePath implements IResourcePath {
+
+                    /**
+                     * Constructs a new ResourcePath.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IResourcePath);
+
+                    /** ResourcePath nodes. */
+                    public nodes: google.cloud.securitycenter.v1.ResourcePath.IResourcePathNode[];
+
+                    /**
+                     * Creates a new ResourcePath instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ResourcePath instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IResourcePath): google.cloud.securitycenter.v1.ResourcePath;
+
+                    /**
+                     * Encodes the specified ResourcePath message. Does not implicitly {@link google.cloud.securitycenter.v1.ResourcePath.verify|verify} messages.
+                     * @param message ResourcePath message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IResourcePath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ResourcePath message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ResourcePath.verify|verify} messages.
+                     * @param message ResourcePath message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IResourcePath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ResourcePath message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ResourcePath
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ResourcePath;
+
+                    /**
+                     * Decodes a ResourcePath message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ResourcePath
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ResourcePath;
+
+                    /**
+                     * Verifies a ResourcePath message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ResourcePath message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ResourcePath
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ResourcePath;
+
+                    /**
+                     * Creates a plain object from a ResourcePath message. Also converts values to other types if specified.
+                     * @param message ResourcePath
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ResourcePath, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ResourcePath to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ResourcePath
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace ResourcePath {
+
+                    /** ResourcePathNodeType enum. */
+                    enum ResourcePathNodeType {
+                        RESOURCE_PATH_NODE_TYPE_UNSPECIFIED = 0,
+                        GCP_ORGANIZATION = 1,
+                        GCP_FOLDER = 2,
+                        GCP_PROJECT = 3,
+                        AWS_ORGANIZATION = 4,
+                        AWS_ORGANIZATIONAL_UNIT = 5,
+                        AWS_ACCOUNT = 6,
+                        AZURE_MANAGEMENT_GROUP = 7,
+                        AZURE_SUBSCRIPTION = 8,
+                        AZURE_RESOURCE_GROUP = 9
+                    }
+
+                    /** Properties of a ResourcePathNode. */
+                    interface IResourcePathNode {
+
+                        /** ResourcePathNode nodeType */
+                        nodeType?: (google.cloud.securitycenter.v1.ResourcePath.ResourcePathNodeType|keyof typeof google.cloud.securitycenter.v1.ResourcePath.ResourcePathNodeType|null);
+
+                        /** ResourcePathNode id */
+                        id?: (string|null);
+
+                        /** ResourcePathNode displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents a ResourcePathNode. */
+                    class ResourcePathNode implements IResourcePathNode {
+
+                        /**
+                         * Constructs a new ResourcePathNode.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.ResourcePath.IResourcePathNode);
+
+                        /** ResourcePathNode nodeType. */
+                        public nodeType: (google.cloud.securitycenter.v1.ResourcePath.ResourcePathNodeType|keyof typeof google.cloud.securitycenter.v1.ResourcePath.ResourcePathNodeType);
+
+                        /** ResourcePathNode id. */
+                        public id: string;
+
+                        /** ResourcePathNode displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new ResourcePathNode instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ResourcePathNode instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.ResourcePath.IResourcePathNode): google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Encodes the specified ResourcePathNode message. Does not implicitly {@link google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode.verify|verify} messages.
+                         * @param message ResourcePathNode message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.ResourcePath.IResourcePathNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ResourcePathNode message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode.verify|verify} messages.
+                         * @param message ResourcePathNode message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.ResourcePath.IResourcePathNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a ResourcePathNode message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ResourcePathNode
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Decodes a ResourcePathNode message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ResourcePathNode
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Verifies a ResourcePathNode message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a ResourcePathNode message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ResourcePathNode
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Creates a plain object from a ResourcePathNode message. Also converts values to other types if specified.
+                         * @param message ResourcePathNode
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ResourcePathNode to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for ResourcePathNode
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
                 }
 
                 /** Properties of an OrganizationSettings. */
@@ -9390,6 +12423,278 @@ export namespace google {
                             EXCLUDE = 2
                         }
                     }
+                }
+
+                /** Properties of a ResourceValueConfig. */
+                interface IResourceValueConfig {
+
+                    /** ResourceValueConfig name */
+                    name?: (string|null);
+
+                    /** ResourceValueConfig resourceValue */
+                    resourceValue?: (google.cloud.securitycenter.v1.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ResourceValue|null);
+
+                    /** ResourceValueConfig tagValues */
+                    tagValues?: (string[]|null);
+
+                    /** ResourceValueConfig resourceType */
+                    resourceType?: (string|null);
+
+                    /** ResourceValueConfig scope */
+                    scope?: (string|null);
+
+                    /** ResourceValueConfig resourceLabelsSelector */
+                    resourceLabelsSelector?: ({ [k: string]: string }|null);
+
+                    /** ResourceValueConfig description */
+                    description?: (string|null);
+
+                    /** ResourceValueConfig createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ResourceValueConfig updateTime */
+                    updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ResourceValueConfig cloudProvider */
+                    cloudProvider?: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider|null);
+
+                    /** ResourceValueConfig sensitiveDataProtectionMapping */
+                    sensitiveDataProtectionMapping?: (google.cloud.securitycenter.v1.ResourceValueConfig.ISensitiveDataProtectionMapping|null);
+                }
+
+                /** Represents a ResourceValueConfig. */
+                class ResourceValueConfig implements IResourceValueConfig {
+
+                    /**
+                     * Constructs a new ResourceValueConfig.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IResourceValueConfig);
+
+                    /** ResourceValueConfig name. */
+                    public name: string;
+
+                    /** ResourceValueConfig resourceValue. */
+                    public resourceValue: (google.cloud.securitycenter.v1.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ResourceValue);
+
+                    /** ResourceValueConfig tagValues. */
+                    public tagValues: string[];
+
+                    /** ResourceValueConfig resourceType. */
+                    public resourceType: string;
+
+                    /** ResourceValueConfig scope. */
+                    public scope: string;
+
+                    /** ResourceValueConfig resourceLabelsSelector. */
+                    public resourceLabelsSelector: { [k: string]: string };
+
+                    /** ResourceValueConfig description. */
+                    public description: string;
+
+                    /** ResourceValueConfig createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ResourceValueConfig updateTime. */
+                    public updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ResourceValueConfig cloudProvider. */
+                    public cloudProvider: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider);
+
+                    /** ResourceValueConfig sensitiveDataProtectionMapping. */
+                    public sensitiveDataProtectionMapping?: (google.cloud.securitycenter.v1.ResourceValueConfig.ISensitiveDataProtectionMapping|null);
+
+                    /**
+                     * Creates a new ResourceValueConfig instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ResourceValueConfig instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IResourceValueConfig): google.cloud.securitycenter.v1.ResourceValueConfig;
+
+                    /**
+                     * Encodes the specified ResourceValueConfig message. Does not implicitly {@link google.cloud.securitycenter.v1.ResourceValueConfig.verify|verify} messages.
+                     * @param message ResourceValueConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IResourceValueConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ResourceValueConfig message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ResourceValueConfig.verify|verify} messages.
+                     * @param message ResourceValueConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IResourceValueConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ResourceValueConfig message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ResourceValueConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ResourceValueConfig;
+
+                    /**
+                     * Decodes a ResourceValueConfig message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ResourceValueConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ResourceValueConfig;
+
+                    /**
+                     * Verifies a ResourceValueConfig message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ResourceValueConfig message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ResourceValueConfig
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ResourceValueConfig;
+
+                    /**
+                     * Creates a plain object from a ResourceValueConfig message. Also converts values to other types if specified.
+                     * @param message ResourceValueConfig
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ResourceValueConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ResourceValueConfig to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ResourceValueConfig
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace ResourceValueConfig {
+
+                    /** Properties of a SensitiveDataProtectionMapping. */
+                    interface ISensitiveDataProtectionMapping {
+
+                        /** SensitiveDataProtectionMapping highSensitivityMapping */
+                        highSensitivityMapping?: (google.cloud.securitycenter.v1.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ResourceValue|null);
+
+                        /** SensitiveDataProtectionMapping mediumSensitivityMapping */
+                        mediumSensitivityMapping?: (google.cloud.securitycenter.v1.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ResourceValue|null);
+                    }
+
+                    /** Represents a SensitiveDataProtectionMapping. */
+                    class SensitiveDataProtectionMapping implements ISensitiveDataProtectionMapping {
+
+                        /**
+                         * Constructs a new SensitiveDataProtectionMapping.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v1.ResourceValueConfig.ISensitiveDataProtectionMapping);
+
+                        /** SensitiveDataProtectionMapping highSensitivityMapping. */
+                        public highSensitivityMapping: (google.cloud.securitycenter.v1.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ResourceValue);
+
+                        /** SensitiveDataProtectionMapping mediumSensitivityMapping. */
+                        public mediumSensitivityMapping: (google.cloud.securitycenter.v1.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ResourceValue);
+
+                        /**
+                         * Creates a new SensitiveDataProtectionMapping instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns SensitiveDataProtectionMapping instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v1.ResourceValueConfig.ISensitiveDataProtectionMapping): google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping;
+
+                        /**
+                         * Encodes the specified SensitiveDataProtectionMapping message. Does not implicitly {@link google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping.verify|verify} messages.
+                         * @param message SensitiveDataProtectionMapping message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v1.ResourceValueConfig.ISensitiveDataProtectionMapping, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified SensitiveDataProtectionMapping message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping.verify|verify} messages.
+                         * @param message SensitiveDataProtectionMapping message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v1.ResourceValueConfig.ISensitiveDataProtectionMapping, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a SensitiveDataProtectionMapping message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns SensitiveDataProtectionMapping
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping;
+
+                        /**
+                         * Decodes a SensitiveDataProtectionMapping message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns SensitiveDataProtectionMapping
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping;
+
+                        /**
+                         * Verifies a SensitiveDataProtectionMapping message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a SensitiveDataProtectionMapping message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns SensitiveDataProtectionMapping
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping;
+
+                        /**
+                         * Creates a plain object from a SensitiveDataProtectionMapping message. Also converts values to other types if specified.
+                         * @param message SensitiveDataProtectionMapping
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v1.ResourceValueConfig.SensitiveDataProtectionMapping, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this SensitiveDataProtectionMapping to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for SensitiveDataProtectionMapping
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** ResourceValue enum. */
+                enum ResourceValue {
+                    RESOURCE_VALUE_UNSPECIFIED = 0,
+                    HIGH = 1,
+                    MEDIUM = 2,
+                    LOW = 3,
+                    NONE = 4
                 }
 
                 /** Properties of a RunAssetDiscoveryResponse. */
@@ -9795,6 +13100,34 @@ export namespace google {
                      * @returns Promise
                      */
                     public deleteSecurityHealthAnalyticsCustomModule(request: google.cloud.securitycenter.v1.IDeleteSecurityHealthAnalyticsCustomModuleRequest): Promise<google.protobuf.Empty>;
+
+                    /**
+                     * Calls GetSimulation.
+                     * @param request GetSimulationRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Simulation
+                     */
+                    public getSimulation(request: google.cloud.securitycenter.v1.IGetSimulationRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.GetSimulationCallback): void;
+
+                    /**
+                     * Calls GetSimulation.
+                     * @param request GetSimulationRequest message or plain object
+                     * @returns Promise
+                     */
+                    public getSimulation(request: google.cloud.securitycenter.v1.IGetSimulationRequest): Promise<google.cloud.securitycenter.v1.Simulation>;
+
+                    /**
+                     * Calls GetValuedResource.
+                     * @param request GetValuedResourceRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ValuedResource
+                     */
+                    public getValuedResource(request: google.cloud.securitycenter.v1.IGetValuedResourceRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.GetValuedResourceCallback): void;
+
+                    /**
+                     * Calls GetValuedResource.
+                     * @param request GetValuedResourceRequest message or plain object
+                     * @returns Promise
+                     */
+                    public getValuedResource(request: google.cloud.securitycenter.v1.IGetValuedResourceRequest): Promise<google.cloud.securitycenter.v1.ValuedResource>;
 
                     /**
                      * Calls GetBigQueryExport.
@@ -10299,6 +13632,230 @@ export namespace google {
                      * @returns Promise
                      */
                     public listBigQueryExports(request: google.cloud.securitycenter.v1.IListBigQueryExportsRequest): Promise<google.cloud.securitycenter.v1.ListBigQueryExportsResponse>;
+
+                    /**
+                     * Calls CreateEventThreatDetectionCustomModule.
+                     * @param request CreateEventThreatDetectionCustomModuleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and EventThreatDetectionCustomModule
+                     */
+                    public createEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.ICreateEventThreatDetectionCustomModuleRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.CreateEventThreatDetectionCustomModuleCallback): void;
+
+                    /**
+                     * Calls CreateEventThreatDetectionCustomModule.
+                     * @param request CreateEventThreatDetectionCustomModuleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public createEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.ICreateEventThreatDetectionCustomModuleRequest): Promise<google.cloud.securitycenter.v1.EventThreatDetectionCustomModule>;
+
+                    /**
+                     * Calls DeleteEventThreatDetectionCustomModule.
+                     * @param request DeleteEventThreatDetectionCustomModuleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Empty
+                     */
+                    public deleteEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IDeleteEventThreatDetectionCustomModuleRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.DeleteEventThreatDetectionCustomModuleCallback): void;
+
+                    /**
+                     * Calls DeleteEventThreatDetectionCustomModule.
+                     * @param request DeleteEventThreatDetectionCustomModuleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public deleteEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IDeleteEventThreatDetectionCustomModuleRequest): Promise<google.protobuf.Empty>;
+
+                    /**
+                     * Calls GetEventThreatDetectionCustomModule.
+                     * @param request GetEventThreatDetectionCustomModuleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and EventThreatDetectionCustomModule
+                     */
+                    public getEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IGetEventThreatDetectionCustomModuleRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.GetEventThreatDetectionCustomModuleCallback): void;
+
+                    /**
+                     * Calls GetEventThreatDetectionCustomModule.
+                     * @param request GetEventThreatDetectionCustomModuleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public getEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IGetEventThreatDetectionCustomModuleRequest): Promise<google.cloud.securitycenter.v1.EventThreatDetectionCustomModule>;
+
+                    /**
+                     * Calls ListDescendantEventThreatDetectionCustomModules.
+                     * @param request ListDescendantEventThreatDetectionCustomModulesRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListDescendantEventThreatDetectionCustomModulesResponse
+                     */
+                    public listDescendantEventThreatDetectionCustomModules(request: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ListDescendantEventThreatDetectionCustomModulesCallback): void;
+
+                    /**
+                     * Calls ListDescendantEventThreatDetectionCustomModules.
+                     * @param request ListDescendantEventThreatDetectionCustomModulesRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listDescendantEventThreatDetectionCustomModules(request: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesRequest): Promise<google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse>;
+
+                    /**
+                     * Calls ListEventThreatDetectionCustomModules.
+                     * @param request ListEventThreatDetectionCustomModulesRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListEventThreatDetectionCustomModulesResponse
+                     */
+                    public listEventThreatDetectionCustomModules(request: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ListEventThreatDetectionCustomModulesCallback): void;
+
+                    /**
+                     * Calls ListEventThreatDetectionCustomModules.
+                     * @param request ListEventThreatDetectionCustomModulesRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listEventThreatDetectionCustomModules(request: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesRequest): Promise<google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse>;
+
+                    /**
+                     * Calls UpdateEventThreatDetectionCustomModule.
+                     * @param request UpdateEventThreatDetectionCustomModuleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and EventThreatDetectionCustomModule
+                     */
+                    public updateEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IUpdateEventThreatDetectionCustomModuleRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.UpdateEventThreatDetectionCustomModuleCallback): void;
+
+                    /**
+                     * Calls UpdateEventThreatDetectionCustomModule.
+                     * @param request UpdateEventThreatDetectionCustomModuleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public updateEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IUpdateEventThreatDetectionCustomModuleRequest): Promise<google.cloud.securitycenter.v1.EventThreatDetectionCustomModule>;
+
+                    /**
+                     * Calls ValidateEventThreatDetectionCustomModule.
+                     * @param request ValidateEventThreatDetectionCustomModuleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ValidateEventThreatDetectionCustomModuleResponse
+                     */
+                    public validateEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ValidateEventThreatDetectionCustomModuleCallback): void;
+
+                    /**
+                     * Calls ValidateEventThreatDetectionCustomModule.
+                     * @param request ValidateEventThreatDetectionCustomModuleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public validateEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleRequest): Promise<google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse>;
+
+                    /**
+                     * Calls GetEffectiveEventThreatDetectionCustomModule.
+                     * @param request GetEffectiveEventThreatDetectionCustomModuleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and EffectiveEventThreatDetectionCustomModule
+                     */
+                    public getEffectiveEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IGetEffectiveEventThreatDetectionCustomModuleRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.GetEffectiveEventThreatDetectionCustomModuleCallback): void;
+
+                    /**
+                     * Calls GetEffectiveEventThreatDetectionCustomModule.
+                     * @param request GetEffectiveEventThreatDetectionCustomModuleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public getEffectiveEventThreatDetectionCustomModule(request: google.cloud.securitycenter.v1.IGetEffectiveEventThreatDetectionCustomModuleRequest): Promise<google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule>;
+
+                    /**
+                     * Calls ListEffectiveEventThreatDetectionCustomModules.
+                     * @param request ListEffectiveEventThreatDetectionCustomModulesRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListEffectiveEventThreatDetectionCustomModulesResponse
+                     */
+                    public listEffectiveEventThreatDetectionCustomModules(request: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ListEffectiveEventThreatDetectionCustomModulesCallback): void;
+
+                    /**
+                     * Calls ListEffectiveEventThreatDetectionCustomModules.
+                     * @param request ListEffectiveEventThreatDetectionCustomModulesRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listEffectiveEventThreatDetectionCustomModules(request: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesRequest): Promise<google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse>;
+
+                    /**
+                     * Calls BatchCreateResourceValueConfigs.
+                     * @param request BatchCreateResourceValueConfigsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and BatchCreateResourceValueConfigsResponse
+                     */
+                    public batchCreateResourceValueConfigs(request: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.BatchCreateResourceValueConfigsCallback): void;
+
+                    /**
+                     * Calls BatchCreateResourceValueConfigs.
+                     * @param request BatchCreateResourceValueConfigsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public batchCreateResourceValueConfigs(request: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsRequest): Promise<google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse>;
+
+                    /**
+                     * Calls DeleteResourceValueConfig.
+                     * @param request DeleteResourceValueConfigRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Empty
+                     */
+                    public deleteResourceValueConfig(request: google.cloud.securitycenter.v1.IDeleteResourceValueConfigRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.DeleteResourceValueConfigCallback): void;
+
+                    /**
+                     * Calls DeleteResourceValueConfig.
+                     * @param request DeleteResourceValueConfigRequest message or plain object
+                     * @returns Promise
+                     */
+                    public deleteResourceValueConfig(request: google.cloud.securitycenter.v1.IDeleteResourceValueConfigRequest): Promise<google.protobuf.Empty>;
+
+                    /**
+                     * Calls GetResourceValueConfig.
+                     * @param request GetResourceValueConfigRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ResourceValueConfig
+                     */
+                    public getResourceValueConfig(request: google.cloud.securitycenter.v1.IGetResourceValueConfigRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.GetResourceValueConfigCallback): void;
+
+                    /**
+                     * Calls GetResourceValueConfig.
+                     * @param request GetResourceValueConfigRequest message or plain object
+                     * @returns Promise
+                     */
+                    public getResourceValueConfig(request: google.cloud.securitycenter.v1.IGetResourceValueConfigRequest): Promise<google.cloud.securitycenter.v1.ResourceValueConfig>;
+
+                    /**
+                     * Calls ListResourceValueConfigs.
+                     * @param request ListResourceValueConfigsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListResourceValueConfigsResponse
+                     */
+                    public listResourceValueConfigs(request: google.cloud.securitycenter.v1.IListResourceValueConfigsRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ListResourceValueConfigsCallback): void;
+
+                    /**
+                     * Calls ListResourceValueConfigs.
+                     * @param request ListResourceValueConfigsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listResourceValueConfigs(request: google.cloud.securitycenter.v1.IListResourceValueConfigsRequest): Promise<google.cloud.securitycenter.v1.ListResourceValueConfigsResponse>;
+
+                    /**
+                     * Calls UpdateResourceValueConfig.
+                     * @param request UpdateResourceValueConfigRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ResourceValueConfig
+                     */
+                    public updateResourceValueConfig(request: google.cloud.securitycenter.v1.IUpdateResourceValueConfigRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.UpdateResourceValueConfigCallback): void;
+
+                    /**
+                     * Calls UpdateResourceValueConfig.
+                     * @param request UpdateResourceValueConfigRequest message or plain object
+                     * @returns Promise
+                     */
+                    public updateResourceValueConfig(request: google.cloud.securitycenter.v1.IUpdateResourceValueConfigRequest): Promise<google.cloud.securitycenter.v1.ResourceValueConfig>;
+
+                    /**
+                     * Calls ListValuedResources.
+                     * @param request ListValuedResourcesRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListValuedResourcesResponse
+                     */
+                    public listValuedResources(request: google.cloud.securitycenter.v1.IListValuedResourcesRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ListValuedResourcesCallback): void;
+
+                    /**
+                     * Calls ListValuedResources.
+                     * @param request ListValuedResourcesRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listValuedResources(request: google.cloud.securitycenter.v1.IListValuedResourcesRequest): Promise<google.cloud.securitycenter.v1.ListValuedResourcesResponse>;
+
+                    /**
+                     * Calls ListAttackPaths.
+                     * @param request ListAttackPathsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListAttackPathsResponse
+                     */
+                    public listAttackPaths(request: google.cloud.securitycenter.v1.IListAttackPathsRequest, callback: google.cloud.securitycenter.v1.SecurityCenter.ListAttackPathsCallback): void;
+
+                    /**
+                     * Calls ListAttackPaths.
+                     * @param request ListAttackPathsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listAttackPaths(request: google.cloud.securitycenter.v1.IListAttackPathsRequest): Promise<google.cloud.securitycenter.v1.ListAttackPathsResponse>;
                 }
 
                 namespace SecurityCenter {
@@ -10365,6 +13922,20 @@ export namespace google {
                      * @param [response] Empty
                      */
                     type DeleteSecurityHealthAnalyticsCustomModuleCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|getSimulation}.
+                     * @param error Error, if any
+                     * @param [response] Simulation
+                     */
+                    type GetSimulationCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.Simulation) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|getValuedResource}.
+                     * @param error Error, if any
+                     * @param [response] ValuedResource
+                     */
+                    type GetValuedResourceCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ValuedResource) => void;
 
                     /**
                      * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|getBigQueryExport}.
@@ -10617,6 +14188,118 @@ export namespace google {
                      * @param [response] ListBigQueryExportsResponse
                      */
                     type ListBigQueryExportsCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListBigQueryExportsResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|createEventThreatDetectionCustomModule}.
+                     * @param error Error, if any
+                     * @param [response] EventThreatDetectionCustomModule
+                     */
+                    type CreateEventThreatDetectionCustomModuleCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.EventThreatDetectionCustomModule) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|deleteEventThreatDetectionCustomModule}.
+                     * @param error Error, if any
+                     * @param [response] Empty
+                     */
+                    type DeleteEventThreatDetectionCustomModuleCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|getEventThreatDetectionCustomModule}.
+                     * @param error Error, if any
+                     * @param [response] EventThreatDetectionCustomModule
+                     */
+                    type GetEventThreatDetectionCustomModuleCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.EventThreatDetectionCustomModule) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|listDescendantEventThreatDetectionCustomModules}.
+                     * @param error Error, if any
+                     * @param [response] ListDescendantEventThreatDetectionCustomModulesResponse
+                     */
+                    type ListDescendantEventThreatDetectionCustomModulesCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|listEventThreatDetectionCustomModules}.
+                     * @param error Error, if any
+                     * @param [response] ListEventThreatDetectionCustomModulesResponse
+                     */
+                    type ListEventThreatDetectionCustomModulesCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|updateEventThreatDetectionCustomModule}.
+                     * @param error Error, if any
+                     * @param [response] EventThreatDetectionCustomModule
+                     */
+                    type UpdateEventThreatDetectionCustomModuleCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.EventThreatDetectionCustomModule) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|validateEventThreatDetectionCustomModule}.
+                     * @param error Error, if any
+                     * @param [response] ValidateEventThreatDetectionCustomModuleResponse
+                     */
+                    type ValidateEventThreatDetectionCustomModuleCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|getEffectiveEventThreatDetectionCustomModule}.
+                     * @param error Error, if any
+                     * @param [response] EffectiveEventThreatDetectionCustomModule
+                     */
+                    type GetEffectiveEventThreatDetectionCustomModuleCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|listEffectiveEventThreatDetectionCustomModules}.
+                     * @param error Error, if any
+                     * @param [response] ListEffectiveEventThreatDetectionCustomModulesResponse
+                     */
+                    type ListEffectiveEventThreatDetectionCustomModulesCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|batchCreateResourceValueConfigs}.
+                     * @param error Error, if any
+                     * @param [response] BatchCreateResourceValueConfigsResponse
+                     */
+                    type BatchCreateResourceValueConfigsCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|deleteResourceValueConfig}.
+                     * @param error Error, if any
+                     * @param [response] Empty
+                     */
+                    type DeleteResourceValueConfigCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|getResourceValueConfig}.
+                     * @param error Error, if any
+                     * @param [response] ResourceValueConfig
+                     */
+                    type GetResourceValueConfigCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ResourceValueConfig) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|listResourceValueConfigs}.
+                     * @param error Error, if any
+                     * @param [response] ListResourceValueConfigsResponse
+                     */
+                    type ListResourceValueConfigsCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListResourceValueConfigsResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|updateResourceValueConfig}.
+                     * @param error Error, if any
+                     * @param [response] ResourceValueConfig
+                     */
+                    type UpdateResourceValueConfigCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ResourceValueConfig) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|listValuedResources}.
+                     * @param error Error, if any
+                     * @param [response] ListValuedResourcesResponse
+                     */
+                    type ListValuedResourcesCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListValuedResourcesResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.securitycenter.v1.SecurityCenter|listAttackPaths}.
+                     * @param error Error, if any
+                     * @param [response] ListAttackPathsResponse
+                     */
+                    type ListAttackPathsCallback = (error: (Error|null), response?: google.cloud.securitycenter.v1.ListAttackPathsResponse) => void;
                 }
 
                 /** Properties of a BulkMuteFindingsRequest. */
@@ -10630,6 +14313,9 @@ export namespace google {
 
                     /** BulkMuteFindingsRequest muteAnnotation */
                     muteAnnotation?: (string|null);
+
+                    /** BulkMuteFindingsRequest muteState */
+                    muteState?: (google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState|keyof typeof google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState|null);
                 }
 
                 /** Represents a BulkMuteFindingsRequest. */
@@ -10649,6 +14335,9 @@ export namespace google {
 
                     /** BulkMuteFindingsRequest muteAnnotation. */
                     public muteAnnotation: string;
+
+                    /** BulkMuteFindingsRequest muteState. */
+                    public muteState: (google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState|keyof typeof google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState);
 
                     /**
                      * Creates a new BulkMuteFindingsRequest instance using the specified properties.
@@ -10726,6 +14415,16 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace BulkMuteFindingsRequest {
+
+                    /** MuteState enum. */
+                    enum MuteState {
+                        MUTE_STATE_UNSPECIFIED = 0,
+                        MUTED = 1,
+                        UNDEFINED = 2
+                    }
                 }
 
                 /** Properties of a BulkMuteFindingsResponse. */
@@ -11031,6 +14730,818 @@ export namespace google {
 
                     /**
                      * Gets the default type url for CreateMuteConfigRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CreateResourceValueConfigRequest. */
+                interface ICreateResourceValueConfigRequest {
+
+                    /** CreateResourceValueConfigRequest parent */
+                    parent?: (string|null);
+
+                    /** CreateResourceValueConfigRequest resourceValueConfig */
+                    resourceValueConfig?: (google.cloud.securitycenter.v1.IResourceValueConfig|null);
+                }
+
+                /** Represents a CreateResourceValueConfigRequest. */
+                class CreateResourceValueConfigRequest implements ICreateResourceValueConfigRequest {
+
+                    /**
+                     * Constructs a new CreateResourceValueConfigRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.ICreateResourceValueConfigRequest);
+
+                    /** CreateResourceValueConfigRequest parent. */
+                    public parent: string;
+
+                    /** CreateResourceValueConfigRequest resourceValueConfig. */
+                    public resourceValueConfig?: (google.cloud.securitycenter.v1.IResourceValueConfig|null);
+
+                    /**
+                     * Creates a new CreateResourceValueConfigRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CreateResourceValueConfigRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.ICreateResourceValueConfigRequest): google.cloud.securitycenter.v1.CreateResourceValueConfigRequest;
+
+                    /**
+                     * Encodes the specified CreateResourceValueConfigRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.CreateResourceValueConfigRequest.verify|verify} messages.
+                     * @param message CreateResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.ICreateResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CreateResourceValueConfigRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.CreateResourceValueConfigRequest.verify|verify} messages.
+                     * @param message CreateResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.ICreateResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CreateResourceValueConfigRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CreateResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.CreateResourceValueConfigRequest;
+
+                    /**
+                     * Decodes a CreateResourceValueConfigRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CreateResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.CreateResourceValueConfigRequest;
+
+                    /**
+                     * Verifies a CreateResourceValueConfigRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CreateResourceValueConfigRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CreateResourceValueConfigRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.CreateResourceValueConfigRequest;
+
+                    /**
+                     * Creates a plain object from a CreateResourceValueConfigRequest message. Also converts values to other types if specified.
+                     * @param message CreateResourceValueConfigRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.CreateResourceValueConfigRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CreateResourceValueConfigRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CreateResourceValueConfigRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a BatchCreateResourceValueConfigsRequest. */
+                interface IBatchCreateResourceValueConfigsRequest {
+
+                    /** BatchCreateResourceValueConfigsRequest parent */
+                    parent?: (string|null);
+
+                    /** BatchCreateResourceValueConfigsRequest requests */
+                    requests?: (google.cloud.securitycenter.v1.ICreateResourceValueConfigRequest[]|null);
+                }
+
+                /** Represents a BatchCreateResourceValueConfigsRequest. */
+                class BatchCreateResourceValueConfigsRequest implements IBatchCreateResourceValueConfigsRequest {
+
+                    /**
+                     * Constructs a new BatchCreateResourceValueConfigsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsRequest);
+
+                    /** BatchCreateResourceValueConfigsRequest parent. */
+                    public parent: string;
+
+                    /** BatchCreateResourceValueConfigsRequest requests. */
+                    public requests: google.cloud.securitycenter.v1.ICreateResourceValueConfigRequest[];
+
+                    /**
+                     * Creates a new BatchCreateResourceValueConfigsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns BatchCreateResourceValueConfigsRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsRequest): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest;
+
+                    /**
+                     * Encodes the specified BatchCreateResourceValueConfigsRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest.verify|verify} messages.
+                     * @param message BatchCreateResourceValueConfigsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified BatchCreateResourceValueConfigsRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest.verify|verify} messages.
+                     * @param message BatchCreateResourceValueConfigsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a BatchCreateResourceValueConfigsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns BatchCreateResourceValueConfigsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest;
+
+                    /**
+                     * Decodes a BatchCreateResourceValueConfigsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns BatchCreateResourceValueConfigsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest;
+
+                    /**
+                     * Verifies a BatchCreateResourceValueConfigsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a BatchCreateResourceValueConfigsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns BatchCreateResourceValueConfigsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest;
+
+                    /**
+                     * Creates a plain object from a BatchCreateResourceValueConfigsRequest message. Also converts values to other types if specified.
+                     * @param message BatchCreateResourceValueConfigsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this BatchCreateResourceValueConfigsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for BatchCreateResourceValueConfigsRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a BatchCreateResourceValueConfigsResponse. */
+                interface IBatchCreateResourceValueConfigsResponse {
+
+                    /** BatchCreateResourceValueConfigsResponse resourceValueConfigs */
+                    resourceValueConfigs?: (google.cloud.securitycenter.v1.IResourceValueConfig[]|null);
+                }
+
+                /** Represents a BatchCreateResourceValueConfigsResponse. */
+                class BatchCreateResourceValueConfigsResponse implements IBatchCreateResourceValueConfigsResponse {
+
+                    /**
+                     * Constructs a new BatchCreateResourceValueConfigsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsResponse);
+
+                    /** BatchCreateResourceValueConfigsResponse resourceValueConfigs. */
+                    public resourceValueConfigs: google.cloud.securitycenter.v1.IResourceValueConfig[];
+
+                    /**
+                     * Creates a new BatchCreateResourceValueConfigsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns BatchCreateResourceValueConfigsResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsResponse): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse;
+
+                    /**
+                     * Encodes the specified BatchCreateResourceValueConfigsResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse.verify|verify} messages.
+                     * @param message BatchCreateResourceValueConfigsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified BatchCreateResourceValueConfigsResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse.verify|verify} messages.
+                     * @param message BatchCreateResourceValueConfigsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IBatchCreateResourceValueConfigsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a BatchCreateResourceValueConfigsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns BatchCreateResourceValueConfigsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse;
+
+                    /**
+                     * Decodes a BatchCreateResourceValueConfigsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns BatchCreateResourceValueConfigsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse;
+
+                    /**
+                     * Verifies a BatchCreateResourceValueConfigsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a BatchCreateResourceValueConfigsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns BatchCreateResourceValueConfigsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse;
+
+                    /**
+                     * Creates a plain object from a BatchCreateResourceValueConfigsResponse message. Also converts values to other types if specified.
+                     * @param message BatchCreateResourceValueConfigsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.BatchCreateResourceValueConfigsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this BatchCreateResourceValueConfigsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for BatchCreateResourceValueConfigsResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a DeleteResourceValueConfigRequest. */
+                interface IDeleteResourceValueConfigRequest {
+
+                    /** DeleteResourceValueConfigRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a DeleteResourceValueConfigRequest. */
+                class DeleteResourceValueConfigRequest implements IDeleteResourceValueConfigRequest {
+
+                    /**
+                     * Constructs a new DeleteResourceValueConfigRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IDeleteResourceValueConfigRequest);
+
+                    /** DeleteResourceValueConfigRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new DeleteResourceValueConfigRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DeleteResourceValueConfigRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IDeleteResourceValueConfigRequest): google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest;
+
+                    /**
+                     * Encodes the specified DeleteResourceValueConfigRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest.verify|verify} messages.
+                     * @param message DeleteResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IDeleteResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DeleteResourceValueConfigRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest.verify|verify} messages.
+                     * @param message DeleteResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IDeleteResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DeleteResourceValueConfigRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DeleteResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest;
+
+                    /**
+                     * Decodes a DeleteResourceValueConfigRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DeleteResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest;
+
+                    /**
+                     * Verifies a DeleteResourceValueConfigRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DeleteResourceValueConfigRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DeleteResourceValueConfigRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest;
+
+                    /**
+                     * Creates a plain object from a DeleteResourceValueConfigRequest message. Also converts values to other types if specified.
+                     * @param message DeleteResourceValueConfigRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.DeleteResourceValueConfigRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DeleteResourceValueConfigRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DeleteResourceValueConfigRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a GetResourceValueConfigRequest. */
+                interface IGetResourceValueConfigRequest {
+
+                    /** GetResourceValueConfigRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a GetResourceValueConfigRequest. */
+                class GetResourceValueConfigRequest implements IGetResourceValueConfigRequest {
+
+                    /**
+                     * Constructs a new GetResourceValueConfigRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IGetResourceValueConfigRequest);
+
+                    /** GetResourceValueConfigRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new GetResourceValueConfigRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetResourceValueConfigRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IGetResourceValueConfigRequest): google.cloud.securitycenter.v1.GetResourceValueConfigRequest;
+
+                    /**
+                     * Encodes the specified GetResourceValueConfigRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.GetResourceValueConfigRequest.verify|verify} messages.
+                     * @param message GetResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IGetResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetResourceValueConfigRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.GetResourceValueConfigRequest.verify|verify} messages.
+                     * @param message GetResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IGetResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetResourceValueConfigRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.GetResourceValueConfigRequest;
+
+                    /**
+                     * Decodes a GetResourceValueConfigRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.GetResourceValueConfigRequest;
+
+                    /**
+                     * Verifies a GetResourceValueConfigRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetResourceValueConfigRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetResourceValueConfigRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.GetResourceValueConfigRequest;
+
+                    /**
+                     * Creates a plain object from a GetResourceValueConfigRequest message. Also converts values to other types if specified.
+                     * @param message GetResourceValueConfigRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.GetResourceValueConfigRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetResourceValueConfigRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GetResourceValueConfigRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListResourceValueConfigsRequest. */
+                interface IListResourceValueConfigsRequest {
+
+                    /** ListResourceValueConfigsRequest parent */
+                    parent?: (string|null);
+
+                    /** ListResourceValueConfigsRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListResourceValueConfigsRequest pageToken */
+                    pageToken?: (string|null);
+                }
+
+                /** Represents a ListResourceValueConfigsRequest. */
+                class ListResourceValueConfigsRequest implements IListResourceValueConfigsRequest {
+
+                    /**
+                     * Constructs a new ListResourceValueConfigsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListResourceValueConfigsRequest);
+
+                    /** ListResourceValueConfigsRequest parent. */
+                    public parent: string;
+
+                    /** ListResourceValueConfigsRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListResourceValueConfigsRequest pageToken. */
+                    public pageToken: string;
+
+                    /**
+                     * Creates a new ListResourceValueConfigsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListResourceValueConfigsRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListResourceValueConfigsRequest): google.cloud.securitycenter.v1.ListResourceValueConfigsRequest;
+
+                    /**
+                     * Encodes the specified ListResourceValueConfigsRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ListResourceValueConfigsRequest.verify|verify} messages.
+                     * @param message ListResourceValueConfigsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListResourceValueConfigsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListResourceValueConfigsRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListResourceValueConfigsRequest.verify|verify} messages.
+                     * @param message ListResourceValueConfigsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListResourceValueConfigsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListResourceValueConfigsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListResourceValueConfigsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListResourceValueConfigsRequest;
+
+                    /**
+                     * Decodes a ListResourceValueConfigsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListResourceValueConfigsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListResourceValueConfigsRequest;
+
+                    /**
+                     * Verifies a ListResourceValueConfigsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListResourceValueConfigsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListResourceValueConfigsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListResourceValueConfigsRequest;
+
+                    /**
+                     * Creates a plain object from a ListResourceValueConfigsRequest message. Also converts values to other types if specified.
+                     * @param message ListResourceValueConfigsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListResourceValueConfigsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListResourceValueConfigsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListResourceValueConfigsRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListResourceValueConfigsResponse. */
+                interface IListResourceValueConfigsResponse {
+
+                    /** ListResourceValueConfigsResponse resourceValueConfigs */
+                    resourceValueConfigs?: (google.cloud.securitycenter.v1.IResourceValueConfig[]|null);
+
+                    /** ListResourceValueConfigsResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListResourceValueConfigsResponse. */
+                class ListResourceValueConfigsResponse implements IListResourceValueConfigsResponse {
+
+                    /**
+                     * Constructs a new ListResourceValueConfigsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListResourceValueConfigsResponse);
+
+                    /** ListResourceValueConfigsResponse resourceValueConfigs. */
+                    public resourceValueConfigs: google.cloud.securitycenter.v1.IResourceValueConfig[];
+
+                    /** ListResourceValueConfigsResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListResourceValueConfigsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListResourceValueConfigsResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListResourceValueConfigsResponse): google.cloud.securitycenter.v1.ListResourceValueConfigsResponse;
+
+                    /**
+                     * Encodes the specified ListResourceValueConfigsResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ListResourceValueConfigsResponse.verify|verify} messages.
+                     * @param message ListResourceValueConfigsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListResourceValueConfigsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListResourceValueConfigsResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListResourceValueConfigsResponse.verify|verify} messages.
+                     * @param message ListResourceValueConfigsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListResourceValueConfigsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListResourceValueConfigsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListResourceValueConfigsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListResourceValueConfigsResponse;
+
+                    /**
+                     * Decodes a ListResourceValueConfigsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListResourceValueConfigsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListResourceValueConfigsResponse;
+
+                    /**
+                     * Verifies a ListResourceValueConfigsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListResourceValueConfigsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListResourceValueConfigsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListResourceValueConfigsResponse;
+
+                    /**
+                     * Creates a plain object from a ListResourceValueConfigsResponse message. Also converts values to other types if specified.
+                     * @param message ListResourceValueConfigsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListResourceValueConfigsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListResourceValueConfigsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListResourceValueConfigsResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an UpdateResourceValueConfigRequest. */
+                interface IUpdateResourceValueConfigRequest {
+
+                    /** UpdateResourceValueConfigRequest resourceValueConfig */
+                    resourceValueConfig?: (google.cloud.securitycenter.v1.IResourceValueConfig|null);
+
+                    /** UpdateResourceValueConfigRequest updateMask */
+                    updateMask?: (google.protobuf.IFieldMask|null);
+                }
+
+                /** Represents an UpdateResourceValueConfigRequest. */
+                class UpdateResourceValueConfigRequest implements IUpdateResourceValueConfigRequest {
+
+                    /**
+                     * Constructs a new UpdateResourceValueConfigRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IUpdateResourceValueConfigRequest);
+
+                    /** UpdateResourceValueConfigRequest resourceValueConfig. */
+                    public resourceValueConfig?: (google.cloud.securitycenter.v1.IResourceValueConfig|null);
+
+                    /** UpdateResourceValueConfigRequest updateMask. */
+                    public updateMask?: (google.protobuf.IFieldMask|null);
+
+                    /**
+                     * Creates a new UpdateResourceValueConfigRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns UpdateResourceValueConfigRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IUpdateResourceValueConfigRequest): google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest;
+
+                    /**
+                     * Encodes the specified UpdateResourceValueConfigRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest.verify|verify} messages.
+                     * @param message UpdateResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IUpdateResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified UpdateResourceValueConfigRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest.verify|verify} messages.
+                     * @param message UpdateResourceValueConfigRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IUpdateResourceValueConfigRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an UpdateResourceValueConfigRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns UpdateResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest;
+
+                    /**
+                     * Decodes an UpdateResourceValueConfigRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns UpdateResourceValueConfigRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest;
+
+                    /**
+                     * Verifies an UpdateResourceValueConfigRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an UpdateResourceValueConfigRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns UpdateResourceValueConfigRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest;
+
+                    /**
+                     * Creates a plain object from an UpdateResourceValueConfigRequest message. Also converts values to other types if specified.
+                     * @param message UpdateResourceValueConfigRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.UpdateResourceValueConfigRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this UpdateResourceValueConfigRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for UpdateResourceValueConfigRequest
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -13133,6 +17644,648 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a ListValuedResourcesRequest. */
+                interface IListValuedResourcesRequest {
+
+                    /** ListValuedResourcesRequest parent */
+                    parent?: (string|null);
+
+                    /** ListValuedResourcesRequest filter */
+                    filter?: (string|null);
+
+                    /** ListValuedResourcesRequest pageToken */
+                    pageToken?: (string|null);
+
+                    /** ListValuedResourcesRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListValuedResourcesRequest orderBy */
+                    orderBy?: (string|null);
+                }
+
+                /** Represents a ListValuedResourcesRequest. */
+                class ListValuedResourcesRequest implements IListValuedResourcesRequest {
+
+                    /**
+                     * Constructs a new ListValuedResourcesRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListValuedResourcesRequest);
+
+                    /** ListValuedResourcesRequest parent. */
+                    public parent: string;
+
+                    /** ListValuedResourcesRequest filter. */
+                    public filter: string;
+
+                    /** ListValuedResourcesRequest pageToken. */
+                    public pageToken: string;
+
+                    /** ListValuedResourcesRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListValuedResourcesRequest orderBy. */
+                    public orderBy: string;
+
+                    /**
+                     * Creates a new ListValuedResourcesRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListValuedResourcesRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListValuedResourcesRequest): google.cloud.securitycenter.v1.ListValuedResourcesRequest;
+
+                    /**
+                     * Encodes the specified ListValuedResourcesRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ListValuedResourcesRequest.verify|verify} messages.
+                     * @param message ListValuedResourcesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListValuedResourcesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListValuedResourcesRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListValuedResourcesRequest.verify|verify} messages.
+                     * @param message ListValuedResourcesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListValuedResourcesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListValuedResourcesRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListValuedResourcesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListValuedResourcesRequest;
+
+                    /**
+                     * Decodes a ListValuedResourcesRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListValuedResourcesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListValuedResourcesRequest;
+
+                    /**
+                     * Verifies a ListValuedResourcesRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListValuedResourcesRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListValuedResourcesRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListValuedResourcesRequest;
+
+                    /**
+                     * Creates a plain object from a ListValuedResourcesRequest message. Also converts values to other types if specified.
+                     * @param message ListValuedResourcesRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListValuedResourcesRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListValuedResourcesRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListValuedResourcesRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListValuedResourcesResponse. */
+                interface IListValuedResourcesResponse {
+
+                    /** ListValuedResourcesResponse valuedResources */
+                    valuedResources?: (google.cloud.securitycenter.v1.IValuedResource[]|null);
+
+                    /** ListValuedResourcesResponse nextPageToken */
+                    nextPageToken?: (string|null);
+
+                    /** ListValuedResourcesResponse totalSize */
+                    totalSize?: (number|null);
+                }
+
+                /** Represents a ListValuedResourcesResponse. */
+                class ListValuedResourcesResponse implements IListValuedResourcesResponse {
+
+                    /**
+                     * Constructs a new ListValuedResourcesResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListValuedResourcesResponse);
+
+                    /** ListValuedResourcesResponse valuedResources. */
+                    public valuedResources: google.cloud.securitycenter.v1.IValuedResource[];
+
+                    /** ListValuedResourcesResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /** ListValuedResourcesResponse totalSize. */
+                    public totalSize: number;
+
+                    /**
+                     * Creates a new ListValuedResourcesResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListValuedResourcesResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListValuedResourcesResponse): google.cloud.securitycenter.v1.ListValuedResourcesResponse;
+
+                    /**
+                     * Encodes the specified ListValuedResourcesResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ListValuedResourcesResponse.verify|verify} messages.
+                     * @param message ListValuedResourcesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListValuedResourcesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListValuedResourcesResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListValuedResourcesResponse.verify|verify} messages.
+                     * @param message ListValuedResourcesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListValuedResourcesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListValuedResourcesResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListValuedResourcesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListValuedResourcesResponse;
+
+                    /**
+                     * Decodes a ListValuedResourcesResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListValuedResourcesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListValuedResourcesResponse;
+
+                    /**
+                     * Verifies a ListValuedResourcesResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListValuedResourcesResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListValuedResourcesResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListValuedResourcesResponse;
+
+                    /**
+                     * Creates a plain object from a ListValuedResourcesResponse message. Also converts values to other types if specified.
+                     * @param message ListValuedResourcesResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListValuedResourcesResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListValuedResourcesResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListValuedResourcesResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListAttackPathsRequest. */
+                interface IListAttackPathsRequest {
+
+                    /** ListAttackPathsRequest parent */
+                    parent?: (string|null);
+
+                    /** ListAttackPathsRequest filter */
+                    filter?: (string|null);
+
+                    /** ListAttackPathsRequest pageToken */
+                    pageToken?: (string|null);
+
+                    /** ListAttackPathsRequest pageSize */
+                    pageSize?: (number|null);
+                }
+
+                /** Represents a ListAttackPathsRequest. */
+                class ListAttackPathsRequest implements IListAttackPathsRequest {
+
+                    /**
+                     * Constructs a new ListAttackPathsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListAttackPathsRequest);
+
+                    /** ListAttackPathsRequest parent. */
+                    public parent: string;
+
+                    /** ListAttackPathsRequest filter. */
+                    public filter: string;
+
+                    /** ListAttackPathsRequest pageToken. */
+                    public pageToken: string;
+
+                    /** ListAttackPathsRequest pageSize. */
+                    public pageSize: number;
+
+                    /**
+                     * Creates a new ListAttackPathsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListAttackPathsRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListAttackPathsRequest): google.cloud.securitycenter.v1.ListAttackPathsRequest;
+
+                    /**
+                     * Encodes the specified ListAttackPathsRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ListAttackPathsRequest.verify|verify} messages.
+                     * @param message ListAttackPathsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListAttackPathsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListAttackPathsRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListAttackPathsRequest.verify|verify} messages.
+                     * @param message ListAttackPathsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListAttackPathsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListAttackPathsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListAttackPathsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListAttackPathsRequest;
+
+                    /**
+                     * Decodes a ListAttackPathsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListAttackPathsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListAttackPathsRequest;
+
+                    /**
+                     * Verifies a ListAttackPathsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListAttackPathsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListAttackPathsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListAttackPathsRequest;
+
+                    /**
+                     * Creates a plain object from a ListAttackPathsRequest message. Also converts values to other types if specified.
+                     * @param message ListAttackPathsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListAttackPathsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListAttackPathsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListAttackPathsRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListAttackPathsResponse. */
+                interface IListAttackPathsResponse {
+
+                    /** ListAttackPathsResponse attackPaths */
+                    attackPaths?: (google.cloud.securitycenter.v1.IAttackPath[]|null);
+
+                    /** ListAttackPathsResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListAttackPathsResponse. */
+                class ListAttackPathsResponse implements IListAttackPathsResponse {
+
+                    /**
+                     * Constructs a new ListAttackPathsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListAttackPathsResponse);
+
+                    /** ListAttackPathsResponse attackPaths. */
+                    public attackPaths: google.cloud.securitycenter.v1.IAttackPath[];
+
+                    /** ListAttackPathsResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListAttackPathsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListAttackPathsResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListAttackPathsResponse): google.cloud.securitycenter.v1.ListAttackPathsResponse;
+
+                    /**
+                     * Encodes the specified ListAttackPathsResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ListAttackPathsResponse.verify|verify} messages.
+                     * @param message ListAttackPathsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListAttackPathsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListAttackPathsResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListAttackPathsResponse.verify|verify} messages.
+                     * @param message ListAttackPathsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListAttackPathsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListAttackPathsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListAttackPathsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListAttackPathsResponse;
+
+                    /**
+                     * Decodes a ListAttackPathsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListAttackPathsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListAttackPathsResponse;
+
+                    /**
+                     * Verifies a ListAttackPathsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListAttackPathsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListAttackPathsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListAttackPathsResponse;
+
+                    /**
+                     * Creates a plain object from a ListAttackPathsResponse message. Also converts values to other types if specified.
+                     * @param message ListAttackPathsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListAttackPathsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListAttackPathsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListAttackPathsResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a GetSimulationRequest. */
+                interface IGetSimulationRequest {
+
+                    /** GetSimulationRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a GetSimulationRequest. */
+                class GetSimulationRequest implements IGetSimulationRequest {
+
+                    /**
+                     * Constructs a new GetSimulationRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IGetSimulationRequest);
+
+                    /** GetSimulationRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new GetSimulationRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetSimulationRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IGetSimulationRequest): google.cloud.securitycenter.v1.GetSimulationRequest;
+
+                    /**
+                     * Encodes the specified GetSimulationRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.GetSimulationRequest.verify|verify} messages.
+                     * @param message GetSimulationRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IGetSimulationRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetSimulationRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.GetSimulationRequest.verify|verify} messages.
+                     * @param message GetSimulationRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IGetSimulationRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetSimulationRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetSimulationRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.GetSimulationRequest;
+
+                    /**
+                     * Decodes a GetSimulationRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetSimulationRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.GetSimulationRequest;
+
+                    /**
+                     * Verifies a GetSimulationRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetSimulationRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetSimulationRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.GetSimulationRequest;
+
+                    /**
+                     * Creates a plain object from a GetSimulationRequest message. Also converts values to other types if specified.
+                     * @param message GetSimulationRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.GetSimulationRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetSimulationRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GetSimulationRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a GetValuedResourceRequest. */
+                interface IGetValuedResourceRequest {
+
+                    /** GetValuedResourceRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a GetValuedResourceRequest. */
+                class GetValuedResourceRequest implements IGetValuedResourceRequest {
+
+                    /**
+                     * Constructs a new GetValuedResourceRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IGetValuedResourceRequest);
+
+                    /** GetValuedResourceRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new GetValuedResourceRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetValuedResourceRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IGetValuedResourceRequest): google.cloud.securitycenter.v1.GetValuedResourceRequest;
+
+                    /**
+                     * Encodes the specified GetValuedResourceRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.GetValuedResourceRequest.verify|verify} messages.
+                     * @param message GetValuedResourceRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IGetValuedResourceRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetValuedResourceRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.GetValuedResourceRequest.verify|verify} messages.
+                     * @param message GetValuedResourceRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IGetValuedResourceRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetValuedResourceRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetValuedResourceRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.GetValuedResourceRequest;
+
+                    /**
+                     * Decodes a GetValuedResourceRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetValuedResourceRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.GetValuedResourceRequest;
+
+                    /**
+                     * Verifies a GetValuedResourceRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetValuedResourceRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetValuedResourceRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.GetValuedResourceRequest;
+
+                    /**
+                     * Creates a plain object from a GetValuedResourceRequest message. Also converts values to other types if specified.
+                     * @param message GetValuedResourceRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.GetValuedResourceRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetValuedResourceRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GetValuedResourceRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a ListMuteConfigsRequest. */
                 interface IListMuteConfigsRequest {
 
@@ -14966,6 +20119,30 @@ export namespace google {
 
                             /** Resource folders */
                             folders?: (google.cloud.securitycenter.v1.IFolder[]|null);
+
+                            /** Resource cloudProvider */
+                            cloudProvider?: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider|null);
+
+                            /** Resource organization */
+                            organization?: (string|null);
+
+                            /** Resource service */
+                            service?: (string|null);
+
+                            /** Resource location */
+                            location?: (string|null);
+
+                            /** Resource awsMetadata */
+                            awsMetadata?: (google.cloud.securitycenter.v1.IAwsMetadata|null);
+
+                            /** Resource azureMetadata */
+                            azureMetadata?: (google.cloud.securitycenter.v1.IAzureMetadata|null);
+
+                            /** Resource resourcePath */
+                            resourcePath?: (google.cloud.securitycenter.v1.IResourcePath|null);
+
+                            /** Resource resourcePathString */
+                            resourcePathString?: (string|null);
                         }
 
                         /** Represents a Resource. */
@@ -15000,6 +20177,33 @@ export namespace google {
 
                             /** Resource folders. */
                             public folders: google.cloud.securitycenter.v1.IFolder[];
+
+                            /** Resource cloudProvider. */
+                            public cloudProvider: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider);
+
+                            /** Resource organization. */
+                            public organization: string;
+
+                            /** Resource service. */
+                            public service: string;
+
+                            /** Resource location. */
+                            public location: string;
+
+                            /** Resource awsMetadata. */
+                            public awsMetadata?: (google.cloud.securitycenter.v1.IAwsMetadata|null);
+
+                            /** Resource azureMetadata. */
+                            public azureMetadata?: (google.cloud.securitycenter.v1.IAzureMetadata|null);
+
+                            /** Resource resourcePath. */
+                            public resourcePath?: (google.cloud.securitycenter.v1.IResourcePath|null);
+
+                            /** Resource resourcePathString. */
+                            public resourcePathString: string;
+
+                            /** Resource cloudProviderMetadata. */
+                            public cloudProviderMetadata?: ("awsMetadata"|"azureMetadata");
 
                             /**
                              * Creates a new Resource instance using the specified properties.
@@ -17168,6 +22372,1701 @@ export namespace google {
 
                     /**
                      * Gets the default type url for DeleteBigQueryExportRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CreateEventThreatDetectionCustomModuleRequest. */
+                interface ICreateEventThreatDetectionCustomModuleRequest {
+
+                    /** CreateEventThreatDetectionCustomModuleRequest parent */
+                    parent?: (string|null);
+
+                    /** CreateEventThreatDetectionCustomModuleRequest eventThreatDetectionCustomModule */
+                    eventThreatDetectionCustomModule?: (google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule|null);
+                }
+
+                /** Represents a CreateEventThreatDetectionCustomModuleRequest. */
+                class CreateEventThreatDetectionCustomModuleRequest implements ICreateEventThreatDetectionCustomModuleRequest {
+
+                    /**
+                     * Constructs a new CreateEventThreatDetectionCustomModuleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.ICreateEventThreatDetectionCustomModuleRequest);
+
+                    /** CreateEventThreatDetectionCustomModuleRequest parent. */
+                    public parent: string;
+
+                    /** CreateEventThreatDetectionCustomModuleRequest eventThreatDetectionCustomModule. */
+                    public eventThreatDetectionCustomModule?: (google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule|null);
+
+                    /**
+                     * Creates a new CreateEventThreatDetectionCustomModuleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CreateEventThreatDetectionCustomModuleRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.ICreateEventThreatDetectionCustomModuleRequest): google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Encodes the specified CreateEventThreatDetectionCustomModuleRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message CreateEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.ICreateEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CreateEventThreatDetectionCustomModuleRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message CreateEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.ICreateEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CreateEventThreatDetectionCustomModuleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CreateEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Decodes a CreateEventThreatDetectionCustomModuleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CreateEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Verifies a CreateEventThreatDetectionCustomModuleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CreateEventThreatDetectionCustomModuleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CreateEventThreatDetectionCustomModuleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Creates a plain object from a CreateEventThreatDetectionCustomModuleRequest message. Also converts values to other types if specified.
+                     * @param message CreateEventThreatDetectionCustomModuleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.CreateEventThreatDetectionCustomModuleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CreateEventThreatDetectionCustomModuleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CreateEventThreatDetectionCustomModuleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ValidateEventThreatDetectionCustomModuleRequest. */
+                interface IValidateEventThreatDetectionCustomModuleRequest {
+
+                    /** ValidateEventThreatDetectionCustomModuleRequest parent */
+                    parent?: (string|null);
+
+                    /** ValidateEventThreatDetectionCustomModuleRequest rawText */
+                    rawText?: (string|null);
+
+                    /** ValidateEventThreatDetectionCustomModuleRequest type */
+                    type?: (string|null);
+                }
+
+                /** Represents a ValidateEventThreatDetectionCustomModuleRequest. */
+                class ValidateEventThreatDetectionCustomModuleRequest implements IValidateEventThreatDetectionCustomModuleRequest {
+
+                    /**
+                     * Constructs a new ValidateEventThreatDetectionCustomModuleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleRequest);
+
+                    /** ValidateEventThreatDetectionCustomModuleRequest parent. */
+                    public parent: string;
+
+                    /** ValidateEventThreatDetectionCustomModuleRequest rawText. */
+                    public rawText: string;
+
+                    /** ValidateEventThreatDetectionCustomModuleRequest type. */
+                    public type: string;
+
+                    /**
+                     * Creates a new ValidateEventThreatDetectionCustomModuleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ValidateEventThreatDetectionCustomModuleRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleRequest): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Encodes the specified ValidateEventThreatDetectionCustomModuleRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message ValidateEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ValidateEventThreatDetectionCustomModuleRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message ValidateEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ValidateEventThreatDetectionCustomModuleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ValidateEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Decodes a ValidateEventThreatDetectionCustomModuleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ValidateEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Verifies a ValidateEventThreatDetectionCustomModuleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ValidateEventThreatDetectionCustomModuleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ValidateEventThreatDetectionCustomModuleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Creates a plain object from a ValidateEventThreatDetectionCustomModuleRequest message. Also converts values to other types if specified.
+                     * @param message ValidateEventThreatDetectionCustomModuleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ValidateEventThreatDetectionCustomModuleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ValidateEventThreatDetectionCustomModuleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ValidateEventThreatDetectionCustomModuleResponse. */
+                interface IValidateEventThreatDetectionCustomModuleResponse {
+
+                    /** ValidateEventThreatDetectionCustomModuleResponse errors */
+                    errors?: (google.cloud.securitycenter.v1.ICustomModuleValidationErrors|null);
+                }
+
+                /** Represents a ValidateEventThreatDetectionCustomModuleResponse. */
+                class ValidateEventThreatDetectionCustomModuleResponse implements IValidateEventThreatDetectionCustomModuleResponse {
+
+                    /**
+                     * Constructs a new ValidateEventThreatDetectionCustomModuleResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleResponse);
+
+                    /** ValidateEventThreatDetectionCustomModuleResponse errors. */
+                    public errors?: (google.cloud.securitycenter.v1.ICustomModuleValidationErrors|null);
+
+                    /**
+                     * Creates a new ValidateEventThreatDetectionCustomModuleResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ValidateEventThreatDetectionCustomModuleResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleResponse): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse;
+
+                    /**
+                     * Encodes the specified ValidateEventThreatDetectionCustomModuleResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse.verify|verify} messages.
+                     * @param message ValidateEventThreatDetectionCustomModuleResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ValidateEventThreatDetectionCustomModuleResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse.verify|verify} messages.
+                     * @param message ValidateEventThreatDetectionCustomModuleResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IValidateEventThreatDetectionCustomModuleResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ValidateEventThreatDetectionCustomModuleResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ValidateEventThreatDetectionCustomModuleResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse;
+
+                    /**
+                     * Decodes a ValidateEventThreatDetectionCustomModuleResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ValidateEventThreatDetectionCustomModuleResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse;
+
+                    /**
+                     * Verifies a ValidateEventThreatDetectionCustomModuleResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ValidateEventThreatDetectionCustomModuleResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ValidateEventThreatDetectionCustomModuleResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse;
+
+                    /**
+                     * Creates a plain object from a ValidateEventThreatDetectionCustomModuleResponse message. Also converts values to other types if specified.
+                     * @param message ValidateEventThreatDetectionCustomModuleResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ValidateEventThreatDetectionCustomModuleResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ValidateEventThreatDetectionCustomModuleResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ValidateEventThreatDetectionCustomModuleResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a DeleteEventThreatDetectionCustomModuleRequest. */
+                interface IDeleteEventThreatDetectionCustomModuleRequest {
+
+                    /** DeleteEventThreatDetectionCustomModuleRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a DeleteEventThreatDetectionCustomModuleRequest. */
+                class DeleteEventThreatDetectionCustomModuleRequest implements IDeleteEventThreatDetectionCustomModuleRequest {
+
+                    /**
+                     * Constructs a new DeleteEventThreatDetectionCustomModuleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IDeleteEventThreatDetectionCustomModuleRequest);
+
+                    /** DeleteEventThreatDetectionCustomModuleRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new DeleteEventThreatDetectionCustomModuleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DeleteEventThreatDetectionCustomModuleRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IDeleteEventThreatDetectionCustomModuleRequest): google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Encodes the specified DeleteEventThreatDetectionCustomModuleRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message DeleteEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IDeleteEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DeleteEventThreatDetectionCustomModuleRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message DeleteEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IDeleteEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DeleteEventThreatDetectionCustomModuleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DeleteEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Decodes a DeleteEventThreatDetectionCustomModuleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DeleteEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Verifies a DeleteEventThreatDetectionCustomModuleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DeleteEventThreatDetectionCustomModuleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DeleteEventThreatDetectionCustomModuleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Creates a plain object from a DeleteEventThreatDetectionCustomModuleRequest message. Also converts values to other types if specified.
+                     * @param message DeleteEventThreatDetectionCustomModuleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.DeleteEventThreatDetectionCustomModuleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DeleteEventThreatDetectionCustomModuleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DeleteEventThreatDetectionCustomModuleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a GetEventThreatDetectionCustomModuleRequest. */
+                interface IGetEventThreatDetectionCustomModuleRequest {
+
+                    /** GetEventThreatDetectionCustomModuleRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a GetEventThreatDetectionCustomModuleRequest. */
+                class GetEventThreatDetectionCustomModuleRequest implements IGetEventThreatDetectionCustomModuleRequest {
+
+                    /**
+                     * Constructs a new GetEventThreatDetectionCustomModuleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IGetEventThreatDetectionCustomModuleRequest);
+
+                    /** GetEventThreatDetectionCustomModuleRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new GetEventThreatDetectionCustomModuleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetEventThreatDetectionCustomModuleRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IGetEventThreatDetectionCustomModuleRequest): google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Encodes the specified GetEventThreatDetectionCustomModuleRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message GetEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IGetEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetEventThreatDetectionCustomModuleRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message GetEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IGetEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetEventThreatDetectionCustomModuleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Decodes a GetEventThreatDetectionCustomModuleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Verifies a GetEventThreatDetectionCustomModuleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetEventThreatDetectionCustomModuleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetEventThreatDetectionCustomModuleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Creates a plain object from a GetEventThreatDetectionCustomModuleRequest message. Also converts values to other types if specified.
+                     * @param message GetEventThreatDetectionCustomModuleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.GetEventThreatDetectionCustomModuleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetEventThreatDetectionCustomModuleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GetEventThreatDetectionCustomModuleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListDescendantEventThreatDetectionCustomModulesRequest. */
+                interface IListDescendantEventThreatDetectionCustomModulesRequest {
+
+                    /** ListDescendantEventThreatDetectionCustomModulesRequest parent */
+                    parent?: (string|null);
+
+                    /** ListDescendantEventThreatDetectionCustomModulesRequest pageToken */
+                    pageToken?: (string|null);
+
+                    /** ListDescendantEventThreatDetectionCustomModulesRequest pageSize */
+                    pageSize?: (number|null);
+                }
+
+                /** Represents a ListDescendantEventThreatDetectionCustomModulesRequest. */
+                class ListDescendantEventThreatDetectionCustomModulesRequest implements IListDescendantEventThreatDetectionCustomModulesRequest {
+
+                    /**
+                     * Constructs a new ListDescendantEventThreatDetectionCustomModulesRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesRequest);
+
+                    /** ListDescendantEventThreatDetectionCustomModulesRequest parent. */
+                    public parent: string;
+
+                    /** ListDescendantEventThreatDetectionCustomModulesRequest pageToken. */
+                    public pageToken: string;
+
+                    /** ListDescendantEventThreatDetectionCustomModulesRequest pageSize. */
+                    public pageSize: number;
+
+                    /**
+                     * Creates a new ListDescendantEventThreatDetectionCustomModulesRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListDescendantEventThreatDetectionCustomModulesRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesRequest): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Encodes the specified ListDescendantEventThreatDetectionCustomModulesRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest.verify|verify} messages.
+                     * @param message ListDescendantEventThreatDetectionCustomModulesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListDescendantEventThreatDetectionCustomModulesRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest.verify|verify} messages.
+                     * @param message ListDescendantEventThreatDetectionCustomModulesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListDescendantEventThreatDetectionCustomModulesRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListDescendantEventThreatDetectionCustomModulesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Decodes a ListDescendantEventThreatDetectionCustomModulesRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListDescendantEventThreatDetectionCustomModulesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Verifies a ListDescendantEventThreatDetectionCustomModulesRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListDescendantEventThreatDetectionCustomModulesRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListDescendantEventThreatDetectionCustomModulesRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Creates a plain object from a ListDescendantEventThreatDetectionCustomModulesRequest message. Also converts values to other types if specified.
+                     * @param message ListDescendantEventThreatDetectionCustomModulesRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListDescendantEventThreatDetectionCustomModulesRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListDescendantEventThreatDetectionCustomModulesRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListDescendantEventThreatDetectionCustomModulesResponse. */
+                interface IListDescendantEventThreatDetectionCustomModulesResponse {
+
+                    /** ListDescendantEventThreatDetectionCustomModulesResponse eventThreatDetectionCustomModules */
+                    eventThreatDetectionCustomModules?: (google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule[]|null);
+
+                    /** ListDescendantEventThreatDetectionCustomModulesResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListDescendantEventThreatDetectionCustomModulesResponse. */
+                class ListDescendantEventThreatDetectionCustomModulesResponse implements IListDescendantEventThreatDetectionCustomModulesResponse {
+
+                    /**
+                     * Constructs a new ListDescendantEventThreatDetectionCustomModulesResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesResponse);
+
+                    /** ListDescendantEventThreatDetectionCustomModulesResponse eventThreatDetectionCustomModules. */
+                    public eventThreatDetectionCustomModules: google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule[];
+
+                    /** ListDescendantEventThreatDetectionCustomModulesResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListDescendantEventThreatDetectionCustomModulesResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListDescendantEventThreatDetectionCustomModulesResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesResponse): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Encodes the specified ListDescendantEventThreatDetectionCustomModulesResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse.verify|verify} messages.
+                     * @param message ListDescendantEventThreatDetectionCustomModulesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListDescendantEventThreatDetectionCustomModulesResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse.verify|verify} messages.
+                     * @param message ListDescendantEventThreatDetectionCustomModulesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListDescendantEventThreatDetectionCustomModulesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListDescendantEventThreatDetectionCustomModulesResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListDescendantEventThreatDetectionCustomModulesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Decodes a ListDescendantEventThreatDetectionCustomModulesResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListDescendantEventThreatDetectionCustomModulesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Verifies a ListDescendantEventThreatDetectionCustomModulesResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListDescendantEventThreatDetectionCustomModulesResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListDescendantEventThreatDetectionCustomModulesResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Creates a plain object from a ListDescendantEventThreatDetectionCustomModulesResponse message. Also converts values to other types if specified.
+                     * @param message ListDescendantEventThreatDetectionCustomModulesResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListDescendantEventThreatDetectionCustomModulesResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListDescendantEventThreatDetectionCustomModulesResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListDescendantEventThreatDetectionCustomModulesResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListEventThreatDetectionCustomModulesRequest. */
+                interface IListEventThreatDetectionCustomModulesRequest {
+
+                    /** ListEventThreatDetectionCustomModulesRequest parent */
+                    parent?: (string|null);
+
+                    /** ListEventThreatDetectionCustomModulesRequest pageToken */
+                    pageToken?: (string|null);
+
+                    /** ListEventThreatDetectionCustomModulesRequest pageSize */
+                    pageSize?: (number|null);
+                }
+
+                /** Represents a ListEventThreatDetectionCustomModulesRequest. */
+                class ListEventThreatDetectionCustomModulesRequest implements IListEventThreatDetectionCustomModulesRequest {
+
+                    /**
+                     * Constructs a new ListEventThreatDetectionCustomModulesRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesRequest);
+
+                    /** ListEventThreatDetectionCustomModulesRequest parent. */
+                    public parent: string;
+
+                    /** ListEventThreatDetectionCustomModulesRequest pageToken. */
+                    public pageToken: string;
+
+                    /** ListEventThreatDetectionCustomModulesRequest pageSize. */
+                    public pageSize: number;
+
+                    /**
+                     * Creates a new ListEventThreatDetectionCustomModulesRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListEventThreatDetectionCustomModulesRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesRequest): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Encodes the specified ListEventThreatDetectionCustomModulesRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest.verify|verify} messages.
+                     * @param message ListEventThreatDetectionCustomModulesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListEventThreatDetectionCustomModulesRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest.verify|verify} messages.
+                     * @param message ListEventThreatDetectionCustomModulesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListEventThreatDetectionCustomModulesRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListEventThreatDetectionCustomModulesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Decodes a ListEventThreatDetectionCustomModulesRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListEventThreatDetectionCustomModulesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Verifies a ListEventThreatDetectionCustomModulesRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListEventThreatDetectionCustomModulesRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListEventThreatDetectionCustomModulesRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Creates a plain object from a ListEventThreatDetectionCustomModulesRequest message. Also converts values to other types if specified.
+                     * @param message ListEventThreatDetectionCustomModulesRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListEventThreatDetectionCustomModulesRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListEventThreatDetectionCustomModulesRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListEventThreatDetectionCustomModulesResponse. */
+                interface IListEventThreatDetectionCustomModulesResponse {
+
+                    /** ListEventThreatDetectionCustomModulesResponse eventThreatDetectionCustomModules */
+                    eventThreatDetectionCustomModules?: (google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule[]|null);
+
+                    /** ListEventThreatDetectionCustomModulesResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListEventThreatDetectionCustomModulesResponse. */
+                class ListEventThreatDetectionCustomModulesResponse implements IListEventThreatDetectionCustomModulesResponse {
+
+                    /**
+                     * Constructs a new ListEventThreatDetectionCustomModulesResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesResponse);
+
+                    /** ListEventThreatDetectionCustomModulesResponse eventThreatDetectionCustomModules. */
+                    public eventThreatDetectionCustomModules: google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule[];
+
+                    /** ListEventThreatDetectionCustomModulesResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListEventThreatDetectionCustomModulesResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListEventThreatDetectionCustomModulesResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesResponse): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Encodes the specified ListEventThreatDetectionCustomModulesResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse.verify|verify} messages.
+                     * @param message ListEventThreatDetectionCustomModulesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListEventThreatDetectionCustomModulesResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse.verify|verify} messages.
+                     * @param message ListEventThreatDetectionCustomModulesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListEventThreatDetectionCustomModulesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListEventThreatDetectionCustomModulesResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListEventThreatDetectionCustomModulesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Decodes a ListEventThreatDetectionCustomModulesResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListEventThreatDetectionCustomModulesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Verifies a ListEventThreatDetectionCustomModulesResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListEventThreatDetectionCustomModulesResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListEventThreatDetectionCustomModulesResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Creates a plain object from a ListEventThreatDetectionCustomModulesResponse message. Also converts values to other types if specified.
+                     * @param message ListEventThreatDetectionCustomModulesResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListEventThreatDetectionCustomModulesResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListEventThreatDetectionCustomModulesResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListEventThreatDetectionCustomModulesResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an UpdateEventThreatDetectionCustomModuleRequest. */
+                interface IUpdateEventThreatDetectionCustomModuleRequest {
+
+                    /** UpdateEventThreatDetectionCustomModuleRequest eventThreatDetectionCustomModule */
+                    eventThreatDetectionCustomModule?: (google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule|null);
+
+                    /** UpdateEventThreatDetectionCustomModuleRequest updateMask */
+                    updateMask?: (google.protobuf.IFieldMask|null);
+                }
+
+                /** Represents an UpdateEventThreatDetectionCustomModuleRequest. */
+                class UpdateEventThreatDetectionCustomModuleRequest implements IUpdateEventThreatDetectionCustomModuleRequest {
+
+                    /**
+                     * Constructs a new UpdateEventThreatDetectionCustomModuleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IUpdateEventThreatDetectionCustomModuleRequest);
+
+                    /** UpdateEventThreatDetectionCustomModuleRequest eventThreatDetectionCustomModule. */
+                    public eventThreatDetectionCustomModule?: (google.cloud.securitycenter.v1.IEventThreatDetectionCustomModule|null);
+
+                    /** UpdateEventThreatDetectionCustomModuleRequest updateMask. */
+                    public updateMask?: (google.protobuf.IFieldMask|null);
+
+                    /**
+                     * Creates a new UpdateEventThreatDetectionCustomModuleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns UpdateEventThreatDetectionCustomModuleRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IUpdateEventThreatDetectionCustomModuleRequest): google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Encodes the specified UpdateEventThreatDetectionCustomModuleRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message UpdateEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IUpdateEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified UpdateEventThreatDetectionCustomModuleRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message UpdateEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IUpdateEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an UpdateEventThreatDetectionCustomModuleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns UpdateEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Decodes an UpdateEventThreatDetectionCustomModuleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns UpdateEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Verifies an UpdateEventThreatDetectionCustomModuleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an UpdateEventThreatDetectionCustomModuleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns UpdateEventThreatDetectionCustomModuleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Creates a plain object from an UpdateEventThreatDetectionCustomModuleRequest message. Also converts values to other types if specified.
+                     * @param message UpdateEventThreatDetectionCustomModuleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.UpdateEventThreatDetectionCustomModuleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this UpdateEventThreatDetectionCustomModuleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for UpdateEventThreatDetectionCustomModuleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a GetEffectiveEventThreatDetectionCustomModuleRequest. */
+                interface IGetEffectiveEventThreatDetectionCustomModuleRequest {
+
+                    /** GetEffectiveEventThreatDetectionCustomModuleRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a GetEffectiveEventThreatDetectionCustomModuleRequest. */
+                class GetEffectiveEventThreatDetectionCustomModuleRequest implements IGetEffectiveEventThreatDetectionCustomModuleRequest {
+
+                    /**
+                     * Constructs a new GetEffectiveEventThreatDetectionCustomModuleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IGetEffectiveEventThreatDetectionCustomModuleRequest);
+
+                    /** GetEffectiveEventThreatDetectionCustomModuleRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new GetEffectiveEventThreatDetectionCustomModuleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetEffectiveEventThreatDetectionCustomModuleRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IGetEffectiveEventThreatDetectionCustomModuleRequest): google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Encodes the specified GetEffectiveEventThreatDetectionCustomModuleRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message GetEffectiveEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IGetEffectiveEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetEffectiveEventThreatDetectionCustomModuleRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest.verify|verify} messages.
+                     * @param message GetEffectiveEventThreatDetectionCustomModuleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IGetEffectiveEventThreatDetectionCustomModuleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetEffectiveEventThreatDetectionCustomModuleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetEffectiveEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Decodes a GetEffectiveEventThreatDetectionCustomModuleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetEffectiveEventThreatDetectionCustomModuleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Verifies a GetEffectiveEventThreatDetectionCustomModuleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetEffectiveEventThreatDetectionCustomModuleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetEffectiveEventThreatDetectionCustomModuleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest;
+
+                    /**
+                     * Creates a plain object from a GetEffectiveEventThreatDetectionCustomModuleRequest message. Also converts values to other types if specified.
+                     * @param message GetEffectiveEventThreatDetectionCustomModuleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.GetEffectiveEventThreatDetectionCustomModuleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetEffectiveEventThreatDetectionCustomModuleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GetEffectiveEventThreatDetectionCustomModuleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListEffectiveEventThreatDetectionCustomModulesRequest. */
+                interface IListEffectiveEventThreatDetectionCustomModulesRequest {
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesRequest parent */
+                    parent?: (string|null);
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesRequest pageToken */
+                    pageToken?: (string|null);
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesRequest pageSize */
+                    pageSize?: (number|null);
+                }
+
+                /** Represents a ListEffectiveEventThreatDetectionCustomModulesRequest. */
+                class ListEffectiveEventThreatDetectionCustomModulesRequest implements IListEffectiveEventThreatDetectionCustomModulesRequest {
+
+                    /**
+                     * Constructs a new ListEffectiveEventThreatDetectionCustomModulesRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesRequest);
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesRequest parent. */
+                    public parent: string;
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesRequest pageToken. */
+                    public pageToken: string;
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesRequest pageSize. */
+                    public pageSize: number;
+
+                    /**
+                     * Creates a new ListEffectiveEventThreatDetectionCustomModulesRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesRequest instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesRequest): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Encodes the specified ListEffectiveEventThreatDetectionCustomModulesRequest message. Does not implicitly {@link google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest.verify|verify} messages.
+                     * @param message ListEffectiveEventThreatDetectionCustomModulesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListEffectiveEventThreatDetectionCustomModulesRequest message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest.verify|verify} messages.
+                     * @param message ListEffectiveEventThreatDetectionCustomModulesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListEffectiveEventThreatDetectionCustomModulesRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Decodes a ListEffectiveEventThreatDetectionCustomModulesRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Verifies a ListEffectiveEventThreatDetectionCustomModulesRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListEffectiveEventThreatDetectionCustomModulesRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest;
+
+                    /**
+                     * Creates a plain object from a ListEffectiveEventThreatDetectionCustomModulesRequest message. Also converts values to other types if specified.
+                     * @param message ListEffectiveEventThreatDetectionCustomModulesRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListEffectiveEventThreatDetectionCustomModulesRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListEffectiveEventThreatDetectionCustomModulesRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListEffectiveEventThreatDetectionCustomModulesResponse. */
+                interface IListEffectiveEventThreatDetectionCustomModulesResponse {
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesResponse effectiveEventThreatDetectionCustomModules */
+                    effectiveEventThreatDetectionCustomModules?: (google.cloud.securitycenter.v1.IEffectiveEventThreatDetectionCustomModule[]|null);
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListEffectiveEventThreatDetectionCustomModulesResponse. */
+                class ListEffectiveEventThreatDetectionCustomModulesResponse implements IListEffectiveEventThreatDetectionCustomModulesResponse {
+
+                    /**
+                     * Constructs a new ListEffectiveEventThreatDetectionCustomModulesResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesResponse);
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesResponse effectiveEventThreatDetectionCustomModules. */
+                    public effectiveEventThreatDetectionCustomModules: google.cloud.securitycenter.v1.IEffectiveEventThreatDetectionCustomModule[];
+
+                    /** ListEffectiveEventThreatDetectionCustomModulesResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListEffectiveEventThreatDetectionCustomModulesResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesResponse): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Encodes the specified ListEffectiveEventThreatDetectionCustomModulesResponse message. Does not implicitly {@link google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse.verify|verify} messages.
+                     * @param message ListEffectiveEventThreatDetectionCustomModulesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListEffectiveEventThreatDetectionCustomModulesResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse.verify|verify} messages.
+                     * @param message ListEffectiveEventThreatDetectionCustomModulesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IListEffectiveEventThreatDetectionCustomModulesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListEffectiveEventThreatDetectionCustomModulesResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Decodes a ListEffectiveEventThreatDetectionCustomModulesResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Verifies a ListEffectiveEventThreatDetectionCustomModulesResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListEffectiveEventThreatDetectionCustomModulesResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListEffectiveEventThreatDetectionCustomModulesResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse;
+
+                    /**
+                     * Creates a plain object from a ListEffectiveEventThreatDetectionCustomModulesResponse message. Also converts values to other types if specified.
+                     * @param message ListEffectiveEventThreatDetectionCustomModulesResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ListEffectiveEventThreatDetectionCustomModulesResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListEffectiveEventThreatDetectionCustomModulesResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListEffectiveEventThreatDetectionCustomModulesResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Simulation. */
+                interface ISimulation {
+
+                    /** Simulation name */
+                    name?: (string|null);
+
+                    /** Simulation createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Simulation resourceValueConfigsMetadata */
+                    resourceValueConfigsMetadata?: (google.cloud.securitycenter.v1.IResourceValueConfigMetadata[]|null);
+
+                    /** Simulation cloudProvider */
+                    cloudProvider?: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider|null);
+                }
+
+                /** Represents a Simulation. */
+                class Simulation implements ISimulation {
+
+                    /**
+                     * Constructs a new Simulation.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.ISimulation);
+
+                    /** Simulation name. */
+                    public name: string;
+
+                    /** Simulation createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Simulation resourceValueConfigsMetadata. */
+                    public resourceValueConfigsMetadata: google.cloud.securitycenter.v1.IResourceValueConfigMetadata[];
+
+                    /** Simulation cloudProvider. */
+                    public cloudProvider: (google.cloud.securitycenter.v1.CloudProvider|keyof typeof google.cloud.securitycenter.v1.CloudProvider);
+
+                    /**
+                     * Creates a new Simulation instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Simulation instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.ISimulation): google.cloud.securitycenter.v1.Simulation;
+
+                    /**
+                     * Encodes the specified Simulation message. Does not implicitly {@link google.cloud.securitycenter.v1.Simulation.verify|verify} messages.
+                     * @param message Simulation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.ISimulation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Simulation message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.Simulation.verify|verify} messages.
+                     * @param message Simulation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.ISimulation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Simulation message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Simulation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.Simulation;
+
+                    /**
+                     * Decodes a Simulation message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Simulation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.Simulation;
+
+                    /**
+                     * Verifies a Simulation message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Simulation message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Simulation
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.Simulation;
+
+                    /**
+                     * Creates a plain object from a Simulation message. Also converts values to other types if specified.
+                     * @param message Simulation
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.Simulation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Simulation to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Simulation
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ValuedResource. */
+                interface IValuedResource {
+
+                    /** ValuedResource name */
+                    name?: (string|null);
+
+                    /** ValuedResource resource */
+                    resource?: (string|null);
+
+                    /** ValuedResource resourceType */
+                    resourceType?: (string|null);
+
+                    /** ValuedResource displayName */
+                    displayName?: (string|null);
+
+                    /** ValuedResource resourceValue */
+                    resourceValue?: (google.cloud.securitycenter.v1.ValuedResource.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ValuedResource.ResourceValue|null);
+
+                    /** ValuedResource exposedScore */
+                    exposedScore?: (number|null);
+
+                    /** ValuedResource resourceValueConfigsUsed */
+                    resourceValueConfigsUsed?: (google.cloud.securitycenter.v1.IResourceValueConfigMetadata[]|null);
+                }
+
+                /** Represents a ValuedResource. */
+                class ValuedResource implements IValuedResource {
+
+                    /**
+                     * Constructs a new ValuedResource.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IValuedResource);
+
+                    /** ValuedResource name. */
+                    public name: string;
+
+                    /** ValuedResource resource. */
+                    public resource: string;
+
+                    /** ValuedResource resourceType. */
+                    public resourceType: string;
+
+                    /** ValuedResource displayName. */
+                    public displayName: string;
+
+                    /** ValuedResource resourceValue. */
+                    public resourceValue: (google.cloud.securitycenter.v1.ValuedResource.ResourceValue|keyof typeof google.cloud.securitycenter.v1.ValuedResource.ResourceValue);
+
+                    /** ValuedResource exposedScore. */
+                    public exposedScore: number;
+
+                    /** ValuedResource resourceValueConfigsUsed. */
+                    public resourceValueConfigsUsed: google.cloud.securitycenter.v1.IResourceValueConfigMetadata[];
+
+                    /**
+                     * Creates a new ValuedResource instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ValuedResource instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IValuedResource): google.cloud.securitycenter.v1.ValuedResource;
+
+                    /**
+                     * Encodes the specified ValuedResource message. Does not implicitly {@link google.cloud.securitycenter.v1.ValuedResource.verify|verify} messages.
+                     * @param message ValuedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IValuedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ValuedResource message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ValuedResource.verify|verify} messages.
+                     * @param message ValuedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IValuedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ValuedResource message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ValuedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ValuedResource;
+
+                    /**
+                     * Decodes a ValuedResource message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ValuedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ValuedResource;
+
+                    /**
+                     * Verifies a ValuedResource message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ValuedResource message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ValuedResource
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ValuedResource;
+
+                    /**
+                     * Creates a plain object from a ValuedResource message. Also converts values to other types if specified.
+                     * @param message ValuedResource
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ValuedResource, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ValuedResource to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ValuedResource
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace ValuedResource {
+
+                    /** ResourceValue enum. */
+                    enum ResourceValue {
+                        RESOURCE_VALUE_UNSPECIFIED = 0,
+                        RESOURCE_VALUE_LOW = 1,
+                        RESOURCE_VALUE_MEDIUM = 2,
+                        RESOURCE_VALUE_HIGH = 3
+                    }
+                }
+
+                /** Properties of a ResourceValueConfigMetadata. */
+                interface IResourceValueConfigMetadata {
+
+                    /** ResourceValueConfigMetadata name */
+                    name?: (string|null);
+                }
+
+                /** Represents a ResourceValueConfigMetadata. */
+                class ResourceValueConfigMetadata implements IResourceValueConfigMetadata {
+
+                    /**
+                     * Constructs a new ResourceValueConfigMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v1.IResourceValueConfigMetadata);
+
+                    /** ResourceValueConfigMetadata name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new ResourceValueConfigMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ResourceValueConfigMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v1.IResourceValueConfigMetadata): google.cloud.securitycenter.v1.ResourceValueConfigMetadata;
+
+                    /**
+                     * Encodes the specified ResourceValueConfigMetadata message. Does not implicitly {@link google.cloud.securitycenter.v1.ResourceValueConfigMetadata.verify|verify} messages.
+                     * @param message ResourceValueConfigMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v1.IResourceValueConfigMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ResourceValueConfigMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v1.ResourceValueConfigMetadata.verify|verify} messages.
+                     * @param message ResourceValueConfigMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v1.IResourceValueConfigMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ResourceValueConfigMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ResourceValueConfigMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v1.ResourceValueConfigMetadata;
+
+                    /**
+                     * Decodes a ResourceValueConfigMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ResourceValueConfigMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v1.ResourceValueConfigMetadata;
+
+                    /**
+                     * Verifies a ResourceValueConfigMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ResourceValueConfigMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ResourceValueConfigMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v1.ResourceValueConfigMetadata;
+
+                    /**
+                     * Creates a plain object from a ResourceValueConfigMetadata message. Also converts values to other types if specified.
+                     * @param message ResourceValueConfigMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v1.ResourceValueConfigMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ResourceValueConfigMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ResourceValueConfigMetadata
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -27021,6 +33920,246 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of an AffectedResources. */
+                interface IAffectedResources {
+
+                    /** AffectedResources count */
+                    count?: (number|Long|string|null);
+                }
+
+                /** Represents an AffectedResources. */
+                class AffectedResources implements IAffectedResources {
+
+                    /**
+                     * Constructs a new AffectedResources.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAffectedResources);
+
+                    /** AffectedResources count. */
+                    public count: (number|Long|string);
+
+                    /**
+                     * Creates a new AffectedResources instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AffectedResources instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAffectedResources): google.cloud.securitycenter.v2.AffectedResources;
+
+                    /**
+                     * Encodes the specified AffectedResources message. Does not implicitly {@link google.cloud.securitycenter.v2.AffectedResources.verify|verify} messages.
+                     * @param message AffectedResources message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAffectedResources, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AffectedResources message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AffectedResources.verify|verify} messages.
+                     * @param message AffectedResources message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAffectedResources, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AffectedResources message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AffectedResources
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AffectedResources;
+
+                    /**
+                     * Decodes an AffectedResources message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AffectedResources
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AffectedResources;
+
+                    /**
+                     * Verifies an AffectedResources message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AffectedResources message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AffectedResources
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AffectedResources;
+
+                    /**
+                     * Creates a plain object from an AffectedResources message. Also converts values to other types if specified.
+                     * @param message AffectedResources
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.AffectedResources, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AffectedResources to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AffectedResources
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AiModel. */
+                interface IAiModel {
+
+                    /** AiModel name */
+                    name?: (string|null);
+
+                    /** AiModel domain */
+                    domain?: (string|null);
+
+                    /** AiModel library */
+                    library?: (string|null);
+
+                    /** AiModel location */
+                    location?: (string|null);
+
+                    /** AiModel publisher */
+                    publisher?: (string|null);
+
+                    /** AiModel deploymentPlatform */
+                    deploymentPlatform?: (google.cloud.securitycenter.v2.AiModel.DeploymentPlatform|keyof typeof google.cloud.securitycenter.v2.AiModel.DeploymentPlatform|null);
+
+                    /** AiModel displayName */
+                    displayName?: (string|null);
+                }
+
+                /** Represents an AiModel. */
+                class AiModel implements IAiModel {
+
+                    /**
+                     * Constructs a new AiModel.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAiModel);
+
+                    /** AiModel name. */
+                    public name: string;
+
+                    /** AiModel domain. */
+                    public domain: string;
+
+                    /** AiModel library. */
+                    public library: string;
+
+                    /** AiModel location. */
+                    public location: string;
+
+                    /** AiModel publisher. */
+                    public publisher: string;
+
+                    /** AiModel deploymentPlatform. */
+                    public deploymentPlatform: (google.cloud.securitycenter.v2.AiModel.DeploymentPlatform|keyof typeof google.cloud.securitycenter.v2.AiModel.DeploymentPlatform);
+
+                    /** AiModel displayName. */
+                    public displayName: string;
+
+                    /**
+                     * Creates a new AiModel instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AiModel instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAiModel): google.cloud.securitycenter.v2.AiModel;
+
+                    /**
+                     * Encodes the specified AiModel message. Does not implicitly {@link google.cloud.securitycenter.v2.AiModel.verify|verify} messages.
+                     * @param message AiModel message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAiModel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AiModel message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AiModel.verify|verify} messages.
+                     * @param message AiModel message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAiModel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AiModel message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AiModel
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AiModel;
+
+                    /**
+                     * Decodes an AiModel message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AiModel
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AiModel;
+
+                    /**
+                     * Verifies an AiModel message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AiModel message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AiModel
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AiModel;
+
+                    /**
+                     * Creates a plain object from an AiModel message. Also converts values to other types if specified.
+                     * @param message AiModel
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.AiModel, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AiModel to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AiModel
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AiModel {
+
+                    /** DeploymentPlatform enum. */
+                    enum DeploymentPlatform {
+                        DEPLOYMENT_PLATFORM_UNSPECIFIED = 0,
+                        VERTEX_AI = 1,
+                        GKE = 2
+                    }
+                }
+
                 /** Properties of an Application. */
                 interface IApplication {
 
@@ -28141,6 +35280,672 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a Chokepoint. */
+                interface IChokepoint {
+
+                    /** Chokepoint relatedFindings */
+                    relatedFindings?: (string[]|null);
+                }
+
+                /** Represents a Chokepoint. */
+                class Chokepoint implements IChokepoint {
+
+                    /**
+                     * Constructs a new Chokepoint.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IChokepoint);
+
+                    /** Chokepoint relatedFindings. */
+                    public relatedFindings: string[];
+
+                    /**
+                     * Creates a new Chokepoint instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Chokepoint instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IChokepoint): google.cloud.securitycenter.v2.Chokepoint;
+
+                    /**
+                     * Encodes the specified Chokepoint message. Does not implicitly {@link google.cloud.securitycenter.v2.Chokepoint.verify|verify} messages.
+                     * @param message Chokepoint message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IChokepoint, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Chokepoint message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Chokepoint.verify|verify} messages.
+                     * @param message Chokepoint message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IChokepoint, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Chokepoint message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Chokepoint
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Chokepoint;
+
+                    /**
+                     * Decodes a Chokepoint message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Chokepoint
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Chokepoint;
+
+                    /**
+                     * Verifies a Chokepoint message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Chokepoint message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Chokepoint
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Chokepoint;
+
+                    /**
+                     * Creates a plain object from a Chokepoint message. Also converts values to other types if specified.
+                     * @param message Chokepoint
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Chokepoint, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Chokepoint to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Chokepoint
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CloudArmor. */
+                interface ICloudArmor {
+
+                    /** CloudArmor securityPolicy */
+                    securityPolicy?: (google.cloud.securitycenter.v2.ISecurityPolicy|null);
+
+                    /** CloudArmor requests */
+                    requests?: (google.cloud.securitycenter.v2.IRequests|null);
+
+                    /** CloudArmor adaptiveProtection */
+                    adaptiveProtection?: (google.cloud.securitycenter.v2.IAdaptiveProtection|null);
+
+                    /** CloudArmor attack */
+                    attack?: (google.cloud.securitycenter.v2.IAttack|null);
+
+                    /** CloudArmor threatVector */
+                    threatVector?: (string|null);
+
+                    /** CloudArmor duration */
+                    duration?: (google.protobuf.IDuration|null);
+                }
+
+                /** Represents a CloudArmor. */
+                class CloudArmor implements ICloudArmor {
+
+                    /**
+                     * Constructs a new CloudArmor.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.ICloudArmor);
+
+                    /** CloudArmor securityPolicy. */
+                    public securityPolicy?: (google.cloud.securitycenter.v2.ISecurityPolicy|null);
+
+                    /** CloudArmor requests. */
+                    public requests?: (google.cloud.securitycenter.v2.IRequests|null);
+
+                    /** CloudArmor adaptiveProtection. */
+                    public adaptiveProtection?: (google.cloud.securitycenter.v2.IAdaptiveProtection|null);
+
+                    /** CloudArmor attack. */
+                    public attack?: (google.cloud.securitycenter.v2.IAttack|null);
+
+                    /** CloudArmor threatVector. */
+                    public threatVector: string;
+
+                    /** CloudArmor duration. */
+                    public duration?: (google.protobuf.IDuration|null);
+
+                    /**
+                     * Creates a new CloudArmor instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CloudArmor instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.ICloudArmor): google.cloud.securitycenter.v2.CloudArmor;
+
+                    /**
+                     * Encodes the specified CloudArmor message. Does not implicitly {@link google.cloud.securitycenter.v2.CloudArmor.verify|verify} messages.
+                     * @param message CloudArmor message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.ICloudArmor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CloudArmor message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.CloudArmor.verify|verify} messages.
+                     * @param message CloudArmor message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.ICloudArmor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CloudArmor message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CloudArmor
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.CloudArmor;
+
+                    /**
+                     * Decodes a CloudArmor message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CloudArmor
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.CloudArmor;
+
+                    /**
+                     * Verifies a CloudArmor message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CloudArmor message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CloudArmor
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.CloudArmor;
+
+                    /**
+                     * Creates a plain object from a CloudArmor message. Also converts values to other types if specified.
+                     * @param message CloudArmor
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.CloudArmor, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CloudArmor to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CloudArmor
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SecurityPolicy. */
+                interface ISecurityPolicy {
+
+                    /** SecurityPolicy name */
+                    name?: (string|null);
+
+                    /** SecurityPolicy type */
+                    type?: (string|null);
+
+                    /** SecurityPolicy preview */
+                    preview?: (boolean|null);
+                }
+
+                /** Represents a SecurityPolicy. */
+                class SecurityPolicy implements ISecurityPolicy {
+
+                    /**
+                     * Constructs a new SecurityPolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.ISecurityPolicy);
+
+                    /** SecurityPolicy name. */
+                    public name: string;
+
+                    /** SecurityPolicy type. */
+                    public type: string;
+
+                    /** SecurityPolicy preview. */
+                    public preview: boolean;
+
+                    /**
+                     * Creates a new SecurityPolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SecurityPolicy instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.ISecurityPolicy): google.cloud.securitycenter.v2.SecurityPolicy;
+
+                    /**
+                     * Encodes the specified SecurityPolicy message. Does not implicitly {@link google.cloud.securitycenter.v2.SecurityPolicy.verify|verify} messages.
+                     * @param message SecurityPolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.ISecurityPolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SecurityPolicy message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.SecurityPolicy.verify|verify} messages.
+                     * @param message SecurityPolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.ISecurityPolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SecurityPolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SecurityPolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.SecurityPolicy;
+
+                    /**
+                     * Decodes a SecurityPolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SecurityPolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.SecurityPolicy;
+
+                    /**
+                     * Verifies a SecurityPolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SecurityPolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SecurityPolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.SecurityPolicy;
+
+                    /**
+                     * Creates a plain object from a SecurityPolicy message. Also converts values to other types if specified.
+                     * @param message SecurityPolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.SecurityPolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SecurityPolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SecurityPolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Requests. */
+                interface IRequests {
+
+                    /** Requests ratio */
+                    ratio?: (number|null);
+
+                    /** Requests shortTermAllowed */
+                    shortTermAllowed?: (number|null);
+
+                    /** Requests longTermAllowed */
+                    longTermAllowed?: (number|null);
+
+                    /** Requests longTermDenied */
+                    longTermDenied?: (number|null);
+                }
+
+                /** Represents a Requests. */
+                class Requests implements IRequests {
+
+                    /**
+                     * Constructs a new Requests.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IRequests);
+
+                    /** Requests ratio. */
+                    public ratio: number;
+
+                    /** Requests shortTermAllowed. */
+                    public shortTermAllowed: number;
+
+                    /** Requests longTermAllowed. */
+                    public longTermAllowed: number;
+
+                    /** Requests longTermDenied. */
+                    public longTermDenied: number;
+
+                    /**
+                     * Creates a new Requests instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Requests instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IRequests): google.cloud.securitycenter.v2.Requests;
+
+                    /**
+                     * Encodes the specified Requests message. Does not implicitly {@link google.cloud.securitycenter.v2.Requests.verify|verify} messages.
+                     * @param message Requests message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IRequests, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Requests message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Requests.verify|verify} messages.
+                     * @param message Requests message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IRequests, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Requests message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Requests
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Requests;
+
+                    /**
+                     * Decodes a Requests message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Requests
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Requests;
+
+                    /**
+                     * Verifies a Requests message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Requests message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Requests
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Requests;
+
+                    /**
+                     * Creates a plain object from a Requests message. Also converts values to other types if specified.
+                     * @param message Requests
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Requests, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Requests to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Requests
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AdaptiveProtection. */
+                interface IAdaptiveProtection {
+
+                    /** AdaptiveProtection confidence */
+                    confidence?: (number|null);
+                }
+
+                /** Represents an AdaptiveProtection. */
+                class AdaptiveProtection implements IAdaptiveProtection {
+
+                    /**
+                     * Constructs a new AdaptiveProtection.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAdaptiveProtection);
+
+                    /** AdaptiveProtection confidence. */
+                    public confidence: number;
+
+                    /**
+                     * Creates a new AdaptiveProtection instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AdaptiveProtection instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAdaptiveProtection): google.cloud.securitycenter.v2.AdaptiveProtection;
+
+                    /**
+                     * Encodes the specified AdaptiveProtection message. Does not implicitly {@link google.cloud.securitycenter.v2.AdaptiveProtection.verify|verify} messages.
+                     * @param message AdaptiveProtection message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAdaptiveProtection, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AdaptiveProtection message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AdaptiveProtection.verify|verify} messages.
+                     * @param message AdaptiveProtection message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAdaptiveProtection, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AdaptiveProtection message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AdaptiveProtection
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AdaptiveProtection;
+
+                    /**
+                     * Decodes an AdaptiveProtection message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AdaptiveProtection
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AdaptiveProtection;
+
+                    /**
+                     * Verifies an AdaptiveProtection message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AdaptiveProtection message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AdaptiveProtection
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AdaptiveProtection;
+
+                    /**
+                     * Creates a plain object from an AdaptiveProtection message. Also converts values to other types if specified.
+                     * @param message AdaptiveProtection
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.AdaptiveProtection, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AdaptiveProtection to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AdaptiveProtection
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an Attack. */
+                interface IAttack {
+
+                    /** Attack volumePpsLong */
+                    volumePpsLong?: (number|Long|string|null);
+
+                    /** Attack volumeBpsLong */
+                    volumeBpsLong?: (number|Long|string|null);
+
+                    /** Attack classification */
+                    classification?: (string|null);
+
+                    /** Attack volumePps */
+                    volumePps?: (number|null);
+
+                    /** Attack volumeBps */
+                    volumeBps?: (number|null);
+                }
+
+                /** Represents an Attack. */
+                class Attack implements IAttack {
+
+                    /**
+                     * Constructs a new Attack.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAttack);
+
+                    /** Attack volumePpsLong. */
+                    public volumePpsLong: (number|Long|string);
+
+                    /** Attack volumeBpsLong. */
+                    public volumeBpsLong: (number|Long|string);
+
+                    /** Attack classification. */
+                    public classification: string;
+
+                    /** Attack volumePps. */
+                    public volumePps: number;
+
+                    /** Attack volumeBps. */
+                    public volumeBps: number;
+
+                    /**
+                     * Creates a new Attack instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Attack instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAttack): google.cloud.securitycenter.v2.Attack;
+
+                    /**
+                     * Encodes the specified Attack message. Does not implicitly {@link google.cloud.securitycenter.v2.Attack.verify|verify} messages.
+                     * @param message Attack message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAttack, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Attack message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Attack.verify|verify} messages.
+                     * @param message Attack message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAttack, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an Attack message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Attack
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Attack;
+
+                    /**
+                     * Decodes an Attack message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Attack
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Attack;
+
+                    /**
+                     * Verifies an Attack message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an Attack message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Attack
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Attack;
+
+                    /**
+                     * Creates a plain object from an Attack message. Also converts values to other types if specified.
+                     * @param message Attack
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Attack, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Attack to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Attack
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a CloudDlpDataProfile. */
                 interface ICloudDlpDataProfile {
 
@@ -29030,6 +36835,388 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a DataAccessEvent. */
+                interface IDataAccessEvent {
+
+                    /** DataAccessEvent eventId */
+                    eventId?: (string|null);
+
+                    /** DataAccessEvent principalEmail */
+                    principalEmail?: (string|null);
+
+                    /** DataAccessEvent operation */
+                    operation?: (google.cloud.securitycenter.v2.DataAccessEvent.Operation|keyof typeof google.cloud.securitycenter.v2.DataAccessEvent.Operation|null);
+
+                    /** DataAccessEvent eventTime */
+                    eventTime?: (google.protobuf.ITimestamp|null);
+                }
+
+                /** Represents a DataAccessEvent. */
+                class DataAccessEvent implements IDataAccessEvent {
+
+                    /**
+                     * Constructs a new DataAccessEvent.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IDataAccessEvent);
+
+                    /** DataAccessEvent eventId. */
+                    public eventId: string;
+
+                    /** DataAccessEvent principalEmail. */
+                    public principalEmail: string;
+
+                    /** DataAccessEvent operation. */
+                    public operation: (google.cloud.securitycenter.v2.DataAccessEvent.Operation|keyof typeof google.cloud.securitycenter.v2.DataAccessEvent.Operation);
+
+                    /** DataAccessEvent eventTime. */
+                    public eventTime?: (google.protobuf.ITimestamp|null);
+
+                    /**
+                     * Creates a new DataAccessEvent instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DataAccessEvent instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IDataAccessEvent): google.cloud.securitycenter.v2.DataAccessEvent;
+
+                    /**
+                     * Encodes the specified DataAccessEvent message. Does not implicitly {@link google.cloud.securitycenter.v2.DataAccessEvent.verify|verify} messages.
+                     * @param message DataAccessEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IDataAccessEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DataAccessEvent message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.DataAccessEvent.verify|verify} messages.
+                     * @param message DataAccessEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IDataAccessEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DataAccessEvent message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DataAccessEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.DataAccessEvent;
+
+                    /**
+                     * Decodes a DataAccessEvent message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DataAccessEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.DataAccessEvent;
+
+                    /**
+                     * Verifies a DataAccessEvent message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DataAccessEvent message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DataAccessEvent
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.DataAccessEvent;
+
+                    /**
+                     * Creates a plain object from a DataAccessEvent message. Also converts values to other types if specified.
+                     * @param message DataAccessEvent
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.DataAccessEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DataAccessEvent to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DataAccessEvent
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace DataAccessEvent {
+
+                    /** Operation enum. */
+                    enum Operation {
+                        OPERATION_UNSPECIFIED = 0,
+                        READ = 1,
+                        MOVE = 2,
+                        COPY = 3
+                    }
+                }
+
+                /** Properties of a DataFlowEvent. */
+                interface IDataFlowEvent {
+
+                    /** DataFlowEvent eventId */
+                    eventId?: (string|null);
+
+                    /** DataFlowEvent principalEmail */
+                    principalEmail?: (string|null);
+
+                    /** DataFlowEvent operation */
+                    operation?: (google.cloud.securitycenter.v2.DataFlowEvent.Operation|keyof typeof google.cloud.securitycenter.v2.DataFlowEvent.Operation|null);
+
+                    /** DataFlowEvent violatedLocation */
+                    violatedLocation?: (string|null);
+
+                    /** DataFlowEvent eventTime */
+                    eventTime?: (google.protobuf.ITimestamp|null);
+                }
+
+                /** Represents a DataFlowEvent. */
+                class DataFlowEvent implements IDataFlowEvent {
+
+                    /**
+                     * Constructs a new DataFlowEvent.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IDataFlowEvent);
+
+                    /** DataFlowEvent eventId. */
+                    public eventId: string;
+
+                    /** DataFlowEvent principalEmail. */
+                    public principalEmail: string;
+
+                    /** DataFlowEvent operation. */
+                    public operation: (google.cloud.securitycenter.v2.DataFlowEvent.Operation|keyof typeof google.cloud.securitycenter.v2.DataFlowEvent.Operation);
+
+                    /** DataFlowEvent violatedLocation. */
+                    public violatedLocation: string;
+
+                    /** DataFlowEvent eventTime. */
+                    public eventTime?: (google.protobuf.ITimestamp|null);
+
+                    /**
+                     * Creates a new DataFlowEvent instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DataFlowEvent instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IDataFlowEvent): google.cloud.securitycenter.v2.DataFlowEvent;
+
+                    /**
+                     * Encodes the specified DataFlowEvent message. Does not implicitly {@link google.cloud.securitycenter.v2.DataFlowEvent.verify|verify} messages.
+                     * @param message DataFlowEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IDataFlowEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DataFlowEvent message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.DataFlowEvent.verify|verify} messages.
+                     * @param message DataFlowEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IDataFlowEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DataFlowEvent message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DataFlowEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.DataFlowEvent;
+
+                    /**
+                     * Decodes a DataFlowEvent message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DataFlowEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.DataFlowEvent;
+
+                    /**
+                     * Verifies a DataFlowEvent message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DataFlowEvent message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DataFlowEvent
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.DataFlowEvent;
+
+                    /**
+                     * Creates a plain object from a DataFlowEvent message. Also converts values to other types if specified.
+                     * @param message DataFlowEvent
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.DataFlowEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DataFlowEvent to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DataFlowEvent
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace DataFlowEvent {
+
+                    /** Operation enum. */
+                    enum Operation {
+                        OPERATION_UNSPECIFIED = 0,
+                        READ = 1,
+                        MOVE = 2,
+                        COPY = 3
+                    }
+                }
+
+                /** Properties of a DataRetentionDeletionEvent. */
+                interface IDataRetentionDeletionEvent {
+
+                    /** DataRetentionDeletionEvent eventDetectionTime */
+                    eventDetectionTime?: (google.protobuf.ITimestamp|null);
+
+                    /** DataRetentionDeletionEvent dataObjectCount */
+                    dataObjectCount?: (number|Long|string|null);
+
+                    /** DataRetentionDeletionEvent maxRetentionAllowed */
+                    maxRetentionAllowed?: (google.protobuf.IDuration|null);
+
+                    /** DataRetentionDeletionEvent eventType */
+                    eventType?: (google.cloud.securitycenter.v2.DataRetentionDeletionEvent.EventType|keyof typeof google.cloud.securitycenter.v2.DataRetentionDeletionEvent.EventType|null);
+                }
+
+                /** Represents a DataRetentionDeletionEvent. */
+                class DataRetentionDeletionEvent implements IDataRetentionDeletionEvent {
+
+                    /**
+                     * Constructs a new DataRetentionDeletionEvent.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IDataRetentionDeletionEvent);
+
+                    /** DataRetentionDeletionEvent eventDetectionTime. */
+                    public eventDetectionTime?: (google.protobuf.ITimestamp|null);
+
+                    /** DataRetentionDeletionEvent dataObjectCount. */
+                    public dataObjectCount: (number|Long|string);
+
+                    /** DataRetentionDeletionEvent maxRetentionAllowed. */
+                    public maxRetentionAllowed?: (google.protobuf.IDuration|null);
+
+                    /** DataRetentionDeletionEvent eventType. */
+                    public eventType: (google.cloud.securitycenter.v2.DataRetentionDeletionEvent.EventType|keyof typeof google.cloud.securitycenter.v2.DataRetentionDeletionEvent.EventType);
+
+                    /**
+                     * Creates a new DataRetentionDeletionEvent instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DataRetentionDeletionEvent instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IDataRetentionDeletionEvent): google.cloud.securitycenter.v2.DataRetentionDeletionEvent;
+
+                    /**
+                     * Encodes the specified DataRetentionDeletionEvent message. Does not implicitly {@link google.cloud.securitycenter.v2.DataRetentionDeletionEvent.verify|verify} messages.
+                     * @param message DataRetentionDeletionEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IDataRetentionDeletionEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DataRetentionDeletionEvent message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.DataRetentionDeletionEvent.verify|verify} messages.
+                     * @param message DataRetentionDeletionEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IDataRetentionDeletionEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DataRetentionDeletionEvent message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DataRetentionDeletionEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.DataRetentionDeletionEvent;
+
+                    /**
+                     * Decodes a DataRetentionDeletionEvent message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DataRetentionDeletionEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.DataRetentionDeletionEvent;
+
+                    /**
+                     * Verifies a DataRetentionDeletionEvent message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DataRetentionDeletionEvent message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DataRetentionDeletionEvent
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.DataRetentionDeletionEvent;
+
+                    /**
+                     * Creates a plain object from a DataRetentionDeletionEvent message. Also converts values to other types if specified.
+                     * @param message DataRetentionDeletionEvent
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.DataRetentionDeletionEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DataRetentionDeletionEvent to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DataRetentionDeletionEvent
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace DataRetentionDeletionEvent {
+
+                    /** EventType enum. */
+                    enum EventType {
+                        EVENT_TYPE_UNSPECIFIED = 0,
+                        EVENT_TYPE_MAX_TTL_EXCEEDED = 1
+                    }
+                }
+
                 /** Properties of a Database. */
                 interface IDatabase {
 
@@ -29151,6 +37338,103 @@ export namespace google {
 
                     /**
                      * Gets the default type url for Database
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Disk. */
+                interface IDisk {
+
+                    /** Disk name */
+                    name?: (string|null);
+                }
+
+                /** Represents a Disk. */
+                class Disk implements IDisk {
+
+                    /**
+                     * Constructs a new Disk.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IDisk);
+
+                    /** Disk name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new Disk instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Disk instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IDisk): google.cloud.securitycenter.v2.Disk;
+
+                    /**
+                     * Encodes the specified Disk message. Does not implicitly {@link google.cloud.securitycenter.v2.Disk.verify|verify} messages.
+                     * @param message Disk message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IDisk, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Disk message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Disk.verify|verify} messages.
+                     * @param message Disk message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IDisk, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Disk message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Disk
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Disk;
+
+                    /**
+                     * Decodes a Disk message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Disk
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Disk;
+
+                    /**
+                     * Verifies a Disk message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Disk message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Disk
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Disk;
+
+                    /**
+                     * Creates a plain object from a Disk message. Also converts values to other types if specified.
+                     * @param message Disk
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Disk, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Disk to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Disk
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -29679,6 +37963,9 @@ export namespace google {
 
                     /** File diskPath */
                     diskPath?: (google.cloud.securitycenter.v2.File.IDiskPath|null);
+
+                    /** File operations */
+                    operations?: (google.cloud.securitycenter.v2.File.IFileOperation[]|null);
                 }
 
                 /** Represents a File. */
@@ -29710,6 +37997,9 @@ export namespace google {
 
                     /** File diskPath. */
                     public diskPath?: (google.cloud.securitycenter.v2.File.IDiskPath|null);
+
+                    /** File operations. */
+                    public operations: google.cloud.securitycenter.v2.File.IFileOperation[];
 
                     /**
                      * Creates a new File instance using the specified properties.
@@ -29893,6 +38183,116 @@ export namespace google {
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
+
+                    /** Properties of a FileOperation. */
+                    interface IFileOperation {
+
+                        /** FileOperation type */
+                        type?: (google.cloud.securitycenter.v2.File.FileOperation.OperationType|keyof typeof google.cloud.securitycenter.v2.File.FileOperation.OperationType|null);
+                    }
+
+                    /** Represents a FileOperation. */
+                    class FileOperation implements IFileOperation {
+
+                        /**
+                         * Constructs a new FileOperation.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.File.IFileOperation);
+
+                        /** FileOperation type. */
+                        public type: (google.cloud.securitycenter.v2.File.FileOperation.OperationType|keyof typeof google.cloud.securitycenter.v2.File.FileOperation.OperationType);
+
+                        /**
+                         * Creates a new FileOperation instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns FileOperation instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.File.IFileOperation): google.cloud.securitycenter.v2.File.FileOperation;
+
+                        /**
+                         * Encodes the specified FileOperation message. Does not implicitly {@link google.cloud.securitycenter.v2.File.FileOperation.verify|verify} messages.
+                         * @param message FileOperation message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.File.IFileOperation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified FileOperation message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.File.FileOperation.verify|verify} messages.
+                         * @param message FileOperation message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.File.IFileOperation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a FileOperation message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns FileOperation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.File.FileOperation;
+
+                        /**
+                         * Decodes a FileOperation message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns FileOperation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.File.FileOperation;
+
+                        /**
+                         * Verifies a FileOperation message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a FileOperation message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns FileOperation
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.File.FileOperation;
+
+                        /**
+                         * Creates a plain object from a FileOperation message. Also converts values to other types if specified.
+                         * @param message FileOperation
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.File.FileOperation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this FileOperation to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for FileOperation
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace FileOperation {
+
+                        /** OperationType enum. */
+                        enum OperationType {
+                            OPERATION_TYPE_UNSPECIFIED = 0,
+                            OPEN = 1,
+                            READ = 2,
+                            RENAME = 3,
+                            WRITE = 4,
+                            EXECUTE = 5
+                        }
+                    }
                 }
 
                 /** Properties of a Finding. */
@@ -29936,6 +38336,9 @@ export namespace google {
 
                     /** Finding mute */
                     mute?: (google.cloud.securitycenter.v2.Finding.Mute|keyof typeof google.cloud.securitycenter.v2.Finding.Mute|null);
+
+                    /** Finding muteInfo */
+                    muteInfo?: (google.cloud.securitycenter.v2.Finding.IMuteInfo|null);
 
                     /** Finding findingClass */
                     findingClass?: (google.cloud.securitycenter.v2.Finding.FindingClass|keyof typeof google.cloud.securitycenter.v2.Finding.FindingClass|null);
@@ -30018,8 +38421,14 @@ export namespace google {
                     /** Finding orgPolicies */
                     orgPolicies?: (google.cloud.securitycenter.v2.IOrgPolicy[]|null);
 
+                    /** Finding job */
+                    job?: (google.cloud.securitycenter.v2.IJob|null);
+
                     /** Finding application */
                     application?: (google.cloud.securitycenter.v2.IApplication|null);
+
+                    /** Finding ipRules */
+                    ipRules?: (google.cloud.securitycenter.v2.IIpRules|null);
 
                     /** Finding backupDisasterRecovery */
                     backupDisasterRecovery?: (google.cloud.securitycenter.v2.IBackupDisasterRecovery|null);
@@ -30032,6 +38441,45 @@ export namespace google {
 
                     /** Finding loadBalancers */
                     loadBalancers?: (google.cloud.securitycenter.v2.ILoadBalancer[]|null);
+
+                    /** Finding cloudArmor */
+                    cloudArmor?: (google.cloud.securitycenter.v2.ICloudArmor|null);
+
+                    /** Finding notebook */
+                    notebook?: (google.cloud.securitycenter.v2.INotebook|null);
+
+                    /** Finding toxicCombination */
+                    toxicCombination?: (google.cloud.securitycenter.v2.IToxicCombination|null);
+
+                    /** Finding groupMemberships */
+                    groupMemberships?: (google.cloud.securitycenter.v2.IGroupMembership[]|null);
+
+                    /** Finding disk */
+                    disk?: (google.cloud.securitycenter.v2.IDisk|null);
+
+                    /** Finding dataAccessEvents */
+                    dataAccessEvents?: (google.cloud.securitycenter.v2.IDataAccessEvent[]|null);
+
+                    /** Finding dataFlowEvents */
+                    dataFlowEvents?: (google.cloud.securitycenter.v2.IDataFlowEvent[]|null);
+
+                    /** Finding networks */
+                    networks?: (google.cloud.securitycenter.v2.INetwork[]|null);
+
+                    /** Finding dataRetentionDeletionEvents */
+                    dataRetentionDeletionEvents?: (google.cloud.securitycenter.v2.IDataRetentionDeletionEvent[]|null);
+
+                    /** Finding affectedResources */
+                    affectedResources?: (google.cloud.securitycenter.v2.IAffectedResources|null);
+
+                    /** Finding aiModel */
+                    aiModel?: (google.cloud.securitycenter.v2.IAiModel|null);
+
+                    /** Finding chokepoint */
+                    chokepoint?: (google.cloud.securitycenter.v2.IChokepoint|null);
+
+                    /** Finding vertexAi */
+                    vertexAi?: (google.cloud.securitycenter.v2.IVertexAi|null);
                 }
 
                 /** Represents a Finding. */
@@ -30081,6 +38529,9 @@ export namespace google {
 
                     /** Finding mute. */
                     public mute: (google.cloud.securitycenter.v2.Finding.Mute|keyof typeof google.cloud.securitycenter.v2.Finding.Mute);
+
+                    /** Finding muteInfo. */
+                    public muteInfo?: (google.cloud.securitycenter.v2.Finding.IMuteInfo|null);
 
                     /** Finding findingClass. */
                     public findingClass: (google.cloud.securitycenter.v2.Finding.FindingClass|keyof typeof google.cloud.securitycenter.v2.Finding.FindingClass);
@@ -30163,8 +38614,14 @@ export namespace google {
                     /** Finding orgPolicies. */
                     public orgPolicies: google.cloud.securitycenter.v2.IOrgPolicy[];
 
+                    /** Finding job. */
+                    public job?: (google.cloud.securitycenter.v2.IJob|null);
+
                     /** Finding application. */
                     public application?: (google.cloud.securitycenter.v2.IApplication|null);
+
+                    /** Finding ipRules. */
+                    public ipRules?: (google.cloud.securitycenter.v2.IIpRules|null);
 
                     /** Finding backupDisasterRecovery. */
                     public backupDisasterRecovery?: (google.cloud.securitycenter.v2.IBackupDisasterRecovery|null);
@@ -30177,6 +38634,45 @@ export namespace google {
 
                     /** Finding loadBalancers. */
                     public loadBalancers: google.cloud.securitycenter.v2.ILoadBalancer[];
+
+                    /** Finding cloudArmor. */
+                    public cloudArmor?: (google.cloud.securitycenter.v2.ICloudArmor|null);
+
+                    /** Finding notebook. */
+                    public notebook?: (google.cloud.securitycenter.v2.INotebook|null);
+
+                    /** Finding toxicCombination. */
+                    public toxicCombination?: (google.cloud.securitycenter.v2.IToxicCombination|null);
+
+                    /** Finding groupMemberships. */
+                    public groupMemberships: google.cloud.securitycenter.v2.IGroupMembership[];
+
+                    /** Finding disk. */
+                    public disk?: (google.cloud.securitycenter.v2.IDisk|null);
+
+                    /** Finding dataAccessEvents. */
+                    public dataAccessEvents: google.cloud.securitycenter.v2.IDataAccessEvent[];
+
+                    /** Finding dataFlowEvents. */
+                    public dataFlowEvents: google.cloud.securitycenter.v2.IDataFlowEvent[];
+
+                    /** Finding networks. */
+                    public networks: google.cloud.securitycenter.v2.INetwork[];
+
+                    /** Finding dataRetentionDeletionEvents. */
+                    public dataRetentionDeletionEvents: google.cloud.securitycenter.v2.IDataRetentionDeletionEvent[];
+
+                    /** Finding affectedResources. */
+                    public affectedResources?: (google.cloud.securitycenter.v2.IAffectedResources|null);
+
+                    /** Finding aiModel. */
+                    public aiModel?: (google.cloud.securitycenter.v2.IAiModel|null);
+
+                    /** Finding chokepoint. */
+                    public chokepoint?: (google.cloud.securitycenter.v2.IChokepoint|null);
+
+                    /** Finding vertexAi. */
+                    public vertexAi?: (google.cloud.securitycenter.v2.IVertexAi|null);
 
                     /**
                      * Creates a new Finding instance using the specified properties.
@@ -30282,6 +38778,318 @@ export namespace google {
                         UNDEFINED = 3
                     }
 
+                    /** Properties of a MuteInfo. */
+                    interface IMuteInfo {
+
+                        /** MuteInfo staticMute */
+                        staticMute?: (google.cloud.securitycenter.v2.Finding.MuteInfo.IStaticMute|null);
+
+                        /** MuteInfo dynamicMuteRecords */
+                        dynamicMuteRecords?: (google.cloud.securitycenter.v2.Finding.MuteInfo.IDynamicMuteRecord[]|null);
+                    }
+
+                    /** Represents a MuteInfo. */
+                    class MuteInfo implements IMuteInfo {
+
+                        /**
+                         * Constructs a new MuteInfo.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.Finding.IMuteInfo);
+
+                        /** MuteInfo staticMute. */
+                        public staticMute?: (google.cloud.securitycenter.v2.Finding.MuteInfo.IStaticMute|null);
+
+                        /** MuteInfo dynamicMuteRecords. */
+                        public dynamicMuteRecords: google.cloud.securitycenter.v2.Finding.MuteInfo.IDynamicMuteRecord[];
+
+                        /**
+                         * Creates a new MuteInfo instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns MuteInfo instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.Finding.IMuteInfo): google.cloud.securitycenter.v2.Finding.MuteInfo;
+
+                        /**
+                         * Encodes the specified MuteInfo message. Does not implicitly {@link google.cloud.securitycenter.v2.Finding.MuteInfo.verify|verify} messages.
+                         * @param message MuteInfo message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.Finding.IMuteInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified MuteInfo message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Finding.MuteInfo.verify|verify} messages.
+                         * @param message MuteInfo message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.Finding.IMuteInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a MuteInfo message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns MuteInfo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Finding.MuteInfo;
+
+                        /**
+                         * Decodes a MuteInfo message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns MuteInfo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Finding.MuteInfo;
+
+                        /**
+                         * Verifies a MuteInfo message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a MuteInfo message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns MuteInfo
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Finding.MuteInfo;
+
+                        /**
+                         * Creates a plain object from a MuteInfo message. Also converts values to other types if specified.
+                         * @param message MuteInfo
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.Finding.MuteInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this MuteInfo to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for MuteInfo
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace MuteInfo {
+
+                        /** Properties of a StaticMute. */
+                        interface IStaticMute {
+
+                            /** StaticMute state */
+                            state?: (google.cloud.securitycenter.v2.Finding.Mute|keyof typeof google.cloud.securitycenter.v2.Finding.Mute|null);
+
+                            /** StaticMute applyTime */
+                            applyTime?: (google.protobuf.ITimestamp|null);
+                        }
+
+                        /** Represents a StaticMute. */
+                        class StaticMute implements IStaticMute {
+
+                            /**
+                             * Constructs a new StaticMute.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.securitycenter.v2.Finding.MuteInfo.IStaticMute);
+
+                            /** StaticMute state. */
+                            public state: (google.cloud.securitycenter.v2.Finding.Mute|keyof typeof google.cloud.securitycenter.v2.Finding.Mute);
+
+                            /** StaticMute applyTime. */
+                            public applyTime?: (google.protobuf.ITimestamp|null);
+
+                            /**
+                             * Creates a new StaticMute instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns StaticMute instance
+                             */
+                            public static create(properties?: google.cloud.securitycenter.v2.Finding.MuteInfo.IStaticMute): google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Encodes the specified StaticMute message. Does not implicitly {@link google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute.verify|verify} messages.
+                             * @param message StaticMute message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.securitycenter.v2.Finding.MuteInfo.IStaticMute, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified StaticMute message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute.verify|verify} messages.
+                             * @param message StaticMute message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.securitycenter.v2.Finding.MuteInfo.IStaticMute, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a StaticMute message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns StaticMute
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Decodes a StaticMute message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns StaticMute
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Verifies a StaticMute message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a StaticMute message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns StaticMute
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute;
+
+                            /**
+                             * Creates a plain object from a StaticMute message. Also converts values to other types if specified.
+                             * @param message StaticMute
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this StaticMute to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for StaticMute
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        /** Properties of a DynamicMuteRecord. */
+                        interface IDynamicMuteRecord {
+
+                            /** DynamicMuteRecord muteConfig */
+                            muteConfig?: (string|null);
+
+                            /** DynamicMuteRecord matchTime */
+                            matchTime?: (google.protobuf.ITimestamp|null);
+                        }
+
+                        /** Represents a DynamicMuteRecord. */
+                        class DynamicMuteRecord implements IDynamicMuteRecord {
+
+                            /**
+                             * Constructs a new DynamicMuteRecord.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.securitycenter.v2.Finding.MuteInfo.IDynamicMuteRecord);
+
+                            /** DynamicMuteRecord muteConfig. */
+                            public muteConfig: string;
+
+                            /** DynamicMuteRecord matchTime. */
+                            public matchTime?: (google.protobuf.ITimestamp|null);
+
+                            /**
+                             * Creates a new DynamicMuteRecord instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns DynamicMuteRecord instance
+                             */
+                            public static create(properties?: google.cloud.securitycenter.v2.Finding.MuteInfo.IDynamicMuteRecord): google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Encodes the specified DynamicMuteRecord message. Does not implicitly {@link google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord.verify|verify} messages.
+                             * @param message DynamicMuteRecord message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.securitycenter.v2.Finding.MuteInfo.IDynamicMuteRecord, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified DynamicMuteRecord message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord.verify|verify} messages.
+                             * @param message DynamicMuteRecord message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.securitycenter.v2.Finding.MuteInfo.IDynamicMuteRecord, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a DynamicMuteRecord message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns DynamicMuteRecord
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Decodes a DynamicMuteRecord message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns DynamicMuteRecord
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Verifies a DynamicMuteRecord message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a DynamicMuteRecord message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns DynamicMuteRecord
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord;
+
+                            /**
+                             * Creates a plain object from a DynamicMuteRecord message. Also converts values to other types if specified.
+                             * @param message DynamicMuteRecord
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this DynamicMuteRecord to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for DynamicMuteRecord
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+                    }
+
                     /** FindingClass enum. */
                     enum FindingClass {
                         FINDING_CLASS_UNSPECIFIED = 0,
@@ -30290,7 +39098,123 @@ export namespace google {
                         MISCONFIGURATION = 3,
                         OBSERVATION = 4,
                         SCC_ERROR = 5,
-                        POSTURE_VIOLATION = 6
+                        POSTURE_VIOLATION = 6,
+                        TOXIC_COMBINATION = 7,
+                        SENSITIVE_DATA_RISK = 8,
+                        CHOKEPOINT = 9
+                    }
+                }
+
+                /** Properties of a GroupMembership. */
+                interface IGroupMembership {
+
+                    /** GroupMembership groupType */
+                    groupType?: (google.cloud.securitycenter.v2.GroupMembership.GroupType|keyof typeof google.cloud.securitycenter.v2.GroupMembership.GroupType|null);
+
+                    /** GroupMembership groupId */
+                    groupId?: (string|null);
+                }
+
+                /** Represents a GroupMembership. */
+                class GroupMembership implements IGroupMembership {
+
+                    /**
+                     * Constructs a new GroupMembership.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IGroupMembership);
+
+                    /** GroupMembership groupType. */
+                    public groupType: (google.cloud.securitycenter.v2.GroupMembership.GroupType|keyof typeof google.cloud.securitycenter.v2.GroupMembership.GroupType);
+
+                    /** GroupMembership groupId. */
+                    public groupId: string;
+
+                    /**
+                     * Creates a new GroupMembership instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GroupMembership instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IGroupMembership): google.cloud.securitycenter.v2.GroupMembership;
+
+                    /**
+                     * Encodes the specified GroupMembership message. Does not implicitly {@link google.cloud.securitycenter.v2.GroupMembership.verify|verify} messages.
+                     * @param message GroupMembership message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IGroupMembership, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GroupMembership message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.GroupMembership.verify|verify} messages.
+                     * @param message GroupMembership message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IGroupMembership, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GroupMembership message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GroupMembership
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.GroupMembership;
+
+                    /**
+                     * Decodes a GroupMembership message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GroupMembership
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.GroupMembership;
+
+                    /**
+                     * Verifies a GroupMembership message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GroupMembership message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GroupMembership
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.GroupMembership;
+
+                    /**
+                     * Creates a plain object from a GroupMembership message. Also converts values to other types if specified.
+                     * @param message GroupMembership
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.GroupMembership, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GroupMembership to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GroupMembership
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace GroupMembership {
+
+                    /** GroupType enum. */
+                    enum GroupType {
+                        GROUP_TYPE_UNSPECIFIED = 0,
+                        GROUP_TYPE_TOXIC_COMBINATION = 1,
+                        GROUP_TYPE_CHOKEPOINT = 3
                     }
                 }
 
@@ -30957,6 +39881,673 @@ export namespace google {
                             SIGNATURE_TYPE_FILE = 2
                         }
                     }
+                }
+
+                /** Properties of an IpRules. */
+                interface IIpRules {
+
+                    /** IpRules direction */
+                    direction?: (google.cloud.securitycenter.v2.IpRules.Direction|keyof typeof google.cloud.securitycenter.v2.IpRules.Direction|null);
+
+                    /** IpRules allowed */
+                    allowed?: (google.cloud.securitycenter.v2.IAllowed|null);
+
+                    /** IpRules denied */
+                    denied?: (google.cloud.securitycenter.v2.IDenied|null);
+
+                    /** IpRules sourceIpRanges */
+                    sourceIpRanges?: (string[]|null);
+
+                    /** IpRules destinationIpRanges */
+                    destinationIpRanges?: (string[]|null);
+
+                    /** IpRules exposedServices */
+                    exposedServices?: (string[]|null);
+                }
+
+                /** Represents an IpRules. */
+                class IpRules implements IIpRules {
+
+                    /**
+                     * Constructs a new IpRules.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IIpRules);
+
+                    /** IpRules direction. */
+                    public direction: (google.cloud.securitycenter.v2.IpRules.Direction|keyof typeof google.cloud.securitycenter.v2.IpRules.Direction);
+
+                    /** IpRules allowed. */
+                    public allowed?: (google.cloud.securitycenter.v2.IAllowed|null);
+
+                    /** IpRules denied. */
+                    public denied?: (google.cloud.securitycenter.v2.IDenied|null);
+
+                    /** IpRules sourceIpRanges. */
+                    public sourceIpRanges: string[];
+
+                    /** IpRules destinationIpRanges. */
+                    public destinationIpRanges: string[];
+
+                    /** IpRules exposedServices. */
+                    public exposedServices: string[];
+
+                    /** IpRules rules. */
+                    public rules?: ("allowed"|"denied");
+
+                    /**
+                     * Creates a new IpRules instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns IpRules instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IIpRules): google.cloud.securitycenter.v2.IpRules;
+
+                    /**
+                     * Encodes the specified IpRules message. Does not implicitly {@link google.cloud.securitycenter.v2.IpRules.verify|verify} messages.
+                     * @param message IpRules message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IIpRules, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified IpRules message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.IpRules.verify|verify} messages.
+                     * @param message IpRules message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IIpRules, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an IpRules message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns IpRules
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.IpRules;
+
+                    /**
+                     * Decodes an IpRules message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns IpRules
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.IpRules;
+
+                    /**
+                     * Verifies an IpRules message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an IpRules message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns IpRules
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.IpRules;
+
+                    /**
+                     * Creates a plain object from an IpRules message. Also converts values to other types if specified.
+                     * @param message IpRules
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.IpRules, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this IpRules to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for IpRules
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace IpRules {
+
+                    /** Direction enum. */
+                    enum Direction {
+                        DIRECTION_UNSPECIFIED = 0,
+                        INGRESS = 1,
+                        EGRESS = 2
+                    }
+                }
+
+                /** Properties of an IpRule. */
+                interface IIpRule {
+
+                    /** IpRule protocol */
+                    protocol?: (string|null);
+
+                    /** IpRule portRanges */
+                    portRanges?: (google.cloud.securitycenter.v2.IpRule.IPortRange[]|null);
+                }
+
+                /** Represents an IpRule. */
+                class IpRule implements IIpRule {
+
+                    /**
+                     * Constructs a new IpRule.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IIpRule);
+
+                    /** IpRule protocol. */
+                    public protocol: string;
+
+                    /** IpRule portRanges. */
+                    public portRanges: google.cloud.securitycenter.v2.IpRule.IPortRange[];
+
+                    /**
+                     * Creates a new IpRule instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns IpRule instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IIpRule): google.cloud.securitycenter.v2.IpRule;
+
+                    /**
+                     * Encodes the specified IpRule message. Does not implicitly {@link google.cloud.securitycenter.v2.IpRule.verify|verify} messages.
+                     * @param message IpRule message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IIpRule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified IpRule message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.IpRule.verify|verify} messages.
+                     * @param message IpRule message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IIpRule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an IpRule message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns IpRule
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.IpRule;
+
+                    /**
+                     * Decodes an IpRule message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns IpRule
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.IpRule;
+
+                    /**
+                     * Verifies an IpRule message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an IpRule message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns IpRule
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.IpRule;
+
+                    /**
+                     * Creates a plain object from an IpRule message. Also converts values to other types if specified.
+                     * @param message IpRule
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.IpRule, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this IpRule to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for IpRule
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace IpRule {
+
+                    /** Properties of a PortRange. */
+                    interface IPortRange {
+
+                        /** PortRange min */
+                        min?: (number|Long|string|null);
+
+                        /** PortRange max */
+                        max?: (number|Long|string|null);
+                    }
+
+                    /** Represents a PortRange. */
+                    class PortRange implements IPortRange {
+
+                        /**
+                         * Constructs a new PortRange.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.IpRule.IPortRange);
+
+                        /** PortRange min. */
+                        public min: (number|Long|string);
+
+                        /** PortRange max. */
+                        public max: (number|Long|string);
+
+                        /**
+                         * Creates a new PortRange instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns PortRange instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.IpRule.IPortRange): google.cloud.securitycenter.v2.IpRule.PortRange;
+
+                        /**
+                         * Encodes the specified PortRange message. Does not implicitly {@link google.cloud.securitycenter.v2.IpRule.PortRange.verify|verify} messages.
+                         * @param message PortRange message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.IpRule.IPortRange, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified PortRange message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.IpRule.PortRange.verify|verify} messages.
+                         * @param message PortRange message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.IpRule.IPortRange, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a PortRange message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns PortRange
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.IpRule.PortRange;
+
+                        /**
+                         * Decodes a PortRange message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns PortRange
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.IpRule.PortRange;
+
+                        /**
+                         * Verifies a PortRange message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a PortRange message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns PortRange
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.IpRule.PortRange;
+
+                        /**
+                         * Creates a plain object from a PortRange message. Also converts values to other types if specified.
+                         * @param message PortRange
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.IpRule.PortRange, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this PortRange to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for PortRange
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** Properties of an Allowed. */
+                interface IAllowed {
+
+                    /** Allowed ipRules */
+                    ipRules?: (google.cloud.securitycenter.v2.IIpRule[]|null);
+                }
+
+                /** Represents an Allowed. */
+                class Allowed implements IAllowed {
+
+                    /**
+                     * Constructs a new Allowed.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAllowed);
+
+                    /** Allowed ipRules. */
+                    public ipRules: google.cloud.securitycenter.v2.IIpRule[];
+
+                    /**
+                     * Creates a new Allowed instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Allowed instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAllowed): google.cloud.securitycenter.v2.Allowed;
+
+                    /**
+                     * Encodes the specified Allowed message. Does not implicitly {@link google.cloud.securitycenter.v2.Allowed.verify|verify} messages.
+                     * @param message Allowed message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAllowed, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Allowed message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Allowed.verify|verify} messages.
+                     * @param message Allowed message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAllowed, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an Allowed message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Allowed
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Allowed;
+
+                    /**
+                     * Decodes an Allowed message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Allowed
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Allowed;
+
+                    /**
+                     * Verifies an Allowed message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an Allowed message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Allowed
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Allowed;
+
+                    /**
+                     * Creates a plain object from an Allowed message. Also converts values to other types if specified.
+                     * @param message Allowed
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Allowed, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Allowed to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Allowed
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Denied. */
+                interface IDenied {
+
+                    /** Denied ipRules */
+                    ipRules?: (google.cloud.securitycenter.v2.IIpRule[]|null);
+                }
+
+                /** Represents a Denied. */
+                class Denied implements IDenied {
+
+                    /**
+                     * Constructs a new Denied.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IDenied);
+
+                    /** Denied ipRules. */
+                    public ipRules: google.cloud.securitycenter.v2.IIpRule[];
+
+                    /**
+                     * Creates a new Denied instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Denied instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IDenied): google.cloud.securitycenter.v2.Denied;
+
+                    /**
+                     * Encodes the specified Denied message. Does not implicitly {@link google.cloud.securitycenter.v2.Denied.verify|verify} messages.
+                     * @param message Denied message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IDenied, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Denied message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Denied.verify|verify} messages.
+                     * @param message Denied message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IDenied, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Denied message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Denied
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Denied;
+
+                    /**
+                     * Decodes a Denied message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Denied
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Denied;
+
+                    /**
+                     * Verifies a Denied message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Denied message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Denied
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Denied;
+
+                    /**
+                     * Creates a plain object from a Denied message. Also converts values to other types if specified.
+                     * @param message Denied
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Denied, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Denied to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Denied
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Job. */
+                interface IJob {
+
+                    /** Job name */
+                    name?: (string|null);
+
+                    /** Job state */
+                    state?: (google.cloud.securitycenter.v2.JobState|keyof typeof google.cloud.securitycenter.v2.JobState|null);
+
+                    /** Job errorCode */
+                    errorCode?: (number|null);
+
+                    /** Job location */
+                    location?: (string|null);
+                }
+
+                /** Represents a Job. */
+                class Job implements IJob {
+
+                    /**
+                     * Constructs a new Job.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IJob);
+
+                    /** Job name. */
+                    public name: string;
+
+                    /** Job state. */
+                    public state: (google.cloud.securitycenter.v2.JobState|keyof typeof google.cloud.securitycenter.v2.JobState);
+
+                    /** Job errorCode. */
+                    public errorCode: number;
+
+                    /** Job location. */
+                    public location: string;
+
+                    /**
+                     * Creates a new Job instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Job instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IJob): google.cloud.securitycenter.v2.Job;
+
+                    /**
+                     * Encodes the specified Job message. Does not implicitly {@link google.cloud.securitycenter.v2.Job.verify|verify} messages.
+                     * @param message Job message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IJob, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Job message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Job.verify|verify} messages.
+                     * @param message Job message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IJob, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Job message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Job
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Job;
+
+                    /**
+                     * Decodes a Job message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Job
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Job;
+
+                    /**
+                     * Verifies a Job message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Job message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Job
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Job;
+
+                    /**
+                     * Creates a plain object from a Job message. Also converts values to other types if specified.
+                     * @param message Job
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Job, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Job to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Job
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** JobState enum. */
+                enum JobState {
+                    JOB_STATE_UNSPECIFIED = 0,
+                    PENDING = 1,
+                    RUNNING = 2,
+                    SUCCEEDED = 3,
+                    FAILED = 4
                 }
 
                 /** Properties of a KernelRootkit. */
@@ -32620,16 +42211,43 @@ export namespace google {
                     /** Technique enum. */
                     enum Technique {
                         TECHNIQUE_UNSPECIFIED = 0,
+                        DATA_OBFUSCATION = 70,
+                        DATA_OBFUSCATION_STEGANOGRAPHY = 71,
+                        OS_CREDENTIAL_DUMPING = 114,
+                        OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM = 115,
+                        OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW = 122,
+                        DATA_FROM_LOCAL_SYSTEM = 117,
+                        AUTOMATED_EXFILTRATION = 68,
+                        OBFUSCATED_FILES_OR_INFO = 72,
+                        STEGANOGRAPHY = 73,
+                        COMPILE_AFTER_DELIVERY = 74,
+                        COMMAND_OBFUSCATION = 75,
+                        SCHEDULED_TRANSFER = 120,
+                        SYSTEM_OWNER_USER_DISCOVERY = 118,
                         MASQUERADING = 49,
                         MATCH_LEGITIMATE_NAME_OR_LOCATION = 50,
                         BOOT_OR_LOGON_INITIALIZATION_SCRIPTS = 37,
                         STARTUP_ITEMS = 38,
                         NETWORK_SERVICE_DISCOVERY = 32,
+                        SCHEDULED_TASK_JOB = 89,
+                        SCHEDULED_TASK_JOB_CRON = 119,
+                        CONTAINER_ORCHESTRATION_JOB = 90,
+                        PROCESS_INJECTION = 93,
+                        INPUT_CAPTURE = 103,
+                        INPUT_CAPTURE_KEYLOGGING = 104,
                         PROCESS_DISCOVERY = 56,
                         COMMAND_AND_SCRIPTING_INTERPRETER = 6,
                         UNIX_SHELL = 7,
+                        PYTHON = 59,
+                        EXPLOITATION_FOR_PRIVILEGE_ESCALATION = 63,
                         PERMISSION_GROUPS_DISCOVERY = 18,
                         CLOUD_GROUPS = 19,
+                        INDICATOR_REMOVAL = 123,
+                        INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS = 124,
+                        INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY = 125,
+                        INDICATOR_REMOVAL_FILE_DELETION = 64,
+                        INDICATOR_REMOVAL_TIMESTOMP = 128,
+                        INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA = 126,
                         APPLICATION_LAYER_PROTOCOL = 45,
                         DNS = 46,
                         SOFTWARE_DEPLOYMENT_TOOLS = 47,
@@ -32637,48 +42255,312 @@ export namespace google {
                         DEFAULT_ACCOUNTS = 35,
                         LOCAL_ACCOUNTS = 15,
                         CLOUD_ACCOUNTS = 16,
+                        FILE_AND_DIRECTORY_DISCOVERY = 121,
+                        ACCOUNT_DISCOVERY_LOCAL_ACCOUNT = 116,
                         PROXY = 9,
                         EXTERNAL_PROXY = 10,
                         MULTI_HOP_PROXY = 11,
                         ACCOUNT_MANIPULATION = 22,
                         ADDITIONAL_CLOUD_CREDENTIALS = 40,
+                        ADDITIONAL_CLOUD_ROLES = 67,
                         SSH_AUTHORIZED_KEYS = 23,
                         ADDITIONAL_CONTAINER_CLUSTER_ROLES = 58,
+                        MULTI_STAGE_CHANNELS = 76,
                         INGRESS_TOOL_TRANSFER = 3,
                         NATIVE_API = 4,
                         BRUTE_FORCE = 44,
+                        AUTOMATED_COLLECTION = 94,
                         SHARED_MODULES = 5,
+                        DATA_ENCODING = 77,
+                        STANDARD_ENCODING = 78,
                         ACCESS_TOKEN_MANIPULATION = 33,
                         TOKEN_IMPERSONATION_OR_THEFT = 39,
+                        CREATE_ACCOUNT = 79,
+                        LOCAL_ACCOUNT = 80,
+                        DEOBFUSCATE_DECODE_FILES_OR_INFO = 95,
                         EXPLOIT_PUBLIC_FACING_APPLICATION = 27,
+                        SUPPLY_CHAIN_COMPROMISE = 129,
+                        COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS = 130,
+                        EXPLOITATION_FOR_CLIENT_EXECUTION = 134,
+                        USER_EXECUTION = 69,
+                        LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION = 135,
                         DOMAIN_POLICY_MODIFICATION = 30,
                         DATA_DESTRUCTION = 29,
+                        DATA_ENCRYPTED_FOR_IMPACT = 132,
                         SERVICE_STOP = 52,
                         INHIBIT_SYSTEM_RECOVERY = 36,
+                        FIRMWARE_CORRUPTION = 81,
                         RESOURCE_HIJACKING = 8,
                         NETWORK_DENIAL_OF_SERVICE = 17,
                         CLOUD_SERVICE_DISCOVERY = 48,
                         STEAL_APPLICATION_ACCESS_TOKEN = 42,
                         ACCOUNT_ACCESS_REMOVAL = 51,
+                        TRANSFER_DATA_TO_CLOUD_ACCOUNT = 91,
                         STEAL_WEB_SESSION_COOKIE = 25,
                         CREATE_OR_MODIFY_SYSTEM_PROCESS = 24,
+                        EVENT_TRIGGERED_EXECUTION = 65,
+                        BOOT_OR_LOGON_AUTOSTART_EXECUTION = 82,
+                        KERNEL_MODULES_AND_EXTENSIONS = 83,
+                        SHORTCUT_MODIFICATION = 127,
                         ABUSE_ELEVATION_CONTROL_MECHANISM = 34,
+                        ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID = 136,
+                        ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING = 109,
                         UNSECURED_CREDENTIALS = 13,
+                        CREDENTIALS_IN_FILES = 105,
+                        BASH_HISTORY = 96,
+                        PRIVATE_KEYS = 97,
+                        SUBVERT_TRUST_CONTROL = 106,
+                        INSTALL_ROOT_CERTIFICATE = 107,
+                        COMPROMISE_HOST_SOFTWARE_BINARY = 84,
+                        CREDENTIALS_FROM_PASSWORD_STORES = 98,
                         MODIFY_AUTHENTICATION_PROCESS = 28,
+                        PLUGGABLE_AUTHENTICATION_MODULES = 108,
+                        MULTI_FACTOR_AUTHENTICATION = 137,
                         IMPAIR_DEFENSES = 31,
                         DISABLE_OR_MODIFY_TOOLS = 55,
+                        INDICATOR_BLOCKING = 110,
+                        DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM = 111,
+                        HIDE_ARTIFACTS = 85,
+                        HIDDEN_FILES_AND_DIRECTORIES = 86,
+                        HIDDEN_USERS = 87,
                         EXFILTRATION_OVER_WEB_SERVICE = 20,
                         EXFILTRATION_TO_CLOUD_STORAGE = 21,
                         DYNAMIC_RESOLUTION = 12,
                         LATERAL_TOOL_TRANSFER = 41,
+                        HIJACK_EXECUTION_FLOW = 112,
+                        HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING = 113,
                         MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE = 26,
                         CREATE_SNAPSHOT = 54,
                         CLOUD_INFRASTRUCTURE_DISCOVERY = 53,
+                        DEVELOP_CAPABILITIES = 99,
+                        DEVELOP_CAPABILITIES_MALWARE = 100,
                         OBTAIN_CAPABILITIES = 43,
+                        OBTAIN_CAPABILITIES_MALWARE = 101,
+                        OBTAIN_CAPABILITIES_VULNERABILITIES = 133,
                         ACTIVE_SCANNING = 1,
                         SCANNING_IP_BLOCKS = 2,
-                        CONTAINER_AND_RESOURCE_DISCOVERY = 57
+                        STAGE_CAPABILITIES = 88,
+                        UPLOAD_MALWARE = 102,
+                        CONTAINER_ADMINISTRATION_COMMAND = 60,
+                        DEPLOY_CONTAINER = 66,
+                        ESCAPE_TO_HOST = 61,
+                        CONTAINER_AND_RESOURCE_DISCOVERY = 57,
+                        REFLECTIVE_CODE_LOADING = 92,
+                        STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES = 62,
+                        FINANCIAL_THEFT = 131
                     }
+                }
+
+                /** Properties of a Network. */
+                interface INetwork {
+
+                    /** Network name */
+                    name?: (string|null);
+                }
+
+                /** Represents a Network. */
+                class Network implements INetwork {
+
+                    /**
+                     * Constructs a new Network.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.INetwork);
+
+                    /** Network name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new Network instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Network instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.INetwork): google.cloud.securitycenter.v2.Network;
+
+                    /**
+                     * Encodes the specified Network message. Does not implicitly {@link google.cloud.securitycenter.v2.Network.verify|verify} messages.
+                     * @param message Network message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.INetwork, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Network message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Network.verify|verify} messages.
+                     * @param message Network message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.INetwork, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Network message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Network
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Network;
+
+                    /**
+                     * Decodes a Network message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Network
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Network;
+
+                    /**
+                     * Verifies a Network message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Network message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Network
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Network;
+
+                    /**
+                     * Creates a plain object from a Network message. Also converts values to other types if specified.
+                     * @param message Network
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Network, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Network to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Network
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Notebook. */
+                interface INotebook {
+
+                    /** Notebook name */
+                    name?: (string|null);
+
+                    /** Notebook service */
+                    service?: (string|null);
+
+                    /** Notebook lastAuthor */
+                    lastAuthor?: (string|null);
+
+                    /** Notebook notebookUpdateTime */
+                    notebookUpdateTime?: (google.protobuf.ITimestamp|null);
+                }
+
+                /** Represents a Notebook. */
+                class Notebook implements INotebook {
+
+                    /**
+                     * Constructs a new Notebook.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.INotebook);
+
+                    /** Notebook name. */
+                    public name: string;
+
+                    /** Notebook service. */
+                    public service: string;
+
+                    /** Notebook lastAuthor. */
+                    public lastAuthor: string;
+
+                    /** Notebook notebookUpdateTime. */
+                    public notebookUpdateTime?: (google.protobuf.ITimestamp|null);
+
+                    /**
+                     * Creates a new Notebook instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Notebook instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.INotebook): google.cloud.securitycenter.v2.Notebook;
+
+                    /**
+                     * Encodes the specified Notebook message. Does not implicitly {@link google.cloud.securitycenter.v2.Notebook.verify|verify} messages.
+                     * @param message Notebook message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.INotebook, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Notebook message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Notebook.verify|verify} messages.
+                     * @param message Notebook message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.INotebook, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Notebook message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Notebook
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Notebook;
+
+                    /**
+                     * Decodes a Notebook message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Notebook
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Notebook;
+
+                    /**
+                     * Verifies a Notebook message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Notebook message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Notebook
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Notebook;
+
+                    /**
+                     * Creates a plain object from a Notebook message. Also converts values to other types if specified.
+                     * @param message Notebook
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Notebook, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Notebook to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Notebook
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
                 /** Properties of an OrgPolicy. */
@@ -32810,6 +42692,9 @@ export namespace google {
 
                     /** Process parentPid */
                     parentPid?: (number|Long|string|null);
+
+                    /** Process userId */
+                    userId?: (number|Long|string|null);
                 }
 
                 /** Represents a Process. */
@@ -32850,6 +42735,9 @@ export namespace google {
 
                     /** Process parentPid. */
                     public parentPid: (number|Long|string);
+
+                    /** Process userId. */
+                    public userId: (number|Long|string);
 
                     /**
                      * Creates a new Process instance using the specified properties.
@@ -33392,6 +43280,427 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a ToxicCombination. */
+                interface IToxicCombination {
+
+                    /** ToxicCombination attackExposureScore */
+                    attackExposureScore?: (number|null);
+
+                    /** ToxicCombination relatedFindings */
+                    relatedFindings?: (string[]|null);
+                }
+
+                /** Represents a ToxicCombination. */
+                class ToxicCombination implements IToxicCombination {
+
+                    /**
+                     * Constructs a new ToxicCombination.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IToxicCombination);
+
+                    /** ToxicCombination attackExposureScore. */
+                    public attackExposureScore: number;
+
+                    /** ToxicCombination relatedFindings. */
+                    public relatedFindings: string[];
+
+                    /**
+                     * Creates a new ToxicCombination instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ToxicCombination instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IToxicCombination): google.cloud.securitycenter.v2.ToxicCombination;
+
+                    /**
+                     * Encodes the specified ToxicCombination message. Does not implicitly {@link google.cloud.securitycenter.v2.ToxicCombination.verify|verify} messages.
+                     * @param message ToxicCombination message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IToxicCombination, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ToxicCombination message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.ToxicCombination.verify|verify} messages.
+                     * @param message ToxicCombination message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IToxicCombination, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ToxicCombination message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ToxicCombination
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.ToxicCombination;
+
+                    /**
+                     * Decodes a ToxicCombination message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ToxicCombination
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.ToxicCombination;
+
+                    /**
+                     * Verifies a ToxicCombination message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ToxicCombination message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ToxicCombination
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.ToxicCombination;
+
+                    /**
+                     * Creates a plain object from a ToxicCombination message. Also converts values to other types if specified.
+                     * @param message ToxicCombination
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.ToxicCombination, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ToxicCombination to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ToxicCombination
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a VertexAi. */
+                interface IVertexAi {
+
+                    /** VertexAi datasets */
+                    datasets?: (google.cloud.securitycenter.v2.VertexAi.IDataset[]|null);
+
+                    /** VertexAi pipelines */
+                    pipelines?: (google.cloud.securitycenter.v2.VertexAi.IPipeline[]|null);
+                }
+
+                /** Represents a VertexAi. */
+                class VertexAi implements IVertexAi {
+
+                    /**
+                     * Constructs a new VertexAi.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IVertexAi);
+
+                    /** VertexAi datasets. */
+                    public datasets: google.cloud.securitycenter.v2.VertexAi.IDataset[];
+
+                    /** VertexAi pipelines. */
+                    public pipelines: google.cloud.securitycenter.v2.VertexAi.IPipeline[];
+
+                    /**
+                     * Creates a new VertexAi instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns VertexAi instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IVertexAi): google.cloud.securitycenter.v2.VertexAi;
+
+                    /**
+                     * Encodes the specified VertexAi message. Does not implicitly {@link google.cloud.securitycenter.v2.VertexAi.verify|verify} messages.
+                     * @param message VertexAi message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IVertexAi, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified VertexAi message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.VertexAi.verify|verify} messages.
+                     * @param message VertexAi message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IVertexAi, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a VertexAi message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns VertexAi
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.VertexAi;
+
+                    /**
+                     * Decodes a VertexAi message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns VertexAi
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.VertexAi;
+
+                    /**
+                     * Verifies a VertexAi message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a VertexAi message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns VertexAi
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.VertexAi;
+
+                    /**
+                     * Creates a plain object from a VertexAi message. Also converts values to other types if specified.
+                     * @param message VertexAi
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.VertexAi, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this VertexAi to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for VertexAi
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace VertexAi {
+
+                    /** Properties of a Dataset. */
+                    interface IDataset {
+
+                        /** Dataset name */
+                        name?: (string|null);
+
+                        /** Dataset displayName */
+                        displayName?: (string|null);
+
+                        /** Dataset source */
+                        source?: (string|null);
+                    }
+
+                    /** Represents a Dataset. */
+                    class Dataset implements IDataset {
+
+                        /**
+                         * Constructs a new Dataset.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.VertexAi.IDataset);
+
+                        /** Dataset name. */
+                        public name: string;
+
+                        /** Dataset displayName. */
+                        public displayName: string;
+
+                        /** Dataset source. */
+                        public source: string;
+
+                        /**
+                         * Creates a new Dataset instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns Dataset instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.VertexAi.IDataset): google.cloud.securitycenter.v2.VertexAi.Dataset;
+
+                        /**
+                         * Encodes the specified Dataset message. Does not implicitly {@link google.cloud.securitycenter.v2.VertexAi.Dataset.verify|verify} messages.
+                         * @param message Dataset message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.VertexAi.IDataset, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified Dataset message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.VertexAi.Dataset.verify|verify} messages.
+                         * @param message Dataset message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.VertexAi.IDataset, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a Dataset message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns Dataset
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.VertexAi.Dataset;
+
+                        /**
+                         * Decodes a Dataset message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns Dataset
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.VertexAi.Dataset;
+
+                        /**
+                         * Verifies a Dataset message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a Dataset message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns Dataset
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.VertexAi.Dataset;
+
+                        /**
+                         * Creates a plain object from a Dataset message. Also converts values to other types if specified.
+                         * @param message Dataset
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.VertexAi.Dataset, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this Dataset to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for Dataset
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of a Pipeline. */
+                    interface IPipeline {
+
+                        /** Pipeline name */
+                        name?: (string|null);
+
+                        /** Pipeline displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents a Pipeline. */
+                    class Pipeline implements IPipeline {
+
+                        /**
+                         * Constructs a new Pipeline.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.VertexAi.IPipeline);
+
+                        /** Pipeline name. */
+                        public name: string;
+
+                        /** Pipeline displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new Pipeline instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns Pipeline instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.VertexAi.IPipeline): google.cloud.securitycenter.v2.VertexAi.Pipeline;
+
+                        /**
+                         * Encodes the specified Pipeline message. Does not implicitly {@link google.cloud.securitycenter.v2.VertexAi.Pipeline.verify|verify} messages.
+                         * @param message Pipeline message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.VertexAi.IPipeline, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified Pipeline message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.VertexAi.Pipeline.verify|verify} messages.
+                         * @param message Pipeline message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.VertexAi.IPipeline, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a Pipeline message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns Pipeline
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.VertexAi.Pipeline;
+
+                        /**
+                         * Decodes a Pipeline message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns Pipeline
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.VertexAi.Pipeline;
+
+                        /**
+                         * Verifies a Pipeline message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a Pipeline message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns Pipeline
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.VertexAi.Pipeline;
+
+                        /**
+                         * Creates a plain object from a Pipeline message. Also converts values to other types if specified.
+                         * @param message Pipeline
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.VertexAi.Pipeline, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this Pipeline to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for Pipeline
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
                 /** Properties of a Vulnerability. */
                 interface IVulnerability {
 
@@ -33406,6 +43715,15 @@ export namespace google {
 
                     /** Vulnerability securityBulletin */
                     securityBulletin?: (google.cloud.securitycenter.v2.ISecurityBulletin|null);
+
+                    /** Vulnerability providerRiskScore */
+                    providerRiskScore?: (number|Long|string|null);
+
+                    /** Vulnerability reachable */
+                    reachable?: (boolean|null);
+
+                    /** Vulnerability cwes */
+                    cwes?: (google.cloud.securitycenter.v2.ICwe[]|null);
                 }
 
                 /** Represents a Vulnerability. */
@@ -33428,6 +43746,15 @@ export namespace google {
 
                     /** Vulnerability securityBulletin. */
                     public securityBulletin?: (google.cloud.securitycenter.v2.ISecurityBulletin|null);
+
+                    /** Vulnerability providerRiskScore. */
+                    public providerRiskScore: (number|Long|string);
+
+                    /** Vulnerability reachable. */
+                    public reachable: boolean;
+
+                    /** Vulnerability cwes. */
+                    public cwes: google.cloud.securitycenter.v2.ICwe[];
 
                     /**
                      * Creates a new Vulnerability instance using the specified properties.
@@ -33533,6 +43860,12 @@ export namespace google {
 
                     /** Cve zeroDay */
                     zeroDay?: (boolean|null);
+
+                    /** Cve exploitReleaseDate */
+                    exploitReleaseDate?: (google.protobuf.ITimestamp|null);
+
+                    /** Cve firstExploitationDate */
+                    firstExploitationDate?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a Cve. */
@@ -33567,6 +43900,12 @@ export namespace google {
 
                     /** Cve zeroDay. */
                     public zeroDay: boolean;
+
+                    /** Cve exploitReleaseDate. */
+                    public exploitReleaseDate?: (google.protobuf.ITimestamp|null);
+
+                    /** Cve firstExploitationDate. */
+                    public firstExploitationDate?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new Cve instance using the specified properties.
@@ -34189,6 +44528,212 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a Cwe. */
+                interface ICwe {
+
+                    /** Cwe id */
+                    id?: (string|null);
+
+                    /** Cwe references */
+                    references?: (google.cloud.securitycenter.v2.IReference[]|null);
+                }
+
+                /** Represents a Cwe. */
+                class Cwe implements ICwe {
+
+                    /**
+                     * Constructs a new Cwe.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.ICwe);
+
+                    /** Cwe id. */
+                    public id: string;
+
+                    /** Cwe references. */
+                    public references: google.cloud.securitycenter.v2.IReference[];
+
+                    /**
+                     * Creates a new Cwe instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Cwe instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.ICwe): google.cloud.securitycenter.v2.Cwe;
+
+                    /**
+                     * Encodes the specified Cwe message. Does not implicitly {@link google.cloud.securitycenter.v2.Cwe.verify|verify} messages.
+                     * @param message Cwe message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.ICwe, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Cwe message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Cwe.verify|verify} messages.
+                     * @param message Cwe message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.ICwe, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Cwe message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Cwe
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Cwe;
+
+                    /**
+                     * Decodes a Cwe message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Cwe
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Cwe;
+
+                    /**
+                     * Verifies a Cwe message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Cwe message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Cwe
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Cwe;
+
+                    /**
+                     * Creates a plain object from a Cwe message. Also converts values to other types if specified.
+                     * @param message Cwe
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Cwe, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Cwe to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Cwe
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Folder. */
+                interface IFolder {
+
+                    /** Folder resourceFolder */
+                    resourceFolder?: (string|null);
+
+                    /** Folder resourceFolderDisplayName */
+                    resourceFolderDisplayName?: (string|null);
+                }
+
+                /** Represents a Folder. */
+                class Folder implements IFolder {
+
+                    /**
+                     * Constructs a new Folder.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IFolder);
+
+                    /** Folder resourceFolder. */
+                    public resourceFolder: string;
+
+                    /** Folder resourceFolderDisplayName. */
+                    public resourceFolderDisplayName: string;
+
+                    /**
+                     * Creates a new Folder instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Folder instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IFolder): google.cloud.securitycenter.v2.Folder;
+
+                    /**
+                     * Encodes the specified Folder message. Does not implicitly {@link google.cloud.securitycenter.v2.Folder.verify|verify} messages.
+                     * @param message Folder message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IFolder, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Folder message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.Folder.verify|verify} messages.
+                     * @param message Folder message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IFolder, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Folder message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Folder
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.Folder;
+
+                    /**
+                     * Decodes a Folder message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Folder
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.Folder;
+
+                    /**
+                     * Verifies a Folder message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Folder message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Folder
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.Folder;
+
+                    /**
+                     * Creates a plain object from a Folder message. Also converts values to other types if specified.
+                     * @param message Folder
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.Folder, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Folder to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Folder
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a MuteConfig. */
                 interface IMuteConfig {
 
@@ -34212,6 +44757,9 @@ export namespace google {
 
                     /** MuteConfig type */
                     type?: (google.cloud.securitycenter.v2.MuteConfig.MuteConfigType|keyof typeof google.cloud.securitycenter.v2.MuteConfig.MuteConfigType|null);
+
+                    /** MuteConfig expiryTime */
+                    expiryTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a MuteConfig. */
@@ -34243,6 +44791,9 @@ export namespace google {
 
                     /** MuteConfig type. */
                     public type: (google.cloud.securitycenter.v2.MuteConfig.MuteConfigType|keyof typeof google.cloud.securitycenter.v2.MuteConfig.MuteConfigType);
+
+                    /** MuteConfig expiryTime. */
+                    public expiryTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new MuteConfig instance using the specified properties.
@@ -34327,7 +44878,8 @@ export namespace google {
                     /** MuteConfigType enum. */
                     enum MuteConfigType {
                         MUTE_CONFIG_TYPE_UNSPECIFIED = 0,
-                        STATIC = 1
+                        STATIC = 1,
+                        DYNAMIC = 2
                     }
                 }
 
@@ -34348,6 +44900,9 @@ export namespace google {
 
                     /** NotificationConfig streamingConfig */
                     streamingConfig?: (google.cloud.securitycenter.v2.NotificationConfig.IStreamingConfig|null);
+
+                    /** NotificationConfig updateTime */
+                    updateTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a NotificationConfig. */
@@ -34373,6 +44928,9 @@ export namespace google {
 
                     /** NotificationConfig streamingConfig. */
                     public streamingConfig?: (google.cloud.securitycenter.v2.NotificationConfig.IStreamingConfig|null);
+
+                    /** NotificationConfig updateTime. */
+                    public updateTime?: (google.protobuf.ITimestamp|null);
 
                     /** NotificationConfig notifyConfig. */
                     public notifyConfig?: "streamingConfig";
@@ -34678,6 +45236,30 @@ export namespace google {
 
                     /** Resource type */
                     type?: (string|null);
+
+                    /** Resource cloudProvider */
+                    cloudProvider?: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider|null);
+
+                    /** Resource service */
+                    service?: (string|null);
+
+                    /** Resource location */
+                    location?: (string|null);
+
+                    /** Resource gcpMetadata */
+                    gcpMetadata?: (google.cloud.securitycenter.v2.IGcpMetadata|null);
+
+                    /** Resource awsMetadata */
+                    awsMetadata?: (google.cloud.securitycenter.v2.IAwsMetadata|null);
+
+                    /** Resource azureMetadata */
+                    azureMetadata?: (google.cloud.securitycenter.v2.IAzureMetadata|null);
+
+                    /** Resource resourcePath */
+                    resourcePath?: (google.cloud.securitycenter.v2.IResourcePath|null);
+
+                    /** Resource resourcePathString */
+                    resourcePathString?: (string|null);
                 }
 
                 /** Represents a Resource. */
@@ -34697,6 +45279,33 @@ export namespace google {
 
                     /** Resource type. */
                     public type: string;
+
+                    /** Resource cloudProvider. */
+                    public cloudProvider: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider);
+
+                    /** Resource service. */
+                    public service: string;
+
+                    /** Resource location. */
+                    public location: string;
+
+                    /** Resource gcpMetadata. */
+                    public gcpMetadata?: (google.cloud.securitycenter.v2.IGcpMetadata|null);
+
+                    /** Resource awsMetadata. */
+                    public awsMetadata?: (google.cloud.securitycenter.v2.IAwsMetadata|null);
+
+                    /** Resource azureMetadata. */
+                    public azureMetadata?: (google.cloud.securitycenter.v2.IAzureMetadata|null);
+
+                    /** Resource resourcePath. */
+                    public resourcePath?: (google.cloud.securitycenter.v2.IResourcePath|null);
+
+                    /** Resource resourcePathString. */
+                    public resourcePathString: string;
+
+                    /** Resource cloudProviderMetadata. */
+                    public cloudProviderMetadata?: ("gcpMetadata"|"awsMetadata"|"azureMetadata");
 
                     /**
                      * Creates a new Resource instance using the specified properties.
@@ -34776,6 +45385,1309 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** CloudProvider enum. */
+                enum CloudProvider {
+                    CLOUD_PROVIDER_UNSPECIFIED = 0,
+                    GOOGLE_CLOUD_PLATFORM = 1,
+                    AMAZON_WEB_SERVICES = 2,
+                    MICROSOFT_AZURE = 3
+                }
+
+                /** Properties of a GcpMetadata. */
+                interface IGcpMetadata {
+
+                    /** GcpMetadata project */
+                    project?: (string|null);
+
+                    /** GcpMetadata projectDisplayName */
+                    projectDisplayName?: (string|null);
+
+                    /** GcpMetadata parent */
+                    parent?: (string|null);
+
+                    /** GcpMetadata parentDisplayName */
+                    parentDisplayName?: (string|null);
+
+                    /** GcpMetadata folders */
+                    folders?: (google.cloud.securitycenter.v2.IFolder[]|null);
+
+                    /** GcpMetadata organization */
+                    organization?: (string|null);
+                }
+
+                /** Represents a GcpMetadata. */
+                class GcpMetadata implements IGcpMetadata {
+
+                    /**
+                     * Constructs a new GcpMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IGcpMetadata);
+
+                    /** GcpMetadata project. */
+                    public project: string;
+
+                    /** GcpMetadata projectDisplayName. */
+                    public projectDisplayName: string;
+
+                    /** GcpMetadata parent. */
+                    public parent: string;
+
+                    /** GcpMetadata parentDisplayName. */
+                    public parentDisplayName: string;
+
+                    /** GcpMetadata folders. */
+                    public folders: google.cloud.securitycenter.v2.IFolder[];
+
+                    /** GcpMetadata organization. */
+                    public organization: string;
+
+                    /**
+                     * Creates a new GcpMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GcpMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IGcpMetadata): google.cloud.securitycenter.v2.GcpMetadata;
+
+                    /**
+                     * Encodes the specified GcpMetadata message. Does not implicitly {@link google.cloud.securitycenter.v2.GcpMetadata.verify|verify} messages.
+                     * @param message GcpMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IGcpMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GcpMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.GcpMetadata.verify|verify} messages.
+                     * @param message GcpMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IGcpMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GcpMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GcpMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.GcpMetadata;
+
+                    /**
+                     * Decodes a GcpMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GcpMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.GcpMetadata;
+
+                    /**
+                     * Verifies a GcpMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GcpMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GcpMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.GcpMetadata;
+
+                    /**
+                     * Creates a plain object from a GcpMetadata message. Also converts values to other types if specified.
+                     * @param message GcpMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.GcpMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GcpMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for GcpMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AwsMetadata. */
+                interface IAwsMetadata {
+
+                    /** AwsMetadata organization */
+                    organization?: (google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganization|null);
+
+                    /** AwsMetadata organizationalUnits */
+                    organizationalUnits?: (google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganizationalUnit[]|null);
+
+                    /** AwsMetadata account */
+                    account?: (google.cloud.securitycenter.v2.AwsMetadata.IAwsAccount|null);
+                }
+
+                /** Represents an AwsMetadata. */
+                class AwsMetadata implements IAwsMetadata {
+
+                    /**
+                     * Constructs a new AwsMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAwsMetadata);
+
+                    /** AwsMetadata organization. */
+                    public organization?: (google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganization|null);
+
+                    /** AwsMetadata organizationalUnits. */
+                    public organizationalUnits: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganizationalUnit[];
+
+                    /** AwsMetadata account. */
+                    public account?: (google.cloud.securitycenter.v2.AwsMetadata.IAwsAccount|null);
+
+                    /**
+                     * Creates a new AwsMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AwsMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAwsMetadata): google.cloud.securitycenter.v2.AwsMetadata;
+
+                    /**
+                     * Encodes the specified AwsMetadata message. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.verify|verify} messages.
+                     * @param message AwsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAwsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AwsMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.verify|verify} messages.
+                     * @param message AwsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAwsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AwsMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AwsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AwsMetadata;
+
+                    /**
+                     * Decodes an AwsMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AwsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AwsMetadata;
+
+                    /**
+                     * Verifies an AwsMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AwsMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AwsMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AwsMetadata;
+
+                    /**
+                     * Creates a plain object from an AwsMetadata message. Also converts values to other types if specified.
+                     * @param message AwsMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.AwsMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AwsMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AwsMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AwsMetadata {
+
+                    /** Properties of an AwsOrganization. */
+                    interface IAwsOrganization {
+
+                        /** AwsOrganization id */
+                        id?: (string|null);
+                    }
+
+                    /** Represents an AwsOrganization. */
+                    class AwsOrganization implements IAwsOrganization {
+
+                        /**
+                         * Constructs a new AwsOrganization.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganization);
+
+                        /** AwsOrganization id. */
+                        public id: string;
+
+                        /**
+                         * Creates a new AwsOrganization instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsOrganization instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganization): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Encodes the specified AwsOrganization message. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization.verify|verify} messages.
+                         * @param message AwsOrganization message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganization, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsOrganization message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization.verify|verify} messages.
+                         * @param message AwsOrganization message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganization, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsOrganization message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsOrganization
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Decodes an AwsOrganization message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsOrganization
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Verifies an AwsOrganization message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsOrganization message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsOrganization
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization;
+
+                        /**
+                         * Creates a plain object from an AwsOrganization message. Also converts values to other types if specified.
+                         * @param message AwsOrganization
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsOrganization to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsOrganization
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AwsOrganizationalUnit. */
+                    interface IAwsOrganizationalUnit {
+
+                        /** AwsOrganizationalUnit id */
+                        id?: (string|null);
+
+                        /** AwsOrganizationalUnit name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents an AwsOrganizationalUnit. */
+                    class AwsOrganizationalUnit implements IAwsOrganizationalUnit {
+
+                        /**
+                         * Constructs a new AwsOrganizationalUnit.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganizationalUnit);
+
+                        /** AwsOrganizationalUnit id. */
+                        public id: string;
+
+                        /** AwsOrganizationalUnit name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new AwsOrganizationalUnit instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsOrganizationalUnit instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganizationalUnit): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Encodes the specified AwsOrganizationalUnit message. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit.verify|verify} messages.
+                         * @param message AwsOrganizationalUnit message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganizationalUnit, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsOrganizationalUnit message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit.verify|verify} messages.
+                         * @param message AwsOrganizationalUnit message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AwsMetadata.IAwsOrganizationalUnit, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsOrganizationalUnit message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsOrganizationalUnit
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Decodes an AwsOrganizationalUnit message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsOrganizationalUnit
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Verifies an AwsOrganizationalUnit message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsOrganizationalUnit message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsOrganizationalUnit
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit;
+
+                        /**
+                         * Creates a plain object from an AwsOrganizationalUnit message. Also converts values to other types if specified.
+                         * @param message AwsOrganizationalUnit
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AwsMetadata.AwsOrganizationalUnit, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsOrganizationalUnit to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsOrganizationalUnit
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AwsAccount. */
+                    interface IAwsAccount {
+
+                        /** AwsAccount id */
+                        id?: (string|null);
+
+                        /** AwsAccount name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents an AwsAccount. */
+                    class AwsAccount implements IAwsAccount {
+
+                        /**
+                         * Constructs a new AwsAccount.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AwsMetadata.IAwsAccount);
+
+                        /** AwsAccount id. */
+                        public id: string;
+
+                        /** AwsAccount name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new AwsAccount instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AwsAccount instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AwsMetadata.IAwsAccount): google.cloud.securitycenter.v2.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Encodes the specified AwsAccount message. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.AwsAccount.verify|verify} messages.
+                         * @param message AwsAccount message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AwsMetadata.IAwsAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AwsAccount message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AwsMetadata.AwsAccount.verify|verify} messages.
+                         * @param message AwsAccount message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AwsMetadata.IAwsAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AwsAccount message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AwsAccount
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Decodes an AwsAccount message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AwsAccount
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Verifies an AwsAccount message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AwsAccount message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AwsAccount
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AwsMetadata.AwsAccount;
+
+                        /**
+                         * Creates a plain object from an AwsAccount message. Also converts values to other types if specified.
+                         * @param message AwsAccount
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AwsMetadata.AwsAccount, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AwsAccount to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AwsAccount
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** Properties of an AzureMetadata. */
+                interface IAzureMetadata {
+
+                    /** AzureMetadata managementGroups */
+                    managementGroups?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureManagementGroup[]|null);
+
+                    /** AzureMetadata subscription */
+                    subscription?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureSubscription|null);
+
+                    /** AzureMetadata resourceGroup */
+                    resourceGroup?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureResourceGroup|null);
+
+                    /** AzureMetadata tenant */
+                    tenant?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureTenant|null);
+                }
+
+                /** Represents an AzureMetadata. */
+                class AzureMetadata implements IAzureMetadata {
+
+                    /**
+                     * Constructs a new AzureMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IAzureMetadata);
+
+                    /** AzureMetadata managementGroups. */
+                    public managementGroups: google.cloud.securitycenter.v2.AzureMetadata.IAzureManagementGroup[];
+
+                    /** AzureMetadata subscription. */
+                    public subscription?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureSubscription|null);
+
+                    /** AzureMetadata resourceGroup. */
+                    public resourceGroup?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureResourceGroup|null);
+
+                    /** AzureMetadata tenant. */
+                    public tenant?: (google.cloud.securitycenter.v2.AzureMetadata.IAzureTenant|null);
+
+                    /**
+                     * Creates a new AzureMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AzureMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IAzureMetadata): google.cloud.securitycenter.v2.AzureMetadata;
+
+                    /**
+                     * Encodes the specified AzureMetadata message. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.verify|verify} messages.
+                     * @param message AzureMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IAzureMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AzureMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.verify|verify} messages.
+                     * @param message AzureMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IAzureMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AzureMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AzureMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AzureMetadata;
+
+                    /**
+                     * Decodes an AzureMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AzureMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AzureMetadata;
+
+                    /**
+                     * Verifies an AzureMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AzureMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AzureMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AzureMetadata;
+
+                    /**
+                     * Creates a plain object from an AzureMetadata message. Also converts values to other types if specified.
+                     * @param message AzureMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.AzureMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AzureMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AzureMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AzureMetadata {
+
+                    /** Properties of an AzureManagementGroup. */
+                    interface IAzureManagementGroup {
+
+                        /** AzureManagementGroup id */
+                        id?: (string|null);
+
+                        /** AzureManagementGroup displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents an AzureManagementGroup. */
+                    class AzureManagementGroup implements IAzureManagementGroup {
+
+                        /**
+                         * Constructs a new AzureManagementGroup.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureManagementGroup);
+
+                        /** AzureManagementGroup id. */
+                        public id: string;
+
+                        /** AzureManagementGroup displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new AzureManagementGroup instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureManagementGroup instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureManagementGroup): google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Encodes the specified AzureManagementGroup message. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup.verify|verify} messages.
+                         * @param message AzureManagementGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureManagementGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureManagementGroup message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup.verify|verify} messages.
+                         * @param message AzureManagementGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureManagementGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureManagementGroup message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureManagementGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Decodes an AzureManagementGroup message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureManagementGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Verifies an AzureManagementGroup message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureManagementGroup message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureManagementGroup
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup;
+
+                        /**
+                         * Creates a plain object from an AzureManagementGroup message. Also converts values to other types if specified.
+                         * @param message AzureManagementGroup
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureManagementGroup to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureManagementGroup
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AzureSubscription. */
+                    interface IAzureSubscription {
+
+                        /** AzureSubscription id */
+                        id?: (string|null);
+
+                        /** AzureSubscription displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents an AzureSubscription. */
+                    class AzureSubscription implements IAzureSubscription {
+
+                        /**
+                         * Constructs a new AzureSubscription.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureSubscription);
+
+                        /** AzureSubscription id. */
+                        public id: string;
+
+                        /** AzureSubscription displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new AzureSubscription instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureSubscription instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureSubscription): google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Encodes the specified AzureSubscription message. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription.verify|verify} messages.
+                         * @param message AzureSubscription message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureSubscription, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureSubscription message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription.verify|verify} messages.
+                         * @param message AzureSubscription message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureSubscription, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureSubscription message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureSubscription
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Decodes an AzureSubscription message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureSubscription
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Verifies an AzureSubscription message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureSubscription message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureSubscription
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription;
+
+                        /**
+                         * Creates a plain object from an AzureSubscription message. Also converts values to other types if specified.
+                         * @param message AzureSubscription
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureSubscription to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureSubscription
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AzureResourceGroup. */
+                    interface IAzureResourceGroup {
+
+                        /** AzureResourceGroup id */
+                        id?: (string|null);
+
+                        /** AzureResourceGroup name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents an AzureResourceGroup. */
+                    class AzureResourceGroup implements IAzureResourceGroup {
+
+                        /**
+                         * Constructs a new AzureResourceGroup.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureResourceGroup);
+
+                        /** AzureResourceGroup id. */
+                        public id: string;
+
+                        /** AzureResourceGroup name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new AzureResourceGroup instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureResourceGroup instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureResourceGroup): google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Encodes the specified AzureResourceGroup message. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup.verify|verify} messages.
+                         * @param message AzureResourceGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureResourceGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureResourceGroup message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup.verify|verify} messages.
+                         * @param message AzureResourceGroup message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureResourceGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureResourceGroup message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureResourceGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Decodes an AzureResourceGroup message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureResourceGroup
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Verifies an AzureResourceGroup message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureResourceGroup message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureResourceGroup
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup;
+
+                        /**
+                         * Creates a plain object from an AzureResourceGroup message. Also converts values to other types if specified.
+                         * @param message AzureResourceGroup
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureResourceGroup to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureResourceGroup
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an AzureTenant. */
+                    interface IAzureTenant {
+
+                        /** AzureTenant id */
+                        id?: (string|null);
+
+                        /** AzureTenant displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents an AzureTenant. */
+                    class AzureTenant implements IAzureTenant {
+
+                        /**
+                         * Constructs a new AzureTenant.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureTenant);
+
+                        /** AzureTenant id. */
+                        public id: string;
+
+                        /** AzureTenant displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new AzureTenant instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns AzureTenant instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.AzureMetadata.IAzureTenant): google.cloud.securitycenter.v2.AzureMetadata.AzureTenant;
+
+                        /**
+                         * Encodes the specified AzureTenant message. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureTenant.verify|verify} messages.
+                         * @param message AzureTenant message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureTenant, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified AzureTenant message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.AzureMetadata.AzureTenant.verify|verify} messages.
+                         * @param message AzureTenant message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.AzureMetadata.IAzureTenant, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an AzureTenant message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns AzureTenant
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.AzureMetadata.AzureTenant;
+
+                        /**
+                         * Decodes an AzureTenant message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns AzureTenant
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.AzureMetadata.AzureTenant;
+
+                        /**
+                         * Verifies an AzureTenant message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an AzureTenant message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns AzureTenant
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.AzureMetadata.AzureTenant;
+
+                        /**
+                         * Creates a plain object from an AzureTenant message. Also converts values to other types if specified.
+                         * @param message AzureTenant
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.AzureMetadata.AzureTenant, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this AzureTenant to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for AzureTenant
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
+                /** Properties of a ResourcePath. */
+                interface IResourcePath {
+
+                    /** ResourcePath nodes */
+                    nodes?: (google.cloud.securitycenter.v2.ResourcePath.IResourcePathNode[]|null);
+                }
+
+                /** Represents a ResourcePath. */
+                class ResourcePath implements IResourcePath {
+
+                    /**
+                     * Constructs a new ResourcePath.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IResourcePath);
+
+                    /** ResourcePath nodes. */
+                    public nodes: google.cloud.securitycenter.v2.ResourcePath.IResourcePathNode[];
+
+                    /**
+                     * Creates a new ResourcePath instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ResourcePath instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IResourcePath): google.cloud.securitycenter.v2.ResourcePath;
+
+                    /**
+                     * Encodes the specified ResourcePath message. Does not implicitly {@link google.cloud.securitycenter.v2.ResourcePath.verify|verify} messages.
+                     * @param message ResourcePath message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IResourcePath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ResourcePath message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.ResourcePath.verify|verify} messages.
+                     * @param message ResourcePath message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IResourcePath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ResourcePath message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ResourcePath
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.ResourcePath;
+
+                    /**
+                     * Decodes a ResourcePath message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ResourcePath
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.ResourcePath;
+
+                    /**
+                     * Verifies a ResourcePath message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ResourcePath message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ResourcePath
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.ResourcePath;
+
+                    /**
+                     * Creates a plain object from a ResourcePath message. Also converts values to other types if specified.
+                     * @param message ResourcePath
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.ResourcePath, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ResourcePath to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ResourcePath
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace ResourcePath {
+
+                    /** ResourcePathNodeType enum. */
+                    enum ResourcePathNodeType {
+                        RESOURCE_PATH_NODE_TYPE_UNSPECIFIED = 0,
+                        GCP_ORGANIZATION = 1,
+                        GCP_FOLDER = 2,
+                        GCP_PROJECT = 3,
+                        AWS_ORGANIZATION = 4,
+                        AWS_ORGANIZATIONAL_UNIT = 5,
+                        AWS_ACCOUNT = 6,
+                        AZURE_MANAGEMENT_GROUP = 7,
+                        AZURE_SUBSCRIPTION = 8,
+                        AZURE_RESOURCE_GROUP = 9
+                    }
+
+                    /** Properties of a ResourcePathNode. */
+                    interface IResourcePathNode {
+
+                        /** ResourcePathNode nodeType */
+                        nodeType?: (google.cloud.securitycenter.v2.ResourcePath.ResourcePathNodeType|keyof typeof google.cloud.securitycenter.v2.ResourcePath.ResourcePathNodeType|null);
+
+                        /** ResourcePathNode id */
+                        id?: (string|null);
+
+                        /** ResourcePathNode displayName */
+                        displayName?: (string|null);
+                    }
+
+                    /** Represents a ResourcePathNode. */
+                    class ResourcePathNode implements IResourcePathNode {
+
+                        /**
+                         * Constructs a new ResourcePathNode.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.securitycenter.v2.ResourcePath.IResourcePathNode);
+
+                        /** ResourcePathNode nodeType. */
+                        public nodeType: (google.cloud.securitycenter.v2.ResourcePath.ResourcePathNodeType|keyof typeof google.cloud.securitycenter.v2.ResourcePath.ResourcePathNodeType);
+
+                        /** ResourcePathNode id. */
+                        public id: string;
+
+                        /** ResourcePathNode displayName. */
+                        public displayName: string;
+
+                        /**
+                         * Creates a new ResourcePathNode instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ResourcePathNode instance
+                         */
+                        public static create(properties?: google.cloud.securitycenter.v2.ResourcePath.IResourcePathNode): google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Encodes the specified ResourcePathNode message. Does not implicitly {@link google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode.verify|verify} messages.
+                         * @param message ResourcePathNode message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.securitycenter.v2.ResourcePath.IResourcePathNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ResourcePathNode message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode.verify|verify} messages.
+                         * @param message ResourcePathNode message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.securitycenter.v2.ResourcePath.IResourcePathNode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a ResourcePathNode message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ResourcePathNode
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Decodes a ResourcePathNode message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ResourcePathNode
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Verifies a ResourcePathNode message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a ResourcePathNode message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ResourcePathNode
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode;
+
+                        /**
+                         * Creates a plain object from a ResourcePathNode message. Also converts values to other types if specified.
+                         * @param message ResourcePathNode
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.securitycenter.v2.ResourcePath.ResourcePathNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ResourcePathNode to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for ResourcePathNode
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+                }
+
                 /** Properties of a ResourceValueConfig. */
                 interface IResourceValueConfig {
 
@@ -34805,6 +46717,9 @@ export namespace google {
 
                     /** ResourceValueConfig updateTime */
                     updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ResourceValueConfig cloudProvider */
+                    cloudProvider?: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider|null);
 
                     /** ResourceValueConfig sensitiveDataProtectionMapping */
                     sensitiveDataProtectionMapping?: (google.cloud.securitycenter.v2.ResourceValueConfig.ISensitiveDataProtectionMapping|null);
@@ -34845,6 +46760,9 @@ export namespace google {
 
                     /** ResourceValueConfig updateTime. */
                     public updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ResourceValueConfig cloudProvider. */
+                    public cloudProvider: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider);
 
                     /** ResourceValueConfig sensitiveDataProtectionMapping. */
                     public sensitiveDataProtectionMapping?: (google.cloud.securitycenter.v2.ResourceValueConfig.ISensitiveDataProtectionMapping|null);
@@ -36114,6 +48032,9 @@ export namespace google {
 
                     /** BulkMuteFindingsRequest filter */
                     filter?: (string|null);
+
+                    /** BulkMuteFindingsRequest muteState */
+                    muteState?: (google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState|keyof typeof google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState|null);
                 }
 
                 /** Represents a BulkMuteFindingsRequest. */
@@ -36130,6 +48051,9 @@ export namespace google {
 
                     /** BulkMuteFindingsRequest filter. */
                     public filter: string;
+
+                    /** BulkMuteFindingsRequest muteState. */
+                    public muteState: (google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState|keyof typeof google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState);
 
                     /**
                      * Creates a new BulkMuteFindingsRequest instance using the specified properties.
@@ -36207,6 +48131,16 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace BulkMuteFindingsRequest {
+
+                    /** MuteState enum. */
+                    enum MuteState {
+                        MUTE_STATE_UNSPECIFIED = 0,
+                        MUTED = 1,
+                        UNDEFINED = 2
+                    }
                 }
 
                 /** Properties of a BulkMuteFindingsResponse. */
@@ -37324,6 +49258,300 @@ export namespace google {
 
                     /**
                      * Gets the default type url for DeleteResourceValueConfigRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a BigQueryDestination. */
+                interface IBigQueryDestination {
+
+                    /** BigQueryDestination dataset */
+                    dataset?: (string|null);
+                }
+
+                /** Represents a BigQueryDestination. */
+                class BigQueryDestination implements IBigQueryDestination {
+
+                    /**
+                     * Constructs a new BigQueryDestination.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IBigQueryDestination);
+
+                    /** BigQueryDestination dataset. */
+                    public dataset: string;
+
+                    /**
+                     * Creates a new BigQueryDestination instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns BigQueryDestination instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IBigQueryDestination): google.cloud.securitycenter.v2.BigQueryDestination;
+
+                    /**
+                     * Encodes the specified BigQueryDestination message. Does not implicitly {@link google.cloud.securitycenter.v2.BigQueryDestination.verify|verify} messages.
+                     * @param message BigQueryDestination message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IBigQueryDestination, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified BigQueryDestination message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.BigQueryDestination.verify|verify} messages.
+                     * @param message BigQueryDestination message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IBigQueryDestination, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a BigQueryDestination message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns BigQueryDestination
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.BigQueryDestination;
+
+                    /**
+                     * Decodes a BigQueryDestination message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns BigQueryDestination
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.BigQueryDestination;
+
+                    /**
+                     * Verifies a BigQueryDestination message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a BigQueryDestination message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns BigQueryDestination
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.BigQueryDestination;
+
+                    /**
+                     * Creates a plain object from a BigQueryDestination message. Also converts values to other types if specified.
+                     * @param message BigQueryDestination
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.BigQueryDestination, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this BigQueryDestination to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for BigQueryDestination
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an ExportFindingsMetadata. */
+                interface IExportFindingsMetadata {
+
+                    /** ExportFindingsMetadata exportStartTime */
+                    exportStartTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ExportFindingsMetadata bigQueryDestination */
+                    bigQueryDestination?: (google.cloud.securitycenter.v2.IBigQueryDestination|null);
+                }
+
+                /** Represents an ExportFindingsMetadata. */
+                class ExportFindingsMetadata implements IExportFindingsMetadata {
+
+                    /**
+                     * Constructs a new ExportFindingsMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IExportFindingsMetadata);
+
+                    /** ExportFindingsMetadata exportStartTime. */
+                    public exportStartTime?: (google.protobuf.ITimestamp|null);
+
+                    /** ExportFindingsMetadata bigQueryDestination. */
+                    public bigQueryDestination?: (google.cloud.securitycenter.v2.IBigQueryDestination|null);
+
+                    /** ExportFindingsMetadata destination. */
+                    public destination?: "bigQueryDestination";
+
+                    /**
+                     * Creates a new ExportFindingsMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExportFindingsMetadata instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IExportFindingsMetadata): google.cloud.securitycenter.v2.ExportFindingsMetadata;
+
+                    /**
+                     * Encodes the specified ExportFindingsMetadata message. Does not implicitly {@link google.cloud.securitycenter.v2.ExportFindingsMetadata.verify|verify} messages.
+                     * @param message ExportFindingsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IExportFindingsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExportFindingsMetadata message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.ExportFindingsMetadata.verify|verify} messages.
+                     * @param message ExportFindingsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IExportFindingsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExportFindingsMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExportFindingsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.ExportFindingsMetadata;
+
+                    /**
+                     * Decodes an ExportFindingsMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExportFindingsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.ExportFindingsMetadata;
+
+                    /**
+                     * Verifies an ExportFindingsMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExportFindingsMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExportFindingsMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.ExportFindingsMetadata;
+
+                    /**
+                     * Creates a plain object from an ExportFindingsMetadata message. Also converts values to other types if specified.
+                     * @param message ExportFindingsMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.ExportFindingsMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExportFindingsMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExportFindingsMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an ExportFindingsResponse. */
+                interface IExportFindingsResponse {
+                }
+
+                /** Represents an ExportFindingsResponse. */
+                class ExportFindingsResponse implements IExportFindingsResponse {
+
+                    /**
+                     * Constructs a new ExportFindingsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.securitycenter.v2.IExportFindingsResponse);
+
+                    /**
+                     * Creates a new ExportFindingsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExportFindingsResponse instance
+                     */
+                    public static create(properties?: google.cloud.securitycenter.v2.IExportFindingsResponse): google.cloud.securitycenter.v2.ExportFindingsResponse;
+
+                    /**
+                     * Encodes the specified ExportFindingsResponse message. Does not implicitly {@link google.cloud.securitycenter.v2.ExportFindingsResponse.verify|verify} messages.
+                     * @param message ExportFindingsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.securitycenter.v2.IExportFindingsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExportFindingsResponse message, length delimited. Does not implicitly {@link google.cloud.securitycenter.v2.ExportFindingsResponse.verify|verify} messages.
+                     * @param message ExportFindingsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.securitycenter.v2.IExportFindingsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExportFindingsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExportFindingsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.securitycenter.v2.ExportFindingsResponse;
+
+                    /**
+                     * Decodes an ExportFindingsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExportFindingsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.securitycenter.v2.ExportFindingsResponse;
+
+                    /**
+                     * Verifies an ExportFindingsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExportFindingsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExportFindingsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.securitycenter.v2.ExportFindingsResponse;
+
+                    /**
+                     * Creates a plain object from an ExportFindingsResponse message. Also converts values to other types if specified.
+                     * @param message ExportFindingsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.securitycenter.v2.ExportFindingsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExportFindingsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExportFindingsResponse
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -39126,6 +51354,30 @@ export namespace google {
 
                             /** Resource type */
                             type?: (string|null);
+
+                            /** Resource cloudProvider */
+                            cloudProvider?: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider|null);
+
+                            /** Resource service */
+                            service?: (string|null);
+
+                            /** Resource location */
+                            location?: (string|null);
+
+                            /** Resource gcpMetadata */
+                            gcpMetadata?: (google.cloud.securitycenter.v2.IGcpMetadata|null);
+
+                            /** Resource awsMetadata */
+                            awsMetadata?: (google.cloud.securitycenter.v2.IAwsMetadata|null);
+
+                            /** Resource azureMetadata */
+                            azureMetadata?: (google.cloud.securitycenter.v2.IAzureMetadata|null);
+
+                            /** Resource resourcePath */
+                            resourcePath?: (google.cloud.securitycenter.v2.IResourcePath|null);
+
+                            /** Resource resourcePathString */
+                            resourcePathString?: (string|null);
                         }
 
                         /** Represents a Resource. */
@@ -39145,6 +51397,33 @@ export namespace google {
 
                             /** Resource type. */
                             public type: string;
+
+                            /** Resource cloudProvider. */
+                            public cloudProvider: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider);
+
+                            /** Resource service. */
+                            public service: string;
+
+                            /** Resource location. */
+                            public location: string;
+
+                            /** Resource gcpMetadata. */
+                            public gcpMetadata?: (google.cloud.securitycenter.v2.IGcpMetadata|null);
+
+                            /** Resource awsMetadata. */
+                            public awsMetadata?: (google.cloud.securitycenter.v2.IAwsMetadata|null);
+
+                            /** Resource azureMetadata. */
+                            public azureMetadata?: (google.cloud.securitycenter.v2.IAzureMetadata|null);
+
+                            /** Resource resourcePath. */
+                            public resourcePath?: (google.cloud.securitycenter.v2.IResourcePath|null);
+
+                            /** Resource resourcePathString. */
+                            public resourcePathString: string;
+
+                            /** Resource cloudProviderMetadata. */
+                            public cloudProviderMetadata?: ("gcpMetadata"|"awsMetadata"|"azureMetadata");
 
                             /**
                              * Creates a new Resource instance using the specified properties.
@@ -41345,6 +53624,9 @@ export namespace google {
 
                     /** Simulation resourceValueConfigsMetadata */
                     resourceValueConfigsMetadata?: (google.cloud.securitycenter.v2.IResourceValueConfigMetadata[]|null);
+
+                    /** Simulation cloudProvider */
+                    cloudProvider?: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider|null);
                 }
 
                 /** Represents a Simulation. */
@@ -41364,6 +53646,9 @@ export namespace google {
 
                     /** Simulation resourceValueConfigsMetadata. */
                     public resourceValueConfigsMetadata: google.cloud.securitycenter.v2.IResourceValueConfigMetadata[];
+
+                    /** Simulation cloudProvider. */
+                    public cloudProvider: (google.cloud.securitycenter.v2.CloudProvider|keyof typeof google.cloud.securitycenter.v2.CloudProvider);
 
                     /**
                      * Creates a new Simulation instance using the specified properties.
@@ -42722,6 +55007,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -42762,6 +55050,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -46915,6 +59206,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -47169,7 +59463,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -47200,7 +59494,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -48868,7 +61162,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -48884,7 +61178,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -49790,7 +62084,7 @@ export namespace google {
                 auditConfigs?: (google.iam.v1.IAuditConfig[]|null);
 
                 /** Policy etag */
-                etag?: (Uint8Array|string|null);
+                etag?: (Uint8Array|Buffer|string|null);
             }
 
             /** Represents a Policy. */
@@ -49812,7 +62106,7 @@ export namespace google {
                 public auditConfigs: google.iam.v1.IAuditConfig[];
 
                 /** Policy etag. */
-                public etag: (Uint8Array|string);
+                public etag: (Uint8Array|Buffer|string);
 
                 /**
                  * Creates a new Policy instance using the specified properties.

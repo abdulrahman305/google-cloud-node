@@ -4,6 +4,105 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/container?activeTab=versions
 
+## [6.4.0](https://github.com/googleapis/google-cloud-node/compare/container-v6.3.0...container-v6.4.0) (2025-07-28)
+
+
+### Features
+
+* [container] A new enum `TransparentHugepageEnabled` is added ([#6522](https://github.com/googleapis/google-cloud-node/issues/6522)) ([c73b860](https://github.com/googleapis/google-cloud-node/commit/c73b860e2473725fe7443a89b8b6410047825888))
+
+## [6.3.0](https://github.com/googleapis/google-cloud-node/compare/container-v6.2.0...container-v6.3.0) (2025-07-17)
+
+
+### Features
+
+* [container] A new enum `TransparentHugepageEnabled` is added ([#6496](https://github.com/googleapis/google-cloud-node/issues/6496)) ([c46a08f](https://github.com/googleapis/google-cloud-node/commit/c46a08f885753f84cdc0bb9b609820f9be0114ad))
+
+## [6.2.0](https://github.com/googleapis/google-cloud-node/compare/container-v6.1.0...container-v6.2.0) (2025-07-09)
+
+
+### Features
+
+* [container] add topology_manager in NodeKubeletConfig ([#6374](https://github.com/googleapis/google-cloud-node/issues/6374)) ([ccd2416](https://github.com/googleapis/google-cloud-node/commit/ccd2416a98fc9fe42b475802975000d5b149719f))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6424](https://github.com/googleapis/google-cloud-node/issues/6424)) ([9a595a6](https://github.com/googleapis/google-cloud-node/commit/9a595a658b5fc2a02a18ffbca618190eb64d8013))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/container-v6.0.1...container-v6.1.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6304](https://github.com/googleapis/google-cloud-node/issues/6304)) ([132240f](https://github.com/googleapis/google-cloud-node/commit/132240fbf6cb29b309b76c1d60f0611720590847))
+
+## [6.0.1](https://github.com/googleapis/google-cloud-node/compare/container-v6.0.0...container-v6.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6189](https://github.com/googleapis/google-cloud-node/issues/6189)) ([0eab6d4](https://github.com/googleapis/google-cloud-node/commit/0eab6d40a12aa7f387a4621c6611aa4cbc86e178))
+
+## [6.0.0](https://github.com/googleapis/google-cloud-node/compare/container-v5.19.0...container-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [5.19.0](https://github.com/googleapis/google-cloud-node/compare/container-v5.18.0...container-v5.19.0) (2024-11-14)
+
+
+### Features
+
+* [container] add LocalSsdEncryptionMode in NodeConfig ([#5796](https://github.com/googleapis/google-cloud-node/issues/5796)) ([35f689a](https://github.com/googleapis/google-cloud-node/commit/35f689a7c3e74135e3f5c1bae77e3e4fa07c17fc))
+
+## [5.18.0](https://github.com/googleapis/google-cloud-node/compare/container-v5.17.0...container-v5.18.0) (2024-10-10)
+
+
+### Features
+
+* [container] add an effective_cgroup_mode field in node config ([#5741](https://github.com/googleapis/google-cloud-node/issues/5741)) ([88083e4](https://github.com/googleapis/google-cloud-node/commit/88083e4a879ef6963eca9183c037ef84b861efed))
+
+## [5.17.0](https://github.com/googleapis/google-cloud-node/compare/container-v5.16.0...container-v5.17.0) (2024-08-29)
+
+
+### Features
+
+* [container] add `EXTENDED` enum value for `ReleaseChannel.Channel` ([#5641](https://github.com/googleapis/google-cloud-node/issues/5641)) ([b03f419](https://github.com/googleapis/google-cloud-node/commit/b03f419cab2ebf8385d2df7bf018863e63295624))
+
+## [5.16.0](https://github.com/googleapis/google-cloud-node/compare/container-v5.15.1...container-v5.16.0) (2024-07-22)
+
+
+### Features
+
+* [container] A new field `ray_operator_config` is added to message `.google.container.v1beta1.AddonsConfig` ([#5553](https://github.com/googleapis/google-cloud-node/issues/5553)) ([a884c76](https://github.com/googleapis/google-cloud-node/commit/a884c766ff86127abe6a8159f23158de4badf09f))
+
+
+### Bug Fixes
+
+* [container] Deprecate "EXPERIMENTAL" option for Gateway API (this value has never been supported) ([#5535](https://github.com/googleapis/google-cloud-node/issues/5535)) ([c06cdc7](https://github.com/googleapis/google-cloud-node/commit/c06cdc758d01ae296455757fba12eed47a8d5c06))
+
+## [5.15.1](https://github.com/googleapis/google-cloud-node/compare/container-v5.15.0...container-v5.15.1) (2024-07-10)
+
+
+### Bug Fixes
+
+* [container] Deprecate "EXPERIMENTAL" option for Gateway API (this value has never been supported) ([#5519](https://github.com/googleapis/google-cloud-node/issues/5519)) ([8838289](https://github.com/googleapis/google-cloud-node/commit/88382897c1c0ba6f5f80ba72ab775808de301962))
+
 ## [5.15.0](https://github.com/googleapis/google-cloud-node/compare/container-v5.14.0...container-v5.15.0) (2024-06-12)
 
 

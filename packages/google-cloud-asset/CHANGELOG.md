@@ -4,6 +4,70 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [6.3.0](https://github.com/googleapis/google-cloud-node/compare/asset-v6.2.1...asset-v6.3.0) (2025-08-12)
+
+
+### Features
+
+* [asset] Add highest_upgradable_cve_severity field to Vulnerability report ([#6589](https://github.com/googleapis/google-cloud-node/issues/6589)) ([830c73a](https://github.com/googleapis/google-cloud-node/commit/830c73ae048261074491bcab29a1d2ebeaf1c5f2))
+
+## [6.2.1](https://github.com/googleapis/google-cloud-node/compare/asset-v6.2.0...asset-v6.2.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/compute to v6 ([#6544](https://github.com/googleapis/google-cloud-node/issues/6544)) ([36c69e3](https://github.com/googleapis/google-cloud-node/commit/36c69e324c01ed96f87e4305636823f5e459ad41))
+
+## [6.2.0](https://github.com/googleapis/google-cloud-node/compare/asset-v6.1.0...asset-v6.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6418](https://github.com/googleapis/google-cloud-node/issues/6418)) ([fcfb2c0](https://github.com/googleapis/google-cloud-node/commit/fcfb2c018539983a8ce32205a2ea9e99ef28e88a))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/bigquery to v8 ([#6317](https://github.com/googleapis/google-cloud-node/issues/6317)) ([f5763b2](https://github.com/googleapis/google-cloud-node/commit/f5763b2e5febc387fe4157052d5c9f17b235addf))
+
+## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/asset-v6.0.0...asset-v6.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6183](https://github.com/googleapis/google-cloud-node/issues/6183)) ([f91c71f](https://github.com/googleapis/google-cloud-node/commit/f91c71f71c7a08ac17a15b7bb2233cbc041ee69b))
+* **deps:** Update dependency @google-cloud/compute to v5 ([#6171](https://github.com/googleapis/google-cloud-node/issues/6171)) ([b3b30b8](https://github.com/googleapis/google-cloud-node/commit/b3b30b8483e222116f488ed313c02901601b75f3))
+
+## [6.0.0](https://github.com/googleapis/google-cloud-node/compare/asset-v5.7.1...asset-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics, update templates to gax 5  ([32fff6f](https://github.com/googleapis/google-cloud-node/commit/32fff6f5e36a33729591a9ba531cc5de07f046cc))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [5.7.1](https://github.com/googleapis/google-cloud-node/compare/asset-v5.7.0...asset-v5.7.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6011](https://github.com/googleapis/google-cloud-node/issues/6011)) ([ee865ff](https://github.com/googleapis/google-cloud-node/commit/ee865ff34a696fbd657e4cfb6cc4be2f6651f77a))
+
 ## [5.7.0](https://github.com/googleapis/google-cloud-node/compare/asset-v5.6.0...asset-v5.7.0) (2024-05-21)
 
 

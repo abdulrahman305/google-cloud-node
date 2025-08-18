@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -388,6 +388,9 @@ export namespace google {
 
                     /** CloudFunction onDeployUpdatePolicy */
                     onDeployUpdatePolicy?: (google.cloud.functions.v1.CloudFunction.IOnDeployUpdatePolicy|null);
+
+                    /** CloudFunction buildServiceAccount */
+                    buildServiceAccount?: (string|null);
                 }
 
                 /** Represents a CloudFunction. */
@@ -503,6 +506,9 @@ export namespace google {
 
                     /** CloudFunction onDeployUpdatePolicy. */
                     public onDeployUpdatePolicy?: (google.cloud.functions.v1.CloudFunction.IOnDeployUpdatePolicy|null);
+
+                    /** CloudFunction buildServiceAccount. */
+                    public buildServiceAccount: string;
 
                     /** CloudFunction sourceCode. */
                     public sourceCode?: ("sourceArchiveUrl"|"sourceRepository"|"sourceUploadUrl");
@@ -3254,6 +3260,14 @@ export namespace google {
                     type ListRuntimesCallback = (error: (Error|null), response?: google.cloud.functions.v2.ListRuntimesResponse) => void;
                 }
 
+                /** OperationType enum. */
+                enum OperationType {
+                    OPERATIONTYPE_UNSPECIFIED = 0,
+                    CREATE_FUNCTION = 1,
+                    UPDATE_FUNCTION = 2,
+                    DELETE_FUNCTION = 3
+                }
+
                 /** Environment enum. */
                 enum Environment {
                     ENVIRONMENT_UNSPECIFIED = 0,
@@ -3299,6 +3313,12 @@ export namespace google {
 
                     /** Function kmsKeyName */
                     kmsKeyName?: (string|null);
+
+                    /** Function satisfiesPzs */
+                    satisfiesPzs?: (boolean|null);
+
+                    /** Function createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a Function. */
@@ -3345,6 +3365,12 @@ export namespace google {
 
                     /** Function kmsKeyName. */
                     public kmsKeyName: string;
+
+                    /** Function satisfiesPzs. */
+                    public satisfiesPzs: boolean;
+
+                    /** Function createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new Function instance using the specified properties.
@@ -3568,6 +3594,9 @@ export namespace google {
 
                     /** StorageSource generation */
                     generation?: (number|Long|string|null);
+
+                    /** StorageSource sourceUploadUrl */
+                    sourceUploadUrl?: (string|null);
                 }
 
                 /** Represents a StorageSource. */
@@ -3587,6 +3616,9 @@ export namespace google {
 
                     /** StorageSource generation. */
                     public generation: (number|Long|string);
+
+                    /** StorageSource sourceUploadUrl. */
+                    public sourceUploadUrl: string;
 
                     /**
                      * Creates a new StorageSource instance using the specified properties.
@@ -3810,6 +3842,9 @@ export namespace google {
 
                     /** Source repoSource */
                     repoSource?: (google.cloud.functions.v2.IRepoSource|null);
+
+                    /** Source gitUri */
+                    gitUri?: (string|null);
                 }
 
                 /** Represents a Source. */
@@ -3827,8 +3862,11 @@ export namespace google {
                     /** Source repoSource. */
                     public repoSource?: (google.cloud.functions.v2.IRepoSource|null);
 
+                    /** Source gitUri. */
+                    public gitUri?: (string|null);
+
                     /** Source source. */
-                    public source?: ("storageSource"|"repoSource");
+                    public source?: ("storageSource"|"repoSource"|"gitUri");
 
                     /**
                      * Creates a new Source instance using the specified properties.
@@ -3916,6 +3954,9 @@ export namespace google {
 
                     /** SourceProvenance resolvedRepoSource */
                     resolvedRepoSource?: (google.cloud.functions.v2.IRepoSource|null);
+
+                    /** SourceProvenance gitUri */
+                    gitUri?: (string|null);
                 }
 
                 /** Represents a SourceProvenance. */
@@ -3932,6 +3973,9 @@ export namespace google {
 
                     /** SourceProvenance resolvedRepoSource. */
                     public resolvedRepoSource?: (google.cloud.functions.v2.IRepoSource|null);
+
+                    /** SourceProvenance gitUri. */
+                    public gitUri: string;
 
                     /**
                      * Creates a new SourceProvenance instance using the specified properties.
@@ -4014,6 +4058,12 @@ export namespace google {
                 /** Properties of a BuildConfig. */
                 interface IBuildConfig {
 
+                    /** BuildConfig automaticUpdatePolicy */
+                    automaticUpdatePolicy?: (google.cloud.functions.v2.IAutomaticUpdatePolicy|null);
+
+                    /** BuildConfig onDeployUpdatePolicy */
+                    onDeployUpdatePolicy?: (google.cloud.functions.v2.IOnDeployUpdatePolicy|null);
+
                     /** BuildConfig build */
                     build?: (string|null);
 
@@ -4040,6 +4090,9 @@ export namespace google {
 
                     /** BuildConfig dockerRepository */
                     dockerRepository?: (string|null);
+
+                    /** BuildConfig serviceAccount */
+                    serviceAccount?: (string|null);
                 }
 
                 /** Represents a BuildConfig. */
@@ -4050,6 +4103,12 @@ export namespace google {
                      * @param [properties] Properties to set
                      */
                     constructor(properties?: google.cloud.functions.v2.IBuildConfig);
+
+                    /** BuildConfig automaticUpdatePolicy. */
+                    public automaticUpdatePolicy?: (google.cloud.functions.v2.IAutomaticUpdatePolicy|null);
+
+                    /** BuildConfig onDeployUpdatePolicy. */
+                    public onDeployUpdatePolicy?: (google.cloud.functions.v2.IOnDeployUpdatePolicy|null);
 
                     /** BuildConfig build. */
                     public build: string;
@@ -4077,6 +4136,12 @@ export namespace google {
 
                     /** BuildConfig dockerRepository. */
                     public dockerRepository: string;
+
+                    /** BuildConfig serviceAccount. */
+                    public serviceAccount: string;
+
+                    /** BuildConfig runtimeUpdatePolicy. */
+                    public runtimeUpdatePolicy?: ("automaticUpdatePolicy"|"onDeployUpdatePolicy");
 
                     /**
                      * Creates a new BuildConfig instance using the specified properties.
@@ -4222,6 +4287,9 @@ export namespace google {
 
                     /** ServiceConfig securityLevel */
                     securityLevel?: (google.cloud.functions.v2.ServiceConfig.SecurityLevel|keyof typeof google.cloud.functions.v2.ServiceConfig.SecurityLevel|null);
+
+                    /** ServiceConfig binaryAuthorizationPolicy */
+                    binaryAuthorizationPolicy?: (string|null);
                 }
 
                 /** Represents a ServiceConfig. */
@@ -4286,6 +4354,9 @@ export namespace google {
 
                     /** ServiceConfig securityLevel. */
                     public securityLevel: (google.cloud.functions.v2.ServiceConfig.SecurityLevel|keyof typeof google.cloud.functions.v2.ServiceConfig.SecurityLevel);
+
+                    /** ServiceConfig binaryAuthorizationPolicy. */
+                    public binaryAuthorizationPolicy: string;
 
                     /**
                      * Creates a new ServiceConfig instance using the specified properties.
@@ -4752,6 +4823,9 @@ export namespace google {
 
                     /** EventTrigger channel */
                     channel?: (string|null);
+
+                    /** EventTrigger service */
+                    service?: (string|null);
                 }
 
                 /** Represents an EventTrigger. */
@@ -4786,6 +4860,9 @@ export namespace google {
 
                     /** EventTrigger channel. */
                     public channel: string;
+
+                    /** EventTrigger service. */
+                    public service: string;
 
                     /**
                      * Creates a new EventTrigger instance using the specified properties.
@@ -4989,6 +5066,9 @@ export namespace google {
 
                     /** GetFunctionRequest name */
                     name?: (string|null);
+
+                    /** GetFunctionRequest revision */
+                    revision?: (string|null);
                 }
 
                 /** Represents a GetFunctionRequest. */
@@ -5002,6 +5082,9 @@ export namespace google {
 
                     /** GetFunctionRequest name. */
                     public name: string;
+
+                    /** GetFunctionRequest revision. */
+                    public revision: string;
 
                     /**
                      * Creates a new GetFunctionRequest instance using the specified properties.
@@ -5628,6 +5711,9 @@ export namespace google {
 
                     /** GenerateUploadUrlRequest kmsKeyName */
                     kmsKeyName?: (string|null);
+
+                    /** GenerateUploadUrlRequest environment */
+                    environment?: (google.cloud.functions.v2.Environment|keyof typeof google.cloud.functions.v2.Environment|null);
                 }
 
                 /** Represents a GenerateUploadUrlRequest. */
@@ -5644,6 +5730,9 @@ export namespace google {
 
                     /** GenerateUploadUrlRequest kmsKeyName. */
                     public kmsKeyName: string;
+
+                    /** GenerateUploadUrlRequest environment. */
+                    public environment: (google.cloud.functions.v2.Environment|keyof typeof google.cloud.functions.v2.Environment);
 
                     /**
                      * Creates a new GenerateUploadUrlRequest instance using the specified properties.
@@ -6239,6 +6328,12 @@ export namespace google {
 
                         /** Runtime environment */
                         environment?: (google.cloud.functions.v2.Environment|keyof typeof google.cloud.functions.v2.Environment|null);
+
+                        /** Runtime deprecationDate */
+                        deprecationDate?: (google.type.IDate|null);
+
+                        /** Runtime decommissionDate */
+                        decommissionDate?: (google.type.IDate|null);
                     }
 
                     /** Represents a Runtime. */
@@ -6264,6 +6359,12 @@ export namespace google {
 
                         /** Runtime environment. */
                         public environment: (google.cloud.functions.v2.Environment|keyof typeof google.cloud.functions.v2.Environment);
+
+                        /** Runtime deprecationDate. */
+                        public deprecationDate?: (google.type.IDate|null);
+
+                        /** Runtime decommissionDate. */
+                        public decommissionDate?: (google.type.IDate|null);
 
                         /**
                          * Creates a new Runtime instance using the specified properties.
@@ -6355,6 +6456,194 @@ export namespace google {
                     }
                 }
 
+                /** Properties of an AutomaticUpdatePolicy. */
+                interface IAutomaticUpdatePolicy {
+                }
+
+                /** Represents an AutomaticUpdatePolicy. */
+                class AutomaticUpdatePolicy implements IAutomaticUpdatePolicy {
+
+                    /**
+                     * Constructs a new AutomaticUpdatePolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.functions.v2.IAutomaticUpdatePolicy);
+
+                    /**
+                     * Creates a new AutomaticUpdatePolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AutomaticUpdatePolicy instance
+                     */
+                    public static create(properties?: google.cloud.functions.v2.IAutomaticUpdatePolicy): google.cloud.functions.v2.AutomaticUpdatePolicy;
+
+                    /**
+                     * Encodes the specified AutomaticUpdatePolicy message. Does not implicitly {@link google.cloud.functions.v2.AutomaticUpdatePolicy.verify|verify} messages.
+                     * @param message AutomaticUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.functions.v2.IAutomaticUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AutomaticUpdatePolicy message, length delimited. Does not implicitly {@link google.cloud.functions.v2.AutomaticUpdatePolicy.verify|verify} messages.
+                     * @param message AutomaticUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.functions.v2.IAutomaticUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AutomaticUpdatePolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AutomaticUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.functions.v2.AutomaticUpdatePolicy;
+
+                    /**
+                     * Decodes an AutomaticUpdatePolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AutomaticUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.functions.v2.AutomaticUpdatePolicy;
+
+                    /**
+                     * Verifies an AutomaticUpdatePolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AutomaticUpdatePolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AutomaticUpdatePolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.functions.v2.AutomaticUpdatePolicy;
+
+                    /**
+                     * Creates a plain object from an AutomaticUpdatePolicy message. Also converts values to other types if specified.
+                     * @param message AutomaticUpdatePolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.functions.v2.AutomaticUpdatePolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AutomaticUpdatePolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AutomaticUpdatePolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an OnDeployUpdatePolicy. */
+                interface IOnDeployUpdatePolicy {
+
+                    /** OnDeployUpdatePolicy runtimeVersion */
+                    runtimeVersion?: (string|null);
+                }
+
+                /** Represents an OnDeployUpdatePolicy. */
+                class OnDeployUpdatePolicy implements IOnDeployUpdatePolicy {
+
+                    /**
+                     * Constructs a new OnDeployUpdatePolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.functions.v2.IOnDeployUpdatePolicy);
+
+                    /** OnDeployUpdatePolicy runtimeVersion. */
+                    public runtimeVersion: string;
+
+                    /**
+                     * Creates a new OnDeployUpdatePolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns OnDeployUpdatePolicy instance
+                     */
+                    public static create(properties?: google.cloud.functions.v2.IOnDeployUpdatePolicy): google.cloud.functions.v2.OnDeployUpdatePolicy;
+
+                    /**
+                     * Encodes the specified OnDeployUpdatePolicy message. Does not implicitly {@link google.cloud.functions.v2.OnDeployUpdatePolicy.verify|verify} messages.
+                     * @param message OnDeployUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.functions.v2.IOnDeployUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified OnDeployUpdatePolicy message, length delimited. Does not implicitly {@link google.cloud.functions.v2.OnDeployUpdatePolicy.verify|verify} messages.
+                     * @param message OnDeployUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.functions.v2.IOnDeployUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an OnDeployUpdatePolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns OnDeployUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.functions.v2.OnDeployUpdatePolicy;
+
+                    /**
+                     * Decodes an OnDeployUpdatePolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns OnDeployUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.functions.v2.OnDeployUpdatePolicy;
+
+                    /**
+                     * Verifies an OnDeployUpdatePolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an OnDeployUpdatePolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns OnDeployUpdatePolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.functions.v2.OnDeployUpdatePolicy;
+
+                    /**
+                     * Creates a plain object from an OnDeployUpdatePolicy message. Also converts values to other types if specified.
+                     * @param message OnDeployUpdatePolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.functions.v2.OnDeployUpdatePolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this OnDeployUpdatePolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for OnDeployUpdatePolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of an OperationMetadata. */
                 interface IOperationMetadata {
 
@@ -6384,6 +6673,15 @@ export namespace google {
 
                     /** OperationMetadata stages */
                     stages?: (google.cloud.functions.v2.IStage[]|null);
+
+                    /** OperationMetadata sourceToken */
+                    sourceToken?: (string|null);
+
+                    /** OperationMetadata buildName */
+                    buildName?: (string|null);
+
+                    /** OperationMetadata operationType */
+                    operationType?: (google.cloud.functions.v2.OperationType|keyof typeof google.cloud.functions.v2.OperationType|null);
                 }
 
                 /** Represents an OperationMetadata. */
@@ -6421,6 +6719,15 @@ export namespace google {
 
                     /** OperationMetadata stages. */
                     public stages: google.cloud.functions.v2.IStage[];
+
+                    /** OperationMetadata sourceToken. */
+                    public sourceToken: string;
+
+                    /** OperationMetadata buildName. */
+                    public buildName: string;
+
+                    /** OperationMetadata operationType. */
+                    public operationType: (google.cloud.functions.v2.OperationType|keyof typeof google.cloud.functions.v2.OperationType);
 
                     /**
                      * Creates a new OperationMetadata instance using the specified properties.
@@ -6942,6 +7249,14 @@ export namespace google {
                     type ListRuntimesCallback = (error: (Error|null), response?: google.cloud.functions.v2alpha.ListRuntimesResponse) => void;
                 }
 
+                /** OperationType enum. */
+                enum OperationType {
+                    OPERATIONTYPE_UNSPECIFIED = 0,
+                    CREATE_FUNCTION = 1,
+                    UPDATE_FUNCTION = 2,
+                    DELETE_FUNCTION = 3
+                }
+
                 /** Environment enum. */
                 enum Environment {
                     ENVIRONMENT_UNSPECIFIED = 0,
@@ -6987,6 +7302,12 @@ export namespace google {
 
                     /** Function kmsKeyName */
                     kmsKeyName?: (string|null);
+
+                    /** Function satisfiesPzs */
+                    satisfiesPzs?: (boolean|null);
+
+                    /** Function createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a Function. */
@@ -7033,6 +7354,12 @@ export namespace google {
 
                     /** Function kmsKeyName. */
                     public kmsKeyName: string;
+
+                    /** Function satisfiesPzs. */
+                    public satisfiesPzs: boolean;
+
+                    /** Function createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new Function instance using the specified properties.
@@ -7256,6 +7583,9 @@ export namespace google {
 
                     /** StorageSource generation */
                     generation?: (number|Long|string|null);
+
+                    /** StorageSource sourceUploadUrl */
+                    sourceUploadUrl?: (string|null);
                 }
 
                 /** Represents a StorageSource. */
@@ -7275,6 +7605,9 @@ export namespace google {
 
                     /** StorageSource generation. */
                     public generation: (number|Long|string);
+
+                    /** StorageSource sourceUploadUrl. */
+                    public sourceUploadUrl: string;
 
                     /**
                      * Creates a new StorageSource instance using the specified properties.
@@ -7498,6 +7831,9 @@ export namespace google {
 
                     /** Source repoSource */
                     repoSource?: (google.cloud.functions.v2alpha.IRepoSource|null);
+
+                    /** Source gitUri */
+                    gitUri?: (string|null);
                 }
 
                 /** Represents a Source. */
@@ -7515,8 +7851,11 @@ export namespace google {
                     /** Source repoSource. */
                     public repoSource?: (google.cloud.functions.v2alpha.IRepoSource|null);
 
+                    /** Source gitUri. */
+                    public gitUri?: (string|null);
+
                     /** Source source. */
-                    public source?: ("storageSource"|"repoSource");
+                    public source?: ("storageSource"|"repoSource"|"gitUri");
 
                     /**
                      * Creates a new Source instance using the specified properties.
@@ -7604,6 +7943,9 @@ export namespace google {
 
                     /** SourceProvenance resolvedRepoSource */
                     resolvedRepoSource?: (google.cloud.functions.v2alpha.IRepoSource|null);
+
+                    /** SourceProvenance gitUri */
+                    gitUri?: (string|null);
                 }
 
                 /** Represents a SourceProvenance. */
@@ -7620,6 +7962,9 @@ export namespace google {
 
                     /** SourceProvenance resolvedRepoSource. */
                     public resolvedRepoSource?: (google.cloud.functions.v2alpha.IRepoSource|null);
+
+                    /** SourceProvenance gitUri. */
+                    public gitUri: string;
 
                     /**
                      * Creates a new SourceProvenance instance using the specified properties.
@@ -7702,6 +8047,12 @@ export namespace google {
                 /** Properties of a BuildConfig. */
                 interface IBuildConfig {
 
+                    /** BuildConfig automaticUpdatePolicy */
+                    automaticUpdatePolicy?: (google.cloud.functions.v2alpha.IAutomaticUpdatePolicy|null);
+
+                    /** BuildConfig onDeployUpdatePolicy */
+                    onDeployUpdatePolicy?: (google.cloud.functions.v2alpha.IOnDeployUpdatePolicy|null);
+
                     /** BuildConfig build */
                     build?: (string|null);
 
@@ -7728,6 +8079,9 @@ export namespace google {
 
                     /** BuildConfig dockerRepository */
                     dockerRepository?: (string|null);
+
+                    /** BuildConfig serviceAccount */
+                    serviceAccount?: (string|null);
                 }
 
                 /** Represents a BuildConfig. */
@@ -7738,6 +8092,12 @@ export namespace google {
                      * @param [properties] Properties to set
                      */
                     constructor(properties?: google.cloud.functions.v2alpha.IBuildConfig);
+
+                    /** BuildConfig automaticUpdatePolicy. */
+                    public automaticUpdatePolicy?: (google.cloud.functions.v2alpha.IAutomaticUpdatePolicy|null);
+
+                    /** BuildConfig onDeployUpdatePolicy. */
+                    public onDeployUpdatePolicy?: (google.cloud.functions.v2alpha.IOnDeployUpdatePolicy|null);
 
                     /** BuildConfig build. */
                     public build: string;
@@ -7765,6 +8125,12 @@ export namespace google {
 
                     /** BuildConfig dockerRepository. */
                     public dockerRepository: string;
+
+                    /** BuildConfig serviceAccount. */
+                    public serviceAccount: string;
+
+                    /** BuildConfig runtimeUpdatePolicy. */
+                    public runtimeUpdatePolicy?: ("automaticUpdatePolicy"|"onDeployUpdatePolicy");
 
                     /**
                      * Creates a new BuildConfig instance using the specified properties.
@@ -7910,6 +8276,9 @@ export namespace google {
 
                     /** ServiceConfig securityLevel */
                     securityLevel?: (google.cloud.functions.v2alpha.ServiceConfig.SecurityLevel|keyof typeof google.cloud.functions.v2alpha.ServiceConfig.SecurityLevel|null);
+
+                    /** ServiceConfig binaryAuthorizationPolicy */
+                    binaryAuthorizationPolicy?: (string|null);
                 }
 
                 /** Represents a ServiceConfig. */
@@ -7974,6 +8343,9 @@ export namespace google {
 
                     /** ServiceConfig securityLevel. */
                     public securityLevel: (google.cloud.functions.v2alpha.ServiceConfig.SecurityLevel|keyof typeof google.cloud.functions.v2alpha.ServiceConfig.SecurityLevel);
+
+                    /** ServiceConfig binaryAuthorizationPolicy. */
+                    public binaryAuthorizationPolicy: string;
 
                     /**
                      * Creates a new ServiceConfig instance using the specified properties.
@@ -8440,6 +8812,9 @@ export namespace google {
 
                     /** EventTrigger channel */
                     channel?: (string|null);
+
+                    /** EventTrigger service */
+                    service?: (string|null);
                 }
 
                 /** Represents an EventTrigger. */
@@ -8474,6 +8849,9 @@ export namespace google {
 
                     /** EventTrigger channel. */
                     public channel: string;
+
+                    /** EventTrigger service. */
+                    public service: string;
 
                     /**
                      * Creates a new EventTrigger instance using the specified properties.
@@ -8677,6 +9055,9 @@ export namespace google {
 
                     /** GetFunctionRequest name */
                     name?: (string|null);
+
+                    /** GetFunctionRequest revision */
+                    revision?: (string|null);
                 }
 
                 /** Represents a GetFunctionRequest. */
@@ -8690,6 +9071,9 @@ export namespace google {
 
                     /** GetFunctionRequest name. */
                     public name: string;
+
+                    /** GetFunctionRequest revision. */
+                    public revision: string;
 
                     /**
                      * Creates a new GetFunctionRequest instance using the specified properties.
@@ -9316,6 +9700,9 @@ export namespace google {
 
                     /** GenerateUploadUrlRequest kmsKeyName */
                     kmsKeyName?: (string|null);
+
+                    /** GenerateUploadUrlRequest environment */
+                    environment?: (google.cloud.functions.v2alpha.Environment|keyof typeof google.cloud.functions.v2alpha.Environment|null);
                 }
 
                 /** Represents a GenerateUploadUrlRequest. */
@@ -9332,6 +9719,9 @@ export namespace google {
 
                     /** GenerateUploadUrlRequest kmsKeyName. */
                     public kmsKeyName: string;
+
+                    /** GenerateUploadUrlRequest environment. */
+                    public environment: (google.cloud.functions.v2alpha.Environment|keyof typeof google.cloud.functions.v2alpha.Environment);
 
                     /**
                      * Creates a new GenerateUploadUrlRequest instance using the specified properties.
@@ -9927,6 +10317,12 @@ export namespace google {
 
                         /** Runtime environment */
                         environment?: (google.cloud.functions.v2alpha.Environment|keyof typeof google.cloud.functions.v2alpha.Environment|null);
+
+                        /** Runtime deprecationDate */
+                        deprecationDate?: (google.type.IDate|null);
+
+                        /** Runtime decommissionDate */
+                        decommissionDate?: (google.type.IDate|null);
                     }
 
                     /** Represents a Runtime. */
@@ -9952,6 +10348,12 @@ export namespace google {
 
                         /** Runtime environment. */
                         public environment: (google.cloud.functions.v2alpha.Environment|keyof typeof google.cloud.functions.v2alpha.Environment);
+
+                        /** Runtime deprecationDate. */
+                        public deprecationDate?: (google.type.IDate|null);
+
+                        /** Runtime decommissionDate. */
+                        public decommissionDate?: (google.type.IDate|null);
 
                         /**
                          * Creates a new Runtime instance using the specified properties.
@@ -10043,6 +10445,194 @@ export namespace google {
                     }
                 }
 
+                /** Properties of an AutomaticUpdatePolicy. */
+                interface IAutomaticUpdatePolicy {
+                }
+
+                /** Represents an AutomaticUpdatePolicy. */
+                class AutomaticUpdatePolicy implements IAutomaticUpdatePolicy {
+
+                    /**
+                     * Constructs a new AutomaticUpdatePolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.functions.v2alpha.IAutomaticUpdatePolicy);
+
+                    /**
+                     * Creates a new AutomaticUpdatePolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AutomaticUpdatePolicy instance
+                     */
+                    public static create(properties?: google.cloud.functions.v2alpha.IAutomaticUpdatePolicy): google.cloud.functions.v2alpha.AutomaticUpdatePolicy;
+
+                    /**
+                     * Encodes the specified AutomaticUpdatePolicy message. Does not implicitly {@link google.cloud.functions.v2alpha.AutomaticUpdatePolicy.verify|verify} messages.
+                     * @param message AutomaticUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.functions.v2alpha.IAutomaticUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AutomaticUpdatePolicy message, length delimited. Does not implicitly {@link google.cloud.functions.v2alpha.AutomaticUpdatePolicy.verify|verify} messages.
+                     * @param message AutomaticUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.functions.v2alpha.IAutomaticUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AutomaticUpdatePolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AutomaticUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.functions.v2alpha.AutomaticUpdatePolicy;
+
+                    /**
+                     * Decodes an AutomaticUpdatePolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AutomaticUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.functions.v2alpha.AutomaticUpdatePolicy;
+
+                    /**
+                     * Verifies an AutomaticUpdatePolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AutomaticUpdatePolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AutomaticUpdatePolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.functions.v2alpha.AutomaticUpdatePolicy;
+
+                    /**
+                     * Creates a plain object from an AutomaticUpdatePolicy message. Also converts values to other types if specified.
+                     * @param message AutomaticUpdatePolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.functions.v2alpha.AutomaticUpdatePolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AutomaticUpdatePolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AutomaticUpdatePolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an OnDeployUpdatePolicy. */
+                interface IOnDeployUpdatePolicy {
+
+                    /** OnDeployUpdatePolicy runtimeVersion */
+                    runtimeVersion?: (string|null);
+                }
+
+                /** Represents an OnDeployUpdatePolicy. */
+                class OnDeployUpdatePolicy implements IOnDeployUpdatePolicy {
+
+                    /**
+                     * Constructs a new OnDeployUpdatePolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.functions.v2alpha.IOnDeployUpdatePolicy);
+
+                    /** OnDeployUpdatePolicy runtimeVersion. */
+                    public runtimeVersion: string;
+
+                    /**
+                     * Creates a new OnDeployUpdatePolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns OnDeployUpdatePolicy instance
+                     */
+                    public static create(properties?: google.cloud.functions.v2alpha.IOnDeployUpdatePolicy): google.cloud.functions.v2alpha.OnDeployUpdatePolicy;
+
+                    /**
+                     * Encodes the specified OnDeployUpdatePolicy message. Does not implicitly {@link google.cloud.functions.v2alpha.OnDeployUpdatePolicy.verify|verify} messages.
+                     * @param message OnDeployUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.functions.v2alpha.IOnDeployUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified OnDeployUpdatePolicy message, length delimited. Does not implicitly {@link google.cloud.functions.v2alpha.OnDeployUpdatePolicy.verify|verify} messages.
+                     * @param message OnDeployUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.functions.v2alpha.IOnDeployUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an OnDeployUpdatePolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns OnDeployUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.functions.v2alpha.OnDeployUpdatePolicy;
+
+                    /**
+                     * Decodes an OnDeployUpdatePolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns OnDeployUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.functions.v2alpha.OnDeployUpdatePolicy;
+
+                    /**
+                     * Verifies an OnDeployUpdatePolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an OnDeployUpdatePolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns OnDeployUpdatePolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.functions.v2alpha.OnDeployUpdatePolicy;
+
+                    /**
+                     * Creates a plain object from an OnDeployUpdatePolicy message. Also converts values to other types if specified.
+                     * @param message OnDeployUpdatePolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.functions.v2alpha.OnDeployUpdatePolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this OnDeployUpdatePolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for OnDeployUpdatePolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of an OperationMetadata. */
                 interface IOperationMetadata {
 
@@ -10072,6 +10662,12 @@ export namespace google {
 
                     /** OperationMetadata stages */
                     stages?: (google.cloud.functions.v2alpha.IStage[]|null);
+
+                    /** OperationMetadata buildName */
+                    buildName?: (string|null);
+
+                    /** OperationMetadata operationType */
+                    operationType?: (google.cloud.functions.v2alpha.OperationType|keyof typeof google.cloud.functions.v2alpha.OperationType|null);
                 }
 
                 /** Represents an OperationMetadata. */
@@ -10109,6 +10705,12 @@ export namespace google {
 
                     /** OperationMetadata stages. */
                     public stages: google.cloud.functions.v2alpha.IStage[];
+
+                    /** OperationMetadata buildName. */
+                    public buildName: string;
+
+                    /** OperationMetadata operationType. */
+                    public operationType: (google.cloud.functions.v2alpha.OperationType|keyof typeof google.cloud.functions.v2alpha.OperationType);
 
                     /**
                      * Creates a new OperationMetadata instance using the specified properties.
@@ -10630,6 +11232,14 @@ export namespace google {
                     type ListRuntimesCallback = (error: (Error|null), response?: google.cloud.functions.v2beta.ListRuntimesResponse) => void;
                 }
 
+                /** OperationType enum. */
+                enum OperationType {
+                    OPERATIONTYPE_UNSPECIFIED = 0,
+                    CREATE_FUNCTION = 1,
+                    UPDATE_FUNCTION = 2,
+                    DELETE_FUNCTION = 3
+                }
+
                 /** Environment enum. */
                 enum Environment {
                     ENVIRONMENT_UNSPECIFIED = 0,
@@ -10675,6 +11285,12 @@ export namespace google {
 
                     /** Function kmsKeyName */
                     kmsKeyName?: (string|null);
+
+                    /** Function satisfiesPzs */
+                    satisfiesPzs?: (boolean|null);
+
+                    /** Function createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a Function. */
@@ -10721,6 +11337,12 @@ export namespace google {
 
                     /** Function kmsKeyName. */
                     public kmsKeyName: string;
+
+                    /** Function satisfiesPzs. */
+                    public satisfiesPzs: boolean;
+
+                    /** Function createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new Function instance using the specified properties.
@@ -10944,6 +11566,9 @@ export namespace google {
 
                     /** StorageSource generation */
                     generation?: (number|Long|string|null);
+
+                    /** StorageSource sourceUploadUrl */
+                    sourceUploadUrl?: (string|null);
                 }
 
                 /** Represents a StorageSource. */
@@ -10963,6 +11588,9 @@ export namespace google {
 
                     /** StorageSource generation. */
                     public generation: (number|Long|string);
+
+                    /** StorageSource sourceUploadUrl. */
+                    public sourceUploadUrl: string;
 
                     /**
                      * Creates a new StorageSource instance using the specified properties.
@@ -11186,6 +11814,9 @@ export namespace google {
 
                     /** Source repoSource */
                     repoSource?: (google.cloud.functions.v2beta.IRepoSource|null);
+
+                    /** Source gitUri */
+                    gitUri?: (string|null);
                 }
 
                 /** Represents a Source. */
@@ -11203,8 +11834,11 @@ export namespace google {
                     /** Source repoSource. */
                     public repoSource?: (google.cloud.functions.v2beta.IRepoSource|null);
 
+                    /** Source gitUri. */
+                    public gitUri?: (string|null);
+
                     /** Source source. */
-                    public source?: ("storageSource"|"repoSource");
+                    public source?: ("storageSource"|"repoSource"|"gitUri");
 
                     /**
                      * Creates a new Source instance using the specified properties.
@@ -11292,6 +11926,9 @@ export namespace google {
 
                     /** SourceProvenance resolvedRepoSource */
                     resolvedRepoSource?: (google.cloud.functions.v2beta.IRepoSource|null);
+
+                    /** SourceProvenance gitUri */
+                    gitUri?: (string|null);
                 }
 
                 /** Represents a SourceProvenance. */
@@ -11308,6 +11945,9 @@ export namespace google {
 
                     /** SourceProvenance resolvedRepoSource. */
                     public resolvedRepoSource?: (google.cloud.functions.v2beta.IRepoSource|null);
+
+                    /** SourceProvenance gitUri. */
+                    public gitUri: string;
 
                     /**
                      * Creates a new SourceProvenance instance using the specified properties.
@@ -11390,6 +12030,12 @@ export namespace google {
                 /** Properties of a BuildConfig. */
                 interface IBuildConfig {
 
+                    /** BuildConfig automaticUpdatePolicy */
+                    automaticUpdatePolicy?: (google.cloud.functions.v2beta.IAutomaticUpdatePolicy|null);
+
+                    /** BuildConfig onDeployUpdatePolicy */
+                    onDeployUpdatePolicy?: (google.cloud.functions.v2beta.IOnDeployUpdatePolicy|null);
+
                     /** BuildConfig build */
                     build?: (string|null);
 
@@ -11416,6 +12062,9 @@ export namespace google {
 
                     /** BuildConfig dockerRepository */
                     dockerRepository?: (string|null);
+
+                    /** BuildConfig serviceAccount */
+                    serviceAccount?: (string|null);
                 }
 
                 /** Represents a BuildConfig. */
@@ -11426,6 +12075,12 @@ export namespace google {
                      * @param [properties] Properties to set
                      */
                     constructor(properties?: google.cloud.functions.v2beta.IBuildConfig);
+
+                    /** BuildConfig automaticUpdatePolicy. */
+                    public automaticUpdatePolicy?: (google.cloud.functions.v2beta.IAutomaticUpdatePolicy|null);
+
+                    /** BuildConfig onDeployUpdatePolicy. */
+                    public onDeployUpdatePolicy?: (google.cloud.functions.v2beta.IOnDeployUpdatePolicy|null);
 
                     /** BuildConfig build. */
                     public build: string;
@@ -11453,6 +12108,12 @@ export namespace google {
 
                     /** BuildConfig dockerRepository. */
                     public dockerRepository: string;
+
+                    /** BuildConfig serviceAccount. */
+                    public serviceAccount: string;
+
+                    /** BuildConfig runtimeUpdatePolicy. */
+                    public runtimeUpdatePolicy?: ("automaticUpdatePolicy"|"onDeployUpdatePolicy");
 
                     /**
                      * Creates a new BuildConfig instance using the specified properties.
@@ -11598,6 +12259,9 @@ export namespace google {
 
                     /** ServiceConfig securityLevel */
                     securityLevel?: (google.cloud.functions.v2beta.ServiceConfig.SecurityLevel|keyof typeof google.cloud.functions.v2beta.ServiceConfig.SecurityLevel|null);
+
+                    /** ServiceConfig binaryAuthorizationPolicy */
+                    binaryAuthorizationPolicy?: (string|null);
                 }
 
                 /** Represents a ServiceConfig. */
@@ -11662,6 +12326,9 @@ export namespace google {
 
                     /** ServiceConfig securityLevel. */
                     public securityLevel: (google.cloud.functions.v2beta.ServiceConfig.SecurityLevel|keyof typeof google.cloud.functions.v2beta.ServiceConfig.SecurityLevel);
+
+                    /** ServiceConfig binaryAuthorizationPolicy. */
+                    public binaryAuthorizationPolicy: string;
 
                     /**
                      * Creates a new ServiceConfig instance using the specified properties.
@@ -12128,6 +12795,9 @@ export namespace google {
 
                     /** EventTrigger channel */
                     channel?: (string|null);
+
+                    /** EventTrigger service */
+                    service?: (string|null);
                 }
 
                 /** Represents an EventTrigger. */
@@ -12162,6 +12832,9 @@ export namespace google {
 
                     /** EventTrigger channel. */
                     public channel: string;
+
+                    /** EventTrigger service. */
+                    public service: string;
 
                     /**
                      * Creates a new EventTrigger instance using the specified properties.
@@ -12365,6 +13038,9 @@ export namespace google {
 
                     /** GetFunctionRequest name */
                     name?: (string|null);
+
+                    /** GetFunctionRequest revision */
+                    revision?: (string|null);
                 }
 
                 /** Represents a GetFunctionRequest. */
@@ -12378,6 +13054,9 @@ export namespace google {
 
                     /** GetFunctionRequest name. */
                     public name: string;
+
+                    /** GetFunctionRequest revision. */
+                    public revision: string;
 
                     /**
                      * Creates a new GetFunctionRequest instance using the specified properties.
@@ -13004,6 +13683,9 @@ export namespace google {
 
                     /** GenerateUploadUrlRequest kmsKeyName */
                     kmsKeyName?: (string|null);
+
+                    /** GenerateUploadUrlRequest environment */
+                    environment?: (google.cloud.functions.v2beta.Environment|keyof typeof google.cloud.functions.v2beta.Environment|null);
                 }
 
                 /** Represents a GenerateUploadUrlRequest. */
@@ -13020,6 +13702,9 @@ export namespace google {
 
                     /** GenerateUploadUrlRequest kmsKeyName. */
                     public kmsKeyName: string;
+
+                    /** GenerateUploadUrlRequest environment. */
+                    public environment: (google.cloud.functions.v2beta.Environment|keyof typeof google.cloud.functions.v2beta.Environment);
 
                     /**
                      * Creates a new GenerateUploadUrlRequest instance using the specified properties.
@@ -13615,6 +14300,12 @@ export namespace google {
 
                         /** Runtime environment */
                         environment?: (google.cloud.functions.v2beta.Environment|keyof typeof google.cloud.functions.v2beta.Environment|null);
+
+                        /** Runtime deprecationDate */
+                        deprecationDate?: (google.type.IDate|null);
+
+                        /** Runtime decommissionDate */
+                        decommissionDate?: (google.type.IDate|null);
                     }
 
                     /** Represents a Runtime. */
@@ -13640,6 +14331,12 @@ export namespace google {
 
                         /** Runtime environment. */
                         public environment: (google.cloud.functions.v2beta.Environment|keyof typeof google.cloud.functions.v2beta.Environment);
+
+                        /** Runtime deprecationDate. */
+                        public deprecationDate?: (google.type.IDate|null);
+
+                        /** Runtime decommissionDate. */
+                        public decommissionDate?: (google.type.IDate|null);
 
                         /**
                          * Creates a new Runtime instance using the specified properties.
@@ -13731,6 +14428,194 @@ export namespace google {
                     }
                 }
 
+                /** Properties of an AutomaticUpdatePolicy. */
+                interface IAutomaticUpdatePolicy {
+                }
+
+                /** Represents an AutomaticUpdatePolicy. */
+                class AutomaticUpdatePolicy implements IAutomaticUpdatePolicy {
+
+                    /**
+                     * Constructs a new AutomaticUpdatePolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.functions.v2beta.IAutomaticUpdatePolicy);
+
+                    /**
+                     * Creates a new AutomaticUpdatePolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AutomaticUpdatePolicy instance
+                     */
+                    public static create(properties?: google.cloud.functions.v2beta.IAutomaticUpdatePolicy): google.cloud.functions.v2beta.AutomaticUpdatePolicy;
+
+                    /**
+                     * Encodes the specified AutomaticUpdatePolicy message. Does not implicitly {@link google.cloud.functions.v2beta.AutomaticUpdatePolicy.verify|verify} messages.
+                     * @param message AutomaticUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.functions.v2beta.IAutomaticUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AutomaticUpdatePolicy message, length delimited. Does not implicitly {@link google.cloud.functions.v2beta.AutomaticUpdatePolicy.verify|verify} messages.
+                     * @param message AutomaticUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.functions.v2beta.IAutomaticUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AutomaticUpdatePolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AutomaticUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.functions.v2beta.AutomaticUpdatePolicy;
+
+                    /**
+                     * Decodes an AutomaticUpdatePolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AutomaticUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.functions.v2beta.AutomaticUpdatePolicy;
+
+                    /**
+                     * Verifies an AutomaticUpdatePolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AutomaticUpdatePolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AutomaticUpdatePolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.functions.v2beta.AutomaticUpdatePolicy;
+
+                    /**
+                     * Creates a plain object from an AutomaticUpdatePolicy message. Also converts values to other types if specified.
+                     * @param message AutomaticUpdatePolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.functions.v2beta.AutomaticUpdatePolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AutomaticUpdatePolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AutomaticUpdatePolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an OnDeployUpdatePolicy. */
+                interface IOnDeployUpdatePolicy {
+
+                    /** OnDeployUpdatePolicy runtimeVersion */
+                    runtimeVersion?: (string|null);
+                }
+
+                /** Represents an OnDeployUpdatePolicy. */
+                class OnDeployUpdatePolicy implements IOnDeployUpdatePolicy {
+
+                    /**
+                     * Constructs a new OnDeployUpdatePolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.functions.v2beta.IOnDeployUpdatePolicy);
+
+                    /** OnDeployUpdatePolicy runtimeVersion. */
+                    public runtimeVersion: string;
+
+                    /**
+                     * Creates a new OnDeployUpdatePolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns OnDeployUpdatePolicy instance
+                     */
+                    public static create(properties?: google.cloud.functions.v2beta.IOnDeployUpdatePolicy): google.cloud.functions.v2beta.OnDeployUpdatePolicy;
+
+                    /**
+                     * Encodes the specified OnDeployUpdatePolicy message. Does not implicitly {@link google.cloud.functions.v2beta.OnDeployUpdatePolicy.verify|verify} messages.
+                     * @param message OnDeployUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.functions.v2beta.IOnDeployUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified OnDeployUpdatePolicy message, length delimited. Does not implicitly {@link google.cloud.functions.v2beta.OnDeployUpdatePolicy.verify|verify} messages.
+                     * @param message OnDeployUpdatePolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.functions.v2beta.IOnDeployUpdatePolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an OnDeployUpdatePolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns OnDeployUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.functions.v2beta.OnDeployUpdatePolicy;
+
+                    /**
+                     * Decodes an OnDeployUpdatePolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns OnDeployUpdatePolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.functions.v2beta.OnDeployUpdatePolicy;
+
+                    /**
+                     * Verifies an OnDeployUpdatePolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an OnDeployUpdatePolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns OnDeployUpdatePolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.functions.v2beta.OnDeployUpdatePolicy;
+
+                    /**
+                     * Creates a plain object from an OnDeployUpdatePolicy message. Also converts values to other types if specified.
+                     * @param message OnDeployUpdatePolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.functions.v2beta.OnDeployUpdatePolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this OnDeployUpdatePolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for OnDeployUpdatePolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of an OperationMetadata. */
                 interface IOperationMetadata {
 
@@ -13760,6 +14645,12 @@ export namespace google {
 
                     /** OperationMetadata stages */
                     stages?: (google.cloud.functions.v2beta.IStage[]|null);
+
+                    /** OperationMetadata buildName */
+                    buildName?: (string|null);
+
+                    /** OperationMetadata operationType */
+                    operationType?: (google.cloud.functions.v2beta.OperationType|keyof typeof google.cloud.functions.v2beta.OperationType|null);
                 }
 
                 /** Represents an OperationMetadata. */
@@ -13797,6 +14688,12 @@ export namespace google {
 
                     /** OperationMetadata stages. */
                     public stages: google.cloud.functions.v2beta.IStage[];
+
+                    /** OperationMetadata buildName. */
+                    public buildName: string;
+
+                    /** OperationMetadata operationType. */
+                    public operationType: (google.cloud.functions.v2beta.OperationType|keyof typeof google.cloud.functions.v2beta.OperationType);
 
                     /**
                      * Creates a new OperationMetadata instance using the specified properties.
@@ -14780,6 +15677,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -14820,6 +15720,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -19038,6 +19941,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -19289,7 +20195,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -19320,7 +20226,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -20459,7 +21365,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -20475,7 +21381,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -21462,7 +22368,7 @@ export namespace google {
                 auditConfigs?: (google.iam.v1.IAuditConfig[]|null);
 
                 /** Policy etag */
-                etag?: (Uint8Array|string|null);
+                etag?: (Uint8Array|Buffer|string|null);
             }
 
             /** Represents a Policy. */
@@ -21484,7 +22390,7 @@ export namespace google {
                 public auditConfigs: google.iam.v1.IAuditConfig[];
 
                 /** Policy etag. */
-                public etag: (Uint8Array|string);
+                public etag: (Uint8Array|Buffer|string);
 
                 /**
                  * Creates a new Policy instance using the specified properties.
@@ -22357,6 +23263,115 @@ export namespace google {
 
             /**
              * Gets the default type url for Expr
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a Date. */
+        interface IDate {
+
+            /** Date year */
+            year?: (number|null);
+
+            /** Date month */
+            month?: (number|null);
+
+            /** Date day */
+            day?: (number|null);
+        }
+
+        /** Represents a Date. */
+        class Date implements IDate {
+
+            /**
+             * Constructs a new Date.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.type.IDate);
+
+            /** Date year. */
+            public year: number;
+
+            /** Date month. */
+            public month: number;
+
+            /** Date day. */
+            public day: number;
+
+            /**
+             * Creates a new Date instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Date instance
+             */
+            public static create(properties?: google.type.IDate): google.type.Date;
+
+            /**
+             * Encodes the specified Date message. Does not implicitly {@link google.type.Date.verify|verify} messages.
+             * @param message Date message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.type.IDate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Date message, length delimited. Does not implicitly {@link google.type.Date.verify|verify} messages.
+             * @param message Date message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.type.IDate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Date message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Date
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.type.Date;
+
+            /**
+             * Decodes a Date message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Date
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.type.Date;
+
+            /**
+             * Verifies a Date message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Date message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Date
+             */
+            public static fromObject(object: { [k: string]: any }): google.type.Date;
+
+            /**
+             * Creates a plain object from a Date message. Also converts values to other types if specified.
+             * @param message Date
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.type.Date, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Date to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Date
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

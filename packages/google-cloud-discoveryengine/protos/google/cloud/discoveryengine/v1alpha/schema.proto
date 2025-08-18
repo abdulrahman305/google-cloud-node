@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -191,6 +191,11 @@ message FieldConfig {
 
     // Retrieve value from page map.
     PAGEMAP = 2;
+
+    // Retrieve value from the attributes set by
+    // [SiteSearchEngineService.SetUriPatternDocumentData][google.cloud.discoveryengine.v1alpha.SiteSearchEngineService.SetUriPatternDocumentData]
+    // API.
+    URI_PATTERN_MAPPING = 3;
 
     // Retrieve value from schema.org data.
     SCHEMA_ORG = 4;

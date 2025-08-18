@@ -4,6 +4,92 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/text-to-speech?activeTab=versions
 
+## [6.2.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v6.1.0...text-to-speech-v6.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6424](https://github.com/googleapis/google-cloud-node/issues/6424)) ([9a595a6](https://github.com/googleapis/google-cloud-node/commit/9a595a658b5fc2a02a18ffbca618190eb64d8013))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v6.0.1...text-to-speech-v6.1.0) (2025-05-09)
+
+
+### Features
+
+* [texttospeech] Support HD voice custom pronunciations ([#6229](https://github.com/googleapis/google-cloud-node/issues/6229)) ([f1f9df8](https://github.com/googleapis/google-cloud-node/commit/f1f9df81259237c77433621f449c7d4325c658d8))
+
+## [6.0.1](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v6.0.0...text-to-speech-v6.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6189](https://github.com/googleapis/google-cloud-node/issues/6189)) ([0eab6d4](https://github.com/googleapis/google-cloud-node/commit/0eab6d40a12aa7f387a4621c6611aa4cbc86e178))
+
+## [6.0.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.8.1...text-to-speech-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [5.8.1](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.8.0...text-to-speech-v5.8.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6018](https://github.com/googleapis/google-cloud-node/issues/6018)) ([9dc5856](https://github.com/googleapis/google-cloud-node/commit/9dc585661489f51bb7a85b39519fd8b11dfffc5b))
+
+## [5.8.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.7.0...text-to-speech-v5.8.0) (2025-01-11)
+
+
+### Features
+
+* [texttospeech] StreamingSynthesize now supports opus ([#5926](https://github.com/googleapis/google-cloud-node/issues/5926)) ([d8d7c9a](https://github.com/googleapis/google-cloud-node/commit/d8d7c9a602a787c490861d3fe386a2e651dfcae6))
+
+## [5.7.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.6.0...text-to-speech-v5.7.0) (2024-12-18)
+
+
+### Features
+
+* [texttospeech] StreamingSynthesize now supports opus ([#5887](https://github.com/googleapis/google-cloud-node/issues/5887)) ([c335f19](https://github.com/googleapis/google-cloud-node/commit/c335f19bf4312b5552422877804bc5b032571d5a))
+
+## [5.6.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.5.0...text-to-speech-v5.6.0) (2024-10-30)
+
+
+### Features
+
+* [texttospeech] add multi-speaker markup, which allows generating dialogue between multiple speakers ([#5760](https://github.com/googleapis/google-cloud-node/issues/5760)) ([f9dea89](https://github.com/googleapis/google-cloud-node/commit/f9dea89f81e706c13b11651936923e5506fbe5b6))
+
+## [5.5.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.4.0...text-to-speech-v5.5.0) (2024-10-10)
+
+
+### Features
+
+* [texttospeech] Add low latency journey option to proto ([#5742](https://github.com/googleapis/google-cloud-node/issues/5742)) ([d34249c](https://github.com/googleapis/google-cloud-node/commit/d34249ca58b1738b1b46d46ac940587a9f1cca73))
+
+## [5.4.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.3.0...text-to-speech-v5.4.0) (2024-08-19)
+
+
+### Features
+
+* [texttospeech] A new method `StreamingSynthesize` is added to service `TextToSpeech` ([#5620](https://github.com/googleapis/google-cloud-node/issues/5620)) ([a8d513d](https://github.com/googleapis/google-cloud-node/commit/a8d513d66e58983a3ac9e4726f6229bc58eb753b))
+
 ## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/text-to-speech-v5.2.0...text-to-speech-v5.3.0) (2024-05-21)
 
 

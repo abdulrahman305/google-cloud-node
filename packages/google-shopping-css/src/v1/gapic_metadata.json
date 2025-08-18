@@ -121,6 +121,11 @@
                 "insertCssProductInput"
               ]
             },
+            "UpdateCssProductInput": {
+              "methods": [
+                "updateCssProductInput"
+              ]
+            },
             "DeleteCssProductInput": {
               "methods": [
                 "deleteCssProductInput"
@@ -134,6 +139,11 @@
             "InsertCssProductInput": {
               "methods": [
                 "insertCssProductInput"
+              ]
+            },
+            "UpdateCssProductInput": {
+              "methods": [
+                "updateCssProductInput"
               ]
             },
             "DeleteCssProductInput": {
@@ -177,6 +187,34 @@
                 "listCssProducts",
                 "listCssProductsStream",
                 "listCssProductsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "QuotaService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "QuotaServiceClient",
+          "rpcs": {
+            "ListQuotaGroups": {
+              "methods": [
+                "listQuotaGroups",
+                "listQuotaGroupsStream",
+                "listQuotaGroupsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "QuotaServiceClient",
+          "rpcs": {
+            "ListQuotaGroups": {
+              "methods": [
+                "listQuotaGroups",
+                "listQuotaGroupsStream",
+                "listQuotaGroupsAsync"
               ]
             }
           }

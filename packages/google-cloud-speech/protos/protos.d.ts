@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -432,7 +432,7 @@ export namespace google {
                     streamingConfig?: (google.cloud.speech.v1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent */
-                    audioContent?: (Uint8Array|string|null);
+                    audioContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a StreamingRecognizeRequest. */
@@ -448,7 +448,7 @@ export namespace google {
                     public streamingConfig?: (google.cloud.speech.v1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent. */
-                    public audioContent?: (Uint8Array|string|null);
+                    public audioContent?: (Uint8Array|Buffer|string|null);
 
                     /** StreamingRecognizeRequest streamingRequest. */
                     public streamingRequest?: ("streamingConfig"|"audioContent");
@@ -1389,7 +1389,7 @@ export namespace google {
                 interface IRecognitionAudio {
 
                     /** RecognitionAudio content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri */
                     uri?: (string|null);
@@ -1405,7 +1405,7 @@ export namespace google {
                     constructor(properties?: google.cloud.speech.v1.IRecognitionAudio);
 
                     /** RecognitionAudio content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri. */
                     public uri?: (string|null);
@@ -5302,7 +5302,7 @@ export namespace google {
                     streamingConfig?: (google.cloud.speech.v1p1beta1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent */
-                    audioContent?: (Uint8Array|string|null);
+                    audioContent?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a StreamingRecognizeRequest. */
@@ -5318,7 +5318,7 @@ export namespace google {
                     public streamingConfig?: (google.cloud.speech.v1p1beta1.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audioContent. */
-                    public audioContent?: (Uint8Array|string|null);
+                    public audioContent?: (Uint8Array|Buffer|string|null);
 
                     /** StreamingRecognizeRequest streamingRequest. */
                     public streamingRequest?: ("streamingConfig"|"audioContent");
@@ -5864,7 +5864,8 @@ export namespace google {
                         OGG_OPUS = 6,
                         SPEEX_WITH_HEADER_BYTE = 7,
                         MP3 = 8,
-                        WEBM_OPUS = 9
+                        WEBM_OPUS = 9,
+                        ALAW = 10
                     }
                 }
 
@@ -6277,7 +6278,7 @@ export namespace google {
                 interface IRecognitionAudio {
 
                     /** RecognitionAudio content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri */
                     uri?: (string|null);
@@ -6293,7 +6294,7 @@ export namespace google {
                     constructor(properties?: google.cloud.speech.v1p1beta1.IRecognitionAudio);
 
                     /** RecognitionAudio content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognitionAudio uri. */
                     public uri?: (string|null);
@@ -6393,6 +6394,9 @@ export namespace google {
 
                     /** RecognizeResponse requestId */
                     requestId?: (number|Long|string|null);
+
+                    /** RecognizeResponse usingLegacyModels */
+                    usingLegacyModels?: (boolean|null);
                 }
 
                 /** Represents a RecognizeResponse. */
@@ -6415,6 +6419,9 @@ export namespace google {
 
                     /** RecognizeResponse requestId. */
                     public requestId: (number|Long|string);
+
+                    /** RecognizeResponse usingLegacyModels. */
+                    public usingLegacyModels: boolean;
 
                     /**
                      * Creates a new RecognizeResponse instance using the specified properties.
@@ -7255,6 +7262,9 @@ export namespace google {
 
                     /** WordInfo speakerTag */
                     speakerTag?: (number|null);
+
+                    /** WordInfo speakerLabel */
+                    speakerLabel?: (string|null);
                 }
 
                 /** Represents a WordInfo. */
@@ -7280,6 +7290,9 @@ export namespace google {
 
                     /** WordInfo speakerTag. */
                     public speakerTag: number;
+
+                    /** WordInfo speakerLabel. */
+                    public speakerLabel: string;
 
                     /**
                      * Creates a new WordInfo instance using the specified properties.
@@ -7473,6 +7486,36 @@ export namespace google {
 
                     /** CustomClass items */
                     items?: (google.cloud.speech.v1p1beta1.CustomClass.IClassItem[]|null);
+
+                    /** CustomClass kmsKeyName */
+                    kmsKeyName?: (string|null);
+
+                    /** CustomClass kmsKeyVersionName */
+                    kmsKeyVersionName?: (string|null);
+
+                    /** CustomClass uid */
+                    uid?: (string|null);
+
+                    /** CustomClass displayName */
+                    displayName?: (string|null);
+
+                    /** CustomClass state */
+                    state?: (google.cloud.speech.v1p1beta1.CustomClass.State|keyof typeof google.cloud.speech.v1p1beta1.CustomClass.State|null);
+
+                    /** CustomClass deleteTime */
+                    deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass expireTime */
+                    expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass annotations */
+                    annotations?: ({ [k: string]: string }|null);
+
+                    /** CustomClass etag */
+                    etag?: (string|null);
+
+                    /** CustomClass reconciling */
+                    reconciling?: (boolean|null);
                 }
 
                 /** Represents a CustomClass. */
@@ -7492,6 +7535,36 @@ export namespace google {
 
                     /** CustomClass items. */
                     public items: google.cloud.speech.v1p1beta1.CustomClass.IClassItem[];
+
+                    /** CustomClass kmsKeyName. */
+                    public kmsKeyName: string;
+
+                    /** CustomClass kmsKeyVersionName. */
+                    public kmsKeyVersionName: string;
+
+                    /** CustomClass uid. */
+                    public uid: string;
+
+                    /** CustomClass displayName. */
+                    public displayName: string;
+
+                    /** CustomClass state. */
+                    public state: (google.cloud.speech.v1p1beta1.CustomClass.State|keyof typeof google.cloud.speech.v1p1beta1.CustomClass.State);
+
+                    /** CustomClass deleteTime. */
+                    public deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass expireTime. */
+                    public expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CustomClass annotations. */
+                    public annotations: { [k: string]: string };
+
+                    /** CustomClass etag. */
+                    public etag: string;
+
+                    /** CustomClass reconciling. */
+                    public reconciling: boolean;
 
                     /**
                      * Creates a new CustomClass instance using the specified properties.
@@ -7669,6 +7742,13 @@ export namespace google {
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
                     }
+
+                    /** State enum. */
+                    enum State {
+                        STATE_UNSPECIFIED = 0,
+                        ACTIVE = 2,
+                        DELETED = 4
+                    }
                 }
 
                 /** Properties of a PhraseSet. */
@@ -7682,6 +7762,36 @@ export namespace google {
 
                     /** PhraseSet boost */
                     boost?: (number|null);
+
+                    /** PhraseSet kmsKeyName */
+                    kmsKeyName?: (string|null);
+
+                    /** PhraseSet kmsKeyVersionName */
+                    kmsKeyVersionName?: (string|null);
+
+                    /** PhraseSet uid */
+                    uid?: (string|null);
+
+                    /** PhraseSet displayName */
+                    displayName?: (string|null);
+
+                    /** PhraseSet state */
+                    state?: (google.cloud.speech.v1p1beta1.PhraseSet.State|keyof typeof google.cloud.speech.v1p1beta1.PhraseSet.State|null);
+
+                    /** PhraseSet deleteTime */
+                    deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet expireTime */
+                    expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet annotations */
+                    annotations?: ({ [k: string]: string }|null);
+
+                    /** PhraseSet etag */
+                    etag?: (string|null);
+
+                    /** PhraseSet reconciling */
+                    reconciling?: (boolean|null);
                 }
 
                 /** Represents a PhraseSet. */
@@ -7701,6 +7811,36 @@ export namespace google {
 
                     /** PhraseSet boost. */
                     public boost: number;
+
+                    /** PhraseSet kmsKeyName. */
+                    public kmsKeyName: string;
+
+                    /** PhraseSet kmsKeyVersionName. */
+                    public kmsKeyVersionName: string;
+
+                    /** PhraseSet uid. */
+                    public uid: string;
+
+                    /** PhraseSet displayName. */
+                    public displayName: string;
+
+                    /** PhraseSet state. */
+                    public state: (google.cloud.speech.v1p1beta1.PhraseSet.State|keyof typeof google.cloud.speech.v1p1beta1.PhraseSet.State);
+
+                    /** PhraseSet deleteTime. */
+                    public deleteTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet expireTime. */
+                    public expireTime?: (google.protobuf.ITimestamp|null);
+
+                    /** PhraseSet annotations. */
+                    public annotations: { [k: string]: string };
+
+                    /** PhraseSet etag. */
+                    public etag: string;
+
+                    /** PhraseSet reconciling. */
+                    public reconciling: boolean;
 
                     /**
                      * Creates a new PhraseSet instance using the specified properties.
@@ -7883,6 +8023,13 @@ export namespace google {
                          * @returns The default type url
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** State enum. */
+                    enum State {
+                        STATE_UNSPECIFIED = 0,
+                        ACTIVE = 2,
+                        DELETED = 4
                     }
                 }
 
@@ -11687,7 +11834,16 @@ export namespace google {
                         AUDIO_ENCODING_UNSPECIFIED = 0,
                         LINEAR16 = 1,
                         MULAW = 2,
-                        ALAW = 3
+                        ALAW = 3,
+                        AMR = 4,
+                        AMR_WB = 5,
+                        FLAC = 6,
+                        MP3 = 7,
+                        OGG_OPUS = 8,
+                        WEBM_OPUS = 9,
+                        MP4_AAC = 10,
+                        M4A_AAC = 11,
+                        MOV_AAC = 12
                     }
                 }
 
@@ -12466,6 +12622,109 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a DenoiserConfig. */
+                interface IDenoiserConfig {
+
+                    /** DenoiserConfig denoiseAudio */
+                    denoiseAudio?: (boolean|null);
+
+                    /** DenoiserConfig snrThreshold */
+                    snrThreshold?: (number|null);
+                }
+
+                /** Represents a DenoiserConfig. */
+                class DenoiserConfig implements IDenoiserConfig {
+
+                    /**
+                     * Constructs a new DenoiserConfig.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.IDenoiserConfig);
+
+                    /** DenoiserConfig denoiseAudio. */
+                    public denoiseAudio: boolean;
+
+                    /** DenoiserConfig snrThreshold. */
+                    public snrThreshold: number;
+
+                    /**
+                     * Creates a new DenoiserConfig instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DenoiserConfig instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.IDenoiserConfig): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Encodes the specified DenoiserConfig message. Does not implicitly {@link google.cloud.speech.v2.DenoiserConfig.verify|verify} messages.
+                     * @param message DenoiserConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.IDenoiserConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DenoiserConfig message, length delimited. Does not implicitly {@link google.cloud.speech.v2.DenoiserConfig.verify|verify} messages.
+                     * @param message DenoiserConfig message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.IDenoiserConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DenoiserConfig message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DenoiserConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Decodes a DenoiserConfig message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DenoiserConfig
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Verifies a DenoiserConfig message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DenoiserConfig message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DenoiserConfig
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.DenoiserConfig;
+
+                    /**
+                     * Creates a plain object from a DenoiserConfig message. Also converts values to other types if specified.
+                     * @param message DenoiserConfig
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.DenoiserConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DenoiserConfig to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DenoiserConfig
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a RecognitionConfig. */
                 interface IRecognitionConfig {
 
@@ -12492,6 +12751,9 @@ export namespace google {
 
                     /** RecognitionConfig translationConfig */
                     translationConfig?: (google.cloud.speech.v2.ITranslationConfig|null);
+
+                    /** RecognitionConfig denoiserConfig */
+                    denoiserConfig?: (google.cloud.speech.v2.IDenoiserConfig|null);
                 }
 
                 /** Represents a RecognitionConfig. */
@@ -12526,6 +12788,9 @@ export namespace google {
 
                     /** RecognitionConfig translationConfig. */
                     public translationConfig?: (google.cloud.speech.v2.ITranslationConfig|null);
+
+                    /** RecognitionConfig denoiserConfig. */
+                    public denoiserConfig?: (google.cloud.speech.v2.IDenoiserConfig|null);
 
                     /** RecognitionConfig decodingConfig. */
                     public decodingConfig?: ("autoDecodingConfig"|"explicitDecodingConfig");
@@ -12621,7 +12886,7 @@ export namespace google {
                     configMask?: (google.protobuf.IFieldMask|null);
 
                     /** RecognizeRequest content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognizeRequest uri */
                     uri?: (string|null);
@@ -12646,7 +12911,7 @@ export namespace google {
                     public configMask?: (google.protobuf.IFieldMask|null);
 
                     /** RecognizeRequest content. */
-                    public content?: (Uint8Array|string|null);
+                    public content?: (Uint8Array|Buffer|string|null);
 
                     /** RecognizeRequest uri. */
                     public uri?: (string|null);
@@ -12735,6 +13000,9 @@ export namespace google {
                 /** Properties of a RecognitionResponseMetadata. */
                 interface IRecognitionResponseMetadata {
 
+                    /** RecognitionResponseMetadata requestId */
+                    requestId?: (string|null);
+
                     /** RecognitionResponseMetadata totalBilledDuration */
                     totalBilledDuration?: (google.protobuf.IDuration|null);
                 }
@@ -12747,6 +13015,9 @@ export namespace google {
                      * @param [properties] Properties to set
                      */
                     constructor(properties?: google.cloud.speech.v2.IRecognitionResponseMetadata);
+
+                    /** RecognitionResponseMetadata requestId. */
+                    public requestId: string;
 
                     /** RecognitionResponseMetadata totalBilledDuration. */
                     public totalBilledDuration?: (google.protobuf.IDuration|null);
@@ -13611,7 +13882,7 @@ export namespace google {
                     streamingConfig?: (google.cloud.speech.v2.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audio */
-                    audio?: (Uint8Array|string|null);
+                    audio?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a StreamingRecognizeRequest. */
@@ -13630,7 +13901,7 @@ export namespace google {
                     public streamingConfig?: (google.cloud.speech.v2.IStreamingRecognitionConfig|null);
 
                     /** StreamingRecognizeRequest audio. */
-                    public audio?: (Uint8Array|string|null);
+                    public audio?: (Uint8Array|Buffer|string|null);
 
                     /** StreamingRecognizeRequest streamingRequest. */
                     public streamingRequest?: ("streamingConfig"|"audio");
@@ -18066,6 +18337,609 @@ export namespace google {
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
+
+                /** Properties of a ModelFeature. */
+                interface IModelFeature {
+
+                    /** ModelFeature feature */
+                    feature?: (string|null);
+
+                    /** ModelFeature releaseState */
+                    releaseState?: (string|null);
+                }
+
+                /** Represents a ModelFeature. */
+                class ModelFeature implements IModelFeature {
+
+                    /**
+                     * Constructs a new ModelFeature.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.IModelFeature);
+
+                    /** ModelFeature feature. */
+                    public feature: string;
+
+                    /** ModelFeature releaseState. */
+                    public releaseState: string;
+
+                    /**
+                     * Creates a new ModelFeature instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ModelFeature instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.IModelFeature): google.cloud.speech.v2.ModelFeature;
+
+                    /**
+                     * Encodes the specified ModelFeature message. Does not implicitly {@link google.cloud.speech.v2.ModelFeature.verify|verify} messages.
+                     * @param message ModelFeature message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.IModelFeature, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ModelFeature message, length delimited. Does not implicitly {@link google.cloud.speech.v2.ModelFeature.verify|verify} messages.
+                     * @param message ModelFeature message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.IModelFeature, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ModelFeature message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ModelFeature
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.ModelFeature;
+
+                    /**
+                     * Decodes a ModelFeature message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ModelFeature
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.ModelFeature;
+
+                    /**
+                     * Verifies a ModelFeature message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ModelFeature message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ModelFeature
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.ModelFeature;
+
+                    /**
+                     * Creates a plain object from a ModelFeature message. Also converts values to other types if specified.
+                     * @param message ModelFeature
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.ModelFeature, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ModelFeature to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ModelFeature
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ModelFeatures. */
+                interface IModelFeatures {
+
+                    /** ModelFeatures modelFeature */
+                    modelFeature?: (google.cloud.speech.v2.IModelFeature[]|null);
+                }
+
+                /** Represents a ModelFeatures. */
+                class ModelFeatures implements IModelFeatures {
+
+                    /**
+                     * Constructs a new ModelFeatures.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.IModelFeatures);
+
+                    /** ModelFeatures modelFeature. */
+                    public modelFeature: google.cloud.speech.v2.IModelFeature[];
+
+                    /**
+                     * Creates a new ModelFeatures instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ModelFeatures instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.IModelFeatures): google.cloud.speech.v2.ModelFeatures;
+
+                    /**
+                     * Encodes the specified ModelFeatures message. Does not implicitly {@link google.cloud.speech.v2.ModelFeatures.verify|verify} messages.
+                     * @param message ModelFeatures message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.IModelFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ModelFeatures message, length delimited. Does not implicitly {@link google.cloud.speech.v2.ModelFeatures.verify|verify} messages.
+                     * @param message ModelFeatures message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.IModelFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ModelFeatures message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ModelFeatures
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.ModelFeatures;
+
+                    /**
+                     * Decodes a ModelFeatures message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ModelFeatures
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.ModelFeatures;
+
+                    /**
+                     * Verifies a ModelFeatures message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ModelFeatures message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ModelFeatures
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.ModelFeatures;
+
+                    /**
+                     * Creates a plain object from a ModelFeatures message. Also converts values to other types if specified.
+                     * @param message ModelFeatures
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.ModelFeatures, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ModelFeatures to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ModelFeatures
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ModelMetadata. */
+                interface IModelMetadata {
+
+                    /** ModelMetadata modelFeatures */
+                    modelFeatures?: ({ [k: string]: google.cloud.speech.v2.IModelFeatures }|null);
+                }
+
+                /** Represents a ModelMetadata. */
+                class ModelMetadata implements IModelMetadata {
+
+                    /**
+                     * Constructs a new ModelMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.IModelMetadata);
+
+                    /** ModelMetadata modelFeatures. */
+                    public modelFeatures: { [k: string]: google.cloud.speech.v2.IModelFeatures };
+
+                    /**
+                     * Creates a new ModelMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ModelMetadata instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.IModelMetadata): google.cloud.speech.v2.ModelMetadata;
+
+                    /**
+                     * Encodes the specified ModelMetadata message. Does not implicitly {@link google.cloud.speech.v2.ModelMetadata.verify|verify} messages.
+                     * @param message ModelMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.IModelMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ModelMetadata message, length delimited. Does not implicitly {@link google.cloud.speech.v2.ModelMetadata.verify|verify} messages.
+                     * @param message ModelMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.IModelMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ModelMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ModelMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.ModelMetadata;
+
+                    /**
+                     * Decodes a ModelMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ModelMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.ModelMetadata;
+
+                    /**
+                     * Verifies a ModelMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ModelMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ModelMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.ModelMetadata;
+
+                    /**
+                     * Creates a plain object from a ModelMetadata message. Also converts values to other types if specified.
+                     * @param message ModelMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.ModelMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ModelMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ModelMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a LanguageMetadata. */
+                interface ILanguageMetadata {
+
+                    /** LanguageMetadata models */
+                    models?: ({ [k: string]: google.cloud.speech.v2.IModelMetadata }|null);
+                }
+
+                /** Represents a LanguageMetadata. */
+                class LanguageMetadata implements ILanguageMetadata {
+
+                    /**
+                     * Constructs a new LanguageMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.ILanguageMetadata);
+
+                    /** LanguageMetadata models. */
+                    public models: { [k: string]: google.cloud.speech.v2.IModelMetadata };
+
+                    /**
+                     * Creates a new LanguageMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns LanguageMetadata instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.ILanguageMetadata): google.cloud.speech.v2.LanguageMetadata;
+
+                    /**
+                     * Encodes the specified LanguageMetadata message. Does not implicitly {@link google.cloud.speech.v2.LanguageMetadata.verify|verify} messages.
+                     * @param message LanguageMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.ILanguageMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified LanguageMetadata message, length delimited. Does not implicitly {@link google.cloud.speech.v2.LanguageMetadata.verify|verify} messages.
+                     * @param message LanguageMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.ILanguageMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a LanguageMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns LanguageMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.LanguageMetadata;
+
+                    /**
+                     * Decodes a LanguageMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns LanguageMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.LanguageMetadata;
+
+                    /**
+                     * Verifies a LanguageMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a LanguageMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns LanguageMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.LanguageMetadata;
+
+                    /**
+                     * Creates a plain object from a LanguageMetadata message. Also converts values to other types if specified.
+                     * @param message LanguageMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.LanguageMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this LanguageMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for LanguageMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AccessMetadata. */
+                interface IAccessMetadata {
+
+                    /** AccessMetadata constraintType */
+                    constraintType?: (google.cloud.speech.v2.AccessMetadata.ConstraintType|keyof typeof google.cloud.speech.v2.AccessMetadata.ConstraintType|null);
+                }
+
+                /** Represents an AccessMetadata. */
+                class AccessMetadata implements IAccessMetadata {
+
+                    /**
+                     * Constructs a new AccessMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.IAccessMetadata);
+
+                    /** AccessMetadata constraintType. */
+                    public constraintType: (google.cloud.speech.v2.AccessMetadata.ConstraintType|keyof typeof google.cloud.speech.v2.AccessMetadata.ConstraintType);
+
+                    /**
+                     * Creates a new AccessMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AccessMetadata instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.IAccessMetadata): google.cloud.speech.v2.AccessMetadata;
+
+                    /**
+                     * Encodes the specified AccessMetadata message. Does not implicitly {@link google.cloud.speech.v2.AccessMetadata.verify|verify} messages.
+                     * @param message AccessMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.IAccessMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AccessMetadata message, length delimited. Does not implicitly {@link google.cloud.speech.v2.AccessMetadata.verify|verify} messages.
+                     * @param message AccessMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.IAccessMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AccessMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AccessMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.AccessMetadata;
+
+                    /**
+                     * Decodes an AccessMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AccessMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.AccessMetadata;
+
+                    /**
+                     * Verifies an AccessMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AccessMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AccessMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.AccessMetadata;
+
+                    /**
+                     * Creates a plain object from an AccessMetadata message. Also converts values to other types if specified.
+                     * @param message AccessMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.AccessMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AccessMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AccessMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace AccessMetadata {
+
+                    /** ConstraintType enum. */
+                    enum ConstraintType {
+                        CONSTRAINT_TYPE_UNSPECIFIED = 0,
+                        RESOURCE_LOCATIONS_ORG_POLICY_CREATE_CONSTRAINT = 1
+                    }
+                }
+
+                /** Properties of a LocationsMetadata. */
+                interface ILocationsMetadata {
+
+                    /** LocationsMetadata languages */
+                    languages?: (google.cloud.speech.v2.ILanguageMetadata|null);
+
+                    /** LocationsMetadata accessMetadata */
+                    accessMetadata?: (google.cloud.speech.v2.IAccessMetadata|null);
+                }
+
+                /** Represents a LocationsMetadata. */
+                class LocationsMetadata implements ILocationsMetadata {
+
+                    /**
+                     * Constructs a new LocationsMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.speech.v2.ILocationsMetadata);
+
+                    /** LocationsMetadata languages. */
+                    public languages?: (google.cloud.speech.v2.ILanguageMetadata|null);
+
+                    /** LocationsMetadata accessMetadata. */
+                    public accessMetadata?: (google.cloud.speech.v2.IAccessMetadata|null);
+
+                    /**
+                     * Creates a new LocationsMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns LocationsMetadata instance
+                     */
+                    public static create(properties?: google.cloud.speech.v2.ILocationsMetadata): google.cloud.speech.v2.LocationsMetadata;
+
+                    /**
+                     * Encodes the specified LocationsMetadata message. Does not implicitly {@link google.cloud.speech.v2.LocationsMetadata.verify|verify} messages.
+                     * @param message LocationsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.speech.v2.ILocationsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified LocationsMetadata message, length delimited. Does not implicitly {@link google.cloud.speech.v2.LocationsMetadata.verify|verify} messages.
+                     * @param message LocationsMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.speech.v2.ILocationsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a LocationsMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns LocationsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.speech.v2.LocationsMetadata;
+
+                    /**
+                     * Decodes a LocationsMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns LocationsMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.speech.v2.LocationsMetadata;
+
+                    /**
+                     * Verifies a LocationsMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a LocationsMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns LocationsMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.speech.v2.LocationsMetadata;
+
+                    /**
+                     * Creates a plain object from a LocationsMetadata message. Also converts values to other types if specified.
+                     * @param message LocationsMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.speech.v2.LocationsMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this LocationsMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for LocationsMetadata
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
             }
         }
     }
@@ -18725,6 +19599,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -18765,6 +19642,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -20183,6 +21063,115 @@ export namespace google {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a FieldInfo. */
+        interface IFieldInfo {
+
+            /** FieldInfo format */
+            format?: (google.api.FieldInfo.Format|keyof typeof google.api.FieldInfo.Format|null);
+        }
+
+        /** Represents a FieldInfo. */
+        class FieldInfo implements IFieldInfo {
+
+            /**
+             * Constructs a new FieldInfo.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.api.IFieldInfo);
+
+            /** FieldInfo format. */
+            public format: (google.api.FieldInfo.Format|keyof typeof google.api.FieldInfo.Format);
+
+            /**
+             * Creates a new FieldInfo instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns FieldInfo instance
+             */
+            public static create(properties?: google.api.IFieldInfo): google.api.FieldInfo;
+
+            /**
+             * Encodes the specified FieldInfo message. Does not implicitly {@link google.api.FieldInfo.verify|verify} messages.
+             * @param message FieldInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.api.IFieldInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified FieldInfo message, length delimited. Does not implicitly {@link google.api.FieldInfo.verify|verify} messages.
+             * @param message FieldInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.api.IFieldInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a FieldInfo message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns FieldInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.FieldInfo;
+
+            /**
+             * Decodes a FieldInfo message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns FieldInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.FieldInfo;
+
+            /**
+             * Verifies a FieldInfo message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a FieldInfo message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns FieldInfo
+             */
+            public static fromObject(object: { [k: string]: any }): google.api.FieldInfo;
+
+            /**
+             * Creates a plain object from a FieldInfo message. Also converts values to other types if specified.
+             * @param message FieldInfo
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.api.FieldInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this FieldInfo to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for FieldInfo
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace FieldInfo {
+
+            /** Format enum. */
+            enum Format {
+                FORMAT_UNSPECIFIED = 0,
+                UUID4 = 1,
+                IPV4 = 2,
+                IPV6 = 3,
+                IPV4_OR_IPV6 = 4
+            }
         }
     }
 
@@ -22358,6 +23347,9 @@ export namespace google {
 
             /** FieldOptions .google.api.resourceReference */
             ".google.api.resourceReference"?: (google.api.IResourceReference|null);
+
+            /** FieldOptions .google.api.fieldInfo */
+            ".google.api.fieldInfo"?: (google.api.IFieldInfo|null);
         }
 
         /** Represents a FieldOptions. */
@@ -22983,6 +23975,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -23234,7 +24229,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -23265,7 +24260,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -24404,7 +25399,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -24420,7 +25415,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -25474,7 +26469,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -25487,7 +26482,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.

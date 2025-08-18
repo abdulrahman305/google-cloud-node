@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,7 +43,9 @@ export {InstancesClient} from './instances_client';
 export {InstanceSettingsServiceClient} from './instance_settings_service_client';
 export {InstanceTemplatesClient} from './instance_templates_client';
 export {InstantSnapshotsClient} from './instant_snapshots_client';
+export {InterconnectAttachmentGroupsClient} from './interconnect_attachment_groups_client';
 export {InterconnectAttachmentsClient} from './interconnect_attachments_client';
+export {InterconnectGroupsClient} from './interconnect_groups_client';
 export {InterconnectLocationsClient} from './interconnect_locations_client';
 export {InterconnectRemoteLocationsClient} from './interconnect_remote_locations_client';
 export {InterconnectsClient} from './interconnects_client';
@@ -55,6 +57,7 @@ export {NetworkAttachmentsClient} from './network_attachments_client';
 export {NetworkEdgeSecurityServicesClient} from './network_edge_security_services_client';
 export {NetworkEndpointGroupsClient} from './network_endpoint_groups_client';
 export {NetworkFirewallPoliciesClient} from './network_firewall_policies_client';
+export {NetworkProfilesClient} from './network_profiles_client';
 export {NetworksClient} from './networks_client';
 export {NodeGroupsClient} from './node_groups_client';
 export {NodeTemplatesClient} from './node_templates_client';
@@ -88,7 +91,9 @@ export {RegionTargetHttpsProxiesClient} from './region_target_https_proxies_clie
 export {RegionTargetTcpProxiesClient} from './region_target_tcp_proxies_client';
 export {RegionUrlMapsClient} from './region_url_maps_client';
 export {RegionZonesClient} from './region_zones_client';
+export {ReservationBlocksClient} from './reservation_blocks_client';
 export {ReservationsClient} from './reservations_client';
+export {ReservationSubBlocksClient} from './reservation_sub_blocks_client';
 export {ResourcePoliciesClient} from './resource_policies_client';
 export {RoutersClient} from './routers_client';
 export {RoutesClient} from './routes_client';

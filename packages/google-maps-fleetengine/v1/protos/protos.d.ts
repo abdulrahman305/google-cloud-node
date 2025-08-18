@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -222,6 +222,18 @@ export namespace maps {
                     /** DeliveryVehicleLocation rawLocationAccuracy */
                     rawLocationAccuracy?: (google.protobuf.IDoubleValue|null);
 
+                    /** DeliveryVehicleLocation flpLocation */
+                    flpLocation?: (google.type.ILatLng|null);
+
+                    /** DeliveryVehicleLocation flpUpdateTime */
+                    flpUpdateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** DeliveryVehicleLocation flpLatlngAccuracyMeters */
+                    flpLatlngAccuracyMeters?: (google.protobuf.IDoubleValue|null);
+
+                    /** DeliveryVehicleLocation flpHeadingDegrees */
+                    flpHeadingDegrees?: (google.protobuf.IInt32Value|null);
+
                     /** DeliveryVehicleLocation supplementalLocation */
                     supplementalLocation?: (google.type.ILatLng|null);
 
@@ -315,6 +327,18 @@ export namespace maps {
 
                     /** DeliveryVehicleLocation rawLocationAccuracy. */
                     public rawLocationAccuracy?: (google.protobuf.IDoubleValue|null);
+
+                    /** DeliveryVehicleLocation flpLocation. */
+                    public flpLocation?: (google.type.ILatLng|null);
+
+                    /** DeliveryVehicleLocation flpUpdateTime. */
+                    public flpUpdateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** DeliveryVehicleLocation flpLatlngAccuracyMeters. */
+                    public flpLatlngAccuracyMeters?: (google.protobuf.IDoubleValue|null);
+
+                    /** DeliveryVehicleLocation flpHeadingDegrees. */
+                    public flpHeadingDegrees?: (google.protobuf.IInt32Value|null);
 
                     /** DeliveryVehicleLocation supplementalLocation. */
                     public supplementalLocation?: (google.type.ILatLng|null);
@@ -701,6 +725,20 @@ export namespace maps {
                     public getDeliveryVehicle(request: maps.fleetengine.delivery.v1.IGetDeliveryVehicleRequest): Promise<maps.fleetengine.delivery.v1.DeliveryVehicle>;
 
                     /**
+                     * Calls DeleteDeliveryVehicle.
+                     * @param request DeleteDeliveryVehicleRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Empty
+                     */
+                    public deleteDeliveryVehicle(request: maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest, callback: maps.fleetengine.delivery.v1.DeliveryService.DeleteDeliveryVehicleCallback): void;
+
+                    /**
+                     * Calls DeleteDeliveryVehicle.
+                     * @param request DeleteDeliveryVehicleRequest message or plain object
+                     * @returns Promise
+                     */
+                    public deleteDeliveryVehicle(request: maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest): Promise<google.protobuf.Empty>;
+
+                    /**
                      * Calls UpdateDeliveryVehicle.
                      * @param request UpdateDeliveryVehicleRequest message or plain object
                      * @param callback Node-style callback called with the error, if any, and DeliveryVehicle
@@ -757,18 +795,18 @@ export namespace maps {
                     public getTask(request: maps.fleetengine.delivery.v1.IGetTaskRequest): Promise<maps.fleetengine.delivery.v1.Task>;
 
                     /**
-                     * Calls SearchTasks.
-                     * @param request SearchTasksRequest message or plain object
-                     * @param callback Node-style callback called with the error, if any, and SearchTasksResponse
+                     * Calls DeleteTask.
+                     * @param request DeleteTaskRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Empty
                      */
-                    public searchTasks(request: maps.fleetengine.delivery.v1.ISearchTasksRequest, callback: maps.fleetengine.delivery.v1.DeliveryService.SearchTasksCallback): void;
+                    public deleteTask(request: maps.fleetengine.delivery.v1.IDeleteTaskRequest, callback: maps.fleetengine.delivery.v1.DeliveryService.DeleteTaskCallback): void;
 
                     /**
-                     * Calls SearchTasks.
-                     * @param request SearchTasksRequest message or plain object
+                     * Calls DeleteTask.
+                     * @param request DeleteTaskRequest message or plain object
                      * @returns Promise
                      */
-                    public searchTasks(request: maps.fleetengine.delivery.v1.ISearchTasksRequest): Promise<maps.fleetengine.delivery.v1.SearchTasksResponse>;
+                    public deleteTask(request: maps.fleetengine.delivery.v1.IDeleteTaskRequest): Promise<google.protobuf.Empty>;
 
                     /**
                      * Calls UpdateTask.
@@ -844,6 +882,13 @@ export namespace maps {
                     type GetDeliveryVehicleCallback = (error: (Error|null), response?: maps.fleetengine.delivery.v1.DeliveryVehicle) => void;
 
                     /**
+                     * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|deleteDeliveryVehicle}.
+                     * @param error Error, if any
+                     * @param [response] Empty
+                     */
+                    type DeleteDeliveryVehicleCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
+
+                    /**
                      * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|updateDeliveryVehicle}.
                      * @param error Error, if any
                      * @param [response] DeliveryVehicle
@@ -872,11 +917,11 @@ export namespace maps {
                     type GetTaskCallback = (error: (Error|null), response?: maps.fleetengine.delivery.v1.Task) => void;
 
                     /**
-                     * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|searchTasks}.
+                     * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|deleteTask}.
                      * @param error Error, if any
-                     * @param [response] SearchTasksResponse
+                     * @param [response] Empty
                      */
-                    type SearchTasksCallback = (error: (Error|null), response?: maps.fleetengine.delivery.v1.SearchTasksResponse) => void;
+                    type DeleteTaskCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
 
                     /**
                      * Callback as used by {@link maps.fleetengine.delivery.v1.DeliveryService|updateTask}.
@@ -1119,6 +1164,109 @@ export namespace maps {
 
                     /**
                      * Gets the default type url for GetDeliveryVehicleRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a DeleteDeliveryVehicleRequest. */
+                interface IDeleteDeliveryVehicleRequest {
+
+                    /** DeleteDeliveryVehicleRequest header */
+                    header?: (maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null);
+
+                    /** DeleteDeliveryVehicleRequest name */
+                    name?: (string|null);
+                }
+
+                /** Represents a DeleteDeliveryVehicleRequest. */
+                class DeleteDeliveryVehicleRequest implements IDeleteDeliveryVehicleRequest {
+
+                    /**
+                     * Constructs a new DeleteDeliveryVehicleRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest);
+
+                    /** DeleteDeliveryVehicleRequest header. */
+                    public header?: (maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null);
+
+                    /** DeleteDeliveryVehicleRequest name. */
+                    public name: string;
+
+                    /**
+                     * Creates a new DeleteDeliveryVehicleRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DeleteDeliveryVehicleRequest instance
+                     */
+                    public static create(properties?: maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest): maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest;
+
+                    /**
+                     * Encodes the specified DeleteDeliveryVehicleRequest message. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest.verify|verify} messages.
+                     * @param message DeleteDeliveryVehicleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DeleteDeliveryVehicleRequest message, length delimited. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest.verify|verify} messages.
+                     * @param message DeleteDeliveryVehicleRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DeleteDeliveryVehicleRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DeleteDeliveryVehicleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest;
+
+                    /**
+                     * Decodes a DeleteDeliveryVehicleRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DeleteDeliveryVehicleRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest;
+
+                    /**
+                     * Verifies a DeleteDeliveryVehicleRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DeleteDeliveryVehicleRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DeleteDeliveryVehicleRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest;
+
+                    /**
+                     * Creates a plain object from a DeleteDeliveryVehicleRequest message. Also converts values to other types if specified.
+                     * @param message DeleteDeliveryVehicleRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DeleteDeliveryVehicleRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for DeleteDeliveryVehicleRequest
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -1894,224 +2042,103 @@ export namespace maps {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
-                /** Properties of a SearchTasksRequest. */
-                interface ISearchTasksRequest {
+                /** Properties of a DeleteTaskRequest. */
+                interface IDeleteTaskRequest {
 
-                    /** SearchTasksRequest header */
+                    /** DeleteTaskRequest header */
                     header?: (maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null);
 
-                    /** SearchTasksRequest parent */
-                    parent?: (string|null);
-
-                    /** SearchTasksRequest trackingId */
-                    trackingId?: (string|null);
-
-                    /** SearchTasksRequest pageSize */
-                    pageSize?: (number|null);
-
-                    /** SearchTasksRequest pageToken */
-                    pageToken?: (string|null);
+                    /** DeleteTaskRequest name */
+                    name?: (string|null);
                 }
 
-                /** Represents a SearchTasksRequest. */
-                class SearchTasksRequest implements ISearchTasksRequest {
+                /** Represents a DeleteTaskRequest. */
+                class DeleteTaskRequest implements IDeleteTaskRequest {
 
                     /**
-                     * Constructs a new SearchTasksRequest.
+                     * Constructs a new DeleteTaskRequest.
                      * @param [properties] Properties to set
                      */
-                    constructor(properties?: maps.fleetengine.delivery.v1.ISearchTasksRequest);
+                    constructor(properties?: maps.fleetengine.delivery.v1.IDeleteTaskRequest);
 
-                    /** SearchTasksRequest header. */
+                    /** DeleteTaskRequest header. */
                     public header?: (maps.fleetengine.delivery.v1.IDeliveryRequestHeader|null);
 
-                    /** SearchTasksRequest parent. */
-                    public parent: string;
-
-                    /** SearchTasksRequest trackingId. */
-                    public trackingId: string;
-
-                    /** SearchTasksRequest pageSize. */
-                    public pageSize: number;
-
-                    /** SearchTasksRequest pageToken. */
-                    public pageToken: string;
+                    /** DeleteTaskRequest name. */
+                    public name: string;
 
                     /**
-                     * Creates a new SearchTasksRequest instance using the specified properties.
+                     * Creates a new DeleteTaskRequest instance using the specified properties.
                      * @param [properties] Properties to set
-                     * @returns SearchTasksRequest instance
+                     * @returns DeleteTaskRequest instance
                      */
-                    public static create(properties?: maps.fleetengine.delivery.v1.ISearchTasksRequest): maps.fleetengine.delivery.v1.SearchTasksRequest;
+                    public static create(properties?: maps.fleetengine.delivery.v1.IDeleteTaskRequest): maps.fleetengine.delivery.v1.DeleteTaskRequest;
 
                     /**
-                     * Encodes the specified SearchTasksRequest message. Does not implicitly {@link maps.fleetengine.delivery.v1.SearchTasksRequest.verify|verify} messages.
-                     * @param message SearchTasksRequest message or plain object to encode
+                     * Encodes the specified DeleteTaskRequest message. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteTaskRequest.verify|verify} messages.
+                     * @param message DeleteTaskRequest message or plain object to encode
                      * @param [writer] Writer to encode to
                      * @returns Writer
                      */
-                    public static encode(message: maps.fleetengine.delivery.v1.ISearchTasksRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encode(message: maps.fleetengine.delivery.v1.IDeleteTaskRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
                     /**
-                     * Encodes the specified SearchTasksRequest message, length delimited. Does not implicitly {@link maps.fleetengine.delivery.v1.SearchTasksRequest.verify|verify} messages.
-                     * @param message SearchTasksRequest message or plain object to encode
+                     * Encodes the specified DeleteTaskRequest message, length delimited. Does not implicitly {@link maps.fleetengine.delivery.v1.DeleteTaskRequest.verify|verify} messages.
+                     * @param message DeleteTaskRequest message or plain object to encode
                      * @param [writer] Writer to encode to
                      * @returns Writer
                      */
-                    public static encodeDelimited(message: maps.fleetengine.delivery.v1.ISearchTasksRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encodeDelimited(message: maps.fleetengine.delivery.v1.IDeleteTaskRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
                     /**
-                     * Decodes a SearchTasksRequest message from the specified reader or buffer.
+                     * Decodes a DeleteTaskRequest message from the specified reader or buffer.
                      * @param reader Reader or buffer to decode from
                      * @param [length] Message length if known beforehand
-                     * @returns SearchTasksRequest
+                     * @returns DeleteTaskRequest
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): maps.fleetengine.delivery.v1.SearchTasksRequest;
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): maps.fleetengine.delivery.v1.DeleteTaskRequest;
 
                     /**
-                     * Decodes a SearchTasksRequest message from the specified reader or buffer, length delimited.
+                     * Decodes a DeleteTaskRequest message from the specified reader or buffer, length delimited.
                      * @param reader Reader or buffer to decode from
-                     * @returns SearchTasksRequest
+                     * @returns DeleteTaskRequest
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): maps.fleetengine.delivery.v1.SearchTasksRequest;
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): maps.fleetengine.delivery.v1.DeleteTaskRequest;
 
                     /**
-                     * Verifies a SearchTasksRequest message.
+                     * Verifies a DeleteTaskRequest message.
                      * @param message Plain object to verify
                      * @returns `null` if valid, otherwise the reason why it is not
                      */
                     public static verify(message: { [k: string]: any }): (string|null);
 
                     /**
-                     * Creates a SearchTasksRequest message from a plain object. Also converts values to their respective internal types.
+                     * Creates a DeleteTaskRequest message from a plain object. Also converts values to their respective internal types.
                      * @param object Plain object
-                     * @returns SearchTasksRequest
+                     * @returns DeleteTaskRequest
                      */
-                    public static fromObject(object: { [k: string]: any }): maps.fleetengine.delivery.v1.SearchTasksRequest;
+                    public static fromObject(object: { [k: string]: any }): maps.fleetengine.delivery.v1.DeleteTaskRequest;
 
                     /**
-                     * Creates a plain object from a SearchTasksRequest message. Also converts values to other types if specified.
-                     * @param message SearchTasksRequest
+                     * Creates a plain object from a DeleteTaskRequest message. Also converts values to other types if specified.
+                     * @param message DeleteTaskRequest
                      * @param [options] Conversion options
                      * @returns Plain object
                      */
-                    public static toObject(message: maps.fleetengine.delivery.v1.SearchTasksRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+                    public static toObject(message: maps.fleetengine.delivery.v1.DeleteTaskRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
                     /**
-                     * Converts this SearchTasksRequest to JSON.
+                     * Converts this DeleteTaskRequest to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
 
                     /**
-                     * Gets the default type url for SearchTasksRequest
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a SearchTasksResponse. */
-                interface ISearchTasksResponse {
-
-                    /** SearchTasksResponse tasks */
-                    tasks?: (maps.fleetengine.delivery.v1.ITask[]|null);
-
-                    /** SearchTasksResponse nextPageToken */
-                    nextPageToken?: (string|null);
-                }
-
-                /** Represents a SearchTasksResponse. */
-                class SearchTasksResponse implements ISearchTasksResponse {
-
-                    /**
-                     * Constructs a new SearchTasksResponse.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: maps.fleetengine.delivery.v1.ISearchTasksResponse);
-
-                    /** SearchTasksResponse tasks. */
-                    public tasks: maps.fleetengine.delivery.v1.ITask[];
-
-                    /** SearchTasksResponse nextPageToken. */
-                    public nextPageToken: string;
-
-                    /**
-                     * Creates a new SearchTasksResponse instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns SearchTasksResponse instance
-                     */
-                    public static create(properties?: maps.fleetengine.delivery.v1.ISearchTasksResponse): maps.fleetengine.delivery.v1.SearchTasksResponse;
-
-                    /**
-                     * Encodes the specified SearchTasksResponse message. Does not implicitly {@link maps.fleetengine.delivery.v1.SearchTasksResponse.verify|verify} messages.
-                     * @param message SearchTasksResponse message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: maps.fleetengine.delivery.v1.ISearchTasksResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified SearchTasksResponse message, length delimited. Does not implicitly {@link maps.fleetengine.delivery.v1.SearchTasksResponse.verify|verify} messages.
-                     * @param message SearchTasksResponse message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: maps.fleetengine.delivery.v1.ISearchTasksResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a SearchTasksResponse message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns SearchTasksResponse
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): maps.fleetengine.delivery.v1.SearchTasksResponse;
-
-                    /**
-                     * Decodes a SearchTasksResponse message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns SearchTasksResponse
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): maps.fleetengine.delivery.v1.SearchTasksResponse;
-
-                    /**
-                     * Verifies a SearchTasksResponse message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a SearchTasksResponse message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns SearchTasksResponse
-                     */
-                    public static fromObject(object: { [k: string]: any }): maps.fleetengine.delivery.v1.SearchTasksResponse;
-
-                    /**
-                     * Creates a plain object from a SearchTasksResponse message. Also converts values to other types if specified.
-                     * @param message SearchTasksResponse
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: maps.fleetengine.delivery.v1.SearchTasksResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this SearchTasksResponse to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for SearchTasksResponse
+                     * Gets the default type url for DeleteTaskRequest
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -2569,11 +2596,14 @@ export namespace maps {
                     /** DeliveryVehicle lastLocation */
                     lastLocation?: (maps.fleetengine.delivery.v1.IDeliveryVehicleLocation|null);
 
+                    /** DeliveryVehicle pastLocations */
+                    pastLocations?: (maps.fleetengine.delivery.v1.IDeliveryVehicleLocation[]|null);
+
                     /** DeliveryVehicle navigationStatus */
                     navigationStatus?: (maps.fleetengine.delivery.v1.DeliveryVehicleNavigationStatus|keyof typeof maps.fleetengine.delivery.v1.DeliveryVehicleNavigationStatus|null);
 
                     /** DeliveryVehicle currentRouteSegment */
-                    currentRouteSegment?: (Uint8Array|string|null);
+                    currentRouteSegment?: (Uint8Array|Buffer|string|null);
 
                     /** DeliveryVehicle currentRouteSegmentEndPoint */
                     currentRouteSegmentEndPoint?: (google.type.ILatLng|null);
@@ -2609,11 +2639,14 @@ export namespace maps {
                     /** DeliveryVehicle lastLocation. */
                     public lastLocation?: (maps.fleetengine.delivery.v1.IDeliveryVehicleLocation|null);
 
+                    /** DeliveryVehicle pastLocations. */
+                    public pastLocations: maps.fleetengine.delivery.v1.IDeliveryVehicleLocation[];
+
                     /** DeliveryVehicle navigationStatus. */
                     public navigationStatus: (maps.fleetengine.delivery.v1.DeliveryVehicleNavigationStatus|keyof typeof maps.fleetengine.delivery.v1.DeliveryVehicleNavigationStatus);
 
                     /** DeliveryVehicle currentRouteSegment. */
-                    public currentRouteSegment: (Uint8Array|string);
+                    public currentRouteSegment: (Uint8Array|Buffer|string);
 
                     /** DeliveryVehicle currentRouteSegmentEndPoint. */
                     public currentRouteSegmentEndPoint?: (google.type.ILatLng|null);
@@ -4991,6 +5024,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -5031,6 +5067,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -9436,6 +9475,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -9687,7 +9729,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -9718,7 +9760,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -11630,7 +11672,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -11643,7 +11685,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.
@@ -11820,6 +11862,97 @@ export namespace google {
 
             /**
              * Gets the default type url for Duration
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of an Empty. */
+        interface IEmpty {
+        }
+
+        /** Represents an Empty. */
+        class Empty implements IEmpty {
+
+            /**
+             * Constructs a new Empty.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.protobuf.IEmpty);
+
+            /**
+             * Creates a new Empty instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Empty instance
+             */
+            public static create(properties?: google.protobuf.IEmpty): google.protobuf.Empty;
+
+            /**
+             * Encodes the specified Empty message. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
+             * @param message Empty message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Empty message, length delimited. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
+             * @param message Empty message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an Empty message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Empty
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.Empty;
+
+            /**
+             * Decodes an Empty message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Empty
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.Empty;
+
+            /**
+             * Verifies an Empty message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Empty
+             */
+            public static fromObject(object: { [k: string]: any }): google.protobuf.Empty;
+
+            /**
+             * Creates a plain object from an Empty message. Also converts values to other types if specified.
+             * @param message Empty
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.protobuf.Empty, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Empty to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Empty
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

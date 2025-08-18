@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const css = require('@google-shopping/css');
 
@@ -24,6 +25,7 @@ function main() {
   const accountsServiceClient = new css.AccountsServiceClient();
   const cssProductInputsServiceClient = new css.CssProductInputsServiceClient();
   const cssProductsServiceClient = new css.CssProductsServiceClient();
+  const quotaServiceClient = new css.QuotaServiceClient();
 }
 
 main();

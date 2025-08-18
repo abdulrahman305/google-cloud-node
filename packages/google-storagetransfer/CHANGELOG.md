@@ -1,5 +1,73 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v4.1.0...storage-transfer-v4.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6426](https://github.com/googleapis/google-cloud-node/issues/6426)) ([6ea5464](https://github.com/googleapis/google-cloud-node/commit/6ea54642532d9797ea87d7cd01c9fac77f9eb035))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v4.0.1...storage-transfer-v4.1.0) (2025-06-03)
+
+
+### Features
+
+* [storagetransfer] support Azure federated identity ([#6375](https://github.com/googleapis/google-cloud-node/issues/6375)) ([b8f6929](https://github.com/googleapis/google-cloud-node/commit/b8f69297ff6e1eb3df0590f633947a337e30a406))
+* Add protobufjs 2023 edition support ([#6306](https://github.com/googleapis/google-cloud-node/issues/6306)) ([4f02ceb](https://github.com/googleapis/google-cloud-node/commit/4f02ceb7aac05b47b68e3c7c95aeeaa20ac33606))
+
+## [4.0.1](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v4.0.0...storage-transfer-v4.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6191](https://github.com/googleapis/google-cloud-node/issues/6191)) ([c9adc61](https://github.com/googleapis/google-cloud-node/commit/c9adc6150ad09630854554c2ed7e558fb3e04315))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v3.6.1...storage-transfer-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [storagetransfer,publish,grafeas] add request/response debug logging to gapics ([a8819af](https://github.com/googleapis/google-cloud-node/commit/a8819af1314602e905ef8e582c20b505c466003b))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [3.6.1](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v3.6.0...storage-transfer-v3.6.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6019](https://github.com/googleapis/google-cloud-node/issues/6019)) ([734397c](https://github.com/googleapis/google-cloud-node/commit/734397c6b98d0aafe8832544da3f483b1eade1b2))
+
+## [3.6.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v3.5.0...storage-transfer-v3.6.0) (2025-01-23)
+
+
+### Features
+
+* [Many APIs] Reasoning Engine v1 GAPIC release ([#5965](https://github.com/googleapis/google-cloud-node/issues/5965)) ([050db4d](https://github.com/googleapis/google-cloud-node/commit/050db4d28f9a203ce2d41db21eb74b3ecb6b4a16))
+
+## [3.5.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v3.4.0...storage-transfer-v3.5.0) (2024-12-18)
+
+
+### Features
+
+* [storagetransfer] support cross-bucket replication ([#5891](https://github.com/googleapis/google-cloud-node/issues/5891)) ([ad37361](https://github.com/googleapis/google-cloud-node/commit/ad373612766920e82241e0ef609abc27be4ab9bb))
+
+## [3.4.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v3.3.0...storage-transfer-v3.4.0) (2024-08-19)
+
+
+### Features
+
+* [storagetransfer] add HDFS configuration ([#5619](https://github.com/googleapis/google-cloud-node/issues/5619)) ([7500af4](https://github.com/googleapis/google-cloud-node/commit/7500af4746970169ea3edfbe6c8782e3bbf8c375))
+
 ## [3.3.0](https://github.com/googleapis/google-cloud-node/compare/storage-transfer-v3.2.0...storage-transfer-v3.3.0) (2024-05-21)
 
 

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -144,12 +144,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -369,12 +371,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DoubleValue.decode = function decode(reader, length) {
+                DoubleValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DoubleValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.double();
@@ -572,12 +576,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FloatValue.decode = function decode(reader, length) {
+                FloatValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FloatValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.float();
@@ -775,12 +781,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int64Value.decode = function decode(reader, length) {
+                Int64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int64();
@@ -992,12 +1000,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt64Value.decode = function decode(reader, length) {
+                UInt64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint64();
@@ -1209,12 +1219,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int32Value.decode = function decode(reader, length) {
+                Int32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int32();
@@ -1412,12 +1424,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt32Value.decode = function decode(reader, length) {
+                UInt32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint32();
@@ -1615,12 +1629,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BoolValue.decode = function decode(reader, length) {
+                BoolValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BoolValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bool();
@@ -1818,12 +1834,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                StringValue.decode = function decode(reader, length) {
+                StringValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.StringValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.string();
@@ -2021,12 +2039,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BytesValue.decode = function decode(reader, length) {
+                BytesValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BytesValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bytes();
@@ -2237,12 +2257,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Struct.decode = function decode(reader, length) {
+                Struct.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Struct(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (message.fields === $util.emptyObject)
@@ -2547,12 +2569,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Value.decode = function decode(reader, length) {
+                Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.nullValue = reader.int32();
@@ -2884,12 +2908,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListValue.decode = function decode(reader, length) {
+                ListValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ListValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.values && message.values.length))
@@ -3021,488 +3047,6 @@
                 return ListValue;
             })();
     
-            protobuf.Duration = (function() {
-    
-                /**
-                 * Properties of a Duration.
-                 * @memberof google.protobuf
-                 * @interface IDuration
-                 * @property {number|Long|null} [seconds] Duration seconds
-                 * @property {number|null} [nanos] Duration nanos
-                 */
-    
-                /**
-                 * Constructs a new Duration.
-                 * @memberof google.protobuf
-                 * @classdesc Represents a Duration.
-                 * @implements IDuration
-                 * @constructor
-                 * @param {google.protobuf.IDuration=} [properties] Properties to set
-                 */
-                function Duration(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * Duration seconds.
-                 * @member {number|Long} seconds
-                 * @memberof google.protobuf.Duration
-                 * @instance
-                 */
-                Duration.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-    
-                /**
-                 * Duration nanos.
-                 * @member {number} nanos
-                 * @memberof google.protobuf.Duration
-                 * @instance
-                 */
-                Duration.prototype.nanos = 0;
-    
-                /**
-                 * Creates a new Duration instance using the specified properties.
-                 * @function create
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {google.protobuf.IDuration=} [properties] Properties to set
-                 * @returns {google.protobuf.Duration} Duration instance
-                 */
-                Duration.create = function create(properties) {
-                    return new Duration(properties);
-                };
-    
-                /**
-                 * Encodes the specified Duration message. Does not implicitly {@link google.protobuf.Duration.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {google.protobuf.IDuration} message Duration message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Duration.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
-                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
-                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified Duration message, length delimited. Does not implicitly {@link google.protobuf.Duration.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {google.protobuf.IDuration} message Duration message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Duration.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a Duration message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.protobuf.Duration} Duration
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Duration.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.seconds = reader.int64();
-                                break;
-                            }
-                        case 2: {
-                                message.nanos = reader.int32();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a Duration message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.protobuf.Duration} Duration
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Duration.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a Duration message.
-                 * @function verify
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Duration.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
-                            return "seconds: integer|Long expected";
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        if (!$util.isInteger(message.nanos))
-                            return "nanos: integer expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a Duration message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.protobuf.Duration} Duration
-                 */
-                Duration.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.protobuf.Duration)
-                        return object;
-                    var message = new $root.google.protobuf.Duration();
-                    if (object.seconds != null)
-                        if ($util.Long)
-                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
-                        else if (typeof object.seconds === "string")
-                            message.seconds = parseInt(object.seconds, 10);
-                        else if (typeof object.seconds === "number")
-                            message.seconds = object.seconds;
-                        else if (typeof object.seconds === "object")
-                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
-                    if (object.nanos != null)
-                        message.nanos = object.nanos | 0;
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a Duration message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {google.protobuf.Duration} message Duration
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Duration.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        if ($util.Long) {
-                            var long = new $util.Long(0, 0, false);
-                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.seconds = options.longs === String ? "0" : 0;
-                        object.nanos = 0;
-                    }
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (typeof message.seconds === "number")
-                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
-                        else
-                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        object.nanos = message.nanos;
-                    return object;
-                };
-    
-                /**
-                 * Converts this Duration to JSON.
-                 * @function toJSON
-                 * @memberof google.protobuf.Duration
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Duration.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for Duration
-                 * @function getTypeUrl
-                 * @memberof google.protobuf.Duration
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                Duration.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.protobuf.Duration";
-                };
-    
-                return Duration;
-            })();
-    
-            protobuf.Timestamp = (function() {
-    
-                /**
-                 * Properties of a Timestamp.
-                 * @memberof google.protobuf
-                 * @interface ITimestamp
-                 * @property {number|Long|null} [seconds] Timestamp seconds
-                 * @property {number|null} [nanos] Timestamp nanos
-                 */
-    
-                /**
-                 * Constructs a new Timestamp.
-                 * @memberof google.protobuf
-                 * @classdesc Represents a Timestamp.
-                 * @implements ITimestamp
-                 * @constructor
-                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
-                 */
-                function Timestamp(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * Timestamp seconds.
-                 * @member {number|Long} seconds
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 */
-                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-    
-                /**
-                 * Timestamp nanos.
-                 * @member {number} nanos
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 */
-                Timestamp.prototype.nanos = 0;
-    
-                /**
-                 * Creates a new Timestamp instance using the specified properties.
-                 * @function create
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
-                 * @returns {google.protobuf.Timestamp} Timestamp instance
-                 */
-                Timestamp.create = function create(properties) {
-                    return new Timestamp(properties);
-                };
-    
-                /**
-                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Timestamp.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
-                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
-                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a Timestamp message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Timestamp.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.seconds = reader.int64();
-                                break;
-                            }
-                        case 2: {
-                                message.nanos = reader.int32();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Timestamp.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a Timestamp message.
-                 * @function verify
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Timestamp.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
-                            return "seconds: integer|Long expected";
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        if (!$util.isInteger(message.nanos))
-                            return "nanos: integer expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 */
-                Timestamp.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.protobuf.Timestamp)
-                        return object;
-                    var message = new $root.google.protobuf.Timestamp();
-                    if (object.seconds != null)
-                        if ($util.Long)
-                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
-                        else if (typeof object.seconds === "string")
-                            message.seconds = parseInt(object.seconds, 10);
-                        else if (typeof object.seconds === "number")
-                            message.seconds = object.seconds;
-                        else if (typeof object.seconds === "object")
-                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
-                    if (object.nanos != null)
-                        message.nanos = object.nanos | 0;
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.Timestamp} message Timestamp
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Timestamp.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        if ($util.Long) {
-                            var long = new $util.Long(0, 0, false);
-                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.seconds = options.longs === String ? "0" : 0;
-                        object.nanos = 0;
-                    }
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (typeof message.seconds === "number")
-                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
-                        else
-                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        object.nanos = message.nanos;
-                    return object;
-                };
-    
-                /**
-                 * Converts this Timestamp to JSON.
-                 * @function toJSON
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Timestamp.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for Timestamp
-                 * @function getTypeUrl
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.protobuf.Timestamp";
-                };
-    
-                return Timestamp;
-            })();
-    
             protobuf.FileDescriptorSet = (function() {
     
                 /**
@@ -3590,12 +3134,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -3990,12 +3536,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -4657,12 +4205,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -5142,12 +4692,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -5386,12 +4938,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -5642,12 +5196,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -5987,12 +5543,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -6366,12 +5924,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -6891,12 +6451,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -7162,12 +6724,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -7481,12 +7045,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -7722,12 +7288,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -7979,12 +7547,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -8287,12 +7857,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -8778,12 +8350,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -9355,12 +8929,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -9777,12 +9353,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     return writer;
                 };
     
@@ -9810,12 +9383,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -10524,12 +10099,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -10820,12 +10397,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -11106,12 +10685,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -11418,12 +10999,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -11609,6 +11192,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -11668,6 +11252,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -11702,6 +11294,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -11729,12 +11323,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -11756,6 +11352,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -11816,6 +11416,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -11852,6 +11455,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -11875,6 +11480,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -11889,6 +11495,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -12065,12 +11673,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -12482,12 +12092,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -12821,12 +12433,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -13097,12 +12711,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -13632,12 +13248,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -14016,12 +13634,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -14306,12 +13926,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -14581,12 +14203,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -14892,12 +14516,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -15160,12 +14786,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -15390,6 +15018,492 @@
                 return GeneratedCodeInfo;
             })();
     
+            protobuf.Duration = (function() {
+    
+                /**
+                 * Properties of a Duration.
+                 * @memberof google.protobuf
+                 * @interface IDuration
+                 * @property {number|Long|null} [seconds] Duration seconds
+                 * @property {number|null} [nanos] Duration nanos
+                 */
+    
+                /**
+                 * Constructs a new Duration.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a Duration.
+                 * @implements IDuration
+                 * @constructor
+                 * @param {google.protobuf.IDuration=} [properties] Properties to set
+                 */
+                function Duration(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Duration seconds.
+                 * @member {number|Long} seconds
+                 * @memberof google.protobuf.Duration
+                 * @instance
+                 */
+                Duration.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                /**
+                 * Duration nanos.
+                 * @member {number} nanos
+                 * @memberof google.protobuf.Duration
+                 * @instance
+                 */
+                Duration.prototype.nanos = 0;
+    
+                /**
+                 * Creates a new Duration instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {google.protobuf.IDuration=} [properties] Properties to set
+                 * @returns {google.protobuf.Duration} Duration instance
+                 */
+                Duration.create = function create(properties) {
+                    return new Duration(properties);
+                };
+    
+                /**
+                 * Encodes the specified Duration message. Does not implicitly {@link google.protobuf.Duration.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {google.protobuf.IDuration} message Duration message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Duration.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Duration message, length delimited. Does not implicitly {@link google.protobuf.Duration.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {google.protobuf.IDuration} message Duration message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Duration.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Duration message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Duration} Duration
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Duration.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.seconds = reader.int64();
+                                break;
+                            }
+                        case 2: {
+                                message.nanos = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Duration message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Duration} Duration
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Duration.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Duration message.
+                 * @function verify
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Duration.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                            return "seconds: integer|Long expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Duration message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Duration} Duration
+                 */
+                Duration.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Duration)
+                        return object;
+                    var message = new $root.google.protobuf.Duration();
+                    if (object.seconds != null)
+                        if ($util.Long)
+                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                        else if (typeof object.seconds === "string")
+                            message.seconds = parseInt(object.seconds, 10);
+                        else if (typeof object.seconds === "number")
+                            message.seconds = object.seconds;
+                        else if (typeof object.seconds === "object")
+                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Duration message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {google.protobuf.Duration} message Duration
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Duration.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.seconds = options.longs === String ? "0" : 0;
+                        object.nanos = 0;
+                    }
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (typeof message.seconds === "number")
+                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                        else
+                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Duration to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Duration
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Duration.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Duration
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Duration
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Duration.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Duration";
+                };
+    
+                return Duration;
+            })();
+    
+            protobuf.Timestamp = (function() {
+    
+                /**
+                 * Properties of a Timestamp.
+                 * @memberof google.protobuf
+                 * @interface ITimestamp
+                 * @property {number|Long|null} [seconds] Timestamp seconds
+                 * @property {number|null} [nanos] Timestamp nanos
+                 */
+    
+                /**
+                 * Constructs a new Timestamp.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a Timestamp.
+                 * @implements ITimestamp
+                 * @constructor
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 */
+                function Timestamp(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Timestamp seconds.
+                 * @member {number|Long} seconds
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                /**
+                 * Timestamp nanos.
+                 * @member {number} nanos
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.nanos = 0;
+    
+                /**
+                 * Creates a new Timestamp instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 * @returns {google.protobuf.Timestamp} Timestamp instance
+                 */
+                Timestamp.create = function create(properties) {
+                    return new Timestamp(properties);
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.seconds = reader.int64();
+                                break;
+                            }
+                        case 2: {
+                                message.nanos = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Timestamp message.
+                 * @function verify
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Timestamp.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                            return "seconds: integer|Long expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 */
+                Timestamp.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Timestamp)
+                        return object;
+                    var message = new $root.google.protobuf.Timestamp();
+                    if (object.seconds != null)
+                        if ($util.Long)
+                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                        else if (typeof object.seconds === "string")
+                            message.seconds = parseInt(object.seconds, 10);
+                        else if (typeof object.seconds === "number")
+                            message.seconds = object.seconds;
+                        else if (typeof object.seconds === "object")
+                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.Timestamp} message Timestamp
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Timestamp.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.seconds = options.longs === String ? "0" : 0;
+                        object.nanos = 0;
+                    }
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (typeof message.seconds === "number")
+                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                        else
+                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Timestamp to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Timestamp.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Timestamp
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Timestamp";
+                };
+    
+                return Timestamp;
+            })();
+    
             return protobuf;
         })();
     
@@ -15507,12 +15621,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Viewport.decode = function decode(reader, length) {
+                    Viewport.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.geo.type.Viewport();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.low = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -15759,12 +15875,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                LatLng.decode = function decode(reader, length) {
+                LatLng.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.LatLng();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.latitude = reader.double();
@@ -15986,12 +16104,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                LocalizedText.decode = function decode(reader, length) {
+                LocalizedText.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.LocalizedText();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -16224,12 +16344,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Money.decode = function decode(reader, length) {
+                Money.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.type.Money();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.currencyCode = reader.string();
@@ -16507,12 +16629,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FallbackInfo.decode = function decode(reader, length) {
+                        FallbackInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.FallbackInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.routingMode = reader.int32();
@@ -16827,12 +16951,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GeocodingResults.decode = function decode(reader, length) {
+                        GeocodingResults.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.GeocodingResults();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.origin = $root.google.maps.routing.v2.GeocodedWaypoint.decode(reader, reader.uint32());
@@ -17072,12 +17198,7 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * GeocodedWaypoint _intermediateWaypointRequestIndex.
-                         * @member {"intermediateWaypointRequestIndex"|undefined} _intermediateWaypointRequestIndex
-                         * @memberof google.maps.routing.v2.GeocodedWaypoint
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(GeocodedWaypoint.prototype, "_intermediateWaypointRequestIndex", {
                             get: $util.oneOfGetter($oneOfFields = ["intermediateWaypointRequestIndex"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -17145,12 +17266,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GeocodedWaypoint.decode = function decode(reader, length) {
+                        GeocodedWaypoint.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.GeocodedWaypoint();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.geocoderStatus = $root.google.rpc.Status.decode(reader, reader.uint32());
@@ -17433,12 +17556,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LocalizedTime.decode = function decode(reader, length) {
+                        LocalizedTime.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.LocalizedTime();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.time = $root.google.type.LocalizedText.decode(reader, reader.uint32());
@@ -17665,12 +17790,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Location.decode = function decode(reader, length) {
+                        Location.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.Location();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.latLng = $root.google.type.LatLng.decode(reader, reader.uint32());
@@ -17954,12 +18081,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NavigationInstruction.decode = function decode(reader, length) {
+                        NavigationInstruction.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.NavigationInstruction();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.maneuver = reader.int32();
@@ -18309,12 +18438,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Polyline.decode = function decode(reader, length) {
+                        Polyline.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.Polyline();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.encodedPolyline = reader.string();
@@ -18487,6 +18618,1060 @@
                         return values;
                     })();
     
+                    v2.PolylineDetails = (function() {
+    
+                        /**
+                         * Properties of a PolylineDetails.
+                         * @memberof google.maps.routing.v2
+                         * @interface IPolylineDetails
+                         * @property {Array.<google.maps.routing.v2.PolylineDetails.IFlyoverInfo>|null} [flyoverInfo] PolylineDetails flyoverInfo
+                         * @property {Array.<google.maps.routing.v2.PolylineDetails.INarrowRoadInfo>|null} [narrowRoadInfo] PolylineDetails narrowRoadInfo
+                         */
+    
+                        /**
+                         * Constructs a new PolylineDetails.
+                         * @memberof google.maps.routing.v2
+                         * @classdesc Represents a PolylineDetails.
+                         * @implements IPolylineDetails
+                         * @constructor
+                         * @param {google.maps.routing.v2.IPolylineDetails=} [properties] Properties to set
+                         */
+                        function PolylineDetails(properties) {
+                            this.flyoverInfo = [];
+                            this.narrowRoadInfo = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * PolylineDetails flyoverInfo.
+                         * @member {Array.<google.maps.routing.v2.PolylineDetails.IFlyoverInfo>} flyoverInfo
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @instance
+                         */
+                        PolylineDetails.prototype.flyoverInfo = $util.emptyArray;
+    
+                        /**
+                         * PolylineDetails narrowRoadInfo.
+                         * @member {Array.<google.maps.routing.v2.PolylineDetails.INarrowRoadInfo>} narrowRoadInfo
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @instance
+                         */
+                        PolylineDetails.prototype.narrowRoadInfo = $util.emptyArray;
+    
+                        /**
+                         * Creates a new PolylineDetails instance using the specified properties.
+                         * @function create
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {google.maps.routing.v2.IPolylineDetails=} [properties] Properties to set
+                         * @returns {google.maps.routing.v2.PolylineDetails} PolylineDetails instance
+                         */
+                        PolylineDetails.create = function create(properties) {
+                            return new PolylineDetails(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified PolylineDetails message. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {google.maps.routing.v2.IPolylineDetails} message PolylineDetails message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PolylineDetails.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.flyoverInfo != null && message.flyoverInfo.length)
+                                for (var i = 0; i < message.flyoverInfo.length; ++i)
+                                    $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo.encode(message.flyoverInfo[i], writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+                            if (message.narrowRoadInfo != null && message.narrowRoadInfo.length)
+                                for (var i = 0; i < message.narrowRoadInfo.length; ++i)
+                                    $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.encode(message.narrowRoadInfo[i], writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified PolylineDetails message, length delimited. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {google.maps.routing.v2.IPolylineDetails} message PolylineDetails message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PolylineDetails.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a PolylineDetails message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.maps.routing.v2.PolylineDetails} PolylineDetails
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PolylineDetails.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.PolylineDetails();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 12: {
+                                        if (!(message.flyoverInfo && message.flyoverInfo.length))
+                                            message.flyoverInfo = [];
+                                        message.flyoverInfo.push($root.google.maps.routing.v2.PolylineDetails.FlyoverInfo.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                case 13: {
+                                        if (!(message.narrowRoadInfo && message.narrowRoadInfo.length))
+                                            message.narrowRoadInfo = [];
+                                        message.narrowRoadInfo.push($root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a PolylineDetails message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.maps.routing.v2.PolylineDetails} PolylineDetails
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PolylineDetails.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a PolylineDetails message.
+                         * @function verify
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        PolylineDetails.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.flyoverInfo != null && message.hasOwnProperty("flyoverInfo")) {
+                                if (!Array.isArray(message.flyoverInfo))
+                                    return "flyoverInfo: array expected";
+                                for (var i = 0; i < message.flyoverInfo.length; ++i) {
+                                    var error = $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo.verify(message.flyoverInfo[i]);
+                                    if (error)
+                                        return "flyoverInfo." + error;
+                                }
+                            }
+                            if (message.narrowRoadInfo != null && message.hasOwnProperty("narrowRoadInfo")) {
+                                if (!Array.isArray(message.narrowRoadInfo))
+                                    return "narrowRoadInfo: array expected";
+                                for (var i = 0; i < message.narrowRoadInfo.length; ++i) {
+                                    var error = $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.verify(message.narrowRoadInfo[i]);
+                                    if (error)
+                                        return "narrowRoadInfo." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a PolylineDetails message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.maps.routing.v2.PolylineDetails} PolylineDetails
+                         */
+                        PolylineDetails.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.maps.routing.v2.PolylineDetails)
+                                return object;
+                            var message = new $root.google.maps.routing.v2.PolylineDetails();
+                            if (object.flyoverInfo) {
+                                if (!Array.isArray(object.flyoverInfo))
+                                    throw TypeError(".google.maps.routing.v2.PolylineDetails.flyoverInfo: array expected");
+                                message.flyoverInfo = [];
+                                for (var i = 0; i < object.flyoverInfo.length; ++i) {
+                                    if (typeof object.flyoverInfo[i] !== "object")
+                                        throw TypeError(".google.maps.routing.v2.PolylineDetails.flyoverInfo: object expected");
+                                    message.flyoverInfo[i] = $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo.fromObject(object.flyoverInfo[i]);
+                                }
+                            }
+                            if (object.narrowRoadInfo) {
+                                if (!Array.isArray(object.narrowRoadInfo))
+                                    throw TypeError(".google.maps.routing.v2.PolylineDetails.narrowRoadInfo: array expected");
+                                message.narrowRoadInfo = [];
+                                for (var i = 0; i < object.narrowRoadInfo.length; ++i) {
+                                    if (typeof object.narrowRoadInfo[i] !== "object")
+                                        throw TypeError(".google.maps.routing.v2.PolylineDetails.narrowRoadInfo: object expected");
+                                    message.narrowRoadInfo[i] = $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.fromObject(object.narrowRoadInfo[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a PolylineDetails message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {google.maps.routing.v2.PolylineDetails} message PolylineDetails
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        PolylineDetails.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults) {
+                                object.flyoverInfo = [];
+                                object.narrowRoadInfo = [];
+                            }
+                            if (message.flyoverInfo && message.flyoverInfo.length) {
+                                object.flyoverInfo = [];
+                                for (var j = 0; j < message.flyoverInfo.length; ++j)
+                                    object.flyoverInfo[j] = $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo.toObject(message.flyoverInfo[j], options);
+                            }
+                            if (message.narrowRoadInfo && message.narrowRoadInfo.length) {
+                                object.narrowRoadInfo = [];
+                                for (var j = 0; j < message.narrowRoadInfo.length; ++j)
+                                    object.narrowRoadInfo[j] = $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.toObject(message.narrowRoadInfo[j], options);
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this PolylineDetails to JSON.
+                         * @function toJSON
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        PolylineDetails.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for PolylineDetails
+                         * @function getTypeUrl
+                         * @memberof google.maps.routing.v2.PolylineDetails
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        PolylineDetails.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.maps.routing.v2.PolylineDetails";
+                        };
+    
+                        PolylineDetails.PolylinePointIndex = (function() {
+    
+                            /**
+                             * Properties of a PolylinePointIndex.
+                             * @memberof google.maps.routing.v2.PolylineDetails
+                             * @interface IPolylinePointIndex
+                             * @property {number|null} [startIndex] PolylinePointIndex startIndex
+                             * @property {number|null} [endIndex] PolylinePointIndex endIndex
+                             */
+    
+                            /**
+                             * Constructs a new PolylinePointIndex.
+                             * @memberof google.maps.routing.v2.PolylineDetails
+                             * @classdesc Represents a PolylinePointIndex.
+                             * @implements IPolylinePointIndex
+                             * @constructor
+                             * @param {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex=} [properties] Properties to set
+                             */
+                            function PolylinePointIndex(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * PolylinePointIndex startIndex.
+                             * @member {number|null|undefined} startIndex
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @instance
+                             */
+                            PolylinePointIndex.prototype.startIndex = null;
+    
+                            /**
+                             * PolylinePointIndex endIndex.
+                             * @member {number|null|undefined} endIndex
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @instance
+                             */
+                            PolylinePointIndex.prototype.endIndex = null;
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            // Virtual OneOf for proto3 optional field
+                            Object.defineProperty(PolylinePointIndex.prototype, "_startIndex", {
+                                get: $util.oneOfGetter($oneOfFields = ["startIndex"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            // Virtual OneOf for proto3 optional field
+                            Object.defineProperty(PolylinePointIndex.prototype, "_endIndex", {
+                                get: $util.oneOfGetter($oneOfFields = ["endIndex"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new PolylinePointIndex instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex=} [properties] Properties to set
+                             * @returns {google.maps.routing.v2.PolylineDetails.PolylinePointIndex} PolylinePointIndex instance
+                             */
+                            PolylinePointIndex.create = function create(properties) {
+                                return new PolylinePointIndex(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PolylinePointIndex message. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.PolylinePointIndex.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex} message PolylinePointIndex message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PolylinePointIndex.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.startIndex != null && Object.hasOwnProperty.call(message, "startIndex"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.startIndex);
+                                if (message.endIndex != null && Object.hasOwnProperty.call(message, "endIndex"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.endIndex);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PolylinePointIndex message, length delimited. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.PolylinePointIndex.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex} message PolylinePointIndex message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PolylinePointIndex.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PolylinePointIndex message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.routing.v2.PolylineDetails.PolylinePointIndex} PolylinePointIndex
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PolylinePointIndex.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.startIndex = reader.int32();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.endIndex = reader.int32();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PolylinePointIndex message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.routing.v2.PolylineDetails.PolylinePointIndex} PolylinePointIndex
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PolylinePointIndex.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PolylinePointIndex message.
+                             * @function verify
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PolylinePointIndex.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.startIndex != null && message.hasOwnProperty("startIndex")) {
+                                    properties._startIndex = 1;
+                                    if (!$util.isInteger(message.startIndex))
+                                        return "startIndex: integer expected";
+                                }
+                                if (message.endIndex != null && message.hasOwnProperty("endIndex")) {
+                                    properties._endIndex = 1;
+                                    if (!$util.isInteger(message.endIndex))
+                                        return "endIndex: integer expected";
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PolylinePointIndex message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.routing.v2.PolylineDetails.PolylinePointIndex} PolylinePointIndex
+                             */
+                            PolylinePointIndex.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex)
+                                    return object;
+                                var message = new $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex();
+                                if (object.startIndex != null)
+                                    message.startIndex = object.startIndex | 0;
+                                if (object.endIndex != null)
+                                    message.endIndex = object.endIndex | 0;
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a PolylinePointIndex message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.PolylinePointIndex} message PolylinePointIndex
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PolylinePointIndex.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (message.startIndex != null && message.hasOwnProperty("startIndex")) {
+                                    object.startIndex = message.startIndex;
+                                    if (options.oneofs)
+                                        object._startIndex = "startIndex";
+                                }
+                                if (message.endIndex != null && message.hasOwnProperty("endIndex")) {
+                                    object.endIndex = message.endIndex;
+                                    if (options.oneofs)
+                                        object._endIndex = "endIndex";
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this PolylinePointIndex to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PolylinePointIndex.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PolylinePointIndex
+                             * @function getTypeUrl
+                             * @memberof google.maps.routing.v2.PolylineDetails.PolylinePointIndex
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PolylinePointIndex.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.routing.v2.PolylineDetails.PolylinePointIndex";
+                            };
+    
+                            return PolylinePointIndex;
+                        })();
+    
+                        /**
+                         * RoadFeatureState enum.
+                         * @name google.maps.routing.v2.PolylineDetails.RoadFeatureState
+                         * @enum {number}
+                         * @property {number} ROAD_FEATURE_STATE_UNSPECIFIED=0 ROAD_FEATURE_STATE_UNSPECIFIED value
+                         * @property {number} EXISTS=1 EXISTS value
+                         * @property {number} DOES_NOT_EXIST=2 DOES_NOT_EXIST value
+                         */
+                        PolylineDetails.RoadFeatureState = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "ROAD_FEATURE_STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "EXISTS"] = 1;
+                            values[valuesById[2] = "DOES_NOT_EXIST"] = 2;
+                            return values;
+                        })();
+    
+                        PolylineDetails.FlyoverInfo = (function() {
+    
+                            /**
+                             * Properties of a FlyoverInfo.
+                             * @memberof google.maps.routing.v2.PolylineDetails
+                             * @interface IFlyoverInfo
+                             * @property {google.maps.routing.v2.PolylineDetails.RoadFeatureState|null} [flyoverPresence] FlyoverInfo flyoverPresence
+                             * @property {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex|null} [polylinePointIndex] FlyoverInfo polylinePointIndex
+                             */
+    
+                            /**
+                             * Constructs a new FlyoverInfo.
+                             * @memberof google.maps.routing.v2.PolylineDetails
+                             * @classdesc Represents a FlyoverInfo.
+                             * @implements IFlyoverInfo
+                             * @constructor
+                             * @param {google.maps.routing.v2.PolylineDetails.IFlyoverInfo=} [properties] Properties to set
+                             */
+                            function FlyoverInfo(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * FlyoverInfo flyoverPresence.
+                             * @member {google.maps.routing.v2.PolylineDetails.RoadFeatureState} flyoverPresence
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @instance
+                             */
+                            FlyoverInfo.prototype.flyoverPresence = 0;
+    
+                            /**
+                             * FlyoverInfo polylinePointIndex.
+                             * @member {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex|null|undefined} polylinePointIndex
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @instance
+                             */
+                            FlyoverInfo.prototype.polylinePointIndex = null;
+    
+                            /**
+                             * Creates a new FlyoverInfo instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.IFlyoverInfo=} [properties] Properties to set
+                             * @returns {google.maps.routing.v2.PolylineDetails.FlyoverInfo} FlyoverInfo instance
+                             */
+                            FlyoverInfo.create = function create(properties) {
+                                return new FlyoverInfo(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified FlyoverInfo message. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.FlyoverInfo.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.IFlyoverInfo} message FlyoverInfo message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            FlyoverInfo.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.flyoverPresence != null && Object.hasOwnProperty.call(message, "flyoverPresence"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.flyoverPresence);
+                                if (message.polylinePointIndex != null && Object.hasOwnProperty.call(message, "polylinePointIndex"))
+                                    $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.encode(message.polylinePointIndex, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified FlyoverInfo message, length delimited. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.FlyoverInfo.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.IFlyoverInfo} message FlyoverInfo message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            FlyoverInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a FlyoverInfo message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.routing.v2.PolylineDetails.FlyoverInfo} FlyoverInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            FlyoverInfo.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.flyoverPresence = reader.int32();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.polylinePointIndex = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a FlyoverInfo message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.routing.v2.PolylineDetails.FlyoverInfo} FlyoverInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            FlyoverInfo.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a FlyoverInfo message.
+                             * @function verify
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            FlyoverInfo.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.flyoverPresence != null && message.hasOwnProperty("flyoverPresence"))
+                                    switch (message.flyoverPresence) {
+                                    default:
+                                        return "flyoverPresence: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
+                                if (message.polylinePointIndex != null && message.hasOwnProperty("polylinePointIndex")) {
+                                    var error = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.verify(message.polylinePointIndex);
+                                    if (error)
+                                        return "polylinePointIndex." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a FlyoverInfo message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.routing.v2.PolylineDetails.FlyoverInfo} FlyoverInfo
+                             */
+                            FlyoverInfo.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo)
+                                    return object;
+                                var message = new $root.google.maps.routing.v2.PolylineDetails.FlyoverInfo();
+                                switch (object.flyoverPresence) {
+                                default:
+                                    if (typeof object.flyoverPresence === "number") {
+                                        message.flyoverPresence = object.flyoverPresence;
+                                        break;
+                                    }
+                                    break;
+                                case "ROAD_FEATURE_STATE_UNSPECIFIED":
+                                case 0:
+                                    message.flyoverPresence = 0;
+                                    break;
+                                case "EXISTS":
+                                case 1:
+                                    message.flyoverPresence = 1;
+                                    break;
+                                case "DOES_NOT_EXIST":
+                                case 2:
+                                    message.flyoverPresence = 2;
+                                    break;
+                                }
+                                if (object.polylinePointIndex != null) {
+                                    if (typeof object.polylinePointIndex !== "object")
+                                        throw TypeError(".google.maps.routing.v2.PolylineDetails.FlyoverInfo.polylinePointIndex: object expected");
+                                    message.polylinePointIndex = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.fromObject(object.polylinePointIndex);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a FlyoverInfo message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.FlyoverInfo} message FlyoverInfo
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            FlyoverInfo.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.flyoverPresence = options.enums === String ? "ROAD_FEATURE_STATE_UNSPECIFIED" : 0;
+                                    object.polylinePointIndex = null;
+                                }
+                                if (message.flyoverPresence != null && message.hasOwnProperty("flyoverPresence"))
+                                    object.flyoverPresence = options.enums === String ? $root.google.maps.routing.v2.PolylineDetails.RoadFeatureState[message.flyoverPresence] === undefined ? message.flyoverPresence : $root.google.maps.routing.v2.PolylineDetails.RoadFeatureState[message.flyoverPresence] : message.flyoverPresence;
+                                if (message.polylinePointIndex != null && message.hasOwnProperty("polylinePointIndex"))
+                                    object.polylinePointIndex = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.toObject(message.polylinePointIndex, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this FlyoverInfo to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            FlyoverInfo.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for FlyoverInfo
+                             * @function getTypeUrl
+                             * @memberof google.maps.routing.v2.PolylineDetails.FlyoverInfo
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            FlyoverInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.routing.v2.PolylineDetails.FlyoverInfo";
+                            };
+    
+                            return FlyoverInfo;
+                        })();
+    
+                        PolylineDetails.NarrowRoadInfo = (function() {
+    
+                            /**
+                             * Properties of a NarrowRoadInfo.
+                             * @memberof google.maps.routing.v2.PolylineDetails
+                             * @interface INarrowRoadInfo
+                             * @property {google.maps.routing.v2.PolylineDetails.RoadFeatureState|null} [narrowRoadPresence] NarrowRoadInfo narrowRoadPresence
+                             * @property {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex|null} [polylinePointIndex] NarrowRoadInfo polylinePointIndex
+                             */
+    
+                            /**
+                             * Constructs a new NarrowRoadInfo.
+                             * @memberof google.maps.routing.v2.PolylineDetails
+                             * @classdesc Represents a NarrowRoadInfo.
+                             * @implements INarrowRoadInfo
+                             * @constructor
+                             * @param {google.maps.routing.v2.PolylineDetails.INarrowRoadInfo=} [properties] Properties to set
+                             */
+                            function NarrowRoadInfo(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * NarrowRoadInfo narrowRoadPresence.
+                             * @member {google.maps.routing.v2.PolylineDetails.RoadFeatureState} narrowRoadPresence
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @instance
+                             */
+                            NarrowRoadInfo.prototype.narrowRoadPresence = 0;
+    
+                            /**
+                             * NarrowRoadInfo polylinePointIndex.
+                             * @member {google.maps.routing.v2.PolylineDetails.IPolylinePointIndex|null|undefined} polylinePointIndex
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @instance
+                             */
+                            NarrowRoadInfo.prototype.polylinePointIndex = null;
+    
+                            /**
+                             * Creates a new NarrowRoadInfo instance using the specified properties.
+                             * @function create
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.INarrowRoadInfo=} [properties] Properties to set
+                             * @returns {google.maps.routing.v2.PolylineDetails.NarrowRoadInfo} NarrowRoadInfo instance
+                             */
+                            NarrowRoadInfo.create = function create(properties) {
+                                return new NarrowRoadInfo(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified NarrowRoadInfo message. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.INarrowRoadInfo} message NarrowRoadInfo message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            NarrowRoadInfo.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.narrowRoadPresence != null && Object.hasOwnProperty.call(message, "narrowRoadPresence"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.narrowRoadPresence);
+                                if (message.polylinePointIndex != null && Object.hasOwnProperty.call(message, "polylinePointIndex"))
+                                    $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.encode(message.polylinePointIndex, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified NarrowRoadInfo message, length delimited. Does not implicitly {@link google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.INarrowRoadInfo} message NarrowRoadInfo message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            NarrowRoadInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a NarrowRoadInfo message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.maps.routing.v2.PolylineDetails.NarrowRoadInfo} NarrowRoadInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            NarrowRoadInfo.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.narrowRoadPresence = reader.int32();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.polylinePointIndex = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a NarrowRoadInfo message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.maps.routing.v2.PolylineDetails.NarrowRoadInfo} NarrowRoadInfo
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            NarrowRoadInfo.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a NarrowRoadInfo message.
+                             * @function verify
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            NarrowRoadInfo.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.narrowRoadPresence != null && message.hasOwnProperty("narrowRoadPresence"))
+                                    switch (message.narrowRoadPresence) {
+                                    default:
+                                        return "narrowRoadPresence: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
+                                if (message.polylinePointIndex != null && message.hasOwnProperty("polylinePointIndex")) {
+                                    var error = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.verify(message.polylinePointIndex);
+                                    if (error)
+                                        return "polylinePointIndex." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a NarrowRoadInfo message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.maps.routing.v2.PolylineDetails.NarrowRoadInfo} NarrowRoadInfo
+                             */
+                            NarrowRoadInfo.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo)
+                                    return object;
+                                var message = new $root.google.maps.routing.v2.PolylineDetails.NarrowRoadInfo();
+                                switch (object.narrowRoadPresence) {
+                                default:
+                                    if (typeof object.narrowRoadPresence === "number") {
+                                        message.narrowRoadPresence = object.narrowRoadPresence;
+                                        break;
+                                    }
+                                    break;
+                                case "ROAD_FEATURE_STATE_UNSPECIFIED":
+                                case 0:
+                                    message.narrowRoadPresence = 0;
+                                    break;
+                                case "EXISTS":
+                                case 1:
+                                    message.narrowRoadPresence = 1;
+                                    break;
+                                case "DOES_NOT_EXIST":
+                                case 2:
+                                    message.narrowRoadPresence = 2;
+                                    break;
+                                }
+                                if (object.polylinePointIndex != null) {
+                                    if (typeof object.polylinePointIndex !== "object")
+                                        throw TypeError(".google.maps.routing.v2.PolylineDetails.NarrowRoadInfo.polylinePointIndex: object expected");
+                                    message.polylinePointIndex = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.fromObject(object.polylinePointIndex);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a NarrowRoadInfo message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {google.maps.routing.v2.PolylineDetails.NarrowRoadInfo} message NarrowRoadInfo
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            NarrowRoadInfo.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.narrowRoadPresence = options.enums === String ? "ROAD_FEATURE_STATE_UNSPECIFIED" : 0;
+                                    object.polylinePointIndex = null;
+                                }
+                                if (message.narrowRoadPresence != null && message.hasOwnProperty("narrowRoadPresence"))
+                                    object.narrowRoadPresence = options.enums === String ? $root.google.maps.routing.v2.PolylineDetails.RoadFeatureState[message.narrowRoadPresence] === undefined ? message.narrowRoadPresence : $root.google.maps.routing.v2.PolylineDetails.RoadFeatureState[message.narrowRoadPresence] : message.narrowRoadPresence;
+                                if (message.polylinePointIndex != null && message.hasOwnProperty("polylinePointIndex"))
+                                    object.polylinePointIndex = $root.google.maps.routing.v2.PolylineDetails.PolylinePointIndex.toObject(message.polylinePointIndex, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this NarrowRoadInfo to JSON.
+                             * @function toJSON
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            NarrowRoadInfo.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for NarrowRoadInfo
+                             * @function getTypeUrl
+                             * @memberof google.maps.routing.v2.PolylineDetails.NarrowRoadInfo
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            NarrowRoadInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.maps.routing.v2.PolylineDetails.NarrowRoadInfo";
+                            };
+    
+                            return NarrowRoadInfo;
+                        })();
+    
+                        return PolylineDetails;
+                    })();
+    
                     v2.Route = (function() {
     
                         /**
@@ -18506,6 +19691,7 @@
                          * @property {Array.<number>|null} [optimizedIntermediateWaypointIndex] Route optimizedIntermediateWaypointIndex
                          * @property {google.maps.routing.v2.Route.IRouteLocalizedValues|null} [localizedValues] Route localizedValues
                          * @property {string|null} [routeToken] Route routeToken
+                         * @property {google.maps.routing.v2.IPolylineDetails|null} [polylineDetails] Route polylineDetails
                          */
     
                         /**
@@ -18632,6 +19818,14 @@
                         Route.prototype.routeToken = "";
     
                         /**
+                         * Route polylineDetails.
+                         * @member {google.maps.routing.v2.IPolylineDetails|null|undefined} polylineDetails
+                         * @memberof google.maps.routing.v2.Route
+                         * @instance
+                         */
+                        Route.prototype.polylineDetails = null;
+    
+                        /**
                          * Creates a new Route instance using the specified properties.
                          * @function create
                          * @memberof google.maps.routing.v2.Route
@@ -18691,6 +19885,8 @@
                                     writer.int32(message.routeLabels[i]);
                                 writer.ldelim();
                             }
+                            if (message.polylineDetails != null && Object.hasOwnProperty.call(message, "polylineDetails"))
+                                $root.google.maps.routing.v2.PolylineDetails.encode(message.polylineDetails, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
                             return writer;
                         };
     
@@ -18718,12 +19914,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Route.decode = function decode(reader, length) {
+                        Route.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.Route();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 13: {
                                         if (!(message.routeLabels && message.routeLabels.length))
@@ -18795,6 +19993,10 @@
                                         message.routeToken = reader.string();
                                         break;
                                     }
+                                case 14: {
+                                        message.polylineDetails = $root.google.maps.routing.v2.PolylineDetails.decode(reader, reader.uint32());
+                                        break;
+                                    }
                                 default:
                                     reader.skipType(tag & 7);
                                     break;
@@ -18841,6 +20043,7 @@
                                     case 1:
                                     case 2:
                                     case 3:
+                                    case 4:
                                         break;
                                     }
                             }
@@ -18906,6 +20109,11 @@
                             if (message.routeToken != null && message.hasOwnProperty("routeToken"))
                                 if (!$util.isString(message.routeToken))
                                     return "routeToken: string expected";
+                            if (message.polylineDetails != null && message.hasOwnProperty("polylineDetails")) {
+                                var error = $root.google.maps.routing.v2.PolylineDetails.verify(message.polylineDetails);
+                                if (error)
+                                    return "polylineDetails." + error;
+                            }
                             return null;
                         };
     
@@ -18947,6 +20155,10 @@
                                     case "FUEL_EFFICIENT":
                                     case 3:
                                         message.routeLabels[i] = 3;
+                                        break;
+                                    case "SHORTER_DISTANCE":
+                                    case 4:
+                                        message.routeLabels[i] = 4;
                                         break;
                                     }
                             }
@@ -19010,6 +20222,11 @@
                             }
                             if (object.routeToken != null)
                                 message.routeToken = String(object.routeToken);
+                            if (object.polylineDetails != null) {
+                                if (typeof object.polylineDetails !== "object")
+                                    throw TypeError(".google.maps.routing.v2.Route.polylineDetails: object expected");
+                                message.polylineDetails = $root.google.maps.routing.v2.PolylineDetails.fromObject(object.polylineDetails);
+                            }
                             return message;
                         };
     
@@ -19042,6 +20259,7 @@
                                 object.travelAdvisory = null;
                                 object.localizedValues = null;
                                 object.routeToken = "";
+                                object.polylineDetails = null;
                             }
                             if (message.legs && message.legs.length) {
                                 object.legs = [];
@@ -19081,6 +20299,8 @@
                                 for (var j = 0; j < message.routeLabels.length; ++j)
                                     object.routeLabels[j] = options.enums === String ? $root.google.maps.routing.v2.RouteLabel[message.routeLabels[j]] === undefined ? message.routeLabels[j] : $root.google.maps.routing.v2.RouteLabel[message.routeLabels[j]] : message.routeLabels[j];
                             }
+                            if (message.polylineDetails != null && message.hasOwnProperty("polylineDetails"))
+                                object.polylineDetails = $root.google.maps.routing.v2.PolylineDetails.toObject(message.polylineDetails, options);
                             return object;
                         };
     
@@ -19228,12 +20448,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RouteLocalizedValues.decode = function decode(reader, length) {
+                            RouteLocalizedValues.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.Route.RouteLocalizedValues();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.distance = $root.google.type.LocalizedText.decode(reader, reader.uint32());
@@ -19537,12 +20759,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteTravelAdvisory.decode = function decode(reader, length) {
+                        RouteTravelAdvisory.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteTravelAdvisory();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.tollInfo = $root.google.maps.routing.v2.TollInfo.decode(reader, reader.uint32());
@@ -19846,12 +21070,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteLegTravelAdvisory.decode = function decode(reader, length) {
+                        RouteLegTravelAdvisory.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegTravelAdvisory();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.tollInfo = $root.google.maps.routing.v2.TollInfo.decode(reader, reader.uint32());
@@ -20088,12 +21314,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteLegStepTravelAdvisory.decode = function decode(reader, length) {
+                        RouteLegStepTravelAdvisory.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegStepTravelAdvisory();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.speedReadingIntervals && message.speedReadingIntervals.length))
@@ -20411,12 +21639,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteLeg.decode = function decode(reader, length) {
+                        RouteLeg.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLeg();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.distanceMeters = reader.int32();
@@ -20802,12 +22032,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RouteLegLocalizedValues.decode = function decode(reader, length) {
+                            RouteLegLocalizedValues.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLeg.RouteLegLocalizedValues();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.distance = $root.google.type.LocalizedText.decode(reader, reader.uint32());
@@ -21047,12 +22279,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            StepsOverview.decode = function decode(reader, length) {
+                            StepsOverview.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLeg.StepsOverview();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (!(message.multiModalSegments && message.multiModalSegments.length))
@@ -21243,23 +22477,13 @@
                                 // OneOf field names bound to virtual getters and setters
                                 var $oneOfFields;
     
-                                /**
-                                 * MultiModalSegment _stepStartIndex.
-                                 * @member {"stepStartIndex"|undefined} _stepStartIndex
-                                 * @memberof google.maps.routing.v2.RouteLeg.StepsOverview.MultiModalSegment
-                                 * @instance
-                                 */
+                                // Virtual OneOf for proto3 optional field
                                 Object.defineProperty(MultiModalSegment.prototype, "_stepStartIndex", {
                                     get: $util.oneOfGetter($oneOfFields = ["stepStartIndex"]),
                                     set: $util.oneOfSetter($oneOfFields)
                                 });
     
-                                /**
-                                 * MultiModalSegment _stepEndIndex.
-                                 * @member {"stepEndIndex"|undefined} _stepEndIndex
-                                 * @memberof google.maps.routing.v2.RouteLeg.StepsOverview.MultiModalSegment
-                                 * @instance
-                                 */
+                                // Virtual OneOf for proto3 optional field
                                 Object.defineProperty(MultiModalSegment.prototype, "_stepEndIndex", {
                                     get: $util.oneOfGetter($oneOfFields = ["stepEndIndex"]),
                                     set: $util.oneOfSetter($oneOfFields)
@@ -21324,12 +22548,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                MultiModalSegment.decode = function decode(reader, length) {
+                                MultiModalSegment.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLeg.StepsOverview.MultiModalSegment();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.stepStartIndex = reader.int32();
@@ -21722,12 +22948,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteLegStep.decode = function decode(reader, length) {
+                        RouteLegStep.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegStep();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.distanceMeters = reader.int32();
@@ -22121,12 +23349,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            RouteLegStepLocalizedValues.decode = function decode(reader, length) {
+                            RouteLegStepLocalizedValues.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegStep.RouteLegStepLocalizedValues();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.distance = $root.google.type.LocalizedText.decode(reader, reader.uint32());
@@ -22416,12 +23646,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteLegStepTransitDetails.decode = function decode(reader, length) {
+                        RouteLegStepTransitDetails.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegStepTransitDetails();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.stopDetails = $root.google.maps.routing.v2.RouteLegStepTransitDetails.TransitStopDetails.decode(reader, reader.uint32());
@@ -22742,12 +23974,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            TransitStopDetails.decode = function decode(reader, length) {
+                            TransitStopDetails.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegStepTransitDetails.TransitStopDetails();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.arrivalStop = $root.google.maps.routing.v2.TransitStop.decode(reader, reader.uint32());
@@ -23013,12 +24247,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            TransitDetailsLocalizedValues.decode = function decode(reader, length) {
+                            TransitDetailsLocalizedValues.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteLegStepTransitDetails.TransitDetailsLocalizedValues();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.arrivalTime = $root.google.maps.routing.v2.LocalizedTime.decode(reader, reader.uint32());
@@ -23165,6 +24401,7 @@
                      * @property {number} DEFAULT_ROUTE=1 DEFAULT_ROUTE value
                      * @property {number} DEFAULT_ROUTE_ALTERNATE=2 DEFAULT_ROUTE_ALTERNATE value
                      * @property {number} FUEL_EFFICIENT=3 FUEL_EFFICIENT value
+                     * @property {number} SHORTER_DISTANCE=4 SHORTER_DISTANCE value
                      */
                     v2.RouteLabel = (function() {
                         var valuesById = {}, values = Object.create(valuesById);
@@ -23172,6 +24409,7 @@
                         values[valuesById[1] = "DEFAULT_ROUTE"] = 1;
                         values[valuesById[2] = "DEFAULT_ROUTE_ALTERNATE"] = 2;
                         values[valuesById[3] = "FUEL_EFFICIENT"] = 3;
+                        values[valuesById[4] = "SHORTER_DISTANCE"] = 4;
                         return values;
                     })();
     
@@ -23250,23 +24488,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * SpeedReadingInterval _startPolylinePointIndex.
-                         * @member {"startPolylinePointIndex"|undefined} _startPolylinePointIndex
-                         * @memberof google.maps.routing.v2.SpeedReadingInterval
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SpeedReadingInterval.prototype, "_startPolylinePointIndex", {
                             get: $util.oneOfGetter($oneOfFields = ["startPolylinePointIndex"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * SpeedReadingInterval _endPolylinePointIndex.
-                         * @member {"endPolylinePointIndex"|undefined} _endPolylinePointIndex
-                         * @memberof google.maps.routing.v2.SpeedReadingInterval
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(SpeedReadingInterval.prototype, "_endPolylinePointIndex", {
                             get: $util.oneOfGetter($oneOfFields = ["endPolylinePointIndex"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -23340,12 +24568,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SpeedReadingInterval.decode = function decode(reader, length) {
+                        SpeedReadingInterval.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.SpeedReadingInterval();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.startPolylinePointIndex = reader.int32();
@@ -23628,12 +24858,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TollInfo.decode = function decode(reader, length) {
+                        TollInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.TollInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.estimatedPrice && message.estimatedPrice.length))
@@ -23872,12 +25104,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransitAgency.decode = function decode(reader, length) {
+                        TransitAgency.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.TransitAgency();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -24179,12 +25413,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransitLine.decode = function decode(reader, length) {
+                        TransitLine.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.TransitLine();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.agencies && message.agencies.length))
@@ -24503,12 +25739,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransitStop.decode = function decode(reader, length) {
+                        TransitStop.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.TransitStop();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -24757,12 +25995,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransitVehicle.decode = function decode(reader, length) {
+                        TransitVehicle.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.TransitVehicle();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = $root.google.type.LocalizedText.decode(reader, reader.uint32());
@@ -25214,12 +26454,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteModifiers.decode = function decode(reader, length) {
+                        RouteModifiers.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteModifiers();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.avoidTolls = reader.bool();
@@ -26215,12 +27457,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VehicleInfo.decode = function decode(reader, length) {
+                        VehicleInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.VehicleInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.emissionType = reader.int32();
@@ -26783,12 +28027,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ComputeRoutesRequest.decode = function decode(reader, length) {
+                        ComputeRoutesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.ComputeRoutesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.origin = $root.google.maps.routing.v2.Waypoint.decode(reader, reader.uint32());
@@ -27021,6 +28267,7 @@
                                         return "requestedReferenceRoutes: enum value[] expected";
                                     case 0:
                                     case 1:
+                                    case 2:
                                         break;
                                     }
                             }
@@ -27036,6 +28283,8 @@
                                     case 2:
                                     case 3:
                                     case 4:
+                                    case 7:
+                                    case 8:
                                         break;
                                     }
                             }
@@ -27247,6 +28496,10 @@
                                     case 1:
                                         message.requestedReferenceRoutes[i] = 1;
                                         break;
+                                    case "SHORTER_DISTANCE":
+                                    case 2:
+                                        message.requestedReferenceRoutes[i] = 2;
+                                        break;
                                     }
                             }
                             if (object.extraComputations) {
@@ -27279,6 +28532,14 @@
                                     case "HTML_FORMATTED_NAVIGATION_INSTRUCTIONS":
                                     case 4:
                                         message.extraComputations[i] = 4;
+                                        break;
+                                    case "FLYOVER_INFO_ON_POLYLINE":
+                                    case 7:
+                                        message.extraComputations[i] = 7;
+                                        break;
+                                    case "NARROW_ROAD_INFO_ON_POLYLINE":
+                                    case 8:
+                                        message.extraComputations[i] = 8;
                                         break;
                                     }
                             }
@@ -27432,11 +28693,13 @@
                          * @enum {number}
                          * @property {number} REFERENCE_ROUTE_UNSPECIFIED=0 REFERENCE_ROUTE_UNSPECIFIED value
                          * @property {number} FUEL_EFFICIENT=1 FUEL_EFFICIENT value
+                         * @property {number} SHORTER_DISTANCE=2 SHORTER_DISTANCE value
                          */
                         ComputeRoutesRequest.ReferenceRoute = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
                             values[valuesById[0] = "REFERENCE_ROUTE_UNSPECIFIED"] = 0;
                             values[valuesById[1] = "FUEL_EFFICIENT"] = 1;
+                            values[valuesById[2] = "SHORTER_DISTANCE"] = 2;
                             return values;
                         })();
     
@@ -27449,6 +28712,8 @@
                          * @property {number} FUEL_CONSUMPTION=2 FUEL_CONSUMPTION value
                          * @property {number} TRAFFIC_ON_POLYLINE=3 TRAFFIC_ON_POLYLINE value
                          * @property {number} HTML_FORMATTED_NAVIGATION_INSTRUCTIONS=4 HTML_FORMATTED_NAVIGATION_INSTRUCTIONS value
+                         * @property {number} FLYOVER_INFO_ON_POLYLINE=7 FLYOVER_INFO_ON_POLYLINE value
+                         * @property {number} NARROW_ROAD_INFO_ON_POLYLINE=8 NARROW_ROAD_INFO_ON_POLYLINE value
                          */
                         ComputeRoutesRequest.ExtraComputation = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
@@ -27457,6 +28722,8 @@
                             values[valuesById[2] = "FUEL_CONSUMPTION"] = 2;
                             values[valuesById[3] = "TRAFFIC_ON_POLYLINE"] = 3;
                             values[valuesById[4] = "HTML_FORMATTED_NAVIGATION_INSTRUCTIONS"] = 4;
+                            values[valuesById[7] = "FLYOVER_INFO_ON_POLYLINE"] = 7;
+                            values[valuesById[8] = "NARROW_ROAD_INFO_ON_POLYLINE"] = 8;
                             return values;
                         })();
     
@@ -27572,12 +28839,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ComputeRoutesResponse.decode = function decode(reader, length) {
+                        ComputeRoutesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.ComputeRoutesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.routes && message.routes.length))
@@ -27960,12 +29229,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ComputeRouteMatrixRequest.decode = function decode(reader, length) {
+                        ComputeRouteMatrixRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.ComputeRouteMatrixRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.origins && message.origins.length))
@@ -28535,12 +29806,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteMatrixOrigin.decode = function decode(reader, length) {
+                        RouteMatrixOrigin.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteMatrixOrigin();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.waypoint = $root.google.maps.routing.v2.Waypoint.decode(reader, reader.uint32());
@@ -28761,12 +30034,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteMatrixDestination.decode = function decode(reader, length) {
+                        RouteMatrixDestination.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteMatrixDestination();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.waypoint = $root.google.maps.routing.v2.Waypoint.decode(reader, reader.uint32());
@@ -29000,23 +30275,13 @@
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
-                        /**
-                         * RouteMatrixElement _originIndex.
-                         * @member {"originIndex"|undefined} _originIndex
-                         * @memberof google.maps.routing.v2.RouteMatrixElement
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(RouteMatrixElement.prototype, "_originIndex", {
                             get: $util.oneOfGetter($oneOfFields = ["originIndex"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
-                        /**
-                         * RouteMatrixElement _destinationIndex.
-                         * @member {"destinationIndex"|undefined} _destinationIndex
-                         * @memberof google.maps.routing.v2.RouteMatrixElement
-                         * @instance
-                         */
+                        // Virtual OneOf for proto3 optional field
                         Object.defineProperty(RouteMatrixElement.prototype, "_destinationIndex", {
                             get: $util.oneOfGetter($oneOfFields = ["destinationIndex"]),
                             set: $util.oneOfSetter($oneOfFields)
@@ -29093,12 +30358,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RouteMatrixElement.decode = function decode(reader, length) {
+                        RouteMatrixElement.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteMatrixElement();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.originIndex = reader.int32();
@@ -29498,12 +30765,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocalizedValues.decode = function decode(reader, length) {
+                            LocalizedValues.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.RouteMatrixElement.LocalizedValues();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.distance = $root.google.type.LocalizedText.decode(reader, reader.uint32());
@@ -29829,12 +31098,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TransitPreferences.decode = function decode(reader, length) {
+                        TransitPreferences.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.TransitPreferences();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.allowedTravelModes && message.allowedTravelModes.length))
@@ -30250,12 +31521,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Waypoint.decode = function decode(reader, length) {
+                        Waypoint.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.maps.routing.v2.Waypoint();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.location = $root.google.maps.routing.v2.Location.decode(reader, reader.uint32());
@@ -30579,12 +31852,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();
@@ -30754,6 +32029,34 @@
              */
             var api = {};
     
+            /**
+             * FieldBehavior enum.
+             * @name google.api.FieldBehavior
+             * @enum {number}
+             * @property {number} FIELD_BEHAVIOR_UNSPECIFIED=0 FIELD_BEHAVIOR_UNSPECIFIED value
+             * @property {number} OPTIONAL=1 OPTIONAL value
+             * @property {number} REQUIRED=2 REQUIRED value
+             * @property {number} OUTPUT_ONLY=3 OUTPUT_ONLY value
+             * @property {number} INPUT_ONLY=4 INPUT_ONLY value
+             * @property {number} IMMUTABLE=5 IMMUTABLE value
+             * @property {number} UNORDERED_LIST=6 UNORDERED_LIST value
+             * @property {number} NON_EMPTY_DEFAULT=7 NON_EMPTY_DEFAULT value
+             * @property {number} IDENTIFIER=8 IDENTIFIER value
+             */
+            api.FieldBehavior = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "FIELD_BEHAVIOR_UNSPECIFIED"] = 0;
+                values[valuesById[1] = "OPTIONAL"] = 1;
+                values[valuesById[2] = "REQUIRED"] = 2;
+                values[valuesById[3] = "OUTPUT_ONLY"] = 3;
+                values[valuesById[4] = "INPUT_ONLY"] = 4;
+                values[valuesById[5] = "IMMUTABLE"] = 5;
+                values[valuesById[6] = "UNORDERED_LIST"] = 6;
+                values[valuesById[7] = "NON_EMPTY_DEFAULT"] = 7;
+                values[valuesById[8] = "IDENTIFIER"] = 8;
+                return values;
+            })();
+    
             api.Http = (function() {
     
                 /**
@@ -30852,12 +32155,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -31202,12 +32507,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -31586,12 +32893,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -31818,12 +33127,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -32187,12 +33498,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -32531,6 +33844,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -32632,6 +33946,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -32678,6 +34000,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -32705,12 +34029,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -32756,6 +34082,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -32850,6 +34180,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -32944,6 +34277,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -32973,6 +34308,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -33003,6 +34339,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -33144,12 +34482,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -33411,12 +34751,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -33619,12 +34961,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -33827,12 +35171,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34035,12 +35381,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34308,12 +35656,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34687,12 +36037,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -34895,12 +36247,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -35127,12 +36481,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -35405,12 +36761,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -35643,34 +37001,6 @@
                 values[valuesById[3] = "BETA"] = 3;
                 values[valuesById[4] = "GA"] = 4;
                 values[valuesById[5] = "DEPRECATED"] = 5;
-                return values;
-            })();
-    
-            /**
-             * FieldBehavior enum.
-             * @name google.api.FieldBehavior
-             * @enum {number}
-             * @property {number} FIELD_BEHAVIOR_UNSPECIFIED=0 FIELD_BEHAVIOR_UNSPECIFIED value
-             * @property {number} OPTIONAL=1 OPTIONAL value
-             * @property {number} REQUIRED=2 REQUIRED value
-             * @property {number} OUTPUT_ONLY=3 OUTPUT_ONLY value
-             * @property {number} INPUT_ONLY=4 INPUT_ONLY value
-             * @property {number} IMMUTABLE=5 IMMUTABLE value
-             * @property {number} UNORDERED_LIST=6 UNORDERED_LIST value
-             * @property {number} NON_EMPTY_DEFAULT=7 NON_EMPTY_DEFAULT value
-             * @property {number} IDENTIFIER=8 IDENTIFIER value
-             */
-            api.FieldBehavior = (function() {
-                var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "FIELD_BEHAVIOR_UNSPECIFIED"] = 0;
-                values[valuesById[1] = "OPTIONAL"] = 1;
-                values[valuesById[2] = "REQUIRED"] = 2;
-                values[valuesById[3] = "OUTPUT_ONLY"] = 3;
-                values[valuesById[4] = "INPUT_ONLY"] = 4;
-                values[valuesById[5] = "IMMUTABLE"] = 5;
-                values[valuesById[6] = "UNORDERED_LIST"] = 6;
-                values[valuesById[7] = "NON_EMPTY_DEFAULT"] = 7;
-                values[valuesById[8] = "IDENTIFIER"] = 8;
                 return values;
             })();
     

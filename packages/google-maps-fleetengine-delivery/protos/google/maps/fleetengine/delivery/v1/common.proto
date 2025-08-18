@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,8 +25,10 @@ option csharp_namespace = "Google.Maps.FleetEngine.Delivery.V1";
 option go_package = "cloud.google.com/go/maps/fleetengine/delivery/apiv1/deliverypb;deliverypb";
 option java_multiple_files = true;
 option java_outer_classname = "Common";
-option java_package = "google.maps.fleetengine.delivery.v1";
+option java_package = "com.google.maps.fleetengine.delivery.v1";
 option objc_class_prefix = "CFED";
+option php_namespace = "Google\\Maps\\FleetEngine\\Delivery\\V1";
+option ruby_package = "Google::Maps::FleetEngine::Delivery::V1";
 
 // Describes a vehicle attribute as a key-value pair. The "key:value" string
 // length cannot exceed 256 characters.
@@ -141,6 +143,19 @@ message DeliveryVehicleLocation {
 
   // Accuracy of `raw_location` as a radius, in meters.
   google.protobuf.DoubleValue raw_location_accuracy = 25;
+
+  // The location from Android's Fused Location Provider.
+  google.type.LatLng flp_location = 29;
+
+  // Update timestamp of the `flp_location`
+  google.protobuf.Timestamp flp_update_time = 30;
+
+  // Accuracy of `flp_location` in meters as a radius.
+  google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;
+
+  // Direction the vehicle is moving in degrees, as determined by the Fused
+  // Location Provider. 0 represents North. The valid range is [0,360).
+  google.protobuf.Int32Value flp_heading_degrees = 32;
 
   // Supplemental location provided by the integrating app.
   google.type.LatLng supplemental_location = 18;

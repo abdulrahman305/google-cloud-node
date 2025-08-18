@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,19 +27,7 @@ type EkmServiceClient = v1.EkmServiceClient;
 const KeyManagementServiceClient = v1.KeyManagementServiceClient;
 type KeyManagementServiceClient = v1.KeyManagementServiceClient;
 
-export {
-  v1,
-  AutokeyClient,
-  AutokeyAdminClient,
-  EkmServiceClient,
-  KeyManagementServiceClient,
-};
-export default {
-  v1,
-  AutokeyClient,
-  AutokeyAdminClient,
-  EkmServiceClient,
-  KeyManagementServiceClient,
-};
+export {v1, AutokeyClient, AutokeyAdminClient, EkmServiceClient, KeyManagementServiceClient};
+export default {v1, AutokeyClient, AutokeyAdminClient, EkmServiceClient, KeyManagementServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

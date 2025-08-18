@@ -8,12 +8,12 @@
               "nested": {
                 "v1": {
                   "options": {
-                    "cc_enable_arenas": true,
                     "csharp_namespace": "Google.Cloud.TextToSpeech.V1",
                     "go_package": "cloud.google.com/go/texttospeech/apiv1/texttospeechpb;texttospeechpb",
                     "java_multiple_files": true,
                     "java_outer_classname": "TextToSpeechLongAudioSynthesisProto",
                     "java_package": "com.google.cloud.texttospeech.v1",
+                    "objc_class_prefix": "CTTS",
                     "php_namespace": "Google\\Cloud\\TextToSpeech\\V1",
                     "ruby_package": "Google::Cloud::TextToSpeech::V1",
                     "(google.api.resource_definition).type": "automl.googleapis.com/Model",
@@ -63,6 +63,12 @@
                               "(google.api.method_signature)": "input,voice,audio_config"
                             }
                           ]
+                        },
+                        "StreamingSynthesize": {
+                          "requestType": "StreamingSynthesizeRequest",
+                          "requestStream": true,
+                          "responseType": "StreamingSynthesizeResponse",
+                          "responseStream": true
                         }
                       }
                     },
@@ -81,7 +87,8 @@
                         "MP3": 2,
                         "OGG_OPUS": 3,
                         "MULAW": 5,
-                        "ALAW": 6
+                        "ALAW": 6,
+                        "PCM": 7
                       }
                     },
                     "ListVoicesRequest": {
@@ -125,7 +132,32 @@
                         }
                       }
                     },
+                    "AdvancedVoiceOptions": {
+                      "oneofs": {
+                        "_lowLatencyJourneySynthesis": {
+                          "oneof": [
+                            "lowLatencyJourneySynthesis"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "lowLatencyJourneySynthesis": {
+                          "type": "bool",
+                          "id": 1,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        }
+                      }
+                    },
                     "SynthesizeSpeechRequest": {
+                      "oneofs": {
+                        "_advancedVoiceOptions": {
+                          "oneof": [
+                            "advancedVoiceOptions"
+                          ]
+                        }
+                      },
                       "fields": {
                         "input": {
                           "type": "SynthesisInput",
@@ -147,6 +179,107 @@
                           "options": {
                             "(google.api.field_behavior)": "REQUIRED"
                           }
+                        },
+                        "advancedVoiceOptions": {
+                          "type": "AdvancedVoiceOptions",
+                          "id": 8,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        }
+                      }
+                    },
+                    "CustomPronunciationParams": {
+                      "oneofs": {
+                        "_phrase": {
+                          "oneof": [
+                            "phrase"
+                          ]
+                        },
+                        "_phoneticEncoding": {
+                          "oneof": [
+                            "phoneticEncoding"
+                          ]
+                        },
+                        "_pronunciation": {
+                          "oneof": [
+                            "pronunciation"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "phrase": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        },
+                        "phoneticEncoding": {
+                          "type": "PhoneticEncoding",
+                          "id": 2,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        },
+                        "pronunciation": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        }
+                      },
+                      "nested": {
+                        "PhoneticEncoding": {
+                          "values": {
+                            "PHONETIC_ENCODING_UNSPECIFIED": 0,
+                            "PHONETIC_ENCODING_IPA": 1,
+                            "PHONETIC_ENCODING_X_SAMPA": 2,
+                            "PHONETIC_ENCODING_JAPANESE_YOMIGANA": 3,
+                            "PHONETIC_ENCODING_PINYIN": 4
+                          }
+                        }
+                      }
+                    },
+                    "CustomPronunciations": {
+                      "fields": {
+                        "pronunciations": {
+                          "rule": "repeated",
+                          "type": "CustomPronunciationParams",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "MultiSpeakerMarkup": {
+                      "fields": {
+                        "turns": {
+                          "rule": "repeated",
+                          "type": "Turn",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "Turn": {
+                          "fields": {
+                            "speaker": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "text": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
                         }
                       }
                     },
@@ -155,7 +288,9 @@
                         "inputSource": {
                           "oneof": [
                             "text",
-                            "ssml"
+                            "markup",
+                            "ssml",
+                            "multiSpeakerMarkup"
                           ]
                         }
                       },
@@ -164,9 +299,24 @@
                           "type": "string",
                           "id": 1
                         },
+                        "markup": {
+                          "type": "string",
+                          "id": 5
+                        },
                         "ssml": {
                           "type": "string",
                           "id": 2
+                        },
+                        "multiSpeakerMarkup": {
+                          "type": "MultiSpeakerMarkup",
+                          "id": 4
+                        },
+                        "customPronunciations": {
+                          "type": "CustomPronunciations",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -190,6 +340,13 @@
                         "customVoice": {
                           "type": "CustomVoiceParams",
                           "id": 4
+                        },
+                        "voiceClone": {
+                          "type": "VoiceCloneParams",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -269,7 +426,116 @@
                         }
                       }
                     },
+                    "VoiceCloneParams": {
+                      "fields": {
+                        "voiceCloningKey": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
                     "SynthesizeSpeechResponse": {
+                      "fields": {
+                        "audioContent": {
+                          "type": "bytes",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "StreamingAudioConfig": {
+                      "fields": {
+                        "audioEncoding": {
+                          "type": "AudioEncoding",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "sampleRateHertz": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "speakingRate": {
+                          "type": "double",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "StreamingSynthesizeConfig": {
+                      "fields": {
+                        "voice": {
+                          "type": "VoiceSelectionParams",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "streamingAudioConfig": {
+                          "type": "StreamingAudioConfig",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "customPronunciations": {
+                          "type": "CustomPronunciations",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "StreamingSynthesisInput": {
+                      "oneofs": {
+                        "inputSource": {
+                          "oneof": [
+                            "text",
+                            "markup"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "text": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "markup": {
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "StreamingSynthesizeRequest": {
+                      "oneofs": {
+                        "streamingRequest": {
+                          "oneof": [
+                            "streamingConfig",
+                            "input"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "streamingConfig": {
+                          "type": "StreamingSynthesizeConfig",
+                          "id": 1
+                        },
+                        "input": {
+                          "type": "StreamingSynthesisInput",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "StreamingSynthesizeResponse": {
                       "fields": {
                         "audioContent": {
                           "type": "bytes",
@@ -371,12 +637,12 @@
                 },
                 "v1beta1": {
                   "options": {
-                    "cc_enable_arenas": true,
                     "csharp_namespace": "Google.Cloud.TextToSpeech.V1Beta1",
                     "go_package": "cloud.google.com/go/texttospeech/apiv1beta1/texttospeechpb;texttospeechpb",
                     "java_multiple_files": true,
                     "java_outer_classname": "TextToSpeechLongAudioSynthesisProto",
                     "java_package": "com.google.cloud.texttospeech.v1beta1",
+                    "objc_class_prefix": "CTTS",
                     "php_namespace": "Google\\Cloud\\TextToSpeech\\V1beta1",
                     "ruby_package": "Google::Cloud::TextToSpeech::V1beta1",
                     "(google.api.resource_definition).type": "automl.googleapis.com/Model",
@@ -426,6 +692,12 @@
                               "(google.api.method_signature)": "input,voice,audio_config"
                             }
                           ]
+                        },
+                        "StreamingSynthesize": {
+                          "requestType": "StreamingSynthesizeRequest",
+                          "requestStream": true,
+                          "responseType": "StreamingSynthesizeResponse",
+                          "responseStream": true
                         }
                       }
                     },
@@ -445,7 +717,8 @@
                         "MP3_64_KBPS": 4,
                         "OGG_OPUS": 3,
                         "MULAW": 5,
-                        "ALAW": 6
+                        "ALAW": 6,
+                        "PCM": 7
                       }
                     },
                     "ListVoicesRequest": {
@@ -489,7 +762,32 @@
                         }
                       }
                     },
+                    "AdvancedVoiceOptions": {
+                      "oneofs": {
+                        "_lowLatencyJourneySynthesis": {
+                          "oneof": [
+                            "lowLatencyJourneySynthesis"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "lowLatencyJourneySynthesis": {
+                          "type": "bool",
+                          "id": 1,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        }
+                      }
+                    },
                     "SynthesizeSpeechRequest": {
+                      "oneofs": {
+                        "_advancedVoiceOptions": {
+                          "oneof": [
+                            "advancedVoiceOptions"
+                          ]
+                        }
+                      },
                       "fields": {
                         "input": {
                           "type": "SynthesisInput",
@@ -516,6 +814,13 @@
                           "rule": "repeated",
                           "type": "TimepointType",
                           "id": 4
+                        },
+                        "advancedVoiceOptions": {
+                          "type": "AdvancedVoiceOptions",
+                          "id": 8,
+                          "options": {
+                            "proto3_optional": true
+                          }
                         }
                       },
                       "nested": {
@@ -527,12 +832,105 @@
                         }
                       }
                     },
+                    "CustomPronunciationParams": {
+                      "oneofs": {
+                        "_phrase": {
+                          "oneof": [
+                            "phrase"
+                          ]
+                        },
+                        "_phoneticEncoding": {
+                          "oneof": [
+                            "phoneticEncoding"
+                          ]
+                        },
+                        "_pronunciation": {
+                          "oneof": [
+                            "pronunciation"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "phrase": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        },
+                        "phoneticEncoding": {
+                          "type": "PhoneticEncoding",
+                          "id": 2,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        },
+                        "pronunciation": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "proto3_optional": true
+                          }
+                        }
+                      },
+                      "nested": {
+                        "PhoneticEncoding": {
+                          "values": {
+                            "PHONETIC_ENCODING_UNSPECIFIED": 0,
+                            "PHONETIC_ENCODING_IPA": 1,
+                            "PHONETIC_ENCODING_X_SAMPA": 2
+                          }
+                        }
+                      }
+                    },
+                    "CustomPronunciations": {
+                      "fields": {
+                        "pronunciations": {
+                          "rule": "repeated",
+                          "type": "CustomPronunciationParams",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "MultiSpeakerMarkup": {
+                      "fields": {
+                        "turns": {
+                          "rule": "repeated",
+                          "type": "Turn",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "Turn": {
+                          "fields": {
+                            "speaker": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "text": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "SynthesisInput": {
                       "oneofs": {
                         "inputSource": {
                           "oneof": [
                             "text",
-                            "ssml"
+                            "ssml",
+                            "multiSpeakerMarkup"
                           ]
                         }
                       },
@@ -544,6 +942,17 @@
                         "ssml": {
                           "type": "string",
                           "id": 2
+                        },
+                        "multiSpeakerMarkup": {
+                          "type": "MultiSpeakerMarkup",
+                          "id": 4
+                        },
+                        "customPronunciations": {
+                          "type": "CustomPronunciations",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -567,6 +976,13 @@
                         "customVoice": {
                           "type": "CustomVoiceParams",
                           "id": 4
+                        },
+                        "voiceClone": {
+                          "type": "VoiceCloneParams",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -646,6 +1062,17 @@
                         }
                       }
                     },
+                    "VoiceCloneParams": {
+                      "fields": {
+                        "voiceCloningKey": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
                     "SynthesizeSpeechResponse": {
                       "fields": {
                         "audioContent": {
@@ -672,6 +1099,85 @@
                         "timeSeconds": {
                           "type": "double",
                           "id": 3
+                        }
+                      }
+                    },
+                    "StreamingAudioConfig": {
+                      "fields": {
+                        "audioEncoding": {
+                          "type": "AudioEncoding",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "sampleRateHertz": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "StreamingSynthesizeConfig": {
+                      "fields": {
+                        "voice": {
+                          "type": "VoiceSelectionParams",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "streamingAudioConfig": {
+                          "type": "StreamingAudioConfig",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "StreamingSynthesisInput": {
+                      "oneofs": {
+                        "inputSource": {
+                          "oneof": [
+                            "text"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "text": {
+                          "type": "string",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "StreamingSynthesizeRequest": {
+                      "oneofs": {
+                        "streamingRequest": {
+                          "oneof": [
+                            "streamingConfig",
+                            "input"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "streamingConfig": {
+                          "type": "StreamingSynthesizeConfig",
+                          "id": 1
+                        },
+                        "input": {
+                          "type": "StreamingSynthesisInput",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "StreamingSynthesizeResponse": {
+                      "fields": {
+                        "audioContent": {
+                          "type": "bytes",
+                          "id": 1
                         }
                       }
                     },
@@ -884,6 +1390,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -992,6 +1503,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -1167,7 +1682,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -1273,6 +1791,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -1282,6 +1801,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -1297,6 +1817,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1314,18 +1835,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -1366,6 +1881,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1448,6 +1964,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -1521,6 +2038,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1600,6 +2118,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1612,6 +2131,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1653,6 +2173,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1669,6 +2190,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1686,6 +2208,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -1720,6 +2243,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -1861,6 +2385,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -1934,6 +2459,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -1995,10 +2521,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -2082,6 +2605,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2101,6 +2625,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -2144,6 +2669,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -2177,6 +2703,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2203,6 +2730,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -2245,6 +2773,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -2294,6 +2823,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -2366,8 +2896,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -2423,6 +2965,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -2454,6 +2997,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -2467,12 +3011,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -2492,6 +3042,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -2505,7 +3056,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

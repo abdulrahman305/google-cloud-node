@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -2598,6 +2598,20 @@ export namespace google {
                      * @returns Promise
                      */
                     public updateWorkflow(request: google.cloud.workflows.v1.IUpdateWorkflowRequest): Promise<google.longrunning.Operation>;
+
+                    /**
+                     * Calls ListWorkflowRevisions.
+                     * @param request ListWorkflowRevisionsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListWorkflowRevisionsResponse
+                     */
+                    public listWorkflowRevisions(request: google.cloud.workflows.v1.IListWorkflowRevisionsRequest, callback: google.cloud.workflows.v1.Workflows.ListWorkflowRevisionsCallback): void;
+
+                    /**
+                     * Calls ListWorkflowRevisions.
+                     * @param request ListWorkflowRevisionsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listWorkflowRevisions(request: google.cloud.workflows.v1.IListWorkflowRevisionsRequest): Promise<google.cloud.workflows.v1.ListWorkflowRevisionsResponse>;
                 }
 
                 namespace Workflows {
@@ -2636,6 +2650,13 @@ export namespace google {
                      * @param [response] Operation
                      */
                     type UpdateWorkflowCallback = (error: (Error|null), response?: google.longrunning.Operation) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.workflows.v1.Workflows|listWorkflowRevisions}.
+                     * @param error Error, if any
+                     * @param [response] ListWorkflowRevisionsResponse
+                     */
+                    type ListWorkflowRevisionsCallback = (error: (Error|null), response?: google.cloud.workflows.v1.ListWorkflowRevisionsResponse) => void;
                 }
 
                 /** Properties of a Workflow. */
@@ -2682,6 +2703,21 @@ export namespace google {
 
                     /** Workflow userEnvVars */
                     userEnvVars?: ({ [k: string]: string }|null);
+
+                    /** Workflow executionHistoryLevel */
+                    executionHistoryLevel?: (google.cloud.workflows.v1.ExecutionHistoryLevel|keyof typeof google.cloud.workflows.v1.ExecutionHistoryLevel|null);
+
+                    /** Workflow allKmsKeys */
+                    allKmsKeys?: (string[]|null);
+
+                    /** Workflow allKmsKeysVersions */
+                    allKmsKeysVersions?: (string[]|null);
+
+                    /** Workflow cryptoKeyVersion */
+                    cryptoKeyVersion?: (string|null);
+
+                    /** Workflow tags */
+                    tags?: ({ [k: string]: string }|null);
                 }
 
                 /** Represents a Workflow. */
@@ -2734,6 +2770,21 @@ export namespace google {
 
                     /** Workflow userEnvVars. */
                     public userEnvVars: { [k: string]: string };
+
+                    /** Workflow executionHistoryLevel. */
+                    public executionHistoryLevel: (google.cloud.workflows.v1.ExecutionHistoryLevel|keyof typeof google.cloud.workflows.v1.ExecutionHistoryLevel);
+
+                    /** Workflow allKmsKeys. */
+                    public allKmsKeys: string[];
+
+                    /** Workflow allKmsKeysVersions. */
+                    public allKmsKeysVersions: string[];
+
+                    /** Workflow cryptoKeyVersion. */
+                    public cryptoKeyVersion: string;
+
+                    /** Workflow tags. */
+                    public tags: { [k: string]: string };
 
                     /** Workflow sourceCode. */
                     public sourceCode?: "sourceContents";
@@ -3707,6 +3758,225 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListWorkflowRevisionsRequest. */
+                interface IListWorkflowRevisionsRequest {
+
+                    /** ListWorkflowRevisionsRequest name */
+                    name?: (string|null);
+
+                    /** ListWorkflowRevisionsRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListWorkflowRevisionsRequest pageToken */
+                    pageToken?: (string|null);
+                }
+
+                /** Represents a ListWorkflowRevisionsRequest. */
+                class ListWorkflowRevisionsRequest implements IListWorkflowRevisionsRequest {
+
+                    /**
+                     * Constructs a new ListWorkflowRevisionsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.workflows.v1.IListWorkflowRevisionsRequest);
+
+                    /** ListWorkflowRevisionsRequest name. */
+                    public name: string;
+
+                    /** ListWorkflowRevisionsRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListWorkflowRevisionsRequest pageToken. */
+                    public pageToken: string;
+
+                    /**
+                     * Creates a new ListWorkflowRevisionsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListWorkflowRevisionsRequest instance
+                     */
+                    public static create(properties?: google.cloud.workflows.v1.IListWorkflowRevisionsRequest): google.cloud.workflows.v1.ListWorkflowRevisionsRequest;
+
+                    /**
+                     * Encodes the specified ListWorkflowRevisionsRequest message. Does not implicitly {@link google.cloud.workflows.v1.ListWorkflowRevisionsRequest.verify|verify} messages.
+                     * @param message ListWorkflowRevisionsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.workflows.v1.IListWorkflowRevisionsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListWorkflowRevisionsRequest message, length delimited. Does not implicitly {@link google.cloud.workflows.v1.ListWorkflowRevisionsRequest.verify|verify} messages.
+                     * @param message ListWorkflowRevisionsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.workflows.v1.IListWorkflowRevisionsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListWorkflowRevisionsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListWorkflowRevisionsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.workflows.v1.ListWorkflowRevisionsRequest;
+
+                    /**
+                     * Decodes a ListWorkflowRevisionsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListWorkflowRevisionsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.workflows.v1.ListWorkflowRevisionsRequest;
+
+                    /**
+                     * Verifies a ListWorkflowRevisionsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListWorkflowRevisionsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListWorkflowRevisionsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.workflows.v1.ListWorkflowRevisionsRequest;
+
+                    /**
+                     * Creates a plain object from a ListWorkflowRevisionsRequest message. Also converts values to other types if specified.
+                     * @param message ListWorkflowRevisionsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.workflows.v1.ListWorkflowRevisionsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListWorkflowRevisionsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListWorkflowRevisionsRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListWorkflowRevisionsResponse. */
+                interface IListWorkflowRevisionsResponse {
+
+                    /** ListWorkflowRevisionsResponse workflows */
+                    workflows?: (google.cloud.workflows.v1.IWorkflow[]|null);
+
+                    /** ListWorkflowRevisionsResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListWorkflowRevisionsResponse. */
+                class ListWorkflowRevisionsResponse implements IListWorkflowRevisionsResponse {
+
+                    /**
+                     * Constructs a new ListWorkflowRevisionsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.workflows.v1.IListWorkflowRevisionsResponse);
+
+                    /** ListWorkflowRevisionsResponse workflows. */
+                    public workflows: google.cloud.workflows.v1.IWorkflow[];
+
+                    /** ListWorkflowRevisionsResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListWorkflowRevisionsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListWorkflowRevisionsResponse instance
+                     */
+                    public static create(properties?: google.cloud.workflows.v1.IListWorkflowRevisionsResponse): google.cloud.workflows.v1.ListWorkflowRevisionsResponse;
+
+                    /**
+                     * Encodes the specified ListWorkflowRevisionsResponse message. Does not implicitly {@link google.cloud.workflows.v1.ListWorkflowRevisionsResponse.verify|verify} messages.
+                     * @param message ListWorkflowRevisionsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.workflows.v1.IListWorkflowRevisionsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListWorkflowRevisionsResponse message, length delimited. Does not implicitly {@link google.cloud.workflows.v1.ListWorkflowRevisionsResponse.verify|verify} messages.
+                     * @param message ListWorkflowRevisionsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.workflows.v1.IListWorkflowRevisionsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListWorkflowRevisionsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListWorkflowRevisionsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.workflows.v1.ListWorkflowRevisionsResponse;
+
+                    /**
+                     * Decodes a ListWorkflowRevisionsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListWorkflowRevisionsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.workflows.v1.ListWorkflowRevisionsResponse;
+
+                    /**
+                     * Verifies a ListWorkflowRevisionsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListWorkflowRevisionsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListWorkflowRevisionsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.workflows.v1.ListWorkflowRevisionsResponse;
+
+                    /**
+                     * Creates a plain object from a ListWorkflowRevisionsResponse message. Also converts values to other types if specified.
+                     * @param message ListWorkflowRevisionsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.workflows.v1.ListWorkflowRevisionsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListWorkflowRevisionsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListWorkflowRevisionsResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** ExecutionHistoryLevel enum. */
+                enum ExecutionHistoryLevel {
+                    EXECUTION_HISTORY_LEVEL_UNSPECIFIED = 0,
+                    EXECUTION_HISTORY_BASIC = 1,
+                    EXECUTION_HISTORY_DETAILED = 2
                 }
             }
 
@@ -5420,6 +5690,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -5460,6 +5733,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -9678,6 +9954,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -9929,7 +10208,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -9960,7 +10239,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -11202,7 +11481,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -11218,7 +11497,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

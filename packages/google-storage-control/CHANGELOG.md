@@ -1,5 +1,39 @@
 # Changelog
 
+## [0.5.0](https://github.com/googleapis/google-cloud-node/compare/storage-control-v0.4.0...storage-control-v0.5.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6426](https://github.com/googleapis/google-cloud-node/issues/6426)) ([6ea5464](https://github.com/googleapis/google-cloud-node/commit/6ea54642532d9797ea87d7cd01c9fac77f9eb035))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [0.4.0](https://github.com/googleapis/google-cloud-node/compare/storage-control-v0.3.0...storage-control-v0.4.0) (2025-03-19)
+
+
+### Features
+
+* [storage] Add Anywhere cache control APIs ([#6151](https://github.com/googleapis/google-cloud-node/issues/6151)) ([6f0340d](https://github.com/googleapis/google-cloud-node/commit/6f0340dc21027b6c66bcf77e8cb1cd30fc7d4ea3))
+
+## [0.3.0](https://github.com/googleapis/google-cloud-node/compare/storage-control-v0.2.1...storage-control-v0.3.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [0.2.1](https://github.com/googleapis/google-cloud-node/compare/storage-control-v0.2.0...storage-control-v0.2.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6019](https://github.com/googleapis/google-cloud-node/issues/6019)) ([734397c](https://github.com/googleapis/google-cloud-node/commit/734397c6b98d0aafe8832544da3f483b1eade1b2))
+
 ## [0.2.0](https://github.com/googleapis/google-cloud-node/compare/storage-control-v0.1.1...storage-control-v0.2.0) (2024-05-21)
 
 

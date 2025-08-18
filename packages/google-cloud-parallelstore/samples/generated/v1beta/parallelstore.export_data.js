@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ function main(name) {
    *  request ID so that if you must retry your request, the server will know to
    *  ignore the request if it has already been completed. The server will
    *  guarantee that for at least 60 minutes since the first request.
-   *  For example, consider a situation where you make an initial request and t
-   *  he request times out. If you make the request again with the same request
+   *  For example, consider a situation where you make an initial request and
+   *  the request times out. If you make the request again with the same request
    *  ID, the server can check if original operation with the same request ID
    *  was received, and if so, will ignore the second request. This prevents
    *  clients from accidentally creating duplicate commitments.
@@ -54,6 +54,21 @@ function main(name) {
    *  not supported (00000000-0000-0000-0000-000000000000).
    */
   // const requestId = 'abc123'
+  /**
+   *  Optional. User-specified Service Account (SA) credentials to be used when
+   *  performing the transfer.
+   *  Use one of the following formats:
+   *  * `{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+   *  * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+   *  * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+   *  If unspecified, the Parallelstore service agent is used:
+   *  `service-<PROJECT_NUMBER>@gcp-sa-parallelstore.iam.gserviceaccount.com`
+   */
+  // const serviceAccount = 'abc123'
+  /**
+   *  Optional. The metadata options for the export data.
+   */
+  // const metadataOptions = {}
 
   // Imports the Parallelstore library
   const {ParallelstoreClient} = require('@google-cloud/parallelstore').v1beta;

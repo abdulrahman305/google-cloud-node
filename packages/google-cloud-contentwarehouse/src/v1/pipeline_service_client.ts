@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,17 +18,11 @@
 
 /* global window */
 import type * as gax from 'google-gax';
-import type {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  GrpcClientOptions,
-  LROperation,
-} from 'google-gax';
+import type {Callback, CallOptions, Descriptors, ClientOptions, GrpcClientOptions, LROperation} from 'google-gax';
 
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -53,6 +47,8 @@ export class PipelineServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('contentwarehouse');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -88,7 +84,7 @@ export class PipelineServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -105,41 +101,20 @@ export class PipelineServiceClient {
    *     const client = new PipelineServiceClient({fallback: true}, gax);
    *     ```
    */
-  constructor(
-    opts?: ClientOptions,
-    gaxInstance?: typeof gax | typeof gax.fallback
-  ) {
+  constructor(opts?: ClientOptions, gaxInstance?: typeof gax | typeof gax.fallback) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof PipelineServiceClient;
-    if (
-      opts?.universe_domain &&
-      opts?.universeDomain &&
-      opts?.universe_domain !== opts?.universeDomain
-    ) {
-      throw new Error(
-        'Please set either universe_domain or universeDomain, but not both.'
-      );
+    if (opts?.universe_domain && opts?.universeDomain && opts?.universe_domain !== opts?.universeDomain) {
+      throw new Error('Please set either universe_domain or universeDomain, but not both.');
     }
-    const universeDomainEnvVar =
-      typeof process === 'object' && typeof process.env === 'object'
-        ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN']
-        : undefined;
-    this._universeDomain =
-      opts?.universeDomain ??
-      opts?.universe_domain ??
-      universeDomainEnvVar ??
-      'googleapis.com';
+    const universeDomainEnvVar = (typeof process === 'object' && typeof process.env === 'object') ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN'] : undefined;
+    this._universeDomain = opts?.universeDomain ?? opts?.universe_domain ?? universeDomainEnvVar ?? 'googleapis.com';
     this._servicePath = 'contentwarehouse.' + this._universeDomain;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || this._servicePath;
-    this._providedCustomServicePath = !!(
-      opts?.servicePath || opts?.apiEndpoint
-    );
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || this._servicePath;
+    this._providedCustomServicePath = !!(opts?.servicePath || opts?.apiEndpoint);
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window?.fetch === 'function');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // Request numeric enum values if REST transport is used.
@@ -165,7 +140,7 @@ export class PipelineServiceClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set useJWTAccessWithScope on the auth object.
     this.auth.useJWTAccessWithScope = true;
@@ -179,7 +154,10 @@ export class PipelineServiceClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process === 'object' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -212,10 +190,9 @@ export class PipelineServiceClient {
       projectLocationDocumentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/documents/{document}'
       ),
-      projectLocationDocumentsReferenceIdPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/documents/referenceId/{reference_id}'
-        ),
+      projectLocationDocumentsReferenceIdPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/documents/referenceId/{reference_id}'
+      ),
       ruleSetPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/ruleSets/{rule_set}'
       ),
@@ -224,48 +201,35 @@ export class PipelineServiceClient {
       ),
     };
 
-    const protoFilesRoot = this._gaxModule.protobuf.Root.fromJSON(jsonProtos);
+    const protoFilesRoot = this._gaxModule.protobufFromJSON(jsonProtos);
     // This API contains "long-running operations", which return a
     // an Operation object that allows for tracking of the operation,
     // rather than holding a request open.
     const lroOptions: GrpcClientOptions = {
       auth: this.auth,
-      grpc: 'grpc' in this._gaxGrpc ? this._gaxGrpc.grpc : undefined,
+      grpc: 'grpc' in this._gaxGrpc ? this._gaxGrpc.grpc : undefined
     };
     if (opts.fallback) {
       lroOptions.protoJson = protoFilesRoot;
-      lroOptions.httpRules = [
-        {
-          selector: 'google.longrunning.Operations.GetOperation',
-          get: '/v1/{name=projects/*/locations/*/operations/*}',
-        },
-      ];
+      lroOptions.httpRules = [{selector: 'google.longrunning.Operations.GetOperation',get: '/v1/{name=projects/*/locations/*/operations/*}',}];
     }
-    this.operationsClient = this._gaxModule
-      .lro(lroOptions)
-      .operationsClient(opts);
+    this.operationsClient = this._gaxModule.lro(lroOptions).operationsClient(opts);
     const runPipelineResponse = protoFilesRoot.lookup(
-      '.google.cloud.contentwarehouse.v1.RunPipelineResponse'
-    ) as gax.protobuf.Type;
+      '.google.cloud.contentwarehouse.v1.RunPipelineResponse') as gax.protobuf.Type;
     const runPipelineMetadata = protoFilesRoot.lookup(
-      '.google.cloud.contentwarehouse.v1.RunPipelineMetadata'
-    ) as gax.protobuf.Type;
+      '.google.cloud.contentwarehouse.v1.RunPipelineMetadata') as gax.protobuf.Type;
 
     this.descriptors.longrunning = {
       runPipeline: new this._gaxModule.LongrunningDescriptor(
         this.operationsClient,
         runPipelineResponse.decode.bind(runPipelineResponse),
-        runPipelineMetadata.decode.bind(runPipelineMetadata)
-      ),
+        runPipelineMetadata.decode.bind(runPipelineMetadata))
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.contentwarehouse.v1.PipelineService',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.contentwarehouse.v1.PipelineService', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -296,36 +260,32 @@ export class PipelineServiceClient {
     // Put together the "service stub" for
     // google.cloud.contentwarehouse.v1.PipelineService.
     this.pipelineServiceStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.contentwarehouse.v1.PipelineService'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (this._protos as any).google.cloud.contentwarehouse.v1
-            .PipelineService,
-      this._opts,
-      this._providedCustomServicePath
-    ) as Promise<{[method: string]: Function}>;
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.contentwarehouse.v1.PipelineService') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (this._protos as any).google.cloud.contentwarehouse.v1.PipelineService,
+        this._opts, this._providedCustomServicePath) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const pipelineServiceStubMethods = ['runPipeline'];
+    const pipelineServiceStubMethods =
+        ['runPipeline'];
     for (const methodName of pipelineServiceStubMethods) {
       const callPromise = this.pipelineServiceStub.then(
-        stub =>
-          (...args: Array<{}>) => {
-            if (this._terminated) {
-              return Promise.reject('The client has already been closed.');
-            }
-            const func = stub[methodName];
-            return func.apply(stub, args);
-          },
-        (err: Error | null | undefined) => () => {
+        stub => (...args: Array<{}>) => {
+          if (this._terminated) {
+            return Promise.reject('The client has already been closed.');
+          }
+          const func = stub[methodName];
+          return func.apply(stub, args);
+        },
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.longrunning[methodName] || undefined;
+      const descriptor =
+        this.descriptors.longrunning[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -345,14 +305,8 @@ export class PipelineServiceClient {
    * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static servicePath is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static servicePath is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'contentwarehouse.googleapis.com';
   }
@@ -363,14 +317,8 @@ export class PipelineServiceClient {
    * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static apiEndpoint is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static apiEndpoint is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'contentwarehouse.googleapis.com';
   }
@@ -401,7 +349,9 @@ export class PipelineServiceClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -410,9 +360,8 @@ export class PipelineServiceClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -424,157 +373,128 @@ export class PipelineServiceClient {
   // -- Service calls --
   // -------------------
 
-  /**
-   * Run a predefined pipeline.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The resource name which owns the resources of the pipeline.
-   *   Format: projects/{project_number}/locations/{location}.
-   * @param {google.cloud.contentwarehouse.v1.GcsIngestPipeline} request.gcsIngestPipeline
-   *   Cloud Storage ingestion pipeline.
-   * @param {google.cloud.contentwarehouse.v1.GcsIngestWithDocAiProcessorsPipeline} request.gcsIngestWithDocAiProcessorsPipeline
-   *   Use DocAI processors to process documents in Cloud Storage and ingest
-   *   them to Document Warehouse.
-   * @param {google.cloud.contentwarehouse.v1.ExportToCdwPipeline} request.exportCdwPipeline
-   *   Export docuemnts from Document Warehouse to CDW for training purpose.
-   * @param {google.cloud.contentwarehouse.v1.ProcessWithDocAiPipeline} request.processWithDocAiPipeline
-   *   Use a DocAI processor to process documents in Document Warehouse, and
-   *   re-ingest the updated results into Document Warehouse.
-   * @param {google.cloud.contentwarehouse.v1.RequestMetadata} request.requestMetadata
-   *   The meta information collected about the end user, used to enforce access
-   *   control for the service.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing
-   *   a long running operation. Its `promise()` method returns a promise
-   *   you can `await` for.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/pipeline_service.run_pipeline.js</caption>
-   * region_tag:contentwarehouse_v1_generated_PipelineService_RunPipeline_async
-   */
+/**
+ * Run a predefined pipeline.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The resource name which owns the resources of the pipeline.
+ *   Format: projects/{project_number}/locations/{location}.
+ * @param {google.cloud.contentwarehouse.v1.GcsIngestPipeline} request.gcsIngestPipeline
+ *   Cloud Storage ingestion pipeline.
+ * @param {google.cloud.contentwarehouse.v1.GcsIngestWithDocAiProcessorsPipeline} request.gcsIngestWithDocAiProcessorsPipeline
+ *   Use DocAI processors to process documents in Cloud Storage and ingest
+ *   them to Document Warehouse.
+ * @param {google.cloud.contentwarehouse.v1.ExportToCdwPipeline} request.exportCdwPipeline
+ *   Export docuemnts from Document Warehouse to CDW for training purpose.
+ * @param {google.cloud.contentwarehouse.v1.ProcessWithDocAiPipeline} request.processWithDocAiPipeline
+ *   Use a DocAI processor to process documents in Document Warehouse, and
+ *   re-ingest the updated results into Document Warehouse.
+ * @param {google.cloud.contentwarehouse.v1.RequestMetadata} request.requestMetadata
+ *   The meta information collected about the end user, used to enforce access
+ *   control for the service.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing
+ *   a long running operation. Its `promise()` method returns a promise
+ *   you can `await` for.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/pipeline_service.run_pipeline.js</caption>
+ * region_tag:contentwarehouse_v1_generated_PipelineService_RunPipeline_async
+ */
   runPipeline(
-    request?: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      LROperation<
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse,
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata
-      >,
-      protos.google.longrunning.IOperation | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
+      options?: CallOptions):
+      Promise<[
+        LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+        protos.google.longrunning.IOperation|undefined, {}|undefined
+      ]>;
   runPipeline(
-    request: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
-    options: CallOptions,
-    callback: Callback<
-      LROperation<
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse,
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
+      options: CallOptions,
+      callback: Callback<
+          LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>): void;
   runPipeline(
-    request: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
-    callback: Callback<
-      LROperation<
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse,
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
+      callback: Callback<
+          LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>): void;
   runPipeline(
-    request?: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
-          LROperation<
-            protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse,
-            protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata
-          >,
-          protos.google.longrunning.IOperation | null | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      LROperation<
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse,
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      LROperation<
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse,
-        protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata
-      >,
-      protos.google.longrunning.IOperation | undefined,
-      {} | undefined,
-    ]
-  > | void {
+      request?: protos.google.cloud.contentwarehouse.v1.IRunPipelineRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+        protos.google.longrunning.IOperation|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.runPipeline(request, options, callback);
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: Callback<
+          LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>|undefined = callback
+      ? (error, response, rawResponse, _) => {
+          this._log.info('runPipeline response %j', rawResponse);
+          callback!(error, response, rawResponse, _); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('runPipeline request %j', request);
+    return this.innerApiCalls.runPipeline(request, options, wrappedCallback)
+    ?.then(([response, rawResponse, _]: [
+      LROperation<protos.google.cloud.contentwarehouse.v1.IRunPipelineResponse, protos.google.cloud.contentwarehouse.v1.IRunPipelineMetadata>,
+      protos.google.longrunning.IOperation|undefined, {}|undefined
+    ]) => {
+      this._log.info('runPipeline response %j', rawResponse);
+      return [response, rawResponse, _];
+    });
   }
-  /**
-   * Check the status of the long running operation returned by `runPipeline()`.
-   * @param {String} name
-   *   The operation name that will be passed.
-   * @returns {Promise} - The promise which resolves to an object.
-   *   The decoded operation object has result and metadata field to get information from.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/pipeline_service.run_pipeline.js</caption>
-   * region_tag:contentwarehouse_v1_generated_PipelineService_RunPipeline_async
-   */
-  async checkRunPipelineProgress(
-    name: string
-  ): Promise<
-    LROperation<
-      protos.google.cloud.contentwarehouse.v1.RunPipelineResponse,
-      protos.google.cloud.contentwarehouse.v1.RunPipelineMetadata
-    >
-  > {
-    const request =
-      new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest(
-        {name}
-      );
+/**
+ * Check the status of the long running operation returned by `runPipeline()`.
+ * @param {String} name
+ *   The operation name that will be passed.
+ * @returns {Promise} - The promise which resolves to an object.
+ *   The decoded operation object has result and metadata field to get information from.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/pipeline_service.run_pipeline.js</caption>
+ * region_tag:contentwarehouse_v1_generated_PipelineService_RunPipeline_async
+ */
+  async checkRunPipelineProgress(name: string): Promise<LROperation<protos.google.cloud.contentwarehouse.v1.RunPipelineResponse, protos.google.cloud.contentwarehouse.v1.RunPipelineMetadata>>{
+    this._log.info('runPipeline long-running');
+    const request = new this._gaxModule.operationsProtos.google.longrunning.GetOperationRequest({name});
     const [operation] = await this.operationsClient.getOperation(request);
-    const decodeOperation = new this._gaxModule.Operation(
-      operation,
-      this.descriptors.longrunning.runPipeline,
-      this._gaxModule.createDefaultBackoffSettings()
-    );
-    return decodeOperation as LROperation<
-      protos.google.cloud.contentwarehouse.v1.RunPipelineResponse,
-      protos.google.cloud.contentwarehouse.v1.RunPipelineMetadata
-    >;
+    const decodeOperation = new this._gaxModule.Operation(operation, this.descriptors.longrunning.runPipeline, this._gaxModule.createDefaultBackoffSettings());
+    return decodeOperation as LROperation<protos.google.cloud.contentwarehouse.v1.RunPipelineResponse, protos.google.cloud.contentwarehouse.v1.RunPipelineMetadata>;
   }
-  /**
+/**
    * Gets the latest state of a long-running operation.  Clients can use this
    * method to poll the operation result at intervals as recommended by the API
    * service.
@@ -606,7 +526,7 @@ export class PipelineServiceClient {
    */
   getOperation(
     request: protos.google.longrunning.GetOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.longrunning.Operation,
@@ -619,6 +539,20 @@ export class PipelineServiceClient {
       {} | null | undefined
     >
   ): Promise<[protos.google.longrunning.Operation]> {
+     let options: gax.CallOptions;
+     if (typeof optionsOrCallback === 'function' && callback === undefined) {
+       callback = optionsOrCallback;
+       options = {};
+     } else {
+       options = optionsOrCallback as gax.CallOptions;
+     }
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.getOperation(request, options, callback);
   }
   /**
@@ -654,7 +588,14 @@ export class PipelineServiceClient {
   listOperationsAsync(
     request: protos.google.longrunning.ListOperationsRequest,
     options?: gax.CallOptions
-  ): AsyncIterable<protos.google.longrunning.ListOperationsResponse> {
+  ): AsyncIterable<protos.google.longrunning.IOperation> {
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.listOperationsAsync(request, options);
   }
   /**
@@ -688,13 +629,13 @@ export class PipelineServiceClient {
    * await client.cancelOperation({name: ''});
    * ```
    */
-  cancelOperation(
+   cancelOperation(
     request: protos.google.longrunning.CancelOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.protobuf.Empty,
           protos.google.longrunning.CancelOperationRequest,
+          protos.google.protobuf.Empty,
           {} | undefined | null
         >,
     callback?: Callback<
@@ -703,6 +644,20 @@ export class PipelineServiceClient {
       {} | undefined | null
     >
   ): Promise<protos.google.protobuf.Empty> {
+     let options: gax.CallOptions;
+     if (typeof optionsOrCallback === 'function' && callback === undefined) {
+       callback = optionsOrCallback;
+       options = {};
+     } else {
+       options = optionsOrCallback as gax.CallOptions;
+     }
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.cancelOperation(request, options, callback);
   }
 
@@ -733,7 +688,7 @@ export class PipelineServiceClient {
    */
   deleteOperation(
     request: protos.google.longrunning.DeleteOperationRequest,
-    options?:
+    optionsOrCallback?:
       | gax.CallOptions
       | Callback<
           protos.google.protobuf.Empty,
@@ -746,6 +701,20 @@ export class PipelineServiceClient {
       {} | null | undefined
     >
   ): Promise<protos.google.protobuf.Empty> {
+     let options: gax.CallOptions;
+     if (typeof optionsOrCallback === 'function' && callback === undefined) {
+       callback = optionsOrCallback;
+       options = {};
+     } else {
+       options = optionsOrCallback as gax.CallOptions;
+     }
+     options = options || {};
+     options.otherArgs = options.otherArgs || {};
+     options.otherArgs.headers = options.otherArgs.headers || {};
+     options.otherArgs.headers['x-goog-request-params'] =
+       this._gaxModule.routingHeader.fromParams({
+         name: request.name ?? '',
+       });
     return this.operationsClient.deleteOperation(request, options, callback);
   }
 
@@ -762,12 +731,7 @@ export class PipelineServiceClient {
    * @param {string} document_link
    * @returns {string} Resource name string.
    */
-  documentLinkPath(
-    project: string,
-    location: string,
-    document: string,
-    documentLink: string
-  ) {
+  documentLinkPath(project:string,location:string,document:string,documentLink:string) {
     return this.pathTemplates.documentLinkPathTemplate.render({
       project: project,
       location: location,
@@ -784,8 +748,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromDocumentLinkName(documentLinkName: string) {
-    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName)
-      .project;
+    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName).project;
   }
 
   /**
@@ -796,8 +759,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromDocumentLinkName(documentLinkName: string) {
-    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName)
-      .location;
+    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName).location;
   }
 
   /**
@@ -808,8 +770,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the document.
    */
   matchDocumentFromDocumentLinkName(documentLinkName: string) {
-    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName)
-      .document;
+    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName).document;
   }
 
   /**
@@ -820,8 +781,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the document_link.
    */
   matchDocumentLinkFromDocumentLinkName(documentLinkName: string) {
-    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName)
-      .document_link;
+    return this.pathTemplates.documentLinkPathTemplate.match(documentLinkName).document_link;
   }
 
   /**
@@ -832,11 +792,7 @@ export class PipelineServiceClient {
    * @param {string} document_schema
    * @returns {string} Resource name string.
    */
-  documentSchemaPath(
-    project: string,
-    location: string,
-    documentSchema: string
-  ) {
+  documentSchemaPath(project:string,location:string,documentSchema:string) {
     return this.pathTemplates.documentSchemaPathTemplate.render({
       project: project,
       location: location,
@@ -852,9 +808,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromDocumentSchemaName(documentSchemaName: string) {
-    return this.pathTemplates.documentSchemaPathTemplate.match(
-      documentSchemaName
-    ).project;
+    return this.pathTemplates.documentSchemaPathTemplate.match(documentSchemaName).project;
   }
 
   /**
@@ -865,9 +819,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromDocumentSchemaName(documentSchemaName: string) {
-    return this.pathTemplates.documentSchemaPathTemplate.match(
-      documentSchemaName
-    ).location;
+    return this.pathTemplates.documentSchemaPathTemplate.match(documentSchemaName).location;
   }
 
   /**
@@ -878,9 +830,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the document_schema.
    */
   matchDocumentSchemaFromDocumentSchemaName(documentSchemaName: string) {
-    return this.pathTemplates.documentSchemaPathTemplate.match(
-      documentSchemaName
-    ).document_schema;
+    return this.pathTemplates.documentSchemaPathTemplate.match(documentSchemaName).document_schema;
   }
 
   /**
@@ -890,7 +840,7 @@ export class PipelineServiceClient {
    * @param {string} location
    * @returns {string} Resource name string.
    */
-  locationPath(project: string, location: string) {
+  locationPath(project:string,location:string) {
     return this.pathTemplates.locationPathTemplate.render({
       project: project,
       location: location,
@@ -927,11 +877,7 @@ export class PipelineServiceClient {
    * @param {string} document
    * @returns {string} Resource name string.
    */
-  projectLocationDocumentPath(
-    project: string,
-    location: string,
-    document: string
-  ) {
+  projectLocationDocumentPath(project:string,location:string,document:string) {
     return this.pathTemplates.projectLocationDocumentPathTemplate.render({
       project: project,
       location: location,
@@ -946,12 +892,8 @@ export class PipelineServiceClient {
    *   A fully-qualified path representing project_location_document resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationDocumentName(
-    projectLocationDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentPathTemplate.match(
-      projectLocationDocumentName
-    ).project;
+  matchProjectFromProjectLocationDocumentName(projectLocationDocumentName: string) {
+    return this.pathTemplates.projectLocationDocumentPathTemplate.match(projectLocationDocumentName).project;
   }
 
   /**
@@ -961,12 +903,8 @@ export class PipelineServiceClient {
    *   A fully-qualified path representing project_location_document resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationDocumentName(
-    projectLocationDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentPathTemplate.match(
-      projectLocationDocumentName
-    ).location;
+  matchLocationFromProjectLocationDocumentName(projectLocationDocumentName: string) {
+    return this.pathTemplates.projectLocationDocumentPathTemplate.match(projectLocationDocumentName).location;
   }
 
   /**
@@ -976,12 +914,8 @@ export class PipelineServiceClient {
    *   A fully-qualified path representing project_location_document resource.
    * @returns {string} A string representing the document.
    */
-  matchDocumentFromProjectLocationDocumentName(
-    projectLocationDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentPathTemplate.match(
-      projectLocationDocumentName
-    ).document;
+  matchDocumentFromProjectLocationDocumentName(projectLocationDocumentName: string) {
+    return this.pathTemplates.projectLocationDocumentPathTemplate.match(projectLocationDocumentName).document;
   }
 
   /**
@@ -992,18 +926,12 @@ export class PipelineServiceClient {
    * @param {string} reference_id
    * @returns {string} Resource name string.
    */
-  projectLocationDocumentsReferenceIdPath(
-    project: string,
-    location: string,
-    referenceId: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        reference_id: referenceId,
-      }
-    );
+  projectLocationDocumentsReferenceIdPath(project:string,location:string,referenceId:string) {
+    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.render({
+      project: project,
+      location: location,
+      reference_id: referenceId,
+    });
   }
 
   /**
@@ -1013,12 +941,8 @@ export class PipelineServiceClient {
    *   A fully-qualified path representing project_location_documents_reference_id resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationDocumentsReferenceIdName(
-    projectLocationDocumentsReferenceIdName: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.match(
-      projectLocationDocumentsReferenceIdName
-    ).project;
+  matchProjectFromProjectLocationDocumentsReferenceIdName(projectLocationDocumentsReferenceIdName: string) {
+    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.match(projectLocationDocumentsReferenceIdName).project;
   }
 
   /**
@@ -1028,12 +952,8 @@ export class PipelineServiceClient {
    *   A fully-qualified path representing project_location_documents_reference_id resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationDocumentsReferenceIdName(
-    projectLocationDocumentsReferenceIdName: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.match(
-      projectLocationDocumentsReferenceIdName
-    ).location;
+  matchLocationFromProjectLocationDocumentsReferenceIdName(projectLocationDocumentsReferenceIdName: string) {
+    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.match(projectLocationDocumentsReferenceIdName).location;
   }
 
   /**
@@ -1043,12 +963,8 @@ export class PipelineServiceClient {
    *   A fully-qualified path representing project_location_documents_reference_id resource.
    * @returns {string} A string representing the reference_id.
    */
-  matchReferenceIdFromProjectLocationDocumentsReferenceIdName(
-    projectLocationDocumentsReferenceIdName: string
-  ) {
-    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.match(
-      projectLocationDocumentsReferenceIdName
-    ).reference_id;
+  matchReferenceIdFromProjectLocationDocumentsReferenceIdName(projectLocationDocumentsReferenceIdName: string) {
+    return this.pathTemplates.projectLocationDocumentsReferenceIdPathTemplate.match(projectLocationDocumentsReferenceIdName).reference_id;
   }
 
   /**
@@ -1059,7 +975,7 @@ export class PipelineServiceClient {
    * @param {string} rule_set
    * @returns {string} Resource name string.
    */
-  ruleSetPath(project: string, location: string, ruleSet: string) {
+  ruleSetPath(project:string,location:string,ruleSet:string) {
     return this.pathTemplates.ruleSetPathTemplate.render({
       project: project,
       location: location,
@@ -1108,7 +1024,7 @@ export class PipelineServiceClient {
    * @param {string} context
    * @returns {string} Resource name string.
    */
-  synonymSetPath(project: string, location: string, context: string) {
+  synonymSetPath(project:string,location:string,context:string) {
     return this.pathTemplates.synonymSetPathTemplate.render({
       project: project,
       location: location,
@@ -1124,8 +1040,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromSynonymSetName(synonymSetName: string) {
-    return this.pathTemplates.synonymSetPathTemplate.match(synonymSetName)
-      .project;
+    return this.pathTemplates.synonymSetPathTemplate.match(synonymSetName).project;
   }
 
   /**
@@ -1136,8 +1051,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromSynonymSetName(synonymSetName: string) {
-    return this.pathTemplates.synonymSetPathTemplate.match(synonymSetName)
-      .location;
+    return this.pathTemplates.synonymSetPathTemplate.match(synonymSetName).location;
   }
 
   /**
@@ -1148,8 +1062,7 @@ export class PipelineServiceClient {
    * @returns {string} A string representing the context.
    */
   matchContextFromSynonymSetName(synonymSetName: string) {
-    return this.pathTemplates.synonymSetPathTemplate.match(synonymSetName)
-      .context;
+    return this.pathTemplates.synonymSetPathTemplate.match(synonymSetName).context;
   }
 
   /**
@@ -1161,9 +1074,10 @@ export class PipelineServiceClient {
   close(): Promise<void> {
     if (this.pipelineServiceStub && !this._terminated) {
       return this.pipelineServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
-        this.operationsClient.close();
+        void this.operationsClient.close();
       });
     }
     return Promise.resolve();

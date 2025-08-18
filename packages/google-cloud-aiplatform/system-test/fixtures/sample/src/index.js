@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,26 +16,23 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const aiplatform = require('@google-cloud/aiplatform');
 
 function main() {
   const datasetServiceClient = new aiplatform.DatasetServiceClient();
-  const deploymentResourcePoolServiceClient =
-    new aiplatform.DeploymentResourcePoolServiceClient();
+  const deploymentResourcePoolServiceClient = new aiplatform.DeploymentResourcePoolServiceClient();
   const endpointServiceClient = new aiplatform.EndpointServiceClient();
-  const featureOnlineStoreAdminServiceClient =
-    new aiplatform.FeatureOnlineStoreAdminServiceClient();
-  const featureOnlineStoreServiceClient =
-    new aiplatform.FeatureOnlineStoreServiceClient();
-  const featureRegistryServiceClient =
-    new aiplatform.FeatureRegistryServiceClient();
-  const featurestoreOnlineServingServiceClient =
-    new aiplatform.FeaturestoreOnlineServingServiceClient();
+  const evaluationServiceClient = new aiplatform.EvaluationServiceClient();
+  const featureOnlineStoreAdminServiceClient = new aiplatform.FeatureOnlineStoreAdminServiceClient();
+  const featureOnlineStoreServiceClient = new aiplatform.FeatureOnlineStoreServiceClient();
+  const featureRegistryServiceClient = new aiplatform.FeatureRegistryServiceClient();
+  const featurestoreOnlineServingServiceClient = new aiplatform.FeaturestoreOnlineServingServiceClient();
   const featurestoreServiceClient = new aiplatform.FeaturestoreServiceClient();
+  const genAiCacheServiceClient = new aiplatform.GenAiCacheServiceClient();
   const genAiTuningServiceClient = new aiplatform.GenAiTuningServiceClient();
-  const indexEndpointServiceClient =
-    new aiplatform.IndexEndpointServiceClient();
+  const indexEndpointServiceClient = new aiplatform.IndexEndpointServiceClient();
   const indexServiceClient = new aiplatform.IndexServiceClient();
   const jobServiceClient = new aiplatform.JobServiceClient();
   const llmUtilityServiceClient = new aiplatform.LlmUtilityServiceClient();
@@ -45,14 +42,16 @@ function main() {
   const modelGardenServiceClient = new aiplatform.ModelGardenServiceClient();
   const modelServiceClient = new aiplatform.ModelServiceClient();
   const notebookServiceClient = new aiplatform.NotebookServiceClient();
-  const persistentResourceServiceClient =
-    new aiplatform.PersistentResourceServiceClient();
+  const persistentResourceServiceClient = new aiplatform.PersistentResourceServiceClient();
   const pipelineServiceClient = new aiplatform.PipelineServiceClient();
   const predictionServiceClient = new aiplatform.PredictionServiceClient();
+  const reasoningEngineExecutionServiceClient = new aiplatform.ReasoningEngineExecutionServiceClient();
+  const reasoningEngineServiceClient = new aiplatform.ReasoningEngineServiceClient();
   const scheduleServiceClient = new aiplatform.ScheduleServiceClient();
-  const specialistPoolServiceClient =
-    new aiplatform.SpecialistPoolServiceClient();
+  const specialistPoolServiceClient = new aiplatform.SpecialistPoolServiceClient();
   const tensorboardServiceClient = new aiplatform.TensorboardServiceClient();
+  const vertexRagDataServiceClient = new aiplatform.VertexRagDataServiceClient();
+  const vertexRagServiceClient = new aiplatform.VertexRagServiceClient();
   const vizierServiceClient = new aiplatform.VizierServiceClient();
 }
 

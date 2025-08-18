@@ -11,7 +11,7 @@
                     "csharp_namespace": "Google.Shopping.Css.V1",
                     "go_package": "cloud.google.com/go/shopping/css/apiv1/csspb;csspb",
                     "java_multiple_files": true,
-                    "java_outer_classname": "CssProductsProto",
+                    "java_outer_classname": "QuotaProto",
                     "java_package": "com.google.shopping.css.v1",
                     "php_namespace": "Google\\Shopping\\Css\\V1",
                     "ruby_package": "Google::Shopping::Css::V1"
@@ -979,6 +979,14 @@
                           "options": {
                             "proto3_optional": true
                           }
+                        },
+                        "headlineOfferInstallment": {
+                          "type": "HeadlineOfferInstallment",
+                          "id": 51
+                        },
+                        "headlineOfferSubscriptionCost": {
+                          "type": "HeadlineOfferSubscriptionCost",
+                          "id": 52
                         }
                       }
                     },
@@ -1142,6 +1150,45 @@
                         }
                       }
                     },
+                    "HeadlineOfferSubscriptionCost": {
+                      "fields": {
+                        "period": {
+                          "type": "SubscriptionPeriod",
+                          "id": 1
+                        },
+                        "periodLength": {
+                          "type": "int64",
+                          "id": 2
+                        },
+                        "amount": {
+                          "type": "google.shopping.type.Price",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "HeadlineOfferInstallment": {
+                      "fields": {
+                        "months": {
+                          "type": "int64",
+                          "id": 1
+                        },
+                        "amount": {
+                          "type": "google.shopping.type.Price",
+                          "id": 2
+                        },
+                        "downpayment": {
+                          "type": "google.shopping.type.Price",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "SubscriptionPeriod": {
+                      "values": {
+                        "SUBSCRIPTION_PERIOD_UNSPECIFIED": 0,
+                        "MONTH": 1,
+                        "YEAR": 2
+                      }
+                    },
                     "CssProductInputsService": {
                       "options": {
                         "(google.api.default_host)": "css.googleapis.com",
@@ -1161,6 +1208,26 @@
                                 "post": "/v1/{parent=accounts/*}/cssProductInputs:insert",
                                 "body": "css_product_input"
                               }
+                            }
+                          ]
+                        },
+                        "UpdateCssProductInput": {
+                          "requestType": "UpdateCssProductInputRequest",
+                          "responseType": "CssProductInput",
+                          "options": {
+                            "(google.api.http).patch": "/v1/{css_product_input.name=accounts/*/cssProductInputs/*}",
+                            "(google.api.http).body": "css_product_input",
+                            "(google.api.method_signature)": "css_product_input,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1/{css_product_input.name=accounts/*/cssProductInputs/*}",
+                                "body": "css_product_input"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "css_product_input,update_mask"
                             }
                           ]
                         },
@@ -1224,7 +1291,10 @@
                         },
                         "freshnessTime": {
                           "type": "google.protobuf.Timestamp",
-                          "id": 6
+                          "id": 6,
+                          "options": {
+                            "deprecated": true
+                          }
                         },
                         "attributes": {
                           "type": "Attributes",
@@ -1258,8 +1328,24 @@
                           "type": "int64",
                           "id": 3,
                           "options": {
+                            "deprecated": true,
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "UpdateCssProductInputRequest": {
+                      "fields": {
+                        "cssProductInput": {
+                          "type": "CssProductInput",
+                          "id": 1,
+                          "options": {
                             "(google.api.field_behavior)": "REQUIRED"
                           }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2
                         }
                       }
                     },
@@ -1427,6 +1513,149 @@
                         "cssProducts": {
                           "rule": "repeated",
                           "type": "CssProduct",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "QuotaService": {
+                      "options": {
+                        "(google.api.default_host)": "css.googleapis.com",
+                        "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/content"
+                      },
+                      "methods": {
+                        "ListQuotaGroups": {
+                          "requestType": "ListQuotaGroupsRequest",
+                          "responseType": "ListQuotaGroupsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1/{parent=accounts/*}/quotas",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1/{parent=accounts/*}/quotas"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "QuotaGroup": {
+                      "options": {
+                        "(google.api.resource).type": "css.googleapis.com/QuotaGroup",
+                        "(google.api.resource).pattern": "accounts/{account}/quotaGroups/{quota_group}",
+                        "(google.api.resource).plural": "quotaGroups",
+                        "(google.api.resource).singular": "quotaGroup"
+                      },
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "IDENTIFIER"
+                          }
+                        },
+                        "quotaUsage": {
+                          "type": "int64",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "quotaLimit": {
+                          "type": "int64",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "quotaMinuteLimit": {
+                          "type": "int64",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "methodDetails": {
+                          "rule": "repeated",
+                          "type": "MethodDetails",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        }
+                      }
+                    },
+                    "MethodDetails": {
+                      "fields": {
+                        "method": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "version": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "subapi": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "path": {
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        }
+                      }
+                    },
+                    "ListQuotaGroupsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "css.googleapis.com/QuotaGroup"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "ListQuotaGroupsResponse": {
+                      "fields": {
+                        "quotaGroups": {
+                          "rule": "repeated",
+                          "type": "QuotaGroup",
                           "id": 1
                         },
                         "nextPageToken": {
@@ -1718,6 +1947,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -1826,6 +2060,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -2001,7 +2239,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -2107,6 +2348,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -2116,6 +2358,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -2131,6 +2374,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2148,18 +2392,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -2200,6 +2438,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2282,6 +2521,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -2355,6 +2595,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2434,6 +2675,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2446,6 +2688,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2487,6 +2730,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2503,6 +2747,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2520,6 +2765,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2554,6 +2800,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -2695,6 +2942,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -2768,6 +3016,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -2829,10 +3078,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -2916,6 +3162,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -2935,6 +3182,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -2978,6 +3226,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -3011,6 +3260,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -3037,6 +3287,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -3079,6 +3330,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -3128,6 +3380,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -3200,8 +3453,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -3257,6 +3522,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -3288,6 +3554,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -3301,12 +3568,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -3326,6 +3599,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -3339,7 +3613,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -3394,6 +3671,15 @@
                 "nanos": {
                   "type": "int32",
                   "id": 2
+                }
+              }
+            },
+            "FieldMask": {
+              "fields": {
+                "paths": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 1
                 }
               }
             }

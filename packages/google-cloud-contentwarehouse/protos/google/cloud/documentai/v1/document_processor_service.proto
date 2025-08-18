@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -212,7 +212,11 @@ service DocumentProcessorService {
 
   // Creates a processor from the
   // [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
-  // processor will be at `ENABLED` state by default after its creation.
+  // processor will be at `ENABLED` state by default after its creation. Note
+  // that this method requires the `documentai.processors.create` permission on
+  // the project, which is highly privileged. A user or service account with
+  // this permission can create new processors that can interact with any gcs
+  // bucket in your project.
   rpc CreateProcessor(CreateProcessorRequest) returns (Processor) {
     option (google.api.http) = {
       post: "/v1/{parent=projects/*/locations/*}/processors"
@@ -343,6 +347,13 @@ message ProcessOptions {
 
     // Optional. Config for chunking in layout parser processor.
     ChunkingConfig chunking_config = 1 [(google.api.field_behavior) = OPTIONAL];
+
+    // Optional. Whether to include images in layout parser processor response.
+    bool return_images = 2 [(google.api.field_behavior) = OPTIONAL];
+
+    // Optional. Whether to include bounding boxes in layout parser processor
+    // response.
+    bool return_bounding_boxes = 3 [(google.api.field_behavior) = OPTIONAL];
   }
 
   // A list of individual page numbers.
@@ -355,8 +366,9 @@ message ProcessOptions {
   // If a page range is set, only the given pages are extracted and processed
   // from the document. In the output document,
   // [Document.Page.page_number][google.cloud.documentai.v1.Document.Page.page_number]
-  // refers to the page number in the original document. This configuration
-  // only applies to sync requests.
+  // refers to the page number in the original document.
+  // This configuration only applies to online processing with
+  // [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument].
   oneof page_range {
     // Which pages to process (1-indexed).
     IndividualPageSelector individual_page_selector = 5;
@@ -436,6 +448,9 @@ message ProcessRequest {
   // characters, underscores, and dashes. International characters are allowed.
   // Label values are optional. Label keys must start with a letter.
   map<string, string> labels = 10 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Option to remove images from the document.
+  bool imageless_mode = 11 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // The status of human review on a processed document.

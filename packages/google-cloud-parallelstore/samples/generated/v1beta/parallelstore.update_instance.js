@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ function main(updateMask, instance) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Mask of fields to update .Field mask is used to specify the
+   *  Required. Mask of fields to update. Field mask is used to specify the
    *  fields to be overwritten in the Instance resource by the update. At least
    *  one path must be supplied in this field. The fields specified in the
    *  update_mask are relative to the resource, not the full request.
    */
   // const updateMask = {}
   /**
-   *  Required. The instance to update
+   *  Required. The instance to update.
    */
   // const instance = {}
   /**
@@ -44,8 +44,8 @@ function main(updateMask, instance) {
    *  request ID so that if you must retry your request, the server will know to
    *  ignore the request if it has already been completed. The server will
    *  guarantee that for at least 60 minutes since the first request.
-   *  For example, consider a situation where you make an initial request and t
-   *  he request times out. If you make the request again with the same request
+   *  For example, consider a situation where you make an initial request and
+   *  the request times out. If you make the request again with the same request
    *  ID, the server can check if original operation with the same request ID
    *  was received, and if so, will ignore the second request. This prevents
    *  clients from accidentally creating duplicate commitments.

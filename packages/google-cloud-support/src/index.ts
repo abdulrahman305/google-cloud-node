@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 // ** All changes to this file may be overwritten. **
 
 import * as v2 from './v2';
+import * as v2beta from './v2beta';
 
 const CaseAttachmentServiceClient = v2.CaseAttachmentServiceClient;
 type CaseAttachmentServiceClient = v2.CaseAttachmentServiceClient;
@@ -25,17 +26,7 @@ type CaseServiceClient = v2.CaseServiceClient;
 const CommentServiceClient = v2.CommentServiceClient;
 type CommentServiceClient = v2.CommentServiceClient;
 
-export {
-  v2,
-  CaseAttachmentServiceClient,
-  CaseServiceClient,
-  CommentServiceClient,
-};
-export default {
-  v2,
-  CaseAttachmentServiceClient,
-  CaseServiceClient,
-  CommentServiceClient,
-};
+export {v2, v2beta, CaseAttachmentServiceClient, CaseServiceClient, CommentServiceClient};
+export default {v2, v2beta, CaseAttachmentServiceClient, CaseServiceClient, CommentServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

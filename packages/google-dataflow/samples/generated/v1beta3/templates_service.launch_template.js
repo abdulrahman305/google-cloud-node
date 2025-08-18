@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -38,17 +38,17 @@ function main() {
    */
   // const validateOnly = true
   /**
-   *  A Cloud Storage path to the template from which to create
+   *  A Cloud Storage path to the template to use to create
    *  the job.
-   *  Must be valid Cloud Storage URL, beginning with 'gs://'.
+   *  Must be valid Cloud Storage URL, beginning with `gs://`.
    */
   // const gcsPath = 'abc123'
   /**
-   *  Params for launching a dynamic template.
+   *  Parameters for launching a dynamic template.
    */
   // const dynamicTemplate = {}
   /**
-   *  The parameters of the template to launch. This should be part of the
+   *  The parameters of the template to launch. Part of the
    *  body of the POST request.
    */
   // const launchParameters = {}
