@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,25 +33,7 @@ type TagKeysClient = v3.TagKeysClient;
 const TagValuesClient = v3.TagValuesClient;
 type TagValuesClient = v3.TagValuesClient;
 
-export {
-  v3,
-  FoldersClient,
-  OrganizationsClient,
-  ProjectsClient,
-  TagBindingsClient,
-  TagHoldsClient,
-  TagKeysClient,
-  TagValuesClient,
-};
-export default {
-  v3,
-  FoldersClient,
-  OrganizationsClient,
-  ProjectsClient,
-  TagBindingsClient,
-  TagHoldsClient,
-  TagKeysClient,
-  TagValuesClient,
-};
+export {v3, FoldersClient, OrganizationsClient, ProjectsClient, TagBindingsClient, TagHoldsClient, TagKeysClient, TagValuesClient};
+export default {v3, FoldersClient, OrganizationsClient, ProjectsClient, TagBindingsClient, TagHoldsClient, TagKeysClient, TagValuesClient};
 import * as protos from '../protos/protos';
 export {protos};

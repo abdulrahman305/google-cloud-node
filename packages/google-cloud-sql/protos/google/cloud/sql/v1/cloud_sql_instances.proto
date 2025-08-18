@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,7 +40,9 @@ service SqlInstancesService {
   // instance. Required to prepare for a certificate rotation. If a CA version
   // was previously added but never used in a certificate rotation, this
   // operation replaces that version. There cannot be more than one CA version
-  // waiting to be rotated in.
+  // waiting to be rotated in. For instances that have enabled Certificate
+  // Authority Service (CAS) based server CA, please use AddServerCertificate to
+  // add a new server certificate.
   rpc AddServerCa(SqlInstancesAddServerCaRequest) returns (Operation) {
     option (google.api.http) = {
       post: "/v1/projects/{project}/instances/{instance}/addServerCa"
@@ -207,7 +209,9 @@ service SqlInstancesService {
   }
 
   // Rotates the server certificate to one signed by the Certificate Authority
-  // (CA) version previously added with the addServerCA method.
+  // (CA) version previously added with the addServerCA method. For instances
+  // that have enabled Certificate Authority Service (CAS) based server CA,
+  // please use RotateServerCertificate to rotate the server certificate.
   rpc RotateServerCa(SqlInstancesRotateServerCaRequest) returns (Operation) {
     option (google.api.http) = {
       post: "/v1/projects/{project}/instances/{instance}/rotateServerCa"
@@ -833,10 +837,10 @@ message InstancesFailoverRequest {
 // SslCerts create ephemeral certificate request.
 message SslCertsCreateEphemeralRequest {
   // PEM encoded public key to include in the signed certificate.
-  string public_key = 1;
+  string public_key = 1 [json_name = "public_key"];
 
   // Access token to include in the signed certificate.
-  string access_token = 2;
+  string access_token = 2 [json_name = "access_token"];
 }
 
 // Database instance import request.
@@ -971,9 +975,9 @@ message CloneContext {
   // instance. Clone all databases if empty.
   repeated string database_names = 9;
 
-  // Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-  // in the specified zone. If no zone is specified, clone to the same zone as
-  // the source instance.
+  // Optional. Copy clone and point-in-time recovery clone of an instance to the
+  // specified zone. If no zone is specified, clone to the same primary zone as
+  // the source instance. This field applies to all DB types.
   optional string preferred_zone = 10 [(google.api.field_behavior) = OPTIONAL];
 }
 
@@ -1208,8 +1212,9 @@ message DatabaseInstance {
   // The start time of any upcoming scheduled maintenance for this instance.
   SqlScheduledMaintenance scheduled_maintenance = 30;
 
-  // The status indicating if instance satisfiesPzs.
-  // Reserved for future use.
+  // This status indicates whether the instance satisfies PZS.
+  //
+  // The status is reserved for future use.
   google.protobuf.BoolValue satisfies_pzs = 35;
 
   // Output only. Stores the current database version running on the instance
@@ -1238,6 +1243,10 @@ message DatabaseInstance {
   // The current software version on the instance.
   string maintenance_version = 42;
 
+  // Output only. All database versions that are available for upgrade.
+  repeated AvailableDatabaseVersion upgradable_database_versions = 45
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+
   optional SqlNetworkArchitecture sql_network_architecture = 47;
 
   // Output only. The link to service attachment of PSC instance.
@@ -1264,6 +1273,18 @@ message DatabaseInstance {
 
   // Gemini instance configuration.
   optional GeminiInstanceConfig gemini_config = 55;
+
+  // Output only. This status indicates whether the instance satisfies PZI.
+  //
+  // The status is reserved for future use.
+  google.protobuf.BoolValue satisfies_pzi = 56
+      [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+  // recovery log files from a data disk to Cloud Storage.
+  optional google.protobuf.BoolValue
+      switch_transaction_logs_to_cloud_storage_enabled = 57
+      [(google.api.field_behavior) = INPUT_ONLY];
 }
 
 // Gemini instance configuration.
@@ -1297,6 +1318,15 @@ message GeminiInstanceConfig {
 // the event that the primary instance experiences regional failure.
 // Only applicable to MySQL.
 message ReplicationCluster {
+  // Output only. If set, it indicates this instance has a private service
+  // access (PSA) dns endpoint that is pointing to the primary instance of the
+  // cluster. If this instance is the primary, the dns should be pointing to
+  // this instance. After Switchover or Replica failover, this DNS endpoint
+  // points to the promoted instance. This is a read-only field, returned to the
+  // user as information. This field can exist even if a standalone instance
+  // does not yet have a replica, or had a DR replica that was deleted.
+  string psa_write_endpoint = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
   // Optional. If the instance is a primary instance, then this field identifies
   // the disaster recovery (DR) replica. A DR replica is an optional
   // configuration for Enterprise Plus edition instances. If the instance is a
@@ -1308,6 +1338,19 @@ message ReplicationCluster {
   // Output only. Read-only field that indicates whether the replica is a DR
   // replica. This field is not set if the instance is a primary instance.
   bool dr_replica = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// An available database version. It can be a major or a minor version.
+message AvailableDatabaseVersion {
+  // The version's major version name.
+  optional string major_version = 3;
+
+  // The database version name. For MySQL 8.0, this string provides the database
+  // major and minor version.
+  optional string name = 8;
+
+  // The database version's display name.
+  optional string display_name = 9;
 }
 
 // Reschedule options for maintenance windows.
@@ -1572,6 +1615,28 @@ message SqlExternalSyncSettingError {
     // cores of the replica instance is less than 8, and the memory of the
     // replica is less than 32 GB.
     INSUFFICIENT_MACHINE_TIER = 44;
+
+    // The warning message indicates the unsupported extensions will not be
+    // migrated to the destination.
+    UNSUPPORTED_EXTENSIONS_NOT_MIGRATED = 45;
+
+    // The warning message indicates the pg_cron extension and settings will not
+    // be migrated to the destination.
+    EXTENSIONS_NOT_MIGRATED = 46;
+
+    // The error message indicates that pg_cron flags are enabled on the
+    // destination which is not supported during the migration.
+    PG_CRON_FLAG_ENABLED_IN_REPLICA = 47;
+
+    // This error message indicates that the specified extensions are not
+    // enabled on destination instance. For example, before you can migrate
+    // data to the destination instance, you must enable the PGAudit extension
+    // on the instance.
+    EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;
+
+    // The source database has generated columns that can't be migrated. Please
+    // change them to regular columns before migration.
+    UNSUPPORTED_COLUMNS = 49;
   }
 
   // Can be `sql#externalSyncSettingError` or

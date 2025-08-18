@@ -12,6 +12,7 @@
 
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
+  * [Builds.submit_build](#builds.submit_build)
   * [Executions.cancel_execution](#executions.cancel_execution)
   * [Executions.delete_execution](#executions.delete_execution)
   * [Executions.get_execution](#executions.get_execution)
@@ -38,6 +39,14 @@
   * [Services.update_service](#services.update_service)
   * [Tasks.get_task](#tasks.get_task)
   * [Tasks.list_tasks](#tasks.list_tasks)
+  * [Worker_pools.create_worker_pool](#worker_pools.create_worker_pool)
+  * [Worker_pools.delete_worker_pool](#worker_pools.delete_worker_pool)
+  * [Worker_pools.get_iam_policy](#worker_pools.get_iam_policy)
+  * [Worker_pools.get_worker_pool](#worker_pools.get_worker_pool)
+  * [Worker_pools.list_worker_pools](#worker_pools.list_worker_pools)
+  * [Worker_pools.set_iam_policy](#worker_pools.set_iam_policy)
+  * [Worker_pools.test_iam_permissions](#worker_pools.test_iam_permissions)
+  * [Worker_pools.update_worker_pool](#worker_pools.update_worker_pool)
   * [Quickstart](#quickstart)
 
 ## Before you begin
@@ -52,6 +61,23 @@ Before running the samples, make sure you've followed the steps outlined in
 `cd ..`
 
 ## Samples
+
+
+
+### Builds.submit_build
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/builds.submit_build.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/builds.submit_build.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/builds.submit_build.js`
+
+
+-----
+
 
 
 
@@ -490,6 +516,142 @@ __Usage:__
 
 
 `node packages/google-cloud-run/samples/generated/v2/tasks.list_tasks.js`
+
+
+-----
+
+
+
+
+### Worker_pools.create_worker_pool
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.create_worker_pool.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.create_worker_pool.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.create_worker_pool.js`
+
+
+-----
+
+
+
+
+### Worker_pools.delete_worker_pool
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.delete_worker_pool.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.delete_worker_pool.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.delete_worker_pool.js`
+
+
+-----
+
+
+
+
+### Worker_pools.get_iam_policy
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.get_iam_policy.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.get_iam_policy.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.get_iam_policy.js`
+
+
+-----
+
+
+
+
+### Worker_pools.get_worker_pool
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.get_worker_pool.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.get_worker_pool.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.get_worker_pool.js`
+
+
+-----
+
+
+
+
+### Worker_pools.list_worker_pools
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.list_worker_pools.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.list_worker_pools.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.list_worker_pools.js`
+
+
+-----
+
+
+
+
+### Worker_pools.set_iam_policy
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.set_iam_policy.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.set_iam_policy.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.set_iam_policy.js`
+
+
+-----
+
+
+
+
+### Worker_pools.test_iam_permissions
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.test_iam_permissions.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.test_iam_permissions.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.test_iam_permissions.js`
+
+
+-----
+
+
+
+
+### Worker_pools.update_worker_pool
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-run/samples/generated/v2/worker_pools.update_worker_pool.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-run/samples/generated/v2/worker_pools.update_worker_pool.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-run/samples/generated/v2/worker_pools.update_worker_pool.js`
 
 
 -----

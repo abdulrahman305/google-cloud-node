@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,28 +30,12 @@ const QueryServiceClient = v3.QueryServiceClient;
 type QueryServiceClient = v3.QueryServiceClient;
 const ServiceMonitoringServiceClient = v3.ServiceMonitoringServiceClient;
 type ServiceMonitoringServiceClient = v3.ServiceMonitoringServiceClient;
+const SnoozeServiceClient = v3.SnoozeServiceClient;
+type SnoozeServiceClient = v3.SnoozeServiceClient;
 const UptimeCheckServiceClient = v3.UptimeCheckServiceClient;
 type UptimeCheckServiceClient = v3.UptimeCheckServiceClient;
 
-export {
-  v3,
-  AlertPolicyServiceClient,
-  GroupServiceClient,
-  MetricServiceClient,
-  NotificationChannelServiceClient,
-  QueryServiceClient,
-  ServiceMonitoringServiceClient,
-  UptimeCheckServiceClient,
-};
-export default {
-  v3,
-  AlertPolicyServiceClient,
-  GroupServiceClient,
-  MetricServiceClient,
-  NotificationChannelServiceClient,
-  QueryServiceClient,
-  ServiceMonitoringServiceClient,
-  UptimeCheckServiceClient,
-};
+export {v3, AlertPolicyServiceClient, GroupServiceClient, MetricServiceClient, NotificationChannelServiceClient, QueryServiceClient, ServiceMonitoringServiceClient, SnoozeServiceClient, UptimeCheckServiceClient};
+export default {v3, AlertPolicyServiceClient, GroupServiceClient, MetricServiceClient, NotificationChannelServiceClient, QueryServiceClient, ServiceMonitoringServiceClient, SnoozeServiceClient, UptimeCheckServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

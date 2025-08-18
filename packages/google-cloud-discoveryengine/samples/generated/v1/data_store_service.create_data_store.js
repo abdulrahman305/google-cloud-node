@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,16 @@ function main(parent, dataStore, dataStoreId) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
+   *  Resource name of the CmekConfig to use for protecting this DataStore.
+   */
+  // const cmekConfigName = 'abc123'
+  /**
+   *  DataStore without CMEK protections. If a default CmekConfig is set for
+   *  the project, setting this field will override the default CmekConfig as
+   *  well.
+   */
+  // const disableCmek = true
+  /**
    *  Required. The parent resource name, such as
    *  `projects/{project}/locations/{location}/collections/{collection}`.
    */
@@ -56,6 +66,15 @@ function main(parent, dataStore, dataStoreId) {
    *  be ignored.
    */
   // const createAdvancedSiteSearch = true
+  /**
+   *  A boolean flag indicating whether to skip the default schema creation for
+   *  the data store. Only enable this flag if you are certain that the default
+   *  schema is incompatible with your use case.
+   *  If set to true, you must manually create a schema for the data store before
+   *  any documents can be ingested.
+   *  This flag cannot be specified if `data_store.starting_schema` is specified.
+   */
+  // const skipDefaultSchemaCreation = true
 
   // Imports the Discoveryengine library
   const {DataStoreServiceClient} = require('@google-cloud/discoveryengine').v1;

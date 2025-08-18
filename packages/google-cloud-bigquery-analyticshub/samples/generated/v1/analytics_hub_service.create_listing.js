@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,14 +30,12 @@ function main(parent, listingId, listing) {
    */
   /**
    *  Required. The parent resource path of the listing.
-   *  e.g. `projects/myproject/locations/US/dataExchanges/123`.
+   *  e.g. `projects/myproject/locations/us/dataExchanges/123`.
    */
   // const parent = 'abc123'
   /**
    *  Required. The ID of the listing to create.
    *  Must contain only Unicode letters, numbers (0-9), underscores (_).
-   *  Should not use characters that require URL-escaping, or characters
-   *  outside of ASCII, spaces.
    *  Max length: 100 bytes.
    */
   // const listingId = 'abc123'

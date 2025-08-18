@@ -13,7 +13,7 @@
                         "csharp_namespace": "Google.Cloud.BigQuery.Migration.V2",
                         "go_package": "cloud.google.com/go/bigquery/migration/apiv2/migrationpb;migrationpb",
                         "java_multiple_files": true,
-                        "java_outer_classname": "MigrationServiceProto",
+                        "java_outer_classname": "TranslationSuggestionProto",
                         "java_package": "com.google.cloud.bigquery.migration.v2",
                         "php_namespace": "Google\\Cloud\\BigQuery\\Migration\\V2"
                       },
@@ -28,7 +28,7 @@
                               "type": "string",
                               "id": 1,
                               "options": {
-                                "(google.api.field_behavior)": "IMMUTABLE"
+                                "(google.api.field_behavior)": "IDENTIFIER"
                               }
                             },
                             "displayName": {
@@ -72,7 +72,8 @@
                           "oneofs": {
                             "taskDetails": {
                               "oneof": [
-                                "translationConfigDetails"
+                                "translationConfigDetails",
+                                "translationDetails"
                               ]
                             }
                           },
@@ -80,6 +81,10 @@
                             "translationConfigDetails": {
                               "type": "TranslationConfigDetails",
                               "id": 14
+                            },
+                            "translationDetails": {
+                              "type": "TranslationDetails",
+                              "id": 16
                             },
                             "id": {
                               "type": "string",
@@ -113,6 +118,38 @@
                             "lastUpdateTime": {
                               "type": "google.protobuf.Timestamp",
                               "id": 7
+                            },
+                            "resourceErrorDetails": {
+                              "rule": "repeated",
+                              "type": "ResourceErrorDetail",
+                              "id": 17,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "resourceErrorCount": {
+                              "type": "int32",
+                              "id": 18
+                            },
+                            "metrics": {
+                              "rule": "repeated",
+                              "type": "TimeSeries",
+                              "id": 19
+                            },
+                            "taskResult": {
+                              "type": "MigrationTaskResult",
+                              "id": 20,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "totalProcessingErrorCount": {
+                              "type": "int32",
+                              "id": 21
+                            },
+                            "totalResourceErrorCount": {
+                              "type": "int32",
+                              "id": 22
                             }
                           },
                           "nested": {
@@ -201,6 +238,35 @@
                                 "PAUSED": 5,
                                 "PENDING_DEPENDENCY": 6
                               }
+                            }
+                          }
+                        },
+                        "MigrationTaskResult": {
+                          "oneofs": {
+                            "details": {
+                              "oneof": [
+                                "translationTaskResult"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "translationTaskResult": {
+                              "type": "TranslationTaskResult",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "TranslationTaskResult": {
+                          "fields": {
+                            "translatedLiterals": {
+                              "rule": "repeated",
+                              "type": "Literal",
+                              "id": 1
+                            },
+                            "reportLogMessages": {
+                              "rule": "repeated",
+                              "type": "GcsReportLogMessage",
+                              "id": 2
                             }
                           }
                         },
@@ -410,6 +476,11 @@
                             "requestSource": {
                               "type": "string",
                               "id": 8
+                            },
+                            "targetTypes": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 9
                             }
                           }
                         },
@@ -430,7 +501,10 @@
                                 "sqlServerDialect",
                                 "postgresqlDialect",
                                 "prestoDialect",
-                                "mysqlDialect"
+                                "mysqlDialect",
+                                "db2Dialect",
+                                "sqliteDialect",
+                                "greenplumDialect"
                               ]
                             }
                           },
@@ -490,6 +564,18 @@
                             "mysqlDialect": {
                               "type": "MySQLDialect",
                               "id": 14
+                            },
+                            "db2Dialect": {
+                              "type": "DB2Dialect",
+                              "id": 15
+                            },
+                            "sqliteDialect": {
+                              "type": "SQLiteDialect",
+                              "id": 16
+                            },
+                            "greenplumDialect": {
+                              "type": "GreenplumDialect",
+                              "id": 17
                             }
                           }
                         },
@@ -547,6 +633,15 @@
                           "fields": {}
                         },
                         "MySQLDialect": {
+                          "fields": {}
+                        },
+                        "DB2Dialect": {
+                          "fields": {}
+                        },
+                        "SQLiteDialect": {
+                          "fields": {}
+                        },
+                        "GreenplumDialect": {
                           "fields": {}
                         },
                         "ObjectNameMappingList": {
@@ -638,6 +733,182 @@
                               "rule": "repeated",
                               "type": "string",
                               "id": 2
+                            },
+                            "metadataStoreDataset": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "TranslationDetails": {
+                          "fields": {
+                            "sourceTargetMapping": {
+                              "rule": "repeated",
+                              "type": "SourceTargetMapping",
+                              "id": 1
+                            },
+                            "targetBaseUri": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "sourceEnvironment": {
+                              "type": "SourceEnvironment",
+                              "id": 3
+                            },
+                            "targetReturnLiterals": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 4
+                            },
+                            "targetTypes": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 5
+                            }
+                          }
+                        },
+                        "SourceTargetMapping": {
+                          "fields": {
+                            "sourceSpec": {
+                              "type": "SourceSpec",
+                              "id": 1
+                            },
+                            "targetSpec": {
+                              "type": "TargetSpec",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "SourceSpec": {
+                          "oneofs": {
+                            "source": {
+                              "oneof": [
+                                "baseUri",
+                                "literal"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "baseUri": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "literal": {
+                              "type": "Literal",
+                              "id": 2
+                            },
+                            "encoding": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "TargetSpec": {
+                          "fields": {
+                            "relativePath": {
+                              "type": "string",
+                              "id": 1
+                            }
+                          }
+                        },
+                        "Literal": {
+                          "oneofs": {
+                            "literalData": {
+                              "oneof": [
+                                "literalString",
+                                "literalBytes"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "literalString": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "literalBytes": {
+                              "type": "bytes",
+                              "id": 3
+                            },
+                            "relativePath": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            }
+                          }
+                        },
+                        "SourceEnvironment": {
+                          "fields": {
+                            "defaultDatabase": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "schemaSearchPath": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 2
+                            },
+                            "metadataStoreDataset": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "GcsReportLogMessage": {
+                          "fields": {
+                            "severity": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "category": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "filePath": {
+                              "type": "string",
+                              "id": 3
+                            },
+                            "filename": {
+                              "type": "string",
+                              "id": 4
+                            },
+                            "sourceScriptLine": {
+                              "type": "int32",
+                              "id": 5
+                            },
+                            "sourceScriptColumn": {
+                              "type": "int32",
+                              "id": 6
+                            },
+                            "message": {
+                              "type": "string",
+                              "id": 7
+                            },
+                            "scriptContext": {
+                              "type": "string",
+                              "id": 8
+                            },
+                            "action": {
+                              "type": "string",
+                              "id": 9
+                            },
+                            "effect": {
+                              "type": "string",
+                              "id": 10
+                            },
+                            "objectName": {
+                              "type": "string",
+                              "id": 11
                             }
                           }
                         },
@@ -944,6 +1215,40 @@
                             "nextPageToken": {
                               "type": "string",
                               "id": 2
+                            }
+                          }
+                        },
+                        "TranslationReportRecord": {
+                          "fields": {
+                            "severity": {
+                              "type": "Severity",
+                              "id": 1
+                            },
+                            "scriptLine": {
+                              "type": "int32",
+                              "id": 2
+                            },
+                            "scriptColumn": {
+                              "type": "int32",
+                              "id": 3
+                            },
+                            "category": {
+                              "type": "string",
+                              "id": 4
+                            },
+                            "message": {
+                              "type": "string",
+                              "id": 5
+                            }
+                          },
+                          "nested": {
+                            "Severity": {
+                              "values": {
+                                "SEVERITY_UNSPECIFIED": 0,
+                                "INFO": 1,
+                                "WARNING": 2,
+                                "ERROR": 3
+                              }
                             }
                           }
                         }
@@ -2003,7 +2308,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -2471,6 +2779,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -2579,6 +2892,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -2752,6 +3069,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -2761,6 +3079,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -2776,6 +3095,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2793,18 +3113,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -2845,6 +3159,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2927,6 +3242,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -3000,6 +3316,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3079,6 +3396,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3091,6 +3409,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3132,6 +3451,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3148,6 +3468,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3165,6 +3486,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3199,6 +3521,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -3340,6 +3663,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -3413,6 +3737,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -3474,10 +3799,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -3561,6 +3883,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -3580,6 +3903,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -3623,6 +3947,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -3656,6 +3981,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -3682,6 +4008,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -3724,6 +4051,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -3773,6 +4101,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -3845,8 +4174,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -3902,6 +4243,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -3933,6 +4275,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -3946,12 +4289,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -3971,6 +4320,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -3984,7 +4334,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

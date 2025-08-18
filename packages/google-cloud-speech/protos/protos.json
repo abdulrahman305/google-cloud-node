@@ -1205,12 +1205,13 @@
                 },
                 "v1p1beta1": {
                   "options": {
-                    "cc_enable_arenas": true,
                     "go_package": "cloud.google.com/go/speech/apiv1p1beta1/speechpb;speechpb",
                     "java_multiple_files": true,
                     "java_outer_classname": "SpeechAdaptationProto",
                     "java_package": "com.google.cloud.speech.v1p1beta1",
-                    "objc_class_prefix": "GCS"
+                    "objc_class_prefix": "GCS",
+                    "(google.api.resource_definition).type": "cloudkms.googleapis.com/CryptoKeyVersion",
+                    "(google.api.resource_definition).pattern": "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}"
                   },
                   "nested": {
                     "Speech": {
@@ -1438,7 +1439,10 @@
                         },
                         "transcriptNormalization": {
                           "type": "TranscriptNormalization",
-                          "id": 24
+                          "id": 24,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "speechContexts": {
                           "rule": "repeated",
@@ -1508,7 +1512,8 @@
                             "OGG_OPUS": 6,
                             "SPEEX_WITH_HEADER_BYTE": 7,
                             "MP3": 8,
-                            "WEBM_OPUS": 9
+                            "WEBM_OPUS": 9,
+                            "ALAW": 10
                           }
                         }
                       }
@@ -1675,6 +1680,10 @@
                         "requestId": {
                           "type": "int64",
                           "id": 8
+                        },
+                        "usingLegacyModels": {
+                          "type": "bool",
+                          "id": 9
                         }
                       }
                     },
@@ -1876,6 +1885,14 @@
                           "type": "int32",
                           "id": 5,
                           "options": {
+                            "deprecated": true,
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "speakerLabel": {
+                          "type": "string",
+                          "id": 6,
+                          "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
                         }
@@ -1911,6 +1928,79 @@
                           "rule": "repeated",
                           "type": "ClassItem",
                           "id": 3
+                        },
+                        "kmsKeyName": {
+                          "type": "string",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKey"
+                          }
+                        },
+                        "kmsKeyVersionName": {
+                          "type": "string",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKeyVersion"
+                          }
+                        },
+                        "uid": {
+                          "type": "string",
+                          "id": 8,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "displayName": {
+                          "type": "string",
+                          "id": 9,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "state": {
+                          "type": "State",
+                          "id": 10,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "deleteTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 11,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "expireTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "annotations": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 13,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 14,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "reconciling": {
+                          "type": "bool",
+                          "id": 15,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       },
                       "nested": {
@@ -1920,6 +2010,13 @@
                               "type": "string",
                               "id": 1
                             }
+                          }
+                        },
+                        "State": {
+                          "values": {
+                            "STATE_UNSPECIFIED": 0,
+                            "ACTIVE": 2,
+                            "DELETED": 4
                           }
                         }
                       }
@@ -1942,6 +2039,79 @@
                         "boost": {
                           "type": "float",
                           "id": 4
+                        },
+                        "kmsKeyName": {
+                          "type": "string",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKey"
+                          }
+                        },
+                        "kmsKeyVersionName": {
+                          "type": "string",
+                          "id": 8,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY",
+                            "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKeyVersion"
+                          }
+                        },
+                        "uid": {
+                          "type": "string",
+                          "id": 9,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "displayName": {
+                          "type": "string",
+                          "id": 10,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "state": {
+                          "type": "State",
+                          "id": 11,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "deleteTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "expireTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 13,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "annotations": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 14,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 15,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "reconciling": {
+                          "type": "bool",
+                          "id": 16,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       },
                       "nested": {
@@ -1955,6 +2125,13 @@
                               "type": "float",
                               "id": 2
                             }
+                          }
+                        },
+                        "State": {
+                          "values": {
+                            "STATE_UNSPECIFIED": 0,
+                            "ACTIVE": 2,
+                            "DELETED": 4
                           }
                         }
                       }
@@ -2421,7 +2598,7 @@
                   "options": {
                     "go_package": "cloud.google.com/go/speech/apiv2/speechpb;speechpb",
                     "java_multiple_files": true,
-                    "java_outer_classname": "CloudSpeechProto",
+                    "java_outer_classname": "LocationsMetadataProto",
                     "java_package": "com.google.cloud.speech.v2",
                     "(google.api.resource_definition).type": "cloudkms.googleapis.com/CryptoKeyVersion",
                     "(google.api.resource_definition).pattern": "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}"
@@ -3374,11 +3551,17 @@
                         },
                         "sampleRateHertz": {
                           "type": "int32",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "audioChannelCount": {
                           "type": "int32",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       },
                       "nested": {
@@ -3387,7 +3570,16 @@
                             "AUDIO_ENCODING_UNSPECIFIED": 0,
                             "LINEAR16": 1,
                             "MULAW": 2,
-                            "ALAW": 3
+                            "ALAW": 3,
+                            "AMR": 4,
+                            "AMR_WB": 5,
+                            "FLAC": 6,
+                            "MP3": 7,
+                            "OGG_OPUS": 8,
+                            "WEBM_OPUS": 9,
+                            "MP4_AAC": 10,
+                            "M4A_AAC": 11,
+                            "MOV_AAC": 12
                           }
                         }
                       }
@@ -3535,6 +3727,18 @@
                         }
                       }
                     },
+                    "DenoiserConfig": {
+                      "fields": {
+                        "denoiseAudio": {
+                          "type": "bool",
+                          "id": 1
+                        },
+                        "snrThreshold": {
+                          "type": "float",
+                          "id": 2
+                        }
+                      }
+                    },
                     "RecognitionConfig": {
                       "oneofs": {
                         "decodingConfig": {
@@ -3589,6 +3793,13 @@
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
+                        },
+                        "denoiserConfig": {
+                          "type": "DenoiserConfig",
+                          "id": 16,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -3630,6 +3841,13 @@
                     },
                     "RecognitionResponseMetadata": {
                       "fields": {
+                        "requestId": {
+                          "type": "string",
+                          "id": 9,
+                          "options": {
+                            "(google.api.field_info).format": "UUID4"
+                          }
+                        },
                         "totalBilledDuration": {
                           "type": "google.protobuf.Duration",
                           "id": 6
@@ -4692,6 +4910,73 @@
                           "id": 4
                         }
                       }
+                    },
+                    "ModelFeature": {
+                      "fields": {
+                        "feature": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "releaseState": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "ModelFeatures": {
+                      "fields": {
+                        "modelFeature": {
+                          "rule": "repeated",
+                          "type": "ModelFeature",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "ModelMetadata": {
+                      "fields": {
+                        "modelFeatures": {
+                          "keyType": "string",
+                          "type": "ModelFeatures",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "LanguageMetadata": {
+                      "fields": {
+                        "models": {
+                          "keyType": "string",
+                          "type": "ModelMetadata",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "AccessMetadata": {
+                      "fields": {
+                        "constraintType": {
+                          "type": "ConstraintType",
+                          "id": 1
+                        }
+                      },
+                      "nested": {
+                        "ConstraintType": {
+                          "values": {
+                            "CONSTRAINT_TYPE_UNSPECIFIED": 0,
+                            "RESOURCE_LOCATIONS_ORG_POLICY_CREATE_CONSTRAINT": 1
+                          }
+                        }
+                      }
+                    },
+                    "LocationsMetadata": {
+                      "fields": {
+                        "languages": {
+                          "type": "LanguageMetadata",
+                          "id": 1
+                        },
+                        "accessMetadata": {
+                          "type": "AccessMetadata",
+                          "id": 2
+                        }
+                      }
                     }
                   }
                 }
@@ -4703,7 +4988,7 @@
           "options": {
             "go_package": "google.golang.org/genproto/googleapis/api/annotations;annotations",
             "java_multiple_files": true,
-            "java_outer_classname": "ResourceProto",
+            "java_outer_classname": "FieldInfoProto",
             "java_package": "com.google.api",
             "objc_class_prefix": "GAPI",
             "cc_enable_arenas": true
@@ -4810,6 +5095,11 @@
             "oauthScopes": {
               "type": "string",
               "id": 1050,
+              "extend": "google.protobuf.ServiceOptions"
+            },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
               "extend": "google.protobuf.ServiceOptions"
             },
             "CommonLanguageSettings": {
@@ -4920,6 +5210,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -5095,7 +5389,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -5186,6 +5483,30 @@
                   "id": 2
                 }
               }
+            },
+            "fieldInfo": {
+              "type": "google.api.FieldInfo",
+              "id": 291403980,
+              "extend": "google.protobuf.FieldOptions"
+            },
+            "FieldInfo": {
+              "fields": {
+                "format": {
+                  "type": "Format",
+                  "id": 1
+                }
+              },
+              "nested": {
+                "Format": {
+                  "values": {
+                    "FORMAT_UNSPECIFIED": 0,
+                    "UUID4": 1,
+                    "IPV4": 2,
+                    "IPV6": 3,
+                    "IPV4_OR_IPV6": 4
+                  }
+                }
+              }
             }
           }
         },
@@ -5201,6 +5522,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -5210,6 +5532,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -5225,6 +5548,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5242,18 +5566,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -5294,6 +5612,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5376,6 +5695,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -5449,6 +5769,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5528,6 +5849,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5540,6 +5862,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5581,6 +5904,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5597,6 +5921,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5614,6 +5939,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5648,6 +5974,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -5789,6 +6116,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -5862,6 +6190,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -5923,10 +6252,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -6010,6 +6336,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -6029,6 +6356,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -6072,6 +6400,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -6105,6 +6434,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -6131,6 +6461,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -6173,6 +6504,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -6222,6 +6554,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -6294,8 +6627,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -6351,6 +6696,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -6382,6 +6728,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -6395,12 +6742,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -6420,6 +6773,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -6433,7 +6787,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

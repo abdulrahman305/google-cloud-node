@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ syntax = "proto3";
 package maps.fleetengine.v1;
 
 import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
 import "google/maps/fleetengine/v1/traffic.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
@@ -27,11 +28,16 @@ option csharp_namespace = "Google.Maps.FleetEngine.V1";
 option go_package = "cloud.google.com/go/maps/fleetengine/apiv1/fleetenginepb;fleetenginepb";
 option java_multiple_files = true;
 option java_outer_classname = "FleetEngine";
-option java_package = "google.maps.fleetengine.v1";
+option java_package = "com.google.maps.fleetengine.v1";
 option objc_class_prefix = "CFE";
+option php_namespace = "Google\\Maps\\FleetEngine\\V1";
+option ruby_package = "Google::Maps::FleetEngine::V1";
 
-// Identifies a terminal point.
+// Deprecated: TerminalPoints are no longer supported in Fleet Engine. Use
+// `TerminalLocation.point` instead.
 message TerminalPointId {
+  option deprecated = true;
+
   // Deprecated.
   oneof Id {
     // Deprecated.
@@ -41,8 +47,8 @@ message TerminalPointId {
     string generated_id = 3 [deprecated = true];
   }
 
-  // Unique ID of the terminal point.
-  string value = 4;
+  // Deprecated.
+  string value = 4 [deprecated = true];
 }
 
 // Describes the location of a waypoint.
@@ -50,10 +56,10 @@ message TerminalLocation {
   // Required. Denotes the location of a trip waypoint.
   google.type.LatLng point = 1 [(google.api.field_behavior) = REQUIRED];
 
-  // ID of the terminal point.
-  TerminalPointId terminal_point_id = 2;
+  // Deprecated: Specify the `point` field instead.
+  TerminalPointId terminal_point_id = 2 [deprecated = true];
 
-  // Deprecated.
+  // Deprecated: Specify the `point` field instead.
   string access_point_id = 3 [deprecated = true];
 
   // Deprecated.
@@ -276,6 +282,19 @@ message VehicleLocation {
   // Accuracy of `raw_location` as a radius, in meters.
   google.protobuf.DoubleValue raw_location_accuracy = 25;
 
+  // The location from Android's Fused Location Provider.
+  google.type.LatLng flp_location = 29;
+
+  // Update timestamp of `flp_location`.
+  google.protobuf.Timestamp flp_update_time = 30;
+
+  // Accuracy of `flp_location` in meters as a radius.
+  google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;
+
+  // Direction the vehicle is moving in degrees, as determined by the Fused
+  // Location Provider. 0 represents North. The valid range is [0,360).
+  google.protobuf.Int32Value flp_heading_degrees = 32;
+
   // Supplemental location provided by the integrating app.
   google.type.LatLng supplemental_location = 18;
 
@@ -328,4 +347,23 @@ enum LocationSensor {
 
   // The location provider on Apple operating systems.
   CORE_LOCATION = 200;
+}
+
+// Describes a trip attribute as a key-value pair. The "key:value" string length
+// cannot exceed 256 characters.
+message TripAttribute {
+  // The attribute's key. Keys may not contain the colon character (:).
+  string key = 1;
+
+  // The attribute's value, can be in string, bool, or double type.
+  oneof trip_attribute_value {
+    // String typed attribute value.
+    string string_value = 2;
+
+    // Boolean typed attribute value.
+    bool bool_value = 3;
+
+    // Double typed attribute value.
+    double number_value = 4;
+  }
 }

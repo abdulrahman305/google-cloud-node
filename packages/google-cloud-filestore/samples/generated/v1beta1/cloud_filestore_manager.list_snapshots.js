@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,6 +51,11 @@ function main(parent) {
    *  List filter.
    */
   // const filter = 'abc123'
+  /**
+   *  Optional. If true, allow partial responses for multi-regional Aggregated
+   *  List requests.
+   */
+  // const returnPartialSuccess = true
 
   // Imports the Filestore library
   const {CloudFilestoreManagerClient} = require('@google-cloud/filestore').v1beta1;

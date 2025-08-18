@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,9 +30,15 @@ function main(name) {
    */
   /**
    *  Required. Resource name of the subscription to revoke.
-   *  e.g. projects/123/locations/US/subscriptions/456
+   *  e.g. projects/123/locations/us/subscriptions/456
    */
   // const name = 'abc123'
+  /**
+   *  Optional. If the subscription is commercial then this field must be set to
+   *  true, otherwise a failure is thrown. This acts as a safety guard to avoid
+   *  revoking commercial subscriptions accidentally.
+   */
+  // const revokeCommercial = true
 
   // Imports the Analyticshub library
   const {AnalyticsHubServiceClient} = require('@google-cloud/bigquery-analyticshub').v1;

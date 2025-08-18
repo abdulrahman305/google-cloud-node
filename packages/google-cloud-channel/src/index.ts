@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,10 +24,6 @@ const CloudChannelServiceClient = v1.CloudChannelServiceClient;
 type CloudChannelServiceClient = v1.CloudChannelServiceClient;
 
 export {v1, CloudChannelReportsServiceClient, CloudChannelServiceClient};
-export default {
-  v1,
-  CloudChannelReportsServiceClient,
-  CloudChannelServiceClient,
-};
+export default {v1, CloudChannelReportsServiceClient, CloudChannelServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

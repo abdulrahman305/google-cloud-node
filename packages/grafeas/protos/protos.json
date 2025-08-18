@@ -71,7 +71,8 @@
                 "COMPLIANCE": 9,
                 "DSSE_ATTESTATION": 10,
                 "VULNERABILITY_ASSESSMENT": 11,
-                "SBOM_REFERENCE": 12
+                "SBOM_REFERENCE": 12,
+                "SECRET": 13
               }
             },
             "RelatedUrl": {
@@ -132,6 +133,51 @@
                 "filePath": {
                   "type": "string",
                   "id": 1
+                },
+                "layerDetails": {
+                  "type": "LayerDetails",
+                  "id": 2
+                }
+              }
+            },
+            "BaseImage": {
+              "fields": {
+                "name": {
+                  "type": "string",
+                  "id": 1
+                },
+                "repository": {
+                  "type": "string",
+                  "id": 2
+                },
+                "layerCount": {
+                  "type": "int32",
+                  "id": 3
+                }
+              }
+            },
+            "LayerDetails": {
+              "fields": {
+                "index": {
+                  "type": "int32",
+                  "id": 1
+                },
+                "diffId": {
+                  "type": "string",
+                  "id": 2
+                },
+                "chainId": {
+                  "type": "string",
+                  "id": 5
+                },
+                "command": {
+                  "type": "string",
+                  "id": 3
+                },
+                "baseImages": {
+                  "rule": "repeated",
+                  "type": "BaseImage",
+                  "id": 4
                 }
               }
             },
@@ -1104,6 +1150,10 @@
                 "nonComplianceReason": {
                   "type": "string",
                   "id": 3
+                },
+                "version": {
+                  "type": "grafeas.v1.ComplianceVersion",
+                  "id": 4
                 }
               }
             },
@@ -1448,6 +1498,10 @@
                 "sbomStatus": {
                   "type": "SBOMStatus",
                   "id": 9
+                },
+                "vulnerabilityAttestation": {
+                  "type": "VulnerabilityAttestation",
+                  "id": 10
                 }
               },
               "nested": {
@@ -1498,6 +1552,31 @@
                         "SBOM_STATE_UNSPECIFIED": 0,
                         "PENDING": 1,
                         "COMPLETE": 2
+                      }
+                    }
+                  }
+                },
+                "VulnerabilityAttestation": {
+                  "fields": {
+                    "lastAttemptTime": {
+                      "type": "google.protobuf.Timestamp",
+                      "id": 1
+                    },
+                    "state": {
+                      "type": "VulnerabilityAttestationState",
+                      "id": 2
+                    },
+                    "error": {
+                      "type": "string",
+                      "id": 3
+                    }
+                  },
+                  "nested": {
+                    "VulnerabilityAttestationState": {
+                      "values": {
+                        "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED": 0,
+                        "SUCCESS": 1,
+                        "FAILURE": 2
                       }
                     }
                   }
@@ -1595,12 +1674,16 @@
                   "responseType": "google.protobuf.Empty",
                   "options": {
                     "(google.api.http).delete": "/v1/{name=projects/*/occurrences/*}",
+                    "(google.api.http).additional_bindings.delete": "/v1/{name=projects/*/locations/*/occurrences/*}",
                     "(google.api.method_signature)": "name"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
-                        "delete": "/v1/{name=projects/*/occurrences/*}"
+                        "delete": "/v1/{name=projects/*/occurrences/*}",
+                        "additional_bindings": {
+                          "delete": "/v1/{name=projects/*/locations/*/occurrences/*}"
+                        }
                       }
                     },
                     {
@@ -1614,13 +1697,19 @@
                   "options": {
                     "(google.api.http).post": "/v1/{parent=projects/*}/occurrences",
                     "(google.api.http).body": "occurrence",
+                    "(google.api.http).additional_bindings.post": "/v1/{parent=projects/*/locations/*}/occurrences",
+                    "(google.api.http).additional_bindings.body": "occurrence",
                     "(google.api.method_signature)": "parent,occurrence"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
                         "post": "/v1/{parent=projects/*}/occurrences",
-                        "body": "occurrence"
+                        "body": "occurrence",
+                        "additional_bindings": {
+                          "post": "/v1/{parent=projects/*/locations/*}/occurrences",
+                          "body": "occurrence"
+                        }
                       }
                     },
                     {
@@ -1634,13 +1723,19 @@
                   "options": {
                     "(google.api.http).post": "/v1/{parent=projects/*}/occurrences:batchCreate",
                     "(google.api.http).body": "*",
+                    "(google.api.http).additional_bindings.post": "/v1/{parent=projects/*/locations/*}/occurrences:batchCreate",
+                    "(google.api.http).additional_bindings.body": "*",
                     "(google.api.method_signature)": "parent,occurrences"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
                         "post": "/v1/{parent=projects/*}/occurrences:batchCreate",
-                        "body": "*"
+                        "body": "*",
+                        "additional_bindings": {
+                          "post": "/v1/{parent=projects/*/locations/*}/occurrences:batchCreate",
+                          "body": "*"
+                        }
                       }
                     },
                     {
@@ -1654,13 +1749,19 @@
                   "options": {
                     "(google.api.http).patch": "/v1/{name=projects/*/occurrences/*}",
                     "(google.api.http).body": "occurrence",
+                    "(google.api.http).additional_bindings.patch": "/v1/{name=projects/*/locations/*/occurrences/*}",
+                    "(google.api.http).additional_bindings.body": "occurrence",
                     "(google.api.method_signature)": "name,occurrence,update_mask"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
                         "patch": "/v1/{name=projects/*/occurrences/*}",
-                        "body": "occurrence"
+                        "body": "occurrence",
+                        "additional_bindings": {
+                          "patch": "/v1/{name=projects/*/locations/*/occurrences/*}",
+                          "body": "occurrence"
+                        }
                       }
                     },
                     {
@@ -1739,12 +1840,16 @@
                   "responseType": "google.protobuf.Empty",
                   "options": {
                     "(google.api.http).delete": "/v1/{name=projects/*/notes/*}",
+                    "(google.api.http).additional_bindings.delete": "/v1/{name=projects/*/locations/*/notes/*}",
                     "(google.api.method_signature)": "name"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
-                        "delete": "/v1/{name=projects/*/notes/*}"
+                        "delete": "/v1/{name=projects/*/notes/*}",
+                        "additional_bindings": {
+                          "delete": "/v1/{name=projects/*/locations/*/notes/*}"
+                        }
                       }
                     },
                     {
@@ -1758,13 +1863,19 @@
                   "options": {
                     "(google.api.http).post": "/v1/{parent=projects/*}/notes",
                     "(google.api.http).body": "note",
+                    "(google.api.http).additional_bindings.post": "/v1/{parent=projects/*/locations/*}/notes",
+                    "(google.api.http).additional_bindings.body": "note",
                     "(google.api.method_signature)": "parent,note_id,note"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
                         "post": "/v1/{parent=projects/*}/notes",
-                        "body": "note"
+                        "body": "note",
+                        "additional_bindings": {
+                          "post": "/v1/{parent=projects/*/locations/*}/notes",
+                          "body": "note"
+                        }
                       }
                     },
                     {
@@ -1778,13 +1889,19 @@
                   "options": {
                     "(google.api.http).post": "/v1/{parent=projects/*}/notes:batchCreate",
                     "(google.api.http).body": "*",
+                    "(google.api.http).additional_bindings.post": "/v1/{parent=projects/*/locations/*}/notes:batchCreate",
+                    "(google.api.http).additional_bindings.body": "*",
                     "(google.api.method_signature)": "parent,notes"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
                         "post": "/v1/{parent=projects/*}/notes:batchCreate",
-                        "body": "*"
+                        "body": "*",
+                        "additional_bindings": {
+                          "post": "/v1/{parent=projects/*/locations/*}/notes:batchCreate",
+                          "body": "*"
+                        }
                       }
                     },
                     {
@@ -1798,13 +1915,19 @@
                   "options": {
                     "(google.api.http).patch": "/v1/{name=projects/*/notes/*}",
                     "(google.api.http).body": "note",
+                    "(google.api.http).additional_bindings.patch": "/v1/{name=projects/*/locations/*/notes/*}",
+                    "(google.api.http).additional_bindings.body": "note",
                     "(google.api.method_signature)": "name,note,update_mask"
                   },
                   "parsedOptions": [
                     {
                       "(google.api.http)": {
                         "patch": "/v1/{name=projects/*/notes/*}",
-                        "body": "note"
+                        "body": "note",
+                        "additional_bindings": {
+                          "patch": "/v1/{name=projects/*/locations/*/notes/*}",
+                          "body": "note"
+                        }
                       }
                     },
                     {
@@ -1854,7 +1977,8 @@
                     "upgrade",
                     "compliance",
                     "dsseAttestation",
-                    "sbomReference"
+                    "sbomReference",
+                    "secret"
                   ]
                 }
               },
@@ -1931,6 +2055,10 @@
                   "type": "grafeas.v1.SBOMReferenceOccurrence",
                   "id": 19
                 },
+                "secret": {
+                  "type": "grafeas.v1.SecretOccurrence",
+                  "id": 20
+                },
                 "envelope": {
                   "type": "grafeas.v1.Envelope",
                   "id": 18
@@ -1956,7 +2084,8 @@
                     "compliance",
                     "dsseAttestation",
                     "vulnerabilityAssessment",
-                    "sbomReference"
+                    "sbomReference",
+                    "secret"
                   ]
                 }
               },
@@ -2046,6 +2175,10 @@
                 "sbomReference": {
                   "type": "grafeas.v1.SBOMReferenceNote",
                   "id": 21
+                },
+                "secret": {
+                  "type": "grafeas.v1.SecretNote",
+                  "id": 22
                 }
               }
             },
@@ -2696,6 +2829,93 @@
                   "type": "string",
                   "id": 4
                 }
+              }
+            },
+            "SecretNote": {
+              "fields": {}
+            },
+            "SecretOccurrence": {
+              "fields": {
+                "kind": {
+                  "type": "SecretKind",
+                  "id": 1,
+                  "options": {
+                    "(google.api.field_behavior)": "REQUIRED"
+                  }
+                },
+                "locations": {
+                  "rule": "repeated",
+                  "type": "SecretLocation",
+                  "id": 2,
+                  "options": {
+                    "(google.api.field_behavior)": "OPTIONAL"
+                  }
+                },
+                "statuses": {
+                  "rule": "repeated",
+                  "type": "SecretStatus",
+                  "id": 3,
+                  "options": {
+                    "(google.api.field_behavior)": "OPTIONAL"
+                  }
+                }
+              }
+            },
+            "SecretLocation": {
+              "oneofs": {
+                "location": {
+                  "oneof": [
+                    "fileLocation"
+                  ]
+                }
+              },
+              "fields": {
+                "fileLocation": {
+                  "type": "FileLocation",
+                  "id": 1
+                }
+              }
+            },
+            "SecretStatus": {
+              "fields": {
+                "status": {
+                  "type": "Status",
+                  "id": 1,
+                  "options": {
+                    "(google.api.field_behavior)": "OPTIONAL"
+                  }
+                },
+                "updateTime": {
+                  "type": "google.protobuf.Timestamp",
+                  "id": 2,
+                  "options": {
+                    "(google.api.field_behavior)": "OPTIONAL"
+                  }
+                },
+                "message": {
+                  "type": "string",
+                  "id": 3,
+                  "options": {
+                    "(google.api.field_behavior)": "OPTIONAL"
+                  }
+                }
+              },
+              "nested": {
+                "Status": {
+                  "values": {
+                    "STATUS_UNSPECIFIED": 0,
+                    "UNKNOWN": 1,
+                    "VALID": 2,
+                    "INVALID": 3
+                  }
+                }
+              }
+            },
+            "SecretKind": {
+              "values": {
+                "SECRET_KIND_UNSPECIFIED": 0,
+                "SECRET_KIND_UNKNOWN": 1,
+                "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY": 2
               }
             },
             "UpgradeNote": {
@@ -3396,6 +3616,7 @@
               }
             },
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -3405,6 +3626,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -3420,6 +3642,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3437,18 +3660,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -3489,6 +3706,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3571,6 +3789,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -3644,6 +3863,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3723,6 +3943,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3735,6 +3956,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3776,6 +3998,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3792,6 +4015,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3809,6 +4033,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3843,6 +4068,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -3984,6 +4210,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -4057,6 +4284,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -4118,10 +4346,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -4205,6 +4430,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4224,6 +4450,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -4267,6 +4494,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4300,6 +4528,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4326,6 +4555,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4368,6 +4598,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -4417,6 +4648,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -4489,8 +4721,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -4546,6 +4790,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -4577,6 +4822,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -4590,12 +4836,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -4615,6 +4867,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -4628,7 +4881,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -4699,7 +4955,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -4817,6 +5076,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -4925,6 +5189,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },

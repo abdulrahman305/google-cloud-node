@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,25 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  AgentsClient,
-  AnswerRecordsClient,
-  ContextsClient,
-  ConversationDatasetsClient,
-  ConversationModelsClient,
-  ConversationProfilesClient,
-  ConversationsClient,
-  DocumentsClient,
-  EntityTypesClient,
-  EnvironmentsClient,
-  FulfillmentsClient,
-  IntentsClient,
-  KnowledgeBasesClient,
-  ParticipantsClient,
-  SessionEntityTypesClient,
-  SessionsClient,
-  VersionsClient,
-} from '@google-cloud/dialogflow';
+import {AgentsClient, AnswerRecordsClient, ContextsClient, ConversationDatasetsClient, ConversationModelsClient, ConversationProfilesClient, ConversationsClient, DocumentsClient, EncryptionSpecServiceClient, EntityTypesClient, EnvironmentsClient, FulfillmentsClient, GeneratorsClient, IntentsClient, KnowledgeBasesClient, ParticipantsClient, SessionEntityTypesClient, SessionsClient, VersionsClient} from '@google-cloud/dialogflow';
 
 // check that the client class type name can be used
 function doStuffWithAgentsClient(client: AgentsClient) {
@@ -46,23 +28,22 @@ function doStuffWithAnswerRecordsClient(client: AnswerRecordsClient) {
 function doStuffWithContextsClient(client: ContextsClient) {
   client.close();
 }
-function doStuffWithConversationDatasetsClient(
-  client: ConversationDatasetsClient
-) {
+function doStuffWithConversationDatasetsClient(client: ConversationDatasetsClient) {
   client.close();
 }
 function doStuffWithConversationModelsClient(client: ConversationModelsClient) {
   client.close();
 }
-function doStuffWithConversationProfilesClient(
-  client: ConversationProfilesClient
-) {
+function doStuffWithConversationProfilesClient(client: ConversationProfilesClient) {
   client.close();
 }
 function doStuffWithConversationsClient(client: ConversationsClient) {
   client.close();
 }
 function doStuffWithDocumentsClient(client: DocumentsClient) {
+  client.close();
+}
+function doStuffWithEncryptionSpecServiceClient(client: EncryptionSpecServiceClient) {
   client.close();
 }
 function doStuffWithEntityTypesClient(client: EntityTypesClient) {
@@ -72,6 +53,9 @@ function doStuffWithEnvironmentsClient(client: EnvironmentsClient) {
   client.close();
 }
 function doStuffWithFulfillmentsClient(client: FulfillmentsClient) {
+  client.close();
+}
+function doStuffWithGeneratorsClient(client: GeneratorsClient) {
   client.close();
 }
 function doStuffWithIntentsClient(client: IntentsClient) {
@@ -119,6 +103,9 @@ function main() {
   const documentsClient = new DocumentsClient();
   doStuffWithDocumentsClient(documentsClient);
   // check that the client instance can be created
+  const encryptionSpecServiceClient = new EncryptionSpecServiceClient();
+  doStuffWithEncryptionSpecServiceClient(encryptionSpecServiceClient);
+  // check that the client instance can be created
   const entityTypesClient = new EntityTypesClient();
   doStuffWithEntityTypesClient(entityTypesClient);
   // check that the client instance can be created
@@ -127,6 +114,9 @@ function main() {
   // check that the client instance can be created
   const fulfillmentsClient = new FulfillmentsClient();
   doStuffWithFulfillmentsClient(fulfillmentsClient);
+  // check that the client instance can be created
+  const generatorsClient = new GeneratorsClient();
+  doStuffWithGeneratorsClient(generatorsClient);
   // check that the client instance can be created
   const intentsClient = new IntentsClient();
   doStuffWithIntentsClient(intentsClient);

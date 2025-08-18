@@ -21,8 +21,10 @@
   * [Accounts_service.update_labels](#accounts_service.update_labels)
   * [Css_product_inputs_service.delete_css_product_input](#css_product_inputs_service.delete_css_product_input)
   * [Css_product_inputs_service.insert_css_product_input](#css_product_inputs_service.insert_css_product_input)
+  * [Css_product_inputs_service.update_css_product_input](#css_product_inputs_service.update_css_product_input)
   * [Css_products_service.get_css_product](#css_products_service.get_css_product)
   * [Css_products_service.list_css_products](#css_products_service.list_css_products)
+  * [Quota_service.list_quota_groups](#quota_service.list_quota_groups)
   * [Quickstart](#quickstart)
 
 ## Before you begin
@@ -193,6 +195,23 @@ __Usage:__
 
 
 
+### Css_product_inputs_service.update_css_product_input
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-css/samples/generated/v1/css_product_inputs_service.update_css_product_input.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-css/samples/generated/v1/css_product_inputs_service.update_css_product_input.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-shopping-css/samples/generated/v1/css_product_inputs_service.update_css_product_input.js`
+
+
+-----
+
+
+
+
 ### Css_products_service.get_css_product
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-css/samples/generated/v1/css_products_service.get_css_product.js).
@@ -220,6 +239,23 @@ __Usage:__
 
 
 `node packages/google-shopping-css/samples/generated/v1/css_products_service.list_css_products.js`
+
+
+-----
+
+
+
+
+### Quota_service.list_quota_groups
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-shopping-css/samples/generated/v1/quota_service.list_quota_groups.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-shopping-css/samples/generated/v1/quota_service.list_quota_groups.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-shopping-css/samples/generated/v1/quota_service.list_quota_groups.js`
 
 
 -----

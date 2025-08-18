@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,8 +20,10 @@ import * as v1 from './v1';
 
 const DeveloperConnectClient = v1.DeveloperConnectClient;
 type DeveloperConnectClient = v1.DeveloperConnectClient;
+const InsightsConfigServiceClient = v1.InsightsConfigServiceClient;
+type InsightsConfigServiceClient = v1.InsightsConfigServiceClient;
 
-export {v1, DeveloperConnectClient};
-export default {v1, DeveloperConnectClient};
+export {v1, DeveloperConnectClient, InsightsConfigServiceClient};
+export default {v1, DeveloperConnectClient, InsightsConfigServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

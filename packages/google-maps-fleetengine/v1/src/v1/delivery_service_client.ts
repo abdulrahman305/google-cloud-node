@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import type {Callback, CallOptions, Descriptors, ClientOptions, PaginationCallba
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -46,6 +47,8 @@ export class DeliveryServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('fleetengine-delivery');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -80,7 +83,7 @@ export class DeliveryServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -192,8 +195,6 @@ export class DeliveryServiceClient {
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
     this.descriptors.page = {
-      searchTasks:
-          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'tasks'),
       listTasks:
           new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'tasks'),
       listDeliveryVehicles:
@@ -243,7 +244,7 @@ export class DeliveryServiceClient {
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
     const deliveryServiceStubMethods =
-        ['createDeliveryVehicle', 'getDeliveryVehicle', 'updateDeliveryVehicle', 'batchCreateTasks', 'createTask', 'getTask', 'searchTasks', 'updateTask', 'listTasks', 'getTaskTrackingInfo', 'listDeliveryVehicles'];
+        ['createDeliveryVehicle', 'getDeliveryVehicle', 'deleteDeliveryVehicle', 'updateDeliveryVehicle', 'batchCreateTasks', 'createTask', 'getTask', 'deleteTask', 'updateTask', 'listTasks', 'getTaskTrackingInfo', 'listDeliveryVehicles'];
     for (const methodName of deliveryServiceStubMethods) {
       const callPromise = this.deliveryServiceStub.then(
         stub => (...args: Array<{}>) => {
@@ -370,6 +371,7 @@ export class DeliveryServiceClient {
  *   Required. The `DeliveryVehicle` entity to create. When creating a new
  *   delivery vehicle, you may set the following optional fields:
  *
+ *   * type
  *   * last_location
  *   * attributes
  *
@@ -446,8 +448,32 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.createDeliveryVehicle(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('createDeliveryVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle,
+        protos.maps.fleetengine.delivery.v1.ICreateDeliveryVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createDeliveryVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.createDeliveryVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle,
+        protos.maps.fleetengine.delivery.v1.ICreateDeliveryVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('createDeliveryVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Returns the specified `DeliveryVehicle` instance.
@@ -532,15 +558,152 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.getDeliveryVehicle(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('getDeliveryVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle,
+        protos.maps.fleetengine.delivery.v1.IGetDeliveryVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getDeliveryVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getDeliveryVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle,
+        protos.maps.fleetengine.delivery.v1.IGetDeliveryVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getDeliveryVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Deletes a DeliveryVehicle from the Fleet Engine.
+ *
+ * Returns FAILED_PRECONDITION if the DeliveryVehicle has OPEN Tasks
+ * assigned to it.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
+ *   Optional. The standard Delivery API request header.
+ * @param {string} request.name
+ *   Required. Must be in the format
+ *   `providers/{provider}/deliveryVehicles/{delivery_vehicle}`.
+ *   The `provider` must be the Google Cloud Project ID. For example,
+ *   `sample-cloud-project`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/delivery_service.delete_delivery_vehicle.js</caption>
+ * region_tag:fleetengine_v1_generated_DeliveryService_DeleteDeliveryVehicle_async
+ */
+  deleteDeliveryVehicle(
+      request?: protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|undefined, {}|undefined
+      ]>;
+  deleteDeliveryVehicle(
+      request: protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteDeliveryVehicle(
+      request: protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteDeliveryVehicle(
+      request?: protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    let routingParameter = {};
+    {
+      const fieldValue = request.name;
+      if (fieldValue !== undefined && fieldValue !== null) {
+        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
+        if (match) {
+          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
+          Object.assign(routingParameter, { provider_id: parameterValue });
+        }
+      }
+    }
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams(
+      routingParameter
+    );
+    this.initialize().catch(err => {throw err});
+    this._log.info('deleteDeliveryVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteDeliveryVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.deleteDeliveryVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteDeliveryVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('deleteDeliveryVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Writes updated `DeliveryVehicle` data to Fleet Engine, and assigns
  * `Tasks` to the `DeliveryVehicle`. You cannot update the name of the
- * `DeliveryVehicle`. You *can* update `remaining_vehicle_journey_segments`
- * though, but it must contain all of the `VehicleJourneySegment`s currently
- * on the `DeliveryVehicle`. The `task_id`s are retrieved from
+ * `DeliveryVehicle`. You *can* update `remaining_vehicle_journey_segments`,
+ * but it must contain all of the `VehicleJourneySegment`s to be persisted on
+ * the `DeliveryVehicle`. The `task_id`s are retrieved from
  * `remaining_vehicle_journey_segments`, and their corresponding `Tasks` are
  * assigned to the `DeliveryVehicle` if they have not yet been assigned.
  *
@@ -628,8 +791,32 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.updateDeliveryVehicle(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('updateDeliveryVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle,
+        protos.maps.fleetengine.delivery.v1.IUpdateDeliveryVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateDeliveryVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.updateDeliveryVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle,
+        protos.maps.fleetengine.delivery.v1.IUpdateDeliveryVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('updateDeliveryVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Creates and returns a batch of new `Task` objects.
@@ -721,8 +908,32 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.batchCreateTasks(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('batchCreateTasks request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.IBatchCreateTasksResponse,
+        protos.maps.fleetengine.delivery.v1.IBatchCreateTasksRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('batchCreateTasks response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.batchCreateTasks(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.IBatchCreateTasksResponse,
+        protos.maps.fleetengine.delivery.v1.IBatchCreateTasksRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('batchCreateTasks response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Creates and returns a new `Task` object.
@@ -756,6 +967,12 @@ export class DeliveryServiceClient {
  *   tasks, but required for all other task types)
  *   * `planned_location` (optional for `UNAVAILABLE` tasks)
  *   * `task_duration`
+ *
+ *   The following fields can be optionally set:
+ *
+ *   * `target_time_window`
+ *   * `task_tracking_view_config`
+ *   * `attributes`
  *
  *   Note: The Task's `name` field is ignored. All other Task fields must not be
  *   set; otherwise, an error is returned.
@@ -830,8 +1047,32 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.createTask(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('createTask request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.ITask,
+        protos.maps.fleetengine.delivery.v1.ICreateTaskRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createTask response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.createTask(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.ITask,
+        protos.maps.fleetengine.delivery.v1.ICreateTaskRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('createTask response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Gets information about a `Task`.
@@ -915,8 +1156,144 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.getTask(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('getTask request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.ITask,
+        protos.maps.fleetengine.delivery.v1.IGetTaskRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getTask response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getTask(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.ITask,
+        protos.maps.fleetengine.delivery.v1.IGetTaskRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getTask response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Deletes a single Task.
+ *
+ * Returns FAILED_PRECONDITION if the Task is OPEN and assigned to a
+ * DeliveryVehicle.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
+ *   Optional. The standard Delivery API request header.
+ * @param {string} request.name
+ *   Required. Must be in the format `providers/{provider}/tasks/{task}`. The
+ *   `provider` must be the Google Cloud Project ID. For example,
+ *   `sample-cloud-project`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/delivery_service.delete_task.js</caption>
+ * region_tag:fleetengine_v1_generated_DeliveryService_DeleteTask_async
+ */
+  deleteTask(
+      request?: protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|undefined, {}|undefined
+      ]>;
+  deleteTask(
+      request: protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteTask(
+      request: protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteTask(
+      request?: protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    let routingParameter = {};
+    {
+      const fieldValue = request.name;
+      if (fieldValue !== undefined && fieldValue !== null) {
+        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
+        if (match) {
+          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
+          Object.assign(routingParameter, { provider_id: parameterValue });
+        }
+      }
+    }
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams(
+      routingParameter
+    );
+    this.initialize().catch(err => {throw err});
+    this._log.info('deleteTask request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteTask response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.deleteTask(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.delivery.v1.IDeleteTaskRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('deleteTask response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Updates `Task` data.
@@ -1019,8 +1396,32 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.updateTask(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('updateTask request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.ITask,
+        protos.maps.fleetengine.delivery.v1.IUpdateTaskRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateTask response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.updateTask(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.ITask,
+        protos.maps.fleetengine.delivery.v1.IUpdateTaskRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('updateTask response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Returns the specified `TaskTrackingInfo` instance.
@@ -1106,279 +1507,34 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.getTaskTrackingInfo(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('getTaskTrackingInfo request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.delivery.v1.ITaskTrackingInfo,
+        protos.maps.fleetengine.delivery.v1.IGetTaskTrackingInfoRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getTaskTrackingInfo response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getTaskTrackingInfo(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.delivery.v1.ITaskTrackingInfo,
+        protos.maps.fleetengine.delivery.v1.IGetTaskTrackingInfoRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getTaskTrackingInfo response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 
- /**
- * Deprecated: Use `GetTaskTrackingInfo` instead.
- *
- * @param {Object} request
- *   The request object that will be sent.
- * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
- *   Optional. The standard Delivery API request header.
- * @param {string} request.parent
- *   Required. Must be in the format `providers/{provider}`.
- *   The provider must be the Google Cloud Project ID. For example,
- *   `sample-cloud-project`.
- * @param {string} request.trackingId
- *   Required. The identifier of the set of related Tasks being requested.
- *   Tracking IDs are subject to the following restrictions:
- *
- *   * Must be a valid Unicode string.
- *   * Limited to a maximum length of 64 characters.
- *   * Normalized according to [Unicode Normalization Form C]
- *   (http://www.unicode.org/reports/tr15/).
- *   * May not contain any of the following ASCII characters: '/', ':', '?',
- *   ',', or '#'.
- * @param {number} [request.pageSize]
- *   Optional. The maximum number of Tasks to return. The service may return
- *   fewer than this value. If you don't specify this value, then the server
- *   determines the number of results to return.
- * @param {string} [request.pageToken]
- *   Optional. A page token, received from a previous `SearchTasks` call. You
- *   must provide this value to retrieve the subsequent page.
- *
- *   When paginating, all other parameters provided to `SearchTasks` must match
- *   the call that provided the page token.
- * @param {object} [options]
- *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
- * @returns {Promise} - The promise which resolves to an array.
- *   The first element of the array is Array of {@link protos.maps.fleetengine.delivery.v1.Task|Task}.
- *   The client library will perform auto-pagination by default: it will call the API as many
- *   times as needed and will merge results from all the pages into this array.
- *   Note that it can affect your quota.
- *   We recommend using `searchTasksAsync()`
- *   method described below for async iteration which you can stop as needed.
- *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
- *   for more details and examples.
- * @deprecated SearchTasks is deprecated and may be removed in a future version.
- */
-  searchTasks(
-      request?: protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-      options?: CallOptions):
-      Promise<[
-        protos.maps.fleetengine.delivery.v1.ITask[],
-        protos.maps.fleetengine.delivery.v1.ISearchTasksRequest|null,
-        protos.maps.fleetengine.delivery.v1.ISearchTasksResponse
-      ]>;
-  searchTasks(
-      request: protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-      options: CallOptions,
-      callback: PaginationCallback<
-          protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-          protos.maps.fleetengine.delivery.v1.ISearchTasksResponse|null|undefined,
-          protos.maps.fleetengine.delivery.v1.ITask>): void;
-  searchTasks(
-      request: protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-      callback: PaginationCallback<
-          protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-          protos.maps.fleetengine.delivery.v1.ISearchTasksResponse|null|undefined,
-          protos.maps.fleetengine.delivery.v1.ITask>): void;
-  searchTasks(
-      request?: protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-      optionsOrCallback?: CallOptions|PaginationCallback<
-          protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-          protos.maps.fleetengine.delivery.v1.ISearchTasksResponse|null|undefined,
-          protos.maps.fleetengine.delivery.v1.ITask>,
-      callback?: PaginationCallback<
-          protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-          protos.maps.fleetengine.delivery.v1.ISearchTasksResponse|null|undefined,
-          protos.maps.fleetengine.delivery.v1.ITask>):
-      Promise<[
-        protos.maps.fleetengine.delivery.v1.ITask[],
-        protos.maps.fleetengine.delivery.v1.ISearchTasksRequest|null,
-        protos.maps.fleetengine.delivery.v1.ISearchTasksResponse
-      ]>|void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    }
-    else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    let routingParameter = {};
-    {
-      const fieldValue = request.parent;
-      if (fieldValue !== undefined && fieldValue !== null) {
-        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
-        if (match) {
-          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
-          Object.assign(routingParameter, { provider_id: parameterValue });
-        }
-      }
-    }
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = this._gaxModule.routingHeader.fromParams(
-      routingParameter
-    );
-    this.initialize();
-    this.warn('DEP$DeliveryService-$SearchTasks','SearchTasks is deprecated and may be removed in a future version.', 'DeprecationWarning');
-    return this.innerApiCalls.searchTasks(request, options, callback);
-  }
-
-/**
- * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
- * @param {Object} request
- *   The request object that will be sent.
- * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
- *   Optional. The standard Delivery API request header.
- * @param {string} request.parent
- *   Required. Must be in the format `providers/{provider}`.
- *   The provider must be the Google Cloud Project ID. For example,
- *   `sample-cloud-project`.
- * @param {string} request.trackingId
- *   Required. The identifier of the set of related Tasks being requested.
- *   Tracking IDs are subject to the following restrictions:
- *
- *   * Must be a valid Unicode string.
- *   * Limited to a maximum length of 64 characters.
- *   * Normalized according to [Unicode Normalization Form C]
- *   (http://www.unicode.org/reports/tr15/).
- *   * May not contain any of the following ASCII characters: '/', ':', '?',
- *   ',', or '#'.
- * @param {number} [request.pageSize]
- *   Optional. The maximum number of Tasks to return. The service may return
- *   fewer than this value. If you don't specify this value, then the server
- *   determines the number of results to return.
- * @param {string} [request.pageToken]
- *   Optional. A page token, received from a previous `SearchTasks` call. You
- *   must provide this value to retrieve the subsequent page.
- *
- *   When paginating, all other parameters provided to `SearchTasks` must match
- *   the call that provided the page token.
- * @param {object} [options]
- *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
- * @returns {Stream}
- *   An object stream which emits an object representing {@link protos.maps.fleetengine.delivery.v1.Task|Task} on 'data' event.
- *   The client library will perform auto-pagination by default: it will call the API as many
- *   times as needed. Note that it can affect your quota.
- *   We recommend using `searchTasksAsync()`
- *   method described below for async iteration which you can stop as needed.
- *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
- *   for more details and examples.
- * @deprecated SearchTasks is deprecated and may be removed in a future version.
- */
-  searchTasksStream(
-      request?: protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-      options?: CallOptions):
-    Transform{
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    let routingParameter = {};
-    {
-      const fieldValue = request.parent;
-      if (fieldValue !== undefined && fieldValue !== null) {
-        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
-        if (match) {
-          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
-          Object.assign(routingParameter, { provider_id: parameterValue });
-        }
-      }
-    }
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = this._gaxModule.routingHeader.fromParams(
-      routingParameter
-    );
-    const defaultCallSettings = this._defaults['searchTasks'];
-    const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
-    this.warn('DEP$DeliveryService-$SearchTasks','SearchTasks is deprecated and may be removed in a future version.', 'DeprecationWarning');
-    return this.descriptors.page.searchTasks.createStream(
-      this.innerApiCalls.searchTasks as GaxCall,
-      request,
-      callSettings
-    );
-  }
-
-/**
- * Equivalent to `searchTasks`, but returns an iterable object.
- *
- * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
- * @param {Object} request
- *   The request object that will be sent.
- * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
- *   Optional. The standard Delivery API request header.
- * @param {string} request.parent
- *   Required. Must be in the format `providers/{provider}`.
- *   The provider must be the Google Cloud Project ID. For example,
- *   `sample-cloud-project`.
- * @param {string} request.trackingId
- *   Required. The identifier of the set of related Tasks being requested.
- *   Tracking IDs are subject to the following restrictions:
- *
- *   * Must be a valid Unicode string.
- *   * Limited to a maximum length of 64 characters.
- *   * Normalized according to [Unicode Normalization Form C]
- *   (http://www.unicode.org/reports/tr15/).
- *   * May not contain any of the following ASCII characters: '/', ':', '?',
- *   ',', or '#'.
- * @param {number} [request.pageSize]
- *   Optional. The maximum number of Tasks to return. The service may return
- *   fewer than this value. If you don't specify this value, then the server
- *   determines the number of results to return.
- * @param {string} [request.pageToken]
- *   Optional. A page token, received from a previous `SearchTasks` call. You
- *   must provide this value to retrieve the subsequent page.
- *
- *   When paginating, all other parameters provided to `SearchTasks` must match
- *   the call that provided the page token.
- * @param {object} [options]
- *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
- * @returns {Object}
- *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
- *   When you iterate the returned iterable, each element will be an object representing
- *   {@link protos.maps.fleetengine.delivery.v1.Task|Task}. The API will be called under the hood as needed, once per the page,
- *   so you can stop the iteration when you don't need more results.
- *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
- *   for more details and examples.
- * @example <caption>include:samples/generated/v1/delivery_service.search_tasks.js</caption>
- * region_tag:fleetengine_v1_generated_DeliveryService_SearchTasks_async
- * @deprecated SearchTasks is deprecated and may be removed in a future version.
- */
-  searchTasksAsync(
-      request?: protos.maps.fleetengine.delivery.v1.ISearchTasksRequest,
-      options?: CallOptions):
-    AsyncIterable<protos.maps.fleetengine.delivery.v1.ITask>{
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    let routingParameter = {};
-    {
-      const fieldValue = request.parent;
-      if (fieldValue !== undefined && fieldValue !== null) {
-        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
-        if (match) {
-          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
-          Object.assign(routingParameter, { provider_id: parameterValue });
-        }
-      }
-    }
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = this._gaxModule.routingHeader.fromParams(
-      routingParameter
-    );
-    const defaultCallSettings = this._defaults['searchTasks'];
-    const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
-    this.warn('DEP$DeliveryService-$SearchTasks','SearchTasks is deprecated and may be removed in a future version.', 'DeprecationWarning');
-    return this.descriptors.page.searchTasks.asyncIterate(
-      this.innerApiCalls['searchTasks'] as GaxCall,
-      request as {},
-      callSettings
-    ) as AsyncIterable<protos.maps.fleetengine.delivery.v1.ITask>;
-  }
  /**
  * Gets all `Task`s that meet the specified filtering criteria.
  *
@@ -1404,8 +1560,8 @@ export class DeliveryServiceClient {
  *   Optional. A filter query to apply when listing Tasks. See
  *   http://aip.dev/160 for examples of filter syntax. If you don't specify a
  *   value, or if you filter on an empty string, then all Tasks are returned.
- *   For information about the Task properties that you can filter on, see [Task
- *   list](/maps/documentation/transportation-logistics/last-mile-fleet-solution/fleet-performance/fleet-engine/deliveries_api#list_tasks).
+ *   For information about the Task properties that you can filter on, see [List
+ *   tasks](https://developers.google.com/maps/documentation/mobility/fleet-engine/journeys/tasks/find-tasks#filter_listed_tasks).
  * @param {object} [options]
  *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
  * @returns {Promise} - The promise which resolves to an array.
@@ -1482,12 +1638,31 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.listTasks(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.maps.fleetengine.delivery.v1.IListTasksRequest,
+      protos.maps.fleetengine.delivery.v1.IListTasksResponse|null|undefined,
+      protos.maps.fleetengine.delivery.v1.ITask>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listTasks values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listTasks request %j', request);
+    return this.innerApiCalls
+      .listTasks(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.maps.fleetengine.delivery.v1.ITask[],
+        protos.maps.fleetengine.delivery.v1.IListTasksRequest|null,
+        protos.maps.fleetengine.delivery.v1.IListTasksResponse
+      ]) => {
+        this._log.info('listTasks values %j', response);
+        return [response, input, output];
+      });
   }
 
 /**
- * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+ * Equivalent to `listTasks`, but returns a NodeJS Stream object.
  * @param {Object} request
  *   The request object that will be sent.
  * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
@@ -1510,8 +1685,8 @@ export class DeliveryServiceClient {
  *   Optional. A filter query to apply when listing Tasks. See
  *   http://aip.dev/160 for examples of filter syntax. If you don't specify a
  *   value, or if you filter on an empty string, then all Tasks are returned.
- *   For information about the Task properties that you can filter on, see [Task
- *   list](/maps/documentation/transportation-logistics/last-mile-fleet-solution/fleet-performance/fleet-engine/deliveries_api#list_tasks).
+ *   For information about the Task properties that you can filter on, see [List
+ *   tasks](https://developers.google.com/maps/documentation/mobility/fleet-engine/journeys/tasks/find-tasks#filter_listed_tasks).
  * @param {object} [options]
  *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
  * @returns {Stream}
@@ -1549,7 +1724,8 @@ export class DeliveryServiceClient {
     );
     const defaultCallSettings = this._defaults['listTasks'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listTasks stream %j', request);
     return this.descriptors.page.listTasks.createStream(
       this.innerApiCalls.listTasks as GaxCall,
       request,
@@ -1583,8 +1759,8 @@ export class DeliveryServiceClient {
  *   Optional. A filter query to apply when listing Tasks. See
  *   http://aip.dev/160 for examples of filter syntax. If you don't specify a
  *   value, or if you filter on an empty string, then all Tasks are returned.
- *   For information about the Task properties that you can filter on, see [Task
- *   list](/maps/documentation/transportation-logistics/last-mile-fleet-solution/fleet-performance/fleet-engine/deliveries_api#list_tasks).
+ *   For information about the Task properties that you can filter on, see [List
+ *   tasks](https://developers.google.com/maps/documentation/mobility/fleet-engine/journeys/tasks/find-tasks#filter_listed_tasks).
  * @param {object} [options]
  *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
  * @returns {Object}
@@ -1623,7 +1799,8 @@ export class DeliveryServiceClient {
     );
     const defaultCallSettings = this._defaults['listTasks'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listTasks iterate %j', request);
     return this.descriptors.page.listTasks.asyncIterate(
       this.innerApiCalls['listTasks'] as GaxCall,
       request as {},
@@ -1749,12 +1926,31 @@ export class DeliveryServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.listDeliveryVehicles(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.maps.fleetengine.delivery.v1.IListDeliveryVehiclesRequest,
+      protos.maps.fleetengine.delivery.v1.IListDeliveryVehiclesResponse|null|undefined,
+      protos.maps.fleetengine.delivery.v1.IDeliveryVehicle>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listDeliveryVehicles values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listDeliveryVehicles request %j', request);
+    return this.innerApiCalls
+      .listDeliveryVehicles(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.maps.fleetengine.delivery.v1.IDeliveryVehicle[],
+        protos.maps.fleetengine.delivery.v1.IListDeliveryVehiclesRequest|null,
+        protos.maps.fleetengine.delivery.v1.IListDeliveryVehiclesResponse
+      ]) => {
+        this._log.info('listDeliveryVehicles values %j', response);
+        return [response, input, output];
+      });
   }
 
 /**
- * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+ * Equivalent to `listDeliveryVehicles`, but returns a NodeJS Stream object.
  * @param {Object} request
  *   The request object that will be sent.
  * @param {maps.fleetengine.delivery.v1.DeliveryRequestHeader} [request.header]
@@ -1832,7 +2028,8 @@ export class DeliveryServiceClient {
     );
     const defaultCallSettings = this._defaults['listDeliveryVehicles'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listDeliveryVehicles stream %j', request);
     return this.descriptors.page.listDeliveryVehicles.createStream(
       this.innerApiCalls.listDeliveryVehicles as GaxCall,
       request,
@@ -1922,7 +2119,8 @@ export class DeliveryServiceClient {
     );
     const defaultCallSettings = this._defaults['listDeliveryVehicles'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listDeliveryVehicles iterate %j', request);
     return this.descriptors.page.listDeliveryVehicles.asyncIterate(
       this.innerApiCalls['listDeliveryVehicles'] as GaxCall,
       request as {},
@@ -2073,6 +2271,7 @@ export class DeliveryServiceClient {
   close(): Promise<void> {
     if (this.deliveryServiceStub && !this._terminated) {
       return this.deliveryServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -61,6 +61,15 @@ service MapsPlatformDatasets {
       get: "/v1/{name=projects/*/datasets/*}"
     };
     option (google.api.method_signature) = "name";
+  }
+
+  // Gets all the errors of a dataset.
+  rpc FetchDatasetErrors(FetchDatasetErrorsRequest)
+      returns (FetchDatasetErrorsResponse) {
+    option (google.api.http) = {
+      get: "/v1/{dataset=projects/*/datasets/*}:fetchDatasetErrors"
+    };
+    option (google.api.method_signature) = "dataset";
   }
 
   // Lists all the datasets for the specified project.

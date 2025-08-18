@@ -208,6 +208,30 @@
                                     }
                                   ]
                                 },
+                                "CheckUpgrade": {
+                                  "requestType": "CheckUpgradeRequest",
+                                  "responseType": "google.longrunning.Operation",
+                                  "options": {
+                                    "(google.api.http).post": "/v1/{environment=projects/*/locations/*/environments/*}:checkUpgrade",
+                                    "(google.api.http).body": "*",
+                                    "(google.longrunning.operation_info).response_type": "google.cloud.orchestration.airflow.service.v1.CheckUpgradeResponse",
+                                    "(google.longrunning.operation_info).metadata_type": "google.cloud.orchestration.airflow.service.v1.OperationMetadata"
+                                  },
+                                  "parsedOptions": [
+                                    {
+                                      "(google.api.http)": {
+                                        "post": "/v1/{environment=projects/*/locations/*/environments/*}:checkUpgrade",
+                                        "body": "*"
+                                      }
+                                    },
+                                    {
+                                      "(google.longrunning.operation_info)": {
+                                        "response_type": "google.cloud.orchestration.airflow.service.v1.CheckUpgradeResponse",
+                                        "metadata_type": "google.cloud.orchestration.airflow.service.v1.OperationMetadata"
+                                      }
+                                    }
+                                  ]
+                                },
                                 "CreateUserWorkloadsSecret": {
                                   "requestType": "CreateUserWorkloadsSecretRequest",
                                   "responseType": "UserWorkloadsSecret",
@@ -1171,15 +1195,24 @@
                                 },
                                 "softwareConfig": {
                                   "type": "SoftwareConfig",
-                                  "id": 4
+                                  "id": 4,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "nodeConfig": {
                                   "type": "NodeConfig",
-                                  "id": 5
+                                  "id": 5,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "privateEnvironmentConfig": {
                                   "type": "PrivateEnvironmentConfig",
-                                  "id": 7
+                                  "id": 7,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "webServerNetworkAccessControl": {
                                   "type": "WebServerNetworkAccessControl",
@@ -1382,7 +1415,10 @@
                               "fields": {
                                 "imageVersion": {
                                   "type": "string",
-                                  "id": 1
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "airflowConfigOverrides": {
                                   "keyType": "string",
@@ -1500,11 +1536,17 @@
                                 },
                                 "network": {
                                   "type": "string",
-                                  "id": 3
+                                  "id": 3,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "subnetwork": {
                                   "type": "string",
-                                  "id": 4
+                                  "id": 4,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "diskSizeGb": {
                                   "type": "int32",
@@ -1517,7 +1559,10 @@
                                 },
                                 "serviceAccount": {
                                   "type": "string",
-                                  "id": 7
+                                  "id": 7,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "tags": {
                                   "rule": "repeated",
@@ -1921,7 +1966,10 @@
                               "fields": {
                                 "enabled": {
                                   "type": "bool",
-                                  "id": 1
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "cidrBlocks": {
                                   "rule": "repeated",
@@ -1963,11 +2011,17 @@
                               "fields": {
                                 "name": {
                                   "type": "string",
-                                  "id": 1
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "IDENTIFIER"
+                                  }
                                 },
                                 "config": {
                                   "type": "EnvironmentConfig",
-                                  "id": 2
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "uuid": {
                                   "type": "string",
@@ -1988,11 +2042,21 @@
                                 "labels": {
                                   "keyType": "string",
                                   "type": "string",
-                                  "id": 7
+                                  "id": 7,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "satisfiesPzs": {
                                   "type": "bool",
                                   "id": 8,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                },
+                                "satisfiesPzi": {
+                                  "type": "bool",
+                                  "id": 10,
                                   "options": {
                                     "(google.api.field_behavior)": "OUTPUT_ONLY"
                                   }
@@ -2014,6 +2078,24 @@
                                     "UPDATING": 3,
                                     "DELETING": 4,
                                     "ERROR": 5
+                                  }
+                                }
+                              }
+                            },
+                            "CheckUpgradeRequest": {
+                              "fields": {
+                                "environment": {
+                                  "type": "string",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "REQUIRED"
+                                  }
+                                },
+                                "imageVersion": {
+                                  "type": "string",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
                                   }
                                 }
                               }
@@ -2063,6 +2145,13 @@
                             },
                             "DataRetentionConfig": {
                               "fields": {
+                                "airflowMetadataRetentionConfig": {
+                                  "type": "AirflowMetadataRetentionPolicyConfig",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
                                 "taskLogsRetentionConfig": {
                                   "type": "TaskLogsRetentionConfig",
                                   "id": 2,
@@ -2088,6 +2177,33 @@
                                     "TASK_LOGS_STORAGE_MODE_UNSPECIFIED": 0,
                                     "CLOUD_LOGGING_AND_CLOUD_STORAGE": 1,
                                     "CLOUD_LOGGING_ONLY": 2
+                                  }
+                                }
+                              }
+                            },
+                            "AirflowMetadataRetentionPolicyConfig": {
+                              "fields": {
+                                "retentionMode": {
+                                  "type": "RetentionMode",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
+                                "retentionDays": {
+                                  "type": "int32",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                }
+                              },
+                              "nested": {
+                                "RetentionMode": {
+                                  "values": {
+                                    "RETENTION_MODE_UNSPECIFIED": 0,
+                                    "RETENTION_MODE_ENABLED": 1,
+                                    "RETENTION_MODE_DISABLED": 2
                                   }
                                 }
                               }
@@ -3452,15 +3568,24 @@
                                 },
                                 "softwareConfig": {
                                   "type": "SoftwareConfig",
-                                  "id": 4
+                                  "id": 4,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "nodeConfig": {
                                   "type": "NodeConfig",
-                                  "id": 5
+                                  "id": 5,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "privateEnvironmentConfig": {
                                   "type": "PrivateEnvironmentConfig",
-                                  "id": 7
+                                  "id": 7,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "webServerNetworkAccessControl": {
                                   "type": "WebServerNetworkAccessControl",
@@ -3601,7 +3726,10 @@
                               "fields": {
                                 "imageVersion": {
                                   "type": "string",
-                                  "id": 1
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "airflowConfigOverrides": {
                                   "keyType": "string",
@@ -4189,9 +4317,24 @@
                             },
                             "DataRetentionConfig": {
                               "fields": {
+                                "airflowDatabaseRetentionDays": {
+                                  "type": "int32",
+                                  "id": 1,
+                                  "options": {
+                                    "deprecated": true,
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
                                 "taskLogsRetentionConfig": {
                                   "type": "TaskLogsRetentionConfig",
                                   "id": 4,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
+                                "airflowMetadataRetentionConfig": {
+                                  "type": "AirflowMetadataRetentionPolicyConfig",
+                                  "id": 5,
                                   "options": {
                                     "(google.api.field_behavior)": "OPTIONAL"
                                   }
@@ -4214,6 +4357,33 @@
                                     "TASK_LOGS_STORAGE_MODE_UNSPECIFIED": 0,
                                     "CLOUD_LOGGING_AND_CLOUD_STORAGE": 1,
                                     "CLOUD_LOGGING_ONLY": 2
+                                  }
+                                }
+                              }
+                            },
+                            "AirflowMetadataRetentionPolicyConfig": {
+                              "fields": {
+                                "retentionMode": {
+                                  "type": "RetentionMode",
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                },
+                                "retentionDays": {
+                                  "type": "int32",
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
+                                }
+                              },
+                              "nested": {
+                                "RetentionMode": {
+                                  "values": {
+                                    "RETENTION_MODE_UNSPECIFIED": 0,
+                                    "RETENTION_MODE_ENABLED": 1,
+                                    "RETENTION_MODE_DISABLED": 2
                                   }
                                 }
                               }
@@ -4276,7 +4446,10 @@
                               "fields": {
                                 "enabled": {
                                   "type": "bool",
-                                  "id": 1
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "cidrBlocks": {
                                   "rule": "repeated",
@@ -4318,11 +4491,17 @@
                               "fields": {
                                 "name": {
                                   "type": "string",
-                                  "id": 1
+                                  "id": 1,
+                                  "options": {
+                                    "(google.api.field_behavior)": "IDENTIFIER"
+                                  }
                                 },
                                 "config": {
                                   "type": "EnvironmentConfig",
-                                  "id": 2
+                                  "id": 2,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OPTIONAL"
+                                  }
                                 },
                                 "uuid": {
                                   "type": "string",
@@ -4360,6 +4539,13 @@
                                 "satisfiesPzs": {
                                   "type": "bool",
                                   "id": 8,
+                                  "options": {
+                                    "(google.api.field_behavior)": "OUTPUT_ONLY"
+                                  }
+                                },
+                                "satisfiesPzi": {
+                                  "type": "bool",
+                                  "id": 10,
                                   "options": {
                                     "(google.api.field_behavior)": "OUTPUT_ONLY"
                                   }
@@ -4702,6 +4888,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -4810,6 +5001,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -4985,7 +5180,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -5091,6 +5289,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -5100,6 +5299,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -5115,6 +5315,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5132,18 +5333,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -5184,6 +5379,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5266,6 +5462,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -5339,6 +5536,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5418,6 +5616,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5430,6 +5629,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5471,6 +5671,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5487,6 +5688,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5504,6 +5706,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -5538,6 +5741,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -5679,6 +5883,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -5752,6 +5957,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -5813,10 +6019,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -5900,6 +6103,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -5919,6 +6123,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -5962,6 +6167,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -5995,6 +6201,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -6021,6 +6228,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -6063,6 +6271,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -6112,6 +6321,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -6184,8 +6394,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -6241,6 +6463,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -6272,6 +6495,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -6285,12 +6509,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -6310,6 +6540,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -6323,7 +6554,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

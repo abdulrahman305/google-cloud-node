@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -604,12 +604,6 @@ export namespace google {
                     /** OptimizeToursRequest label. */
                     public label: string;
 
-                    /** OptimizeToursRequest _geodesicMetersPerSecond. */
-                    public _geodesicMetersPerSecond?: "geodesicMetersPerSecond";
-
-                    /** OptimizeToursRequest _maxValidationErrors. */
-                    public _maxValidationErrors?: "maxValidationErrors";
-
                     /**
                      * Creates a new OptimizeToursRequest instance using the specified properties.
                      * @param [properties] Properties to set
@@ -1053,9 +1047,6 @@ export namespace google {
                     /** ShipmentModel precedenceRules. */
                     public precedenceRules: google.maps.routeoptimization.v1.ShipmentModel.IPrecedenceRule[];
 
-                    /** ShipmentModel _maxActiveVehicles. */
-                    public _maxActiveVehicles?: "maxActiveVehicles";
-
                     /**
                      * Creates a new ShipmentModel instance using the specified properties.
                      * @param [properties] Properties to set
@@ -1388,12 +1379,6 @@ export namespace google {
                         /** PrecedenceRule offsetDuration. */
                         public offsetDuration?: (google.protobuf.IDuration|null);
 
-                        /** PrecedenceRule _firstIndex. */
-                        public _firstIndex?: "firstIndex";
-
-                        /** PrecedenceRule _secondIndex. */
-                        public _secondIndex?: "secondIndex";
-
                         /**
                          * Creates a new PrecedenceRule instance using the specified properties.
                          * @param [properties] Properties to set
@@ -1569,12 +1554,6 @@ export namespace google {
 
                     /** Shipment ignore. */
                     public ignore: boolean;
-
-                    /** Shipment _penaltyCost. */
-                    public _penaltyCost?: "penaltyCost";
-
-                    /** Shipment _pickupToDeliveryRelativeDetourLimit. */
-                    public _pickupToDeliveryRelativeDetourLimit?: "pickupToDeliveryRelativeDetourLimit";
 
                     /**
                      * Creates a new Shipment instance using the specified properties.
@@ -2144,6 +2123,121 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a RouteModifiers. */
+                interface IRouteModifiers {
+
+                    /** RouteModifiers avoidTolls */
+                    avoidTolls?: (boolean|null);
+
+                    /** RouteModifiers avoidHighways */
+                    avoidHighways?: (boolean|null);
+
+                    /** RouteModifiers avoidFerries */
+                    avoidFerries?: (boolean|null);
+
+                    /** RouteModifiers avoidIndoor */
+                    avoidIndoor?: (boolean|null);
+                }
+
+                /** Represents a RouteModifiers. */
+                class RouteModifiers implements IRouteModifiers {
+
+                    /**
+                     * Constructs a new RouteModifiers.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.maps.routeoptimization.v1.IRouteModifiers);
+
+                    /** RouteModifiers avoidTolls. */
+                    public avoidTolls: boolean;
+
+                    /** RouteModifiers avoidHighways. */
+                    public avoidHighways: boolean;
+
+                    /** RouteModifiers avoidFerries. */
+                    public avoidFerries: boolean;
+
+                    /** RouteModifiers avoidIndoor. */
+                    public avoidIndoor: boolean;
+
+                    /**
+                     * Creates a new RouteModifiers instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RouteModifiers instance
+                     */
+                    public static create(properties?: google.maps.routeoptimization.v1.IRouteModifiers): google.maps.routeoptimization.v1.RouteModifiers;
+
+                    /**
+                     * Encodes the specified RouteModifiers message. Does not implicitly {@link google.maps.routeoptimization.v1.RouteModifiers.verify|verify} messages.
+                     * @param message RouteModifiers message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.maps.routeoptimization.v1.IRouteModifiers, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RouteModifiers message, length delimited. Does not implicitly {@link google.maps.routeoptimization.v1.RouteModifiers.verify|verify} messages.
+                     * @param message RouteModifiers message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.maps.routeoptimization.v1.IRouteModifiers, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RouteModifiers message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RouteModifiers
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.maps.routeoptimization.v1.RouteModifiers;
+
+                    /**
+                     * Decodes a RouteModifiers message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RouteModifiers
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.maps.routeoptimization.v1.RouteModifiers;
+
+                    /**
+                     * Verifies a RouteModifiers message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RouteModifiers message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RouteModifiers
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.maps.routeoptimization.v1.RouteModifiers;
+
+                    /**
+                     * Creates a plain object from a RouteModifiers message. Also converts values to other types if specified.
+                     * @param message RouteModifiers
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.maps.routeoptimization.v1.RouteModifiers, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RouteModifiers to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RouteModifiers
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a Vehicle. */
                 interface IVehicle {
 
@@ -2152,6 +2246,9 @@ export namespace google {
 
                     /** Vehicle travelMode */
                     travelMode?: (google.maps.routeoptimization.v1.Vehicle.TravelMode|keyof typeof google.maps.routeoptimization.v1.Vehicle.TravelMode|null);
+
+                    /** Vehicle routeModifiers */
+                    routeModifiers?: (google.maps.routeoptimization.v1.IRouteModifiers|null);
 
                     /** Vehicle startLocation */
                     startLocation?: (google.type.ILatLng|null);
@@ -2238,6 +2335,9 @@ export namespace google {
                     /** Vehicle travelMode. */
                     public travelMode: (google.maps.routeoptimization.v1.Vehicle.TravelMode|keyof typeof google.maps.routeoptimization.v1.Vehicle.TravelMode);
 
+                    /** Vehicle routeModifiers. */
+                    public routeModifiers?: (google.maps.routeoptimization.v1.IRouteModifiers|null);
+
                     /** Vehicle startLocation. */
                     public startLocation?: (google.type.ILatLng|null);
 
@@ -2306,9 +2406,6 @@ export namespace google {
 
                     /** Vehicle ignore. */
                     public ignore: boolean;
-
-                    /** Vehicle _travelDurationMultiple. */
-                    public _travelDurationMultiple?: "travelDurationMultiple";
 
                     /**
                      * Creates a new Vehicle instance using the specified properties.
@@ -2447,9 +2544,6 @@ export namespace google {
                         /** LoadLimit endLoadInterval. */
                         public endLoadInterval?: (google.maps.routeoptimization.v1.Vehicle.LoadLimit.IInterval|null);
 
-                        /** LoadLimit _maxLoad. */
-                        public _maxLoad?: "maxLoad";
-
                         /**
                          * Creates a new LoadLimit instance using the specified properties.
                          * @param [properties] Properties to set
@@ -2554,9 +2648,6 @@ export namespace google {
 
                             /** Interval max. */
                             public max?: (number|Long|string|null);
-
-                            /** Interval _max. */
-                            public _max?: "max";
 
                             /**
                              * Creates a new Interval instance using the specified properties.
@@ -2679,12 +2770,6 @@ export namespace google {
 
                         /** DurationLimit costPerSquareHourAfterQuadraticSoftMax. */
                         public costPerSquareHourAfterQuadraticSoftMax?: (number|null);
-
-                        /** DurationLimit _costPerHourAfterSoftMax. */
-                        public _costPerHourAfterSoftMax?: "costPerHourAfterSoftMax";
-
-                        /** DurationLimit _costPerSquareHourAfterQuadraticSoftMax. */
-                        public _costPerSquareHourAfterQuadraticSoftMax?: "costPerSquareHourAfterQuadraticSoftMax";
 
                         /**
                          * Creates a new DurationLimit instance using the specified properties.
@@ -2814,12 +2899,6 @@ export namespace google {
                     /** TimeWindow costPerHourAfterSoftEndTime. */
                     public costPerHourAfterSoftEndTime?: (number|null);
 
-                    /** TimeWindow _costPerHourBeforeSoftStartTime. */
-                    public _costPerHourBeforeSoftStartTime?: "costPerHourBeforeSoftStartTime";
-
-                    /** TimeWindow _costPerHourAfterSoftEndTime. */
-                    public _costPerHourAfterSoftEndTime?: "costPerHourAfterSoftEndTime";
-
                     /**
                      * Creates a new TimeWindow instance using the specified properties.
                      * @param [properties] Properties to set
@@ -2907,6 +2986,9 @@ export namespace google {
                     /** DistanceLimit softMaxMeters */
                     softMaxMeters?: (number|Long|string|null);
 
+                    /** DistanceLimit costPerKilometerBelowSoftMax */
+                    costPerKilometerBelowSoftMax?: (number|null);
+
                     /** DistanceLimit costPerKilometerAboveSoftMax */
                     costPerKilometerAboveSoftMax?: (number|null);
                 }
@@ -2926,17 +3008,11 @@ export namespace google {
                     /** DistanceLimit softMaxMeters. */
                     public softMaxMeters?: (number|Long|string|null);
 
+                    /** DistanceLimit costPerKilometerBelowSoftMax. */
+                    public costPerKilometerBelowSoftMax?: (number|null);
+
                     /** DistanceLimit costPerKilometerAboveSoftMax. */
                     public costPerKilometerAboveSoftMax?: (number|null);
-
-                    /** DistanceLimit _maxMeters. */
-                    public _maxMeters?: "maxMeters";
-
-                    /** DistanceLimit _softMaxMeters. */
-                    public _softMaxMeters?: "softMaxMeters";
-
-                    /** DistanceLimit _costPerKilometerAboveSoftMax. */
-                    public _costPerKilometerAboveSoftMax?: "costPerKilometerAboveSoftMax";
 
                     /**
                      * Creates a new DistanceLimit instance using the specified properties.
@@ -3291,9 +3367,6 @@ export namespace google {
 
                     /** Location heading. */
                     public heading?: (number|null);
-
-                    /** Location _heading. */
-                    public _heading?: "heading";
 
                     /**
                      * Creates a new Location instance using the specified properties.
@@ -4025,6 +4098,9 @@ export namespace google {
                         /** Transition routePolyline */
                         routePolyline?: (google.maps.routeoptimization.v1.ShipmentRoute.IEncodedPolyline|null);
 
+                        /** Transition routeToken */
+                        routeToken?: (string|null);
+
                         /** Transition vehicleLoads */
                         vehicleLoads?: ({ [k: string]: google.maps.routeoptimization.v1.ShipmentRoute.IVehicleLoad }|null);
                     }
@@ -4064,6 +4140,9 @@ export namespace google {
 
                         /** Transition routePolyline. */
                         public routePolyline?: (google.maps.routeoptimization.v1.ShipmentRoute.IEncodedPolyline|null);
+
+                        /** Transition routeToken. */
+                        public routeToken: string;
 
                         /** Transition vehicleLoads. */
                         public vehicleLoads: { [k: string]: google.maps.routeoptimization.v1.ShipmentRoute.IVehicleLoad };
@@ -4585,9 +4664,6 @@ export namespace google {
 
                         /** Reason exampleExceededCapacityType. */
                         public exampleExceededCapacityType: string;
-
-                        /** Reason _exampleVehicleIndex. */
-                        public _exampleVehicleIndex?: "exampleVehicleIndex";
 
                         /**
                          * Creates a new Reason instance using the specified properties.
@@ -6479,6 +6555,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -6519,6 +6598,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -10476,6 +10558,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -10727,7 +10812,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -10758,7 +10843,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -11897,7 +11982,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -11913,7 +11998,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

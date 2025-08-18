@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 // ** All changes to this file may be overwritten. **
 
 export {CatalogServiceClient} from './catalog_service_client';
+export {CmekServiceClient} from './cmek_service_client';
 export {ContentServiceClient} from './content_service_client';
 export {DataplexServiceClient} from './dataplex_service_client';
 export {DataScanServiceClient} from './data_scan_service_client';

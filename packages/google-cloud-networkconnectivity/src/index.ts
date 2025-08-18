@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,17 +19,16 @@
 import * as v1 from './v1';
 import * as v1alpha1 from './v1alpha1';
 
+const CrossNetworkAutomationServiceClient = v1.CrossNetworkAutomationServiceClient;
+type CrossNetworkAutomationServiceClient = v1.CrossNetworkAutomationServiceClient;
 const HubServiceClient = v1.HubServiceClient;
 type HubServiceClient = v1.HubServiceClient;
+const InternalRangeServiceClient = v1.InternalRangeServiceClient;
+type InternalRangeServiceClient = v1.InternalRangeServiceClient;
 const PolicyBasedRoutingServiceClient = v1.PolicyBasedRoutingServiceClient;
 type PolicyBasedRoutingServiceClient = v1.PolicyBasedRoutingServiceClient;
 
-export {v1, v1alpha1, HubServiceClient, PolicyBasedRoutingServiceClient};
-export default {
-  v1,
-  v1alpha1,
-  HubServiceClient,
-  PolicyBasedRoutingServiceClient,
-};
+export {v1, v1alpha1, CrossNetworkAutomationServiceClient, HubServiceClient, InternalRangeServiceClient, PolicyBasedRoutingServiceClient};
+export default {v1, v1alpha1, CrossNetworkAutomationServiceClient, HubServiceClient, InternalRangeServiceClient, PolicyBasedRoutingServiceClient};
 import * as protos from '../protos/protos';
 export {protos};
