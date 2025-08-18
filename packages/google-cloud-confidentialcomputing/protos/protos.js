@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -193,6 +193,7 @@
                      * @property {number} TOKEN_TYPE_OIDC=1 TOKEN_TYPE_OIDC value
                      * @property {number} TOKEN_TYPE_PKI=2 TOKEN_TYPE_PKI value
                      * @property {number} TOKEN_TYPE_LIMITED_AWS=3 TOKEN_TYPE_LIMITED_AWS value
+                     * @property {number} TOKEN_TYPE_AWS_PRINCIPALTAGS=4 TOKEN_TYPE_AWS_PRINCIPALTAGS value
                      */
                     v1.TokenType = (function() {
                         var valuesById = {}, values = Object.create(valuesById);
@@ -200,6 +201,7 @@
                         values[valuesById[1] = "TOKEN_TYPE_OIDC"] = 1;
                         values[valuesById[2] = "TOKEN_TYPE_PKI"] = 2;
                         values[valuesById[3] = "TOKEN_TYPE_LIMITED_AWS"] = 3;
+                        values[valuesById[4] = "TOKEN_TYPE_AWS_PRINCIPALTAGS"] = 4;
                         return values;
                     })();
     
@@ -332,12 +334,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Challenge.decode = function decode(reader, length) {
+                        Challenge.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.Challenge();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -605,12 +609,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateChallengeRequest.decode = function decode(reader, length) {
+                        CreateChallengeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.CreateChallengeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -747,11 +753,14 @@
                          * Properties of a VerifyAttestationRequest.
                          * @memberof google.cloud.confidentialcomputing.v1
                          * @interface IVerifyAttestationRequest
+                         * @property {google.cloud.confidentialcomputing.v1.ITdxCcelAttestation|null} [tdCcel] VerifyAttestationRequest tdCcel
+                         * @property {google.cloud.confidentialcomputing.v1.ISevSnpAttestation|null} [sevSnpAttestation] VerifyAttestationRequest sevSnpAttestation
                          * @property {string|null} [challenge] VerifyAttestationRequest challenge
                          * @property {google.cloud.confidentialcomputing.v1.IGcpCredentials|null} [gcpCredentials] VerifyAttestationRequest gcpCredentials
                          * @property {google.cloud.confidentialcomputing.v1.ITpmAttestation|null} [tpmAttestation] VerifyAttestationRequest tpmAttestation
                          * @property {google.cloud.confidentialcomputing.v1.IConfidentialSpaceInfo|null} [confidentialSpaceInfo] VerifyAttestationRequest confidentialSpaceInfo
                          * @property {google.cloud.confidentialcomputing.v1.ITokenOptions|null} [tokenOptions] VerifyAttestationRequest tokenOptions
+                         * @property {string|null} [attester] VerifyAttestationRequest attester
                          */
     
                         /**
@@ -768,6 +777,22 @@
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
+    
+                        /**
+                         * VerifyAttestationRequest tdCcel.
+                         * @member {google.cloud.confidentialcomputing.v1.ITdxCcelAttestation|null|undefined} tdCcel
+                         * @memberof google.cloud.confidentialcomputing.v1.VerifyAttestationRequest
+                         * @instance
+                         */
+                        VerifyAttestationRequest.prototype.tdCcel = null;
+    
+                        /**
+                         * VerifyAttestationRequest sevSnpAttestation.
+                         * @member {google.cloud.confidentialcomputing.v1.ISevSnpAttestation|null|undefined} sevSnpAttestation
+                         * @memberof google.cloud.confidentialcomputing.v1.VerifyAttestationRequest
+                         * @instance
+                         */
+                        VerifyAttestationRequest.prototype.sevSnpAttestation = null;
     
                         /**
                          * VerifyAttestationRequest challenge.
@@ -810,6 +835,28 @@
                         VerifyAttestationRequest.prototype.tokenOptions = null;
     
                         /**
+                         * VerifyAttestationRequest attester.
+                         * @member {string} attester
+                         * @memberof google.cloud.confidentialcomputing.v1.VerifyAttestationRequest
+                         * @instance
+                         */
+                        VerifyAttestationRequest.prototype.attester = "";
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        /**
+                         * VerifyAttestationRequest teeAttestation.
+                         * @member {"tdCcel"|"sevSnpAttestation"|undefined} teeAttestation
+                         * @memberof google.cloud.confidentialcomputing.v1.VerifyAttestationRequest
+                         * @instance
+                         */
+                        Object.defineProperty(VerifyAttestationRequest.prototype, "teeAttestation", {
+                            get: $util.oneOfGetter($oneOfFields = ["tdCcel", "sevSnpAttestation"]),
+                            set: $util.oneOfSetter($oneOfFields)
+                        });
+    
+                        /**
                          * Creates a new VerifyAttestationRequest instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.confidentialcomputing.v1.VerifyAttestationRequest
@@ -843,6 +890,12 @@
                                 $root.google.cloud.confidentialcomputing.v1.ConfidentialSpaceInfo.encode(message.confidentialSpaceInfo, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                             if (message.tokenOptions != null && Object.hasOwnProperty.call(message, "tokenOptions"))
                                 $root.google.cloud.confidentialcomputing.v1.TokenOptions.encode(message.tokenOptions, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            if (message.tdCcel != null && Object.hasOwnProperty.call(message, "tdCcel"))
+                                $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation.encode(message.tdCcel, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                            if (message.sevSnpAttestation != null && Object.hasOwnProperty.call(message, "sevSnpAttestation"))
+                                $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation.encode(message.sevSnpAttestation, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                            if (message.attester != null && Object.hasOwnProperty.call(message, "attester"))
+                                writer.uint32(/* id 8, wireType 2 =*/66).string(message.attester);
                             return writer;
                         };
     
@@ -870,13 +923,23 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyAttestationRequest.decode = function decode(reader, length) {
+                        VerifyAttestationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.VerifyAttestationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
+                                case 6: {
+                                        message.tdCcel = $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 7: {
+                                        message.sevSnpAttestation = $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation.decode(reader, reader.uint32());
+                                        break;
+                                    }
                                 case 1: {
                                         message.challenge = reader.string();
                                         break;
@@ -895,6 +958,10 @@
                                     }
                                 case 5: {
                                         message.tokenOptions = $root.google.cloud.confidentialcomputing.v1.TokenOptions.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 8: {
+                                        message.attester = reader.string();
                                         break;
                                     }
                                 default:
@@ -932,6 +999,25 @@
                         VerifyAttestationRequest.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
+                            var properties = {};
+                            if (message.tdCcel != null && message.hasOwnProperty("tdCcel")) {
+                                properties.teeAttestation = 1;
+                                {
+                                    var error = $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation.verify(message.tdCcel);
+                                    if (error)
+                                        return "tdCcel." + error;
+                                }
+                            }
+                            if (message.sevSnpAttestation != null && message.hasOwnProperty("sevSnpAttestation")) {
+                                if (properties.teeAttestation === 1)
+                                    return "teeAttestation: multiple values";
+                                properties.teeAttestation = 1;
+                                {
+                                    var error = $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation.verify(message.sevSnpAttestation);
+                                    if (error)
+                                        return "sevSnpAttestation." + error;
+                                }
+                            }
                             if (message.challenge != null && message.hasOwnProperty("challenge"))
                                 if (!$util.isString(message.challenge))
                                     return "challenge: string expected";
@@ -955,6 +1041,9 @@
                                 if (error)
                                     return "tokenOptions." + error;
                             }
+                            if (message.attester != null && message.hasOwnProperty("attester"))
+                                if (!$util.isString(message.attester))
+                                    return "attester: string expected";
                             return null;
                         };
     
@@ -970,6 +1059,16 @@
                             if (object instanceof $root.google.cloud.confidentialcomputing.v1.VerifyAttestationRequest)
                                 return object;
                             var message = new $root.google.cloud.confidentialcomputing.v1.VerifyAttestationRequest();
+                            if (object.tdCcel != null) {
+                                if (typeof object.tdCcel !== "object")
+                                    throw TypeError(".google.cloud.confidentialcomputing.v1.VerifyAttestationRequest.tdCcel: object expected");
+                                message.tdCcel = $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation.fromObject(object.tdCcel);
+                            }
+                            if (object.sevSnpAttestation != null) {
+                                if (typeof object.sevSnpAttestation !== "object")
+                                    throw TypeError(".google.cloud.confidentialcomputing.v1.VerifyAttestationRequest.sevSnpAttestation: object expected");
+                                message.sevSnpAttestation = $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation.fromObject(object.sevSnpAttestation);
+                            }
                             if (object.challenge != null)
                                 message.challenge = String(object.challenge);
                             if (object.gcpCredentials != null) {
@@ -992,6 +1091,8 @@
                                     throw TypeError(".google.cloud.confidentialcomputing.v1.VerifyAttestationRequest.tokenOptions: object expected");
                                 message.tokenOptions = $root.google.cloud.confidentialcomputing.v1.TokenOptions.fromObject(object.tokenOptions);
                             }
+                            if (object.attester != null)
+                                message.attester = String(object.attester);
                             return message;
                         };
     
@@ -1014,6 +1115,7 @@
                                 object.tpmAttestation = null;
                                 object.confidentialSpaceInfo = null;
                                 object.tokenOptions = null;
+                                object.attester = "";
                             }
                             if (message.challenge != null && message.hasOwnProperty("challenge"))
                                 object.challenge = message.challenge;
@@ -1025,6 +1127,18 @@
                                 object.confidentialSpaceInfo = $root.google.cloud.confidentialcomputing.v1.ConfidentialSpaceInfo.toObject(message.confidentialSpaceInfo, options);
                             if (message.tokenOptions != null && message.hasOwnProperty("tokenOptions"))
                                 object.tokenOptions = $root.google.cloud.confidentialcomputing.v1.TokenOptions.toObject(message.tokenOptions, options);
+                            if (message.tdCcel != null && message.hasOwnProperty("tdCcel")) {
+                                object.tdCcel = $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation.toObject(message.tdCcel, options);
+                                if (options.oneofs)
+                                    object.teeAttestation = "tdCcel";
+                            }
+                            if (message.sevSnpAttestation != null && message.hasOwnProperty("sevSnpAttestation")) {
+                                object.sevSnpAttestation = $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation.toObject(message.sevSnpAttestation, options);
+                                if (options.oneofs)
+                                    object.teeAttestation = "sevSnpAttestation";
+                            }
+                            if (message.attester != null && message.hasOwnProperty("attester"))
+                                object.attester = message.attester;
                             return object;
                         };
     
@@ -1055,6 +1169,564 @@
                         };
     
                         return VerifyAttestationRequest;
+                    })();
+    
+                    v1.TdxCcelAttestation = (function() {
+    
+                        /**
+                         * Properties of a TdxCcelAttestation.
+                         * @memberof google.cloud.confidentialcomputing.v1
+                         * @interface ITdxCcelAttestation
+                         * @property {Uint8Array|null} [ccelAcpiTable] TdxCcelAttestation ccelAcpiTable
+                         * @property {Uint8Array|null} [ccelData] TdxCcelAttestation ccelData
+                         * @property {Uint8Array|null} [canonicalEventLog] TdxCcelAttestation canonicalEventLog
+                         * @property {Uint8Array|null} [tdQuote] TdxCcelAttestation tdQuote
+                         */
+    
+                        /**
+                         * Constructs a new TdxCcelAttestation.
+                         * @memberof google.cloud.confidentialcomputing.v1
+                         * @classdesc Represents a TdxCcelAttestation.
+                         * @implements ITdxCcelAttestation
+                         * @constructor
+                         * @param {google.cloud.confidentialcomputing.v1.ITdxCcelAttestation=} [properties] Properties to set
+                         */
+                        function TdxCcelAttestation(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * TdxCcelAttestation ccelAcpiTable.
+                         * @member {Uint8Array} ccelAcpiTable
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @instance
+                         */
+                        TdxCcelAttestation.prototype.ccelAcpiTable = $util.newBuffer([]);
+    
+                        /**
+                         * TdxCcelAttestation ccelData.
+                         * @member {Uint8Array} ccelData
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @instance
+                         */
+                        TdxCcelAttestation.prototype.ccelData = $util.newBuffer([]);
+    
+                        /**
+                         * TdxCcelAttestation canonicalEventLog.
+                         * @member {Uint8Array} canonicalEventLog
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @instance
+                         */
+                        TdxCcelAttestation.prototype.canonicalEventLog = $util.newBuffer([]);
+    
+                        /**
+                         * TdxCcelAttestation tdQuote.
+                         * @member {Uint8Array} tdQuote
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @instance
+                         */
+                        TdxCcelAttestation.prototype.tdQuote = $util.newBuffer([]);
+    
+                        /**
+                         * Creates a new TdxCcelAttestation instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.ITdxCcelAttestation=} [properties] Properties to set
+                         * @returns {google.cloud.confidentialcomputing.v1.TdxCcelAttestation} TdxCcelAttestation instance
+                         */
+                        TdxCcelAttestation.create = function create(properties) {
+                            return new TdxCcelAttestation(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified TdxCcelAttestation message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TdxCcelAttestation.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.ITdxCcelAttestation} message TdxCcelAttestation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        TdxCcelAttestation.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.ccelAcpiTable != null && Object.hasOwnProperty.call(message, "ccelAcpiTable"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.ccelAcpiTable);
+                            if (message.ccelData != null && Object.hasOwnProperty.call(message, "ccelData"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.ccelData);
+                            if (message.canonicalEventLog != null && Object.hasOwnProperty.call(message, "canonicalEventLog"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.canonicalEventLog);
+                            if (message.tdQuote != null && Object.hasOwnProperty.call(message, "tdQuote"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.tdQuote);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified TdxCcelAttestation message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TdxCcelAttestation.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.ITdxCcelAttestation} message TdxCcelAttestation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        TdxCcelAttestation.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a TdxCcelAttestation message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.confidentialcomputing.v1.TdxCcelAttestation} TdxCcelAttestation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        TdxCcelAttestation.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.ccelAcpiTable = reader.bytes();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.ccelData = reader.bytes();
+                                        break;
+                                    }
+                                case 3: {
+                                        message.canonicalEventLog = reader.bytes();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.tdQuote = reader.bytes();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a TdxCcelAttestation message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.confidentialcomputing.v1.TdxCcelAttestation} TdxCcelAttestation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        TdxCcelAttestation.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a TdxCcelAttestation message.
+                         * @function verify
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        TdxCcelAttestation.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.ccelAcpiTable != null && message.hasOwnProperty("ccelAcpiTable"))
+                                if (!(message.ccelAcpiTable && typeof message.ccelAcpiTable.length === "number" || $util.isString(message.ccelAcpiTable)))
+                                    return "ccelAcpiTable: buffer expected";
+                            if (message.ccelData != null && message.hasOwnProperty("ccelData"))
+                                if (!(message.ccelData && typeof message.ccelData.length === "number" || $util.isString(message.ccelData)))
+                                    return "ccelData: buffer expected";
+                            if (message.canonicalEventLog != null && message.hasOwnProperty("canonicalEventLog"))
+                                if (!(message.canonicalEventLog && typeof message.canonicalEventLog.length === "number" || $util.isString(message.canonicalEventLog)))
+                                    return "canonicalEventLog: buffer expected";
+                            if (message.tdQuote != null && message.hasOwnProperty("tdQuote"))
+                                if (!(message.tdQuote && typeof message.tdQuote.length === "number" || $util.isString(message.tdQuote)))
+                                    return "tdQuote: buffer expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a TdxCcelAttestation message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.confidentialcomputing.v1.TdxCcelAttestation} TdxCcelAttestation
+                         */
+                        TdxCcelAttestation.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation)
+                                return object;
+                            var message = new $root.google.cloud.confidentialcomputing.v1.TdxCcelAttestation();
+                            if (object.ccelAcpiTable != null)
+                                if (typeof object.ccelAcpiTable === "string")
+                                    $util.base64.decode(object.ccelAcpiTable, message.ccelAcpiTable = $util.newBuffer($util.base64.length(object.ccelAcpiTable)), 0);
+                                else if (object.ccelAcpiTable.length >= 0)
+                                    message.ccelAcpiTable = object.ccelAcpiTable;
+                            if (object.ccelData != null)
+                                if (typeof object.ccelData === "string")
+                                    $util.base64.decode(object.ccelData, message.ccelData = $util.newBuffer($util.base64.length(object.ccelData)), 0);
+                                else if (object.ccelData.length >= 0)
+                                    message.ccelData = object.ccelData;
+                            if (object.canonicalEventLog != null)
+                                if (typeof object.canonicalEventLog === "string")
+                                    $util.base64.decode(object.canonicalEventLog, message.canonicalEventLog = $util.newBuffer($util.base64.length(object.canonicalEventLog)), 0);
+                                else if (object.canonicalEventLog.length >= 0)
+                                    message.canonicalEventLog = object.canonicalEventLog;
+                            if (object.tdQuote != null)
+                                if (typeof object.tdQuote === "string")
+                                    $util.base64.decode(object.tdQuote, message.tdQuote = $util.newBuffer($util.base64.length(object.tdQuote)), 0);
+                                else if (object.tdQuote.length >= 0)
+                                    message.tdQuote = object.tdQuote;
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a TdxCcelAttestation message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.TdxCcelAttestation} message TdxCcelAttestation
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        TdxCcelAttestation.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                if (options.bytes === String)
+                                    object.ccelAcpiTable = "";
+                                else {
+                                    object.ccelAcpiTable = [];
+                                    if (options.bytes !== Array)
+                                        object.ccelAcpiTable = $util.newBuffer(object.ccelAcpiTable);
+                                }
+                                if (options.bytes === String)
+                                    object.ccelData = "";
+                                else {
+                                    object.ccelData = [];
+                                    if (options.bytes !== Array)
+                                        object.ccelData = $util.newBuffer(object.ccelData);
+                                }
+                                if (options.bytes === String)
+                                    object.canonicalEventLog = "";
+                                else {
+                                    object.canonicalEventLog = [];
+                                    if (options.bytes !== Array)
+                                        object.canonicalEventLog = $util.newBuffer(object.canonicalEventLog);
+                                }
+                                if (options.bytes === String)
+                                    object.tdQuote = "";
+                                else {
+                                    object.tdQuote = [];
+                                    if (options.bytes !== Array)
+                                        object.tdQuote = $util.newBuffer(object.tdQuote);
+                                }
+                            }
+                            if (message.ccelAcpiTable != null && message.hasOwnProperty("ccelAcpiTable"))
+                                object.ccelAcpiTable = options.bytes === String ? $util.base64.encode(message.ccelAcpiTable, 0, message.ccelAcpiTable.length) : options.bytes === Array ? Array.prototype.slice.call(message.ccelAcpiTable) : message.ccelAcpiTable;
+                            if (message.ccelData != null && message.hasOwnProperty("ccelData"))
+                                object.ccelData = options.bytes === String ? $util.base64.encode(message.ccelData, 0, message.ccelData.length) : options.bytes === Array ? Array.prototype.slice.call(message.ccelData) : message.ccelData;
+                            if (message.canonicalEventLog != null && message.hasOwnProperty("canonicalEventLog"))
+                                object.canonicalEventLog = options.bytes === String ? $util.base64.encode(message.canonicalEventLog, 0, message.canonicalEventLog.length) : options.bytes === Array ? Array.prototype.slice.call(message.canonicalEventLog) : message.canonicalEventLog;
+                            if (message.tdQuote != null && message.hasOwnProperty("tdQuote"))
+                                object.tdQuote = options.bytes === String ? $util.base64.encode(message.tdQuote, 0, message.tdQuote.length) : options.bytes === Array ? Array.prototype.slice.call(message.tdQuote) : message.tdQuote;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this TdxCcelAttestation to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        TdxCcelAttestation.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for TdxCcelAttestation
+                         * @function getTypeUrl
+                         * @memberof google.cloud.confidentialcomputing.v1.TdxCcelAttestation
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        TdxCcelAttestation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.confidentialcomputing.v1.TdxCcelAttestation";
+                        };
+    
+                        return TdxCcelAttestation;
+                    })();
+    
+                    v1.SevSnpAttestation = (function() {
+    
+                        /**
+                         * Properties of a SevSnpAttestation.
+                         * @memberof google.cloud.confidentialcomputing.v1
+                         * @interface ISevSnpAttestation
+                         * @property {Uint8Array|null} [report] SevSnpAttestation report
+                         * @property {Uint8Array|null} [auxBlob] SevSnpAttestation auxBlob
+                         */
+    
+                        /**
+                         * Constructs a new SevSnpAttestation.
+                         * @memberof google.cloud.confidentialcomputing.v1
+                         * @classdesc Represents a SevSnpAttestation.
+                         * @implements ISevSnpAttestation
+                         * @constructor
+                         * @param {google.cloud.confidentialcomputing.v1.ISevSnpAttestation=} [properties] Properties to set
+                         */
+                        function SevSnpAttestation(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * SevSnpAttestation report.
+                         * @member {Uint8Array} report
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @instance
+                         */
+                        SevSnpAttestation.prototype.report = $util.newBuffer([]);
+    
+                        /**
+                         * SevSnpAttestation auxBlob.
+                         * @member {Uint8Array} auxBlob
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @instance
+                         */
+                        SevSnpAttestation.prototype.auxBlob = $util.newBuffer([]);
+    
+                        /**
+                         * Creates a new SevSnpAttestation instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.ISevSnpAttestation=} [properties] Properties to set
+                         * @returns {google.cloud.confidentialcomputing.v1.SevSnpAttestation} SevSnpAttestation instance
+                         */
+                        SevSnpAttestation.create = function create(properties) {
+                            return new SevSnpAttestation(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified SevSnpAttestation message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.SevSnpAttestation.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.ISevSnpAttestation} message SevSnpAttestation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SevSnpAttestation.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.report != null && Object.hasOwnProperty.call(message, "report"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.report);
+                            if (message.auxBlob != null && Object.hasOwnProperty.call(message, "auxBlob"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.auxBlob);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified SevSnpAttestation message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.SevSnpAttestation.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.ISevSnpAttestation} message SevSnpAttestation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        SevSnpAttestation.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a SevSnpAttestation message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.confidentialcomputing.v1.SevSnpAttestation} SevSnpAttestation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SevSnpAttestation.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.report = reader.bytes();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.auxBlob = reader.bytes();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a SevSnpAttestation message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.confidentialcomputing.v1.SevSnpAttestation} SevSnpAttestation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        SevSnpAttestation.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a SevSnpAttestation message.
+                         * @function verify
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        SevSnpAttestation.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.report != null && message.hasOwnProperty("report"))
+                                if (!(message.report && typeof message.report.length === "number" || $util.isString(message.report)))
+                                    return "report: buffer expected";
+                            if (message.auxBlob != null && message.hasOwnProperty("auxBlob"))
+                                if (!(message.auxBlob && typeof message.auxBlob.length === "number" || $util.isString(message.auxBlob)))
+                                    return "auxBlob: buffer expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a SevSnpAttestation message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.confidentialcomputing.v1.SevSnpAttestation} SevSnpAttestation
+                         */
+                        SevSnpAttestation.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation)
+                                return object;
+                            var message = new $root.google.cloud.confidentialcomputing.v1.SevSnpAttestation();
+                            if (object.report != null)
+                                if (typeof object.report === "string")
+                                    $util.base64.decode(object.report, message.report = $util.newBuffer($util.base64.length(object.report)), 0);
+                                else if (object.report.length >= 0)
+                                    message.report = object.report;
+                            if (object.auxBlob != null)
+                                if (typeof object.auxBlob === "string")
+                                    $util.base64.decode(object.auxBlob, message.auxBlob = $util.newBuffer($util.base64.length(object.auxBlob)), 0);
+                                else if (object.auxBlob.length >= 0)
+                                    message.auxBlob = object.auxBlob;
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a SevSnpAttestation message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {google.cloud.confidentialcomputing.v1.SevSnpAttestation} message SevSnpAttestation
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        SevSnpAttestation.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                if (options.bytes === String)
+                                    object.report = "";
+                                else {
+                                    object.report = [];
+                                    if (options.bytes !== Array)
+                                        object.report = $util.newBuffer(object.report);
+                                }
+                                if (options.bytes === String)
+                                    object.auxBlob = "";
+                                else {
+                                    object.auxBlob = [];
+                                    if (options.bytes !== Array)
+                                        object.auxBlob = $util.newBuffer(object.auxBlob);
+                                }
+                            }
+                            if (message.report != null && message.hasOwnProperty("report"))
+                                object.report = options.bytes === String ? $util.base64.encode(message.report, 0, message.report.length) : options.bytes === Array ? Array.prototype.slice.call(message.report) : message.report;
+                            if (message.auxBlob != null && message.hasOwnProperty("auxBlob"))
+                                object.auxBlob = options.bytes === String ? $util.base64.encode(message.auxBlob, 0, message.auxBlob.length) : options.bytes === Array ? Array.prototype.slice.call(message.auxBlob) : message.auxBlob;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this SevSnpAttestation to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        SevSnpAttestation.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for SevSnpAttestation
+                         * @function getTypeUrl
+                         * @memberof google.cloud.confidentialcomputing.v1.SevSnpAttestation
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        SevSnpAttestation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.confidentialcomputing.v1.SevSnpAttestation";
+                        };
+    
+                        return SevSnpAttestation;
                     })();
     
                     v1.VerifyAttestationResponse = (function() {
@@ -1155,12 +1827,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyAttestationResponse.decode = function decode(reader, length) {
+                        VerifyAttestationResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.VerifyAttestationResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         message.oidcClaimsToken = reader.string();
@@ -1392,12 +2066,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GcpCredentials.decode = function decode(reader, length) {
+                        GcpCredentials.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.GcpCredentials();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 2: {
                                         if (!(message.serviceAccountIdTokens && message.serviceAccountIdTokens.length))
@@ -1530,6 +2206,7 @@
                          * Properties of a TokenOptions.
                          * @memberof google.cloud.confidentialcomputing.v1
                          * @interface ITokenOptions
+                         * @property {google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions|null} [awsPrincipalTagsOptions] TokenOptions awsPrincipalTagsOptions
                          * @property {string|null} [audience] TokenOptions audience
                          * @property {Array.<string>|null} [nonce] TokenOptions nonce
                          * @property {google.cloud.confidentialcomputing.v1.TokenType|null} [tokenType] TokenOptions tokenType
@@ -1550,6 +2227,14 @@
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
+    
+                        /**
+                         * TokenOptions awsPrincipalTagsOptions.
+                         * @member {google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions|null|undefined} awsPrincipalTagsOptions
+                         * @memberof google.cloud.confidentialcomputing.v1.TokenOptions
+                         * @instance
+                         */
+                        TokenOptions.prototype.awsPrincipalTagsOptions = null;
     
                         /**
                          * TokenOptions audience.
@@ -1574,6 +2259,20 @@
                          * @instance
                          */
                         TokenOptions.prototype.tokenType = 0;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        /**
+                         * TokenOptions tokenTypeOptions.
+                         * @member {"awsPrincipalTagsOptions"|undefined} tokenTypeOptions
+                         * @memberof google.cloud.confidentialcomputing.v1.TokenOptions
+                         * @instance
+                         */
+                        Object.defineProperty(TokenOptions.prototype, "tokenTypeOptions", {
+                            get: $util.oneOfGetter($oneOfFields = ["awsPrincipalTagsOptions"]),
+                            set: $util.oneOfSetter($oneOfFields)
+                        });
     
                         /**
                          * Creates a new TokenOptions instance using the specified properties.
@@ -1606,6 +2305,8 @@
                                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.nonce[i]);
                             if (message.tokenType != null && Object.hasOwnProperty.call(message, "tokenType"))
                                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.tokenType);
+                            if (message.awsPrincipalTagsOptions != null && Object.hasOwnProperty.call(message, "awsPrincipalTagsOptions"))
+                                $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.encode(message.awsPrincipalTagsOptions, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                             return writer;
                         };
     
@@ -1633,13 +2334,19 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TokenOptions.decode = function decode(reader, length) {
+                        TokenOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
+                                case 4: {
+                                        message.awsPrincipalTagsOptions = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.decode(reader, reader.uint32());
+                                        break;
+                                    }
                                 case 1: {
                                         message.audience = reader.string();
                                         break;
@@ -1689,6 +2396,15 @@
                         TokenOptions.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
+                            var properties = {};
+                            if (message.awsPrincipalTagsOptions != null && message.hasOwnProperty("awsPrincipalTagsOptions")) {
+                                properties.tokenTypeOptions = 1;
+                                {
+                                    var error = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.verify(message.awsPrincipalTagsOptions);
+                                    if (error)
+                                        return "awsPrincipalTagsOptions." + error;
+                                }
+                            }
                             if (message.audience != null && message.hasOwnProperty("audience"))
                                 if (!$util.isString(message.audience))
                                     return "audience: string expected";
@@ -1707,6 +2423,7 @@
                                 case 1:
                                 case 2:
                                 case 3:
+                                case 4:
                                     break;
                                 }
                             return null;
@@ -1724,6 +2441,11 @@
                             if (object instanceof $root.google.cloud.confidentialcomputing.v1.TokenOptions)
                                 return object;
                             var message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions();
+                            if (object.awsPrincipalTagsOptions != null) {
+                                if (typeof object.awsPrincipalTagsOptions !== "object")
+                                    throw TypeError(".google.cloud.confidentialcomputing.v1.TokenOptions.awsPrincipalTagsOptions: object expected");
+                                message.awsPrincipalTagsOptions = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.fromObject(object.awsPrincipalTagsOptions);
+                            }
                             if (object.audience != null)
                                 message.audience = String(object.audience);
                             if (object.nonce) {
@@ -1755,6 +2477,10 @@
                             case "TOKEN_TYPE_LIMITED_AWS":
                             case 3:
                                 message.tokenType = 3;
+                                break;
+                            case "TOKEN_TYPE_AWS_PRINCIPALTAGS":
+                            case 4:
+                                message.tokenType = 4;
                                 break;
                             }
                             return message;
@@ -1788,6 +2514,11 @@
                             }
                             if (message.tokenType != null && message.hasOwnProperty("tokenType"))
                                 object.tokenType = options.enums === String ? $root.google.cloud.confidentialcomputing.v1.TokenType[message.tokenType] === undefined ? message.tokenType : $root.google.cloud.confidentialcomputing.v1.TokenType[message.tokenType] : message.tokenType;
+                            if (message.awsPrincipalTagsOptions != null && message.hasOwnProperty("awsPrincipalTagsOptions")) {
+                                object.awsPrincipalTagsOptions = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.toObject(message.awsPrincipalTagsOptions, options);
+                                if (options.oneofs)
+                                    object.tokenTypeOptions = "awsPrincipalTagsOptions";
+                            }
                             return object;
                         };
     
@@ -1816,6 +2547,647 @@
                             }
                             return typeUrlPrefix + "/google.cloud.confidentialcomputing.v1.TokenOptions";
                         };
+    
+                        TokenOptions.AwsPrincipalTagsOptions = (function() {
+    
+                            /**
+                             * Properties of an AwsPrincipalTagsOptions.
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions
+                             * @interface IAwsPrincipalTagsOptions
+                             * @property {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags|null} [allowedPrincipalTags] AwsPrincipalTagsOptions allowedPrincipalTags
+                             */
+    
+                            /**
+                             * Constructs a new AwsPrincipalTagsOptions.
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions
+                             * @classdesc Represents an AwsPrincipalTagsOptions.
+                             * @implements IAwsPrincipalTagsOptions
+                             * @constructor
+                             * @param {google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions=} [properties] Properties to set
+                             */
+                            function AwsPrincipalTagsOptions(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * AwsPrincipalTagsOptions allowedPrincipalTags.
+                             * @member {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags|null|undefined} allowedPrincipalTags
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @instance
+                             */
+                            AwsPrincipalTagsOptions.prototype.allowedPrincipalTags = null;
+    
+                            /**
+                             * Creates a new AwsPrincipalTagsOptions instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions=} [properties] Properties to set
+                             * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions} AwsPrincipalTagsOptions instance
+                             */
+                            AwsPrincipalTagsOptions.create = function create(properties) {
+                                return new AwsPrincipalTagsOptions(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified AwsPrincipalTagsOptions message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions} message AwsPrincipalTagsOptions message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            AwsPrincipalTagsOptions.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.allowedPrincipalTags != null && Object.hasOwnProperty.call(message, "allowedPrincipalTags"))
+                                    $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.encode(message.allowedPrincipalTags, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified AwsPrincipalTagsOptions message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {google.cloud.confidentialcomputing.v1.TokenOptions.IAwsPrincipalTagsOptions} message AwsPrincipalTagsOptions message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            AwsPrincipalTagsOptions.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes an AwsPrincipalTagsOptions message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions} AwsPrincipalTagsOptions
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            AwsPrincipalTagsOptions.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.allowedPrincipalTags = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes an AwsPrincipalTagsOptions message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions} AwsPrincipalTagsOptions
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            AwsPrincipalTagsOptions.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies an AwsPrincipalTagsOptions message.
+                             * @function verify
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            AwsPrincipalTagsOptions.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.allowedPrincipalTags != null && message.hasOwnProperty("allowedPrincipalTags")) {
+                                    var error = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.verify(message.allowedPrincipalTags);
+                                    if (error)
+                                        return "allowedPrincipalTags." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates an AwsPrincipalTagsOptions message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions} AwsPrincipalTagsOptions
+                             */
+                            AwsPrincipalTagsOptions.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions)
+                                    return object;
+                                var message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions();
+                                if (object.allowedPrincipalTags != null) {
+                                    if (typeof object.allowedPrincipalTags !== "object")
+                                        throw TypeError(".google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.allowedPrincipalTags: object expected");
+                                    message.allowedPrincipalTags = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.fromObject(object.allowedPrincipalTags);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from an AwsPrincipalTagsOptions message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions} message AwsPrincipalTagsOptions
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            AwsPrincipalTagsOptions.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    object.allowedPrincipalTags = null;
+                                if (message.allowedPrincipalTags != null && message.hasOwnProperty("allowedPrincipalTags"))
+                                    object.allowedPrincipalTags = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.toObject(message.allowedPrincipalTags, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this AwsPrincipalTagsOptions to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            AwsPrincipalTagsOptions.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for AwsPrincipalTagsOptions
+                             * @function getTypeUrl
+                             * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            AwsPrincipalTagsOptions.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions";
+                            };
+    
+                            AwsPrincipalTagsOptions.AllowedPrincipalTags = (function() {
+    
+                                /**
+                                 * Properties of an AllowedPrincipalTags.
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                                 * @interface IAllowedPrincipalTags
+                                 * @property {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures|null} [containerImageSignatures] AllowedPrincipalTags containerImageSignatures
+                                 */
+    
+                                /**
+                                 * Constructs a new AllowedPrincipalTags.
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions
+                                 * @classdesc Represents an AllowedPrincipalTags.
+                                 * @implements IAllowedPrincipalTags
+                                 * @constructor
+                                 * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags=} [properties] Properties to set
+                                 */
+                                function AllowedPrincipalTags(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * AllowedPrincipalTags containerImageSignatures.
+                                 * @member {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures|null|undefined} containerImageSignatures
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @instance
+                                 */
+                                AllowedPrincipalTags.prototype.containerImageSignatures = null;
+    
+                                /**
+                                 * Creates a new AllowedPrincipalTags instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags=} [properties] Properties to set
+                                 * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags} AllowedPrincipalTags instance
+                                 */
+                                AllowedPrincipalTags.create = function create(properties) {
+                                    return new AllowedPrincipalTags(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified AllowedPrincipalTags message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags} message AllowedPrincipalTags message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                AllowedPrincipalTags.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.containerImageSignatures != null && Object.hasOwnProperty.call(message, "containerImageSignatures"))
+                                        $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.encode(message.containerImageSignatures, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified AllowedPrincipalTags message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.IAllowedPrincipalTags} message AllowedPrincipalTags message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                AllowedPrincipalTags.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes an AllowedPrincipalTags message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags} AllowedPrincipalTags
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                AllowedPrincipalTags.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.containerImageSignatures = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.decode(reader, reader.uint32());
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes an AllowedPrincipalTags message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags} AllowedPrincipalTags
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                AllowedPrincipalTags.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies an AllowedPrincipalTags message.
+                                 * @function verify
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                AllowedPrincipalTags.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    if (message.containerImageSignatures != null && message.hasOwnProperty("containerImageSignatures")) {
+                                        var error = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.verify(message.containerImageSignatures);
+                                        if (error)
+                                            return "containerImageSignatures." + error;
+                                    }
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates an AllowedPrincipalTags message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags} AllowedPrincipalTags
+                                 */
+                                AllowedPrincipalTags.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags)
+                                        return object;
+                                    var message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags();
+                                    if (object.containerImageSignatures != null) {
+                                        if (typeof object.containerImageSignatures !== "object")
+                                            throw TypeError(".google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.containerImageSignatures: object expected");
+                                        message.containerImageSignatures = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.fromObject(object.containerImageSignatures);
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from an AllowedPrincipalTags message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags} message AllowedPrincipalTags
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                AllowedPrincipalTags.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (options.defaults)
+                                        object.containerImageSignatures = null;
+                                    if (message.containerImageSignatures != null && message.hasOwnProperty("containerImageSignatures"))
+                                        object.containerImageSignatures = $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.toObject(message.containerImageSignatures, options);
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this AllowedPrincipalTags to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                AllowedPrincipalTags.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for AllowedPrincipalTags
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                AllowedPrincipalTags.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags";
+                                };
+    
+                                AllowedPrincipalTags.ContainerImageSignatures = (function() {
+    
+                                    /**
+                                     * Properties of a ContainerImageSignatures.
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                     * @interface IContainerImageSignatures
+                                     * @property {Array.<string>|null} [keyIds] ContainerImageSignatures keyIds
+                                     */
+    
+                                    /**
+                                     * Constructs a new ContainerImageSignatures.
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags
+                                     * @classdesc Represents a ContainerImageSignatures.
+                                     * @implements IContainerImageSignatures
+                                     * @constructor
+                                     * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures=} [properties] Properties to set
+                                     */
+                                    function ContainerImageSignatures(properties) {
+                                        this.keyIds = [];
+                                        if (properties)
+                                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                                if (properties[keys[i]] != null)
+                                                    this[keys[i]] = properties[keys[i]];
+                                    }
+    
+                                    /**
+                                     * ContainerImageSignatures keyIds.
+                                     * @member {Array.<string>} keyIds
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @instance
+                                     */
+                                    ContainerImageSignatures.prototype.keyIds = $util.emptyArray;
+    
+                                    /**
+                                     * Creates a new ContainerImageSignatures instance using the specified properties.
+                                     * @function create
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures=} [properties] Properties to set
+                                     * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures} ContainerImageSignatures instance
+                                     */
+                                    ContainerImageSignatures.create = function create(properties) {
+                                        return new ContainerImageSignatures(properties);
+                                    };
+    
+                                    /**
+                                     * Encodes the specified ContainerImageSignatures message. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.verify|verify} messages.
+                                     * @function encode
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures} message ContainerImageSignatures message or plain object to encode
+                                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                                     * @returns {$protobuf.Writer} Writer
+                                     */
+                                    ContainerImageSignatures.encode = function encode(message, writer) {
+                                        if (!writer)
+                                            writer = $Writer.create();
+                                        if (message.keyIds != null && message.keyIds.length)
+                                            for (var i = 0; i < message.keyIds.length; ++i)
+                                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.keyIds[i]);
+                                        return writer;
+                                    };
+    
+                                    /**
+                                     * Encodes the specified ContainerImageSignatures message, length delimited. Does not implicitly {@link google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.verify|verify} messages.
+                                     * @function encodeDelimited
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.IContainerImageSignatures} message ContainerImageSignatures message or plain object to encode
+                                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                                     * @returns {$protobuf.Writer} Writer
+                                     */
+                                    ContainerImageSignatures.encodeDelimited = function encodeDelimited(message, writer) {
+                                        return this.encode(message, writer).ldelim();
+                                    };
+    
+                                    /**
+                                     * Decodes a ContainerImageSignatures message from the specified reader or buffer.
+                                     * @function decode
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                     * @param {number} [length] Message length if known beforehand
+                                     * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures} ContainerImageSignatures
+                                     * @throws {Error} If the payload is not a reader or valid buffer
+                                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                     */
+                                    ContainerImageSignatures.decode = function decode(reader, length, error) {
+                                        if (!(reader instanceof $Reader))
+                                            reader = $Reader.create(reader);
+                                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures();
+                                        while (reader.pos < end) {
+                                            var tag = reader.uint32();
+                                            if (tag === error)
+                                                break;
+                                            switch (tag >>> 3) {
+                                            case 1: {
+                                                    if (!(message.keyIds && message.keyIds.length))
+                                                        message.keyIds = [];
+                                                    message.keyIds.push(reader.string());
+                                                    break;
+                                                }
+                                            default:
+                                                reader.skipType(tag & 7);
+                                                break;
+                                            }
+                                        }
+                                        return message;
+                                    };
+    
+                                    /**
+                                     * Decodes a ContainerImageSignatures message from the specified reader or buffer, length delimited.
+                                     * @function decodeDelimited
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                     * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures} ContainerImageSignatures
+                                     * @throws {Error} If the payload is not a reader or valid buffer
+                                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                     */
+                                    ContainerImageSignatures.decodeDelimited = function decodeDelimited(reader) {
+                                        if (!(reader instanceof $Reader))
+                                            reader = new $Reader(reader);
+                                        return this.decode(reader, reader.uint32());
+                                    };
+    
+                                    /**
+                                     * Verifies a ContainerImageSignatures message.
+                                     * @function verify
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {Object.<string,*>} message Plain object to verify
+                                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                     */
+                                    ContainerImageSignatures.verify = function verify(message) {
+                                        if (typeof message !== "object" || message === null)
+                                            return "object expected";
+                                        if (message.keyIds != null && message.hasOwnProperty("keyIds")) {
+                                            if (!Array.isArray(message.keyIds))
+                                                return "keyIds: array expected";
+                                            for (var i = 0; i < message.keyIds.length; ++i)
+                                                if (!$util.isString(message.keyIds[i]))
+                                                    return "keyIds: string[] expected";
+                                        }
+                                        return null;
+                                    };
+    
+                                    /**
+                                     * Creates a ContainerImageSignatures message from a plain object. Also converts values to their respective internal types.
+                                     * @function fromObject
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {Object.<string,*>} object Plain object
+                                     * @returns {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures} ContainerImageSignatures
+                                     */
+                                    ContainerImageSignatures.fromObject = function fromObject(object) {
+                                        if (object instanceof $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures)
+                                            return object;
+                                        var message = new $root.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures();
+                                        if (object.keyIds) {
+                                            if (!Array.isArray(object.keyIds))
+                                                throw TypeError(".google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.keyIds: array expected");
+                                            message.keyIds = [];
+                                            for (var i = 0; i < object.keyIds.length; ++i)
+                                                message.keyIds[i] = String(object.keyIds[i]);
+                                        }
+                                        return message;
+                                    };
+    
+                                    /**
+                                     * Creates a plain object from a ContainerImageSignatures message. Also converts values to other types if specified.
+                                     * @function toObject
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures} message ContainerImageSignatures
+                                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                     * @returns {Object.<string,*>} Plain object
+                                     */
+                                    ContainerImageSignatures.toObject = function toObject(message, options) {
+                                        if (!options)
+                                            options = {};
+                                        var object = {};
+                                        if (options.arrays || options.defaults)
+                                            object.keyIds = [];
+                                        if (message.keyIds && message.keyIds.length) {
+                                            object.keyIds = [];
+                                            for (var j = 0; j < message.keyIds.length; ++j)
+                                                object.keyIds[j] = message.keyIds[j];
+                                        }
+                                        return object;
+                                    };
+    
+                                    /**
+                                     * Converts this ContainerImageSignatures to JSON.
+                                     * @function toJSON
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @instance
+                                     * @returns {Object.<string,*>} JSON object
+                                     */
+                                    ContainerImageSignatures.prototype.toJSON = function toJSON() {
+                                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                    };
+    
+                                    /**
+                                     * Gets the default type url for ContainerImageSignatures
+                                     * @function getTypeUrl
+                                     * @memberof google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures
+                                     * @static
+                                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                     * @returns {string} The default type url
+                                     */
+                                    ContainerImageSignatures.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                        if (typeUrlPrefix === undefined) {
+                                            typeUrlPrefix = "type.googleapis.com";
+                                        }
+                                        return typeUrlPrefix + "/google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures";
+                                    };
+    
+                                    return ContainerImageSignatures;
+                                })();
+    
+                                return AllowedPrincipalTags;
+                            })();
+    
+                            return AwsPrincipalTagsOptions;
+                        })();
     
                         return TokenOptions;
                     })();
@@ -1953,12 +3325,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TpmAttestation.decode = function decode(reader, length) {
+                        TpmAttestation.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TpmAttestation();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.quotes && message.quotes.length))
@@ -2302,12 +3676,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Quote.decode = function decode(reader, length) {
+                            Quote.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.TpmAttestation.Quote(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.hashAlgo = reader.int32();
@@ -2605,12 +3981,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ConfidentialSpaceInfo.decode = function decode(reader, length) {
+                        ConfidentialSpaceInfo.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.ConfidentialSpaceInfo();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.signedEntities && message.signedEntities.length))
@@ -2829,12 +4207,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        SignedEntity.decode = function decode(reader, length) {
+                        SignedEntity.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.SignedEntity();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.containerImageSignatures && message.containerImageSignatures.length))
@@ -3084,12 +4464,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ContainerImageSignature.decode = function decode(reader, length) {
+                        ContainerImageSignature.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1.ContainerImageSignature();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.payload = reader.bytes();
@@ -3537,12 +4919,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Challenge.decode = function decode(reader, length) {
+                        Challenge.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.Challenge();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3819,12 +5203,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateChallengeRequest.decode = function decode(reader, length) {
+                        CreateChallengeRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.CreateChallengeRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -4062,12 +5448,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyAttestationRequest.decode = function decode(reader, length) {
+                        VerifyAttestationRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.VerifyAttestationRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.challenge = reader.string();
@@ -4300,12 +5688,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VerifyAttestationResponse.decode = function decode(reader, length) {
+                        VerifyAttestationResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.VerifyAttestationResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.claimsToken = reader.bytes();
@@ -4514,12 +5904,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GcpCredentials.decode = function decode(reader, length) {
+                        GcpCredentials.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.GcpCredentials();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.idTokens && message.idTokens.length))
@@ -4782,12 +6174,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TpmAttestation.decode = function decode(reader, length) {
+                        TpmAttestation.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.TpmAttestation();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.quotes && message.quotes.length))
@@ -5131,12 +6525,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Quote.decode = function decode(reader, length) {
+                            Quote.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.confidentialcomputing.v1alpha1.TpmAttestation.Quote(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.hashAlgo = reader.int32();
@@ -5463,12 +6859,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -5813,12 +7211,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -6197,12 +7597,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -6429,12 +7831,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -6798,12 +8202,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -7142,6 +8548,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -7243,6 +8650,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -7289,6 +8704,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -7316,12 +8733,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -7367,6 +8786,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -7461,6 +8884,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -7555,6 +8981,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -7584,6 +9012,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -7614,6 +9043,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -7755,12 +9186,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -8022,12 +9455,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -8230,12 +9665,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -8438,12 +9875,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -8646,12 +10085,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -8919,12 +10360,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -9298,12 +10741,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -9506,12 +10951,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -9738,12 +11185,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -10016,12 +11465,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -10443,12 +11894,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -10838,12 +12291,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -11068,12 +12523,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -11468,12 +12925,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -12135,12 +13594,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -12620,12 +14081,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -12864,12 +14327,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -13120,12 +14585,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -13465,12 +14932,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -13844,12 +15313,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -14369,12 +15840,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -14640,12 +16113,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -14959,12 +16434,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -15200,12 +16677,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -15457,12 +16936,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -15765,12 +17246,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -16269,12 +17752,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -16889,12 +18374,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -17337,12 +18824,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -17372,12 +18856,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -18103,12 +19589,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -18399,12 +19887,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -18685,12 +20175,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -18997,12 +20489,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -19188,6 +20682,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -19247,6 +20742,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -19281,6 +20784,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -19308,12 +20813,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -19335,6 +20842,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -19395,6 +20906,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -19431,6 +20945,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -19454,6 +20970,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -19468,6 +20985,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -19644,12 +21163,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -20061,12 +21582,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -20400,12 +21923,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -20676,12 +22201,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -21211,12 +22738,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -21595,12 +23124,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -21885,12 +23416,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -22160,12 +23693,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -22471,12 +24006,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -22739,12 +24276,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -23065,12 +24604,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -23306,12 +24847,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -23547,12 +25090,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -23808,12 +25353,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

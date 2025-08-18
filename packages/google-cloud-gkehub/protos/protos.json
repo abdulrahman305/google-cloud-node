@@ -26,17 +26,26 @@
               }
             },
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
                   "type": "FileDescriptorProto",
                   "id": 1
                 }
-              }
+              },
+              "extensions": [
+                [
+                  536000000,
+                  536000000
+                ]
+              ]
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
+                "EDITION_LEGACY": 900,
                 "EDITION_PROTO2": 998,
                 "EDITION_PROTO3": 999,
                 "EDITION_2023": 1000,
@@ -50,6 +59,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -67,18 +77,17 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
+                },
+                "optionDependency": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 15
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -119,6 +128,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -167,6 +177,10 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 10
+                },
+                "visibility": {
+                  "type": "SymbolVisibility",
+                  "id": 11
                 }
               },
               "nested": {
@@ -201,6 +215,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -274,6 +289,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -353,6 +369,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -365,6 +382,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -388,6 +406,10 @@
                   "rule": "repeated",
                   "type": "string",
                   "id": 5
+                },
+                "visibility": {
+                  "type": "SymbolVisibility",
+                  "id": 6
                 }
               },
               "nested": {
@@ -406,6 +428,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -422,6 +445,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -439,6 +463,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -473,6 +498,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -598,6 +624,7 @@
                   42,
                   42
                 ],
+                "php_generic_services",
                 [
                   38,
                   38
@@ -614,6 +641,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -687,6 +715,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -731,7 +760,8 @@
                   "type": "bool",
                   "id": 10,
                   "options": {
-                    "default": false
+                    "default": false,
+                    "deprecated": true
                   }
                 },
                 "debugRedact": {
@@ -748,10 +778,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -761,6 +788,10 @@
                 "features": {
                   "type": "FeatureSet",
                   "id": 21
+                },
+                "featureSupport": {
+                  "type": "FeatureSupport",
+                  "id": 22
                 },
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -831,10 +862,31 @@
                       "id": 2
                     }
                   }
+                },
+                "FeatureSupport": {
+                  "fields": {
+                    "editionIntroduced": {
+                      "type": "Edition",
+                      "id": 1
+                    },
+                    "editionDeprecated": {
+                      "type": "Edition",
+                      "id": 2
+                    },
+                    "deprecationWarning": {
+                      "type": "string",
+                      "id": 3
+                    },
+                    "editionRemoved": {
+                      "type": "Edition",
+                      "id": 4
+                    }
+                  }
                 }
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -854,6 +906,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -897,6 +950,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -916,6 +970,10 @@
                     "default": false
                   }
                 },
+                "featureSupport": {
+                  "type": "FieldOptions.FeatureSupport",
+                  "id": 4
+                },
                 "uninterpretedOption": {
                   "rule": "repeated",
                   "type": "UninterpretedOption",
@@ -930,6 +988,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -956,6 +1015,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -998,6 +1058,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -1047,6 +1108,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -1054,6 +1116,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_2023",
                     "edition_defaults.value": "EXPLICIT"
                   }
@@ -1064,6 +1127,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "OPEN"
                   }
@@ -1074,6 +1138,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "PACKED"
                   }
@@ -1084,6 +1149,7 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "VERIFY"
                   }
@@ -1094,7 +1160,8 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
-                    "edition_defaults.edition": "EDITION_PROTO2",
+                    "feature_support.edition_introduced": "EDITION_2023",
+                    "edition_defaults.edition": "EDITION_LEGACY",
                     "edition_defaults.value": "LENGTH_PREFIXED"
                   }
                 },
@@ -1104,23 +1171,46 @@
                   "options": {
                     "retention": "RETENTION_RUNTIME",
                     "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2023",
                     "edition_defaults.edition": "EDITION_PROTO3",
                     "edition_defaults.value": "ALLOW"
+                  }
+                },
+                "enforceNamingStyle": {
+                  "type": "EnforceNamingStyle",
+                  "id": 7,
+                  "options": {
+                    "retention": "RETENTION_SOURCE",
+                    "targets": "TARGET_TYPE_METHOD",
+                    "feature_support.edition_introduced": "EDITION_2024",
+                    "edition_defaults.edition": "EDITION_2024",
+                    "edition_defaults.value": "STYLE2024"
+                  }
+                },
+                "defaultSymbolVisibility": {
+                  "type": "VisibilityFeature.DefaultSymbolVisibility",
+                  "id": 8,
+                  "options": {
+                    "retention": "RETENTION_SOURCE",
+                    "targets": "TARGET_TYPE_FILE",
+                    "feature_support.edition_introduced": "EDITION_2024",
+                    "edition_defaults.edition": "EDITION_2024",
+                    "edition_defaults.value": "EXPORT_TOP_LEVEL"
                   }
                 }
               },
               "extensions": [
                 [
                   1000,
-                  1000
-                ],
-                [
-                  1001,
-                  1001
+                  9994
                 ],
                 [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -1157,7 +1247,13 @@
                     "UTF8_VALIDATION_UNKNOWN": 0,
                     "VERIFY": 2,
                     "NONE": 3
-                  }
+                  },
+                  "reserved": [
+                    [
+                      1,
+                      1
+                    ]
+                  ]
                 },
                 "MessageEncoding": {
                   "values": {
@@ -1172,10 +1268,38 @@
                     "ALLOW": 1,
                     "LEGACY_BEST_EFFORT": 2
                   }
+                },
+                "EnforceNamingStyle": {
+                  "values": {
+                    "ENFORCE_NAMING_STYLE_UNKNOWN": 0,
+                    "STYLE2024": 1,
+                    "STYLE_LEGACY": 2
+                  }
+                },
+                "VisibilityFeature": {
+                  "fields": {},
+                  "reserved": [
+                    [
+                      1,
+                      536870911
+                    ]
+                  ],
+                  "nested": {
+                    "DefaultSymbolVisibility": {
+                      "values": {
+                        "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN": 0,
+                        "EXPORT_ALL": 1,
+                        "EXPORT_TOP_LEVEL": 2,
+                        "LOCAL_ALL": 3,
+                        "STRICT": 4
+                      }
+                    }
+                  }
                 }
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -1198,15 +1322,31 @@
                       "type": "Edition",
                       "id": 3
                     },
-                    "features": {
+                    "overridableFeatures": {
                       "type": "FeatureSet",
-                      "id": 2
+                      "id": 4
+                    },
+                    "fixedFeatures": {
+                      "type": "FeatureSet",
+                      "id": 5
                     }
-                  }
+                  },
+                  "reserved": [
+                    [
+                      1,
+                      1
+                    ],
+                    [
+                      2,
+                      2
+                    ],
+                    "features"
+                  ]
                 }
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -1214,18 +1354,30 @@
                   "id": 1
                 }
               },
+              "extensions": [
+                [
+                  536000000,
+                  536000000
+                ]
+              ],
               "nested": {
                 "Location": {
                   "fields": {
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -1245,6 +1397,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -1258,7 +1411,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -1287,6 +1443,14 @@
                     }
                   }
                 }
+              }
+            },
+            "SymbolVisibility": {
+              "edition": "proto2",
+              "values": {
+                "VISIBILITY_UNSET": 0,
+                "VISIBILITY_LOCAL": 1,
+                "VISIBILITY_EXPORT": 2
               }
             },
             "Duration": {
@@ -1412,7 +1576,8 @@
                             "DEPLOYMENT_STATE_UNSPECIFIED": 0,
                             "NOT_INSTALLED": 1,
                             "INSTALLED": 2,
-                            "ERROR": 3
+                            "ERROR": 3,
+                            "PENDING": 4
                           }
                         },
                         "MembershipState": {
@@ -1460,10 +1625,34 @@
                             "version": {
                               "type": "string",
                               "id": 10
+                            },
+                            "cluster": {
+                              "type": "string",
+                              "id": 11
+                            },
+                            "management": {
+                              "type": "Management",
+                              "id": 12
+                            }
+                          },
+                          "nested": {
+                            "Management": {
+                              "values": {
+                                "MANAGEMENT_UNSPECIFIED": 0,
+                                "MANAGEMENT_AUTOMATIC": 1,
+                                "MANAGEMENT_MANUAL": 2
+                              }
                             }
                           }
                         },
                         "ConfigSync": {
+                          "oneofs": {
+                            "_enabled": {
+                              "oneof": [
+                                "enabled"
+                              ]
+                            }
+                          },
                           "fields": {
                             "git": {
                               "type": "GitConfig",
@@ -1472,6 +1661,25 @@
                             "sourceFormat": {
                               "type": "string",
                               "id": 8
+                            },
+                            "enabled": {
+                              "type": "bool",
+                              "id": 10,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "preventDrift": {
+                              "type": "bool",
+                              "id": 11
+                            },
+                            "oci": {
+                              "type": "OciConfig",
+                              "id": 12
+                            },
+                            "metricsGcpServiceAccountEmail": {
+                              "type": "string",
+                              "id": 15
                             }
                           }
                         },
@@ -1508,6 +1716,30 @@
                             "gcpServiceAccountEmail": {
                               "type": "string",
                               "id": 8
+                            }
+                          }
+                        },
+                        "OciConfig": {
+                          "fields": {
+                            "syncRepo": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "policyDir": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "syncWaitSecs": {
+                              "type": "int64",
+                              "id": 3
+                            },
+                            "secretType": {
+                              "type": "string",
+                              "id": 4
+                            },
+                            "gcpServiceAccountEmail": {
+                              "type": "string",
+                              "id": 5
                             }
                           }
                         },
@@ -1648,6 +1880,51 @@
                             "syncState": {
                               "type": "SyncState",
                               "id": 3
+                            },
+                            "errors": {
+                              "rule": "repeated",
+                              "type": "ConfigSyncError",
+                              "id": 4
+                            },
+                            "rootsyncCrd": {
+                              "type": "CRDState",
+                              "id": 5
+                            },
+                            "reposyncCrd": {
+                              "type": "CRDState",
+                              "id": 6
+                            },
+                            "state": {
+                              "type": "State",
+                              "id": 7
+                            }
+                          },
+                          "nested": {
+                            "CRDState": {
+                              "values": {
+                                "CRD_STATE_UNSPECIFIED": 0,
+                                "NOT_INSTALLED": 1,
+                                "INSTALLED": 2,
+                                "TERMINATING": 3,
+                                "INSTALLING": 4
+                              }
+                            },
+                            "State": {
+                              "values": {
+                                "STATE_UNSPECIFIED": 0,
+                                "CONFIG_SYNC_NOT_INSTALLED": 1,
+                                "CONFIG_SYNC_INSTALLED": 2,
+                                "CONFIG_SYNC_ERROR": 3,
+                                "CONFIG_SYNC_PENDING": 4
+                              }
+                            }
+                          }
+                        },
+                        "ConfigSyncError": {
+                          "fields": {
+                            "errorMessage": {
+                              "type": "string",
+                              "id": 1
                             }
                           }
                         },
@@ -1676,6 +1953,10 @@
                             "rootReconciler": {
                               "type": "string",
                               "id": 6
+                            },
+                            "admissionWebhook": {
+                              "type": "string",
+                              "id": 7
                             }
                           }
                         },
@@ -1704,6 +1985,10 @@
                             "rootReconciler": {
                               "type": "DeploymentState",
                               "id": 6
+                            },
+                            "admissionWebhook": {
+                              "type": "DeploymentState",
+                              "id": 7
                             }
                           }
                         },
@@ -2352,38 +2637,60 @@
                             "DEPLOYMENT_STATE_UNSPECIFIED": 0,
                             "NOT_INSTALLED": 1,
                             "INSTALLED": 2,
-                            "ERROR": 3
+                            "ERROR": 3,
+                            "PENDING": 4
                           }
                         },
                         "MembershipState": {
                           "fields": {
                             "clusterName": {
                               "type": "string",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "membershipSpec": {
                               "type": "MembershipSpec",
-                              "id": 2
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "operatorState": {
                               "type": "OperatorState",
-                              "id": 3
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "configSyncState": {
                               "type": "ConfigSyncState",
-                              "id": 4
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "policyControllerState": {
                               "type": "PolicyControllerState",
-                              "id": 5
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "binauthzState": {
                               "type": "BinauthzState",
-                              "id": 6
+                              "id": 6,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "hierarchyControllerState": {
                               "type": "HierarchyControllerState",
-                              "id": 7
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             }
                           }
                         },
@@ -2391,35 +2698,118 @@
                           "fields": {
                             "configSync": {
                               "type": "ConfigSync",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "policyController": {
                               "type": "PolicyController",
-                              "id": 2
+                              "id": 2,
+                              "options": {
+                                "deprecated": true,
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "binauthz": {
                               "type": "BinauthzConfig",
-                              "id": 3
+                              "id": 3,
+                              "options": {
+                                "deprecated": true,
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "hierarchyController": {
                               "type": "HierarchyControllerConfig",
-                              "id": 4
+                              "id": 4,
+                              "options": {
+                                "deprecated": true,
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "version": {
                               "type": "string",
-                              "id": 10
+                              "id": 10,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "cluster": {
+                              "type": "string",
+                              "id": 11,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "management": {
+                              "type": "Management",
+                              "id": 12,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "Management": {
+                              "values": {
+                                "MANAGEMENT_UNSPECIFIED": 0,
+                                "MANAGEMENT_AUTOMATIC": 1,
+                                "MANAGEMENT_MANUAL": 2
+                              }
                             }
                           }
                         },
                         "ConfigSync": {
+                          "oneofs": {
+                            "_enabled": {
+                              "oneof": [
+                                "enabled"
+                              ]
+                            }
+                          },
                           "fields": {
                             "git": {
                               "type": "GitConfig",
-                              "id": 7
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "sourceFormat": {
                               "type": "string",
-                              "id": 8
+                              "id": 8,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "enabled": {
+                              "type": "bool",
+                              "id": 10,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
+                            },
+                            "preventDrift": {
+                              "type": "bool",
+                              "id": 11,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "oci": {
+                              "type": "OciConfig",
+                              "id": 12,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "stopSyncing": {
+                              "type": "bool",
+                              "id": 16,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             }
                           }
                         },
@@ -2427,35 +2817,98 @@
                           "fields": {
                             "syncRepo": {
                               "type": "string",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
                             },
                             "syncBranch": {
                               "type": "string",
-                              "id": 2
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "policyDir": {
                               "type": "string",
-                              "id": 3
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "syncWaitSecs": {
                               "type": "int64",
-                              "id": 4
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "syncRev": {
                               "type": "string",
-                              "id": 5
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "secretType": {
                               "type": "string",
-                              "id": 6
+                              "id": 6,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
                             },
                             "httpsProxy": {
                               "type": "string",
-                              "id": 7
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             },
                             "gcpServiceAccountEmail": {
                               "type": "string",
-                              "id": 8
+                              "id": 8,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          }
+                        },
+                        "OciConfig": {
+                          "fields": {
+                            "syncRepo": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "policyDir": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "syncWaitSecs": {
+                              "type": "int64",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "secretType": {
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "gcpServiceAccountEmail": {
+                              "type": "string",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
                             }
                           }
                         },
@@ -2503,6 +2956,39 @@
                             "logDeniesEnabled": {
                               "type": "bool",
                               "id": 6
+                            },
+                            "mutationEnabled": {
+                              "type": "bool",
+                              "id": 7
+                            },
+                            "monitoring": {
+                              "type": "PolicyControllerMonitoring",
+                              "id": 8
+                            },
+                            "updateTime": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 9,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            }
+                          }
+                        },
+                        "PolicyControllerMonitoring": {
+                          "fields": {
+                            "backends": {
+                              "rule": "repeated",
+                              "type": "MonitoringBackend",
+                              "id": 1
+                            }
+                          },
+                          "nested": {
+                            "MonitoringBackend": {
+                              "values": {
+                                "MONITORING_BACKEND_UNSPECIFIED": 0,
+                                "PROMETHEUS": 1,
+                                "CLOUD_MONITORING": 2
+                              }
                             }
                           }
                         },
@@ -2595,15 +3081,103 @@
                           "fields": {
                             "version": {
                               "type": "ConfigSyncVersion",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "deploymentState": {
                               "type": "ConfigSyncDeploymentState",
-                              "id": 2
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             },
                             "syncState": {
                               "type": "SyncState",
-                              "id": 3
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "errors": {
+                              "rule": "repeated",
+                              "type": "ConfigSyncError",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "rootsyncCrd": {
+                              "type": "CRDState",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "reposyncCrd": {
+                              "type": "CRDState",
+                              "id": 6,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "state": {
+                              "type": "State",
+                              "id": 7,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "clusterLevelStopSyncingState": {
+                              "type": "StopSyncingState",
+                              "id": 8,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            },
+                            "crCount": {
+                              "type": "int32",
+                              "id": 9,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "CRDState": {
+                              "values": {
+                                "CRD_STATE_UNSPECIFIED": 0,
+                                "NOT_INSTALLED": 1,
+                                "INSTALLED": 2,
+                                "TERMINATING": 3,
+                                "INSTALLING": 4
+                              }
+                            },
+                            "State": {
+                              "values": {
+                                "STATE_UNSPECIFIED": 0,
+                                "CONFIG_SYNC_NOT_INSTALLED": 1,
+                                "CONFIG_SYNC_INSTALLED": 2,
+                                "CONFIG_SYNC_ERROR": 3,
+                                "CONFIG_SYNC_PENDING": 4
+                              }
+                            },
+                            "StopSyncingState": {
+                              "values": {
+                                "STOP_SYNCING_STATE_UNSPECIFIED": 0,
+                                "NOT_STOPPED": 1,
+                                "PENDING": 2,
+                                "STOPPED": 3
+                              }
+                            }
+                          }
+                        },
+                        "ConfigSyncError": {
+                          "fields": {
+                            "errorMessage": {
+                              "type": "string",
+                              "id": 1
                             }
                           }
                         },
@@ -2632,6 +3206,18 @@
                             "rootReconciler": {
                               "type": "string",
                               "id": 6
+                            },
+                            "admissionWebhook": {
+                              "type": "string",
+                              "id": 7
+                            },
+                            "resourceGroupControllerManager": {
+                              "type": "string",
+                              "id": 8
+                            },
+                            "otelCollector": {
+                              "type": "string",
+                              "id": 9
                             }
                           }
                         },
@@ -2660,6 +3246,18 @@
                             "rootReconciler": {
                               "type": "DeploymentState",
                               "id": 6
+                            },
+                            "admissionWebhook": {
+                              "type": "DeploymentState",
+                              "id": 7
+                            },
+                            "resourceGroupControllerManager": {
+                              "type": "DeploymentState",
+                              "id": 8
+                            },
+                            "otelCollector": {
+                              "type": "DeploymentState",
+                              "id": 9
                             }
                           }
                         },
@@ -2775,6 +3373,10 @@
                             "deploymentState": {
                               "type": "GatekeeperDeploymentState",
                               "id": 2
+                            },
+                            "migration": {
+                              "type": "PolicyControllerMigration",
+                              "id": 4
                             }
                           }
                         },
@@ -2783,6 +3385,27 @@
                             "version": {
                               "type": "string",
                               "id": 1
+                            }
+                          }
+                        },
+                        "PolicyControllerMigration": {
+                          "fields": {
+                            "stage": {
+                              "type": "Stage",
+                              "id": 1
+                            },
+                            "copyTime": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 2
+                            }
+                          },
+                          "nested": {
+                            "Stage": {
+                              "values": {
+                                "STAGE_UNSPECIFIED": 0,
+                                "ACM_MANAGED": 1,
+                                "POCO_MANAGED": 2
+                              }
                             }
                           }
                         },
@@ -2815,6 +3438,10 @@
                             "gatekeeperAudit": {
                               "type": "DeploymentState",
                               "id": 2
+                            },
+                            "gatekeeperMutation": {
+                              "type": "DeploymentState",
+                              "id": 3
                             }
                           }
                         }
@@ -5905,6 +6532,420 @@
                     }
                   }
                 },
+                "policycontroller": {
+                  "nested": {
+                    "v1beta": {
+                      "options": {
+                        "csharp_namespace": "Google.Cloud.GkeHub.PolicyController.V1Beta",
+                        "go_package": "cloud.google.com/go/gkehub/policycontroller/apiv1beta/policycontrollerpb;policycontrollerpb",
+                        "java_multiple_files": true,
+                        "java_outer_classname": "PolicyControllerProto",
+                        "java_package": "com.google.cloud.gkehub.policycontroller.v1beta",
+                        "php_namespace": "Google\\Cloud\\GkeHub\\PolicyController\\V1beta",
+                        "ruby_package": "Google::Cloud::GkeHub::PolicyController::V1beta"
+                      },
+                      "nested": {
+                        "MembershipState": {
+                          "fields": {
+                            "componentStates": {
+                              "keyType": "string",
+                              "type": "OnClusterState",
+                              "id": 3
+                            },
+                            "state": {
+                              "type": "LifecycleState",
+                              "id": 4
+                            },
+                            "policyContentState": {
+                              "type": "PolicyContentState",
+                              "id": 6
+                            }
+                          },
+                          "nested": {
+                            "LifecycleState": {
+                              "values": {
+                                "LIFECYCLE_STATE_UNSPECIFIED": 0,
+                                "NOT_INSTALLED": 1,
+                                "INSTALLING": 2,
+                                "ACTIVE": 3,
+                                "UPDATING": 4,
+                                "DECOMMISSIONING": 5,
+                                "CLUSTER_ERROR": 6,
+                                "HUB_ERROR": 7,
+                                "SUSPENDED": 8,
+                                "DETACHED": 9
+                              }
+                            }
+                          }
+                        },
+                        "PolicyContentState": {
+                          "fields": {
+                            "templateLibraryState": {
+                              "type": "OnClusterState",
+                              "id": 1
+                            },
+                            "bundleStates": {
+                              "keyType": "string",
+                              "type": "OnClusterState",
+                              "id": 2
+                            },
+                            "referentialSyncConfigState": {
+                              "type": "OnClusterState",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "MembershipSpec": {
+                          "fields": {
+                            "policyControllerHubConfig": {
+                              "type": "HubConfig",
+                              "id": 1
+                            },
+                            "version": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "HubConfig": {
+                          "oneofs": {
+                            "_auditIntervalSeconds": {
+                              "oneof": [
+                                "auditIntervalSeconds"
+                              ]
+                            },
+                            "_monitoring": {
+                              "oneof": [
+                                "monitoring"
+                              ]
+                            },
+                            "_policyContent": {
+                              "oneof": [
+                                "policyContent"
+                              ]
+                            },
+                            "_constraintViolationLimit": {
+                              "oneof": [
+                                "constraintViolationLimit"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "installSpec": {
+                              "type": "InstallSpec",
+                              "id": 1
+                            },
+                            "auditIntervalSeconds": {
+                              "type": "int64",
+                              "id": 2,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "exemptableNamespaces": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 3
+                            },
+                            "referentialRulesEnabled": {
+                              "type": "bool",
+                              "id": 4
+                            },
+                            "logDeniesEnabled": {
+                              "type": "bool",
+                              "id": 5
+                            },
+                            "mutationEnabled": {
+                              "type": "bool",
+                              "id": 6
+                            },
+                            "monitoring": {
+                              "type": "MonitoringConfig",
+                              "id": 8,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "policyContent": {
+                              "type": "PolicyContentSpec",
+                              "id": 9,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "constraintViolationLimit": {
+                              "type": "int64",
+                              "id": 10,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "deploymentConfigs": {
+                              "keyType": "string",
+                              "type": "PolicyControllerDeploymentConfig",
+                              "id": 11
+                            }
+                          },
+                          "nested": {
+                            "InstallSpec": {
+                              "values": {
+                                "INSTALL_SPEC_UNSPECIFIED": 0,
+                                "INSTALL_SPEC_NOT_INSTALLED": 1,
+                                "INSTALL_SPEC_ENABLED": 2,
+                                "INSTALL_SPEC_SUSPENDED": 3,
+                                "INSTALL_SPEC_DETACHED": 4
+                              }
+                            }
+                          }
+                        },
+                        "PolicyControllerDeploymentConfig": {
+                          "oneofs": {
+                            "_replicaCount": {
+                              "oneof": [
+                                "replicaCount"
+                              ]
+                            },
+                            "_containerResources": {
+                              "oneof": [
+                                "containerResources"
+                              ]
+                            },
+                            "_podAntiAffinity": {
+                              "oneof": [
+                                "podAntiAffinity"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "replicaCount": {
+                              "type": "int64",
+                              "id": 1,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "containerResources": {
+                              "type": "ResourceRequirements",
+                              "id": 2,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "podAntiAffinity": {
+                              "type": "bool",
+                              "id": 3,
+                              "options": {
+                                "deprecated": true,
+                                "proto3_optional": true
+                              }
+                            },
+                            "podTolerations": {
+                              "rule": "repeated",
+                              "type": "Toleration",
+                              "id": 4
+                            },
+                            "podAffinity": {
+                              "type": "Affinity",
+                              "id": 5
+                            }
+                          },
+                          "nested": {
+                            "Toleration": {
+                              "oneofs": {
+                                "_key": {
+                                  "oneof": [
+                                    "key"
+                                  ]
+                                },
+                                "_operator": {
+                                  "oneof": [
+                                    "operator"
+                                  ]
+                                },
+                                "_value": {
+                                  "oneof": [
+                                    "value"
+                                  ]
+                                },
+                                "_effect": {
+                                  "oneof": [
+                                    "effect"
+                                  ]
+                                }
+                              },
+                              "fields": {
+                                "key": {
+                                  "type": "string",
+                                  "id": 1,
+                                  "options": {
+                                    "proto3_optional": true
+                                  }
+                                },
+                                "operator": {
+                                  "type": "string",
+                                  "id": 2,
+                                  "options": {
+                                    "proto3_optional": true
+                                  }
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "id": 3,
+                                  "options": {
+                                    "proto3_optional": true
+                                  }
+                                },
+                                "effect": {
+                                  "type": "string",
+                                  "id": 4,
+                                  "options": {
+                                    "proto3_optional": true
+                                  }
+                                }
+                              }
+                            },
+                            "Affinity": {
+                              "values": {
+                                "AFFINITY_UNSPECIFIED": 0,
+                                "NO_AFFINITY": 1,
+                                "ANTI_AFFINITY": 2
+                              }
+                            }
+                          }
+                        },
+                        "ResourceRequirements": {
+                          "oneofs": {
+                            "_limits": {
+                              "oneof": [
+                                "limits"
+                              ]
+                            },
+                            "_requests": {
+                              "oneof": [
+                                "requests"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "limits": {
+                              "type": "ResourceList",
+                              "id": 1,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "requests": {
+                              "type": "ResourceList",
+                              "id": 2,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            }
+                          }
+                        },
+                        "ResourceList": {
+                          "oneofs": {
+                            "_memory": {
+                              "oneof": [
+                                "memory"
+                              ]
+                            },
+                            "_cpu": {
+                              "oneof": [
+                                "cpu"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "memory": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            },
+                            "cpu": {
+                              "type": "string",
+                              "id": 2,
+                              "options": {
+                                "proto3_optional": true
+                              }
+                            }
+                          }
+                        },
+                        "TemplateLibraryConfig": {
+                          "fields": {
+                            "installation": {
+                              "type": "Installation",
+                              "id": 2
+                            }
+                          },
+                          "nested": {
+                            "Installation": {
+                              "values": {
+                                "INSTALLATION_UNSPECIFIED": 0,
+                                "NOT_INSTALLED": 1,
+                                "ALL": 2
+                              }
+                            }
+                          }
+                        },
+                        "MonitoringConfig": {
+                          "fields": {
+                            "backends": {
+                              "rule": "repeated",
+                              "type": "MonitoringBackend",
+                              "id": 1
+                            }
+                          },
+                          "nested": {
+                            "MonitoringBackend": {
+                              "values": {
+                                "MONITORING_BACKEND_UNSPECIFIED": 0,
+                                "PROMETHEUS": 1,
+                                "CLOUD_MONITORING": 2
+                              }
+                            }
+                          }
+                        },
+                        "OnClusterState": {
+                          "fields": {
+                            "state": {
+                              "type": "MembershipState.LifecycleState",
+                              "id": 1
+                            },
+                            "details": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "BundleInstallSpec": {
+                          "fields": {
+                            "exemptedNamespaces": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "PolicyContentSpec": {
+                          "fields": {
+                            "bundles": {
+                              "keyType": "string",
+                              "type": "BundleInstallSpec",
+                              "id": 1
+                            },
+                            "templateLibrary": {
+                              "type": "TemplateLibraryConfig",
+                              "id": 2
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
                 "v1beta": {
                   "options": {
                     "csharp_namespace": "Google.Cloud.GkeHub.V1Beta",
@@ -6071,7 +7112,8 @@
                         "featureSpec": {
                           "oneof": [
                             "configmanagement",
-                            "mesh"
+                            "mesh",
+                            "policycontroller"
                           ]
                         }
                       },
@@ -6083,6 +7125,10 @@
                         "mesh": {
                           "type": "google.cloud.gkehub.servicemesh.v1beta.MembershipSpec",
                           "id": 116
+                        },
+                        "policycontroller": {
+                          "type": "google.cloud.gkehub.policycontroller.v1beta.MembershipSpec",
+                          "id": 118
                         }
                       }
                     },
@@ -6092,7 +7138,8 @@
                           "oneof": [
                             "servicemesh",
                             "metering",
-                            "configmanagement"
+                            "configmanagement",
+                            "policycontroller"
                           ]
                         }
                       },
@@ -6108,6 +7155,10 @@
                         "configmanagement": {
                           "type": "google.cloud.gkehub.configmanagement.v1beta.MembershipState",
                           "id": 106
+                        },
+                        "policycontroller": {
+                          "type": "google.cloud.gkehub.policycontroller.v1beta.MembershipState",
+                          "id": 116
                         },
                         "state": {
                           "type": "FeatureState",
@@ -7498,15 +8549,17 @@
             "java_multiple_files": true,
             "java_outer_classname": "LaunchStageProto",
             "java_package": "com.google.api",
-            "objc_class_prefix": "GAPI",
-            "cc_enable_arenas": true
+            "objc_class_prefix": "GAPI"
           },
           "nested": {
             "fieldBehavior": {
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -7701,6 +8754,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -7714,6 +8772,10 @@
                   "rule": "repeated",
                   "type": "ClientLibraryDestination",
                   "id": 2
+                },
+                "selectiveGapicGeneration": {
+                  "type": "SelectiveGapicGeneration",
+                  "id": 3
                 }
               }
             },
@@ -7809,6 +8871,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -7850,6 +8916,28 @@
                 "common": {
                   "type": "CommonLanguageSettings",
                   "id": 1
+                },
+                "experimentalFeatures": {
+                  "type": "ExperimentalFeatures",
+                  "id": 2
+                }
+              },
+              "nested": {
+                "ExperimentalFeatures": {
+                  "fields": {
+                    "restAsyncIoEnabled": {
+                      "type": "bool",
+                      "id": 1
+                    },
+                    "protobufPythonicTypesEnabled": {
+                      "type": "bool",
+                      "id": 2
+                    },
+                    "unversionedPackageDisabled": {
+                      "type": "bool",
+                      "id": 3
+                    }
+                  }
                 }
               }
             },
@@ -7907,6 +8995,11 @@
                 "common": {
                   "type": "CommonLanguageSettings",
                   "id": 1
+                },
+                "renamedServices": {
+                  "keyType": "string",
+                  "type": "string",
+                  "id": 2
                 }
               }
             },
@@ -7968,6 +9061,19 @@
                 "PACKAGE_MANAGER": 20
               }
             },
+            "SelectiveGapicGeneration": {
+              "fields": {
+                "methods": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 1
+                },
+                "generateOmittedAsInternal": {
+                  "type": "bool",
+                  "id": 2
+                }
+              }
+            },
             "LaunchStage": {
               "values": {
                 "LAUNCH_STAGE_UNSPECIFIED": 0,
@@ -7990,6 +9096,7 @@
             "java_multiple_files": true,
             "java_outer_classname": "OperationsProto",
             "java_package": "com.google.longrunning",
+            "objc_class_prefix": "GLRUN",
             "php_namespace": "Google\\LongRunning"
           },
           "nested": {

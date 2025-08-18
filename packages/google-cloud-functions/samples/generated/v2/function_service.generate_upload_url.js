@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ function main(parent) {
    */
   // const parent = 'abc123'
   /**
-   *  Preview  Resource name of a KMS crypto key (managed by the user) used to
+   *  Resource name of a KMS crypto key (managed by the user) used to
    *  encrypt/decrypt function source code objects in intermediate Cloud Storage
    *  buckets. When you generate an upload url and upload your source code, it
    *  gets copied to an intermediate Cloud Storage bucket. The source code is
@@ -49,6 +49,13 @@ function main(parent) {
    *  Key/KeyRing/Project/Organization (least access preferred).
    */
   // const kmsKeyName = 'abc123'
+  /**
+   *  The function environment the generated upload url will be used for.
+   *  The upload url for 2nd Gen functions can also be used for 1st gen
+   *  functions, but not vice versa. If not specified, 2nd generation-style
+   *  upload URLs are generated.
+   */
+  // const environment = {}
 
   // Imports the Functions library
   const {FunctionServiceClient} = require('@google-cloud/functions').v2;

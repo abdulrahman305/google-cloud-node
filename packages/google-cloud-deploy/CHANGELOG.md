@@ -1,5 +1,97 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v5.1.0...deploy-v5.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6420](https://github.com/googleapis/google-cloud-node/issues/6420)) ([fe8d6cc](https://github.com/googleapis/google-cloud-node/commit/fe8d6cc157bea696790f2844fa7d410a481c79ed))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v5.0.1...deploy-v5.1.0) (2025-05-09)
+
+
+### Features
+
+* [deploy] Add resource definition for Revision ([#6233](https://github.com/googleapis/google-cloud-node/issues/6233)) ([14b4580](https://github.com/googleapis/google-cloud-node/commit/14b458002aab5692c5cdaff37059ed5b657014ab))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/deploy-v5.0.0...deploy-v5.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6185](https://github.com/googleapis/google-cloud-node/issues/6185)) ([ab30412](https://github.com/googleapis/google-cloud-node/commit/ab304122e3e825c9a76af7d6b0ef4ddc9aa6e906))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v4.4.0...deploy-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([e7409c8](https://github.com/googleapis/google-cloud-node/commit/e7409c87febcf33359a2d36ae4551f502b8a2f93))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.4.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v4.3.0...deploy-v4.4.0) (2024-12-18)
+
+
+### Features
+
+* [deploy] A new field `dns_endpoint` is added to message `.google.cloud.deploy.v1.GkeCluster` ([#5849](https://github.com/googleapis/google-cloud-node/issues/5849)) ([9320175](https://github.com/googleapis/google-cloud-node/commit/932017559e975fbab4c0ce13fcc808e08425c117))
+
+## [4.3.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v4.2.0...deploy-v4.3.0) (2024-11-14)
+
+
+### Features
+
+* [deploy] A new field `timed_promote_release_rule` is added to message `.google.cloud.deploy.v1.AutomationRule` ([#5806](https://github.com/googleapis/google-cloud-node/issues/5806)) ([0e61aec](https://github.com/googleapis/google-cloud-node/commit/0e61aecf4629e76bc05609c35b9911681f012d24))
+
+## [4.2.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v4.1.0...deploy-v4.2.0) (2024-10-30)
+
+
+### Features
+
+* [deploy] added new fields for the Automation Repair rule ([#5774](https://github.com/googleapis/google-cloud-node/issues/5774)) ([099d1b3](https://github.com/googleapis/google-cloud-node/commit/099d1b3ff7d6e8e43ab79f5d62c344c269eb806f))
+
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v4.0.0...deploy-v4.1.0) (2024-10-10)
+
+
+### Features
+
+* [deploy] added support for deploy policies ([#5717](https://github.com/googleapis/google-cloud-node/issues/5717)) ([8d51ea3](https://github.com/googleapis/google-cloud-node/commit/8d51ea34e6efd1e88e0394b8e8d9dadf1a37c406))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v3.8.0...deploy-v4.0.0) (2024-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* [deploy] remove an API that was mistakenly made public ([#5582](https://github.com/googleapis/google-cloud-node/issues/5582))
+
+### Features
+
+* [deploy] add support for different Pod selector labels when doing canaries ([#5579](https://github.com/googleapis/google-cloud-node/issues/5579)) ([57d684f](https://github.com/googleapis/google-cloud-node/commit/57d684ff8fe7b7cfcf66282d15a1b31287f64ce5))
+
+
+### Bug Fixes
+
+* [deploy] remove an API that was mistakenly made public ([#5582](https://github.com/googleapis/google-cloud-node/issues/5582)) ([0aacbf6](https://github.com/googleapis/google-cloud-node/commit/0aacbf6818edaa1776d5e9ba3ca3fc97de2c1d83))
+
+## [3.8.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v3.7.0...deploy-v3.8.0) (2024-07-22)
+
+
+### Features
+
+* [deploy] added support for deploy policies ([#5549](https://github.com/googleapis/google-cloud-node/issues/5549)) ([cfe9a27](https://github.com/googleapis/google-cloud-node/commit/cfe9a2755ad17e3d8f01b7381ea1d957e6c3f3e3))
+* [deploy] added support for new custom target type and deploy policy platform logs ([#5561](https://github.com/googleapis/google-cloud-node/issues/5561)) ([6deeeed](https://github.com/googleapis/google-cloud-node/commit/6deeeeda34ef933fba078769a8977095bef84f71))
+
 ## [3.7.0](https://github.com/googleapis/google-cloud-node/compare/deploy-v3.6.0...deploy-v3.7.0) (2024-05-21)
 
 

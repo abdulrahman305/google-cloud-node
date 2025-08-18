@@ -1,7 +1,7 @@
 {
     "clientLibrary": {
         "name": "nodejs-dlp",
-        "version": "5.7.0",
+        "version": "6.3.0",
         "language": "TYPESCRIPT",
         "apis": [
             {
@@ -71,7 +71,7 @@
             "regionTag": "dlp_v2_generated_DlpService_RedactImage_async",
             "title": "DlpService redactImage Sample",
             "origin": "API_DEFINITION",
-            "description": " Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.",
+            "description": " Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.",
             "canonical": true,
             "file": "dlp_service.redact_image.js",
             "language": "JAVASCRIPT",
@@ -259,7 +259,7 @@
             "regionTag": "dlp_v2_generated_DlpService_ListInfoTypes_async",
             "title": "DlpService listInfoTypes Sample",
             "origin": "API_DEFINITION",
-            "description": " Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+            "description": " Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
             "canonical": true,
             "file": "dlp_service.list_info_types.js",
             "language": "JAVASCRIPT",
@@ -1118,7 +1118,7 @@
             "segments": [
                 {
                     "start": 25,
-                    "end": 71,
+                    "end": 75,
                     "type": "FULL"
                 }
             ],
@@ -2020,6 +2020,142 @@
             }
         },
         {
+            "regionTag": "dlp_v2_generated_DlpService_ListFileStoreDataProfiles_async",
+            "title": "DlpService listFileStoreDataProfiles Sample",
+            "origin": "API_DEFINITION",
+            "description": " Lists file store data profiles for an organization.",
+            "canonical": true,
+            "file": "dlp_service.list_file_store_data_profiles.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 116,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "ListFileStoreDataProfiles",
+                "fullName": "google.privacy.dlp.v2.DlpService.ListFileStoreDataProfiles",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "parent",
+                        "type": "TYPE_STRING"
+                    },
+                    {
+                        "name": "page_token",
+                        "type": "TYPE_STRING"
+                    },
+                    {
+                        "name": "page_size",
+                        "type": "TYPE_INT32"
+                    },
+                    {
+                        "name": "order_by",
+                        "type": "TYPE_STRING"
+                    },
+                    {
+                        "name": "filter",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.privacy.dlp.v2.ListFileStoreDataProfilesResponse",
+                "client": {
+                    "shortName": "DlpServiceClient",
+                    "fullName": "google.privacy.dlp.v2.DlpServiceClient"
+                },
+                "method": {
+                    "shortName": "ListFileStoreDataProfiles",
+                    "fullName": "google.privacy.dlp.v2.DlpService.ListFileStoreDataProfiles",
+                    "service": {
+                        "shortName": "DlpService",
+                        "fullName": "google.privacy.dlp.v2.DlpService"
+                    }
+                }
+            }
+        },
+        {
+            "regionTag": "dlp_v2_generated_DlpService_GetFileStoreDataProfile_async",
+            "title": "DlpService getFileStoreDataProfile Sample",
+            "origin": "API_DEFINITION",
+            "description": " Gets a file store data profile.",
+            "canonical": true,
+            "file": "dlp_service.get_file_store_data_profile.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 54,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "GetFileStoreDataProfile",
+                "fullName": "google.privacy.dlp.v2.DlpService.GetFileStoreDataProfile",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.privacy.dlp.v2.FileStoreDataProfile",
+                "client": {
+                    "shortName": "DlpServiceClient",
+                    "fullName": "google.privacy.dlp.v2.DlpServiceClient"
+                },
+                "method": {
+                    "shortName": "GetFileStoreDataProfile",
+                    "fullName": "google.privacy.dlp.v2.DlpService.GetFileStoreDataProfile",
+                    "service": {
+                        "shortName": "DlpService",
+                        "fullName": "google.privacy.dlp.v2.DlpService"
+                    }
+                }
+            }
+        },
+        {
+            "regionTag": "dlp_v2_generated_DlpService_DeleteFileStoreDataProfile_async",
+            "title": "DlpService deleteFileStoreDataProfile Sample",
+            "origin": "API_DEFINITION",
+            "description": " Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.",
+            "canonical": true,
+            "file": "dlp_service.delete_file_store_data_profile.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 53,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "DeleteFileStoreDataProfile",
+                "fullName": "google.privacy.dlp.v2.DlpService.DeleteFileStoreDataProfile",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.protobuf.Empty",
+                "client": {
+                    "shortName": "DlpServiceClient",
+                    "fullName": "google.privacy.dlp.v2.DlpServiceClient"
+                },
+                "method": {
+                    "shortName": "DeleteFileStoreDataProfile",
+                    "fullName": "google.privacy.dlp.v2.DlpService.DeleteFileStoreDataProfile",
+                    "service": {
+                        "shortName": "DlpService",
+                        "fullName": "google.privacy.dlp.v2.DlpService"
+                    }
+                }
+            }
+        },
+        {
             "regionTag": "dlp_v2_generated_DlpService_GetTableDataProfile_async",
             "title": "DlpService getTableDataProfile Sample",
             "origin": "API_DEFINITION",
@@ -2234,7 +2370,7 @@
             "segments": [
                 {
                     "start": 25,
-                    "end": 59,
+                    "end": 64,
                     "type": "FULL"
                 }
             ],
@@ -2311,14 +2447,14 @@
             "regionTag": "dlp_v2_generated_DlpService_ListConnections_async",
             "title": "DlpService listConnections Sample",
             "origin": "API_DEFINITION",
-            "description": " Lists Connections in a parent.",
+            "description": " Lists Connections in a parent. Use SearchConnections to see all connections within an organization.",
             "canonical": true,
             "file": "dlp_service.list_connections.js",
             "language": "JAVASCRIPT",
             "segments": [
                 {
                     "start": 25,
-                    "end": 69,
+                    "end": 70,
                     "type": "FULL"
                 }
             ],
@@ -2370,7 +2506,7 @@
             "segments": [
                 {
                     "start": 25,
-                    "end": 69,
+                    "end": 70,
                     "type": "FULL"
                 }
             ],

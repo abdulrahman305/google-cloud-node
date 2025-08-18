@@ -5,6 +5,30 @@
   "protoPackage": "google.cloud.run.v2",
   "libraryPackage": "@google-cloud/run",
   "services": {
+    "Builds": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "BuildsClient",
+          "rpcs": {
+            "SubmitBuild": {
+              "methods": [
+                "submitBuild"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "BuildsClient",
+          "rpcs": {
+            "SubmitBuild": {
+              "methods": [
+                "submitBuild"
+              ]
+            }
+          }
+        }
+      }
+    },
     "Executions": {
       "clients": {
         "grpc": {
@@ -349,6 +373,104 @@
                 "listTasks",
                 "listTasksStream",
                 "listTasksAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "WorkerPools": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "WorkerPoolsClient",
+          "rpcs": {
+            "GetWorkerPool": {
+              "methods": [
+                "getWorkerPool"
+              ]
+            },
+            "GetIamPolicy": {
+              "methods": [
+                "getIamPolicy"
+              ]
+            },
+            "SetIamPolicy": {
+              "methods": [
+                "setIamPolicy"
+              ]
+            },
+            "TestIamPermissions": {
+              "methods": [
+                "testIamPermissions"
+              ]
+            },
+            "CreateWorkerPool": {
+              "methods": [
+                "createWorkerPool"
+              ]
+            },
+            "UpdateWorkerPool": {
+              "methods": [
+                "updateWorkerPool"
+              ]
+            },
+            "DeleteWorkerPool": {
+              "methods": [
+                "deleteWorkerPool"
+              ]
+            },
+            "ListWorkerPools": {
+              "methods": [
+                "listWorkerPools",
+                "listWorkerPoolsStream",
+                "listWorkerPoolsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "WorkerPoolsClient",
+          "rpcs": {
+            "GetWorkerPool": {
+              "methods": [
+                "getWorkerPool"
+              ]
+            },
+            "GetIamPolicy": {
+              "methods": [
+                "getIamPolicy"
+              ]
+            },
+            "SetIamPolicy": {
+              "methods": [
+                "setIamPolicy"
+              ]
+            },
+            "TestIamPermissions": {
+              "methods": [
+                "testIamPermissions"
+              ]
+            },
+            "CreateWorkerPool": {
+              "methods": [
+                "createWorkerPool"
+              ]
+            },
+            "UpdateWorkerPool": {
+              "methods": [
+                "updateWorkerPool"
+              ]
+            },
+            "DeleteWorkerPool": {
+              "methods": [
+                "deleteWorkerPool"
+              ]
+            },
+            "ListWorkerPools": {
+              "methods": [
+                "listWorkerPools",
+                "listWorkerPoolsStream",
+                "listWorkerPoolsAsync"
               ]
             }
           }

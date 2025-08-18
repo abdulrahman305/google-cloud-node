@@ -8,6 +8,100 @@
               "nested": {
                 "gateway": {
                   "nested": {
+                    "v1": {
+                      "options": {
+                        "csharp_namespace": "Google.Cloud.GkeConnect.Gateway.V1",
+                        "go_package": "cloud.google.com/go/gkeconnect/gateway/apiv1/gatewaypb;gatewaypb",
+                        "java_multiple_files": true,
+                        "java_outer_classname": "ControlProto",
+                        "java_package": "com.google.cloud.gkeconnect.gateway.v1",
+                        "php_namespace": "Google\\Cloud\\GkeConnect\\Gateway\\V1",
+                        "ruby_package": "Google::Cloud::GkeConnect::Gateway::V1"
+                      },
+                      "nested": {
+                        "GatewayControl": {
+                          "options": {
+                            "(google.api.default_host)": "connectgateway.googleapis.com",
+                            "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
+                          },
+                          "methods": {
+                            "GenerateCredentials": {
+                              "requestType": "GenerateCredentialsRequest",
+                              "responseType": "GenerateCredentialsResponse",
+                              "options": {
+                                "(google.api.http).get": "/v1/{name=projects/*/locations/*/memberships/*}:generateCredentials"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "get": "/v1/{name=projects/*/locations/*/memberships/*}:generateCredentials"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "GenerateCredentialsRequest": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "forceUseAgent": {
+                              "type": "bool",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "version": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "kubernetesNamespace": {
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "operatingSystem": {
+                              "type": "OperatingSystem",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "OperatingSystem": {
+                              "values": {
+                                "OPERATING_SYSTEM_UNSPECIFIED": 0,
+                                "OPERATING_SYSTEM_WINDOWS": 1
+                              }
+                            }
+                          }
+                        },
+                        "GenerateCredentialsResponse": {
+                          "fields": {
+                            "kubeconfig": {
+                              "type": "bytes",
+                              "id": 1
+                            },
+                            "endpoint": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        }
+                      }
+                    },
                     "v1beta1": {
                       "options": {
                         "csharp_namespace": "Google.Cloud.GkeConnect.Gateway.V1Beta1",
@@ -19,6 +113,87 @@
                         "ruby_package": "Google::Cloud::GkeConnect::Gateway::V1beta1"
                       },
                       "nested": {
+                        "GatewayControl": {
+                          "options": {
+                            "(google.api.default_host)": "connectgateway.googleapis.com",
+                            "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
+                          },
+                          "methods": {
+                            "GenerateCredentials": {
+                              "requestType": "GenerateCredentialsRequest",
+                              "responseType": "GenerateCredentialsResponse",
+                              "options": {
+                                "(google.api.http).get": "/v1beta1/{name=projects/*/locations/*/memberships/*}:generateCredentials"
+                              },
+                              "parsedOptions": [
+                                {
+                                  "(google.api.http)": {
+                                    "get": "/v1beta1/{name=projects/*/locations/*/memberships/*}:generateCredentials"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "GenerateCredentialsRequest": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "REQUIRED"
+                              }
+                            },
+                            "forceUseAgent": {
+                              "type": "bool",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "version": {
+                              "type": "string",
+                              "id": 3,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "kubernetesNamespace": {
+                              "type": "string",
+                              "id": 4,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            },
+                            "operatingSystem": {
+                              "type": "OperatingSystem",
+                              "id": 5,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL"
+                              }
+                            }
+                          },
+                          "nested": {
+                            "OperatingSystem": {
+                              "values": {
+                                "OPERATING_SYSTEM_UNSPECIFIED": 0,
+                                "OPERATING_SYSTEM_WINDOWS": 1
+                              }
+                            }
+                          }
+                        },
+                        "GenerateCredentialsResponse": {
+                          "fields": {
+                            "kubeconfig": {
+                              "type": "bytes",
+                              "id": 1
+                            },
+                            "endpoint": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
                         "GatewayService": {
                           "options": {
                             "(google.api.default_host)": "connectgateway.googleapis.com",
@@ -218,6 +393,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -326,6 +506,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -497,6 +681,28 @@
                 "DEPRECATED": 5
               }
             },
+            "fieldBehavior": {
+              "rule": "repeated",
+              "type": "google.api.FieldBehavior",
+              "id": 1052,
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
+            },
+            "FieldBehavior": {
+              "values": {
+                "FIELD_BEHAVIOR_UNSPECIFIED": 0,
+                "OPTIONAL": 1,
+                "REQUIRED": 2,
+                "OUTPUT_ONLY": 3,
+                "INPUT_ONLY": 4,
+                "IMMUTABLE": 5,
+                "UNORDERED_LIST": 6,
+                "NON_EMPTY_DEFAULT": 7,
+                "IDENTIFIER": 8
+              }
+            },
             "HttpBody": {
               "fields": {
                 "contentType": {
@@ -528,6 +734,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -537,6 +744,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -552,6 +760,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -569,18 +778,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -621,6 +824,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -703,6 +907,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -776,6 +981,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -855,6 +1061,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -867,6 +1074,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -908,6 +1116,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -924,6 +1133,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -941,6 +1151,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -975,6 +1186,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -1116,6 +1328,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -1189,6 +1402,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -1250,10 +1464,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -1337,6 +1548,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -1356,6 +1568,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -1399,6 +1612,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -1432,6 +1646,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -1458,6 +1673,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -1500,6 +1716,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -1549,6 +1766,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -1621,8 +1839,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -1678,6 +1908,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -1709,6 +1940,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -1722,12 +1954,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -1747,6 +1985,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -1760,7 +1999,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

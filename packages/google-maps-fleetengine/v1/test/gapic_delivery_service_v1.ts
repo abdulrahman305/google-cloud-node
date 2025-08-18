@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -208,11 +208,11 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            client.initialize().catch(err => {throw err});
             assert(client.deliveryServiceStub);
             client.close().then(() => {
                 done();
-            });
+            }).catch(err => {throw err});
         });
 
         it('has close method for the non-initialized client', done => {
@@ -223,7 +223,7 @@ describe('v1.DeliveryServiceClient', () => {
             assert.strictEqual(client.deliveryServiceStub, undefined);
             client.close().then(() => {
                 done();
-            });
+            }).catch(err => {throw err});
         });
 
         it('has getProjectId method', async () => {
@@ -265,7 +265,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateDeliveryVehicleRequest()
             );
@@ -291,7 +291,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateDeliveryVehicleRequest()
             );
@@ -328,7 +328,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateDeliveryVehicleRequest()
             );
@@ -351,14 +351,14 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateDeliveryVehicleRequest()
             );
             // path template: {provider_id=providers/*}
             request.parent = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.createDeliveryVehicle(request), expectedError);
         });
     });
@@ -369,7 +369,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetDeliveryVehicleRequest()
             );
@@ -395,7 +395,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetDeliveryVehicleRequest()
             );
@@ -432,7 +432,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetDeliveryVehicleRequest()
             );
@@ -455,15 +455,119 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetDeliveryVehicleRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.getDeliveryVehicle(request), expectedError);
+        });
+    });
+
+    describe('deleteDeliveryVehicle', () => {
+        it('invokes deleteDeliveryVehicle without error', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteDeliveryVehicle = stubSimpleCall(expectedResponse);
+            const [response] = await client.deleteDeliveryVehicle(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteDeliveryVehicle as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteDeliveryVehicle as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteDeliveryVehicle without error using callback', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteDeliveryVehicle = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.deleteDeliveryVehicle(
+                    request,
+                    (err?: Error|null, result?: protos.google.protobuf.IEmpty|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteDeliveryVehicle as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteDeliveryVehicle as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteDeliveryVehicle with error', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedError = new Error('expected');
+            client.innerApiCalls.deleteDeliveryVehicle = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.deleteDeliveryVehicle(request), expectedError);
+            const actualRequest = (client.innerApiCalls.deleteDeliveryVehicle as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteDeliveryVehicle as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteDeliveryVehicle with closed client', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedError = new Error('The client has already been closed.');
+            client.close().catch(err => {throw err});
+            await assert.rejects(client.deleteDeliveryVehicle(request), expectedError);
         });
     });
 
@@ -473,7 +577,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateDeliveryVehicleRequest()
             );
@@ -500,7 +604,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateDeliveryVehicleRequest()
             );
@@ -538,7 +642,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateDeliveryVehicleRequest()
             );
@@ -562,7 +666,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateDeliveryVehicleRequest()
             );
@@ -570,7 +674,7 @@ describe('v1.DeliveryServiceClient', () => {
             // path template: {provider_id=providers/*}
             request.deliveryVehicle.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.updateDeliveryVehicle(request), expectedError);
         });
     });
@@ -581,7 +685,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.BatchCreateTasksRequest()
             );
@@ -607,7 +711,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.BatchCreateTasksRequest()
             );
@@ -644,7 +748,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.BatchCreateTasksRequest()
             );
@@ -667,14 +771,14 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.BatchCreateTasksRequest()
             );
             // path template: {provider_id=providers/*}
             request.parent = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.batchCreateTasks(request), expectedError);
         });
     });
@@ -685,7 +789,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateTaskRequest()
             );
@@ -711,7 +815,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateTaskRequest()
             );
@@ -748,7 +852,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateTaskRequest()
             );
@@ -771,14 +875,14 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.CreateTaskRequest()
             );
             // path template: {provider_id=providers/*}
             request.parent = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.createTask(request), expectedError);
         });
     });
@@ -789,7 +893,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskRequest()
             );
@@ -815,7 +919,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskRequest()
             );
@@ -852,7 +956,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskRequest()
             );
@@ -875,15 +979,119 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.getTask(request), expectedError);
+        });
+    });
+
+    describe('deleteTask', () => {
+        it('invokes deleteTask without error', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteTaskRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteTask = stubSimpleCall(expectedResponse);
+            const [response] = await client.deleteTask(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteTask as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteTask as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteTask without error using callback', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteTaskRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteTask = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.deleteTask(
+                    request,
+                    (err?: Error|null, result?: protos.google.protobuf.IEmpty|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteTask as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteTask as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteTask with error', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteTaskRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedError = new Error('expected');
+            client.innerApiCalls.deleteTask = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.deleteTask(request), expectedError);
+            const actualRequest = (client.innerApiCalls.deleteTask as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteTask as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteTask with closed client', async () => {
+            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.delivery.v1.DeleteTaskRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedError = new Error('The client has already been closed.');
+            client.close().catch(err => {throw err});
+            await assert.rejects(client.deleteTask(request), expectedError);
         });
     });
 
@@ -893,7 +1101,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateTaskRequest()
             );
@@ -920,7 +1128,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateTaskRequest()
             );
@@ -958,7 +1166,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateTaskRequest()
             );
@@ -982,7 +1190,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.UpdateTaskRequest()
             );
@@ -990,7 +1198,7 @@ describe('v1.DeliveryServiceClient', () => {
             // path template: {provider_id=providers/*}
             request.task.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.updateTask(request), expectedError);
         });
     });
@@ -1001,7 +1209,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskTrackingInfoRequest()
             );
@@ -1027,7 +1235,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskTrackingInfoRequest()
             );
@@ -1064,7 +1272,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskTrackingInfoRequest()
             );
@@ -1087,267 +1295,15 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.GetTaskTrackingInfoRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.getTaskTrackingInfo(request), expectedError);
-        });
-    });
-
-    describe('searchTasks', () => {
-        it('invokes searchTasks without error', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-                credentials: {client_email: 'bogus', private_key: 'bogus'},
-                projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';const expectedResponse = [
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-            ];
-            client.innerApiCalls.searchTasks = stubSimpleCall(expectedResponse);
-            const [response] = await client.searchTasks(request);
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(response, expectedResponse);
-            const actualRequest = (client.innerApiCalls.searchTasks as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.searchTasks as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes searchTasks without error using callback', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-                credentials: {client_email: 'bogus', private_key: 'bogus'},
-                projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';const expectedResponse = [
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-            ];
-            client.innerApiCalls.searchTasks = stubSimpleCallWithCallback(expectedResponse);
-            const promise = new Promise((resolve, reject) => {
-                 client.searchTasks(
-                    request,
-                    (err?: Error|null, result?: protos.maps.fleetengine.delivery.v1.ITask[]|null) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(result);
-                        }
-                    });
-            });
-            const response = await promise;
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(response, expectedResponse);
-            const actualRequest = (client.innerApiCalls.searchTasks as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.searchTasks as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes searchTasks with error', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-                credentials: {client_email: 'bogus', private_key: 'bogus'},
-                projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedError = new Error('expected');
-            client.innerApiCalls.searchTasks = stubSimpleCall(undefined, expectedError);
-            await assert.rejects(client.searchTasks(request), expectedError);
-            assert(stub.calledOnce);
-            const actualRequest = (client.innerApiCalls.searchTasks as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.searchTasks as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes searchTasksStream without error', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-                credentials: {client_email: 'bogus', private_key: 'bogus'},
-                projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedResponse = [
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-            ];
-            client.descriptors.page.searchTasks.createStream = stubPageStreamingCall(expectedResponse);
-            const stream = client.searchTasksStream(request);
-            const promise = new Promise((resolve, reject) => {
-                const responses: protos.maps.fleetengine.delivery.v1.Task[] = [];
-                stream.on('data', (response: protos.maps.fleetengine.delivery.v1.Task) => {
-                    responses.push(response);
-                });
-                stream.on('end', () => {
-                    resolve(responses);
-                });
-                stream.on('error', (err: Error) => {
-                    reject(err);
-                });
-            });
-            const responses = await promise;
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(responses, expectedResponse);
-            assert((client.descriptors.page.searchTasks.createStream as SinonStub)
-                .getCall(0).calledWith(client.innerApiCalls.searchTasks, request));
-            assert(
-                (client.descriptors.page.searchTasks.createStream as SinonStub)
-                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'].includes(
-                        expectedHeaderRequestParams
-                    )
-            );
-        });
-
-        it('invokes searchTasksStream with error', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-                credentials: {client_email: 'bogus', private_key: 'bogus'},
-                projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedError = new Error('expected');
-            client.descriptors.page.searchTasks.createStream = stubPageStreamingCall(undefined, expectedError);
-            const stream = client.searchTasksStream(request);
-            const promise = new Promise((resolve, reject) => {
-                const responses: protos.maps.fleetengine.delivery.v1.Task[] = [];
-                stream.on('data', (response: protos.maps.fleetengine.delivery.v1.Task) => {
-                    responses.push(response);
-                });
-                stream.on('end', () => {
-                    resolve(responses);
-                });
-                stream.on('error', (err: Error) => {
-                    reject(err);
-                });
-            });
-            await assert.rejects(promise, expectedError);
-            assert(stub.calledOnce);
-            assert((client.descriptors.page.searchTasks.createStream as SinonStub)
-                .getCall(0).calledWith(client.innerApiCalls.searchTasks, request));
-            assert(
-                (client.descriptors.page.searchTasks.createStream as SinonStub)
-                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'].includes(
-                         expectedHeaderRequestParams
-                    ) 
-            );
-        });
-
-        it('uses async iteration with searchTasks without error', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedResponse = [
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-              generateSampleMessage(new protos.maps.fleetengine.delivery.v1.Task()),
-            ];
-            client.descriptors.page.searchTasks.asyncIterate = stubAsyncIterationCall(expectedResponse);
-            const responses: protos.maps.fleetengine.delivery.v1.ITask[] = [];
-            const iterable = client.searchTasksAsync(request);
-            for await (const resource of iterable) {
-                responses.push(resource!);
-            }
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(responses, expectedResponse);
-            assert.deepStrictEqual(
-                (client.descriptors.page.searchTasks.asyncIterate as SinonStub)
-                    .getCall(0).args[1], request);
-            assert(
-                (client.descriptors.page.searchTasks.asyncIterate as SinonStub)
-                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'].includes(
-                        expectedHeaderRequestParams
-                    )
-            );
-        });
-
-        it('uses async iteration with searchTasks with error', async () => {
-            const client = new deliveryserviceModule.v1.DeliveryServiceClient({
-                credentials: {client_email: 'bogus', private_key: 'bogus'},
-                projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.delivery.v1.SearchTasksRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedError = new Error('expected');
-            client.descriptors.page.searchTasks.asyncIterate = stubAsyncIterationCall(undefined, expectedError);
-            const iterable = client.searchTasksAsync(request);
-            await assert.rejects(async () => {
-                const responses: protos.maps.fleetengine.delivery.v1.ITask[] = [];
-                for await (const resource of iterable) {
-                    responses.push(resource!);
-                }
-            });
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(
-                (client.descriptors.page.searchTasks.asyncIterate as SinonStub)
-                    .getCall(0).args[1], request);
-            assert(
-                (client.descriptors.page.searchTasks.asyncIterate as SinonStub)
-                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'].includes(
-                        expectedHeaderRequestParams
-                    )
-            );
         });
     });
 
@@ -1357,7 +1313,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1384,7 +1340,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1422,7 +1378,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1445,7 +1401,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1488,7 +1444,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1526,7 +1482,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1561,7 +1517,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListTasksRequest()
             );
@@ -1595,7 +1551,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1622,7 +1578,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1660,7 +1616,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1683,7 +1639,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1726,7 +1682,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1764,7 +1720,7 @@ describe('v1.DeliveryServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1799,7 +1755,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest()
             );
@@ -1829,7 +1785,7 @@ describe('v1.DeliveryServiceClient', () => {
 
     describe('Path templates', () => {
 
-        describe('deliveryVehicle', () => {
+        describe('deliveryVehicle', async () => {
             const fakePath = "/rendered/path/deliveryVehicle";
             const expectedParameters = {
                 provider: "providerValue",
@@ -1839,7 +1795,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.deliveryVehiclePathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.deliveryVehiclePathTemplate.match =
@@ -1867,7 +1823,7 @@ describe('v1.DeliveryServiceClient', () => {
             });
         });
 
-        describe('provider', () => {
+        describe('provider', async () => {
             const fakePath = "/rendered/path/provider";
             const expectedParameters = {
                 provider: "providerValue",
@@ -1876,7 +1832,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.providerPathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.providerPathTemplate.match =
@@ -1897,7 +1853,7 @@ describe('v1.DeliveryServiceClient', () => {
             });
         });
 
-        describe('task', () => {
+        describe('task', async () => {
             const fakePath = "/rendered/path/task";
             const expectedParameters = {
                 provider: "providerValue",
@@ -1907,7 +1863,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.taskPathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.taskPathTemplate.match =
@@ -1935,7 +1891,7 @@ describe('v1.DeliveryServiceClient', () => {
             });
         });
 
-        describe('taskTrackingInfo', () => {
+        describe('taskTrackingInfo', async () => {
             const fakePath = "/rendered/path/taskTrackingInfo";
             const expectedParameters = {
                 provider: "providerValue",
@@ -1945,7 +1901,7 @@ describe('v1.DeliveryServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.taskTrackingInfoPathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.taskTrackingInfoPathTemplate.match =

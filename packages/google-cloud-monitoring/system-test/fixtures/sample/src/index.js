@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+
 /* eslint-disable node/no-missing-require, no-unused-vars */
 const monitoring = require('@google-cloud/monitoring');
 
@@ -23,11 +24,10 @@ function main() {
   const alertPolicyServiceClient = new monitoring.AlertPolicyServiceClient();
   const groupServiceClient = new monitoring.GroupServiceClient();
   const metricServiceClient = new monitoring.MetricServiceClient();
-  const notificationChannelServiceClient =
-    new monitoring.NotificationChannelServiceClient();
+  const notificationChannelServiceClient = new monitoring.NotificationChannelServiceClient();
   const queryServiceClient = new monitoring.QueryServiceClient();
-  const serviceMonitoringServiceClient =
-    new monitoring.ServiceMonitoringServiceClient();
+  const serviceMonitoringServiceClient = new monitoring.ServiceMonitoringServiceClient();
+  const snoozeServiceClient = new monitoring.SnoozeServiceClient();
   const uptimeCheckServiceClient = new monitoring.UptimeCheckServiceClient();
 }
 

@@ -1,7 +1,7 @@
 {
     "clientLibrary": {
         "name": "nodejs-fleetengine",
-        "version": "0.1.0",
+        "version": "0.8.0",
         "language": "TYPESCRIPT",
         "apis": [
             {
@@ -74,7 +74,7 @@
             "segments": [
                 {
                     "start": 25,
-                    "end": 102,
+                    "end": 95,
                     "type": "FULL"
                 }
             ],
@@ -124,6 +124,50 @@
                 "method": {
                     "shortName": "GetTrip",
                     "fullName": "maps.fleetengine.v1.TripService.GetTrip",
+                    "service": {
+                        "shortName": "TripService",
+                        "fullName": "maps.fleetengine.v1.TripService"
+                    }
+                }
+            }
+        },
+        {
+            "regionTag": "fleetengine_v1_generated_TripService_DeleteTrip_async",
+            "title": "TripService deleteTrip Sample",
+            "origin": "API_DEFINITION",
+            "description": " Deletes a single Trip. Returns FAILED_PRECONDITION if the Trip is active and assigned to a vehicle.",
+            "canonical": true,
+            "file": "trip_service.delete_trip.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 60,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "DeleteTrip",
+                "fullName": "maps.fleetengine.v1.TripService.DeleteTrip",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "header",
+                        "type": ".maps.fleetengine.v1.RequestHeader"
+                    },
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.protobuf.Empty",
+                "client": {
+                    "shortName": "TripServiceClient",
+                    "fullName": "maps.fleetengine.v1.TripServiceClient"
+                },
+                "method": {
+                    "shortName": "DeleteTrip",
+                    "fullName": "maps.fleetengine.v1.TripService.DeleteTrip",
                     "service": {
                         "shortName": "TripService",
                         "fullName": "maps.fleetengine.v1.TripService"
@@ -408,6 +452,50 @@
             }
         },
         {
+            "regionTag": "fleetengine_v1_generated_VehicleService_DeleteVehicle_async",
+            "title": "TripService deleteVehicle Sample",
+            "origin": "API_DEFINITION",
+            "description": " Deletes a Vehicle from the Fleet Engine. Returns FAILED_PRECONDITION if the Vehicle has active Trips. assigned to it.",
+            "canonical": true,
+            "file": "vehicle_service.delete_vehicle.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 61,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "DeleteVehicle",
+                "fullName": "maps.fleetengine.v1.VehicleService.DeleteVehicle",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "header",
+                        "type": ".maps.fleetengine.v1.RequestHeader"
+                    },
+                    {
+                        "name": "name",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.protobuf.Empty",
+                "client": {
+                    "shortName": "VehicleServiceClient",
+                    "fullName": "maps.fleetengine.v1.VehicleServiceClient"
+                },
+                "method": {
+                    "shortName": "DeleteVehicle",
+                    "fullName": "maps.fleetengine.v1.VehicleService.DeleteVehicle",
+                    "service": {
+                        "shortName": "VehicleService",
+                        "fullName": "maps.fleetengine.v1.VehicleService"
+                    }
+                }
+            }
+        },
+        {
             "regionTag": "fleetengine_v1_generated_VehicleService_UpdateVehicle_async",
             "title": "TripService updateVehicle Sample",
             "origin": "API_DEFINITION",
@@ -452,58 +540,6 @@
                 "method": {
                     "shortName": "UpdateVehicle",
                     "fullName": "maps.fleetengine.v1.VehicleService.UpdateVehicle",
-                    "service": {
-                        "shortName": "VehicleService",
-                        "fullName": "maps.fleetengine.v1.VehicleService"
-                    }
-                }
-            }
-        },
-        {
-            "regionTag": "fleetengine_v1_generated_VehicleService_UpdateVehicleLocation_async",
-            "title": "TripService updateVehicleLocation Sample",
-            "origin": "API_DEFINITION",
-            "description": " Deprecated: Use the `UpdateVehicle` method instead. UpdateVehicleLocation updates the location of the vehicle.",
-            "canonical": true,
-            "file": "vehicle_service.update_vehicle_location.js",
-            "language": "JAVASCRIPT",
-            "segments": [
-                {
-                    "start": 25,
-                    "end": 72,
-                    "type": "FULL"
-                }
-            ],
-            "clientMethod": {
-                "shortName": "UpdateVehicleLocation",
-                "fullName": "maps.fleetengine.v1.VehicleService.UpdateVehicleLocation",
-                "async": true,
-                "parameters": [
-                    {
-                        "name": "header",
-                        "type": ".maps.fleetengine.v1.RequestHeader"
-                    },
-                    {
-                        "name": "name",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "current_location",
-                        "type": ".maps.fleetengine.v1.VehicleLocation"
-                    },
-                    {
-                        "name": "current_state",
-                        "type": ".maps.fleetengine.v1.VehicleState"
-                    }
-                ],
-                "resultType": ".maps.fleetengine.v1.VehicleLocation",
-                "client": {
-                    "shortName": "VehicleServiceClient",
-                    "fullName": "maps.fleetengine.v1.VehicleServiceClient"
-                },
-                "method": {
-                    "shortName": "UpdateVehicleLocation",
-                    "fullName": "maps.fleetengine.v1.VehicleService.UpdateVehicleLocation",
                     "service": {
                         "shortName": "VehicleService",
                         "fullName": "maps.fleetengine.v1.VehicleService"
@@ -756,114 +792,6 @@
                 "method": {
                     "shortName": "SearchVehicles",
                     "fullName": "maps.fleetengine.v1.VehicleService.SearchVehicles",
-                    "service": {
-                        "shortName": "VehicleService",
-                        "fullName": "maps.fleetengine.v1.VehicleService"
-                    }
-                }
-            }
-        },
-        {
-            "regionTag": "fleetengine_v1_generated_VehicleService_SearchFuzzedVehicles_async",
-            "title": "TripService searchFuzzedVehicles Sample",
-            "origin": "API_DEFINITION",
-            "description": " Deprecated: Use `SearchVehicles` instead.",
-            "canonical": true,
-            "file": "vehicle_service.search_fuzzed_vehicles.js",
-            "language": "JAVASCRIPT",
-            "segments": [
-                {
-                    "start": 25,
-                    "end": 214,
-                    "type": "FULL"
-                }
-            ],
-            "clientMethod": {
-                "shortName": "SearchFuzzedVehicles",
-                "fullName": "maps.fleetengine.v1.VehicleService.SearchFuzzedVehicles",
-                "async": true,
-                "parameters": [
-                    {
-                        "name": "header",
-                        "type": ".maps.fleetengine.v1.RequestHeader"
-                    },
-                    {
-                        "name": "parent",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "pickup_point",
-                        "type": ".maps.fleetengine.v1.TerminalLocation"
-                    },
-                    {
-                        "name": "dropoff_point",
-                        "type": ".maps.fleetengine.v1.TerminalLocation"
-                    },
-                    {
-                        "name": "pickup_radius_meters",
-                        "type": "TYPE_INT32"
-                    },
-                    {
-                        "name": "count",
-                        "type": "TYPE_INT32"
-                    },
-                    {
-                        "name": "minimum_capacity",
-                        "type": "TYPE_INT32"
-                    },
-                    {
-                        "name": "trip_types",
-                        "type": "TYPE_ENUM[]"
-                    },
-                    {
-                        "name": "maximum_staleness",
-                        "type": ".google.protobuf.Duration"
-                    },
-                    {
-                        "name": "vehicle_types",
-                        "type": "TYPE_MESSAGE[]"
-                    },
-                    {
-                        "name": "required_attributes",
-                        "type": "TYPE_MESSAGE[]"
-                    },
-                    {
-                        "name": "required_one_of_attributes",
-                        "type": "TYPE_MESSAGE[]"
-                    },
-                    {
-                        "name": "required_one_of_attribute_sets",
-                        "type": "TYPE_MESSAGE[]"
-                    },
-                    {
-                        "name": "order_by",
-                        "type": ".maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder"
-                    },
-                    {
-                        "name": "include_back_to_back",
-                        "type": "TYPE_BOOL"
-                    },
-                    {
-                        "name": "trip_id",
-                        "type": "TYPE_STRING"
-                    },
-                    {
-                        "name": "current_trips_present",
-                        "type": ".maps.fleetengine.v1.SearchVehiclesRequest.CurrentTripsPresent"
-                    },
-                    {
-                        "name": "filter",
-                        "type": "TYPE_STRING"
-                    }
-                ],
-                "resultType": ".maps.fleetengine.v1.SearchVehiclesResponse",
-                "client": {
-                    "shortName": "VehicleServiceClient",
-                    "fullName": "maps.fleetengine.v1.VehicleServiceClient"
-                },
-                "method": {
-                    "shortName": "SearchFuzzedVehicles",
-                    "fullName": "maps.fleetengine.v1.VehicleService.SearchFuzzedVehicles",
                     "service": {
                         "shortName": "VehicleService",
                         "fullName": "maps.fleetengine.v1.VehicleService"

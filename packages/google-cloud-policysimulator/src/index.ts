@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,12 @@
 
 import * as v1 from './v1';
 
+const OrgPolicyViolationsPreviewServiceClient = v1.OrgPolicyViolationsPreviewServiceClient;
+type OrgPolicyViolationsPreviewServiceClient = v1.OrgPolicyViolationsPreviewServiceClient;
 const SimulatorClient = v1.SimulatorClient;
 type SimulatorClient = v1.SimulatorClient;
 
-export {v1, SimulatorClient};
-export default {v1, SimulatorClient};
+export {v1, OrgPolicyViolationsPreviewServiceClient, SimulatorClient};
+export default {v1, OrgPolicyViolationsPreviewServiceClient, SimulatorClient};
 import * as protos from '../protos/protos';
 export {protos};

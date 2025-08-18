@@ -1,5 +1,68 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-cloud-node/compare/alloydb-v2.1.0...alloydb-v2.2.0) (2025-07-09)
+
+
+### Features
+
+* [alloydb] Instance.ActivationPolicy field ([#6402](https://github.com/googleapis/google-cloud-node/issues/6402)) ([eba52dc](https://github.com/googleapis/google-cloud-node/commit/eba52dc0adc496d289129ddf05b4c1bc39423a2b))
+* [alloydb] Instance.ActivationPolicy field ([#6431](https://github.com/googleapis/google-cloud-node/issues/6431)) ([de5790f](https://github.com/googleapis/google-cloud-node/commit/de5790faad12bd61164655dd1cf95ff2644bcac5))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6417](https://github.com/googleapis/google-cloud-node/issues/6417)) ([0d6d584](https://github.com/googleapis/google-cloud-node/commit/0d6d584a0c5c8f9f96daf3ede46f9440758e0f35))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [2.1.0](https://github.com/googleapis/google-cloud-node/compare/alloydb-v2.0.0...alloydb-v2.1.0) (2025-03-19)
+
+
+### Features
+
+* [alloydb] A new method `ExportCluster` is added to service `AlloyDBAdmin` ([#6170](https://github.com/googleapis/google-cloud-node/issues/6170)) ([4569e91](https://github.com/googleapis/google-cloud-node/commit/4569e91b5f4c888cd52dd795dbe27cddf0801f51))
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+## [2.0.0](https://github.com/googleapis/google-cloud-node/compare/alloydb-v1.10.2...alloydb-v2.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics, update templates to gax 5  ([54a73fe](https://github.com/googleapis/google-cloud-node/commit/54a73fe74eab0675c006f24d5f1e4574c44d829b))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [1.10.2](https://github.com/googleapis/google-cloud-node/compare/alloydb-v1.10.1...alloydb-v1.10.2) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6011](https://github.com/googleapis/google-cloud-node/issues/6011)) ([ee865ff](https://github.com/googleapis/google-cloud-node/commit/ee865ff34a696fbd657e4cfb6cc4be2f6651f77a))
+
+## [1.10.1](https://github.com/googleapis/google-cloud-node/compare/alloydb-v1.10.0...alloydb-v1.10.1) (2024-11-14)
+
+
+### Bug Fixes
+
+* [alloydb] deprecated various PSC instance configuration fields ([#5793](https://github.com/googleapis/google-cloud-node/issues/5793)) ([e884556](https://github.com/googleapis/google-cloud-node/commit/e8845566dcf841c5fb2946b5903b63d6298fd901))
+
+## [1.10.0](https://github.com/googleapis/google-cloud-node/compare/alloydb-v1.9.0...alloydb-v1.10.0) (2024-10-30)
+
+
+### Features
+
+* [alloydb] add new PSC instance configuration setting and output the PSC DNS name ([#5764](https://github.com/googleapis/google-cloud-node/issues/5764)) ([619e469](https://github.com/googleapis/google-cloud-node/commit/619e469914af5506e47d26ff01887dbfeef99131))
+
+## [1.9.0](https://github.com/googleapis/google-cloud-node/compare/alloydb-v1.8.0...alloydb-v1.9.0) (2024-08-29)
+
+
+### Features
+
+* [alloydb] support for enabling outbound public IP on an instance ([#5638](https://github.com/googleapis/google-cloud-node/issues/5638)) ([11554e0](https://github.com/googleapis/google-cloud-node/commit/11554e0847734bff0b1c68007fd5227ae2008b87))
+
 ## [1.8.0](https://github.com/googleapis/google-cloud-node/compare/alloydb-v1.7.0...alloydb-v1.8.0) (2024-05-21)
 
 
@@ -114,29 +177,4 @@
 * Added new SSL modes ALLOW_UNENCRYPTED_AND_ENCRYPTED, ENCRYPTED_ONLY ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
 * Added new SSL modes ALLOW_UNENCRYPTED_AND_ENCRYPTED, ENCRYPTED_ONLY ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
 * Added support for continuous backups ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-* Added support for cross-region replication (secondary clusters/instances and promotion) ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-* Added users API ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-* Added users API ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-* Added users API ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-
-
-### Bug Fixes
-
-* Deprecated SSL modes SSL_MODE_ALLOW, SSL_MODE_REQUIRE, SSL_MODE_VERIFY_CA ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-* Deprecated SSL modes SSL_MODE_ALLOW, SSL_MODE_REQUIRE, SSL_MODE_VERIFY_CA ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-* Deprecated SSL modes SSL_MODE_ALLOW, SSL_MODE_REQUIRE, SSL_MODE_VERIFY_CA ([342a28c](https://github.com/googleapis/google-cloud-node/commit/342a28c3e06848325744e9d80a046ca1ed4dbc5f))
-
-## [0.1.1](https://github.com/googleapis/google-cloud-node/compare/alloydb-v0.1.0...alloydb-v0.1.1) (2023-04-13)
-
-
-### Bug Fixes
-
-* **deps:** Bump `google-gax` to ^3.5.8 ([#4117](https://github.com/googleapis/google-cloud-node/issues/4117)) ([0b67d88](https://github.com/googleapis/google-cloud-node/commit/0b67d883963643ce1b4f6d2ccd3e8d37adf6e029))
-* Minify JSON and JS files, and remove .map files ([#4143](https://github.com/googleapis/google-cloud-node/issues/4143)) ([170f7d5](https://github.com/googleapis/google-cloud-node/commit/170f7d57b8fd344d182a8e758867b8124722eebc))
-
-## 0.1.0 (2023-03-13)
-
-
-### Features
-
-* Add initial files for google.cloud.alloydb.v1 ([#4072](https://github.com/googleapis/google-cloud-node/issues/4072)) ([b04c778](https://github.com/googleapis/google-cloud-node/commit/b04c77858f6d807c11a31a3fb7e3adc3289ff581))
+* Added support for cross-region replication (secondary clusters/instances and promotion) ([342a28c](https://github.com/googleapis/google-clo

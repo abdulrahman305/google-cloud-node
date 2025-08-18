@@ -1,5 +1,77 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v5.1.0...cloudbuild-v5.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6425](https://github.com/googleapis/google-cloud-node/issues/6425)) ([c920e8d](https://github.com/googleapis/google-cloud-node/commit/c920e8d0d43be81fc171bc5f7d59800b66b830b8))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v5.0.1...cloudbuild-v5.1.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6304](https://github.com/googleapis/google-cloud-node/issues/6304)) ([132240f](https://github.com/googleapis/google-cloud-node/commit/132240fbf6cb29b309b76c1d60f0611720590847))
+
+## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v5.0.0...cloudbuild-v5.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6189](https://github.com/googleapis/google-cloud-node/issues/6189)) ([0eab6d4](https://github.com/googleapis/google-cloud-node/commit/0eab6d40a12aa7f387a4621c6611aa4cbc86e178))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v4.8.1...cloudbuild-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.8.1](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v4.8.0...cloudbuild-v4.8.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6019](https://github.com/googleapis/google-cloud-node/issues/6019)) ([734397c](https://github.com/googleapis/google-cloud-node/commit/734397c6b98d0aafe8832544da3f483b1eade1b2))
+
+## [4.8.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v4.7.0...cloudbuild-v4.8.0) (2025-01-11)
+
+
+### Features
+
+* [cloudbuild] Add option to enable structured logging ([#5934](https://github.com/googleapis/google-cloud-node/issues/5934)) ([36be8cd](https://github.com/googleapis/google-cloud-node/commit/36be8cdce58807b3ca02b31d9b4cf950ba386063))
+
+## [4.7.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v4.6.0...cloudbuild-v4.7.0) (2024-10-30)
+
+
+### Features
+
+* [cloudbuild] Add PrivateServiceConnect option to WorkerPool ([#5770](https://github.com/googleapis/google-cloud-node/issues/5770)) ([3aade58](https://github.com/googleapis/google-cloud-node/commit/3aade58c11e739c4652f5b1ab8e7f3cf12992ce9))
+
+## [4.6.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v4.5.0...cloudbuild-v4.6.0) (2024-10-10)
+
+
+### Features
+
+* [cloudbuild] Add LEGACY_BUCKET option to DefaultLogsBucketBehavior ([#5700](https://github.com/googleapis/google-cloud-node/issues/5700)) ([7cbf6b2](https://github.com/googleapis/google-cloud-node/commit/7cbf6b20d0e4944779ba71aaa3388abbf3840ed5))
+
 ## [4.5.0](https://github.com/googleapis/google-cloud-node/compare/cloudbuild-v4.4.0...cloudbuild-v4.5.0) (2024-05-21)
 
 

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ function main(parent) {
    */
   // const pageSize = 1234
   /**
-   *  Comma separated list of fields to order by, followed by `asc` or `desc`
+   *  Comma-separated list of fields to order by, followed by `asc` or `desc`
    *  postfix. This list is case insensitive. The default sorting order is
    *  ascending. Redundant space characters are insignificant. Only one order
    *  field at a time is allowed.

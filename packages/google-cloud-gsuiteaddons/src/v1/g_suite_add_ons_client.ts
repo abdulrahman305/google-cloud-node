@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,17 +18,11 @@
 
 /* global window */
 import type * as gax from 'google-gax';
-import type {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  PaginationCallback,
-  GaxCall,
-} from 'google-gax';
+import type {Callback, CallOptions, Descriptors, ClientOptions, PaginationCallback, GaxCall} from 'google-gax';
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -39,30 +33,30 @@ import * as gapicConfig from './g_suite_add_ons_client_config.json';
 const version = require('../../../package.json').version;
 
 /**
- *  A service for managing Google Workspace Add-ons deployments.
+ *  A service for managing Google Workspace add-ons deployments.
  *
- *  A Google Workspace Add-on is a third-party embedded component that can be
+ *  A Google Workspace add-on is a third-party embedded component that can be
  *  installed in Google Workspace Applications like Gmail, Calendar, Drive, and
- *  the Google Docs, Sheets, and Slides editors. Google Workspace Add-ons can
+ *  the Google Docs, Sheets, and Slides editors. Google Workspace add-ons can
  *  display UI cards, receive contextual information from the host application,
  *  and perform actions in the host application (See:
  *  https://developers.google.com/gsuite/add-ons/overview for more information).
  *
- *  A Google Workspace Add-on deployment resource specifies metadata about the
+ *  A Google Workspace add-on deployment resource specifies metadata about the
  *  add-on, including a specification of the entry points in the host application
  *  that trigger add-on executions (see:
  *  https://developers.google.com/gsuite/add-ons/concepts/gsuite-manifests).
- *  Add-on deployments defined via the Google Workspace Add-ons API define their
+ *  Add-on deployments defined via the Google Workspace add-ons API define their
  *  entrypoints using HTTPS URLs (See:
  *  https://developers.google.com/gsuite/add-ons/guides/alternate-runtimes),
  *
- *  A Google Workspace Add-on deployment can be installed in developer mode,
+ *  A Google Workspace add-on deployment can be installed in developer mode,
  *  which allows an add-on developer to test the experience an end-user would see
  *  when installing and running the add-on in their G Suite applications.  When
  *  running in developer mode, more detailed error messages are exposed in the
  *  add-on UI to aid in debugging.
  *
- *  A Google Workspace Add-on deployment can be published to Google Workspace
+ *  A Google Workspace add-on deployment can be published to Google Workspace
  *  Marketplace, which allows other Google Workspace users to discover and
  *  install the add-on.  See:
  *  https://developers.google.com/gsuite/add-ons/how-tos/publish-add-on-overview
@@ -80,6 +74,8 @@ export class GSuiteAddOnsClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('gsuiteaddons');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -114,7 +110,7 @@ export class GSuiteAddOnsClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -131,41 +127,20 @@ export class GSuiteAddOnsClient {
    *     const client = new GSuiteAddOnsClient({fallback: true}, gax);
    *     ```
    */
-  constructor(
-    opts?: ClientOptions,
-    gaxInstance?: typeof gax | typeof gax.fallback
-  ) {
+  constructor(opts?: ClientOptions, gaxInstance?: typeof gax | typeof gax.fallback) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof GSuiteAddOnsClient;
-    if (
-      opts?.universe_domain &&
-      opts?.universeDomain &&
-      opts?.universe_domain !== opts?.universeDomain
-    ) {
-      throw new Error(
-        'Please set either universe_domain or universeDomain, but not both.'
-      );
+    if (opts?.universe_domain && opts?.universeDomain && opts?.universe_domain !== opts?.universeDomain) {
+      throw new Error('Please set either universe_domain or universeDomain, but not both.');
     }
-    const universeDomainEnvVar =
-      typeof process === 'object' && typeof process.env === 'object'
-        ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN']
-        : undefined;
-    this._universeDomain =
-      opts?.universeDomain ??
-      opts?.universe_domain ??
-      universeDomainEnvVar ??
-      'googleapis.com';
+    const universeDomainEnvVar = (typeof process === 'object' && typeof process.env === 'object') ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN'] : undefined;
+    this._universeDomain = opts?.universeDomain ?? opts?.universe_domain ?? universeDomainEnvVar ?? 'googleapis.com';
     this._servicePath = 'gsuiteaddons.' + this._universeDomain;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || this._servicePath;
-    this._providedCustomServicePath = !!(
-      opts?.servicePath || opts?.apiEndpoint
-    );
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || this._servicePath;
+    this._providedCustomServicePath = !!(opts?.servicePath || opts?.apiEndpoint);
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window?.fetch === 'function');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // Request numeric enum values if REST transport is used.
@@ -191,7 +166,7 @@ export class GSuiteAddOnsClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set useJWTAccessWithScope on the auth object.
     this.auth.useJWTAccessWithScope = true;
@@ -205,7 +180,10 @@ export class GSuiteAddOnsClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process === 'object' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -244,20 +222,14 @@ export class GSuiteAddOnsClient {
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
     this.descriptors.page = {
-      listDeployments: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'deployments'
-      ),
+      listDeployments:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'deployments')
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.gsuiteaddons.v1.GSuiteAddOns',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.gsuiteaddons.v1.GSuiteAddOns', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -288,45 +260,32 @@ export class GSuiteAddOnsClient {
     // Put together the "service stub" for
     // google.cloud.gsuiteaddons.v1.GSuiteAddOns.
     this.gSuiteAddOnsStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.gsuiteaddons.v1.GSuiteAddOns'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.gsuiteaddons.v1.GSuiteAddOns') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.gsuiteaddons.v1.GSuiteAddOns,
-      this._opts,
-      this._providedCustomServicePath
-    ) as Promise<{[method: string]: Function}>;
+        this._opts, this._providedCustomServicePath) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const gSuiteAddOnsStubMethods = [
-      'getAuthorization',
-      'createDeployment',
-      'replaceDeployment',
-      'getDeployment',
-      'listDeployments',
-      'deleteDeployment',
-      'installDeployment',
-      'uninstallDeployment',
-      'getInstallStatus',
-    ];
+    const gSuiteAddOnsStubMethods =
+        ['getAuthorization', 'createDeployment', 'replaceDeployment', 'getDeployment', 'listDeployments', 'deleteDeployment', 'installDeployment', 'uninstallDeployment', 'getInstallStatus'];
     for (const methodName of gSuiteAddOnsStubMethods) {
       const callPromise = this.gSuiteAddOnsStub.then(
-        stub =>
-          (...args: Array<{}>) => {
-            if (this._terminated) {
-              return Promise.reject('The client has already been closed.');
-            }
-            const func = stub[methodName];
-            return func.apply(stub, args);
-          },
-        (err: Error | null | undefined) => () => {
+        stub => (...args: Array<{}>) => {
+          if (this._terminated) {
+            return Promise.reject('The client has already been closed.');
+          }
+          const func = stub[methodName];
+          return func.apply(stub, args);
+        },
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.page[methodName] || undefined;
+      const descriptor =
+        this.descriptors.page[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -346,14 +305,8 @@ export class GSuiteAddOnsClient {
    * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static servicePath is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static servicePath is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'gsuiteaddons.googleapis.com';
   }
@@ -364,14 +317,8 @@ export class GSuiteAddOnsClient {
    * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static apiEndpoint is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static apiEndpoint is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'gsuiteaddons.googleapis.com';
   }
@@ -402,7 +349,9 @@ export class GSuiteAddOnsClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -411,9 +360,8 @@ export class GSuiteAddOnsClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -424,912 +372,941 @@ export class GSuiteAddOnsClient {
   // -------------------
   // -- Service calls --
   // -------------------
-  /**
-   * Gets the authorization information for deployments in a given project.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Name of the project for which to get the Google Workspace Add-ons
-   *   authorization information.
-   *
-   *   Example: `projects/my_project/authorization`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Authorization|Authorization}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.get_authorization.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_GetAuthorization_async
-   */
+/**
+ * Gets the authorization information for deployments in a given project.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Name of the project for which to get the Google Workspace add-ons
+ *   authorization information.
+ *
+ *   Example: `projects/my_project/authorization`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Authorization|Authorization}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.get_authorization.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_GetAuthorization_async
+ */
   getAuthorization(
-    request?: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IAuthorization,
-      protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+        protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|undefined, {}|undefined
+      ]>;
   getAuthorization(
-    request: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IAuthorization,
-      | protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getAuthorization(
-    request: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IAuthorization,
-      | protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getAuthorization(
-    request?: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.gsuiteaddons.v1.IAuthorization,
-          | protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IAuthorization,
-      | protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IAuthorization,
-      protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|null|undefined,
+          {}|null|undefined>): void;
+  getAuthorization(
+      request: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
+      callback: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+          protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|null|undefined,
+          {}|null|undefined>): void;
+  getAuthorization(
+      request?: protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+          protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+          protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+        protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getAuthorization request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+        protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getAuthorization response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getAuthorization(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.gsuiteaddons.v1.IAuthorization,
+        protos.google.cloud.gsuiteaddons.v1.IGetAuthorizationRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getAuthorization response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getAuthorization(request, options, callback);
   }
-  /**
-   * Creates a deployment with the specified name and configuration.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Name of the project in which to create the deployment.
-   *
-   *   Example: `projects/my_project`.
-   * @param {string} request.deploymentId
-   *   Required. The id to use for this deployment.  The full name of the created
-   *   resource will be `projects/<project_number>/deployments/<deployment_id>`.
-   * @param {google.cloud.gsuiteaddons.v1.Deployment} request.deployment
-   *   Required. The deployment to create (deployment.name cannot be set).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.create_deployment.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_CreateDeployment_async
-   */
+/**
+ * Creates a deployment with the specified name and configuration.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Name of the project in which to create the deployment.
+ *
+ *   Example: `projects/my_project`.
+ * @param {string} request.deploymentId
+ *   Required. The id to use for this deployment.  The full name of the created
+ *   resource will be `projects/<project_number>/deployments/<deployment_id>`.
+ * @param {google.cloud.gsuiteaddons.v1.Deployment} request.deployment
+ *   Required. The deployment to create (deployment.name cannot be set).
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.create_deployment.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_CreateDeployment_async
+ */
   createDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|undefined, {}|undefined
+      ]>;
   createDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  createDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  createDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.gsuiteaddons.v1.IDeployment,
-          | protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.createDeployment(request, options, callback);
-  }
-  /**
-   * Creates or replaces a deployment with the specified name.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.gsuiteaddons.v1.Deployment} request.deployment
-   *   Required. The deployment to create or replace.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.replace_deployment.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_ReplaceDeployment_async
-   */
-  replaceDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  >;
-  replaceDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  replaceDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  replaceDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  createDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
+      callback: Callback<
           protos.google.cloud.gsuiteaddons.v1.IDeployment,
-          | protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        'deployment.name': request.deployment!.name ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.replaceDeployment(request, options, callback);
-  }
-  /**
-   * Gets the deployment with the specified name.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The full resource name of the deployment to get.
-   *
-   *   Example:  `projects/my_project/deployments/my_deployment`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.get_deployment.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_GetDeployment_async
-   */
-  getDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  >;
-  getDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  createDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest,
+      optionsOrCallback?: CallOptions|Callback<
           protos.google.cloud.gsuiteaddons.v1.IDeployment,
-          | protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      | protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment,
-      protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('createDeployment request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.createDeployment(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.ICreateDeploymentRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('createDeployment response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getDeployment(request, options, callback);
   }
-  /**
-   * Deletes the deployment with the given name.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The full resource name of the deployment to delete.
-   *
-   *   Example:  `projects/my_project/deployments/my_deployment`.
-   * @param {string} request.etag
-   *   The etag of the deployment to delete.
-   *   If this is provided, it must match the server's etag.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.delete_deployment.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_DeleteDeployment_async
-   */
+/**
+ * Creates or replaces a deployment with the specified name.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.gsuiteaddons.v1.Deployment} request.deployment
+ *   Required. The deployment to create or replace.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.replace_deployment.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_ReplaceDeployment_async
+ */
+  replaceDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|undefined, {}|undefined
+      ]>;
+  replaceDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  replaceDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
+      callback: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  replaceDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'deployment.name': request.deployment!.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('replaceDeployment request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('replaceDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.replaceDeployment(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IReplaceDeploymentRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('replaceDeployment response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Gets the deployment with the specified name.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The full resource name of the deployment to get.
+ *
+ *   Example:  `projects/my_project/deployments/my_deployment`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.get_deployment.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_GetDeployment_async
+ */
+  getDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|undefined, {}|undefined
+      ]>;
+  getDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  getDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
+      callback: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  getDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeployment,
+          protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getDeployment request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getDeployment(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.gsuiteaddons.v1.IDeployment,
+        protos.google.cloud.gsuiteaddons.v1.IGetDeploymentRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getDeployment response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Deletes the deployment with the given name.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The full resource name of the deployment to delete.
+ *
+ *   Example:  `projects/my_project/deployments/my_deployment`.
+ * @param {string} request.etag
+ *   The etag of the deployment to delete.
+ *   If this is provided, it must match the server's etag.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.delete_deployment.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_DeleteDeployment_async
+ */
   deleteDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|undefined, {}|undefined
+      ]>;
   deleteDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  deleteDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  deleteDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.protobuf.IEmpty,
-          | protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.deleteDeployment(request, options, callback);
-  }
-  /**
-   * Installs a deployment in developer mode.
-   * See:
-   * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The full resource name of the deployment to install.
-   *
-   *   Example:  `projects/my_project/deployments/my_deployment`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.install_deployment.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_InstallDeployment_async
-   */
-  installDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  >;
-  installDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  installDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  installDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
+      callback: Callback<
           protos.google.protobuf.IEmpty,
-          | protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
-      });
-    this.initialize();
-    return this.innerApiCalls.installDeployment(request, options, callback);
-  }
-  /**
-   * Uninstalls a developer mode deployment.
-   * See:
-   * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The full resource name of the deployment to install.
-   *
-   *   Example:  `projects/my_project/deployments/my_deployment`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.uninstall_deployment.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_UninstallDeployment_async
-   */
-  uninstallDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      (
-        | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
-  uninstallDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  uninstallDeployment(
-    request: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  uninstallDeployment(
-    request?: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+          protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest,
+      optionsOrCallback?: CallOptions|Callback<
           protos.google.protobuf.IEmpty,
-          | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      (
-        | protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('deleteDeployment request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.deleteDeployment(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IDeleteDeploymentRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('deleteDeployment response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.uninstallDeployment(request, options, callback);
   }
-  /**
-   * Fetches the install status of a developer mode deployment.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The full resource name of the deployment.
-   *
-   *   Example:  `projects/my_project/deployments/my_deployment/installStatus`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.InstallStatus|InstallStatus}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.get_install_status.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_GetInstallStatus_async
-   */
+/**
+ * Installs a deployment in developer mode.
+ * See:
+ * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The full resource name of the deployment to install.
+ *
+ *   Example:  `projects/my_project/deployments/my_deployment`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.install_deployment.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_InstallDeployment_async
+ */
+  installDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|undefined, {}|undefined
+      ]>;
+  installDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  installDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  installDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('installDeployment request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('installDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.installDeployment(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IInstallDeploymentRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('installDeployment response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Uninstalls a developer mode deployment.
+ * See:
+ * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The full resource name of the deployment to install.
+ *
+ *   Example:  `projects/my_project/deployments/my_deployment`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.uninstall_deployment.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_UninstallDeployment_async
+ */
+  uninstallDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|undefined, {}|undefined
+      ]>;
+  uninstallDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  uninstallDeployment(
+      request: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|null|undefined,
+          {}|null|undefined>): void;
+  uninstallDeployment(
+      request?: protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('uninstallDeployment request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('uninstallDeployment response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.uninstallDeployment(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.protobuf.IEmpty,
+        protos.google.cloud.gsuiteaddons.v1.IUninstallDeploymentRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('uninstallDeployment response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Fetches the install status of a developer mode deployment.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The full resource name of the deployment.
+ *
+ *   Example:  `projects/my_project/deployments/my_deployment/installStatus`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.gsuiteaddons.v1.InstallStatus|InstallStatus}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.get_install_status.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_GetInstallStatus_async
+ */
   getInstallStatus(
-    request?: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
-      protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest | undefined,
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+        protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|undefined, {}|undefined
+      ]>;
   getInstallStatus(
-    request: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
-      | protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getInstallStatus(
-    request: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
-    callback: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
-      | protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getInstallStatus(
-    request?: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
-          | protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
-      | protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
-      protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest | undefined,
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|null|undefined,
+          {}|null|undefined>): void;
+  getInstallStatus(
+      request: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
+      callback: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+          protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|null|undefined,
+          {}|null|undefined>): void;
+  getInstallStatus(
+      request?: protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+          protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+          protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+        protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getInstallStatus request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+        protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getInstallStatus response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getInstallStatus(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.gsuiteaddons.v1.IInstallStatus,
+        protos.google.cloud.gsuiteaddons.v1.IGetInstallStatusRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getInstallStatus response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getInstallStatus(request, options, callback);
   }
 
-  /**
-   * Lists all deployments in a particular project.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Name of the project in which to create the deployment.
-   *
-   *   Example: `projects/my_project`.
-   * @param {number} request.pageSize
-   *   The maximum number of deployments to return. The service may return fewer
-   *   than this value.
-   *   If unspecified, at most 1000 deployments will be returned.
-   *   The maximum value is 1000; values above 1000 will be coerced to 1000.
-   * @param {string} request.pageToken
-   *   A page token, received from a previous `ListDeployments` call.
-   *   Provide this to retrieve the subsequent page.
-   *
-   *   When paginating, all other parameters provided to `ListDeployments` must
-   *   match the call that provided the page token.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *   Note that it can affect your quota.
-   *   We recommend using `listDeploymentsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+ /**
+ * Lists all deployments in a particular project.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Name of the project in which to create the deployment.
+ *
+ *   Example: `projects/my_project`.
+ * @param {number} request.pageSize
+ *   The maximum number of deployments to return. The service may return fewer
+ *   than this value.
+ *   If unspecified, at most 1000 deployments will be returned.
+ *   The maximum value is 1000; values above 1000 will be coerced to 1000.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListDeployments` call.
+ *   Provide this to retrieve the subsequent page.
+ *
+ *   When paginating, all other parameters provided to `ListDeployments` must
+ *   match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listDeploymentsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listDeployments(
-    request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment[],
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest | null,
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse,
-    ]
-  >;
+      request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment[],
+        protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest|null,
+        protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
+      ]>;
   listDeployments(
-    request: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-    options: CallOptions,
-    callback: PaginationCallback<
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-      | protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
-      | null
-      | undefined,
-      protos.google.cloud.gsuiteaddons.v1.IDeployment
-    >
-  ): void;
-  listDeployments(
-    request: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-    callback: PaginationCallback<
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-      | protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
-      | null
-      | undefined,
-      protos.google.cloud.gsuiteaddons.v1.IDeployment
-    >
-  ): void;
-  listDeployments(
-    request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | PaginationCallback<
+      request: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      options: CallOptions,
+      callback: PaginationCallback<
           protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-          | protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
-          | null
-          | undefined,
-          protos.google.cloud.gsuiteaddons.v1.IDeployment
-        >,
-    callback?: PaginationCallback<
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-      | protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
-      | null
-      | undefined,
-      protos.google.cloud.gsuiteaddons.v1.IDeployment
-    >
-  ): Promise<
-    [
-      protos.google.cloud.gsuiteaddons.v1.IDeployment[],
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest | null,
-      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse,
-    ]
-  > | void {
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse|null|undefined,
+          protos.google.cloud.gsuiteaddons.v1.IDeployment>): void;
+  listDeployments(
+      request: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      callback: PaginationCallback<
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse|null|undefined,
+          protos.google.cloud.gsuiteaddons.v1.IDeployment>): void;
+  listDeployments(
+      request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      optionsOrCallback?: CallOptions|PaginationCallback<
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse|null|undefined,
+          protos.google.cloud.gsuiteaddons.v1.IDeployment>,
+      callback?: PaginationCallback<
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+          protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse|null|undefined,
+          protos.google.cloud.gsuiteaddons.v1.IDeployment>):
+      Promise<[
+        protos.google.cloud.gsuiteaddons.v1.IDeployment[],
+        protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest|null,
+        protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse|null|undefined,
+      protos.google.cloud.gsuiteaddons.v1.IDeployment>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listDeployments values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listDeployments request %j', request);
+    return this.innerApiCalls
+      .listDeployments(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.google.cloud.gsuiteaddons.v1.IDeployment[],
+        protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest|null,
+        protos.google.cloud.gsuiteaddons.v1.IListDeploymentsResponse
+      ]) => {
+        this._log.info('listDeployments values %j', response);
+        return [response, input, output];
       });
-    this.initialize();
-    return this.innerApiCalls.listDeployments(request, options, callback);
   }
 
-  /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Name of the project in which to create the deployment.
-   *
-   *   Example: `projects/my_project`.
-   * @param {number} request.pageSize
-   *   The maximum number of deployments to return. The service may return fewer
-   *   than this value.
-   *   If unspecified, at most 1000 deployments will be returned.
-   *   The maximum value is 1000; values above 1000 will be coerced to 1000.
-   * @param {string} request.pageToken
-   *   A page token, received from a previous `ListDeployments` call.
-   *   Provide this to retrieve the subsequent page.
-   *
-   *   When paginating, all other parameters provided to `ListDeployments` must
-   *   match the call that provided the page token.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment} on 'data' event.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed. Note that it can affect your quota.
-   *   We recommend using `listDeploymentsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+/**
+ * Equivalent to `listDeployments`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Name of the project in which to create the deployment.
+ *
+ *   Example: `projects/my_project`.
+ * @param {number} request.pageSize
+ *   The maximum number of deployments to return. The service may return fewer
+ *   than this value.
+ *   If unspecified, at most 1000 deployments will be returned.
+ *   The maximum value is 1000; values above 1000 will be coerced to 1000.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListDeployments` call.
+ *   Provide this to retrieve the subsequent page.
+ *
+ *   When paginating, all other parameters provided to `ListDeployments` must
+ *   match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listDeploymentsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listDeploymentsStream(
-    request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-    options?: CallOptions
-  ): Transform {
+      request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      options?: CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listDeployments'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listDeployments stream %j', request);
     return this.descriptors.page.listDeployments.createStream(
       this.innerApiCalls.listDeployments as GaxCall,
       request,
@@ -1337,54 +1314,56 @@ export class GSuiteAddOnsClient {
     );
   }
 
-  /**
-   * Equivalent to `listDeployments`, but returns an iterable object.
-   *
-   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Name of the project in which to create the deployment.
-   *
-   *   Example: `projects/my_project`.
-   * @param {number} request.pageSize
-   *   The maximum number of deployments to return. The service may return fewer
-   *   than this value.
-   *   If unspecified, at most 1000 deployments will be returned.
-   *   The maximum value is 1000; values above 1000 will be coerced to 1000.
-   * @param {string} request.pageToken
-   *   A page token, received from a previous `ListDeployments` call.
-   *   Provide this to retrieve the subsequent page.
-   *
-   *   When paginating, all other parameters provided to `ListDeployments` must
-   *   match the call that provided the page token.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Object}
-   *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
-   *   When you iterate the returned iterable, each element will be an object representing
-   *   {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}. The API will be called under the hood as needed, once per the page,
-   *   so you can stop the iteration when you don't need more results.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v1/g_suite_add_ons.list_deployments.js</caption>
-   * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_ListDeployments_async
-   */
+/**
+ * Equivalent to `listDeployments`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Name of the project in which to create the deployment.
+ *
+ *   Example: `projects/my_project`.
+ * @param {number} request.pageSize
+ *   The maximum number of deployments to return. The service may return fewer
+ *   than this value.
+ *   If unspecified, at most 1000 deployments will be returned.
+ *   The maximum value is 1000; values above 1000 will be coerced to 1000.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListDeployments` call.
+ *   Provide this to retrieve the subsequent page.
+ *
+ *   When paginating, all other parameters provided to `ListDeployments` must
+ *   match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   {@link protos.google.cloud.gsuiteaddons.v1.Deployment|Deployment}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/g_suite_add_ons.list_deployments.js</caption>
+ * region_tag:gsuiteaddons_v1_generated_GSuiteAddOns_ListDeployments_async
+ */
   listDeploymentsAsync(
-    request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
-    options?: CallOptions
-  ): AsyncIterable<protos.google.cloud.gsuiteaddons.v1.IDeployment> {
+      request?: protos.google.cloud.gsuiteaddons.v1.IListDeploymentsRequest,
+      options?: CallOptions):
+    AsyncIterable<protos.google.cloud.gsuiteaddons.v1.IDeployment>{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listDeployments'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listDeployments iterate %j', request);
     return this.descriptors.page.listDeployments.asyncIterate(
       this.innerApiCalls['listDeployments'] as GaxCall,
       request as {},
@@ -1401,7 +1380,7 @@ export class GSuiteAddOnsClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  authorizationPath(project: string) {
+  authorizationPath(project:string) {
     return this.pathTemplates.authorizationPathTemplate.render({
       project: project,
     });
@@ -1415,8 +1394,7 @@ export class GSuiteAddOnsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromAuthorizationName(authorizationName: string) {
-    return this.pathTemplates.authorizationPathTemplate.match(authorizationName)
-      .project;
+    return this.pathTemplates.authorizationPathTemplate.match(authorizationName).project;
   }
 
   /**
@@ -1426,7 +1404,7 @@ export class GSuiteAddOnsClient {
    * @param {string} deployment
    * @returns {string} Resource name string.
    */
-  deploymentPath(project: string, deployment: string) {
+  deploymentPath(project:string,deployment:string) {
     return this.pathTemplates.deploymentPathTemplate.render({
       project: project,
       deployment: deployment,
@@ -1441,8 +1419,7 @@ export class GSuiteAddOnsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromDeploymentName(deploymentName: string) {
-    return this.pathTemplates.deploymentPathTemplate.match(deploymentName)
-      .project;
+    return this.pathTemplates.deploymentPathTemplate.match(deploymentName).project;
   }
 
   /**
@@ -1453,8 +1430,7 @@ export class GSuiteAddOnsClient {
    * @returns {string} A string representing the deployment.
    */
   matchDeploymentFromDeploymentName(deploymentName: string) {
-    return this.pathTemplates.deploymentPathTemplate.match(deploymentName)
-      .deployment;
+    return this.pathTemplates.deploymentPathTemplate.match(deploymentName).deployment;
   }
 
   /**
@@ -1464,7 +1440,7 @@ export class GSuiteAddOnsClient {
    * @param {string} deployment
    * @returns {string} Resource name string.
    */
-  installStatusPath(project: string, deployment: string) {
+  installStatusPath(project:string,deployment:string) {
     return this.pathTemplates.installStatusPathTemplate.render({
       project: project,
       deployment: deployment,
@@ -1479,8 +1455,7 @@ export class GSuiteAddOnsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromInstallStatusName(installStatusName: string) {
-    return this.pathTemplates.installStatusPathTemplate.match(installStatusName)
-      .project;
+    return this.pathTemplates.installStatusPathTemplate.match(installStatusName).project;
   }
 
   /**
@@ -1491,8 +1466,7 @@ export class GSuiteAddOnsClient {
    * @returns {string} A string representing the deployment.
    */
   matchDeploymentFromInstallStatusName(installStatusName: string) {
-    return this.pathTemplates.installStatusPathTemplate.match(installStatusName)
-      .deployment;
+    return this.pathTemplates.installStatusPathTemplate.match(installStatusName).deployment;
   }
 
   /**
@@ -1501,7 +1475,7 @@ export class GSuiteAddOnsClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectPath(project: string) {
+  projectPath(project:string) {
     return this.pathTemplates.projectPathTemplate.render({
       project: project,
     });
@@ -1527,6 +1501,7 @@ export class GSuiteAddOnsClient {
   close(): Promise<void> {
     if (this.gSuiteAddOnsStub && !this._terminated) {
       return this.gSuiteAddOnsStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });

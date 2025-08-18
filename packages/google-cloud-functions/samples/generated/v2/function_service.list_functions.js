@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ function main(parent) {
   // const filter = 'abc123'
   /**
    *  The sorting order of the resources returned. Value should be a comma
-   *  separated list of fields. The default sorting oder is ascending.
+   *  separated list of fields. The default sorting order is ascending.
    *  See https://google.aip.dev/132#ordering.
    */
   // const orderBy = 'abc123'

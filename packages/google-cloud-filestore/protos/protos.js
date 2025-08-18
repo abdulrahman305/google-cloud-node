@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -208,12 +208,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    OperationMetadata.decode = function decode(reader, length) {
+                    OperationMetadata.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.common.OperationMetadata();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -1023,6 +1025,39 @@
                          * @variation 2
                          */
     
+                        /**
+                         * Callback as used by {@link google.cloud.filestore.v1.CloudFilestoreManager|promoteReplica}.
+                         * @memberof google.cloud.filestore.v1.CloudFilestoreManager
+                         * @typedef PromoteReplicaCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.longrunning.Operation} [response] Operation
+                         */
+    
+                        /**
+                         * Calls PromoteReplica.
+                         * @function promoteReplica
+                         * @memberof google.cloud.filestore.v1.CloudFilestoreManager
+                         * @instance
+                         * @param {google.cloud.filestore.v1.IPromoteReplicaRequest} request PromoteReplicaRequest message or plain object
+                         * @param {google.cloud.filestore.v1.CloudFilestoreManager.PromoteReplicaCallback} callback Node-style callback called with the error, if any, and Operation
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CloudFilestoreManager.prototype.promoteReplica = function promoteReplica(request, callback) {
+                            return this.rpcCall(promoteReplica, $root.google.cloud.filestore.v1.PromoteReplicaRequest, $root.google.longrunning.Operation, request, callback);
+                        }, "name", { value: "PromoteReplica" });
+    
+                        /**
+                         * Calls PromoteReplica.
+                         * @function promoteReplica
+                         * @memberof google.cloud.filestore.v1.CloudFilestoreManager
+                         * @instance
+                         * @param {google.cloud.filestore.v1.IPromoteReplicaRequest} request PromoteReplicaRequest message or plain object
+                         * @returns {Promise<google.longrunning.Operation>} Promise
+                         * @variation 2
+                         */
+    
                         return CloudFilestoreManager;
                     })();
     
@@ -1162,12 +1197,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NetworkConfig.decode = function decode(reader, length) {
+                        NetworkConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.NetworkConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.network = reader.string();
@@ -1571,12 +1608,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FileShareConfig.decode = function decode(reader, length) {
+                        FileShareConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.FileShareConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -1896,12 +1935,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NfsExportOptions.decode = function decode(reader, length) {
+                        NfsExportOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.NfsExportOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.ipRanges && message.ipRanges.length))
@@ -2186,6 +2227,695 @@
                         return NfsExportOptions;
                     })();
     
+                    v1.ReplicaConfig = (function() {
+    
+                        /**
+                         * Properties of a ReplicaConfig.
+                         * @memberof google.cloud.filestore.v1
+                         * @interface IReplicaConfig
+                         * @property {google.cloud.filestore.v1.ReplicaConfig.State|null} [state] ReplicaConfig state
+                         * @property {Array.<google.cloud.filestore.v1.ReplicaConfig.StateReason>|null} [stateReasons] ReplicaConfig stateReasons
+                         * @property {string|null} [peerInstance] ReplicaConfig peerInstance
+                         * @property {google.protobuf.ITimestamp|null} [lastActiveSyncTime] ReplicaConfig lastActiveSyncTime
+                         */
+    
+                        /**
+                         * Constructs a new ReplicaConfig.
+                         * @memberof google.cloud.filestore.v1
+                         * @classdesc Represents a ReplicaConfig.
+                         * @implements IReplicaConfig
+                         * @constructor
+                         * @param {google.cloud.filestore.v1.IReplicaConfig=} [properties] Properties to set
+                         */
+                        function ReplicaConfig(properties) {
+                            this.stateReasons = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReplicaConfig state.
+                         * @member {google.cloud.filestore.v1.ReplicaConfig.State} state
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.state = 0;
+    
+                        /**
+                         * ReplicaConfig stateReasons.
+                         * @member {Array.<google.cloud.filestore.v1.ReplicaConfig.StateReason>} stateReasons
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.stateReasons = $util.emptyArray;
+    
+                        /**
+                         * ReplicaConfig peerInstance.
+                         * @member {string} peerInstance
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.peerInstance = "";
+    
+                        /**
+                         * ReplicaConfig lastActiveSyncTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} lastActiveSyncTime
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.lastActiveSyncTime = null;
+    
+                        /**
+                         * Creates a new ReplicaConfig instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1.IReplicaConfig=} [properties] Properties to set
+                         * @returns {google.cloud.filestore.v1.ReplicaConfig} ReplicaConfig instance
+                         */
+                        ReplicaConfig.create = function create(properties) {
+                            return new ReplicaConfig(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReplicaConfig message. Does not implicitly {@link google.cloud.filestore.v1.ReplicaConfig.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1.IReplicaConfig} message ReplicaConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReplicaConfig.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.state);
+                            if (message.stateReasons != null && message.stateReasons.length) {
+                                writer.uint32(/* id 2, wireType 2 =*/18).fork();
+                                for (var i = 0; i < message.stateReasons.length; ++i)
+                                    writer.int32(message.stateReasons[i]);
+                                writer.ldelim();
+                            }
+                            if (message.peerInstance != null && Object.hasOwnProperty.call(message, "peerInstance"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.peerInstance);
+                            if (message.lastActiveSyncTime != null && Object.hasOwnProperty.call(message, "lastActiveSyncTime"))
+                                $root.google.protobuf.Timestamp.encode(message.lastActiveSyncTime, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReplicaConfig message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.ReplicaConfig.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1.IReplicaConfig} message ReplicaConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReplicaConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReplicaConfig message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.filestore.v1.ReplicaConfig} ReplicaConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReplicaConfig.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ReplicaConfig();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.state = reader.int32();
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.stateReasons && message.stateReasons.length))
+                                            message.stateReasons = [];
+                                        if ((tag & 7) === 2) {
+                                            var end2 = reader.uint32() + reader.pos;
+                                            while (reader.pos < end2)
+                                                message.stateReasons.push(reader.int32());
+                                        } else
+                                            message.stateReasons.push(reader.int32());
+                                        break;
+                                    }
+                                case 3: {
+                                        message.peerInstance = reader.string();
+                                        break;
+                                    }
+                                case 10: {
+                                        message.lastActiveSyncTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReplicaConfig message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.filestore.v1.ReplicaConfig} ReplicaConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReplicaConfig.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReplicaConfig message.
+                         * @function verify
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReplicaConfig.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                switch (message.state) {
+                                default:
+                                    return "state: enum value expected";
+                                case 0:
+                                case 1:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    break;
+                                }
+                            if (message.stateReasons != null && message.hasOwnProperty("stateReasons")) {
+                                if (!Array.isArray(message.stateReasons))
+                                    return "stateReasons: array expected";
+                                for (var i = 0; i < message.stateReasons.length; ++i)
+                                    switch (message.stateReasons[i]) {
+                                    default:
+                                        return "stateReasons: enum value[] expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
+                            }
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                if (!$util.isString(message.peerInstance))
+                                    return "peerInstance: string expected";
+                            if (message.lastActiveSyncTime != null && message.hasOwnProperty("lastActiveSyncTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.lastActiveSyncTime);
+                                if (error)
+                                    return "lastActiveSyncTime." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReplicaConfig message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.filestore.v1.ReplicaConfig} ReplicaConfig
+                         */
+                        ReplicaConfig.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.filestore.v1.ReplicaConfig)
+                                return object;
+                            var message = new $root.google.cloud.filestore.v1.ReplicaConfig();
+                            switch (object.state) {
+                            default:
+                                if (typeof object.state === "number") {
+                                    message.state = object.state;
+                                    break;
+                                }
+                                break;
+                            case "STATE_UNSPECIFIED":
+                            case 0:
+                                message.state = 0;
+                                break;
+                            case "CREATING":
+                            case 1:
+                                message.state = 1;
+                                break;
+                            case "READY":
+                            case 3:
+                                message.state = 3;
+                                break;
+                            case "REMOVING":
+                            case 4:
+                                message.state = 4;
+                                break;
+                            case "FAILED":
+                            case 5:
+                                message.state = 5;
+                                break;
+                            }
+                            if (object.stateReasons) {
+                                if (!Array.isArray(object.stateReasons))
+                                    throw TypeError(".google.cloud.filestore.v1.ReplicaConfig.stateReasons: array expected");
+                                message.stateReasons = [];
+                                for (var i = 0; i < object.stateReasons.length; ++i)
+                                    switch (object.stateReasons[i]) {
+                                    default:
+                                        if (typeof object.stateReasons[i] === "number") {
+                                            message.stateReasons[i] = object.stateReasons[i];
+                                            break;
+                                        }
+                                    case "STATE_REASON_UNSPECIFIED":
+                                    case 0:
+                                        message.stateReasons[i] = 0;
+                                        break;
+                                    case "PEER_INSTANCE_UNREACHABLE":
+                                    case 1:
+                                        message.stateReasons[i] = 1;
+                                        break;
+                                    case "REMOVE_FAILED":
+                                    case 2:
+                                        message.stateReasons[i] = 2;
+                                        break;
+                                    }
+                            }
+                            if (object.peerInstance != null)
+                                message.peerInstance = String(object.peerInstance);
+                            if (object.lastActiveSyncTime != null) {
+                                if (typeof object.lastActiveSyncTime !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.ReplicaConfig.lastActiveSyncTime: object expected");
+                                message.lastActiveSyncTime = $root.google.protobuf.Timestamp.fromObject(object.lastActiveSyncTime);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReplicaConfig message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1.ReplicaConfig} message ReplicaConfig
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReplicaConfig.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.stateReasons = [];
+                            if (options.defaults) {
+                                object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                object.peerInstance = "";
+                                object.lastActiveSyncTime = null;
+                            }
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                object.state = options.enums === String ? $root.google.cloud.filestore.v1.ReplicaConfig.State[message.state] === undefined ? message.state : $root.google.cloud.filestore.v1.ReplicaConfig.State[message.state] : message.state;
+                            if (message.stateReasons && message.stateReasons.length) {
+                                object.stateReasons = [];
+                                for (var j = 0; j < message.stateReasons.length; ++j)
+                                    object.stateReasons[j] = options.enums === String ? $root.google.cloud.filestore.v1.ReplicaConfig.StateReason[message.stateReasons[j]] === undefined ? message.stateReasons[j] : $root.google.cloud.filestore.v1.ReplicaConfig.StateReason[message.stateReasons[j]] : message.stateReasons[j];
+                            }
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                object.peerInstance = message.peerInstance;
+                            if (message.lastActiveSyncTime != null && message.hasOwnProperty("lastActiveSyncTime"))
+                                object.lastActiveSyncTime = $root.google.protobuf.Timestamp.toObject(message.lastActiveSyncTime, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReplicaConfig to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReplicaConfig.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ReplicaConfig
+                         * @function getTypeUrl
+                         * @memberof google.cloud.filestore.v1.ReplicaConfig
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ReplicaConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.filestore.v1.ReplicaConfig";
+                        };
+    
+                        /**
+                         * State enum.
+                         * @name google.cloud.filestore.v1.ReplicaConfig.State
+                         * @enum {number}
+                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                         * @property {number} CREATING=1 CREATING value
+                         * @property {number} READY=3 READY value
+                         * @property {number} REMOVING=4 REMOVING value
+                         * @property {number} FAILED=5 FAILED value
+                         */
+                        ReplicaConfig.State = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "CREATING"] = 1;
+                            values[valuesById[3] = "READY"] = 3;
+                            values[valuesById[4] = "REMOVING"] = 4;
+                            values[valuesById[5] = "FAILED"] = 5;
+                            return values;
+                        })();
+    
+                        /**
+                         * StateReason enum.
+                         * @name google.cloud.filestore.v1.ReplicaConfig.StateReason
+                         * @enum {number}
+                         * @property {number} STATE_REASON_UNSPECIFIED=0 STATE_REASON_UNSPECIFIED value
+                         * @property {number} PEER_INSTANCE_UNREACHABLE=1 PEER_INSTANCE_UNREACHABLE value
+                         * @property {number} REMOVE_FAILED=2 REMOVE_FAILED value
+                         */
+                        ReplicaConfig.StateReason = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_REASON_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "PEER_INSTANCE_UNREACHABLE"] = 1;
+                            values[valuesById[2] = "REMOVE_FAILED"] = 2;
+                            return values;
+                        })();
+    
+                        return ReplicaConfig;
+                    })();
+    
+                    v1.Replication = (function() {
+    
+                        /**
+                         * Properties of a Replication.
+                         * @memberof google.cloud.filestore.v1
+                         * @interface IReplication
+                         * @property {google.cloud.filestore.v1.Replication.Role|null} [role] Replication role
+                         * @property {Array.<google.cloud.filestore.v1.IReplicaConfig>|null} [replicas] Replication replicas
+                         */
+    
+                        /**
+                         * Constructs a new Replication.
+                         * @memberof google.cloud.filestore.v1
+                         * @classdesc Represents a Replication.
+                         * @implements IReplication
+                         * @constructor
+                         * @param {google.cloud.filestore.v1.IReplication=} [properties] Properties to set
+                         */
+                        function Replication(properties) {
+                            this.replicas = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Replication role.
+                         * @member {google.cloud.filestore.v1.Replication.Role} role
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @instance
+                         */
+                        Replication.prototype.role = 0;
+    
+                        /**
+                         * Replication replicas.
+                         * @member {Array.<google.cloud.filestore.v1.IReplicaConfig>} replicas
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @instance
+                         */
+                        Replication.prototype.replicas = $util.emptyArray;
+    
+                        /**
+                         * Creates a new Replication instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1.IReplication=} [properties] Properties to set
+                         * @returns {google.cloud.filestore.v1.Replication} Replication instance
+                         */
+                        Replication.create = function create(properties) {
+                            return new Replication(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Replication message. Does not implicitly {@link google.cloud.filestore.v1.Replication.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1.IReplication} message Replication message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Replication.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.role);
+                            if (message.replicas != null && message.replicas.length)
+                                for (var i = 0; i < message.replicas.length; ++i)
+                                    $root.google.cloud.filestore.v1.ReplicaConfig.encode(message.replicas[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Replication message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.Replication.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1.IReplication} message Replication message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Replication.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Replication message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.filestore.v1.Replication} Replication
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Replication.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Replication();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.role = reader.int32();
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.replicas && message.replicas.length))
+                                            message.replicas = [];
+                                        message.replicas.push($root.google.cloud.filestore.v1.ReplicaConfig.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Replication message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.filestore.v1.Replication} Replication
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Replication.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Replication message.
+                         * @function verify
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Replication.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.role != null && message.hasOwnProperty("role"))
+                                switch (message.role) {
+                                default:
+                                    return "role: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            if (message.replicas != null && message.hasOwnProperty("replicas")) {
+                                if (!Array.isArray(message.replicas))
+                                    return "replicas: array expected";
+                                for (var i = 0; i < message.replicas.length; ++i) {
+                                    var error = $root.google.cloud.filestore.v1.ReplicaConfig.verify(message.replicas[i]);
+                                    if (error)
+                                        return "replicas." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Replication message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.filestore.v1.Replication} Replication
+                         */
+                        Replication.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.filestore.v1.Replication)
+                                return object;
+                            var message = new $root.google.cloud.filestore.v1.Replication();
+                            switch (object.role) {
+                            default:
+                                if (typeof object.role === "number") {
+                                    message.role = object.role;
+                                    break;
+                                }
+                                break;
+                            case "ROLE_UNSPECIFIED":
+                            case 0:
+                                message.role = 0;
+                                break;
+                            case "ACTIVE":
+                            case 1:
+                                message.role = 1;
+                                break;
+                            case "STANDBY":
+                            case 2:
+                                message.role = 2;
+                                break;
+                            }
+                            if (object.replicas) {
+                                if (!Array.isArray(object.replicas))
+                                    throw TypeError(".google.cloud.filestore.v1.Replication.replicas: array expected");
+                                message.replicas = [];
+                                for (var i = 0; i < object.replicas.length; ++i) {
+                                    if (typeof object.replicas[i] !== "object")
+                                        throw TypeError(".google.cloud.filestore.v1.Replication.replicas: object expected");
+                                    message.replicas[i] = $root.google.cloud.filestore.v1.ReplicaConfig.fromObject(object.replicas[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Replication message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1.Replication} message Replication
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Replication.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.replicas = [];
+                            if (options.defaults)
+                                object.role = options.enums === String ? "ROLE_UNSPECIFIED" : 0;
+                            if (message.role != null && message.hasOwnProperty("role"))
+                                object.role = options.enums === String ? $root.google.cloud.filestore.v1.Replication.Role[message.role] === undefined ? message.role : $root.google.cloud.filestore.v1.Replication.Role[message.role] : message.role;
+                            if (message.replicas && message.replicas.length) {
+                                object.replicas = [];
+                                for (var j = 0; j < message.replicas.length; ++j)
+                                    object.replicas[j] = $root.google.cloud.filestore.v1.ReplicaConfig.toObject(message.replicas[j], options);
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Replication to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Replication.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Replication
+                         * @function getTypeUrl
+                         * @memberof google.cloud.filestore.v1.Replication
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Replication.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.filestore.v1.Replication";
+                        };
+    
+                        /**
+                         * Role enum.
+                         * @name google.cloud.filestore.v1.Replication.Role
+                         * @enum {number}
+                         * @property {number} ROLE_UNSPECIFIED=0 ROLE_UNSPECIFIED value
+                         * @property {number} ACTIVE=1 ACTIVE value
+                         * @property {number} STANDBY=2 STANDBY value
+                         */
+                        Replication.Role = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "ROLE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "ACTIVE"] = 1;
+                            values[valuesById[2] = "STANDBY"] = 2;
+                            return values;
+                        })();
+    
+                        return Replication;
+                    })();
+    
                     v1.Instance = (function() {
     
                         /**
@@ -2206,6 +2936,14 @@
                          * @property {boolean|null} [satisfiesPzi] Instance satisfiesPzi
                          * @property {string|null} [kmsKeyName] Instance kmsKeyName
                          * @property {Array.<google.cloud.filestore.v1.Instance.SuspensionReason>|null} [suspensionReasons] Instance suspensionReasons
+                         * @property {google.cloud.filestore.v1.IReplication|null} [replication] Instance replication
+                         * @property {Object.<string,string>|null} [tags] Instance tags
+                         * @property {google.cloud.filestore.v1.Instance.FileProtocol|null} [protocol] Instance protocol
+                         * @property {boolean|null} [customPerformanceSupported] Instance customPerformanceSupported
+                         * @property {google.cloud.filestore.v1.Instance.IPerformanceConfig|null} [performanceConfig] Instance performanceConfig
+                         * @property {google.cloud.filestore.v1.Instance.IPerformanceLimits|null} [performanceLimits] Instance performanceLimits
+                         * @property {boolean|null} [deletionProtectionEnabled] Instance deletionProtectionEnabled
+                         * @property {string|null} [deletionProtectionReason] Instance deletionProtectionReason
                          */
     
                         /**
@@ -2221,6 +2959,7 @@
                             this.fileShares = [];
                             this.networks = [];
                             this.suspensionReasons = [];
+                            this.tags = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -2340,6 +3079,70 @@
                         Instance.prototype.suspensionReasons = $util.emptyArray;
     
                         /**
+                         * Instance replication.
+                         * @member {google.cloud.filestore.v1.IReplication|null|undefined} replication
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.replication = null;
+    
+                        /**
+                         * Instance tags.
+                         * @member {Object.<string,string>} tags
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.tags = $util.emptyObject;
+    
+                        /**
+                         * Instance protocol.
+                         * @member {google.cloud.filestore.v1.Instance.FileProtocol} protocol
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.protocol = 0;
+    
+                        /**
+                         * Instance customPerformanceSupported.
+                         * @member {boolean} customPerformanceSupported
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.customPerformanceSupported = false;
+    
+                        /**
+                         * Instance performanceConfig.
+                         * @member {google.cloud.filestore.v1.Instance.IPerformanceConfig|null|undefined} performanceConfig
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.performanceConfig = null;
+    
+                        /**
+                         * Instance performanceLimits.
+                         * @member {google.cloud.filestore.v1.Instance.IPerformanceLimits|null|undefined} performanceLimits
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.performanceLimits = null;
+    
+                        /**
+                         * Instance deletionProtectionEnabled.
+                         * @member {boolean} deletionProtectionEnabled
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.deletionProtectionEnabled = false;
+    
+                        /**
+                         * Instance deletionProtectionReason.
+                         * @member {string} deletionProtectionReason
+                         * @memberof google.cloud.filestore.v1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.deletionProtectionReason = "";
+    
+                        /**
                          * Creates a new Instance instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1.Instance
@@ -2398,6 +3201,23 @@
                             }
                             if (message.satisfiesPzi != null && Object.hasOwnProperty.call(message, "satisfiesPzi"))
                                 writer.uint32(/* id 18, wireType 0 =*/144).bool(message.satisfiesPzi);
+                            if (message.replication != null && Object.hasOwnProperty.call(message, "replication"))
+                                $root.google.cloud.filestore.v1.Replication.encode(message.replication, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+                            if (message.tags != null && Object.hasOwnProperty.call(message, "tags"))
+                                for (var keys = Object.keys(message.tags), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 20, wireType 2 =*/162).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.tags[keys[i]]).ldelim();
+                            if (message.protocol != null && Object.hasOwnProperty.call(message, "protocol"))
+                                writer.uint32(/* id 21, wireType 0 =*/168).int32(message.protocol);
+                            if (message.customPerformanceSupported != null && Object.hasOwnProperty.call(message, "customPerformanceSupported"))
+                                writer.uint32(/* id 23, wireType 0 =*/184).bool(message.customPerformanceSupported);
+                            if (message.performanceConfig != null && Object.hasOwnProperty.call(message, "performanceConfig"))
+                                $root.google.cloud.filestore.v1.Instance.PerformanceConfig.encode(message.performanceConfig, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+                            if (message.performanceLimits != null && Object.hasOwnProperty.call(message, "performanceLimits"))
+                                $root.google.cloud.filestore.v1.Instance.PerformanceLimits.encode(message.performanceLimits, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
+                            if (message.deletionProtectionEnabled != null && Object.hasOwnProperty.call(message, "deletionProtectionEnabled"))
+                                writer.uint32(/* id 26, wireType 0 =*/208).bool(message.deletionProtectionEnabled);
+                            if (message.deletionProtectionReason != null && Object.hasOwnProperty.call(message, "deletionProtectionReason"))
+                                writer.uint32(/* id 27, wireType 2 =*/218).string(message.deletionProtectionReason);
                             return writer;
                         };
     
@@ -2425,12 +3245,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Instance.decode = function decode(reader, length) {
+                        Instance.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Instance(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -2518,6 +3340,57 @@
                                             message.suspensionReasons.push(reader.int32());
                                         break;
                                     }
+                                case 19: {
+                                        message.replication = $root.google.cloud.filestore.v1.Replication.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 20: {
+                                        if (message.tags === $util.emptyObject)
+                                            message.tags = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.tags[key] = value;
+                                        break;
+                                    }
+                                case 21: {
+                                        message.protocol = reader.int32();
+                                        break;
+                                    }
+                                case 23: {
+                                        message.customPerformanceSupported = reader.bool();
+                                        break;
+                                    }
+                                case 24: {
+                                        message.performanceConfig = $root.google.cloud.filestore.v1.Instance.PerformanceConfig.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 25: {
+                                        message.performanceLimits = $root.google.cloud.filestore.v1.Instance.PerformanceLimits.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 26: {
+                                        message.deletionProtectionEnabled = reader.bool();
+                                        break;
+                                    }
+                                case 27: {
+                                        message.deletionProtectionReason = reader.string();
+                                        break;
+                                    }
                                 default:
                                     reader.skipType(tag & 7);
                                     break;
@@ -2574,6 +3447,7 @@
                                 case 9:
                                 case 10:
                                 case 12:
+                                case 13:
                                     break;
                                 }
                             if (message.statusMessage != null && message.hasOwnProperty("statusMessage"))
@@ -2651,6 +3525,47 @@
                                         break;
                                     }
                             }
+                            if (message.replication != null && message.hasOwnProperty("replication")) {
+                                var error = $root.google.cloud.filestore.v1.Replication.verify(message.replication);
+                                if (error)
+                                    return "replication." + error;
+                            }
+                            if (message.tags != null && message.hasOwnProperty("tags")) {
+                                if (!$util.isObject(message.tags))
+                                    return "tags: object expected";
+                                var key = Object.keys(message.tags);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.tags[key[i]]))
+                                        return "tags: string{k:string} expected";
+                            }
+                            if (message.protocol != null && message.hasOwnProperty("protocol"))
+                                switch (message.protocol) {
+                                default:
+                                    return "protocol: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            if (message.customPerformanceSupported != null && message.hasOwnProperty("customPerformanceSupported"))
+                                if (typeof message.customPerformanceSupported !== "boolean")
+                                    return "customPerformanceSupported: boolean expected";
+                            if (message.performanceConfig != null && message.hasOwnProperty("performanceConfig")) {
+                                var error = $root.google.cloud.filestore.v1.Instance.PerformanceConfig.verify(message.performanceConfig);
+                                if (error)
+                                    return "performanceConfig." + error;
+                            }
+                            if (message.performanceLimits != null && message.hasOwnProperty("performanceLimits")) {
+                                var error = $root.google.cloud.filestore.v1.Instance.PerformanceLimits.verify(message.performanceLimits);
+                                if (error)
+                                    return "performanceLimits." + error;
+                            }
+                            if (message.deletionProtectionEnabled != null && message.hasOwnProperty("deletionProtectionEnabled"))
+                                if (typeof message.deletionProtectionEnabled !== "boolean")
+                                    return "deletionProtectionEnabled: boolean expected";
+                            if (message.deletionProtectionReason != null && message.hasOwnProperty("deletionProtectionReason"))
+                                if (!$util.isString(message.deletionProtectionReason))
+                                    return "deletionProtectionReason: string expected";
                             return null;
                         };
     
@@ -2720,6 +3635,10 @@
                             case "REVERTING":
                             case 12:
                                 message.state = 12;
+                                break;
+                            case "PROMOTING":
+                            case 13:
+                                message.state = 13;
                                 break;
                             }
                             if (object.statusMessage != null)
@@ -2832,6 +3751,54 @@
                                         break;
                                     }
                             }
+                            if (object.replication != null) {
+                                if (typeof object.replication !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.Instance.replication: object expected");
+                                message.replication = $root.google.cloud.filestore.v1.Replication.fromObject(object.replication);
+                            }
+                            if (object.tags) {
+                                if (typeof object.tags !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.Instance.tags: object expected");
+                                message.tags = {};
+                                for (var keys = Object.keys(object.tags), i = 0; i < keys.length; ++i)
+                                    message.tags[keys[i]] = String(object.tags[keys[i]]);
+                            }
+                            switch (object.protocol) {
+                            default:
+                                if (typeof object.protocol === "number") {
+                                    message.protocol = object.protocol;
+                                    break;
+                                }
+                                break;
+                            case "FILE_PROTOCOL_UNSPECIFIED":
+                            case 0:
+                                message.protocol = 0;
+                                break;
+                            case "NFS_V3":
+                            case 1:
+                                message.protocol = 1;
+                                break;
+                            case "NFS_V4_1":
+                            case 2:
+                                message.protocol = 2;
+                                break;
+                            }
+                            if (object.customPerformanceSupported != null)
+                                message.customPerformanceSupported = Boolean(object.customPerformanceSupported);
+                            if (object.performanceConfig != null) {
+                                if (typeof object.performanceConfig !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.Instance.performanceConfig: object expected");
+                                message.performanceConfig = $root.google.cloud.filestore.v1.Instance.PerformanceConfig.fromObject(object.performanceConfig);
+                            }
+                            if (object.performanceLimits != null) {
+                                if (typeof object.performanceLimits !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.Instance.performanceLimits: object expected");
+                                message.performanceLimits = $root.google.cloud.filestore.v1.Instance.PerformanceLimits.fromObject(object.performanceLimits);
+                            }
+                            if (object.deletionProtectionEnabled != null)
+                                message.deletionProtectionEnabled = Boolean(object.deletionProtectionEnabled);
+                            if (object.deletionProtectionReason != null)
+                                message.deletionProtectionReason = String(object.deletionProtectionReason);
                             return message;
                         };
     
@@ -2853,8 +3820,10 @@
                                 object.networks = [];
                                 object.suspensionReasons = [];
                             }
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.tags = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.description = "";
@@ -2866,6 +3835,13 @@
                                 object.satisfiesPzs = null;
                                 object.kmsKeyName = "";
                                 object.satisfiesPzi = false;
+                                object.replication = null;
+                                object.protocol = options.enums === String ? "FILE_PROTOCOL_UNSPECIFIED" : 0;
+                                object.customPerformanceSupported = false;
+                                object.performanceConfig = null;
+                                object.performanceLimits = null;
+                                object.deletionProtectionEnabled = false;
+                                object.deletionProtectionReason = "";
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -2908,6 +3884,25 @@
                             }
                             if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
                                 object.satisfiesPzi = message.satisfiesPzi;
+                            if (message.replication != null && message.hasOwnProperty("replication"))
+                                object.replication = $root.google.cloud.filestore.v1.Replication.toObject(message.replication, options);
+                            if (message.tags && (keys2 = Object.keys(message.tags)).length) {
+                                object.tags = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.tags[keys2[j]] = message.tags[keys2[j]];
+                            }
+                            if (message.protocol != null && message.hasOwnProperty("protocol"))
+                                object.protocol = options.enums === String ? $root.google.cloud.filestore.v1.Instance.FileProtocol[message.protocol] === undefined ? message.protocol : $root.google.cloud.filestore.v1.Instance.FileProtocol[message.protocol] : message.protocol;
+                            if (message.customPerformanceSupported != null && message.hasOwnProperty("customPerformanceSupported"))
+                                object.customPerformanceSupported = message.customPerformanceSupported;
+                            if (message.performanceConfig != null && message.hasOwnProperty("performanceConfig"))
+                                object.performanceConfig = $root.google.cloud.filestore.v1.Instance.PerformanceConfig.toObject(message.performanceConfig, options);
+                            if (message.performanceLimits != null && message.hasOwnProperty("performanceLimits"))
+                                object.performanceLimits = $root.google.cloud.filestore.v1.Instance.PerformanceLimits.toObject(message.performanceLimits, options);
+                            if (message.deletionProtectionEnabled != null && message.hasOwnProperty("deletionProtectionEnabled"))
+                                object.deletionProtectionEnabled = message.deletionProtectionEnabled;
+                            if (message.deletionProtectionReason != null && message.hasOwnProperty("deletionProtectionReason"))
+                                object.deletionProtectionReason = message.deletionProtectionReason;
                             return object;
                         };
     
@@ -2952,6 +3947,7 @@
                          * @property {number} SUSPENDING=9 SUSPENDING value
                          * @property {number} RESUMING=10 RESUMING value
                          * @property {number} REVERTING=12 REVERTING value
+                         * @property {number} PROMOTING=13 PROMOTING value
                          */
                         Instance.State = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
@@ -2966,6 +3962,7 @@
                             values[valuesById[9] = "SUSPENDING"] = 9;
                             values[valuesById[10] = "RESUMING"] = 10;
                             values[valuesById[12] = "REVERTING"] = 12;
+                            values[valuesById[13] = "PROMOTING"] = 13;
                             return values;
                         })();
     
@@ -3009,6 +4006,1092 @@
                             values[valuesById[0] = "SUSPENSION_REASON_UNSPECIFIED"] = 0;
                             values[valuesById[1] = "KMS_KEY_ISSUE"] = 1;
                             return values;
+                        })();
+    
+                        /**
+                         * FileProtocol enum.
+                         * @name google.cloud.filestore.v1.Instance.FileProtocol
+                         * @enum {number}
+                         * @property {number} FILE_PROTOCOL_UNSPECIFIED=0 FILE_PROTOCOL_UNSPECIFIED value
+                         * @property {number} NFS_V3=1 NFS_V3 value
+                         * @property {number} NFS_V4_1=2 NFS_V4_1 value
+                         */
+                        Instance.FileProtocol = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "FILE_PROTOCOL_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "NFS_V3"] = 1;
+                            values[valuesById[2] = "NFS_V4_1"] = 2;
+                            return values;
+                        })();
+    
+                        Instance.IOPSPerTB = (function() {
+    
+                            /**
+                             * Properties of a IOPSPerTB.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @interface IIOPSPerTB
+                             * @property {number|Long|null} [maxIopsPerTb] IOPSPerTB maxIopsPerTb
+                             */
+    
+                            /**
+                             * Constructs a new IOPSPerTB.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @classdesc Represents a IOPSPerTB.
+                             * @implements IIOPSPerTB
+                             * @constructor
+                             * @param {google.cloud.filestore.v1.Instance.IIOPSPerTB=} [properties] Properties to set
+                             */
+                            function IOPSPerTB(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * IOPSPerTB maxIopsPerTb.
+                             * @member {number|Long} maxIopsPerTb
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @instance
+                             */
+                            IOPSPerTB.prototype.maxIopsPerTb = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * Creates a new IOPSPerTB instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IIOPSPerTB=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1.Instance.IOPSPerTB} IOPSPerTB instance
+                             */
+                            IOPSPerTB.create = function create(properties) {
+                                return new IOPSPerTB(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified IOPSPerTB message. Does not implicitly {@link google.cloud.filestore.v1.Instance.IOPSPerTB.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IIOPSPerTB} message IOPSPerTB message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            IOPSPerTB.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.maxIopsPerTb != null && Object.hasOwnProperty.call(message, "maxIopsPerTb"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.maxIopsPerTb);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified IOPSPerTB message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.Instance.IOPSPerTB.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IIOPSPerTB} message IOPSPerTB message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            IOPSPerTB.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a IOPSPerTB message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1.Instance.IOPSPerTB} IOPSPerTB
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            IOPSPerTB.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Instance.IOPSPerTB();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 2: {
+                                            message.maxIopsPerTb = reader.int64();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a IOPSPerTB message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1.Instance.IOPSPerTB} IOPSPerTB
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            IOPSPerTB.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a IOPSPerTB message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            IOPSPerTB.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.maxIopsPerTb != null && message.hasOwnProperty("maxIopsPerTb"))
+                                    if (!$util.isInteger(message.maxIopsPerTb) && !(message.maxIopsPerTb && $util.isInteger(message.maxIopsPerTb.low) && $util.isInteger(message.maxIopsPerTb.high)))
+                                        return "maxIopsPerTb: integer|Long expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a IOPSPerTB message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1.Instance.IOPSPerTB} IOPSPerTB
+                             */
+                            IOPSPerTB.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1.Instance.IOPSPerTB)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1.Instance.IOPSPerTB();
+                                if (object.maxIopsPerTb != null)
+                                    if ($util.Long)
+                                        (message.maxIopsPerTb = $util.Long.fromValue(object.maxIopsPerTb)).unsigned = false;
+                                    else if (typeof object.maxIopsPerTb === "string")
+                                        message.maxIopsPerTb = parseInt(object.maxIopsPerTb, 10);
+                                    else if (typeof object.maxIopsPerTb === "number")
+                                        message.maxIopsPerTb = object.maxIopsPerTb;
+                                    else if (typeof object.maxIopsPerTb === "object")
+                                        message.maxIopsPerTb = new $util.LongBits(object.maxIopsPerTb.low >>> 0, object.maxIopsPerTb.high >>> 0).toNumber();
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a IOPSPerTB message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IOPSPerTB} message IOPSPerTB
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            IOPSPerTB.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxIopsPerTb = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxIopsPerTb = options.longs === String ? "0" : 0;
+                                if (message.maxIopsPerTb != null && message.hasOwnProperty("maxIopsPerTb"))
+                                    if (typeof message.maxIopsPerTb === "number")
+                                        object.maxIopsPerTb = options.longs === String ? String(message.maxIopsPerTb) : message.maxIopsPerTb;
+                                    else
+                                        object.maxIopsPerTb = options.longs === String ? $util.Long.prototype.toString.call(message.maxIopsPerTb) : options.longs === Number ? new $util.LongBits(message.maxIopsPerTb.low >>> 0, message.maxIopsPerTb.high >>> 0).toNumber() : message.maxIopsPerTb;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this IOPSPerTB to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            IOPSPerTB.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for IOPSPerTB
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1.Instance.IOPSPerTB
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            IOPSPerTB.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1.Instance.IOPSPerTB";
+                            };
+    
+                            return IOPSPerTB;
+                        })();
+    
+                        Instance.FixedIOPS = (function() {
+    
+                            /**
+                             * Properties of a FixedIOPS.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @interface IFixedIOPS
+                             * @property {number|Long|null} [maxIops] FixedIOPS maxIops
+                             */
+    
+                            /**
+                             * Constructs a new FixedIOPS.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @classdesc Represents a FixedIOPS.
+                             * @implements IFixedIOPS
+                             * @constructor
+                             * @param {google.cloud.filestore.v1.Instance.IFixedIOPS=} [properties] Properties to set
+                             */
+                            function FixedIOPS(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * FixedIOPS maxIops.
+                             * @member {number|Long} maxIops
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @instance
+                             */
+                            FixedIOPS.prototype.maxIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * Creates a new FixedIOPS instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IFixedIOPS=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1.Instance.FixedIOPS} FixedIOPS instance
+                             */
+                            FixedIOPS.create = function create(properties) {
+                                return new FixedIOPS(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified FixedIOPS message. Does not implicitly {@link google.cloud.filestore.v1.Instance.FixedIOPS.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IFixedIOPS} message FixedIOPS message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            FixedIOPS.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.maxIops != null && Object.hasOwnProperty.call(message, "maxIops"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.maxIops);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified FixedIOPS message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.Instance.FixedIOPS.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IFixedIOPS} message FixedIOPS message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            FixedIOPS.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a FixedIOPS message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1.Instance.FixedIOPS} FixedIOPS
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            FixedIOPS.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Instance.FixedIOPS();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 2: {
+                                            message.maxIops = reader.int64();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a FixedIOPS message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1.Instance.FixedIOPS} FixedIOPS
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            FixedIOPS.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a FixedIOPS message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            FixedIOPS.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (!$util.isInteger(message.maxIops) && !(message.maxIops && $util.isInteger(message.maxIops.low) && $util.isInteger(message.maxIops.high)))
+                                        return "maxIops: integer|Long expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a FixedIOPS message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1.Instance.FixedIOPS} FixedIOPS
+                             */
+                            FixedIOPS.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1.Instance.FixedIOPS)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1.Instance.FixedIOPS();
+                                if (object.maxIops != null)
+                                    if ($util.Long)
+                                        (message.maxIops = $util.Long.fromValue(object.maxIops)).unsigned = false;
+                                    else if (typeof object.maxIops === "string")
+                                        message.maxIops = parseInt(object.maxIops, 10);
+                                    else if (typeof object.maxIops === "number")
+                                        message.maxIops = object.maxIops;
+                                    else if (typeof object.maxIops === "object")
+                                        message.maxIops = new $util.LongBits(object.maxIops.low >>> 0, object.maxIops.high >>> 0).toNumber();
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a FixedIOPS message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.FixedIOPS} message FixedIOPS
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            FixedIOPS.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxIops = options.longs === String ? "0" : 0;
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (typeof message.maxIops === "number")
+                                        object.maxIops = options.longs === String ? String(message.maxIops) : message.maxIops;
+                                    else
+                                        object.maxIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxIops) : options.longs === Number ? new $util.LongBits(message.maxIops.low >>> 0, message.maxIops.high >>> 0).toNumber() : message.maxIops;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this FixedIOPS to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            FixedIOPS.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for FixedIOPS
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1.Instance.FixedIOPS
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            FixedIOPS.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1.Instance.FixedIOPS";
+                            };
+    
+                            return FixedIOPS;
+                        })();
+    
+                        Instance.PerformanceConfig = (function() {
+    
+                            /**
+                             * Properties of a PerformanceConfig.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @interface IPerformanceConfig
+                             * @property {google.cloud.filestore.v1.Instance.IIOPSPerTB|null} [iopsPerTb] PerformanceConfig iopsPerTb
+                             * @property {google.cloud.filestore.v1.Instance.IFixedIOPS|null} [fixedIops] PerformanceConfig fixedIops
+                             */
+    
+                            /**
+                             * Constructs a new PerformanceConfig.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @classdesc Represents a PerformanceConfig.
+                             * @implements IPerformanceConfig
+                             * @constructor
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceConfig=} [properties] Properties to set
+                             */
+                            function PerformanceConfig(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * PerformanceConfig iopsPerTb.
+                             * @member {google.cloud.filestore.v1.Instance.IIOPSPerTB|null|undefined} iopsPerTb
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @instance
+                             */
+                            PerformanceConfig.prototype.iopsPerTb = null;
+    
+                            /**
+                             * PerformanceConfig fixedIops.
+                             * @member {google.cloud.filestore.v1.Instance.IFixedIOPS|null|undefined} fixedIops
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @instance
+                             */
+                            PerformanceConfig.prototype.fixedIops = null;
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            /**
+                             * PerformanceConfig mode.
+                             * @member {"iopsPerTb"|"fixedIops"|undefined} mode
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @instance
+                             */
+                            Object.defineProperty(PerformanceConfig.prototype, "mode", {
+                                get: $util.oneOfGetter($oneOfFields = ["iopsPerTb", "fixedIops"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new PerformanceConfig instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceConfig=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceConfig} PerformanceConfig instance
+                             */
+                            PerformanceConfig.create = function create(properties) {
+                                return new PerformanceConfig(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceConfig message. Does not implicitly {@link google.cloud.filestore.v1.Instance.PerformanceConfig.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceConfig} message PerformanceConfig message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceConfig.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.fixedIops != null && Object.hasOwnProperty.call(message, "fixedIops"))
+                                    $root.google.cloud.filestore.v1.Instance.FixedIOPS.encode(message.fixedIops, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.iopsPerTb != null && Object.hasOwnProperty.call(message, "iopsPerTb"))
+                                    $root.google.cloud.filestore.v1.Instance.IOPSPerTB.encode(message.iopsPerTb, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceConfig message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.Instance.PerformanceConfig.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceConfig} message PerformanceConfig message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PerformanceConfig message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceConfig} PerformanceConfig
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceConfig.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Instance.PerformanceConfig();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 4: {
+                                            message.iopsPerTb = $root.google.cloud.filestore.v1.Instance.IOPSPerTB.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.fixedIops = $root.google.cloud.filestore.v1.Instance.FixedIOPS.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PerformanceConfig message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceConfig} PerformanceConfig
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceConfig.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PerformanceConfig message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PerformanceConfig.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.iopsPerTb != null && message.hasOwnProperty("iopsPerTb")) {
+                                    properties.mode = 1;
+                                    {
+                                        var error = $root.google.cloud.filestore.v1.Instance.IOPSPerTB.verify(message.iopsPerTb);
+                                        if (error)
+                                            return "iopsPerTb." + error;
+                                    }
+                                }
+                                if (message.fixedIops != null && message.hasOwnProperty("fixedIops")) {
+                                    if (properties.mode === 1)
+                                        return "mode: multiple values";
+                                    properties.mode = 1;
+                                    {
+                                        var error = $root.google.cloud.filestore.v1.Instance.FixedIOPS.verify(message.fixedIops);
+                                        if (error)
+                                            return "fixedIops." + error;
+                                    }
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PerformanceConfig message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceConfig} PerformanceConfig
+                             */
+                            PerformanceConfig.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1.Instance.PerformanceConfig)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1.Instance.PerformanceConfig();
+                                if (object.iopsPerTb != null) {
+                                    if (typeof object.iopsPerTb !== "object")
+                                        throw TypeError(".google.cloud.filestore.v1.Instance.PerformanceConfig.iopsPerTb: object expected");
+                                    message.iopsPerTb = $root.google.cloud.filestore.v1.Instance.IOPSPerTB.fromObject(object.iopsPerTb);
+                                }
+                                if (object.fixedIops != null) {
+                                    if (typeof object.fixedIops !== "object")
+                                        throw TypeError(".google.cloud.filestore.v1.Instance.PerformanceConfig.fixedIops: object expected");
+                                    message.fixedIops = $root.google.cloud.filestore.v1.Instance.FixedIOPS.fromObject(object.fixedIops);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a PerformanceConfig message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.PerformanceConfig} message PerformanceConfig
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PerformanceConfig.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (message.fixedIops != null && message.hasOwnProperty("fixedIops")) {
+                                    object.fixedIops = $root.google.cloud.filestore.v1.Instance.FixedIOPS.toObject(message.fixedIops, options);
+                                    if (options.oneofs)
+                                        object.mode = "fixedIops";
+                                }
+                                if (message.iopsPerTb != null && message.hasOwnProperty("iopsPerTb")) {
+                                    object.iopsPerTb = $root.google.cloud.filestore.v1.Instance.IOPSPerTB.toObject(message.iopsPerTb, options);
+                                    if (options.oneofs)
+                                        object.mode = "iopsPerTb";
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this PerformanceConfig to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PerformanceConfig.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PerformanceConfig
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceConfig
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PerformanceConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1.Instance.PerformanceConfig";
+                            };
+    
+                            return PerformanceConfig;
+                        })();
+    
+                        Instance.PerformanceLimits = (function() {
+    
+                            /**
+                             * Properties of a PerformanceLimits.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @interface IPerformanceLimits
+                             * @property {number|Long|null} [maxIops] PerformanceLimits maxIops
+                             * @property {number|Long|null} [maxReadIops] PerformanceLimits maxReadIops
+                             * @property {number|Long|null} [maxWriteIops] PerformanceLimits maxWriteIops
+                             * @property {number|Long|null} [maxReadThroughputBps] PerformanceLimits maxReadThroughputBps
+                             * @property {number|Long|null} [maxWriteThroughputBps] PerformanceLimits maxWriteThroughputBps
+                             */
+    
+                            /**
+                             * Constructs a new PerformanceLimits.
+                             * @memberof google.cloud.filestore.v1.Instance
+                             * @classdesc Represents a PerformanceLimits.
+                             * @implements IPerformanceLimits
+                             * @constructor
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceLimits=} [properties] Properties to set
+                             */
+                            function PerformanceLimits(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * PerformanceLimits maxIops.
+                             * @member {number|Long} maxIops
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxReadIops.
+                             * @member {number|Long} maxReadIops
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxReadIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxWriteIops.
+                             * @member {number|Long} maxWriteIops
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxWriteIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxReadThroughputBps.
+                             * @member {number|Long} maxReadThroughputBps
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxReadThroughputBps = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxWriteThroughputBps.
+                             * @member {number|Long} maxWriteThroughputBps
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxWriteThroughputBps = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * Creates a new PerformanceLimits instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceLimits=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceLimits} PerformanceLimits instance
+                             */
+                            PerformanceLimits.create = function create(properties) {
+                                return new PerformanceLimits(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceLimits message. Does not implicitly {@link google.cloud.filestore.v1.Instance.PerformanceLimits.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceLimits} message PerformanceLimits message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceLimits.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.maxReadIops != null && Object.hasOwnProperty.call(message, "maxReadIops"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int64(message.maxReadIops);
+                                if (message.maxWriteIops != null && Object.hasOwnProperty.call(message, "maxWriteIops"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.maxWriteIops);
+                                if (message.maxReadThroughputBps != null && Object.hasOwnProperty.call(message, "maxReadThroughputBps"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).int64(message.maxReadThroughputBps);
+                                if (message.maxWriteThroughputBps != null && Object.hasOwnProperty.call(message, "maxWriteThroughputBps"))
+                                    writer.uint32(/* id 6, wireType 0 =*/48).int64(message.maxWriteThroughputBps);
+                                if (message.maxIops != null && Object.hasOwnProperty.call(message, "maxIops"))
+                                    writer.uint32(/* id 7, wireType 0 =*/56).int64(message.maxIops);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceLimits message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.Instance.PerformanceLimits.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.IPerformanceLimits} message PerformanceLimits message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceLimits.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PerformanceLimits message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceLimits} PerformanceLimits
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceLimits.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Instance.PerformanceLimits();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 7: {
+                                            message.maxIops = reader.int64();
+                                            break;
+                                        }
+                                    case 1: {
+                                            message.maxReadIops = reader.int64();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.maxWriteIops = reader.int64();
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.maxReadThroughputBps = reader.int64();
+                                            break;
+                                        }
+                                    case 6: {
+                                            message.maxWriteThroughputBps = reader.int64();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PerformanceLimits message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceLimits} PerformanceLimits
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceLimits.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PerformanceLimits message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PerformanceLimits.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (!$util.isInteger(message.maxIops) && !(message.maxIops && $util.isInteger(message.maxIops.low) && $util.isInteger(message.maxIops.high)))
+                                        return "maxIops: integer|Long expected";
+                                if (message.maxReadIops != null && message.hasOwnProperty("maxReadIops"))
+                                    if (!$util.isInteger(message.maxReadIops) && !(message.maxReadIops && $util.isInteger(message.maxReadIops.low) && $util.isInteger(message.maxReadIops.high)))
+                                        return "maxReadIops: integer|Long expected";
+                                if (message.maxWriteIops != null && message.hasOwnProperty("maxWriteIops"))
+                                    if (!$util.isInteger(message.maxWriteIops) && !(message.maxWriteIops && $util.isInteger(message.maxWriteIops.low) && $util.isInteger(message.maxWriteIops.high)))
+                                        return "maxWriteIops: integer|Long expected";
+                                if (message.maxReadThroughputBps != null && message.hasOwnProperty("maxReadThroughputBps"))
+                                    if (!$util.isInteger(message.maxReadThroughputBps) && !(message.maxReadThroughputBps && $util.isInteger(message.maxReadThroughputBps.low) && $util.isInteger(message.maxReadThroughputBps.high)))
+                                        return "maxReadThroughputBps: integer|Long expected";
+                                if (message.maxWriteThroughputBps != null && message.hasOwnProperty("maxWriteThroughputBps"))
+                                    if (!$util.isInteger(message.maxWriteThroughputBps) && !(message.maxWriteThroughputBps && $util.isInteger(message.maxWriteThroughputBps.low) && $util.isInteger(message.maxWriteThroughputBps.high)))
+                                        return "maxWriteThroughputBps: integer|Long expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PerformanceLimits message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1.Instance.PerformanceLimits} PerformanceLimits
+                             */
+                            PerformanceLimits.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1.Instance.PerformanceLimits)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1.Instance.PerformanceLimits();
+                                if (object.maxIops != null)
+                                    if ($util.Long)
+                                        (message.maxIops = $util.Long.fromValue(object.maxIops)).unsigned = false;
+                                    else if (typeof object.maxIops === "string")
+                                        message.maxIops = parseInt(object.maxIops, 10);
+                                    else if (typeof object.maxIops === "number")
+                                        message.maxIops = object.maxIops;
+                                    else if (typeof object.maxIops === "object")
+                                        message.maxIops = new $util.LongBits(object.maxIops.low >>> 0, object.maxIops.high >>> 0).toNumber();
+                                if (object.maxReadIops != null)
+                                    if ($util.Long)
+                                        (message.maxReadIops = $util.Long.fromValue(object.maxReadIops)).unsigned = false;
+                                    else if (typeof object.maxReadIops === "string")
+                                        message.maxReadIops = parseInt(object.maxReadIops, 10);
+                                    else if (typeof object.maxReadIops === "number")
+                                        message.maxReadIops = object.maxReadIops;
+                                    else if (typeof object.maxReadIops === "object")
+                                        message.maxReadIops = new $util.LongBits(object.maxReadIops.low >>> 0, object.maxReadIops.high >>> 0).toNumber();
+                                if (object.maxWriteIops != null)
+                                    if ($util.Long)
+                                        (message.maxWriteIops = $util.Long.fromValue(object.maxWriteIops)).unsigned = false;
+                                    else if (typeof object.maxWriteIops === "string")
+                                        message.maxWriteIops = parseInt(object.maxWriteIops, 10);
+                                    else if (typeof object.maxWriteIops === "number")
+                                        message.maxWriteIops = object.maxWriteIops;
+                                    else if (typeof object.maxWriteIops === "object")
+                                        message.maxWriteIops = new $util.LongBits(object.maxWriteIops.low >>> 0, object.maxWriteIops.high >>> 0).toNumber();
+                                if (object.maxReadThroughputBps != null)
+                                    if ($util.Long)
+                                        (message.maxReadThroughputBps = $util.Long.fromValue(object.maxReadThroughputBps)).unsigned = false;
+                                    else if (typeof object.maxReadThroughputBps === "string")
+                                        message.maxReadThroughputBps = parseInt(object.maxReadThroughputBps, 10);
+                                    else if (typeof object.maxReadThroughputBps === "number")
+                                        message.maxReadThroughputBps = object.maxReadThroughputBps;
+                                    else if (typeof object.maxReadThroughputBps === "object")
+                                        message.maxReadThroughputBps = new $util.LongBits(object.maxReadThroughputBps.low >>> 0, object.maxReadThroughputBps.high >>> 0).toNumber();
+                                if (object.maxWriteThroughputBps != null)
+                                    if ($util.Long)
+                                        (message.maxWriteThroughputBps = $util.Long.fromValue(object.maxWriteThroughputBps)).unsigned = false;
+                                    else if (typeof object.maxWriteThroughputBps === "string")
+                                        message.maxWriteThroughputBps = parseInt(object.maxWriteThroughputBps, 10);
+                                    else if (typeof object.maxWriteThroughputBps === "number")
+                                        message.maxWriteThroughputBps = object.maxWriteThroughputBps;
+                                    else if (typeof object.maxWriteThroughputBps === "object")
+                                        message.maxWriteThroughputBps = new $util.LongBits(object.maxWriteThroughputBps.low >>> 0, object.maxWriteThroughputBps.high >>> 0).toNumber();
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a PerformanceLimits message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1.Instance.PerformanceLimits} message PerformanceLimits
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PerformanceLimits.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxReadIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxReadIops = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxWriteIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxWriteIops = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxReadThroughputBps = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxReadThroughputBps = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxWriteThroughputBps = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxWriteThroughputBps = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxIops = options.longs === String ? "0" : 0;
+                                }
+                                if (message.maxReadIops != null && message.hasOwnProperty("maxReadIops"))
+                                    if (typeof message.maxReadIops === "number")
+                                        object.maxReadIops = options.longs === String ? String(message.maxReadIops) : message.maxReadIops;
+                                    else
+                                        object.maxReadIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxReadIops) : options.longs === Number ? new $util.LongBits(message.maxReadIops.low >>> 0, message.maxReadIops.high >>> 0).toNumber() : message.maxReadIops;
+                                if (message.maxWriteIops != null && message.hasOwnProperty("maxWriteIops"))
+                                    if (typeof message.maxWriteIops === "number")
+                                        object.maxWriteIops = options.longs === String ? String(message.maxWriteIops) : message.maxWriteIops;
+                                    else
+                                        object.maxWriteIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxWriteIops) : options.longs === Number ? new $util.LongBits(message.maxWriteIops.low >>> 0, message.maxWriteIops.high >>> 0).toNumber() : message.maxWriteIops;
+                                if (message.maxReadThroughputBps != null && message.hasOwnProperty("maxReadThroughputBps"))
+                                    if (typeof message.maxReadThroughputBps === "number")
+                                        object.maxReadThroughputBps = options.longs === String ? String(message.maxReadThroughputBps) : message.maxReadThroughputBps;
+                                    else
+                                        object.maxReadThroughputBps = options.longs === String ? $util.Long.prototype.toString.call(message.maxReadThroughputBps) : options.longs === Number ? new $util.LongBits(message.maxReadThroughputBps.low >>> 0, message.maxReadThroughputBps.high >>> 0).toNumber() : message.maxReadThroughputBps;
+                                if (message.maxWriteThroughputBps != null && message.hasOwnProperty("maxWriteThroughputBps"))
+                                    if (typeof message.maxWriteThroughputBps === "number")
+                                        object.maxWriteThroughputBps = options.longs === String ? String(message.maxWriteThroughputBps) : message.maxWriteThroughputBps;
+                                    else
+                                        object.maxWriteThroughputBps = options.longs === String ? $util.Long.prototype.toString.call(message.maxWriteThroughputBps) : options.longs === Number ? new $util.LongBits(message.maxWriteThroughputBps.low >>> 0, message.maxWriteThroughputBps.high >>> 0).toNumber() : message.maxWriteThroughputBps;
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (typeof message.maxIops === "number")
+                                        object.maxIops = options.longs === String ? String(message.maxIops) : message.maxIops;
+                                    else
+                                        object.maxIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxIops) : options.longs === Number ? new $util.LongBits(message.maxIops.low >>> 0, message.maxIops.high >>> 0).toNumber() : message.maxIops;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this PerformanceLimits to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PerformanceLimits.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PerformanceLimits
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1.Instance.PerformanceLimits
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PerformanceLimits.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1.Instance.PerformanceLimits";
+                            };
+    
+                            return PerformanceLimits;
                         })();
     
                         return Instance;
@@ -3121,12 +5204,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateInstanceRequest.decode = function decode(reader, length) {
+                        CreateInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.CreateInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -3354,12 +5439,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetInstanceRequest.decode = function decode(reader, length) {
+                        GetInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.GetInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -3568,12 +5655,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateInstanceRequest.decode = function decode(reader, length) {
+                        UpdateInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.UpdateInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -3830,12 +5919,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RestoreInstanceRequest.decode = function decode(reader, length) {
+                        RestoreInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.RestoreInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4074,12 +6165,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RevertInstanceRequest.decode = function decode(reader, length) {
+                        RevertInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.RevertInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4301,12 +6394,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteInstanceRequest.decode = function decode(reader, length) {
+                        DeleteInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.DeleteInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4561,12 +6656,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListInstancesRequest.decode = function decode(reader, length) {
+                        ListInstancesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ListInstancesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -4839,12 +6936,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListInstancesResponse.decode = function decode(reader, length) {
+                        ListInstancesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ListInstancesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.instances && message.instances.length))
@@ -5028,6 +7127,7 @@
                          * @property {google.protobuf.ITimestamp|null} [createTime] Snapshot createTime
                          * @property {Object.<string,string>|null} [labels] Snapshot labels
                          * @property {number|Long|null} [filesystemUsedBytes] Snapshot filesystemUsedBytes
+                         * @property {Object.<string,string>|null} [tags] Snapshot tags
                          */
     
                         /**
@@ -5040,6 +7140,7 @@
                          */
                         function Snapshot(properties) {
                             this.labels = {};
+                            this.tags = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -5095,6 +7196,14 @@
                         Snapshot.prototype.filesystemUsedBytes = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
     
                         /**
+                         * Snapshot tags.
+                         * @member {Object.<string,string>} tags
+                         * @memberof google.cloud.filestore.v1.Snapshot
+                         * @instance
+                         */
+                        Snapshot.prototype.tags = $util.emptyObject;
+    
+                        /**
                          * Creates a new Snapshot instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1.Snapshot
@@ -5131,6 +7240,9 @@
                                     writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
                             if (message.filesystemUsedBytes != null && Object.hasOwnProperty.call(message, "filesystemUsedBytes"))
                                 writer.uint32(/* id 6, wireType 0 =*/48).int64(message.filesystemUsedBytes);
+                            if (message.tags != null && Object.hasOwnProperty.call(message, "tags"))
+                                for (var keys = Object.keys(message.tags), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.tags[keys[i]]).ldelim();
                             return writer;
                         };
     
@@ -5158,12 +7270,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Snapshot.decode = function decode(reader, length) {
+                        Snapshot.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Snapshot(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5206,6 +7320,29 @@
                                     }
                                 case 6: {
                                         message.filesystemUsedBytes = reader.int64();
+                                        break;
+                                    }
+                                case 7: {
+                                        if (message.tags === $util.emptyObject)
+                                            message.tags = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.tags[key] = value;
                                         break;
                                     }
                                 default:
@@ -5275,6 +7412,14 @@
                             if (message.filesystemUsedBytes != null && message.hasOwnProperty("filesystemUsedBytes"))
                                 if (!$util.isInteger(message.filesystemUsedBytes) && !(message.filesystemUsedBytes && $util.isInteger(message.filesystemUsedBytes.low) && $util.isInteger(message.filesystemUsedBytes.high)))
                                     return "filesystemUsedBytes: integer|Long expected";
+                            if (message.tags != null && message.hasOwnProperty("tags")) {
+                                if (!$util.isObject(message.tags))
+                                    return "tags: object expected";
+                                var key = Object.keys(message.tags);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.tags[key[i]]))
+                                        return "tags: string{k:string} expected";
+                            }
                             return null;
                         };
     
@@ -5339,6 +7484,13 @@
                                     message.filesystemUsedBytes = object.filesystemUsedBytes;
                                 else if (typeof object.filesystemUsedBytes === "object")
                                     message.filesystemUsedBytes = new $util.LongBits(object.filesystemUsedBytes.low >>> 0, object.filesystemUsedBytes.high >>> 0).toNumber();
+                            if (object.tags) {
+                                if (typeof object.tags !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.Snapshot.tags: object expected");
+                                message.tags = {};
+                                for (var keys = Object.keys(object.tags), i = 0; i < keys.length; ++i)
+                                    message.tags[keys[i]] = String(object.tags[keys[i]]);
+                            }
                             return message;
                         };
     
@@ -5355,8 +7507,10 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.tags = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.description = "";
@@ -5387,6 +7541,11 @@
                                     object.filesystemUsedBytes = options.longs === String ? String(message.filesystemUsedBytes) : message.filesystemUsedBytes;
                                 else
                                     object.filesystemUsedBytes = options.longs === String ? $util.Long.prototype.toString.call(message.filesystemUsedBytes) : options.longs === Number ? new $util.LongBits(message.filesystemUsedBytes.low >>> 0, message.filesystemUsedBytes.high >>> 0).toNumber() : message.filesystemUsedBytes;
+                            if (message.tags && (keys2 = Object.keys(message.tags)).length) {
+                                object.tags = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.tags[keys2[j]] = message.tags[keys2[j]];
+                            }
                             return object;
                         };
     
@@ -5544,12 +7703,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateSnapshotRequest.decode = function decode(reader, length) {
+                        CreateSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.CreateSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -5777,12 +7938,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetSnapshotRequest.decode = function decode(reader, length) {
+                        GetSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.GetSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5980,12 +8143,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteSnapshotRequest.decode = function decode(reader, length) {
+                        DeleteSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.DeleteSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6194,12 +8359,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateSnapshotRequest.decode = function decode(reader, length) {
+                        UpdateSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.UpdateSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -6346,6 +8513,7 @@
                          * @property {string|null} [pageToken] ListSnapshotsRequest pageToken
                          * @property {string|null} [orderBy] ListSnapshotsRequest orderBy
                          * @property {string|null} [filter] ListSnapshotsRequest filter
+                         * @property {boolean|null} [returnPartialSuccess] ListSnapshotsRequest returnPartialSuccess
                          */
     
                         /**
@@ -6404,6 +8572,14 @@
                         ListSnapshotsRequest.prototype.filter = "";
     
                         /**
+                         * ListSnapshotsRequest returnPartialSuccess.
+                         * @member {boolean} returnPartialSuccess
+                         * @memberof google.cloud.filestore.v1.ListSnapshotsRequest
+                         * @instance
+                         */
+                        ListSnapshotsRequest.prototype.returnPartialSuccess = false;
+    
+                        /**
                          * Creates a new ListSnapshotsRequest instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1.ListSnapshotsRequest
@@ -6437,6 +8613,8 @@
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.orderBy);
                             if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
                                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.filter);
+                            if (message.returnPartialSuccess != null && Object.hasOwnProperty.call(message, "returnPartialSuccess"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.returnPartialSuccess);
                             return writer;
                         };
     
@@ -6464,12 +8642,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSnapshotsRequest.decode = function decode(reader, length) {
+                        ListSnapshotsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ListSnapshotsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -6489,6 +8669,10 @@
                                     }
                                 case 5: {
                                         message.filter = reader.string();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.returnPartialSuccess = reader.bool();
                                         break;
                                     }
                                 default:
@@ -6541,6 +8725,9 @@
                             if (message.filter != null && message.hasOwnProperty("filter"))
                                 if (!$util.isString(message.filter))
                                     return "filter: string expected";
+                            if (message.returnPartialSuccess != null && message.hasOwnProperty("returnPartialSuccess"))
+                                if (typeof message.returnPartialSuccess !== "boolean")
+                                    return "returnPartialSuccess: boolean expected";
                             return null;
                         };
     
@@ -6566,6 +8753,8 @@
                                 message.orderBy = String(object.orderBy);
                             if (object.filter != null)
                                 message.filter = String(object.filter);
+                            if (object.returnPartialSuccess != null)
+                                message.returnPartialSuccess = Boolean(object.returnPartialSuccess);
                             return message;
                         };
     
@@ -6588,6 +8777,7 @@
                                 object.pageToken = "";
                                 object.orderBy = "";
                                 object.filter = "";
+                                object.returnPartialSuccess = false;
                             }
                             if (message.parent != null && message.hasOwnProperty("parent"))
                                 object.parent = message.parent;
@@ -6599,6 +8789,8 @@
                                 object.orderBy = message.orderBy;
                             if (message.filter != null && message.hasOwnProperty("filter"))
                                 object.filter = message.filter;
+                            if (message.returnPartialSuccess != null && message.hasOwnProperty("returnPartialSuccess"))
+                                object.returnPartialSuccess = message.returnPartialSuccess;
                             return object;
                         };
     
@@ -6639,6 +8831,7 @@
                          * @interface IListSnapshotsResponse
                          * @property {Array.<google.cloud.filestore.v1.ISnapshot>|null} [snapshots] ListSnapshotsResponse snapshots
                          * @property {string|null} [nextPageToken] ListSnapshotsResponse nextPageToken
+                         * @property {Array.<string>|null} [unreachable] ListSnapshotsResponse unreachable
                          */
     
                         /**
@@ -6651,6 +8844,7 @@
                          */
                         function ListSnapshotsResponse(properties) {
                             this.snapshots = [];
+                            this.unreachable = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -6672,6 +8866,14 @@
                          * @instance
                          */
                         ListSnapshotsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * ListSnapshotsResponse unreachable.
+                         * @member {Array.<string>} unreachable
+                         * @memberof google.cloud.filestore.v1.ListSnapshotsResponse
+                         * @instance
+                         */
+                        ListSnapshotsResponse.prototype.unreachable = $util.emptyArray;
     
                         /**
                          * Creates a new ListSnapshotsResponse instance using the specified properties.
@@ -6702,6 +8904,9 @@
                                     $root.google.cloud.filestore.v1.Snapshot.encode(message.snapshots[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                             if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            if (message.unreachable != null && message.unreachable.length)
+                                for (var i = 0; i < message.unreachable.length; ++i)
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.unreachable[i]);
                             return writer;
                         };
     
@@ -6729,12 +8934,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSnapshotsResponse.decode = function decode(reader, length) {
+                        ListSnapshotsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ListSnapshotsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.snapshots && message.snapshots.length))
@@ -6744,6 +8951,12 @@
                                     }
                                 case 2: {
                                         message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        if (!(message.unreachable && message.unreachable.length))
+                                            message.unreachable = [];
+                                        message.unreachable.push(reader.string());
                                         break;
                                     }
                                 default:
@@ -6793,6 +9006,13 @@
                             if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
                                 if (!$util.isString(message.nextPageToken))
                                     return "nextPageToken: string expected";
+                            if (message.unreachable != null && message.hasOwnProperty("unreachable")) {
+                                if (!Array.isArray(message.unreachable))
+                                    return "unreachable: array expected";
+                                for (var i = 0; i < message.unreachable.length; ++i)
+                                    if (!$util.isString(message.unreachable[i]))
+                                        return "unreachable: string[] expected";
+                            }
                             return null;
                         };
     
@@ -6820,6 +9040,13 @@
                             }
                             if (object.nextPageToken != null)
                                 message.nextPageToken = String(object.nextPageToken);
+                            if (object.unreachable) {
+                                if (!Array.isArray(object.unreachable))
+                                    throw TypeError(".google.cloud.filestore.v1.ListSnapshotsResponse.unreachable: array expected");
+                                message.unreachable = [];
+                                for (var i = 0; i < object.unreachable.length; ++i)
+                                    message.unreachable[i] = String(object.unreachable[i]);
+                            }
                             return message;
                         };
     
@@ -6836,8 +9063,10 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.arrays || options.defaults)
+                            if (options.arrays || options.defaults) {
                                 object.snapshots = [];
+                                object.unreachable = [];
+                            }
                             if (options.defaults)
                                 object.nextPageToken = "";
                             if (message.snapshots && message.snapshots.length) {
@@ -6847,6 +9076,11 @@
                             }
                             if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
                                 object.nextPageToken = message.nextPageToken;
+                            if (message.unreachable && message.unreachable.length) {
+                                object.unreachable = [];
+                                for (var j = 0; j < message.unreachable.length; ++j)
+                                    object.unreachable[j] = message.unreachable[j];
+                            }
                             return object;
                         };
     
@@ -6899,6 +9133,8 @@
                          * @property {google.protobuf.IBoolValue|null} [satisfiesPzs] Backup satisfiesPzs
                          * @property {boolean|null} [satisfiesPzi] Backup satisfiesPzi
                          * @property {string|null} [kmsKey] Backup kmsKey
+                         * @property {Object.<string,string>|null} [tags] Backup tags
+                         * @property {google.cloud.filestore.v1.Instance.FileProtocol|null} [fileSystemProtocol] Backup fileSystemProtocol
                          */
     
                         /**
@@ -6911,6 +9147,7 @@
                          */
                         function Backup(properties) {
                             this.labels = {};
+                            this.tags = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -7030,6 +9267,22 @@
                         Backup.prototype.kmsKey = "";
     
                         /**
+                         * Backup tags.
+                         * @member {Object.<string,string>} tags
+                         * @memberof google.cloud.filestore.v1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.tags = $util.emptyObject;
+    
+                        /**
+                         * Backup fileSystemProtocol.
+                         * @member {google.cloud.filestore.v1.Instance.FileProtocol} fileSystemProtocol
+                         * @memberof google.cloud.filestore.v1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.fileSystemProtocol = 0;
+    
+                        /**
                          * Creates a new Backup instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1.Backup
@@ -7082,6 +9335,11 @@
                                 writer.uint32(/* id 13, wireType 2 =*/106).string(message.kmsKey);
                             if (message.satisfiesPzi != null && Object.hasOwnProperty.call(message, "satisfiesPzi"))
                                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.satisfiesPzi);
+                            if (message.tags != null && Object.hasOwnProperty.call(message, "tags"))
+                                for (var keys = Object.keys(message.tags), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 15, wireType 2 =*/122).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.tags[keys[i]]).ldelim();
+                            if (message.fileSystemProtocol != null && Object.hasOwnProperty.call(message, "fileSystemProtocol"))
+                                writer.uint32(/* id 16, wireType 0 =*/128).int32(message.fileSystemProtocol);
                             return writer;
                         };
     
@@ -7109,12 +9367,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Backup.decode = function decode(reader, length) {
+                        Backup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.Backup(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -7189,6 +9449,33 @@
                                     }
                                 case 13: {
                                         message.kmsKey = reader.string();
+                                        break;
+                                    }
+                                case 15: {
+                                        if (message.tags === $util.emptyObject)
+                                            message.tags = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.tags[key] = value;
+                                        break;
+                                    }
+                                case 16: {
+                                        message.fileSystemProtocol = reader.int32();
                                         break;
                                     }
                                 default:
@@ -7298,6 +9585,23 @@
                             if (message.kmsKey != null && message.hasOwnProperty("kmsKey"))
                                 if (!$util.isString(message.kmsKey))
                                     return "kmsKey: string expected";
+                            if (message.tags != null && message.hasOwnProperty("tags")) {
+                                if (!$util.isObject(message.tags))
+                                    return "tags: object expected";
+                                var key = Object.keys(message.tags);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.tags[key[i]]))
+                                        return "tags: string{k:string} expected";
+                            }
+                            if (message.fileSystemProtocol != null && message.hasOwnProperty("fileSystemProtocol"))
+                                switch (message.fileSystemProtocol) {
+                                default:
+                                    return "fileSystemProtocol: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
                             return null;
                         };
     
@@ -7445,6 +9749,33 @@
                                 message.satisfiesPzi = Boolean(object.satisfiesPzi);
                             if (object.kmsKey != null)
                                 message.kmsKey = String(object.kmsKey);
+                            if (object.tags) {
+                                if (typeof object.tags !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1.Backup.tags: object expected");
+                                message.tags = {};
+                                for (var keys = Object.keys(object.tags), i = 0; i < keys.length; ++i)
+                                    message.tags[keys[i]] = String(object.tags[keys[i]]);
+                            }
+                            switch (object.fileSystemProtocol) {
+                            default:
+                                if (typeof object.fileSystemProtocol === "number") {
+                                    message.fileSystemProtocol = object.fileSystemProtocol;
+                                    break;
+                                }
+                                break;
+                            case "FILE_PROTOCOL_UNSPECIFIED":
+                            case 0:
+                                message.fileSystemProtocol = 0;
+                                break;
+                            case "NFS_V3":
+                            case 1:
+                                message.fileSystemProtocol = 1;
+                                break;
+                            case "NFS_V4_1":
+                            case 2:
+                                message.fileSystemProtocol = 2;
+                                break;
+                            }
                             return message;
                         };
     
@@ -7461,8 +9792,10 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.tags = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.description = "";
@@ -7489,6 +9822,7 @@
                                 object.satisfiesPzs = null;
                                 object.kmsKey = "";
                                 object.satisfiesPzi = false;
+                                object.fileSystemProtocol = options.enums === String ? "FILE_PROTOCOL_UNSPECIFIED" : 0;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -7531,6 +9865,13 @@
                                 object.kmsKey = message.kmsKey;
                             if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
                                 object.satisfiesPzi = message.satisfiesPzi;
+                            if (message.tags && (keys2 = Object.keys(message.tags)).length) {
+                                object.tags = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.tags[keys2[j]] = message.tags[keys2[j]];
+                            }
+                            if (message.fileSystemProtocol != null && message.hasOwnProperty("fileSystemProtocol"))
+                                object.fileSystemProtocol = options.enums === String ? $root.google.cloud.filestore.v1.Instance.FileProtocol[message.fileSystemProtocol] === undefined ? message.fileSystemProtocol : $root.google.cloud.filestore.v1.Instance.FileProtocol[message.fileSystemProtocol] : message.fileSystemProtocol;
                             return object;
                         };
     
@@ -7692,12 +10033,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateBackupRequest.decode = function decode(reader, length) {
+                        CreateBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.CreateBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -7925,12 +10268,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteBackupRequest.decode = function decode(reader, length) {
+                        DeleteBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.DeleteBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8139,12 +10484,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateBackupRequest.decode = function decode(reader, length) {
+                        UpdateBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.UpdateBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.backup = $root.google.cloud.filestore.v1.Backup.decode(reader, reader.uint32());
@@ -8280,6 +10627,235 @@
                         return UpdateBackupRequest;
                     })();
     
+                    v1.PromoteReplicaRequest = (function() {
+    
+                        /**
+                         * Properties of a PromoteReplicaRequest.
+                         * @memberof google.cloud.filestore.v1
+                         * @interface IPromoteReplicaRequest
+                         * @property {string|null} [name] PromoteReplicaRequest name
+                         * @property {string|null} [peerInstance] PromoteReplicaRequest peerInstance
+                         */
+    
+                        /**
+                         * Constructs a new PromoteReplicaRequest.
+                         * @memberof google.cloud.filestore.v1
+                         * @classdesc Represents a PromoteReplicaRequest.
+                         * @implements IPromoteReplicaRequest
+                         * @constructor
+                         * @param {google.cloud.filestore.v1.IPromoteReplicaRequest=} [properties] Properties to set
+                         */
+                        function PromoteReplicaRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * PromoteReplicaRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @instance
+                         */
+                        PromoteReplicaRequest.prototype.name = "";
+    
+                        /**
+                         * PromoteReplicaRequest peerInstance.
+                         * @member {string} peerInstance
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @instance
+                         */
+                        PromoteReplicaRequest.prototype.peerInstance = "";
+    
+                        /**
+                         * Creates a new PromoteReplicaRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1.IPromoteReplicaRequest=} [properties] Properties to set
+                         * @returns {google.cloud.filestore.v1.PromoteReplicaRequest} PromoteReplicaRequest instance
+                         */
+                        PromoteReplicaRequest.create = function create(properties) {
+                            return new PromoteReplicaRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified PromoteReplicaRequest message. Does not implicitly {@link google.cloud.filestore.v1.PromoteReplicaRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1.IPromoteReplicaRequest} message PromoteReplicaRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PromoteReplicaRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.peerInstance != null && Object.hasOwnProperty.call(message, "peerInstance"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.peerInstance);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified PromoteReplicaRequest message, length delimited. Does not implicitly {@link google.cloud.filestore.v1.PromoteReplicaRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1.IPromoteReplicaRequest} message PromoteReplicaRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PromoteReplicaRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a PromoteReplicaRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.filestore.v1.PromoteReplicaRequest} PromoteReplicaRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PromoteReplicaRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.PromoteReplicaRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.peerInstance = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a PromoteReplicaRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.filestore.v1.PromoteReplicaRequest} PromoteReplicaRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PromoteReplicaRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a PromoteReplicaRequest message.
+                         * @function verify
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        PromoteReplicaRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                if (!$util.isString(message.peerInstance))
+                                    return "peerInstance: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a PromoteReplicaRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.filestore.v1.PromoteReplicaRequest} PromoteReplicaRequest
+                         */
+                        PromoteReplicaRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.filestore.v1.PromoteReplicaRequest)
+                                return object;
+                            var message = new $root.google.cloud.filestore.v1.PromoteReplicaRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.peerInstance != null)
+                                message.peerInstance = String(object.peerInstance);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a PromoteReplicaRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1.PromoteReplicaRequest} message PromoteReplicaRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        PromoteReplicaRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.peerInstance = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                object.peerInstance = message.peerInstance;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this PromoteReplicaRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        PromoteReplicaRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for PromoteReplicaRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.filestore.v1.PromoteReplicaRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        PromoteReplicaRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.filestore.v1.PromoteReplicaRequest";
+                        };
+    
+                        return PromoteReplicaRequest;
+                    })();
+    
                     v1.GetBackupRequest = (function() {
     
                         /**
@@ -8365,12 +10941,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetBackupRequest.decode = function decode(reader, length) {
+                        GetBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.GetBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -8612,12 +11190,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupsRequest.decode = function decode(reader, length) {
+                        ListBackupsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ListBackupsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -8890,12 +11470,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupsResponse.decode = function decode(reader, length) {
+                        ListBackupsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1.ListBackupsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.backups && message.backups.length))
@@ -9305,6 +11887,39 @@
                          * @memberof google.cloud.filestore.v1beta1.CloudFilestoreManager
                          * @instance
                          * @param {google.cloud.filestore.v1beta1.IRevertInstanceRequest} request RevertInstanceRequest message or plain object
+                         * @returns {Promise<google.longrunning.Operation>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.cloud.filestore.v1beta1.CloudFilestoreManager|promoteReplica}.
+                         * @memberof google.cloud.filestore.v1beta1.CloudFilestoreManager
+                         * @typedef PromoteReplicaCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.longrunning.Operation} [response] Operation
+                         */
+    
+                        /**
+                         * Calls PromoteReplica.
+                         * @function promoteReplica
+                         * @memberof google.cloud.filestore.v1beta1.CloudFilestoreManager
+                         * @instance
+                         * @param {google.cloud.filestore.v1beta1.IPromoteReplicaRequest} request PromoteReplicaRequest message or plain object
+                         * @param {google.cloud.filestore.v1beta1.CloudFilestoreManager.PromoteReplicaCallback} callback Node-style callback called with the error, if any, and Operation
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(CloudFilestoreManager.prototype.promoteReplica = function promoteReplica(request, callback) {
+                            return this.rpcCall(promoteReplica, $root.google.cloud.filestore.v1beta1.PromoteReplicaRequest, $root.google.longrunning.Operation, request, callback);
+                        }, "name", { value: "PromoteReplica" });
+    
+                        /**
+                         * Calls PromoteReplica.
+                         * @function promoteReplica
+                         * @memberof google.cloud.filestore.v1beta1.CloudFilestoreManager
+                         * @instance
+                         * @param {google.cloud.filestore.v1beta1.IPromoteReplicaRequest} request PromoteReplicaRequest message or plain object
                          * @returns {Promise<google.longrunning.Operation>} Promise
                          * @variation 2
                          */
@@ -9976,12 +12591,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NetworkConfig.decode = function decode(reader, length) {
+                        NetworkConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.NetworkConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.network = reader.string();
@@ -10385,12 +13002,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FileShareConfig.decode = function decode(reader, length) {
+                        FileShareConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.FileShareConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10726,12 +13345,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NfsExportOptions.decode = function decode(reader, length) {
+                        NfsExportOptions.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.NfsExportOptions();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.ipRanges && message.ipRanges.length))
@@ -11198,12 +13819,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ManagedActiveDirectoryConfig.decode = function decode(reader, length) {
+                        ManagedActiveDirectoryConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ManagedActiveDirectoryConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.domain = reader.string();
@@ -11428,12 +14051,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DirectoryServicesConfig.decode = function decode(reader, length) {
+                        DirectoryServicesConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.DirectoryServicesConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.managedActiveDirectory = $root.google.cloud.filestore.v1beta1.ManagedActiveDirectoryConfig.decode(reader, reader.uint32());
@@ -11556,6 +14181,695 @@
                         return DirectoryServicesConfig;
                     })();
     
+                    v1beta1.ReplicaConfig = (function() {
+    
+                        /**
+                         * Properties of a ReplicaConfig.
+                         * @memberof google.cloud.filestore.v1beta1
+                         * @interface IReplicaConfig
+                         * @property {google.cloud.filestore.v1beta1.ReplicaConfig.State|null} [state] ReplicaConfig state
+                         * @property {Array.<google.cloud.filestore.v1beta1.ReplicaConfig.StateReason>|null} [stateReasons] ReplicaConfig stateReasons
+                         * @property {string|null} [peerInstance] ReplicaConfig peerInstance
+                         * @property {google.protobuf.ITimestamp|null} [lastActiveSyncTime] ReplicaConfig lastActiveSyncTime
+                         */
+    
+                        /**
+                         * Constructs a new ReplicaConfig.
+                         * @memberof google.cloud.filestore.v1beta1
+                         * @classdesc Represents a ReplicaConfig.
+                         * @implements IReplicaConfig
+                         * @constructor
+                         * @param {google.cloud.filestore.v1beta1.IReplicaConfig=} [properties] Properties to set
+                         */
+                        function ReplicaConfig(properties) {
+                            this.stateReasons = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReplicaConfig state.
+                         * @member {google.cloud.filestore.v1beta1.ReplicaConfig.State} state
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.state = 0;
+    
+                        /**
+                         * ReplicaConfig stateReasons.
+                         * @member {Array.<google.cloud.filestore.v1beta1.ReplicaConfig.StateReason>} stateReasons
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.stateReasons = $util.emptyArray;
+    
+                        /**
+                         * ReplicaConfig peerInstance.
+                         * @member {string} peerInstance
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.peerInstance = "";
+    
+                        /**
+                         * ReplicaConfig lastActiveSyncTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} lastActiveSyncTime
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @instance
+                         */
+                        ReplicaConfig.prototype.lastActiveSyncTime = null;
+    
+                        /**
+                         * Creates a new ReplicaConfig instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IReplicaConfig=} [properties] Properties to set
+                         * @returns {google.cloud.filestore.v1beta1.ReplicaConfig} ReplicaConfig instance
+                         */
+                        ReplicaConfig.create = function create(properties) {
+                            return new ReplicaConfig(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReplicaConfig message. Does not implicitly {@link google.cloud.filestore.v1beta1.ReplicaConfig.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IReplicaConfig} message ReplicaConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReplicaConfig.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.state);
+                            if (message.stateReasons != null && message.stateReasons.length) {
+                                writer.uint32(/* id 2, wireType 2 =*/18).fork();
+                                for (var i = 0; i < message.stateReasons.length; ++i)
+                                    writer.int32(message.stateReasons[i]);
+                                writer.ldelim();
+                            }
+                            if (message.peerInstance != null && Object.hasOwnProperty.call(message, "peerInstance"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.peerInstance);
+                            if (message.lastActiveSyncTime != null && Object.hasOwnProperty.call(message, "lastActiveSyncTime"))
+                                $root.google.protobuf.Timestamp.encode(message.lastActiveSyncTime, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReplicaConfig message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.ReplicaConfig.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IReplicaConfig} message ReplicaConfig message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReplicaConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReplicaConfig message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.filestore.v1beta1.ReplicaConfig} ReplicaConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReplicaConfig.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ReplicaConfig();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.state = reader.int32();
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.stateReasons && message.stateReasons.length))
+                                            message.stateReasons = [];
+                                        if ((tag & 7) === 2) {
+                                            var end2 = reader.uint32() + reader.pos;
+                                            while (reader.pos < end2)
+                                                message.stateReasons.push(reader.int32());
+                                        } else
+                                            message.stateReasons.push(reader.int32());
+                                        break;
+                                    }
+                                case 3: {
+                                        message.peerInstance = reader.string();
+                                        break;
+                                    }
+                                case 10: {
+                                        message.lastActiveSyncTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReplicaConfig message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.filestore.v1beta1.ReplicaConfig} ReplicaConfig
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReplicaConfig.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReplicaConfig message.
+                         * @function verify
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReplicaConfig.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                switch (message.state) {
+                                default:
+                                    return "state: enum value expected";
+                                case 0:
+                                case 1:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    break;
+                                }
+                            if (message.stateReasons != null && message.hasOwnProperty("stateReasons")) {
+                                if (!Array.isArray(message.stateReasons))
+                                    return "stateReasons: array expected";
+                                for (var i = 0; i < message.stateReasons.length; ++i)
+                                    switch (message.stateReasons[i]) {
+                                    default:
+                                        return "stateReasons: enum value[] expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
+                            }
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                if (!$util.isString(message.peerInstance))
+                                    return "peerInstance: string expected";
+                            if (message.lastActiveSyncTime != null && message.hasOwnProperty("lastActiveSyncTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.lastActiveSyncTime);
+                                if (error)
+                                    return "lastActiveSyncTime." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReplicaConfig message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.filestore.v1beta1.ReplicaConfig} ReplicaConfig
+                         */
+                        ReplicaConfig.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.filestore.v1beta1.ReplicaConfig)
+                                return object;
+                            var message = new $root.google.cloud.filestore.v1beta1.ReplicaConfig();
+                            switch (object.state) {
+                            default:
+                                if (typeof object.state === "number") {
+                                    message.state = object.state;
+                                    break;
+                                }
+                                break;
+                            case "STATE_UNSPECIFIED":
+                            case 0:
+                                message.state = 0;
+                                break;
+                            case "CREATING":
+                            case 1:
+                                message.state = 1;
+                                break;
+                            case "READY":
+                            case 3:
+                                message.state = 3;
+                                break;
+                            case "REMOVING":
+                            case 4:
+                                message.state = 4;
+                                break;
+                            case "FAILED":
+                            case 5:
+                                message.state = 5;
+                                break;
+                            }
+                            if (object.stateReasons) {
+                                if (!Array.isArray(object.stateReasons))
+                                    throw TypeError(".google.cloud.filestore.v1beta1.ReplicaConfig.stateReasons: array expected");
+                                message.stateReasons = [];
+                                for (var i = 0; i < object.stateReasons.length; ++i)
+                                    switch (object.stateReasons[i]) {
+                                    default:
+                                        if (typeof object.stateReasons[i] === "number") {
+                                            message.stateReasons[i] = object.stateReasons[i];
+                                            break;
+                                        }
+                                    case "STATE_REASON_UNSPECIFIED":
+                                    case 0:
+                                        message.stateReasons[i] = 0;
+                                        break;
+                                    case "PEER_INSTANCE_UNREACHABLE":
+                                    case 1:
+                                        message.stateReasons[i] = 1;
+                                        break;
+                                    case "REMOVE_FAILED":
+                                    case 2:
+                                        message.stateReasons[i] = 2;
+                                        break;
+                                    }
+                            }
+                            if (object.peerInstance != null)
+                                message.peerInstance = String(object.peerInstance);
+                            if (object.lastActiveSyncTime != null) {
+                                if (typeof object.lastActiveSyncTime !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.ReplicaConfig.lastActiveSyncTime: object expected");
+                                message.lastActiveSyncTime = $root.google.protobuf.Timestamp.fromObject(object.lastActiveSyncTime);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReplicaConfig message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.ReplicaConfig} message ReplicaConfig
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReplicaConfig.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.stateReasons = [];
+                            if (options.defaults) {
+                                object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                object.peerInstance = "";
+                                object.lastActiveSyncTime = null;
+                            }
+                            if (message.state != null && message.hasOwnProperty("state"))
+                                object.state = options.enums === String ? $root.google.cloud.filestore.v1beta1.ReplicaConfig.State[message.state] === undefined ? message.state : $root.google.cloud.filestore.v1beta1.ReplicaConfig.State[message.state] : message.state;
+                            if (message.stateReasons && message.stateReasons.length) {
+                                object.stateReasons = [];
+                                for (var j = 0; j < message.stateReasons.length; ++j)
+                                    object.stateReasons[j] = options.enums === String ? $root.google.cloud.filestore.v1beta1.ReplicaConfig.StateReason[message.stateReasons[j]] === undefined ? message.stateReasons[j] : $root.google.cloud.filestore.v1beta1.ReplicaConfig.StateReason[message.stateReasons[j]] : message.stateReasons[j];
+                            }
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                object.peerInstance = message.peerInstance;
+                            if (message.lastActiveSyncTime != null && message.hasOwnProperty("lastActiveSyncTime"))
+                                object.lastActiveSyncTime = $root.google.protobuf.Timestamp.toObject(message.lastActiveSyncTime, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReplicaConfig to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReplicaConfig.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ReplicaConfig
+                         * @function getTypeUrl
+                         * @memberof google.cloud.filestore.v1beta1.ReplicaConfig
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ReplicaConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.filestore.v1beta1.ReplicaConfig";
+                        };
+    
+                        /**
+                         * State enum.
+                         * @name google.cloud.filestore.v1beta1.ReplicaConfig.State
+                         * @enum {number}
+                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                         * @property {number} CREATING=1 CREATING value
+                         * @property {number} READY=3 READY value
+                         * @property {number} REMOVING=4 REMOVING value
+                         * @property {number} FAILED=5 FAILED value
+                         */
+                        ReplicaConfig.State = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "CREATING"] = 1;
+                            values[valuesById[3] = "READY"] = 3;
+                            values[valuesById[4] = "REMOVING"] = 4;
+                            values[valuesById[5] = "FAILED"] = 5;
+                            return values;
+                        })();
+    
+                        /**
+                         * StateReason enum.
+                         * @name google.cloud.filestore.v1beta1.ReplicaConfig.StateReason
+                         * @enum {number}
+                         * @property {number} STATE_REASON_UNSPECIFIED=0 STATE_REASON_UNSPECIFIED value
+                         * @property {number} PEER_INSTANCE_UNREACHABLE=1 PEER_INSTANCE_UNREACHABLE value
+                         * @property {number} REMOVE_FAILED=2 REMOVE_FAILED value
+                         */
+                        ReplicaConfig.StateReason = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_REASON_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "PEER_INSTANCE_UNREACHABLE"] = 1;
+                            values[valuesById[2] = "REMOVE_FAILED"] = 2;
+                            return values;
+                        })();
+    
+                        return ReplicaConfig;
+                    })();
+    
+                    v1beta1.Replication = (function() {
+    
+                        /**
+                         * Properties of a Replication.
+                         * @memberof google.cloud.filestore.v1beta1
+                         * @interface IReplication
+                         * @property {google.cloud.filestore.v1beta1.Replication.Role|null} [role] Replication role
+                         * @property {Array.<google.cloud.filestore.v1beta1.IReplicaConfig>|null} [replicas] Replication replicas
+                         */
+    
+                        /**
+                         * Constructs a new Replication.
+                         * @memberof google.cloud.filestore.v1beta1
+                         * @classdesc Represents a Replication.
+                         * @implements IReplication
+                         * @constructor
+                         * @param {google.cloud.filestore.v1beta1.IReplication=} [properties] Properties to set
+                         */
+                        function Replication(properties) {
+                            this.replicas = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Replication role.
+                         * @member {google.cloud.filestore.v1beta1.Replication.Role} role
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @instance
+                         */
+                        Replication.prototype.role = 0;
+    
+                        /**
+                         * Replication replicas.
+                         * @member {Array.<google.cloud.filestore.v1beta1.IReplicaConfig>} replicas
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @instance
+                         */
+                        Replication.prototype.replicas = $util.emptyArray;
+    
+                        /**
+                         * Creates a new Replication instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IReplication=} [properties] Properties to set
+                         * @returns {google.cloud.filestore.v1beta1.Replication} Replication instance
+                         */
+                        Replication.create = function create(properties) {
+                            return new Replication(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Replication message. Does not implicitly {@link google.cloud.filestore.v1beta1.Replication.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IReplication} message Replication message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Replication.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.role);
+                            if (message.replicas != null && message.replicas.length)
+                                for (var i = 0; i < message.replicas.length; ++i)
+                                    $root.google.cloud.filestore.v1beta1.ReplicaConfig.encode(message.replicas[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Replication message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.Replication.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IReplication} message Replication message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Replication.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Replication message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.filestore.v1beta1.Replication} Replication
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Replication.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Replication();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.role = reader.int32();
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.replicas && message.replicas.length))
+                                            message.replicas = [];
+                                        message.replicas.push($root.google.cloud.filestore.v1beta1.ReplicaConfig.decode(reader, reader.uint32()));
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Replication message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.filestore.v1beta1.Replication} Replication
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Replication.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Replication message.
+                         * @function verify
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Replication.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.role != null && message.hasOwnProperty("role"))
+                                switch (message.role) {
+                                default:
+                                    return "role: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            if (message.replicas != null && message.hasOwnProperty("replicas")) {
+                                if (!Array.isArray(message.replicas))
+                                    return "replicas: array expected";
+                                for (var i = 0; i < message.replicas.length; ++i) {
+                                    var error = $root.google.cloud.filestore.v1beta1.ReplicaConfig.verify(message.replicas[i]);
+                                    if (error)
+                                        return "replicas." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Replication message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.filestore.v1beta1.Replication} Replication
+                         */
+                        Replication.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.filestore.v1beta1.Replication)
+                                return object;
+                            var message = new $root.google.cloud.filestore.v1beta1.Replication();
+                            switch (object.role) {
+                            default:
+                                if (typeof object.role === "number") {
+                                    message.role = object.role;
+                                    break;
+                                }
+                                break;
+                            case "ROLE_UNSPECIFIED":
+                            case 0:
+                                message.role = 0;
+                                break;
+                            case "ACTIVE":
+                            case 1:
+                                message.role = 1;
+                                break;
+                            case "STANDBY":
+                            case 2:
+                                message.role = 2;
+                                break;
+                            }
+                            if (object.replicas) {
+                                if (!Array.isArray(object.replicas))
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Replication.replicas: array expected");
+                                message.replicas = [];
+                                for (var i = 0; i < object.replicas.length; ++i) {
+                                    if (typeof object.replicas[i] !== "object")
+                                        throw TypeError(".google.cloud.filestore.v1beta1.Replication.replicas: object expected");
+                                    message.replicas[i] = $root.google.cloud.filestore.v1beta1.ReplicaConfig.fromObject(object.replicas[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Replication message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.Replication} message Replication
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Replication.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.replicas = [];
+                            if (options.defaults)
+                                object.role = options.enums === String ? "ROLE_UNSPECIFIED" : 0;
+                            if (message.role != null && message.hasOwnProperty("role"))
+                                object.role = options.enums === String ? $root.google.cloud.filestore.v1beta1.Replication.Role[message.role] === undefined ? message.role : $root.google.cloud.filestore.v1beta1.Replication.Role[message.role] : message.role;
+                            if (message.replicas && message.replicas.length) {
+                                object.replicas = [];
+                                for (var j = 0; j < message.replicas.length; ++j)
+                                    object.replicas[j] = $root.google.cloud.filestore.v1beta1.ReplicaConfig.toObject(message.replicas[j], options);
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Replication to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Replication.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for Replication
+                         * @function getTypeUrl
+                         * @memberof google.cloud.filestore.v1beta1.Replication
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        Replication.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.filestore.v1beta1.Replication";
+                        };
+    
+                        /**
+                         * Role enum.
+                         * @name google.cloud.filestore.v1beta1.Replication.Role
+                         * @enum {number}
+                         * @property {number} ROLE_UNSPECIFIED=0 ROLE_UNSPECIFIED value
+                         * @property {number} ACTIVE=1 ACTIVE value
+                         * @property {number} STANDBY=2 STANDBY value
+                         */
+                        Replication.Role = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "ROLE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "ACTIVE"] = 1;
+                            values[valuesById[2] = "STANDBY"] = 2;
+                            return values;
+                        })();
+    
+                        return Replication;
+                    })();
+    
                     v1beta1.Instance = (function() {
     
                         /**
@@ -11583,6 +14897,13 @@
                          * @property {boolean|null} [multiShareEnabled] Instance multiShareEnabled
                          * @property {google.cloud.filestore.v1beta1.Instance.FileProtocol|null} [protocol] Instance protocol
                          * @property {google.cloud.filestore.v1beta1.IDirectoryServicesConfig|null} [directoryServices] Instance directoryServices
+                         * @property {google.cloud.filestore.v1beta1.IReplication|null} [replication] Instance replication
+                         * @property {Object.<string,string>|null} [tags] Instance tags
+                         * @property {boolean|null} [customPerformanceSupported] Instance customPerformanceSupported
+                         * @property {google.cloud.filestore.v1beta1.Instance.IPerformanceConfig|null} [performanceConfig] Instance performanceConfig
+                         * @property {google.cloud.filestore.v1beta1.Instance.IPerformanceLimits|null} [performanceLimits] Instance performanceLimits
+                         * @property {boolean|null} [deletionProtectionEnabled] Instance deletionProtectionEnabled
+                         * @property {string|null} [deletionProtectionReason] Instance deletionProtectionReason
                          */
     
                         /**
@@ -11598,6 +14919,7 @@
                             this.fileShares = [];
                             this.networks = [];
                             this.suspensionReasons = [];
+                            this.tags = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -11773,6 +15095,62 @@
                         Instance.prototype.directoryServices = null;
     
                         /**
+                         * Instance replication.
+                         * @member {google.cloud.filestore.v1beta1.IReplication|null|undefined} replication
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.replication = null;
+    
+                        /**
+                         * Instance tags.
+                         * @member {Object.<string,string>} tags
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.tags = $util.emptyObject;
+    
+                        /**
+                         * Instance customPerformanceSupported.
+                         * @member {boolean} customPerformanceSupported
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.customPerformanceSupported = false;
+    
+                        /**
+                         * Instance performanceConfig.
+                         * @member {google.cloud.filestore.v1beta1.Instance.IPerformanceConfig|null|undefined} performanceConfig
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.performanceConfig = null;
+    
+                        /**
+                         * Instance performanceLimits.
+                         * @member {google.cloud.filestore.v1beta1.Instance.IPerformanceLimits|null|undefined} performanceLimits
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.performanceLimits = null;
+    
+                        /**
+                         * Instance deletionProtectionEnabled.
+                         * @member {boolean} deletionProtectionEnabled
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.deletionProtectionEnabled = false;
+    
+                        /**
+                         * Instance deletionProtectionReason.
+                         * @member {string} deletionProtectionReason
+                         * @memberof google.cloud.filestore.v1beta1.Instance
+                         * @instance
+                         */
+                        Instance.prototype.deletionProtectionReason = "";
+    
+                        /**
                          * Creates a new Instance instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1beta1.Instance
@@ -11843,8 +15221,23 @@
                                 writer.uint32(/* id 21, wireType 0 =*/168).int32(message.protocol);
                             if (message.directoryServices != null && Object.hasOwnProperty.call(message, "directoryServices"))
                                 $root.google.cloud.filestore.v1beta1.DirectoryServicesConfig.encode(message.directoryServices, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+                            if (message.replication != null && Object.hasOwnProperty.call(message, "replication"))
+                                $root.google.cloud.filestore.v1beta1.Replication.encode(message.replication, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
                             if (message.satisfiesPzi != null && Object.hasOwnProperty.call(message, "satisfiesPzi"))
                                 writer.uint32(/* id 26, wireType 0 =*/208).bool(message.satisfiesPzi);
+                            if (message.tags != null && Object.hasOwnProperty.call(message, "tags"))
+                                for (var keys = Object.keys(message.tags), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 27, wireType 2 =*/218).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.tags[keys[i]]).ldelim();
+                            if (message.customPerformanceSupported != null && Object.hasOwnProperty.call(message, "customPerformanceSupported"))
+                                writer.uint32(/* id 28, wireType 0 =*/224).bool(message.customPerformanceSupported);
+                            if (message.performanceConfig != null && Object.hasOwnProperty.call(message, "performanceConfig"))
+                                $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig.encode(message.performanceConfig, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
+                            if (message.performanceLimits != null && Object.hasOwnProperty.call(message, "performanceLimits"))
+                                $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits.encode(message.performanceLimits, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
+                            if (message.deletionProtectionEnabled != null && Object.hasOwnProperty.call(message, "deletionProtectionEnabled"))
+                                writer.uint32(/* id 31, wireType 0 =*/248).bool(message.deletionProtectionEnabled);
+                            if (message.deletionProtectionReason != null && Object.hasOwnProperty.call(message, "deletionProtectionReason"))
+                                writer.uint32(/* id 32, wireType 2 =*/258).string(message.deletionProtectionReason);
                             return writer;
                         };
     
@@ -11872,12 +15265,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Instance.decode = function decode(reader, length) {
+                        Instance.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Instance(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -11993,6 +15388,53 @@
                                         message.directoryServices = $root.google.cloud.filestore.v1beta1.DirectoryServicesConfig.decode(reader, reader.uint32());
                                         break;
                                     }
+                                case 25: {
+                                        message.replication = $root.google.cloud.filestore.v1beta1.Replication.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 27: {
+                                        if (message.tags === $util.emptyObject)
+                                            message.tags = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.tags[key] = value;
+                                        break;
+                                    }
+                                case 28: {
+                                        message.customPerformanceSupported = reader.bool();
+                                        break;
+                                    }
+                                case 29: {
+                                        message.performanceConfig = $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 30: {
+                                        message.performanceLimits = $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 31: {
+                                        message.deletionProtectionEnabled = reader.bool();
+                                        break;
+                                    }
+                                case 32: {
+                                        message.deletionProtectionReason = reader.string();
+                                        break;
+                                    }
                                 default:
                                     reader.skipType(tag & 7);
                                     break;
@@ -12049,6 +15491,7 @@
                                 case 9:
                                 case 10:
                                 case 11:
+                                case 13:
                                     break;
                                 }
                             if (message.statusMessage != null && message.hasOwnProperty("statusMessage"))
@@ -12155,6 +15598,38 @@
                                 if (error)
                                     return "directoryServices." + error;
                             }
+                            if (message.replication != null && message.hasOwnProperty("replication")) {
+                                var error = $root.google.cloud.filestore.v1beta1.Replication.verify(message.replication);
+                                if (error)
+                                    return "replication." + error;
+                            }
+                            if (message.tags != null && message.hasOwnProperty("tags")) {
+                                if (!$util.isObject(message.tags))
+                                    return "tags: object expected";
+                                var key = Object.keys(message.tags);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.tags[key[i]]))
+                                        return "tags: string{k:string} expected";
+                            }
+                            if (message.customPerformanceSupported != null && message.hasOwnProperty("customPerformanceSupported"))
+                                if (typeof message.customPerformanceSupported !== "boolean")
+                                    return "customPerformanceSupported: boolean expected";
+                            if (message.performanceConfig != null && message.hasOwnProperty("performanceConfig")) {
+                                var error = $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig.verify(message.performanceConfig);
+                                if (error)
+                                    return "performanceConfig." + error;
+                            }
+                            if (message.performanceLimits != null && message.hasOwnProperty("performanceLimits")) {
+                                var error = $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits.verify(message.performanceLimits);
+                                if (error)
+                                    return "performanceLimits." + error;
+                            }
+                            if (message.deletionProtectionEnabled != null && message.hasOwnProperty("deletionProtectionEnabled"))
+                                if (typeof message.deletionProtectionEnabled !== "boolean")
+                                    return "deletionProtectionEnabled: boolean expected";
+                            if (message.deletionProtectionReason != null && message.hasOwnProperty("deletionProtectionReason"))
+                                if (!$util.isString(message.deletionProtectionReason))
+                                    return "deletionProtectionReason: string expected";
                             return null;
                         };
     
@@ -12224,6 +15699,10 @@
                             case "RESUMING":
                             case 11:
                                 message.state = 11;
+                                break;
+                            case "PROMOTING":
+                            case 13:
+                                message.state = 13;
                                 break;
                             }
                             if (object.statusMessage != null)
@@ -12399,6 +15878,34 @@
                                     throw TypeError(".google.cloud.filestore.v1beta1.Instance.directoryServices: object expected");
                                 message.directoryServices = $root.google.cloud.filestore.v1beta1.DirectoryServicesConfig.fromObject(object.directoryServices);
                             }
+                            if (object.replication != null) {
+                                if (typeof object.replication !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Instance.replication: object expected");
+                                message.replication = $root.google.cloud.filestore.v1beta1.Replication.fromObject(object.replication);
+                            }
+                            if (object.tags) {
+                                if (typeof object.tags !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Instance.tags: object expected");
+                                message.tags = {};
+                                for (var keys = Object.keys(object.tags), i = 0; i < keys.length; ++i)
+                                    message.tags[keys[i]] = String(object.tags[keys[i]]);
+                            }
+                            if (object.customPerformanceSupported != null)
+                                message.customPerformanceSupported = Boolean(object.customPerformanceSupported);
+                            if (object.performanceConfig != null) {
+                                if (typeof object.performanceConfig !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Instance.performanceConfig: object expected");
+                                message.performanceConfig = $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig.fromObject(object.performanceConfig);
+                            }
+                            if (object.performanceLimits != null) {
+                                if (typeof object.performanceLimits !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Instance.performanceLimits: object expected");
+                                message.performanceLimits = $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits.fromObject(object.performanceLimits);
+                            }
+                            if (object.deletionProtectionEnabled != null)
+                                message.deletionProtectionEnabled = Boolean(object.deletionProtectionEnabled);
+                            if (object.deletionProtectionReason != null)
+                                message.deletionProtectionReason = String(object.deletionProtectionReason);
                             return message;
                         };
     
@@ -12420,8 +15927,10 @@
                                 object.networks = [];
                                 object.suspensionReasons = [];
                             }
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.tags = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.description = "";
@@ -12455,7 +15964,13 @@
                                 object.multiShareEnabled = false;
                                 object.protocol = options.enums === String ? "FILE_PROTOCOL_UNSPECIFIED" : 0;
                                 object.directoryServices = null;
+                                object.replication = null;
                                 object.satisfiesPzi = false;
+                                object.customPerformanceSupported = false;
+                                object.performanceConfig = null;
+                                object.performanceLimits = null;
+                                object.deletionProtectionEnabled = false;
+                                object.deletionProtectionReason = "";
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -12522,8 +16037,25 @@
                                 object.protocol = options.enums === String ? $root.google.cloud.filestore.v1beta1.Instance.FileProtocol[message.protocol] === undefined ? message.protocol : $root.google.cloud.filestore.v1beta1.Instance.FileProtocol[message.protocol] : message.protocol;
                             if (message.directoryServices != null && message.hasOwnProperty("directoryServices"))
                                 object.directoryServices = $root.google.cloud.filestore.v1beta1.DirectoryServicesConfig.toObject(message.directoryServices, options);
+                            if (message.replication != null && message.hasOwnProperty("replication"))
+                                object.replication = $root.google.cloud.filestore.v1beta1.Replication.toObject(message.replication, options);
                             if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
                                 object.satisfiesPzi = message.satisfiesPzi;
+                            if (message.tags && (keys2 = Object.keys(message.tags)).length) {
+                                object.tags = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.tags[keys2[j]] = message.tags[keys2[j]];
+                            }
+                            if (message.customPerformanceSupported != null && message.hasOwnProperty("customPerformanceSupported"))
+                                object.customPerformanceSupported = message.customPerformanceSupported;
+                            if (message.performanceConfig != null && message.hasOwnProperty("performanceConfig"))
+                                object.performanceConfig = $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig.toObject(message.performanceConfig, options);
+                            if (message.performanceLimits != null && message.hasOwnProperty("performanceLimits"))
+                                object.performanceLimits = $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits.toObject(message.performanceLimits, options);
+                            if (message.deletionProtectionEnabled != null && message.hasOwnProperty("deletionProtectionEnabled"))
+                                object.deletionProtectionEnabled = message.deletionProtectionEnabled;
+                            if (message.deletionProtectionReason != null && message.hasOwnProperty("deletionProtectionReason"))
+                                object.deletionProtectionReason = message.deletionProtectionReason;
                             return object;
                         };
     
@@ -12568,6 +16100,7 @@
                          * @property {number} REVERTING=9 REVERTING value
                          * @property {number} SUSPENDING=10 SUSPENDING value
                          * @property {number} RESUMING=11 RESUMING value
+                         * @property {number} PROMOTING=13 PROMOTING value
                          */
                         Instance.State = (function() {
                             var valuesById = {}, values = Object.create(valuesById);
@@ -12582,6 +16115,7 @@
                             values[valuesById[9] = "REVERTING"] = 9;
                             values[valuesById[10] = "SUSPENDING"] = 10;
                             values[valuesById[11] = "RESUMING"] = 11;
+                            values[valuesById[13] = "PROMOTING"] = 13;
                             return values;
                         })();
     
@@ -12641,6 +16175,1076 @@
                             values[valuesById[1] = "NFS_V3"] = 1;
                             values[valuesById[2] = "NFS_V4_1"] = 2;
                             return values;
+                        })();
+    
+                        Instance.IOPSPerTB = (function() {
+    
+                            /**
+                             * Properties of a IOPSPerTB.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @interface IIOPSPerTB
+                             * @property {number|Long|null} [maxIopsPerTb] IOPSPerTB maxIopsPerTb
+                             */
+    
+                            /**
+                             * Constructs a new IOPSPerTB.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @classdesc Represents a IOPSPerTB.
+                             * @implements IIOPSPerTB
+                             * @constructor
+                             * @param {google.cloud.filestore.v1beta1.Instance.IIOPSPerTB=} [properties] Properties to set
+                             */
+                            function IOPSPerTB(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * IOPSPerTB maxIopsPerTb.
+                             * @member {number|Long} maxIopsPerTb
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @instance
+                             */
+                            IOPSPerTB.prototype.maxIopsPerTb = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * Creates a new IOPSPerTB instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IIOPSPerTB=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1beta1.Instance.IOPSPerTB} IOPSPerTB instance
+                             */
+                            IOPSPerTB.create = function create(properties) {
+                                return new IOPSPerTB(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified IOPSPerTB message. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.IOPSPerTB.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IIOPSPerTB} message IOPSPerTB message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            IOPSPerTB.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.maxIopsPerTb != null && Object.hasOwnProperty.call(message, "maxIopsPerTb"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.maxIopsPerTb);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified IOPSPerTB message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.IOPSPerTB.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IIOPSPerTB} message IOPSPerTB message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            IOPSPerTB.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a IOPSPerTB message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1beta1.Instance.IOPSPerTB} IOPSPerTB
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            IOPSPerTB.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 2: {
+                                            message.maxIopsPerTb = reader.int64();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a IOPSPerTB message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1beta1.Instance.IOPSPerTB} IOPSPerTB
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            IOPSPerTB.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a IOPSPerTB message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            IOPSPerTB.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.maxIopsPerTb != null && message.hasOwnProperty("maxIopsPerTb"))
+                                    if (!$util.isInteger(message.maxIopsPerTb) && !(message.maxIopsPerTb && $util.isInteger(message.maxIopsPerTb.low) && $util.isInteger(message.maxIopsPerTb.high)))
+                                        return "maxIopsPerTb: integer|Long expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a IOPSPerTB message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1beta1.Instance.IOPSPerTB} IOPSPerTB
+                             */
+                            IOPSPerTB.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB();
+                                if (object.maxIopsPerTb != null)
+                                    if ($util.Long)
+                                        (message.maxIopsPerTb = $util.Long.fromValue(object.maxIopsPerTb)).unsigned = false;
+                                    else if (typeof object.maxIopsPerTb === "string")
+                                        message.maxIopsPerTb = parseInt(object.maxIopsPerTb, 10);
+                                    else if (typeof object.maxIopsPerTb === "number")
+                                        message.maxIopsPerTb = object.maxIopsPerTb;
+                                    else if (typeof object.maxIopsPerTb === "object")
+                                        message.maxIopsPerTb = new $util.LongBits(object.maxIopsPerTb.low >>> 0, object.maxIopsPerTb.high >>> 0).toNumber();
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a IOPSPerTB message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IOPSPerTB} message IOPSPerTB
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            IOPSPerTB.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxIopsPerTb = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxIopsPerTb = options.longs === String ? "0" : 0;
+                                if (message.maxIopsPerTb != null && message.hasOwnProperty("maxIopsPerTb"))
+                                    if (typeof message.maxIopsPerTb === "number")
+                                        object.maxIopsPerTb = options.longs === String ? String(message.maxIopsPerTb) : message.maxIopsPerTb;
+                                    else
+                                        object.maxIopsPerTb = options.longs === String ? $util.Long.prototype.toString.call(message.maxIopsPerTb) : options.longs === Number ? new $util.LongBits(message.maxIopsPerTb.low >>> 0, message.maxIopsPerTb.high >>> 0).toNumber() : message.maxIopsPerTb;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this IOPSPerTB to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            IOPSPerTB.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for IOPSPerTB
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1beta1.Instance.IOPSPerTB
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            IOPSPerTB.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1beta1.Instance.IOPSPerTB";
+                            };
+    
+                            return IOPSPerTB;
+                        })();
+    
+                        Instance.FixedIOPS = (function() {
+    
+                            /**
+                             * Properties of a FixedIOPS.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @interface IFixedIOPS
+                             * @property {number|Long|null} [maxIops] FixedIOPS maxIops
+                             */
+    
+                            /**
+                             * Constructs a new FixedIOPS.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @classdesc Represents a FixedIOPS.
+                             * @implements IFixedIOPS
+                             * @constructor
+                             * @param {google.cloud.filestore.v1beta1.Instance.IFixedIOPS=} [properties] Properties to set
+                             */
+                            function FixedIOPS(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * FixedIOPS maxIops.
+                             * @member {number|Long} maxIops
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @instance
+                             */
+                            FixedIOPS.prototype.maxIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * Creates a new FixedIOPS instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IFixedIOPS=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1beta1.Instance.FixedIOPS} FixedIOPS instance
+                             */
+                            FixedIOPS.create = function create(properties) {
+                                return new FixedIOPS(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified FixedIOPS message. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.FixedIOPS.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IFixedIOPS} message FixedIOPS message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            FixedIOPS.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.maxIops != null && Object.hasOwnProperty.call(message, "maxIops"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.maxIops);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified FixedIOPS message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.FixedIOPS.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IFixedIOPS} message FixedIOPS message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            FixedIOPS.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a FixedIOPS message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1beta1.Instance.FixedIOPS} FixedIOPS
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            FixedIOPS.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 2: {
+                                            message.maxIops = reader.int64();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a FixedIOPS message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1beta1.Instance.FixedIOPS} FixedIOPS
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            FixedIOPS.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a FixedIOPS message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            FixedIOPS.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (!$util.isInteger(message.maxIops) && !(message.maxIops && $util.isInteger(message.maxIops.low) && $util.isInteger(message.maxIops.high)))
+                                        return "maxIops: integer|Long expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a FixedIOPS message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1beta1.Instance.FixedIOPS} FixedIOPS
+                             */
+                            FixedIOPS.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS();
+                                if (object.maxIops != null)
+                                    if ($util.Long)
+                                        (message.maxIops = $util.Long.fromValue(object.maxIops)).unsigned = false;
+                                    else if (typeof object.maxIops === "string")
+                                        message.maxIops = parseInt(object.maxIops, 10);
+                                    else if (typeof object.maxIops === "number")
+                                        message.maxIops = object.maxIops;
+                                    else if (typeof object.maxIops === "object")
+                                        message.maxIops = new $util.LongBits(object.maxIops.low >>> 0, object.maxIops.high >>> 0).toNumber();
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a FixedIOPS message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.FixedIOPS} message FixedIOPS
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            FixedIOPS.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxIops = options.longs === String ? "0" : 0;
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (typeof message.maxIops === "number")
+                                        object.maxIops = options.longs === String ? String(message.maxIops) : message.maxIops;
+                                    else
+                                        object.maxIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxIops) : options.longs === Number ? new $util.LongBits(message.maxIops.low >>> 0, message.maxIops.high >>> 0).toNumber() : message.maxIops;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this FixedIOPS to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            FixedIOPS.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for FixedIOPS
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1beta1.Instance.FixedIOPS
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            FixedIOPS.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1beta1.Instance.FixedIOPS";
+                            };
+    
+                            return FixedIOPS;
+                        })();
+    
+                        Instance.PerformanceConfig = (function() {
+    
+                            /**
+                             * Properties of a PerformanceConfig.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @interface IPerformanceConfig
+                             * @property {google.cloud.filestore.v1beta1.Instance.IIOPSPerTB|null} [iopsPerTb] PerformanceConfig iopsPerTb
+                             * @property {google.cloud.filestore.v1beta1.Instance.IFixedIOPS|null} [fixedIops] PerformanceConfig fixedIops
+                             */
+    
+                            /**
+                             * Constructs a new PerformanceConfig.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @classdesc Represents a PerformanceConfig.
+                             * @implements IPerformanceConfig
+                             * @constructor
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceConfig=} [properties] Properties to set
+                             */
+                            function PerformanceConfig(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * PerformanceConfig iopsPerTb.
+                             * @member {google.cloud.filestore.v1beta1.Instance.IIOPSPerTB|null|undefined} iopsPerTb
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @instance
+                             */
+                            PerformanceConfig.prototype.iopsPerTb = null;
+    
+                            /**
+                             * PerformanceConfig fixedIops.
+                             * @member {google.cloud.filestore.v1beta1.Instance.IFixedIOPS|null|undefined} fixedIops
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @instance
+                             */
+                            PerformanceConfig.prototype.fixedIops = null;
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            /**
+                             * PerformanceConfig mode.
+                             * @member {"iopsPerTb"|"fixedIops"|undefined} mode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @instance
+                             */
+                            Object.defineProperty(PerformanceConfig.prototype, "mode", {
+                                get: $util.oneOfGetter($oneOfFields = ["iopsPerTb", "fixedIops"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new PerformanceConfig instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceConfig=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceConfig} PerformanceConfig instance
+                             */
+                            PerformanceConfig.create = function create(properties) {
+                                return new PerformanceConfig(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceConfig message. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.PerformanceConfig.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceConfig} message PerformanceConfig message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceConfig.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.fixedIops != null && Object.hasOwnProperty.call(message, "fixedIops"))
+                                    $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS.encode(message.fixedIops, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.iopsPerTb != null && Object.hasOwnProperty.call(message, "iopsPerTb"))
+                                    $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB.encode(message.iopsPerTb, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceConfig message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.PerformanceConfig.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceConfig} message PerformanceConfig message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PerformanceConfig message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceConfig} PerformanceConfig
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceConfig.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 4: {
+                                            message.iopsPerTb = $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.fixedIops = $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PerformanceConfig message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceConfig} PerformanceConfig
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceConfig.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PerformanceConfig message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PerformanceConfig.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.iopsPerTb != null && message.hasOwnProperty("iopsPerTb")) {
+                                    properties.mode = 1;
+                                    {
+                                        var error = $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB.verify(message.iopsPerTb);
+                                        if (error)
+                                            return "iopsPerTb." + error;
+                                    }
+                                }
+                                if (message.fixedIops != null && message.hasOwnProperty("fixedIops")) {
+                                    if (properties.mode === 1)
+                                        return "mode: multiple values";
+                                    properties.mode = 1;
+                                    {
+                                        var error = $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS.verify(message.fixedIops);
+                                        if (error)
+                                            return "fixedIops." + error;
+                                    }
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PerformanceConfig message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceConfig} PerformanceConfig
+                             */
+                            PerformanceConfig.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1beta1.Instance.PerformanceConfig();
+                                if (object.iopsPerTb != null) {
+                                    if (typeof object.iopsPerTb !== "object")
+                                        throw TypeError(".google.cloud.filestore.v1beta1.Instance.PerformanceConfig.iopsPerTb: object expected");
+                                    message.iopsPerTb = $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB.fromObject(object.iopsPerTb);
+                                }
+                                if (object.fixedIops != null) {
+                                    if (typeof object.fixedIops !== "object")
+                                        throw TypeError(".google.cloud.filestore.v1beta1.Instance.PerformanceConfig.fixedIops: object expected");
+                                    message.fixedIops = $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS.fromObject(object.fixedIops);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a PerformanceConfig message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.PerformanceConfig} message PerformanceConfig
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PerformanceConfig.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (message.fixedIops != null && message.hasOwnProperty("fixedIops")) {
+                                    object.fixedIops = $root.google.cloud.filestore.v1beta1.Instance.FixedIOPS.toObject(message.fixedIops, options);
+                                    if (options.oneofs)
+                                        object.mode = "fixedIops";
+                                }
+                                if (message.iopsPerTb != null && message.hasOwnProperty("iopsPerTb")) {
+                                    object.iopsPerTb = $root.google.cloud.filestore.v1beta1.Instance.IOPSPerTB.toObject(message.iopsPerTb, options);
+                                    if (options.oneofs)
+                                        object.mode = "iopsPerTb";
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this PerformanceConfig to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PerformanceConfig.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PerformanceConfig
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceConfig
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PerformanceConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1beta1.Instance.PerformanceConfig";
+                            };
+    
+                            return PerformanceConfig;
+                        })();
+    
+                        Instance.PerformanceLimits = (function() {
+    
+                            /**
+                             * Properties of a PerformanceLimits.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @interface IPerformanceLimits
+                             * @property {number|Long|null} [maxIops] PerformanceLimits maxIops
+                             * @property {number|Long|null} [maxReadIops] PerformanceLimits maxReadIops
+                             * @property {number|Long|null} [maxWriteIops] PerformanceLimits maxWriteIops
+                             * @property {number|Long|null} [maxReadThroughputBps] PerformanceLimits maxReadThroughputBps
+                             * @property {number|Long|null} [maxWriteThroughputBps] PerformanceLimits maxWriteThroughputBps
+                             */
+    
+                            /**
+                             * Constructs a new PerformanceLimits.
+                             * @memberof google.cloud.filestore.v1beta1.Instance
+                             * @classdesc Represents a PerformanceLimits.
+                             * @implements IPerformanceLimits
+                             * @constructor
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceLimits=} [properties] Properties to set
+                             */
+                            function PerformanceLimits(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * PerformanceLimits maxIops.
+                             * @member {number|Long} maxIops
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxReadIops.
+                             * @member {number|Long} maxReadIops
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxReadIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxWriteIops.
+                             * @member {number|Long} maxWriteIops
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxWriteIops = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxReadThroughputBps.
+                             * @member {number|Long} maxReadThroughputBps
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxReadThroughputBps = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * PerformanceLimits maxWriteThroughputBps.
+                             * @member {number|Long} maxWriteThroughputBps
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @instance
+                             */
+                            PerformanceLimits.prototype.maxWriteThroughputBps = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                            /**
+                             * Creates a new PerformanceLimits instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceLimits=} [properties] Properties to set
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceLimits} PerformanceLimits instance
+                             */
+                            PerformanceLimits.create = function create(properties) {
+                                return new PerformanceLimits(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceLimits message. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.PerformanceLimits.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceLimits} message PerformanceLimits message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceLimits.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.maxReadIops != null && Object.hasOwnProperty.call(message, "maxReadIops"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int64(message.maxReadIops);
+                                if (message.maxWriteIops != null && Object.hasOwnProperty.call(message, "maxWriteIops"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.maxWriteIops);
+                                if (message.maxReadThroughputBps != null && Object.hasOwnProperty.call(message, "maxReadThroughputBps"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).int64(message.maxReadThroughputBps);
+                                if (message.maxWriteThroughputBps != null && Object.hasOwnProperty.call(message, "maxWriteThroughputBps"))
+                                    writer.uint32(/* id 6, wireType 0 =*/48).int64(message.maxWriteThroughputBps);
+                                if (message.maxIops != null && Object.hasOwnProperty.call(message, "maxIops"))
+                                    writer.uint32(/* id 7, wireType 0 =*/56).int64(message.maxIops);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PerformanceLimits message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.Instance.PerformanceLimits.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.IPerformanceLimits} message PerformanceLimits message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PerformanceLimits.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PerformanceLimits message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceLimits} PerformanceLimits
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceLimits.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 7: {
+                                            message.maxIops = reader.int64();
+                                            break;
+                                        }
+                                    case 1: {
+                                            message.maxReadIops = reader.int64();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.maxWriteIops = reader.int64();
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.maxReadThroughputBps = reader.int64();
+                                            break;
+                                        }
+                                    case 6: {
+                                            message.maxWriteThroughputBps = reader.int64();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PerformanceLimits message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceLimits} PerformanceLimits
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PerformanceLimits.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PerformanceLimits message.
+                             * @function verify
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PerformanceLimits.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (!$util.isInteger(message.maxIops) && !(message.maxIops && $util.isInteger(message.maxIops.low) && $util.isInteger(message.maxIops.high)))
+                                        return "maxIops: integer|Long expected";
+                                if (message.maxReadIops != null && message.hasOwnProperty("maxReadIops"))
+                                    if (!$util.isInteger(message.maxReadIops) && !(message.maxReadIops && $util.isInteger(message.maxReadIops.low) && $util.isInteger(message.maxReadIops.high)))
+                                        return "maxReadIops: integer|Long expected";
+                                if (message.maxWriteIops != null && message.hasOwnProperty("maxWriteIops"))
+                                    if (!$util.isInteger(message.maxWriteIops) && !(message.maxWriteIops && $util.isInteger(message.maxWriteIops.low) && $util.isInteger(message.maxWriteIops.high)))
+                                        return "maxWriteIops: integer|Long expected";
+                                if (message.maxReadThroughputBps != null && message.hasOwnProperty("maxReadThroughputBps"))
+                                    if (!$util.isInteger(message.maxReadThroughputBps) && !(message.maxReadThroughputBps && $util.isInteger(message.maxReadThroughputBps.low) && $util.isInteger(message.maxReadThroughputBps.high)))
+                                        return "maxReadThroughputBps: integer|Long expected";
+                                if (message.maxWriteThroughputBps != null && message.hasOwnProperty("maxWriteThroughputBps"))
+                                    if (!$util.isInteger(message.maxWriteThroughputBps) && !(message.maxWriteThroughputBps && $util.isInteger(message.maxWriteThroughputBps.low) && $util.isInteger(message.maxWriteThroughputBps.high)))
+                                        return "maxWriteThroughputBps: integer|Long expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PerformanceLimits message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.filestore.v1beta1.Instance.PerformanceLimits} PerformanceLimits
+                             */
+                            PerformanceLimits.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits)
+                                    return object;
+                                var message = new $root.google.cloud.filestore.v1beta1.Instance.PerformanceLimits();
+                                if (object.maxIops != null)
+                                    if ($util.Long)
+                                        (message.maxIops = $util.Long.fromValue(object.maxIops)).unsigned = false;
+                                    else if (typeof object.maxIops === "string")
+                                        message.maxIops = parseInt(object.maxIops, 10);
+                                    else if (typeof object.maxIops === "number")
+                                        message.maxIops = object.maxIops;
+                                    else if (typeof object.maxIops === "object")
+                                        message.maxIops = new $util.LongBits(object.maxIops.low >>> 0, object.maxIops.high >>> 0).toNumber();
+                                if (object.maxReadIops != null)
+                                    if ($util.Long)
+                                        (message.maxReadIops = $util.Long.fromValue(object.maxReadIops)).unsigned = false;
+                                    else if (typeof object.maxReadIops === "string")
+                                        message.maxReadIops = parseInt(object.maxReadIops, 10);
+                                    else if (typeof object.maxReadIops === "number")
+                                        message.maxReadIops = object.maxReadIops;
+                                    else if (typeof object.maxReadIops === "object")
+                                        message.maxReadIops = new $util.LongBits(object.maxReadIops.low >>> 0, object.maxReadIops.high >>> 0).toNumber();
+                                if (object.maxWriteIops != null)
+                                    if ($util.Long)
+                                        (message.maxWriteIops = $util.Long.fromValue(object.maxWriteIops)).unsigned = false;
+                                    else if (typeof object.maxWriteIops === "string")
+                                        message.maxWriteIops = parseInt(object.maxWriteIops, 10);
+                                    else if (typeof object.maxWriteIops === "number")
+                                        message.maxWriteIops = object.maxWriteIops;
+                                    else if (typeof object.maxWriteIops === "object")
+                                        message.maxWriteIops = new $util.LongBits(object.maxWriteIops.low >>> 0, object.maxWriteIops.high >>> 0).toNumber();
+                                if (object.maxReadThroughputBps != null)
+                                    if ($util.Long)
+                                        (message.maxReadThroughputBps = $util.Long.fromValue(object.maxReadThroughputBps)).unsigned = false;
+                                    else if (typeof object.maxReadThroughputBps === "string")
+                                        message.maxReadThroughputBps = parseInt(object.maxReadThroughputBps, 10);
+                                    else if (typeof object.maxReadThroughputBps === "number")
+                                        message.maxReadThroughputBps = object.maxReadThroughputBps;
+                                    else if (typeof object.maxReadThroughputBps === "object")
+                                        message.maxReadThroughputBps = new $util.LongBits(object.maxReadThroughputBps.low >>> 0, object.maxReadThroughputBps.high >>> 0).toNumber();
+                                if (object.maxWriteThroughputBps != null)
+                                    if ($util.Long)
+                                        (message.maxWriteThroughputBps = $util.Long.fromValue(object.maxWriteThroughputBps)).unsigned = false;
+                                    else if (typeof object.maxWriteThroughputBps === "string")
+                                        message.maxWriteThroughputBps = parseInt(object.maxWriteThroughputBps, 10);
+                                    else if (typeof object.maxWriteThroughputBps === "number")
+                                        message.maxWriteThroughputBps = object.maxWriteThroughputBps;
+                                    else if (typeof object.maxWriteThroughputBps === "object")
+                                        message.maxWriteThroughputBps = new $util.LongBits(object.maxWriteThroughputBps.low >>> 0, object.maxWriteThroughputBps.high >>> 0).toNumber();
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a PerformanceLimits message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {google.cloud.filestore.v1beta1.Instance.PerformanceLimits} message PerformanceLimits
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PerformanceLimits.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxReadIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxReadIops = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxWriteIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxWriteIops = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxReadThroughputBps = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxReadThroughputBps = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxWriteThroughputBps = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxWriteThroughputBps = options.longs === String ? "0" : 0;
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.maxIops = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.maxIops = options.longs === String ? "0" : 0;
+                                }
+                                if (message.maxReadIops != null && message.hasOwnProperty("maxReadIops"))
+                                    if (typeof message.maxReadIops === "number")
+                                        object.maxReadIops = options.longs === String ? String(message.maxReadIops) : message.maxReadIops;
+                                    else
+                                        object.maxReadIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxReadIops) : options.longs === Number ? new $util.LongBits(message.maxReadIops.low >>> 0, message.maxReadIops.high >>> 0).toNumber() : message.maxReadIops;
+                                if (message.maxWriteIops != null && message.hasOwnProperty("maxWriteIops"))
+                                    if (typeof message.maxWriteIops === "number")
+                                        object.maxWriteIops = options.longs === String ? String(message.maxWriteIops) : message.maxWriteIops;
+                                    else
+                                        object.maxWriteIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxWriteIops) : options.longs === Number ? new $util.LongBits(message.maxWriteIops.low >>> 0, message.maxWriteIops.high >>> 0).toNumber() : message.maxWriteIops;
+                                if (message.maxReadThroughputBps != null && message.hasOwnProperty("maxReadThroughputBps"))
+                                    if (typeof message.maxReadThroughputBps === "number")
+                                        object.maxReadThroughputBps = options.longs === String ? String(message.maxReadThroughputBps) : message.maxReadThroughputBps;
+                                    else
+                                        object.maxReadThroughputBps = options.longs === String ? $util.Long.prototype.toString.call(message.maxReadThroughputBps) : options.longs === Number ? new $util.LongBits(message.maxReadThroughputBps.low >>> 0, message.maxReadThroughputBps.high >>> 0).toNumber() : message.maxReadThroughputBps;
+                                if (message.maxWriteThroughputBps != null && message.hasOwnProperty("maxWriteThroughputBps"))
+                                    if (typeof message.maxWriteThroughputBps === "number")
+                                        object.maxWriteThroughputBps = options.longs === String ? String(message.maxWriteThroughputBps) : message.maxWriteThroughputBps;
+                                    else
+                                        object.maxWriteThroughputBps = options.longs === String ? $util.Long.prototype.toString.call(message.maxWriteThroughputBps) : options.longs === Number ? new $util.LongBits(message.maxWriteThroughputBps.low >>> 0, message.maxWriteThroughputBps.high >>> 0).toNumber() : message.maxWriteThroughputBps;
+                                if (message.maxIops != null && message.hasOwnProperty("maxIops"))
+                                    if (typeof message.maxIops === "number")
+                                        object.maxIops = options.longs === String ? String(message.maxIops) : message.maxIops;
+                                    else
+                                        object.maxIops = options.longs === String ? $util.Long.prototype.toString.call(message.maxIops) : options.longs === Number ? new $util.LongBits(message.maxIops.low >>> 0, message.maxIops.high >>> 0).toNumber() : message.maxIops;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this PerformanceLimits to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PerformanceLimits.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PerformanceLimits
+                             * @function getTypeUrl
+                             * @memberof google.cloud.filestore.v1beta1.Instance.PerformanceLimits
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PerformanceLimits.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.filestore.v1beta1.Instance.PerformanceLimits";
+                            };
+    
+                            return PerformanceLimits;
                         })();
     
                         return Instance;
@@ -12753,12 +17357,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateInstanceRequest.decode = function decode(reader, length) {
+                        CreateInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.CreateInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -12986,12 +17592,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetInstanceRequest.decode = function decode(reader, length) {
+                        GetInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.GetInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -13200,12 +17808,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateInstanceRequest.decode = function decode(reader, length) {
+                        UpdateInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.UpdateInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -13473,12 +18083,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RestoreInstanceRequest.decode = function decode(reader, length) {
+                        RestoreInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.RestoreInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -13735,12 +18347,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RevertInstanceRequest.decode = function decode(reader, length) {
+                        RevertInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.RevertInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -13962,12 +18576,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteInstanceRequest.decode = function decode(reader, length) {
+                        DeleteInstanceRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.DeleteInstanceRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -14222,12 +18838,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListInstancesRequest.decode = function decode(reader, length) {
+                        ListInstancesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListInstancesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -14500,12 +19118,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListInstancesResponse.decode = function decode(reader, length) {
+                        ListInstancesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListInstancesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.instances && message.instances.length))
@@ -14677,6 +19297,235 @@
                         return ListInstancesResponse;
                     })();
     
+                    v1beta1.PromoteReplicaRequest = (function() {
+    
+                        /**
+                         * Properties of a PromoteReplicaRequest.
+                         * @memberof google.cloud.filestore.v1beta1
+                         * @interface IPromoteReplicaRequest
+                         * @property {string|null} [name] PromoteReplicaRequest name
+                         * @property {string|null} [peerInstance] PromoteReplicaRequest peerInstance
+                         */
+    
+                        /**
+                         * Constructs a new PromoteReplicaRequest.
+                         * @memberof google.cloud.filestore.v1beta1
+                         * @classdesc Represents a PromoteReplicaRequest.
+                         * @implements IPromoteReplicaRequest
+                         * @constructor
+                         * @param {google.cloud.filestore.v1beta1.IPromoteReplicaRequest=} [properties] Properties to set
+                         */
+                        function PromoteReplicaRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * PromoteReplicaRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @instance
+                         */
+                        PromoteReplicaRequest.prototype.name = "";
+    
+                        /**
+                         * PromoteReplicaRequest peerInstance.
+                         * @member {string} peerInstance
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @instance
+                         */
+                        PromoteReplicaRequest.prototype.peerInstance = "";
+    
+                        /**
+                         * Creates a new PromoteReplicaRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IPromoteReplicaRequest=} [properties] Properties to set
+                         * @returns {google.cloud.filestore.v1beta1.PromoteReplicaRequest} PromoteReplicaRequest instance
+                         */
+                        PromoteReplicaRequest.create = function create(properties) {
+                            return new PromoteReplicaRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified PromoteReplicaRequest message. Does not implicitly {@link google.cloud.filestore.v1beta1.PromoteReplicaRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IPromoteReplicaRequest} message PromoteReplicaRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PromoteReplicaRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.peerInstance != null && Object.hasOwnProperty.call(message, "peerInstance"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.peerInstance);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified PromoteReplicaRequest message, length delimited. Does not implicitly {@link google.cloud.filestore.v1beta1.PromoteReplicaRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.IPromoteReplicaRequest} message PromoteReplicaRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PromoteReplicaRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a PromoteReplicaRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.filestore.v1beta1.PromoteReplicaRequest} PromoteReplicaRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PromoteReplicaRequest.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.PromoteReplicaRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.name = reader.string();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.peerInstance = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a PromoteReplicaRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.filestore.v1beta1.PromoteReplicaRequest} PromoteReplicaRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PromoteReplicaRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a PromoteReplicaRequest message.
+                         * @function verify
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        PromoteReplicaRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                if (!$util.isString(message.peerInstance))
+                                    return "peerInstance: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a PromoteReplicaRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.filestore.v1beta1.PromoteReplicaRequest} PromoteReplicaRequest
+                         */
+                        PromoteReplicaRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.filestore.v1beta1.PromoteReplicaRequest)
+                                return object;
+                            var message = new $root.google.cloud.filestore.v1beta1.PromoteReplicaRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.peerInstance != null)
+                                message.peerInstance = String(object.peerInstance);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a PromoteReplicaRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {google.cloud.filestore.v1beta1.PromoteReplicaRequest} message PromoteReplicaRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        PromoteReplicaRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.peerInstance = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.peerInstance != null && message.hasOwnProperty("peerInstance"))
+                                object.peerInstance = message.peerInstance;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this PromoteReplicaRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        PromoteReplicaRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for PromoteReplicaRequest
+                         * @function getTypeUrl
+                         * @memberof google.cloud.filestore.v1beta1.PromoteReplicaRequest
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        PromoteReplicaRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.filestore.v1beta1.PromoteReplicaRequest";
+                        };
+    
+                        return PromoteReplicaRequest;
+                    })();
+    
                     v1beta1.Snapshot = (function() {
     
                         /**
@@ -14689,6 +19538,7 @@
                          * @property {google.protobuf.ITimestamp|null} [createTime] Snapshot createTime
                          * @property {Object.<string,string>|null} [labels] Snapshot labels
                          * @property {number|Long|null} [filesystemUsedBytes] Snapshot filesystemUsedBytes
+                         * @property {Object.<string,string>|null} [tags] Snapshot tags
                          */
     
                         /**
@@ -14701,6 +19551,7 @@
                          */
                         function Snapshot(properties) {
                             this.labels = {};
+                            this.tags = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -14756,6 +19607,14 @@
                         Snapshot.prototype.filesystemUsedBytes = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
     
                         /**
+                         * Snapshot tags.
+                         * @member {Object.<string,string>} tags
+                         * @memberof google.cloud.filestore.v1beta1.Snapshot
+                         * @instance
+                         */
+                        Snapshot.prototype.tags = $util.emptyObject;
+    
+                        /**
                          * Creates a new Snapshot instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1beta1.Snapshot
@@ -14792,6 +19651,9 @@
                                     writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
                             if (message.filesystemUsedBytes != null && Object.hasOwnProperty.call(message, "filesystemUsedBytes"))
                                 writer.uint32(/* id 12, wireType 0 =*/96).int64(message.filesystemUsedBytes);
+                            if (message.tags != null && Object.hasOwnProperty.call(message, "tags"))
+                                for (var keys = Object.keys(message.tags), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 13, wireType 2 =*/106).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.tags[keys[i]]).ldelim();
                             return writer;
                         };
     
@@ -14819,12 +19681,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Snapshot.decode = function decode(reader, length) {
+                        Snapshot.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Snapshot(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -14867,6 +19731,29 @@
                                     }
                                 case 12: {
                                         message.filesystemUsedBytes = reader.int64();
+                                        break;
+                                    }
+                                case 13: {
+                                        if (message.tags === $util.emptyObject)
+                                            message.tags = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.tags[key] = value;
                                         break;
                                     }
                                 default:
@@ -14936,6 +19823,14 @@
                             if (message.filesystemUsedBytes != null && message.hasOwnProperty("filesystemUsedBytes"))
                                 if (!$util.isInteger(message.filesystemUsedBytes) && !(message.filesystemUsedBytes && $util.isInteger(message.filesystemUsedBytes.low) && $util.isInteger(message.filesystemUsedBytes.high)))
                                     return "filesystemUsedBytes: integer|Long expected";
+                            if (message.tags != null && message.hasOwnProperty("tags")) {
+                                if (!$util.isObject(message.tags))
+                                    return "tags: object expected";
+                                var key = Object.keys(message.tags);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.tags[key[i]]))
+                                        return "tags: string{k:string} expected";
+                            }
                             return null;
                         };
     
@@ -15000,6 +19895,13 @@
                                     message.filesystemUsedBytes = object.filesystemUsedBytes;
                                 else if (typeof object.filesystemUsedBytes === "object")
                                     message.filesystemUsedBytes = new $util.LongBits(object.filesystemUsedBytes.low >>> 0, object.filesystemUsedBytes.high >>> 0).toNumber();
+                            if (object.tags) {
+                                if (typeof object.tags !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Snapshot.tags: object expected");
+                                message.tags = {};
+                                for (var keys = Object.keys(object.tags), i = 0; i < keys.length; ++i)
+                                    message.tags[keys[i]] = String(object.tags[keys[i]]);
+                            }
                             return message;
                         };
     
@@ -15016,8 +19918,10 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.tags = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.description = "";
@@ -15048,6 +19952,11 @@
                                     object.filesystemUsedBytes = options.longs === String ? String(message.filesystemUsedBytes) : message.filesystemUsedBytes;
                                 else
                                     object.filesystemUsedBytes = options.longs === String ? $util.Long.prototype.toString.call(message.filesystemUsedBytes) : options.longs === Number ? new $util.LongBits(message.filesystemUsedBytes.low >>> 0, message.filesystemUsedBytes.high >>> 0).toNumber() : message.filesystemUsedBytes;
+                            if (message.tags && (keys2 = Object.keys(message.tags)).length) {
+                                object.tags = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.tags[keys2[j]] = message.tags[keys2[j]];
+                            }
                             return object;
                         };
     
@@ -15205,12 +20114,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateSnapshotRequest.decode = function decode(reader, length) {
+                        CreateSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.CreateSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -15438,12 +20349,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetSnapshotRequest.decode = function decode(reader, length) {
+                        GetSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.GetSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15641,12 +20554,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteSnapshotRequest.decode = function decode(reader, length) {
+                        DeleteSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.DeleteSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15855,12 +20770,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateSnapshotRequest.decode = function decode(reader, length) {
+                        UpdateSnapshotRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.UpdateSnapshotRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -16007,6 +20924,7 @@
                          * @property {string|null} [pageToken] ListSnapshotsRequest pageToken
                          * @property {string|null} [orderBy] ListSnapshotsRequest orderBy
                          * @property {string|null} [filter] ListSnapshotsRequest filter
+                         * @property {boolean|null} [returnPartialSuccess] ListSnapshotsRequest returnPartialSuccess
                          */
     
                         /**
@@ -16065,6 +20983,14 @@
                         ListSnapshotsRequest.prototype.filter = "";
     
                         /**
+                         * ListSnapshotsRequest returnPartialSuccess.
+                         * @member {boolean} returnPartialSuccess
+                         * @memberof google.cloud.filestore.v1beta1.ListSnapshotsRequest
+                         * @instance
+                         */
+                        ListSnapshotsRequest.prototype.returnPartialSuccess = false;
+    
+                        /**
                          * Creates a new ListSnapshotsRequest instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1beta1.ListSnapshotsRequest
@@ -16098,6 +21024,8 @@
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.orderBy);
                             if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
                                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.filter);
+                            if (message.returnPartialSuccess != null && Object.hasOwnProperty.call(message, "returnPartialSuccess"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.returnPartialSuccess);
                             return writer;
                         };
     
@@ -16125,12 +21053,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSnapshotsRequest.decode = function decode(reader, length) {
+                        ListSnapshotsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListSnapshotsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16150,6 +21080,10 @@
                                     }
                                 case 5: {
                                         message.filter = reader.string();
+                                        break;
+                                    }
+                                case 6: {
+                                        message.returnPartialSuccess = reader.bool();
                                         break;
                                     }
                                 default:
@@ -16202,6 +21136,9 @@
                             if (message.filter != null && message.hasOwnProperty("filter"))
                                 if (!$util.isString(message.filter))
                                     return "filter: string expected";
+                            if (message.returnPartialSuccess != null && message.hasOwnProperty("returnPartialSuccess"))
+                                if (typeof message.returnPartialSuccess !== "boolean")
+                                    return "returnPartialSuccess: boolean expected";
                             return null;
                         };
     
@@ -16227,6 +21164,8 @@
                                 message.orderBy = String(object.orderBy);
                             if (object.filter != null)
                                 message.filter = String(object.filter);
+                            if (object.returnPartialSuccess != null)
+                                message.returnPartialSuccess = Boolean(object.returnPartialSuccess);
                             return message;
                         };
     
@@ -16249,6 +21188,7 @@
                                 object.pageToken = "";
                                 object.orderBy = "";
                                 object.filter = "";
+                                object.returnPartialSuccess = false;
                             }
                             if (message.parent != null && message.hasOwnProperty("parent"))
                                 object.parent = message.parent;
@@ -16260,6 +21200,8 @@
                                 object.orderBy = message.orderBy;
                             if (message.filter != null && message.hasOwnProperty("filter"))
                                 object.filter = message.filter;
+                            if (message.returnPartialSuccess != null && message.hasOwnProperty("returnPartialSuccess"))
+                                object.returnPartialSuccess = message.returnPartialSuccess;
                             return object;
                         };
     
@@ -16300,6 +21242,7 @@
                          * @interface IListSnapshotsResponse
                          * @property {Array.<google.cloud.filestore.v1beta1.ISnapshot>|null} [snapshots] ListSnapshotsResponse snapshots
                          * @property {string|null} [nextPageToken] ListSnapshotsResponse nextPageToken
+                         * @property {Array.<string>|null} [unreachable] ListSnapshotsResponse unreachable
                          */
     
                         /**
@@ -16312,6 +21255,7 @@
                          */
                         function ListSnapshotsResponse(properties) {
                             this.snapshots = [];
+                            this.unreachable = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -16333,6 +21277,14 @@
                          * @instance
                          */
                         ListSnapshotsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * ListSnapshotsResponse unreachable.
+                         * @member {Array.<string>} unreachable
+                         * @memberof google.cloud.filestore.v1beta1.ListSnapshotsResponse
+                         * @instance
+                         */
+                        ListSnapshotsResponse.prototype.unreachable = $util.emptyArray;
     
                         /**
                          * Creates a new ListSnapshotsResponse instance using the specified properties.
@@ -16363,6 +21315,9 @@
                                     $root.google.cloud.filestore.v1beta1.Snapshot.encode(message.snapshots[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                             if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            if (message.unreachable != null && message.unreachable.length)
+                                for (var i = 0; i < message.unreachable.length; ++i)
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.unreachable[i]);
                             return writer;
                         };
     
@@ -16390,12 +21345,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSnapshotsResponse.decode = function decode(reader, length) {
+                        ListSnapshotsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListSnapshotsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.snapshots && message.snapshots.length))
@@ -16405,6 +21362,12 @@
                                     }
                                 case 2: {
                                         message.nextPageToken = reader.string();
+                                        break;
+                                    }
+                                case 3: {
+                                        if (!(message.unreachable && message.unreachable.length))
+                                            message.unreachable = [];
+                                        message.unreachable.push(reader.string());
                                         break;
                                     }
                                 default:
@@ -16454,6 +21417,13 @@
                             if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
                                 if (!$util.isString(message.nextPageToken))
                                     return "nextPageToken: string expected";
+                            if (message.unreachable != null && message.hasOwnProperty("unreachable")) {
+                                if (!Array.isArray(message.unreachable))
+                                    return "unreachable: array expected";
+                                for (var i = 0; i < message.unreachable.length; ++i)
+                                    if (!$util.isString(message.unreachable[i]))
+                                        return "unreachable: string[] expected";
+                            }
                             return null;
                         };
     
@@ -16481,6 +21451,13 @@
                             }
                             if (object.nextPageToken != null)
                                 message.nextPageToken = String(object.nextPageToken);
+                            if (object.unreachable) {
+                                if (!Array.isArray(object.unreachable))
+                                    throw TypeError(".google.cloud.filestore.v1beta1.ListSnapshotsResponse.unreachable: array expected");
+                                message.unreachable = [];
+                                for (var i = 0; i < object.unreachable.length; ++i)
+                                    message.unreachable[i] = String(object.unreachable[i]);
+                            }
                             return message;
                         };
     
@@ -16497,8 +21474,10 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.arrays || options.defaults)
+                            if (options.arrays || options.defaults) {
                                 object.snapshots = [];
+                                object.unreachable = [];
+                            }
                             if (options.defaults)
                                 object.nextPageToken = "";
                             if (message.snapshots && message.snapshots.length) {
@@ -16508,6 +21487,11 @@
                             }
                             if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
                                 object.nextPageToken = message.nextPageToken;
+                            if (message.unreachable && message.unreachable.length) {
+                                object.unreachable = [];
+                                for (var j = 0; j < message.unreachable.length; ++j)
+                                    object.unreachable[j] = message.unreachable[j];
+                            }
                             return object;
                         };
     
@@ -16560,6 +21544,8 @@
                          * @property {google.protobuf.IBoolValue|null} [satisfiesPzs] Backup satisfiesPzs
                          * @property {boolean|null} [satisfiesPzi] Backup satisfiesPzi
                          * @property {string|null} [kmsKeyName] Backup kmsKeyName
+                         * @property {Object.<string,string>|null} [tags] Backup tags
+                         * @property {google.cloud.filestore.v1beta1.Instance.FileProtocol|null} [fileSystemProtocol] Backup fileSystemProtocol
                          */
     
                         /**
@@ -16572,6 +21558,7 @@
                          */
                         function Backup(properties) {
                             this.labels = {};
+                            this.tags = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -16691,6 +21678,22 @@
                         Backup.prototype.kmsKeyName = "";
     
                         /**
+                         * Backup tags.
+                         * @member {Object.<string,string>} tags
+                         * @memberof google.cloud.filestore.v1beta1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.tags = $util.emptyObject;
+    
+                        /**
+                         * Backup fileSystemProtocol.
+                         * @member {google.cloud.filestore.v1beta1.Instance.FileProtocol} fileSystemProtocol
+                         * @memberof google.cloud.filestore.v1beta1.Backup
+                         * @instance
+                         */
+                        Backup.prototype.fileSystemProtocol = 0;
+    
+                        /**
                          * Creates a new Backup instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.filestore.v1beta1.Backup
@@ -16743,6 +21746,11 @@
                                 writer.uint32(/* id 13, wireType 2 =*/106).string(message.kmsKeyName);
                             if (message.satisfiesPzi != null && Object.hasOwnProperty.call(message, "satisfiesPzi"))
                                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.satisfiesPzi);
+                            if (message.tags != null && Object.hasOwnProperty.call(message, "tags"))
+                                for (var keys = Object.keys(message.tags), i = 0; i < keys.length; ++i)
+                                    writer.uint32(/* id 15, wireType 2 =*/122).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.tags[keys[i]]).ldelim();
+                            if (message.fileSystemProtocol != null && Object.hasOwnProperty.call(message, "fileSystemProtocol"))
+                                writer.uint32(/* id 16, wireType 0 =*/128).int32(message.fileSystemProtocol);
                             return writer;
                         };
     
@@ -16770,12 +21778,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Backup.decode = function decode(reader, length) {
+                        Backup.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Backup(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16850,6 +21860,33 @@
                                     }
                                 case 13: {
                                         message.kmsKeyName = reader.string();
+                                        break;
+                                    }
+                                case 15: {
+                                        if (message.tags === $util.emptyObject)
+                                            message.tags = {};
+                                        var end2 = reader.uint32() + reader.pos;
+                                        key = "";
+                                        value = "";
+                                        while (reader.pos < end2) {
+                                            var tag2 = reader.uint32();
+                                            switch (tag2 >>> 3) {
+                                            case 1:
+                                                key = reader.string();
+                                                break;
+                                            case 2:
+                                                value = reader.string();
+                                                break;
+                                            default:
+                                                reader.skipType(tag2 & 7);
+                                                break;
+                                            }
+                                        }
+                                        message.tags[key] = value;
+                                        break;
+                                    }
+                                case 16: {
+                                        message.fileSystemProtocol = reader.int32();
                                         break;
                                     }
                                 default:
@@ -16959,6 +21996,23 @@
                             if (message.kmsKeyName != null && message.hasOwnProperty("kmsKeyName"))
                                 if (!$util.isString(message.kmsKeyName))
                                     return "kmsKeyName: string expected";
+                            if (message.tags != null && message.hasOwnProperty("tags")) {
+                                if (!$util.isObject(message.tags))
+                                    return "tags: object expected";
+                                var key = Object.keys(message.tags);
+                                for (var i = 0; i < key.length; ++i)
+                                    if (!$util.isString(message.tags[key[i]]))
+                                        return "tags: string{k:string} expected";
+                            }
+                            if (message.fileSystemProtocol != null && message.hasOwnProperty("fileSystemProtocol"))
+                                switch (message.fileSystemProtocol) {
+                                default:
+                                    return "fileSystemProtocol: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
                             return null;
                         };
     
@@ -17106,6 +22160,33 @@
                                 message.satisfiesPzi = Boolean(object.satisfiesPzi);
                             if (object.kmsKeyName != null)
                                 message.kmsKeyName = String(object.kmsKeyName);
+                            if (object.tags) {
+                                if (typeof object.tags !== "object")
+                                    throw TypeError(".google.cloud.filestore.v1beta1.Backup.tags: object expected");
+                                message.tags = {};
+                                for (var keys = Object.keys(object.tags), i = 0; i < keys.length; ++i)
+                                    message.tags[keys[i]] = String(object.tags[keys[i]]);
+                            }
+                            switch (object.fileSystemProtocol) {
+                            default:
+                                if (typeof object.fileSystemProtocol === "number") {
+                                    message.fileSystemProtocol = object.fileSystemProtocol;
+                                    break;
+                                }
+                                break;
+                            case "FILE_PROTOCOL_UNSPECIFIED":
+                            case 0:
+                                message.fileSystemProtocol = 0;
+                                break;
+                            case "NFS_V3":
+                            case 1:
+                                message.fileSystemProtocol = 1;
+                                break;
+                            case "NFS_V4_1":
+                            case 2:
+                                message.fileSystemProtocol = 2;
+                                break;
+                            }
                             return message;
                         };
     
@@ -17122,8 +22203,10 @@
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.tags = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.description = "";
@@ -17150,6 +22233,7 @@
                                 object.satisfiesPzs = null;
                                 object.kmsKeyName = "";
                                 object.satisfiesPzi = false;
+                                object.fileSystemProtocol = options.enums === String ? "FILE_PROTOCOL_UNSPECIFIED" : 0;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -17192,6 +22276,13 @@
                                 object.kmsKeyName = message.kmsKeyName;
                             if (message.satisfiesPzi != null && message.hasOwnProperty("satisfiesPzi"))
                                 object.satisfiesPzi = message.satisfiesPzi;
+                            if (message.tags && (keys2 = Object.keys(message.tags)).length) {
+                                object.tags = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.tags[keys2[j]] = message.tags[keys2[j]];
+                            }
+                            if (message.fileSystemProtocol != null && message.hasOwnProperty("fileSystemProtocol"))
+                                object.fileSystemProtocol = options.enums === String ? $root.google.cloud.filestore.v1beta1.Instance.FileProtocol[message.fileSystemProtocol] === undefined ? message.fileSystemProtocol : $root.google.cloud.filestore.v1beta1.Instance.FileProtocol[message.fileSystemProtocol] : message.fileSystemProtocol;
                             return object;
                         };
     
@@ -17353,12 +22444,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateBackupRequest.decode = function decode(reader, length) {
+                        CreateBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.CreateBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -17586,12 +22679,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteBackupRequest.decode = function decode(reader, length) {
+                        DeleteBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.DeleteBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17800,12 +22895,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateBackupRequest.decode = function decode(reader, length) {
+                        UpdateBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.UpdateBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.backup = $root.google.cloud.filestore.v1beta1.Backup.decode(reader, reader.uint32());
@@ -18026,12 +23123,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetBackupRequest.decode = function decode(reader, length) {
+                        GetBackupRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.GetBackupRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -18273,12 +23372,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupsRequest.decode = function decode(reader, length) {
+                        ListBackupsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListBackupsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -18551,12 +23652,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListBackupsResponse.decode = function decode(reader, length) {
+                        ListBackupsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListBackupsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.backups && message.backups.length))
@@ -18919,12 +24022,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Share.decode = function decode(reader, length) {
+                        Share.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.Share(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19366,12 +24471,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateShareRequest.decode = function decode(reader, length) {
+                        CreateShareRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.CreateShareRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -19599,12 +24706,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetShareRequest.decode = function decode(reader, length) {
+                        GetShareRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.GetShareRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -19802,12 +24911,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteShareRequest.decode = function decode(reader, length) {
+                        DeleteShareRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.DeleteShareRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -20049,12 +25160,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSharesRequest.decode = function decode(reader, length) {
+                        ListSharesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListSharesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -20327,12 +25440,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListSharesResponse.decode = function decode(reader, length) {
+                        ListSharesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.ListSharesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.shares && message.shares.length))
@@ -20600,12 +25715,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateShareRequest.decode = function decode(reader, length) {
+                        UpdateShareRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.filestore.v1beta1.UpdateShareRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.share = $root.google.cloud.filestore.v1beta1.Share.decode(reader, reader.uint32());
@@ -20885,12 +26002,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -21235,12 +26354,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -21619,12 +26740,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -21851,12 +26974,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -22220,12 +27345,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -22564,6 +27691,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -22665,6 +27793,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -22711,6 +27847,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -22738,12 +27876,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -22789,6 +27929,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -22883,6 +28027,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -22977,6 +28124,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -23006,6 +28155,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -23036,6 +28186,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -23177,12 +28329,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -23444,12 +28598,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -23652,12 +28808,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -23860,12 +29018,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24068,12 +29228,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24341,12 +29503,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24720,12 +29884,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -24928,12 +30094,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -25160,12 +30328,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -25438,12 +30608,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -25837,12 +31009,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -26232,12 +31406,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -26462,12 +31638,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -26862,12 +32040,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -27529,12 +32709,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -28014,12 +33196,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -28258,12 +33442,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -28514,12 +33700,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -28859,12 +34047,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -29238,12 +34428,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -29763,12 +34955,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30034,12 +35228,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30353,12 +35549,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -30594,12 +35792,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30851,12 +36051,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31159,12 +36361,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -31663,12 +36867,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -32283,12 +37489,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -32731,12 +37939,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -32766,12 +37971,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -33497,12 +38704,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -33793,12 +39002,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -34079,12 +39290,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -34391,12 +39604,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -34582,6 +39797,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -34641,6 +39857,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -34675,6 +39899,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -34702,12 +39928,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -34729,6 +39957,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -34789,6 +40021,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -34825,6 +40060,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -34848,6 +40085,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -34862,6 +40100,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -35049,12 +40289,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -35483,12 +40725,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -35822,12 +41066,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -36098,12 +41344,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -36633,12 +41881,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -37017,12 +42267,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -37307,12 +42559,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -37582,12 +42836,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -37893,12 +43149,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -38161,12 +43419,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -38487,12 +43747,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -38728,12 +43990,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -38969,12 +44233,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -39183,12 +44449,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -39371,12 +44639,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -39588,12 +44858,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DoubleValue.decode = function decode(reader, length) {
+                DoubleValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DoubleValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.double();
@@ -39791,12 +45063,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FloatValue.decode = function decode(reader, length) {
+                FloatValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FloatValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.float();
@@ -39994,12 +45268,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int64Value.decode = function decode(reader, length) {
+                Int64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int64();
@@ -40211,12 +45487,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt64Value.decode = function decode(reader, length) {
+                UInt64Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt64Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint64();
@@ -40428,12 +45706,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Int32Value.decode = function decode(reader, length) {
+                Int32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Int32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.int32();
@@ -40631,12 +45911,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UInt32Value.decode = function decode(reader, length) {
+                UInt32Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UInt32Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.uint32();
@@ -40834,12 +46116,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BoolValue.decode = function decode(reader, length) {
+                BoolValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BoolValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bool();
@@ -41037,12 +46321,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                StringValue.decode = function decode(reader, length) {
+                StringValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.StringValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.string();
@@ -41240,12 +46526,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BytesValue.decode = function decode(reader, length) {
+                BytesValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.BytesValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.value = reader.bytes();
@@ -41722,12 +47010,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -42002,12 +47292,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -42238,12 +47530,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -42491,12 +47785,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -42726,12 +48022,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -42929,12 +48227,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43143,12 +48443,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43375,12 +48677,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();
@@ -43627,12 +48931,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

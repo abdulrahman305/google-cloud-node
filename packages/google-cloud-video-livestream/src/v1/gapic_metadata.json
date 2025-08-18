@@ -35,6 +35,16 @@
                 "deleteEvent"
               ]
             },
+            "GetClip": {
+              "methods": [
+                "getClip"
+              ]
+            },
+            "GetDvrSession": {
+              "methods": [
+                "getDvrSession"
+              ]
+            },
             "GetAsset": {
               "methods": [
                 "getAsset"
@@ -85,6 +95,31 @@
                 "updateInput"
               ]
             },
+            "CreateClip": {
+              "methods": [
+                "createClip"
+              ]
+            },
+            "DeleteClip": {
+              "methods": [
+                "deleteClip"
+              ]
+            },
+            "CreateDvrSession": {
+              "methods": [
+                "createDvrSession"
+              ]
+            },
+            "DeleteDvrSession": {
+              "methods": [
+                "deleteDvrSession"
+              ]
+            },
+            "UpdateDvrSession": {
+              "methods": [
+                "updateDvrSession"
+              ]
+            },
             "CreateAsset": {
               "methods": [
                 "createAsset"
@@ -119,6 +154,20 @@
                 "listEvents",
                 "listEventsStream",
                 "listEventsAsync"
+              ]
+            },
+            "ListClips": {
+              "methods": [
+                "listClips",
+                "listClipsStream",
+                "listClipsAsync"
+              ]
+            },
+            "ListDvrSessions": {
+              "methods": [
+                "listDvrSessions",
+                "listDvrSessionsStream",
+                "listDvrSessionsAsync"
               ]
             },
             "ListAssets": {
@@ -158,6 +207,16 @@
                 "deleteEvent"
               ]
             },
+            "GetClip": {
+              "methods": [
+                "getClip"
+              ]
+            },
+            "GetDvrSession": {
+              "methods": [
+                "getDvrSession"
+              ]
+            },
             "GetAsset": {
               "methods": [
                 "getAsset"
@@ -208,6 +267,31 @@
                 "updateInput"
               ]
             },
+            "CreateClip": {
+              "methods": [
+                "createClip"
+              ]
+            },
+            "DeleteClip": {
+              "methods": [
+                "deleteClip"
+              ]
+            },
+            "CreateDvrSession": {
+              "methods": [
+                "createDvrSession"
+              ]
+            },
+            "DeleteDvrSession": {
+              "methods": [
+                "deleteDvrSession"
+              ]
+            },
+            "UpdateDvrSession": {
+              "methods": [
+                "updateDvrSession"
+              ]
+            },
             "CreateAsset": {
               "methods": [
                 "createAsset"
@@ -242,6 +326,20 @@
                 "listEvents",
                 "listEventsStream",
                 "listEventsAsync"
+              ]
+            },
+            "ListClips": {
+              "methods": [
+                "listClips",
+                "listClipsStream",
+                "listClipsAsync"
+              ]
+            },
+            "ListDvrSessions": {
+              "methods": [
+                "listDvrSessions",
+                "listDvrSessionsStream",
+                "listDvrSessionsAsync"
               ]
             },
             "ListAssets": {

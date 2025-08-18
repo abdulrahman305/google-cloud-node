@@ -4,6 +4,45 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/grafeas?activeTab=versions
 
+## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/grafeas-v6.0.1...grafeas-v6.1.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6426](https://github.com/googleapis/google-cloud-node/issues/6426)) ([6ea5464](https://github.com/googleapis/google-cloud-node/commit/6ea54642532d9797ea87d7cd01c9fac77f9eb035))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [6.0.1](https://github.com/googleapis/google-cloud-node/compare/grafeas-v6.0.0...grafeas-v6.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6191](https://github.com/googleapis/google-cloud-node/issues/6191)) ([c9adc61](https://github.com/googleapis/google-cloud-node/commit/c9adc6150ad09630854554c2ed7e558fb3e04315))
+
+## [6.0.0](https://github.com/googleapis/google-cloud-node/compare/grafeas-v5.5.0...grafeas-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [storagetransfer,publish,grafeas] add request/response debug logging to gapics ([a8819af](https://github.com/googleapis/google-cloud-node/commit/a8819af1314602e905ef8e582c20b505c466003b))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [5.5.0](https://github.com/googleapis/google-cloud-node/compare/grafeas-v5.4.0...grafeas-v5.5.0) (2024-08-19)
+
+
+### Features
+
+* [grafeas] A new field `version` is added to message `.grafeas.v1.ComplianceOccurrence` ([#5585](https://github.com/googleapis/google-cloud-node/issues/5585)) ([f9cfc54](https://github.com/googleapis/google-cloud-node/commit/f9cfc5463b02af3296df3e647633597730122ae8))
+
 ## [5.4.0](https://github.com/googleapis/google-cloud-node/compare/grafeas-v5.3.0...grafeas-v5.4.0) (2024-05-21)
 
 

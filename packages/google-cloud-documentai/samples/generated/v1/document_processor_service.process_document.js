@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -77,6 +77,10 @@ function main(name) {
    *  Label values are optional. Label keys must start with a letter.
    */
   // const labels = [1,2,3,4]
+  /**
+   *  Optional. Option to remove images from the document.
+   */
+  // const imagelessMode = true
 
   // Imports the Documentai library
   const {DocumentProcessorServiceClient} = require('@google-cloud/documentai').v1;

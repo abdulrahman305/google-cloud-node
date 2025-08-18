@@ -4,7 +4,7 @@
 
 # [Cloud Storage API: Node.js Client](https://github.com/googleapis/google-cloud-node/tree/main/packages/google-storage-control)
 
-[![release level](https://img.shields.io/badge/release%20level-preview-yellow.svg?style=flat)](https://cloud.google.com/terms/launch-stages)
+[![release level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)](https://cloud.google.com/terms/launch-stages)
 [![npm version](https://img.shields.io/npm/v/@google-cloud/storage-control.svg)](https://www.npmjs.org/package/@google-cloud/storage-control)
 
 
@@ -31,7 +31,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 * [Quickstart](#quickstart)
   * [Before you begin](#before-you-begin)
   * [Installing the client library](#installing-the-client-library)
-  * [Using the client library](#using-the-client-library)
+
 * [Samples](#samples)
 * [Versioning](#versioning)
 * [Contributing](#contributing)
@@ -44,7 +44,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 1.  [Select or create a Cloud Platform project][projects].
 1.  [Enable billing for your project][billing].
 1.  [Enable the Cloud Storage API API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
+1.  [Set up authentication][auth] so you can access the
     API from your local workstation.
 
 ### Installing the client library
@@ -54,45 +54,6 @@ npm install @google-cloud/storage-control
 ```
 
 
-### Using the client library
-
-```javascript
-/**
- * This snippet has been automatically generated and should be regarded as a code template only.
- * It will require modifications to work.
- * It may require correct/in-range values for request initialization.
- * TODO(developer): Uncomment these variables before running the sample.
- */
-/**
- *  Required. Name of the bucket for which to get the layout
- */
-// const bucketName = 'abc123'
-
-// Imports the Control library
-const {StorageControlClient} = require('@google-cloud/storage-control').v2;
-
-// Instantiates a client
-const controlClient = new StorageControlClient();
-
-async function callGetStorageLayout() {
-  // Construct request
-  const request = {
-    name: `projects/_/buckets/${bucketName}/storageLayout`,
-  };
-
-  // Run request
-  const [layout] = await controlClient.getStorageLayout(request);
-
-  // Use response
-  console.log(
-    `Bucket ${bucketName} has location type ${layout.locationType}.`
-  );
-}
-
-callGetStorageLayout();
-
-```
-
 
 
 ## Samples
@@ -101,22 +62,30 @@ Samples are in the [`samples/`](https://github.com/googleapis/google-cloud-node/
 
 | Sample                      | Source Code                       | Try it |
 | --------------------------- | --------------------------------- | ------ |
-| Create Folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/createFolder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/createFolder.js,packages/google-storage-control/samples/README.md) |
-| Delete Folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/deleteFolder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/deleteFolder.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.create_anywhere_cache | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.create_anywhere_cache.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.create_anywhere_cache.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.create_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.create_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.create_folder.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.create_managed_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.create_managed_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.create_managed_folder.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.delete_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.delete_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.delete_folder.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.delete_managed_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.delete_managed_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.delete_managed_folder.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.disable_anywhere_cache | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.disable_anywhere_cache.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.disable_anywhere_cache.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.get_anywhere_cache | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_anywhere_cache.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_anywhere_cache.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.get_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_folder.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.get_folder_intelligence_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_folder_intelligence_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_folder_intelligence_config.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.get_managed_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_managed_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_managed_folder.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.get_organization_intelligence_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_organization_intelligence_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_organization_intelligence_config.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.get_project_intelligence_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_project_intelligence_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_project_intelligence_config.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.get_storage_layout | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.get_storage_layout.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.get_storage_layout.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.list_anywhere_caches | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.list_anywhere_caches.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.list_anywhere_caches.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.list_folders | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.list_folders.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.list_folders.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.list_managed_folders | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.list_managed_folders.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.list_managed_folders.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.pause_anywhere_cache | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.pause_anywhere_cache.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.pause_anywhere_cache.js,packages/google-storage-control/samples/README.md) |
 | Storage_control.rename_folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.rename_folder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.rename_folder.js,packages/google-storage-control/samples/README.md) |
-| Get Folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/getFolder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/getFolder.js,packages/google-storage-control/samples/README.md) |
-| List Folders | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/listFolders.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/listFolders.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.resume_anywhere_cache | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.resume_anywhere_cache.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.resume_anywhere_cache.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.update_anywhere_cache | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.update_anywhere_cache.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.update_anywhere_cache.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.update_folder_intelligence_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.update_folder_intelligence_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.update_folder_intelligence_config.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.update_organization_intelligence_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.update_organization_intelligence_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.update_organization_intelligence_config.js,packages/google-storage-control/samples/README.md) |
+| Storage_control.update_project_intelligence_config | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/generated/v2/storage_control.update_project_intelligence_config.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/generated/v2/storage_control.update_project_intelligence_config.js,packages/google-storage-control/samples/README.md) |
 | Quickstart | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/quickstart.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/quickstart.js,packages/google-storage-control/samples/README.md) |
-| Rename Folder | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-storage-control/samples/renameFolder.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-storage-control/samples/renameFolder.js,packages/google-storage-control/samples/README.md) |
 
 
 
@@ -150,13 +119,14 @@ This library follows [Semantic Versioning](http://semver.org/).
 
 
 
+This library is considered to be **stable**. The code surface will not change in backwards-incompatible ways
+unless absolutely necessary (e.g. because of critical security issues) or with
+an extensive deprecation period. Issues and requests against **stable** libraries
+are addressed with the highest priority.
 
 
 
 
-This library is considered to be in **preview**. This means it is still a
-work-in-progress and under active development. Any release is subject to
-backwards-incompatible changes at any time.
 
 
 More Information: [Google Cloud Platform Launch Stages][launch_stages]
@@ -179,10 +149,10 @@ Apache Version 2.0
 
 See [LICENSE](https://github.com/googleapis/google-cloud-node/blob/main/LICENSE)
 
-[client-docs]: https://cloud.google.com/nodejs/docs/reference/storage/latest
-[product-docs]: https://cloud.google.com/storage/docs/overview
+[client-docs]: https://cloud.google.com/nodejs/docs/reference/storage-control/latest
+[product-docs]: https://cloud.google.com/storage/docs/reference/rpc
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
 [projects]: https://console.cloud.google.com/project
 [billing]: https://support.google.com/cloud/answer/6293499#enable-billing
 [enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=storage.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+[auth]: https://cloud.google.com/docs/authentication/external/set-up-adc-local
